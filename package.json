@@ -1,0 +1,23 @@
+{
+  "name": "nodejsframework",
+  "version": "0.0.1",
+  "description": "A framework to build any number or any kind of native application or automation solution.",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SethEden/NodeJSFramework.git"
+  },
+  "keywords": [
+    "application",
+    "automation"
+  ],
+  "author": "Seth Hollingsead <iceversaka@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SethEden/NodeJSFramework/issues"
+  },
+  "homepage": "https://github.com/SethEden/NodeJSFramework#readme"
+}
