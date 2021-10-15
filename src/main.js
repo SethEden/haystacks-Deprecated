@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * @file main.js
  * @module main
