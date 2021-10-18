@@ -25,17 +25,17 @@ var namespacePrefix = `executrix.${baseFileName}.`;
  * @date 2021/10/13
  */
 function setConfigurationSetting(configurationName, configurationValue) {
-  let functionName = setConfigurationSetting.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configurationName is: ${configurationName}`);
-  console.log(`configurationValue is: ${configurationValue}`);
+  // let functionName = setConfigurationSetting.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configurationName is: ${configurationName}`);
+  // console.log(`configurationValue is: ${configurationValue}`);
   let configurationDataRoot = D['configuration'];
   if (!configurationDataRoot) {
     D['configuration'] = {};
     configurationDataRoot = D['configuration'];
   }
   configurationDataRoot[configurationName] = configurationValue;
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**
@@ -47,9 +47,9 @@ function setConfigurationSetting(configurationName, configurationValue) {
  * @date 2021/10/13
  */
 function getConfigurationSetting(configurationName) {
-  let functionName = getConfigurationSetting.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configurationName is: ${configurationName}`);
+  // let functionName = getConfigurationSetting.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configurationName is: ${configurationName}`);
   let returnConfigurationValue;
 
   if (D['configuration'] !== undefined) {
@@ -61,8 +61,8 @@ function getConfigurationSetting(configurationName) {
   } else {
     returnConfigurationValue = undefined
   }
-  console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnConfigurationValue;
 };
 

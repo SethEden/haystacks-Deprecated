@@ -35,17 +35,17 @@ var namespacePrefix = `executrix.${baseFileName}.`;
  * @date 2021/10/15
  */
 function getJsonData(pathAndFilename) {
-  let functionName = getJsonData.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`pathAndFilename is: ${pathAndFilename}`);
+  // let functionName = getJsonData.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`pathAndFilename is: ${pathAndFilename}`);
   // Make sure to resolve the path on the local system,
   // just in case tehre are issues with the OS that the code is running on.
   pathAndFilename = path.resolve(pathAndFilename);
   let rawData = fs.readFileSync(pathAndFilename, { encoding: 'UTF8'});
   let parsedData = JSON.parse(rawData);
-  console.log(`DONE loading data from: ${pathAndFilename}`);
-  console.log(`loaded data is: ${JSON.stringify(parsedData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`DONE loading data from: ${pathAndFilename}`);
+  // console.log(`loaded data is: ${JSON.stringify(parsedData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return parsedData;
 };
 
@@ -60,9 +60,9 @@ function getJsonData(pathAndFilename) {
  * @date 2021/10/15
  */
 function readDirectoryContents(directory) {
-  let functionName = readDirectoryContents.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`directory is: ${directory}`);
+  // let functionName = readDirectoryContents.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`directory is: ${directory}`);
   let filesFound = [];
   // Make sure to resolve the path on the local system,
   // just in case there are issues with the OS that the code is running on.
@@ -71,8 +71,8 @@ function readDirectoryContents(directory) {
   filesFound = filesCollection; // Copy the data ino a local variable first.
   filesCollection = undefined; // Make sure to clear it so we don't have a chance of it corrupting any other file operations.
   filesCollection = [];
-  console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
 };
 
@@ -87,11 +87,9 @@ function readDirectoryContents(directory) {
  * @date 2020/05/22
  */
 function readDirectorySynchronously(directory) {
-  // console.log('BEGIN dataBroker.readDirectorySynchronously function');
-  // console.log('directory is: ' + directory);
-  let functionName = readDirectorySynchronously.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`directory is: ${directory}`);
+  // let functionName = readDirectorySynchronously.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`directory is: ${directory}`);
   if (hitFileLimit === false) {
     directory = path.resolve(directory); // Make sure to resolve the path on the local system, just in case there are issues with the OS that the code is running on.
     let currentDirectoryPath = directory;
@@ -135,7 +133,7 @@ function readDirectorySynchronously(directory) {
         console.log(`ERROR: Invalid access to: ${pathOfCurrentItem}`);
       }
     });
-    console.log(`END ${namespacePrefix}${functionName} function`);
+    // console.log(`END ${namespacePrefix}${functionName} function`);
     // console.log('END dataBroker.readDirectorySynchronously function');
   }
 };
