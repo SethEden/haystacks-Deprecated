@@ -4,7 +4,7 @@
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "babel-node ./test/testHarness.js",
     "start": "babel-node ./src/main.js"
   },
   "repository": {

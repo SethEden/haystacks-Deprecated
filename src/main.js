@@ -11,12 +11,11 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
- // import warden from './controllers/warden.js';
- var warden = require('./controllers/warden.js')
- var path = require('path');
- var baseFileName = path.basename(module.filename, path.extname(module.filename));
- var namespacePrefix = `framework.${baseFileName}.`;
- console.log('framework setup1');
+var warden = require('./controllers/warden.js');
+// import warden from './controllers/warden';
+var path = require('path');
+var baseFileName = path.basename(module.filename, path.extname(module.filename));
+var namespacePrefix = `framework.${baseFileName}.`;
 
  /**
   * @function initFramework
@@ -29,15 +28,17 @@
   */
  function initFramework(clientConfiguration) {
    let functionName = initFramework.name;
-   console.log('framework setup2');
-   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-   // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
-   // let appRootPath = warden.processRootPath(clientConfiguration);
-   // clientConfiguration['appRootPath'] = appRootPath;
-   // clientConfiguration['appConfigPath'] = appRootPath + clientConfiguration['appConfigReferencePath'];
-   // clientConfiguration['frameworkConfigPath'] = appRootPath + '//src//framework//resources//configuration//';
-   // warden.initFrameworkSchema(clientConfiguration);
+   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+   console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+   let appRootPath = warden.processRootPath(clientConfiguration);
+   clientConfiguration['appRootPath'] = appRootPath;
+   clientConfiguration['appConfigPath'] = appRootPath + clientConfiguration['appConfigReferencePath'];
+   console.log('__filename is: ' + __dirname);
+   clientConfiguration['frameworkConfigPath'] = __dirname + '//resources//configuration//';
+   warden.initFrameworkSchema(clientConfiguration);
    console.log(`END ${namespacePrefix}${functionName} function`);
  };
 
-module.exports = initFramework;
+module.exports = {
+  ['initFramework']: (clientConfiguration) => initFramework(clientConfiguration)
+};
