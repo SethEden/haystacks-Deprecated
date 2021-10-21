@@ -3,5 +3,6 @@
   "system.dateStamp": "YYYYMMDD",
   "system.timeStamp": "HHmmss-SSS",
   "system.argumentDrivenInterface": false,
-  "system.EnableDebugConfigurationSettings": true
+  "system.enableDebugConfigurationSettings": true,
+  "system.consoleLogEnabled": true
 }

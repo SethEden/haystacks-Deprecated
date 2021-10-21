@@ -14,12 +14,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
- var fs = require('fs');
- var path = require('path');
- var D = require('../structures/data');
- var filesCollection = [];
- const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
- var enableFilesListLimit = false;
+var fs = require('fs');
+var path = require('path');
+var D = require('../structures/data');
+var filesCollection = [];
+const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
+var enableFilesListLimit = false;
 var filesListLimit = -1;
 var hitFileLimit = false;
 var baseFileName = path.basename(module.filename, path.extname(module.filename));

@@ -80,9 +80,9 @@ function loadAllJsonData(filesToLoad, contextName) {
   }
 
   // Now we need to determine if we should load the rest of the data.
-  if (multiMergedData['system']['system.EnableDebugConfigurationSettings']) {
-    if (multiMergedData['system']['system.EnableDebugConfigurationSettings'] === true ||
-    multiMergedData['system']['system.EnableDebugConfigurationSettings'].toUpperCase() === 'TRUE') {
+  if (multiMergedData['system']['system.enableDebugConfigurationSettings']) {
+    if (multiMergedData['system']['system.enableDebugConfigurationSettings'] === true ||
+    multiMergedData['system']['system.enableDebugConfigurationSettings'].toUpperCase() === 'TRUE') {
       for (let j = 0; j < filesToLoad.length; j++) {
         let fileToLoad = filesToLoad[j];
         if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * @file warden.js
  * @module warden
