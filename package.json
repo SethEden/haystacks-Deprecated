@@ -26,7 +26,8 @@
     "@babel/core": "7.15.8",
     "@babel/node": "7.15.8",
     "@babel/preset-env": "7.15.8",
-    "haystacks": "^0.0.1"
+    "haystacks": "^0.0.1",
+    "jsdoc": "^3.6.7"
   },
   "bugs": {
     "url": "https://github.com/SethEden/haystacks/issues"
