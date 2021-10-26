@@ -49,4 +49,11 @@ function computeDeltaTime(startTime, endTime) {
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`startTime is: ${startTime}`);
   console.log(`endTime is: ${endTime}`);
+  let deltaTimeResult;
+  startTime = moment(startTime, 'YYYYMMDD_HHmmss_SSS');
+  endTime = moment(endTime, 'YYYYMMDD_HHmmss_SSS');
+  deltaTimeResult = endTime.diff(startTime); // Should wok in milliseconds out of the box!
+  console.log(`deltaTimeResult is: ${deltaTimeResult}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return deltaTimeResult;
 };
