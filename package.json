@@ -1,5 +1,5 @@
 {
-  "name": "nodejsframework",
+  "name": "haystacks",
   "version": "0.0.1",
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SethEden/NodeJSFramework.git"
+    "url": "git+https://github.com/SethEden/haystacks.git"
   },
   "keywords": [
     "application",
@@ -25,7 +25,7 @@
     "prompt-sync": "4.2.0"
   },
   "bugs": {
-    "url": "https://github.com/SethEden/NodeJSFramework/issues"
+    "url": "https://github.com/SethEden/haystacks/issues"
   },
-  "homepage": "https://github.com/SethEden/NodeJSFramework#readme"
+  "homepage": "https://github.com/SethEden/haystacks#readme"
 }

@@ -13,7 +13,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import framework from '../src/main.js';
+import haystacks from '../src/main.js';
 const prompt = require('prompt-sync')();
 var path = require('path');
 global.appRot = path.resolve(process.cwd());
@@ -35,7 +35,7 @@ function bootstrapApplication() {
     "rootPath": rootPath,
     "appConfigReferencePath": "//test//resources//configuration//"
   };
-  framework.initFramework(appConfig);
+  haystacks.initFramework(appConfig);
 };
 
 /**
