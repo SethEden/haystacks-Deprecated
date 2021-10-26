@@ -25,12 +25,12 @@ var namespacePrefix = `controllers.${baseFileName}.`;
  * @date 2021/03/31
  */
 function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
-  // let functionName = setupAllJsonConfigData.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
-  // console.log(`contextName is: ${contextName}`);
+  let functionName = setupAllJsonConfigData.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
+  console.log(`contextName is: ${contextName}`);
   let loadedAndMergedDataAllFiles = {};
-  let dataPath = configurator.getConfigurationSetting(dataPathConfigurationName);
+  let dataPath = configurator.getConfigurationSetting('system', dataPathConfigurationName);
   dataPath = path.resolve(dataPath);
   let filesToLoad = dataBroker.scanDataPath(dataPath, contextName);
   loadedAndMergedDataAllFiles = dataBroker.loadAllJsonData(filesToLoad, contextName);

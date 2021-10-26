@@ -21,18 +21,18 @@ var path = require('path');
 
 function consoleLog(classPath, message) {
   if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
-    let consoleLogEnabled = configurator.getConfigurationSetting('consoleLogEnabled');
+    let consoleLogEnabled = configurator.getConfigurationSetting('system', 'consoleLogEnabled');
     if (consoleLogEnabled === true) {
       console.log('BEGIN loggers.consoleLog function');
       console.log(`classPath is: ${classPath}`);
       console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting('applicationCleanedRootPath');
+      let logFile = configurator.getConfigurationSetting('system', 'applicationCleanedRootPath');
       if (logFile !== undefined) {
         logFile = `${logFile}//logs`;
         console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + '//' + configurator.getConfigurationSetting('logFilePathAndName');
+        logFile = logFile + '//' + configurator.getConfigurationSetting('system', 'logFilePathAndName');
         console.log(`logFile after adding the log filename: ${logFile}`);
       }
 

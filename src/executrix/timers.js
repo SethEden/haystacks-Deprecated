@@ -57,3 +57,8 @@ function computeDeltaTime(startTime, endTime) {
   console.log(`END ${namespacePrefix}${functionName} function`);
   return deltaTimeResult;
 };
+
+module.exports = {
+  ['getNowMoment']: (formatting) => getNowMoment(formatting),
+  ['computeDeltaTime']: (startTime, endTime) => computeDeltaTime(startTime, endTime)
+};

@@ -80,15 +80,15 @@ function processRootPath(configData) {
  * @date 2021/10/12
  */
 function initFrameworkSchema(configData) {
-  // let functionName = initFrameworkSchema.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  let functionName = initFrameworkSchema.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`configData is: ${JSON.stringify(configData)}`);
 
   let appConfigPath = configData['appConfigPath'];
   let frameworkConfigPath = configData['frameworkConfigPath'];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
 
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 module.exports = {

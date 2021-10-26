@@ -10,7 +10,6 @@
  */
 
 var fileOperations = require('../executrix/fileOperations');
-var configurator = require('../executrix/configurator');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = `brokers.${baseFileName}.`;
@@ -89,11 +88,11 @@ function loadAllJsonData(filesToLoad, contextName) {
         && fileToLoad.toUpperCase().includes('.JSON')) {
           let dataFile = preprocessJsonFile(fileToLoad);
 
-          if (!multiMergedData['DebugSettings']) {
-            multiMergedData['DebugSettings'] = {};
-            multiMergedData['DebugSettings'] = dataFile;
+          if (!multiMergedData['debugSettings']) {
+            multiMergedData['debugSettings'] = {};
+            multiMergedData['debugSettings'] = dataFile;
           } else {
-            Object.assign(multiMergedData['DebugSettings'], dataFile);
+            Object.assign(multiMergedData['debugSettings'], dataFile);
           }
         }
       }

@@ -26,12 +26,12 @@ var namespacePrefix = `controllers.${baseFileName}.`;
  * @date 2021/10/13
  */
 function setupConfiguration(appConfigPath, frameworkConfigPath) {
-  // let functionName = setupConfiguration.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`appConfigPath is: ${appConfigPath}`);
-  // console.log(`frameworkConfigPath is: ${frameworkConfigPath}`);
-  configurator.setConfigurationSetting('appConfigPath', appConfigPath);
-  configurator.setConfigurationSetting('frameworkConfigPath', frameworkConfigPath);
+  let functionName = setupConfiguration.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`appConfigPath is: ${appConfigPath}`);
+  console.log(`frameworkConfigPath is: ${frameworkConfigPath}`);
+  configurator.setConfigurationSetting('system', 'appConfigPath', appConfigPath);
+  configurator.setConfigurationSetting('system', 'frameworkConfigPath', frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
   // TODO: Implement these functions.
@@ -39,7 +39,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   allAppConfigData = chiefData.setupAllJsonConfigData('appConfigPath', 'configuration');
   // TODO: parseLoadedConfigurationData
   // TODO: merge App Config Data & Framework Config Data
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 module.exports = {
