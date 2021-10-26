@@ -18,11 +18,14 @@
   "author": "Seth Hollingsead <iceversaka@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "prompt-sync": "4.2.0"
+  },
+  "devDependencies": {
     "@babel/cli": "7.15.7",
     "@babel/core": "7.15.8",
     "@babel/node": "7.15.8",
     "@babel/preset-env": "7.15.8",
-    "prompt-sync": "4.2.0"
+    "haystacks": "^0.0.1"
   },
   "bugs": {
     "url": "https://github.com/SethEden/haystacks/issues"
