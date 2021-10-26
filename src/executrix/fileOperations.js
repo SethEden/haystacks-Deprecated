@@ -138,6 +138,27 @@ function readDirectorySynchronously(directory) {
   }
 };
 
+/**
+ * @function cleanRootPath
+ * @description Takes the application root path and cleans it to give a real root path,
+ * or top-level folder path for the application.
+ * @return {string} The real root path or top-level path for the application.
+ * @NOTE This has been problematic because often many of the init functions are contained in lower level folders,
+ * not at the top-level. This gives much greater level of organization to the over all project and
+ * helps with scalability & resuability.
+ * @author Seth Hollingsead
+ * @date 2021/10/26
+ */
+function cleanRootPath() {
+  let functionName = cleanRootPath.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  let rootPath;
+  
+  console.log(`rootPath is: ${rootPath}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return rootPath;
+};
+
 module.exports = {
   ['getJsonData']: (pathAndFilename) => getJsonData(pathAndFilename),
   ['readDirectoryContents']: (directory) => readDirectoryContents(directory),
