@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: executrix/configurator.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: executrix/configurator.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file configurator.js
  * @module configurator
  * @description Contains the functions necessary to set and get configuration settings from the shared data structure.
@@ -20,7 +48,7 @@ var namespacePrefix = `executrix.${baseFileName}.`;
 /**
  * @function setConfigurationSetting
  * @description Sets a configuration setting on the configuration data structure stored on the D-data structure.
- * @param {array<string>} configurationNamespace The path in the configurationJSON object where the configuration setting should be set.
+ * @param {array&lt;string>} configurationNamespace The path in the configurationJSON object where the configuration setting should be set.
  * @param {string} configurationName The key of the configuration setting.
  * @param {string|integer|boolean|double} configurationValue The value of the configuration setting.
  * @author Seth Hollingsead
@@ -43,7 +71,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
 /**
  * @function getConfigurationSetting
  * @description Gets a configuration value based on the configuration name.
- * @param {array<string>} configurationNamespace The path in the configuration JSON object
+ * @param {array&lt;string>} configurationNamespace The path in the configuration JSON object
  * where the configuration setting should be found.
  * @param {string} configurationName The key of the configuration setting.
  * @return {string|integer|boolean|double} The value of whatever was stored in the D[configuration].
@@ -65,7 +93,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
   namespaceConfigObject = getConfigurationNamespaceObject(configurationNamespace.split('.'));
   if (namespaceConfigObject) {
     if (configurationName) {
-      if (configurationName.includes('@') && configurationName.indexOf('@') === 0) {
+      if (configurationName.includes('@') &amp;&amp; configurationName.indexOf('@') === 0) {
         returnConfigurationValue = getParentConfigurationNamespaceObject(configurationNamespace, configurationName);
       } else {
         returnConfigurationValue = namespaceConfigObject[`${configurationNamespace}.${configurationName}`];
@@ -116,7 +144,7 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
   let returnValue;
   returnValue = fullyQualifiedName.substr(0, fully.lastIndexOf('.'));
   if (returnValue.includes('debugFunctions') || returnValue.includes('debugFiles')) {
-    // We need to strip off the "debugFunctions" & "debugFiles" prefixes along with the pipe that delimits them.
+    // We need to strip off the "debugFunctions" &amp; "debugFiles" prefixes along with the pipe that delimits them.
     // At some point we might need these separate designations, like for the colorizer logic, but for now,
     // until there is a business need I will keep them unified.
     // Everything to the right all falls under the designation of "debugSettings"
@@ -202,7 +230,7 @@ function getParentConfigurationNamespaceObject(configurationNamespace, optionalF
 /**
  * @function getConfigurationNamespaceObject
  * @description Navigates the configuration JSON data object tree to find the namespace of configuration settings.
- * @param {array<string>} configurationNamespace The path in the configuration JSON object where the
+ * @param {array&lt;string>} configurationNamespace The path in the configuration JSON object where the
  * configuration setting should be set, or returned.
  * @return {object|boolean} The object found at the specified namespace address in the configuration data object,
  * or False if nothing was found.
@@ -222,13 +250,13 @@ function getConfigurationNamespaceObject(configurationNamespace) {
     configurationDataRoot = D['configuration'];
     configurationPathObject = configurationDataRoot;
   }
-  for (let i = 0; i < configurationNamespace.length; i++) {
+  for (let i = 0; i &lt; configurationNamespace.length; i++) {
     if (!configurationPathObject[configurationNamespace[i]]) {
       // It doesn't exist yet, so lets make it.
       configurationPathObject[configurationNamespace[i]] = {};
     }
     configurationPathObject = configurationPathObject[configurationNamespace[i]];
-  } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+  } // End for-loop (let i = 0; i &lt; configurationNamespace.length; i++)
   if (returnValue) {
     returnValue = configurationPathObject;
   }
@@ -245,3 +273,26 @@ module.exports = {
   ['processConfigurationNamespaceRules']: (fullyQualifiedName) => processConfigurationNamespaceRules(fullyQualifiedName),
   ['processConfigurationValueRules']: (name, value) => processConfigurationValueRules(name, value)
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-prompt-sync.html">prompt-sync</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Oct 26 2021 15:11:09 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
