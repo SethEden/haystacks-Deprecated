@@ -5,8 +5,6 @@
  * @module testHarness
  * @description This is the main init for the testHarness application.
  * It contains just enough of the main program loop and/or basic argument parsing to effectively test the framework.
- * @requires {@link }
- * @requires {@link https://www.npmjs.com/package/prompt-sync|prompt-sync}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/07
@@ -14,7 +12,6 @@
  */
 
 import haystacks from '../src/main.js';
-const prompt = require('prompt-sync')();
 var path = require('path');
 global.appRot = path.resolve(process.cwd());
 var rootPath = '';
@@ -45,7 +42,7 @@ function bootstrapApplication() {
  * @author Seth Hollingsead
  * @date 2021/10/15
  */
-function application() {
+async function application() {
   let functionName = application.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   let argumnentDrivenInterface = false;
@@ -57,7 +54,7 @@ function application() {
     console.log('BEGIN cmmand parser');
 
     while(programRunning === true) {
-      commandInput = prompt('>');
+      commandInput = haystacks.prompt('>');
 
       if (commandInput.toUpperCase() === 'EXIT') {
         console.log('END command parser');

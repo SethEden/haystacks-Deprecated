@@ -11,8 +11,8 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var warden = require('./controllers/warden.js');
-// import warden from './controllers/warden';
+var warden = require('./controllers/warden');
+var prompt = require('./executrix/prompt');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = `framework.${baseFileName}.`;
@@ -39,5 +39,6 @@ var namespacePrefix = `framework.${baseFileName}.`;
  };
 
 module.exports = {
-  ['initFramework']: (clientConfiguration) => initFramework(clientConfiguration)
+  ['initFramework']: (clientConfiguration) => initFramework(clientConfiguration),
+  ['prompt']: (ask) => prompt.prompt(ask)
 };
