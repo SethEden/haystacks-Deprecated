@@ -11,6 +11,7 @@
  */
 
 var chiefConfiguration = require('./chiefConfiguration');
+var ruleBroker = require('../brokers/ruleBroker');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = `controllers.${baseFileName}.`;
@@ -31,26 +32,28 @@ function processRootPath(configData) {
   let functionName = processRootPath.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`configData is: ${JSON.stringify(configData)}`);
-
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  let rules = {};
+  rules[0] = 'parseSystemRootPath';
+  ruleBroker.bootStrapBusinessRules();
   let applicationName = configData['applicationName'];
   let pathToProcess = configData['rootPath'];
-  let resolvedPath = '';
+  let resolvedPath = ruleBroker.processRules(pathToProcess, applicationName, rules);
 
-  let pathElements = pathToProcess.split('\\');
-  console.log(`pathElements is: ${JSON.stringify(pathElements)}`);
-  loop1:
-    for (let i = 0; i < pathElements.length; i++) {
-      let pathElement = pathElements[i];
-      if (i === 0) {
-        resolvedPath = pathElement;
-      } else if (pathElement === applicationName) {
-        resolvedPath = resolvedPath + '\\' + pathElement + '\\';
-        break loop1;
-      } else {
-        resolvedPath = resolvedPath + '\\' + pathElement;
-      }
-    }
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  // let pathElements = pathToProcess.split('\\');
+  // console.log(`pathElements is: ${JSON.stringify(pathElements)}`);
+  // loop1:
+  //   for (let i = 0; i < pathElements.length; i++) {
+  //     let pathElement = pathElements[i];
+  //     if (i === 0) {
+  //       resolvedPath = pathElement;
+  //     } else if (pathElement === applicationName) {
+  //       resolvedPath = resolvedPath + '\\' + pathElement + '\\';
+  //       break loop1;
+  //     } else {
+  //       resolvedPath = resolvedPath + '\\' + pathElement;
+  //     }
+  //   }
 
     // Alternate simplified implementation: i-length checking might need to be i+1
     // let pathElements = pathToProcess.split('\');
