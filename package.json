@@ -1,6 +1,6 @@
 {
   "name": "haystacks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
   "scripts": {
