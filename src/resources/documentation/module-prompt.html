@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: warden</title>
+    <title>JSDoc: Module: prompt</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: warden</h1>
+    <h1 class="page-title">Module: prompt</h1>
 
     
 
@@ -38,8 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Contains all the functions to manage the entire application framework at the highest level.
-Also provides an interface to easily manage all the framework features &amp; various functionality from a single entry point.</p></div>
+            <div class="description"><p>A simple prompt module to get input from the user using process.stdin.</p></div>
         
 
         
@@ -87,9 +86,6 @@ Also provides an interface to easily manage all the framework features &amp; var
     
 
     
-    <dt class="tag-copyright">Copyright:</dt>
-    <dd class="tag-copyright"><ul class="dummy"><li>Copyright © 2021-… by Seth Hollingsead. All rights reserved</li></ul></dd>
-    
 
     
 
@@ -98,7 +94,7 @@ Also provides an interface to easily manage all the framework features &amp; var
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controllers_warden.js.html">controllers/warden.js</a>, <a href="controllers_warden.js.html#line1">line 1</a>
+        <a href="executrix_prompt.js.html">executrix/prompt.js</a>, <a href="executrix_prompt.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -138,9 +134,7 @@ Also provides an interface to easily manage all the framework features &amp; var
         <h3 class="subsection-title">Requires</h3>
 
         <ul>
-            <li><a href="module-chiefConfiguration.html">module:chiefConfiguration</a></li>
-        
-            <li><a href="https://www.npmjs.com/package/path">path</a></li>
+            <li><a href="https://www.npmjs.com/package/fs">fs</a></li>
         </ul>
     
 
@@ -163,7 +157,7 @@ Also provides an interface to easily manage all the framework features &amp; var
     
 
     
-    <h4 class="name" id="~initFrameworkSchema"><span class="type-signature">(inner) </span>initFrameworkSchema<span class="signature">(configData)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id="~prompt"><span class="type-signature">(inner) </span>prompt<span class="signature">(ask)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -171,7 +165,7 @@ Also provides an interface to easily manage all the framework features &amp; var
 
 
 <div class="description">
-    <p>Setup all the framework data and configuration settings.</p>
+    <p>Prompts the user for some input and returns the input.</p>
 </div>
 
 
@@ -207,13 +201,13 @@ Also provides an interface to easily manage all the framework features &amp; var
 
         <tr>
             
-                <td class="name"><code>configData</code></td>
+                <td class="name"><code>ask</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">string</span>
 
 
             
@@ -223,7 +217,7 @@ Also provides an interface to easily manage all the framework features &amp; var
 
             
 
-            <td class="description last"><p>All of the configuration data that should be parsed as part of the setup process.</p></td>
+            <td class="description last"><p>What the prompt should display when asking the user for input.</p></td>
         </tr>
 
     
@@ -271,169 +265,7 @@ Also provides an interface to easily manage all the framework features &amp; var
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controllers_warden.js.html">controllers/warden.js</a>, <a href="controllers_warden.js.html#line74">line 74</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">void</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~processRootPath"><span class="type-signature">(inner) </span>processRootPath<span class="signature">(configData)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Processes the root path of the application using business rules.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>configData</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>All of the configuration data that should be parsed as part of the setup process.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Seth Hollingsead</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controllers_warden.js.html">controllers/warden.js</a>, <a href="controllers_warden.js.html#line18">line 18</a>
+        <a href="executrix_prompt.js.html">executrix/prompt.js</a>, <a href="executrix_prompt.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -462,7 +294,7 @@ Also provides an interface to easily manage all the framework features &amp; var
 
         
 <div class="param-desc">
-    <p>the true root path of the application.</p>
+    <p>A string of whatever input the user gave.</p>
 </div>
 
 
