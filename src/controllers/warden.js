@@ -4,6 +4,7 @@
  * @description Contains all the functions to manage the entire application framework at the highest level.
  * Also provides an interface to easily manage all the framework features & various functionality from a single entry point.
  * @requires module:chiefConfiguration
+ * @requires module:ruleBroker
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -11,6 +12,7 @@
  */
 
 var chiefConfiguration = require('./chiefConfiguration');
+var ruleBroker = require('../brokers/ruleBroker');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = `controllers.${baseFileName}.`;
@@ -31,42 +33,14 @@ function processRootPath(configData) {
   let functionName = processRootPath.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`configData is: ${JSON.stringify(configData)}`);
-
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  let rules = {};
+  rules[0] = 'parseSystemRootPath';
+  ruleBroker.bootStrapBusinessRules();
   let applicationName = configData['applicationName'];
   let pathToProcess = configData['rootPath'];
-  let resolvedPath = '';
-
-  let pathElements = pathToProcess.split('\\');
-  console.log(`pathElements is: ${JSON.stringify(pathElements)}`);
-  loop1:
-    for (let i = 0; i < pathElements.length; i++) {
-      let pathElement = pathElements[i];
-      if (i === 0) {
-        resolvedPath = pathElement;
-      } else if (pathElement === applicationName) {
-        resolvedPath = resolvedPath + '\\' + pathElement + '\\';
-        break loop1;
-      } else {
-        resolvedPath = resolvedPath + '\\' + pathElement;
-      }
-    }
-
-    // Alternate simplified implementation: i-length checking might need to be i+1
-    // let pathElements = pathToProcess.split('\');
-    // for (let i = 0; i < pathElements.length; i++) {
-    //   let pathElement = pathElement[i];
-    //   if (i === 0) {
-    //     resolvedPath = pathElement
-    //   }
-    //   else resolvedPath = resolvedPath + '\' + pathElement;
-    // }
-    // resolvedPath = resolvedPath + '\';
-
-  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  let resolvedPath = ruleBroker.processRules(pathToProcess, applicationName, rules);
   let rootPath = path.resolve(resolvedPath);
   console.log(`rootPath is: ${rootPath}`);
-
   console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
 };
@@ -83,11 +57,9 @@ function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`configData is: ${JSON.stringify(configData)}`);
-
   let appConfigPath = configData['appConfigPath'];
   let frameworkConfigPath = configData['frameworkConfigPath'];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
-
   console.log(`END ${namespacePrefix}${functionName} function`);
 };
 

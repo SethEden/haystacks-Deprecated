@@ -3,6 +3,8 @@
  * @module chiefConfiguration
  * @description Contains all the functions to manage the configuration system,
  * such as oading, setup, parsing & processing.
+ * @requires module:chiefData
+ * @requires module:ruleBroker
  * @requires module:configurator
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -11,6 +13,7 @@
  */
 
 var chiefData = require('./chiefData');
+var ruleBroker = require('../brokers/ruleBroker');
 var configurator = require('../executrix/configurator');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -30,6 +33,12 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`appConfigPath is: ${appConfigPath}`);
   console.log(`frameworkConfigPath is: ${frameworkConfigPath}`);
+  let rules = {};
+  rules[0] = 'swapBackSlashToForwardSlash';
+  appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
+  console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
+  frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
+  console.log(`frameworkConfigPath after rule processing is: ${frameworkConfigPath}`);
   configurator.setConfigurationSetting('system', 'appConfigPath', appConfigPath);
   configurator.setConfigurationSetting('system', 'frameworkConfigPath', frameworkConfigPath);
   let allAppConfigData = {};
