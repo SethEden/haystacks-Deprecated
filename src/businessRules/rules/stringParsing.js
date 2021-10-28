@@ -65,3 +65,33 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
+
+// ******************************************************
+// Internal functions
+// ******************************************************
+
+/**
+ * @function replaceCharacterAtIndexOfString
+ * @description Replaces the character at a specified index with another character.
+ * @param {string} originalString The string where the replacement should be made.
+ * @param {integer} index The index of the character where the replacement should be made.
+ * @param {string} replacement The character or string that should be inserted at the specified index.
+ * @return {string} The string after the replacement has been made.
+ * @author Seth Hollingsead
+ * @date 2021/10/28
+ * @NOTE: https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
+ */
+const replaceCharacterAtIndexOfString = function(originalString, index, replacement) {
+  let functionName = replaceCharacterAtIndexOfString.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`originalString is: ${originalString}`);
+  console.log(`index is: ${index}`);
+  console.log(`replacement is: ${replacement}`);
+  let returnData;
+  if (originalString != '' && index >= 0 && replacement != '') {
+    returnData = originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
+  }
+  console.log(`returnData is: ${returnData}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
