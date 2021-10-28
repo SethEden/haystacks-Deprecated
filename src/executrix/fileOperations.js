@@ -159,8 +159,45 @@ function cleanRootPath() {
   return rootPath;
 };
 
+/**
+ * @function appendMessageToFile
+ * @description Opens a file and appends a message to the file, then closes the file.
+ * @param {string} file The fully qualified path and file name for the file that
+ * should be opened, appended and saved.
+ * @param {string} message The message that should be appended to the specified file.
+ * @return {boolean} A TRUE or FALSE to indicate if the append happened successfully or not.
+ * @author Seth Hollingsead
+ * @date 2021/10/27
+ */
+function appendMessageToFile(file, message) {
+  let functionName = appendMessageToFile.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`file is: ${file}`);
+  console.log(`message is: ${message}`);
+  let appendSuccess = false;
+  if (file && message) {
+    try {
+      // console.log('open the file sync');
+      fd = fs.openSync(file, 'a');
+      // console.log('append to the file sync');
+      fs.appendFileSync(fd, `${message}\r\n`, 'UTF8');
+      // console.log('DONE appending to the file');
+    } catch (err) {
+      return console.log(err);
+    } finally {
+      if (fd !== undefined) {
+        fs.closeSync(fd);
+      }
+    }
+  }
+  console.log(`appendSuccess is: ${appendSuccess}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return appendSuccess;
+};
+
 module.exports = {
   ['getJsonData']: (pathAndFilename) => getJsonData(pathAndFilename),
   ['readDirectoryContents']: (directory) => readDirectoryContents(directory),
   ['readDirectorySynchronously']: (directory) => readDirectorySynchronously(directory),
+  ['appendMessageToFile']: (file, message) => appendMessageToFile(file, message)
 };

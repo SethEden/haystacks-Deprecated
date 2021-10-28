@@ -28,7 +28,7 @@ var namespacePrefix = `${baseFileName}.`;
 function bootstrapApplication() {
   rootPath = path.resolve(process.cwd());
   let appConfig = {
-    "applicationName": "Calculator2",
+    "applicationName": "haystacks",
     "rootPath": rootPath,
     "appConfigReferencePath": "//test//resources//configuration//"
   };
