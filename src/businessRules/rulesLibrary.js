@@ -11,6 +11,7 @@
  */
 
 var stringParsing = require('./rules/stringParsing');
+var arrayParsing = require('./rules/arrayParsing');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -38,7 +39,17 @@ export const initRulesLibrary = function() {
     // ***********************************************
     // stringParsing rules in order
     // ***********************************************
-    ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData)
+    ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
+    ['singleQuoteSwapAfterEquals']: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
+    ['swapForwardSlashToBackSlash']: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
+    ['swapBackSlashToForwardSlash']: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
+    ['swapDoubleForwardSlashToSingleForwardSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
+    ['swapDoubleBackSlashToSingleBackSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
+
+    // ***********************************************
+    // ArrayParsing rules in order
+    // ***********************************************
+    ['replaceCharacterWithCharacter']: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
   }
   console.log(`END ${namespacePrefix}${functionName} function`);
 };

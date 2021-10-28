@@ -3,12 +3,15 @@
  * @module dataBroker
  * @description Contains all of the lower level data processing functions,
  * and also acts as an interface for calling the fileBroker.
+ * @requires module:ruleBroker
+ * @requires module:fileOperations
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var ruleBroker = require('./ruleBroker');
 var fileOperations = require('../executrix/fileOperations');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -28,7 +31,13 @@ function scanDataPath(dataPath) {
   // let functionName = scanDataPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`dataPath is: ${dataPath}`);
-  let filesFound = fileOperations.readDirectoryContents(dataPath);
+  let rules = {};
+  let filesFound = [];
+  rules[0] = 'swapBackSlashToForwardSlash';
+  console.log(`execute business rules: ${JSON.stringify(rules)}`);
+  dataPath = ruleBroker.processRules(dataPath, '', rules);
+  console.log(`dataPath after business rules processing is: ${dataPath}`);
+  filesFound = fileOperations.readDirectoryContents(dataPath);
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
@@ -116,7 +125,11 @@ function preprocessJsonFile(fileToLoad) {
   let functionName = preprocessJsonFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
-  let dataFile = fileOperations.getJsonData(fileToLoad);
+  let filePathRules = {};
+  filePathRules[0] = 'swapDoubleForwardSlashToSingleForwardSlash'
+  console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
+  let finalFileToLoad = ruleBroker.processRules(fileToLoad, '', filePathRules);
+  let dataFile = fileOperations.getJsonData(finalFileToLoad);
   // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
