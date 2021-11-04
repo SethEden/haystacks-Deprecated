@@ -1,0 +1,3049 @@
+/**
+ * @file basic.constants.js
+ * @module basic-constants
+ * @description Contains constants for all of the most basic characters and basic 2-character combinations.
+ * @author Seth Hollingsead
+ * @date 2020/06/04
+ * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
+ */
+
+let cSpace = ' ';
+let cUnderscore = '_'; // _
+let cPipe = '|'; // |
+let cExclamation = '!'; // !
+let cQuestion = '?'; // ?
+let cSingleQuote = '\''; // '
+let cBackTickQuote = '`'; // `
+let cDoubleQuote = '"'; // "
+let cForwardSlash = '/'; // /
+let cDoubleForwardSlash = '//'; // //
+let cOpenParenthesis = '('; // ()
+let cCloseParenthesis = ')'; // )
+let cOpenBracket = '['; // [
+let cCloseBracket = ']'; // ]
+let cOpenCurlyBrace = '{'; // {
+let cCloseCurlyBrace = '}'; // }
+let cBackSlash = '\\'; // Make sure to escape the backslash // \
+let cDoubleBackSlash = '\\\\'; // \\
+let cCarriageReturn = '\r'; // \r
+let cNewLine = '\n'; // \n
+let cPlus = '+'; // +
+let cStar = '*'; // *
+let cDash = '-'; // -
+let cDoubleDash = cDash + cDash; // --
+let cEqual = '='; // =
+let cEqualEqual = cEqual + cEqual; // ==
+let cEqualEqualEqual = cEqualEqual + cEqual; // ===
+let cNotEqualEqual = cExclamation + cEqualEqual; // !==
+let cGreaterThan = '>'; // >
+let cLessThan = '<'; // <
+let cArrowFunction = cEqual + cGreaterThan; // =>
+let cAt = '@'; // @
+let cHash = '#';  // #
+let cDollar = '$'; // $
+let cPercent = '%'; // %
+let cDoublePercent = cPercent + cPercent; // %%
+let cCarrot = '^'; // ^
+let cAndPersand = '&'; // &
+let cDot = '.'; // .
+let cComa = ','; // ,
+let cColon = ':'; // :
+let cSemiColon = ';'; // ;
+let cTilde = '~'; // ~
+
+// Lower Case Letters
+let ca = 'a'; // a
+let cb = 'b'; // b
+let cc = 'c'; // c
+let cd = 'd'; // d
+let ce = 'e'; // e
+let cf = 'f'; // f
+let cg = 'g'; // g
+let ch = 'h'; // h
+let ci = 'i'; // i
+let cj = 'j'; // j
+let ck = 'k'; // k
+let cl = 'l'; // l
+let cm = 'm'; // m
+let cn = 'n'; // n
+let co = 'o'; // o
+let cp = 'p'; // p
+let cq = 'q'; // q
+let cr = 'r'; // r
+let cs = 's'; // s
+let ct = 't'; // t
+let cu = 'u'; // u
+let cv = 'v'; // v
+let cw = 'w'; // w
+let cx = 'x'; // x
+let cy = 'y'; // y
+let cz = 'z'; // z
+
+// Upper Case Letters
+let cA = 'A'; // A
+let cB = 'B'; // B
+let cC = 'C'; // C
+let cD = 'D'; // D
+let cE = 'E'; // E
+let cF = 'F'; // F
+let cG = 'G'; // G
+let cH = 'H'; // H
+let cI = 'I'; // I
+let cJ = 'J'; // J
+let cK = 'K'; // K
+let cL = 'L'; // L
+let cM = 'M'; // M
+let cN = 'N'; // N
+let cO = 'O'; // O
+let cP = 'P'; // P
+let cQ = 'Q'; // Q
+let cR = 'R'; // R
+let cS = 'S'; // S
+let cT = 'T'; // T
+let cU = 'U'; // U
+let cV = 'V'; // V
+let cW = 'W'; // W
+let cX = 'X'; // X
+let cY = 'Y'; // Y
+let cZ = 'Z'; // Z
+
+module.exports = {
+  // Special Characters
+  ['cSpace']: cSpace,
+  ['cUnderscore']: cUnderscore, // _
+  ['cPipe']: cPipe, // |
+  ['cExclamation']: cExclamation, // !
+  ['cQuestion']: cQuestion, // ?
+  ['cSingleQuote']: cSingleQuote, // '
+  ['cBackTickQuote']: cBackTickQuote, // `
+  ['cDoubleQuote']: cDoubleQuote, // "
+  ['cForwardSlash']: cForwardSlash, // /
+  ['cDoubleForwardSlash']: cDoubleForwardSlash, // //
+  ['cOpenParenthesis']: cOpenParenthesis, // ()
+  ['cCloseParenthesis']: cCloseParenthesis, // )
+  ['cOpenBracket']: cOpenBracket, // [
+  ['cCloseBracket']: cCloseBracket, // ]
+  ['cOpenCurlyBrace']: cOpenCurlyBrace, // {
+  ['cCloseCurlyBrace']: cCloseCurlyBrace, // }
+  ['cBackSlash']: cBackSlash, // Make sure to escape the backslash // \
+  ['cDoubleBackSlash']: cDoubleBackSlash, // \\
+  ['cCarriageReturn']: cCarriageReturn, // \r
+  ['cNewLine']: cNewLine, // \n
+  ['cPlus']: cPlus, // +
+  ['cStar']: cStar, // *
+  ['cDash']: cDash, // -
+  ['cDoubleDash']: cDoubleDash, // --
+  ['cEqual']: cEqual, // =
+  ['cEqualEqual']: cEqualEqual, // ==
+  ['cEqualEqualEqual']: cEqualEqualEqual, // ===
+  ['cNotEqualEqual']: cNotEqualEqual, // !==
+  ['cGreaterThan']: cGreaterThan, // >
+  ['cLessThan']: cLessThan, // <
+  ['cArrowFunction']: cArrowFunction, // =>
+  ['cAt']: cAt, // @
+  ['cHash']: cHash,  // #
+  ['cDollar']: cDollar, // $
+  ['cPercent']: cPercent, // %
+  ['cDoublePercent']: cDoublePercent, // %%
+  ['cCarrot']: cCarrot, // ^
+  ['cAndPersand']: cAndPersand, // &
+  ['cDot']: cDot, // .
+  ['cComa']: cComa, // ,
+  ['cColon']: cColon, // :
+  ['cSemiColon']: cSemiColon, // ;
+  ['cTilde']: cTilde, // ~
+
+  // Lower Case Letters
+  ['ca']: ca, // a
+  ['cb']: cb, // b
+  ['cc']: cc, // c
+  ['cd']: cd, // d
+  ['ce']: ce, // e
+  ['cf']: cf, // f
+  ['cg']: cg, // g
+  ['ch']: ch, // h
+  ['ci']: ci, // i
+  ['cj']: cj, // j
+  ['ck']: ck, // k
+  ['cl']: cl, // l
+  ['cm']: cm, // m
+  ['cn']: cn, // n
+  ['co']: co, // o
+  ['cp']: cp, // p
+  ['cq']: cq, // q
+  ['cr']: cr, // r
+  ['cs']: cs, // s
+  ['ct']: ct, // t
+  ['cu']: cu, // u
+  ['cv']: cv, // v
+  ['cw']: cw, // w
+  ['cx']: cx, // x
+  ['cy']: cy, // y
+  ['cz']: cz, // z
+
+  // Upper Case Letters
+  ['cA']: cA, // A
+  ['cB']: cB, // B
+  ['cC']: cC, // C
+  ['cD']: cD, // D
+  ['cE']: cE, // E
+  ['cF']: cF, // F
+  ['cG']: cG, // G
+  ['cH']: cH, // H
+  ['cI']: cI, // I
+  ['cJ']: cJ, // J
+  ['cK']: cK, // K
+  ['cL']: cL, // L
+  ['cM']: cM, // M
+  ['cN']: cN, // N
+  ['cO']: cO, // O
+  ['cP']: cP, // P
+  ['cQ']: cQ, // Q
+  ['cR']: cR, // R
+  ['cS']: cS, // S
+  ['cT']: cT, // T
+  ['cU']: cU, // U
+  ['cV']: cV, // V
+  ['cW']: cW, // W
+  ['cX']: cX, // X
+  ['cY']: cY, // Y
+  ['cZ']: cZ, // Z
+
+  // Alphabetic Codes
+  // aa-AA
+  ['caa']: ca + ca, // aa
+  ['cab']: ca + cb, // ab
+  ['cac']: ca + cc, // ac
+  // NOTE: Have to watch out for the rest of these 'ca' constants, could have problems with them in the future.
+  // clmn1rt3 = 'ad'; // 'ca' & 'cd' is some how a reserved word.
+  ['cae']: ca + ce, // ae
+  ['caf']: ca + cf, // af
+  ['cag']: ca + cg, // ag
+  ['cah']: ca + ch, // ah
+  ['cai']: ca + ci, // ai
+  ['caj']: ca + cj, // aj
+  ['cak']: ca + ck, // ak
+  ['cal']: ca + cl, // al
+  ['cam']: ca + cm, // am
+  ['can']: ca + cn, // an
+  ['cao']: ca + co, // ao
+  ['cap']: ca + cp, // ap
+  ['caq']: ca + cq, // aq
+  ['car']: ca + cr, // ar
+  ['cas']: ca + cs, // as
+  ['cat']: ca + ct, // at
+  ['cau']: ca + cu, // au
+  ['cav']: ca + cv, // av
+  ['caw']: ca + cw, // aw
+  ['cax']: ca + cx, // ax
+  ['cay']: ca + cy, // ay
+  ['caz']: ca + cz, // az
+
+  ['cAa']: cA + ca, // Aa
+  ['cAb']: cA + cb, // Ab
+  ['cAc']: cA + cc, // Ac
+  ['cAd']: cA + cd, // Ad
+  ['cAe']: cA + ce, // Ae
+  ['cAf']: cA + cf, // Af
+  ['cAg']: cA + cg, // Ag
+  ['cAh']: cA + ch, // Ah
+  ['cAi']: cA + ci, // Ai
+  ['cAj']: cA + cj, // Aj
+  ['cAk']: cA + ck, // Ak
+  ['cAl']: cA + cl, // Al
+  ['cAm']: cA + cm, // Am
+  ['cAn']: cA + cn, // An
+  ['cAo']: cA + co, // Ao
+  ['cAp']: cA + cp, // Ap
+  ['cAq']: cA + cq, // Aq
+  ['cAr']: cA + cr, // Ar
+  ['cAs']: cA + cs, // As
+  // cAt = cA + ct; // We've already defined At = @
+  ['cAu']: cA + cu, // Au
+  ['cAv']: cA + cv, // Av
+  ['cAw']: cA + cw, // Aw
+  ['cAx']: cA + cx, // Ax
+  ['cAy']: cA + cy, // Ay
+  ['cAz']: cA + cz, // Az
+
+  ['caA']: ca + cA, // aA
+  ['caB']: ca + cB, // aB
+  ['caC']: ca + cC, // aC
+  ['caD']: ca + cD, // aD
+  ['caE']: ca + cE, // aE
+  ['caF']: ca + cF, // aF
+  ['caG']: ca + cG, // aG
+  ['caH']: ca + cH, // aH
+  ['caI']: ca + cI, // aI
+  ['caJ']: ca + cJ, // aJ
+  ['caK']: ca + cK, // aK
+  ['caL']: ca + cL, // aL
+  ['caM']: ca + cM, // aM
+  ['caN']: ca + cN, // aN
+  ['caO']: ca + cO, // aO
+  ['caP']: ca + cP, // aP
+  ['caQ']: ca + cQ, // aQ
+  ['caR']: ca + cR, // aR
+  ['caS']: ca + cS, // aS
+  ['caT']: ca + cT, // aT
+  ['caU']: ca + cU, // aU
+  ['caV']: ca + cV, // aV
+  ['caW']: ca + cW, // aW
+  ['caX']: ca + cX, // aX
+  ['caY']: ca + cY, // aY
+  ['caZ']: ca + cZ, // aZ
+
+  ['cAA']: cA + cA, // AA
+  ['cAB']: cA + cB, // AB
+  ['cAC']: cA + cC, // AC
+  ['cAD']: cA + cD, // AD
+  ['cAE']: cA + cE, // AE
+  ['cAF']: cA + cF, // AF
+  ['cAG']: cA + cG, // AG
+  ['cAH']: cA + cH, // AH
+  ['cAI']: cA + cI, // AI
+  ['cAJ']: cA + cJ, // AJ
+  ['cAK']: cA + cK, // AK
+  ['cAL']: cA + cL, // AL
+  ['cAM']: cA + cM, // AM
+  ['cAN']: cA + cN, // AN
+  ['cAO']: cA + cO, // AO
+  ['cAP']: cA + cP, // AP
+  ['cAQ']: cA + cQ, // AQ
+  ['cAR']: cA + cR, // AR
+  ['cAS']: cA + cS, // AS
+  ['cAT']: cA + cT, // AT
+  ['cAU']: cA + cU, // AU
+  ['cAV']: cA + cV, // AV
+  ['cAW']: cA + cW, // AW
+  ['cAX']: cA + cX, // AX
+  ['cAY']: cA + cY, // AY
+  ['cAZ']: cA + cZ, // AZ
+
+  // ba-BA
+  ['cba']: cb + ca, // ba
+  ['cbb']: cb + cb, // bb
+  ['cbc']: cb + cc, // bc
+  ['cbd']: cb + cd, // bd
+  ['cbe']: cb + ce, // be
+  ['cbf']: cb + cf, // bf
+  ['cbg']: cb + cg, // bg
+  ['cbh']: cb + ch, // bh
+  ['cbi']: cb + ci, // bi
+  ['cbj']: cb + cj, // bj
+  ['cbk']: cb + ck, // bk
+  ['cbl']: cb + cl, // bl
+  ['cbm']: cb + cm, // bm
+  ['cbn']: cb + cn, // bn
+  ['cbo']: cb + co, // bo
+  ['cbp']: cb + cp, // bp
+  ['cbq']: cb + cq, // bq
+  ['cbr']: cb + cr, // br
+  ['cbs']: cb + cs, // bs
+  ['cbt']: cb + ct, // bt
+  ['cbu']: cb + cu, // bu
+  ['cbv']: cb + cv, // bv
+  ['cbw']: cb + cw, // bw
+  ['cbx']: cb + cx, // bx
+  ['cby']: cb + cy, // by
+  ['cbz']: cb + cz, // bz
+
+  ['cBa']: cB + ca, // Ba
+  ['cBb']: cB + cb, // Bb
+  ['cBc']: cB + cc, // Bc
+  ['cBd']: cB + cd, // Bd
+  ['cBe']: cB + ce, // Be
+  ['cBf']: cB + cf, // Bf
+  ['cBg']: cB + cg, // Bg
+  ['cBh']: cB + ch, // Bh
+  ['cBi']: cB + ci, // Bi
+  ['cBj']: cB + cj, // Bj
+  ['cBk']: cB + ck, // Bk
+  ['cBl']: cB + cl, // Bl
+  ['cBm']: cB + cm, // Bm
+  ['cBn']: cB + cn, // Bn
+  ['cBo']: cB + co, // Bo
+  ['cBp']: cB + cp, // Bp
+  ['cBq']: cB + cq, // Bq
+  ['cBr']: cB + cr, // Br
+  ['cBs']: cB + cs, // Bs
+  ['cBt']: cB + ct, // Bt
+  ['cBu']: cB + cu, // Bu
+  ['cBv']: cB + cv, // Bv
+  ['cBw']: cB + cw, // Bw
+  ['cBx']: cB + cx, // Bx
+  ['cBy']: cB + cy, // By
+  ['cBz']: cB + cz, // Bz
+
+  ['cbA']: cb + cA, // bA
+  ['cbB']: cb + cB, // bB
+  ['cbC']: cb + cC, // bC
+  ['cbD']: cb + cD, // bD
+  ['cbE']: cb + cE, // bE
+  ['cbF']: cb + cF, // bF
+  ['cbG']: cb + cG, // bG
+  ['cbH']: cb + cH, // bH
+  ['cbI']: cb + cI, // bI
+  ['cbJ']: cb + cJ, // bJ
+  ['cbK']: cb + cK, // bK
+  ['cbL']: cb + cL, // bL
+  ['cbM']: cb + cM, // bM
+  ['cbN']: cb + cN, // bN
+  ['cbO']: cb + cO, // bO
+  ['cbP']: cb + cP, // bP
+  ['cbQ']: cb + cQ, // bQ
+  ['cbR']: cb + cR, // bR
+  ['cbS']: cb + cS, // bS
+  ['cbT']: cb + cT, // bT
+  ['cbU']: cb + cU, // bU
+  ['cbV']: cb + cV, // bV
+  ['cbW']: cb + cW, // bW
+  ['cbX']: cb + cX, // bX
+  ['cbY']: cb + cY, // bY
+  ['cbZ']: cb + cZ, // bZ
+
+  ['cBA']: cB + cA, // BA
+  ['cBB']: cB + cB, // BB
+  ['cBC']: cB + cC, // BC
+  ['cBD']: cB + cD, // BD
+  ['cBE']: cB + cE, // BE
+  ['cBF']: cB + cF, // BF
+  ['cBG']: cB + cG, // BG
+  ['cBH']: cB + cH, // BH
+  ['cBI']: cB + cI, // BI
+  ['cBJ']: cB + cJ, // BJ
+  ['cBK']: cB + cK, // BK
+  ['cBL']: cB + cL, // BL
+  ['cBM']: cB + cM, // BM
+  ['cBN']: cB + cN, // BN
+  ['cBO']: cB + cO, // BO
+  ['cBP']: cB + cP, // BP
+  ['cBQ']: cB + cQ, // BQ
+  ['cBR']: cB + cR, // BR
+  ['cBS']: cB + cS, // BS
+  ['cBT']: cB + cT, // BT
+  ['cBU']: cB + cU, // BU
+  ['cBV']: cB + cV, // BV
+  ['cBW']: cB + cW, // BW
+  ['cBX']: cB + cX, // BX
+  ['cBY']: cB + cY, // BY
+  ['cBZ']: cB + cZ, // BZ
+
+  // ca-CA
+  ['cca']: cc + ca, // ca
+  ['ccb']: cc + cb, // cb
+  ['ccc']: cc + cc, // cc
+  ['ccd']: cc + cd, // cd
+  ['cce']: cc + ce, // ce
+  ['ccf']: cc + cf, // cf
+  ['ccg']: cc + cg, // cg
+  ['cch']: cc + ch, // ch
+  ['cci']: cc + ci, // ci
+  ['ccj']: cc + cj, // cj
+  ['cck']: cc + ck, // ck
+  ['ccl']: cc + cl, // cl
+  ['ccm']: cc + cm, // cm
+  ['ccn']: cc + cn, // cn
+  ['cco']: cc + co, // co
+  ['ccp']: cc + cp, // cp
+  ['ccq']: cc + cq, // cq
+  ['ccr']: cc + cr, // cr
+  ['ccs']: cc + cs, // cs
+  ['cct']: cc + ct, // ct
+  ['ccu']: cc + cu, // cu
+  ['ccv']: cc + cv, // cv
+  ['ccw']: cc + cw, // cw
+  ['ccx']: cc + cx, // cx
+  ['ccy']: cc + cy, // cy
+  ['ccz']: cc + cz, // cz
+
+  ['cCa']: cC + ca, // Ca
+  ['cCb']: cC + cb, // Cb
+  ['cCc']: cC + cc, // Cc
+  ['cCd']: cC + cd, // Cd
+  ['cCe']: cC + ce, // Ce
+  ['cCf']: cC + cf, // Cf
+  ['cCg']: cC + cg, // Cg
+  ['cCh']: cC + ch, // Ch
+  ['cCi']: cC + ci, // Ci
+  ['cCj']: cC + cj, // Cj
+  ['cCk']: cC + ck, // Ck
+  ['cCl']: cC + cl, // Cl
+  ['cCm']: cC + cm, // Cm
+  ['cCn']: cC + cn, // Cn
+  ['cCo']: cC + co, // Co
+  ['cCp']: cC + cp, // Cp
+  ['cCq']: cC + cq, // Cq
+  ['cCr']: cC + cr, // Cr
+  ['cCs']: cC + cs, // Cs
+  ['cCt']: cC + ct, // Ct
+  ['cCu']: cC + cu, // Cu
+  ['cCv']: cC + cv, // Cv
+  ['cCw']: cC + cw, // Cw
+  ['cCx']: cC + cx, // Cx
+  ['cCy']: cC + cy, // Cy
+  ['cCz']: cC + cz, // Cz
+
+  ['ccA']: cc + cA, // cA
+  ['ccB']: cc + cB, // cB
+  ['ccC']: cc + cC, // cC
+  ['ccD']: cc + cD, // cD
+  ['ccE']: cc + cE, // cE
+  ['ccF']: cc + cF, // cF
+  ['ccG']: cc + cG, // cG
+  ['ccH']: cc + cH, // cH
+  ['ccI']: cc + cI, // cI
+  ['ccJ']: cc + cJ, // cJ
+  ['ccK']: cc + cK, // cK
+  ['ccL']: cc + cL, // cL
+  ['ccM']: cc + cM, // cM
+  ['ccN']: cc + cN, // cN
+  ['ccO']: cc + cO, // cO
+  ['ccP']: cc + cP, // cP
+  ['ccQ']: cc + cQ, // cQ
+  ['ccR']: cc + cR, // cR
+  ['ccS']: cc + cS, // cS
+  ['ccT']: cc + cT, // cT
+  ['ccU']: cc + cU, // cU
+  ['ccV']: cc + cV, // cV
+  ['ccW']: cc + cW, // cW
+  ['ccX']: cc + cX, // cX
+  ['ccY']: cc + cY, // cY
+  ['ccZ']: cc + cZ, // cZ
+
+  ['cCA']: cC + cA, // CA
+  ['cCB']: cC + cB, // CB
+  ['cCC']: cC + cC, // CC
+  ['cCD']: cC + cD, // CD
+  ['cCE']: cC + cE, // CE
+  ['cCF']: cC + cF, // CF
+  ['cCG']: cC + cG, // CG
+  ['cCH']: cC + cH, // CH
+  ['cCI']: cC + cI, // CI
+  ['cCJ']: cC + cJ, // CJ
+  ['cCK']: cC + cK, // CK
+  ['cCL']: cC + cL, // CL
+  ['cCM']: cC + cM, // CM
+  ['cCN']: cC + cN, // CN
+  ['cCO']: cC + cO, // CO
+  ['cCP']: cC + cP, // CP
+  ['cCQ']: cC + cQ, // CQ
+  ['cCR']: cC + cR, // CR
+  ['cCS']: cC + cS, // CS
+  ['cCT']: cC + cT, // CT
+  ['cCU']: cC + cU, // CU
+  ['cCV']: cC + cV, // CV
+  ['cCW']: cC + cW, // CW
+  ['cCX']: cC + cX, // CX
+  ['cCY']: cC + cY, // CY
+  ['cCZ']: cC + cZ, // CZ
+
+  // da-DA
+  ['cda']: cd + ca, // da
+  ['cdb']: cd + cb, // db
+  ['cdc']: cd + cc, // dc
+  ['cdd']: cd + cd, // dd
+  ['cde']: cd + ce, // de
+  ['cdf']: cd + cf, // df
+  ['cdg']: cd + cg, // dg
+  ['cdh']: cd + ch, // dh
+  ['cdi']: cd + ci, // di
+  ['cdj']: cd + cj, // dj
+  ['cdk']: cd + ck, // dk
+  ['cdl']: cd + cl, // dl
+  ['cdm']: cd + cm, // dm
+  ['cdn']: cd + cn, // dn
+  ['cdo']: cd + co, // do
+  ['cdp']: cd + cp, // dp
+  ['cdq']: cd + cq, // dq
+  ['cdr']: cd + cr, // dr
+  ['cds']: cd + cs, // ds
+  ['cdt']: cd + ct, // dt
+  ['cdu']: cd + cu, // du
+  ['cdv']: cd + cv, // dv
+  ['cdw']: cd + cw, // dw
+  ['cdx']: cd + cx, // dx
+  ['cdy']: cd + cy, // dy
+  ['cdz']: cd + cz, // dz
+
+  ['cDa']: cD + ca, // Da
+  ['cDb']: cD + cb, // Db
+  ['cDc']: cD + cc, // Dc
+  ['cDd']: cD + cd, // Dd
+  ['cDe']: cD + ce, // De
+  ['cDf']: cD + cf, // Df
+  ['cDg']: cD + cg, // Dg
+  ['cDh']: cD + ch, // Dh
+  ['cDi']: cD + ci, // Di
+  ['cDj']: cD + cj, // Dj
+  ['cDk']: cD + ck, // Dk
+  ['cDl']: cD + cl, // Dl
+  ['cDm']: cD + cm, // Dm
+  ['cDn']: cD + cn, // Dn
+  ['cDo']: cD + co, // Do
+  ['cDp']: cD + cp, // Dp
+  ['cDq']: cD + cq, // Dq
+  ['cDr']: cD + cr, // Dr
+  ['cDs']: cD + cs, // Ds
+  ['cDt']: cD + ct, // Dt
+  ['cDu']: cD + cu, // Du
+  ['cDv']: cD + cv, // Dv
+  ['cDw']: cD + cw, // Dw
+  ['cDx']: cD + cx, // Dx
+  ['cDy']: cD + cy, // Dy
+  ['cDz']: cD + cz, // Dz
+
+  ['cdA']: cd + cA, // dA
+  ['cdB']: cd + cB, // dB
+  ['cdC']: cd + cC, // dC
+  ['cdD']: cd + cD, // dD
+  ['cdE']: cd + cE, // dE
+  ['cdF']: cd + cF, // dF
+  ['cdG']: cd + cG, // dG
+  ['cdH']: cd + cH, // dH
+  ['cdI']: cd + cI, // dI
+  ['cdJ']: cd + cJ, // dJ
+  ['cdK']: cd + cK, // dK
+  ['cdL']: cd + cL, // dL
+  ['cdM']: cd + cM, // dM
+  ['cdN']: cd + cN, // dN
+  ['cdO']: cd + cO, // dO
+  ['cdP']: cd + cP, // dP
+  ['cdQ']: cd + cQ, // dQ
+  ['cdR']: cd + cR, // dR
+  ['cdS']: cd + cS, // dS
+  ['cdT']: cd + cT, // dT
+  ['cdU']: cd + cU, // dU
+  ['cdV']: cd + cV, // dV
+  ['cdW']: cd + cW, // dW
+  ['cdX']: cd + cX, // dX
+  ['cdY']: cd + cY, // dY
+  ['cdZ']: cd + cZ, // dZ
+
+  ['cDA']: cD + cA, // DA
+  ['cDB']: cD + cB, // DB
+  ['cDC']: cD + cC, // DC
+  ['cDD']: cD + cD, // DD
+  ['cDE']: cD + cE, // DE
+  ['cDF']: cD + cF, // DF
+  ['cDG']: cD + cG, // DG
+  ['cDH']: cD + cH, // DH
+  ['cDI']: cD + cI, // DI
+  ['cDJ']: cD + cJ, // DJ
+  ['cDK']: cD + cK, // DK
+  ['cDL']: cD + cL, // DL
+  ['cDM']: cD + cM, // DM
+  ['cDN']: cD + cN, // DN
+  ['cDO']: cD + cO, // DO
+  ['cDP']: cD + cP, // DP
+  ['cDQ']: cD + cQ, // DQ
+  ['cDR']: cD + cR, // DR
+  ['cDS']: cD + cS, // DS
+  ['cDT']: cD + cT, // DT
+  ['cDU']: cD + cU, // DU
+  ['cDV']: cD + cV, // DV
+  ['cDW']: cD + cW, // DW
+  ['cDX']: cD + cX, // DX
+  ['cDY']: cD + cY, // DY
+  ['cDZ']: cD + cZ, // DZ
+
+  // ea-EA
+  ['cea']: ce + ca, // ea
+  ['ceb']: ce + cb, // eb
+  ['cec']: ce + cc, // ec
+  ['ced']: ce + cd, // ed
+  ['cee']: ce + ce, // ee
+  ['cef']: ce + cf, // ef
+  ['ceg']: ce + cg, // eg
+  ['ceh']: ce + ch, // eh
+  ['cei']: ce + ci, // ei
+  ['cej']: ce + cj, // ej
+  ['cek']: ce + ck, // ek
+  ['cel']: ce + cl, // el
+  ['cem']: ce + cm, // em
+  ['cen']: ce + cn, // en
+  ['ceo']: ce + co, // eo
+  ['cep']: ce + cp, // ep
+  ['ceq']: ce + cq, // eq
+  ['cer']: ce + cr, // er
+  ['ces']: ce + cs, // es
+  ['cet']: ce + ct, // et
+  ['ceu']: ce + cu, // eu
+  ['cev']: ce + cv, // ev
+  ['cew']: ce + cw, // ew
+  ['cex']: ce + cx, // ex
+  ['cey']: ce + cy, // ey
+  ['cez']: ce + cz, // ez
+
+  ['cEa']: cE + ca, // Ea
+  ['cEb']: cE + cb, // Eb
+  ['cEc']: cE + cc, // Ec
+  ['cEd']: cE + cd, // Ed
+  ['cEe']: cE + ce, // Ee
+  ['cEf']: cE + cf, // Ef
+  ['cEg']: cE + cg, // Eg
+  ['cEh']: cE + ch, // Eh
+  ['cEi']: cE + ci, // Ei
+  ['cEj']: cE + cj, // Ej
+  ['cEk']: cE + ck, // Ek
+  ['cEl']: cE + cl, // El
+  ['cEm']: cE + cm, // Em
+  ['cEn']: cE + cn, // En
+  ['cEo']: cE + co, // Eo
+  ['cEp']: cE + cp, // Ep
+  ['cEq']: cE + cq, // Eq
+  ['cEr']: cE + cr, // Er
+  ['cEs']: cE + cs, // Es
+  ['cEt']: cE + ct, // Et
+  ['cEu']: cE + cu, // Eu
+  ['cEv']: cE + cv, // Ev
+  ['cEw']: cE + cw, // Ew
+  ['cEx']: cE + cx, // Ex
+  ['cEy']: cE + cy, // Ey
+  ['cEz']: cE + cz, // Ez
+
+  ['ceA']: ce + cA, // eA
+  ['ceB']: ce + cB, // eB
+  ['ceC']: ce + cC, // eC
+  ['ceD']: ce + cD, // eD
+  ['ceE']: ce + cE, // eE
+  ['ceF']: ce + cF, // eF
+  ['ceG']: ce + cG, // eG
+  ['ceH']: ce + cH, // eH
+  ['ceI']: ce + cI, // eI
+  ['ceJ']: ce + cJ, // eJ
+  ['ceK']: ce + cK, // eK
+  ['ceL']: ce + cL, // eL
+  ['ceM']: ce + cM, // eM
+  ['ceN']: ce + cN, // eN
+  ['ceO']: ce + cO, // eO
+  ['ceP']: ce + cP, // eP
+  ['ceQ']: ce + cQ, // eQ
+  ['ceR']: ce + cR, // eR
+  ['ceS']: ce + cS, // eS
+  ['ceT']: ce + cT, // eT
+  ['ceU']: ce + cU, // eU
+  ['ceV']: ce + cV, // eV
+  ['ceW']: ce + cW, // eW
+  ['ceX']: ce + cX, // eX
+  ['ceY']: ce + cY, // eY
+  ['ceZ']: ce + cZ, // eZ
+
+  ['cEA']: cE + cA, // EA
+  ['cEB']: cE + cB, // EB
+  ['cEC']: cE + cC, // EC
+  ['cED']: cE + cD, // ED
+  ['cEE']: cE + cE, // EE
+  ['cEF']: cE + cF, // EF
+  ['cEG']: cE + cG, // EG
+  ['cEH']: cE + cH, // EH
+  ['cEI']: cE + cI, // EI
+  ['cEJ']: cE + cJ, // EJ
+  ['cEK']: cE + cK, // EK
+  ['cEL']: cE + cL, // EL
+  ['cEM']: cE + cM, // EM
+  ['cEN']: cE + cN, // EN
+  ['cEO']: cE + cO, // EO
+  ['cEP']: cE + cP, // EP
+  ['cEQ']: cE + cQ, // EQ
+  ['cER']: cE + cR, // ER
+  ['cES']: cE + cS, // ES
+  ['cET']: cE + cT, // ET
+  ['cEU']: cE + cU, // EU
+  ['cEV']: cE + cV, // EV
+  ['cEW']: cE + cW, // EW
+  ['cEX']: cE + cX, // EX
+  ['cEY']: cE + cY, // EY
+  ['cEZ']: cE + cZ, // EZ
+
+  // fa-FA
+  ['cfa']: cf + ca, // fa
+  ['cfb']: cf + cb, // fb
+  ['cfc']: cf + cc, // fc
+  ['cfd']: cf + cd, // fd
+  ['cfe']: cf + ce, // fe
+  ['cff']: cf + cf, // ff
+  ['cfg']: cf + cg, // fg
+  ['cfh']: cf + ch, // fh
+  ['cfi']: cf + ci, // fi
+  ['cfj']: cf + cj, // fj
+  ['cfk']: cf + ck, // fk
+  ['cfl']: cf + cl, // fl
+  ['cfm']: cf + cm, // fm
+  ['cfn']: cf + cn, // fn
+  ['cfo']: cf + co, // fo
+  ['cfp']: cf + cp, // fp
+  ['cfq']: cf + cq, // fq
+  ['cfr']: cf + cr, // fr
+  ['cfs']: cf + cs, // fs
+  ['cft']: cf + ct, // ft
+  ['cfu']: cf + cu, // fu
+  ['cfv']: cf + cv, // fv
+  ['cfw']: cf + cw, // fw
+  ['cfx']: cf + cx, // fx
+  ['cfy']: cf + cy, // fy
+  ['cfz']: cf + cz, // fz
+
+  ['cFa']: cF + ca, // Fa
+  ['cFb']: cF + cb, // Fb
+  ['cFc']: cF + cc, // Fc
+  ['cFd']: cF + cd, // Fd
+  ['cFe']: cF + ce, // Fe
+  ['cFf']: cF + cf, // Ff
+  ['cFg']: cF + cg, // Fg
+  ['cFh']: cF + ch, // Fh
+  ['cFi']: cF + ci, // Fi
+  ['cFj']: cF + cj, // Fj
+  ['cFk']: cF + ck, // Fk
+  ['cFl']: cF + cl, // Fl
+  ['cFm']: cF + cm, // Fm
+  ['cFn']: cF + cn, // Fn
+  ['cFo']: cF + co, // Fo
+  ['cFp']: cF + cp, // Fp
+  ['cFq']: cF + cq, // Fq
+  ['cFr']: cF + cr, // Fr
+  ['cFs']: cF + cs, // Fs
+  ['cFt']: cF + ct, // Ft
+  ['cFu']: cF + cu, // Fu
+  ['cFv']: cF + cv, // Fv
+  ['cFw']: cF + cw, // Fw
+  ['cFx']: cF + cx, // Fx
+  ['cFy']: cF + cy, // Fy
+  ['cFz']: cF + cz, // Fz
+
+  ['cfA']: cf + cA, // fA
+  ['cfB']: cf + cB, // fB
+  ['cfC']: cf + cC, // fC
+  ['cfD']: cf + cD, // fD
+  ['cfE']: cf + cE, // fE
+  ['cfF']: cf + cF, // fF
+  ['cfG']: cf + cG, // fG
+  ['cfH']: cf + cH, // fH
+  ['cfI']: cf + cI, // fI
+  ['cfJ']: cf + cJ, // fJ
+  ['cfK']: cf + cK, // fK
+  ['cfL']: cf + cL, // fL
+  ['cfM']: cf + cM, // fM
+  ['cfN']: cf + cN, // fN
+  ['cfO']: cf + cO, // fO
+  ['cfP']: cf + cP, // fP
+  ['cfQ']: cf + cQ, // fQ
+  ['cfR']: cf + cR, // fR
+  ['cfS']: cf + cS, // fS
+  ['cfT']: cf + cT, // fT
+  ['cfU']: cf + cU, // fU
+  ['cfV']: cf + cV, // fV
+  ['cfW']: cf + cW, // fW
+  ['cfX']: cf + cX, // fX
+  ['cfY']: cf + cY, // fY
+  ['cfZ']: cf + cZ, // fZ
+
+  ['cFA']: cF + cA, // FA
+  ['cFB']: cF + cB, // FB
+  ['cFC']: cF + cC, // FC
+  ['cFD']: cF + cD, // FD
+  ['cFE']: cF + cE, // FE
+  ['cFF']: cF + cF, // FF
+  ['cFG']: cF + cG, // FG
+  ['cFH']: cF + cH, // FH
+  ['cFI']: cF + cI, // FI
+  ['cFJ']: cF + cJ, // FJ
+  ['cFK']: cF + cK, // FK
+  ['cFL']: cF + cL, // FL
+  ['cFM']: cF + cM, // FM
+  ['cFN']: cF + cN, // FN
+  ['cFO']: cF + cO, // FO
+  ['cFP']: cF + cP, // FP
+  ['cFQ']: cF + cQ, // FQ
+  ['cFR']: cF + cR, // FR
+  ['cFS']: cF + cS, // FS
+  ['cFT']: cF + cT, // FT
+  ['cFU']: cF + cU, // FU
+  ['cFV']: cF + cV, // FV
+  ['cFW']: cF + cW, // FW
+  ['cFX']: cF + cX, // FX
+  ['cFY']: cF + cY, // FY
+  ['cFZ']: cF + cZ, // FZ
+
+  // ga-GA
+  ['cga']: cg + ca, // ga
+  ['cgb']: cg + cb, // gb
+  ['cgc']: cg + cc, // gc
+  ['cgd']: cg + cd, // gd
+  ['cge']: cg + ce, // ge
+  ['cgf']: cg + cf, // gf
+  ['cgg']: cg + cg, // gg
+  ['cgh']: cg + ch, // gh
+  ['cgi']: cg + ci, // gi
+  ['cgj']: cg + cj, // gj
+  ['cgk']: cg + ck, // gk
+  ['cgl']: cg + cl, // gl
+  ['cgm']: cg + cm, // gm
+  ['cgn']: cg + cn, // gn
+  ['cgo']: cg + co, // go
+  ['cgp']: cg + cp, // gp
+  ['cgq']: cg + cq, // gq
+  ['cgr']: cg + cr, // gr
+  ['cgs']: cg + cs, // gs
+  ['cgt']: cg + ct, // gt
+  ['cgu']: cg + cu, // gu
+  ['cgv']: cg + cv, // gv
+  ['cgw']: cg + cw, // gw
+  ['cgx']: cg + cx, // gx
+  ['cgy']: cg + cy, // gy
+  ['cgz']: cg + cz, // gz
+
+  ['cGa']: cG + ca, // Ga
+  ['cGb']: cG + cb, // Gb
+  ['cGc']: cG + cc, // Gc
+  ['cGd']: cG + cd, // Gd
+  ['cGe']: cG + ce, // Ge
+  ['cGf']: cG + cf, // Gf
+  ['cGg']: cG + cg, // Gg
+  ['cGh']: cG + ch, // Gh
+  ['cGi']: cG + ci, // Gi
+  ['cGj']: cG + cj, // Gj
+  ['cGk']: cG + ck, // Gk
+  ['cGl']: cG + cl, // Gl
+  ['cGm']: cG + cm, // Gm
+  ['cGn']: cG + cn, // Gn
+  ['cGo']: cG + co, // Go
+  ['cGp']: cG + cp, // Gp
+  ['cGq']: cG + cq, // Gq
+  ['cGr']: cG + cr, // Gr
+  ['cGs']: cG + cs, // Gs
+  ['cGt']: cG + ct, // Gt
+  ['cGu']: cG + cu, // Gu
+  ['cGv']: cG + cv, // Gv
+  ['cGw']: cG + cw, // Gw
+  ['cGx']: cG + cx, // Gx
+  ['cGy']: cG + cy, // Gy
+  ['cGz']: cG + cz, // Gz
+
+  ['cgA']: cg + cA, // gA
+  ['cgB']: cg + cB, // gB
+  ['cgC']: cg + cC, // gC
+  ['cgD']: cg + cD, // gD
+  ['cgE']: cg + cE, // gE
+  ['cgF']: cg + cF, // gF
+  ['cgG']: cg + cG, // gG
+  ['cgH']: cg + cH, // gH
+  ['cgI']: cg + cI, // gI
+  ['cgJ']: cg + cJ, // gJ
+  ['cgK']: cg + cK, // gK
+  ['cgL']: cg + cL, // gL
+  ['cgM']: cg + cM, // gM
+  ['cgN']: cg + cN, // gN
+  ['cgO']: cg + cO, // gO
+  ['cgP']: cg + cP, // gP
+  ['cgQ']: cg + cQ, // gQ
+  ['cgR']: cg + cR, // gR
+  ['cgS']: cg + cS, // gS
+  ['cgT']: cg + cT, // gT
+  ['cgU']: cg + cU, // gU
+  ['cgV']: cg + cV, // gV
+  ['cgW']: cg + cW, // gW
+  ['cgX']: cg + cX, // gX
+  ['cgY']: cg + cY, // gY
+  ['cgZ']: cg + cZ, // gZ
+
+  ['cGA']: cG + cA, // GA
+  ['cGB']: cG + cB, // GB
+  ['cGC']: cG + cC, // GC
+  ['cGD']: cG + cD, // GD
+  ['cGE']: cG + cE, // GE
+  ['cGF']: cG + cF, // GF
+  ['cGG']: cG + cG, // GG
+  ['cGH']: cG + cH, // GH
+  ['cGI']: cG + cI, // GI
+  ['cGJ']: cG + cJ, // GJ
+  ['cGK']: cG + cK, // GK
+  ['cGL']: cG + cL, // GL
+  ['cGM']: cG + cM, // GM
+  ['cGN']: cG + cN, // GN
+  ['cGO']: cG + cO, // GO
+  ['cGP']: cG + cP, // GP
+  ['cGQ']: cG + cQ, // GQ
+  ['cGR']: cG + cR, // GR
+  ['cGS']: cG + cS, // GS
+  ['cGT']: cG + cT, // GT
+  ['cGU']: cG + cU, // GU
+  ['cGV']: cG + cV, // GV
+  ['cGW']: cG + cW, // GW
+  ['cGX']: cG + cX, // GX
+  ['cGY']: cG + cY, // GY
+  ['cGZ']: cG + cZ, // GZ
+
+  // ha-HA
+  ['cha']: ch + ca, // ha
+  ['chb']: ch + cb, // hb
+  ['chc']: ch + cc, // hc
+  ['chd']: ch + cd, // hd
+  ['che']: ch + ce, // he
+  ['chf']: ch + cf, // hf
+  ['chg']: ch + cg, // hg
+  ['chh']: ch + ch, // hh
+  ['chi']: ch + ci, // hi
+  ['chj']: ch + cj, // hj
+  ['chk']: ch + ck, // hk
+  ['chl']: ch + cl, // hl
+  ['chm']: ch + cm, // hm
+  ['chn']: ch + cn, // hn
+  ['cho']: ch + co, // ho
+  ['chp']: ch + cp, // hp
+  ['chq']: ch + cq, // hq
+  ['chr']: ch + cr, // hr
+  ['chs']: ch + cs, // hs
+  ['cht']: ch + ct, // ht
+  ['chu']: ch + cu, // hu
+  ['chv']: ch + cv, // hv
+  ['chw']: ch + cw, // hw
+  ['chx']: ch + cx, // hx
+  ['chy']: ch + cy, // hy
+  ['chz']: ch + cz, // hz
+
+  ['cHa']: cH + ca, // Ha
+  ['cHb']: cH + cb, // Hb
+  ['cHc']: cH + cc, // Hc
+  ['cHd']: cH + cd, // Hd
+  ['cHe']: cH + ce, // He
+  ['cHf']: cH + cf, // Hf
+  ['cHg']: cH + cg, // Hg
+  ['cHh']: cH + ch, // Hh
+  ['cHi']: cH + ci, // Hi
+  ['cHj']: cH + cj, // Hj
+  ['cHk']: cH + ck, // Hk
+  ['cHl']: cH + cl, // Hl
+  ['cHm']: cH + cm, // Hm
+  ['cHn']: cH + cn, // Hn
+  ['cHo']: cH + co, // Ho
+  ['cHp']: cH + cp, // Hp
+  ['cHq']: cH + cq, // Hq
+  ['cHr']: cH + cr, // Hr
+  ['cHs']: cH + cs, // Hs
+  ['cHt']: cH + ct, // Ht
+  ['cHu']: cH + cu, // Hu
+  ['cHv']: cH + cv, // Hv
+  ['cHw']: cH + cw, // Hw
+  ['cHx']: cH + cx, // Hx
+  ['cHy']: cH + cy, // Hy
+  ['cHz']: cH + cz, // Hz
+
+  ['chA']: ch + cA, // hA
+  ['chB']: ch + cB, // hB
+  ['chC']: ch + cC, // hC
+  ['chD']: ch + cD, // hD
+  ['chE']: ch + cE, // hE
+  ['chF']: ch + cF, // hF
+  ['chG']: ch + cG, // hG
+  ['chH']: ch + cH, // hH
+  ['chI']: ch + cI, // hI
+  ['chJ']: ch + cJ, // hJ
+  ['chK']: ch + cK, // hK
+  ['chL']: ch + cL, // hL
+  ['chM']: ch + cM, // hM
+  ['chN']: ch + cN, // hN
+  ['chO']: ch + cO, // hO
+  ['chP']: ch + cP, // hP
+  ['chQ']: ch + cQ, // hQ
+  ['chR']: ch + cR, // hR
+  ['chS']: ch + cS, // hS
+  ['chT']: ch + cT, // hT
+  ['chU']: ch + cU, // hU
+  ['chV']: ch + cV, // hV
+  ['chW']: ch + cW, // hW
+  ['chX']: ch + cX, // hX
+  ['chY']: ch + cY, // hY
+  ['chZ']: ch + cZ, // hZ
+
+  ['cHA']: cH + cA, // HA
+  ['cHB']: cH + cB, // HB
+  ['cHC']: cH + cC, // HC
+  ['cHD']: cH + cD, // HD
+  ['cHE']: cH + cE, // HE
+  ['cHF']: cH + cF, // HF
+  ['cHG']: cH + cG, // HG
+  ['cHH']: cH + cH, // HH
+  ['cHI']: cH + cI, // HI
+  ['cHJ']: cH + cJ, // HJ
+  ['cHK']: cH + cK, // HK
+  ['cHL']: cH + cL, // HL
+  ['cHM']: cH + cM, // HM
+  ['cHN']: cH + cN, // HN
+  ['cHO']: cH + cO, // HO
+  ['cHP']: cH + cP, // HP
+  ['cHQ']: cH + cQ, // HQ
+  ['cHR']: cH + cR, // HR
+  ['cHS']: cH + cS, // HS
+  ['cHT']: cH + cT, // HT
+  ['cHU']: cH + cU, // HU
+  ['cHV']: cH + cV, // HV
+  ['cHW']: cH + cW, // HW
+  ['cHX']: cH + cX, // HX
+  ['cHY']: cH + cY, // HY
+  ['cHZ']: cH + cZ, // HZ
+
+  // ia-IA
+  ['cia']: ci + ca, // ia
+  ['cib']: ci + cb, // ib
+  ['cic']: ci + cc, // ic
+  ['cid']: ci + cd, // id
+  ['cie']: ci + ce, // ie
+  ['cif']: ci + cf, // if
+  ['cig']: ci + cg, // ig
+  ['cih']: ci + ch, // ih
+  ['cii']: ci + ci, // ii
+  ['cij']: ci + cj, // ij
+  ['cik']: ci + ck, // ik
+  ['cil']: ci + cl, // il
+  ['cim']: ci + cm, // im
+  ['cin']: ci + cn, // in
+  ['cio']: ci + co, // io
+  ['cip']: ci + cp, // ip
+  ['ciq']: ci + cq, // iq
+  ['cir']: ci + cr, // ir
+  ['cis']: ci + cs, // is
+  ['cit']: ci + ct, // it
+  ['ciu']: ci + cu, // iu
+  ['civ']: ci + cv, // iv
+  ['ciw']: ci + cw, // iw
+  ['cix']: ci + cx, // ix
+  ['ciy']: ci + cy, // iy
+  ['ciz']: ci + cz, // iz
+
+  ['cIa']: cI + ca, // Ia
+  ['cIb']: cI + cb, // Ib
+  ['cIc']: cI + cc, // Ic
+  ['cId']: cI + cd, // Id
+  ['cIe']: cI + ce, // Ie
+  ['cIf']: cI + cf, // If
+  ['cIg']: cI + cg, // Ig
+  ['cIh']: cI + ch, // Ih
+  ['cIi']: cI + ci, // Ii
+  ['cIj']: cI + cj, // Ij
+  ['cIk']: cI + ck, // Ik
+  ['cIl']: cI + cl, // Il
+  ['cIm']: cI + cm, // Im
+  ['cIn']: cI + cn, // In
+  ['cIo']: cI + co, // Io
+  ['cIp']: cI + cp, // Ip
+  ['cIq']: cI + cq, // Iq
+  ['cIr']: cI + cr, // Ir
+  ['cIs']: cI + cs, // Is
+  ['cIt']: cI + ct, // It
+  ['cIu']: cI + cu, // Iu
+  ['cIv']: cI + cv, // Iv
+  ['cIw']: cI + cw, // Iw
+  ['cIx']: cI + cx, // Ix
+  ['cIy']: cI + cy, // Iy
+  ['cIz']: cI + cz, // Iz
+
+  ['ciA']: ci + cA, // iA
+  ['ciB']: ci + cB, // iB
+  ['ciC']: ci + cC, // iC
+  ['ciD']: ci + cD, // iD
+  ['ciE']: ci + cE, // iE
+  ['ciF']: ci + cF, // iF
+  ['ciG']: ci + cG, // iG
+  ['ciH']: ci + cH, // iH
+  ['ciI']: ci + cI, // iI
+  ['ciJ']: ci + cJ, // iJ
+  ['ciK']: ci + cK, // iK
+  ['ciL']: ci + cL, // iL
+  ['ciM']: ci + cM, // iM
+  ['ciN']: ci + cN, // iN
+  ['ciO']: ci + cO, // iO
+  ['ciP']: ci + cP, // iP
+  ['ciQ']: ci + cQ, // iQ
+  ['ciR']: ci + cR, // iR
+  ['ciS']: ci + cS, // iS
+  ['ciT']: ci + cT, // iT
+  ['ciU']: ci + cU, // iU
+  ['ciV']: ci + cV, // iV
+  ['ciW']: ci + cW, // iW
+  ['ciX']: ci + cX, // iX
+  ['ciY']: ci + cY, // iY
+  ['ciZ']: ci + cZ, // iZ
+
+  ['cIA']: cI + cA, // IA
+  ['cIB']: cI + cB, // IB
+  ['cIC']: cI + cC, // IC
+  ['cID']: cI + cD, // ID
+  ['cIE']: cI + cE, // IE
+  ['cIF']: cI + cF, // IF
+  ['cIG']: cI + cG, // IG
+  ['cIH']: cI + cH, // IH
+  ['cII']: cI + cI, // II
+  ['cIJ']: cI + cJ, // IJ
+  ['cIK']: cI + cK, // IK
+  ['cIL']: cI + cL, // IL
+  ['cIM']: cI + cM, // IM
+  ['cIN']: cI + cN, // IN
+  ['cIO']: cI + cO, // IO
+  ['cIP']: cI + cP, // IP
+  ['cIQ']: cI + cQ, // IQ
+  ['cIR']: cI + cR, // IR
+  ['cIS']: cI + cS, // IS
+  ['cIT']: cI + cT, // IT
+  ['cIU']: cI + cU, // IU
+  ['cIV']: cI + cV, // IV
+  ['cIW']: cI + cW, // IW
+  ['cIX']: cI + cX, // IX
+  ['cIY']: cI + cY, // IY
+  ['cIZ']: cI + cZ, // IZ
+
+  // ja-JA
+  ['cja']: cj + ca, // ja
+  ['cjb']: cj + cb, // jb
+  ['cjc']: cj + cc, // jc
+  ['cjd']: cj + cd, // jd
+  ['cje']: cj + ce, // je
+  ['cjf']: cj + cf, // jf
+  ['cjg']: cj + cg, // jg
+  ['cjh']: cj + ch, // jh
+  ['cji']: cj + ci, // ji
+  ['cjj']: cj + cj, // jj
+  ['cjk']: cj + ck, // jk
+  ['cjl']: cj + cl, // jl
+  ['cjm']: cj + cm, // jm
+  ['cjn']: cj + cn, // jn
+  ['cjo']: cj + co, // jo
+  ['cjp']: cj + cp, // jp
+  ['cjq']: cj + cq, // jq
+  ['cjr']: cj + cr, // jr
+  ['cjs']: cj + cs, // js
+  ['cjt']: cj + ct, // jt
+  ['cju']: cj + cu, // ju
+  ['cjv']: cj + cv, // jv
+  ['cjw']: cj + cw, // jw
+  ['cjx']: cj + cx, // jx
+  ['cjy']: cj + cy, // jy
+  ['cjz']: cj + cz, // jz
+
+  ['cJa']: cJ + ca, // Ja
+  ['cJb']: cJ + cb, // Jb
+  ['cJc']: cJ + cc, // Jc
+  ['cJd']: cJ + cd, // Jd
+  ['cJe']: cJ + ce, // Je
+  ['cJf']: cJ + cf, // Jf
+  ['cJg']: cJ + cg, // Jg
+  ['cJh']: cJ + ch, // Jh
+  ['cJi']: cJ + ci, // Ji
+  ['cJj']: cJ + cj, // Jj
+  ['cJk']: cJ + ck, // Jk
+  ['cJl']: cJ + cl, // Jl
+  ['cJm']: cJ + cm, // Jm
+  ['cJn']: cJ + cn, // Jn
+  ['cJo']: cJ + co, // Jo
+  ['cJp']: cJ + cp, // Jp
+  ['cJq']: cJ + cq, // Jq
+  ['cJr']: cJ + cr, // Jr
+  ['cJs']: cJ + cs, // Js
+  ['cJt']: cJ + ct, // Jt
+  ['cJu']: cJ + cu, // Ju
+  ['cJv']: cJ + cv, // Jv
+  ['cJw']: cJ + cw, // Jw
+  ['cJx']: cJ + cx, // Jx
+  ['cJy']: cJ + cy, // Jy
+  ['cJz']: cJ + cz, // Jz
+
+  ['cjA']: cj + cA, // jA
+  ['cjB']: cj + cB, // jB
+  ['cjC']: cj + cC, // jC
+  ['cjD']: cj + cD, // jD
+  ['cjE']: cj + cE, // jE
+  ['cjF']: cj + cF, // jF
+  ['cjG']: cj + cG, // jG
+  ['cjH']: cj + cH, // jH
+  ['cjI']: cj + cI, // jI
+  ['cjJ']: cj + cJ, // jJ
+  ['cjK']: cj + cK, // jK
+  ['cjL']: cj + cL, // jL
+  ['cjM']: cj + cM, // jM
+  ['cjN']: cj + cN, // jN
+  ['cjO']: cj + cO, // jO
+  ['cjP']: cj + cP, // jP
+  ['cjQ']: cj + cQ, // jQ
+  ['cjR']: cj + cR, // jR
+  ['cjS']: cj + cS, // jS
+  ['cjT']: cj + cT, // jT
+  ['cjU']: cj + cU, // jU
+  ['cjV']: cj + cV, // jV
+  ['cjW']: cj + cW, // jW
+  ['cjX']: cj + cX, // jX
+  ['cjY']: cj + cY, // jY
+  ['cjZ']: cj + cZ, // jZ
+
+  ['cJA']: cJ + cA, // JA
+  ['cJB']: cJ + cB, // JB
+  ['cJC']: cJ + cC, // JC
+  ['cJD']: cJ + cD, // JD
+  ['cJE']: cJ + cE, // JE
+  ['cJF']: cJ + cF, // JF
+  ['cJG']: cJ + cG, // JG
+  ['cJH']: cJ + cH, // JH
+  ['cJI']: cJ + cI, // JI
+  ['cJJ']: cJ + cJ, // JJ
+  ['cJK']: cJ + cK, // JK
+  ['cJL']: cJ + cL, // JL
+  ['cJM']: cJ + cM, // JM
+  ['cJN']: cJ + cN, // JN
+  ['cJO']: cJ + cO, // JO
+  ['cJP']: cJ + cP, // JP
+  ['cJQ']: cJ + cQ, // JQ
+  ['cJR']: cJ + cR, // JR
+  ['cJS']: cJ + cS, // JS
+  ['cJT']: cJ + cT, // JT
+  ['cJU']: cJ + cU, // JU
+  ['cJV']: cJ + cV, // JV
+  ['cJW']: cJ + cW, // JW
+  ['cJX']: cJ + cX, // JX
+  ['cJY']: cJ + cY, // JY
+  ['cJZ']: cJ + cZ, // JZ
+
+  // ka-KA
+  ['cka']: ck + ca, // ka
+  ['ckb']: ck + cb, // kb
+  ['ckc']: ck + cc, // kc
+  ['ckd']: ck + cd, // kd
+  ['cke']: ck + ce, // ke
+  ['ckf']: ck + cf, // kf
+  ['ckg']: ck + cg, // kg
+  ['ckh']: ck + ch, // kh
+  ['cki']: ck + ci, // ki
+  ['ckj']: ck + cj, // kj
+  ['ckk']: ck + ck, // kk
+  ['ckl']: ck + cl, // kl
+  ['ckm']: ck + cm, // km
+  ['ckn']: ck + cn, // kn
+  ['cko']: ck + co, // ko
+  ['ckp']: ck + cp, // kp
+  ['ckq']: ck + cq, // kq
+  ['ckr']: ck + cr, // kr
+  ['cks']: ck + cs, // ks
+  ['ckt']: ck + ct, // kt
+  ['cku']: ck + cu, // ku
+  ['ckv']: ck + cv, // kv
+  ['ckw']: ck + cw, // kw
+  ['ckx']: ck + cx, // kx
+  ['cky']: ck + cy, // ky
+  ['ckz']: ck + cz, // kz
+
+  ['cKa']: cK + ca, // Ka
+  ['cKb']: cK + cb, // Kb
+  ['cKc']: cK + cc, // Kc
+  ['cKd']: cK + cd, // Kd
+  ['cKe']: cK + ce, // Ke
+  ['cKf']: cK + cf, // Kf
+  ['cKg']: cK + cg, // Kg
+  ['cKh']: cK + ch, // Kh
+  ['cKi']: cK + ci, // Ki
+  ['cKj']: cK + cj, // Kj
+  ['cKk']: cK + ck, // Kk
+  ['cKl']: cK + cl, // Kl
+  ['cKm']: cK + cm, // Km
+  ['cKn']: cK + cn, // Kn
+  ['cKo']: cK + co, // Ko
+  ['cKp']: cK + cp, // Kp
+  ['cKq']: cK + cq, // Kq
+  ['cKr']: cK + cr, // Kr
+  ['cKs']: cK + cs, // Ks
+  ['cKt']: cK + ct, // Kt
+  ['cKu']: cK + cu, // Ku
+  ['cKv']: cK + cv, // Kv
+  ['cKw']: cK + cw, // Kw
+  ['cKx']: cK + cx, // Kx
+  ['cKy']: cK + cy, // Ky
+  ['cKz']: cK + cz, // Kz
+
+  ['ckA']: ck + cA, // kA
+  ['ckB']: ck + cB, // kB
+  ['ckC']: ck + cC, // kC
+  ['ckD']: ck + cD, // kD
+  ['ckE']: ck + cE, // kE
+  ['ckF']: ck + cF, // kF
+  ['ckG']: ck + cG, // kG
+  ['ckH']: ck + cH, // kH
+  ['ckI']: ck + cI, // kI
+  ['ckJ']: ck + cJ, // kJ
+  ['ckK']: ck + cK, // kK
+  ['ckL']: ck + cL, // kL
+  ['ckM']: ck + cM, // kM
+  ['ckN']: ck + cN, // kN
+  ['ckO']: ck + cO, // kO
+  ['ckP']: ck + cP, // kP
+  ['ckQ']: ck + cQ, // kQ
+  ['ckR']: ck + cR, // kR
+  ['ckS']: ck + cS, // kS
+  ['ckT']: ck + cT, // kT
+  ['ckU']: ck + cU, // kU
+  ['ckV']: ck + cV, // kV
+  ['ckW']: ck + cW, // kW
+  ['ckX']: ck + cX, // kX
+  ['ckY']: ck + cY, // kY
+  ['ckZ']: ck + cZ, // kZ
+
+  ['cKA']: cK + cA, // KA
+  ['cKB']: cK + cB, // KB
+  ['cKC']: cK + cC, // KC
+  ['cKD']: cK + cD, // KD
+  ['cKE']: cK + cE, // KE
+  ['cKF']: cK + cF, // KF
+  ['cKG']: cK + cG, // KG
+  ['cKH']: cK + cH, // KH
+  ['cKI']: cK + cI, // KI
+  ['cKJ']: cK + cJ, // KJ
+  ['cKK']: cK + cK, // KK
+  ['cKL']: cK + cL, // KL
+  ['cKM']: cK + cM, // KM
+  ['cKN']: cK + cN, // KN
+  ['cKO']: cK + cO, // KO
+  ['cKP']: cK + cP, // KP
+  ['cKQ']: cK + cQ, // KQ
+  ['cKR']: cK + cR, // KR
+  ['cKS']: cK + cS, // KS
+  ['cKT']: cK + cT, // KT
+  ['cKU']: cK + cU, // KU
+  ['cKV']: cK + cV, // KV
+  ['cKW']: cK + cW, // KW
+  ['cKX']: cK + cX, // KX
+  ['cKY']: cK + cY, // KY
+  ['cKZ']: cK + cZ, // KZ
+
+  // la-LA
+  ['cla']: cl + ca, // la
+  ['clb']: cl + cb, // lb
+  ['clc']: cl + cc, // lc
+  ['cld']: cl + cd, // ld
+  ['cle']: cl + ce, // le
+  ['clf']: cl + cf, // lf
+  ['clg']: cl + cg, // lg
+  ['clh']: cl + ch, // lh
+  ['cli']: cl + ci, // li
+  ['clj']: cl + cj, // lj
+  ['clk']: cl + ck, // lk
+  ['cll']: cl + cl, // ll
+  ['clm']: cl + cm, // lm
+  ['cln']: cl + cn, // ln
+  ['clo']: cl + co, // lo
+  ['clp']: cl + cp, // lp
+  ['clq']: cl + cq, // lq
+  ['clr']: cl + cr, // lr
+  ['cls']: cl + cs, // ls
+  ['clt']: cl + ct, // lt
+  ['clu']: cl + cu, // lu
+  ['clv']: cl + cv, // lv
+  ['clw']: cl + cw, // lw
+  ['clx']: cl + cx, // lx
+  ['cly']: cl + cy, // ly
+  ['clz']: cl + cz, // lz
+
+  ['cLa']: cL + ca, // La
+  ['cLb']: cL + cb, // Lb
+  ['cLc']: cL + cc, // Lc
+  ['cLd']: cL + cd, // Ld
+  ['cLe']: cL + ce, // Le
+  ['cLf']: cL + cf, // Lf
+  ['cLg']: cL + cg, // Lg
+  ['cLh']: cL + ch, // Lh
+  ['cLi']: cL + ci, // Li
+  ['cLj']: cL + cj, // Lj
+  ['cLk']: cL + ck, // Lk
+  ['cLl']: cL + cl, // Ll
+  ['cLm']: cL + cm, // Lm
+  ['cLn']: cL + cn, // Ln
+  ['cLo']: cL + co, // Lo
+  ['cLp']: cL + cp, // Lp
+  ['cLq']: cL + cq, // Lq
+  ['cLr']: cL + cr, // Lr
+  ['cLs']: cL + cs, // Ls
+  ['cLt']: cL + ct, // Lt
+  ['cLu']: cL + cu, // Lu
+  ['cLv']: cL + cv, // Lv
+  ['cLw']: cL + cw, // Lw
+  ['cLx']: cL + cx, // Lx
+  ['cLy']: cL + cy, // Ly
+  ['cLz']: cL + cz, // Lz
+
+  ['clA']: cl + cA, // lA
+  ['clB']: cl + cB, // lB
+  ['clC']: cl + cC, // lC
+  ['clD']: cl + cD, // lD
+  ['clE']: cl + cE, // lE
+  ['clF']: cl + cF, // lF
+  ['clG']: cl + cG, // lG
+  ['clH']: cl + cH, // lH
+  ['clI']: cl + cI, // lI
+  ['clJ']: cl + cJ, // lJ
+  ['clK']: cl + cK, // lK
+  ['clL']: cl + cL, // lL
+  ['clM']: cl + cM, // lM
+  ['clN']: cl + cN, // lN
+  ['clO']: cl + cO, // lO
+  ['clP']: cl + cP, // lP
+  ['clQ']: cl + cQ, // lQ
+  ['clR']: cl + cR, // lR
+  ['clS']: cl + cS, // lS
+  ['clT']: cl + cT, // lT
+  ['clU']: cl + cU, // lU
+  ['clV']: cl + cV, // lV
+  ['clW']: cl + cW, // lW
+  ['clX']: cl + cX, // lX
+  ['clY']: cl + cY, // lY
+  ['clZ']: cl + cZ, // lZ
+
+  ['cLA']: cL + cA, // LA
+  ['cLB']: cL + cB, // LB
+  ['cLC']: cL + cC, // LC
+  ['cLD']: cL + cD, // LD
+  ['cLE']: cL + cE, // LE
+  ['cLF']: cL + cF, // LF
+  ['cLG']: cL + cG, // LG
+  ['cLH']: cL + cH, // LH
+  ['cLI']: cL + cI, // LI
+  ['cLJ']: cL + cJ, // LJ
+  ['cLK']: cL + cK, // LK
+  ['cLL']: cL + cL, // LL
+  ['cLM']: cL + cM, // LM
+  ['cLN']: cL + cN, // LN
+  ['cLO']: cL + cO, // LO
+  ['cLP']: cL + cP, // LP
+  ['cLQ']: cL + cQ, // LQ
+  ['cLR']: cL + cR, // LR
+  ['cLS']: cL + cS, // LS
+  ['cLT']: cL + cT, // LT
+  ['cLU']: cL + cU, // LU
+  ['cLV']: cL + cV, // LV
+  ['cLW']: cL + cW, // LW
+  ['cLX']: cL + cX, // LX
+  ['cLY']: cL + cY, // LY
+  ['cLZ']: cL + cZ, // LZ
+
+  // ma-MA
+  ['cma']: cm + ca, // ma
+  ['cmb']: cm + cb, // mb
+  ['cmc']: cm + cc, // mc
+  ['cmd']: cm + cd, // md
+  ['cme']: cm + ce, // me
+  ['cmf']: cm + cf, // mf
+  ['cmg']: cm + cg, // mg
+  ['cmh']: cm + ch, // mh
+  ['camai']: 'mi', // cm + ci; // mi
+  ['cmj']: cm + cj, // mj
+  ['cmk']: cm + ck, // mk
+  ['cml']: cm + cl, // ml
+  ['cmm']: cm + cm, // mm
+  ['cmn']: cm + cn, // mn
+  ['cmo']: cm + co, // mo
+  ['cmp']: cm + cp, // mp
+  ['cmq']: cm + cq, // mq
+  ['cmr']: cm + cr, // mr
+  ['cms']: cm + cs, // ms
+  ['cmt']: cm + ct, // mt
+  ['cmu']: cm + cu, // mu
+  ['cmv']: cm + cv, // mv
+  ['cmw']: cm + cw, // mw
+  ['cmx']: cm + cx, // mx
+  ['cmy']: cm + cy, // my
+  ['cmz']: cm + cz, // mz
+
+  ['cMa']: cM + ca, // Ma
+  ['cMb']: cM + cb, // Mb
+  ['cMc']: cM + cc, // Mc
+  ['cMd']: cM + cd, // Md
+  ['cMe']: cM + ce, // Me
+  ['cMf']: cM + cf, // Mf
+  ['cMg']: cM + cg, // Mg
+  ['cMh']: cM + ch, // Mh
+  ['cMi']: cM + ci, // Mi
+  ['cMj']: cM + cj, // Mj
+  ['cMk']: cM + ck, // Mk
+  ['cMl']: cM + cl, // Ml
+  ['cMm']: cM + cm, // Mm
+  ['cMn']: cM + cn, // Mn
+  ['cMo']: cM + co, // Mo
+  ['cMp']: cM + cp, // Mp
+  ['cMq']: cM + cq, // Mq
+  ['cMr']: cM + cr, // Mr
+  ['cMs']: cM + cs, // Ms
+  ['cMt']: cM + ct, // Mt
+  ['cMu']: cM + cu, // Mu
+  ['cMv']: cM + cv, // Mv
+  ['cMw']: cM + cw, // Mw
+  ['cMx']: cM + cx, // Mx
+  ['cMy']: cM + cy, // My
+  ['cMz']: cM + cz, // Mz
+
+  ['cmA']: cm + cA, // mA
+  ['cmB']: cm + cB, // mB
+  ['cmC']: cm + cC, // mC
+  ['cmD']: cm + cD, // mD
+  ['cmE']: cm + cE, // mE
+  ['cmF']: cm + cF, // mF
+  ['cmG']: cm + cG, // mG
+  ['cmH']: cm + cH, // mH
+  ['cmI']: cm + cI, // mI
+  ['cmJ']: cm + cJ, // mJ
+  ['cmK']: cm + cK, // mK
+  ['cmL']: cm + cL, // mL
+  ['cmM']: cm + cM, // mM
+  ['cmN']: cm + cN, // mN
+  ['cmO']: cm + cO, // mO
+  ['cmP']: cm + cP, // mP
+  ['cmQ']: cm + cQ, // mQ
+  ['cmR']: cm + cR, // mR
+  ['cmS']: cm + cS, // mS
+  ['cmT']: cm + cT, // mT
+  ['cmU']: cm + cU, // mU
+  ['cmV']: cm + cV, // mV
+  ['cmW']: cm + cW, // mW
+  ['cmX']: cm + cX, // mX
+  ['cmY']: cm + cY, // mY
+  ['cmZ']: cm + cZ, // mZ
+
+  ['cMA']: cM + cA, // MA
+  ['cMB']: cM + cB, // MB
+  ['cMC']: cM + cC, // MC
+  ['cMD']: cM + cD, // MD
+  ['cME']: cM + cE, // ME
+  ['cMF']: cM + cF, // MF
+  ['cMG']: cM + cG, // MG
+  ['cMH']: cM + cH, // MH
+  ['cMI']: cM + cI, // MI
+  ['cMJ']: cM + cJ, // MJ
+  ['cMK']: cM + cK, // MK
+  ['cML']: cM + cL, // ML
+  ['cMM']: cM + cM, // MM
+  ['cMN']: cM + cN, // MN
+  ['cMO']: cM + cO, // MO
+  ['cMP']: cM + cP, // MP
+  ['cMQ']: cM + cQ, // MQ
+  ['cMR']: cM + cR, // MR
+  ['cMS']: cM + cS, // MS
+  ['cMT']: cM + cT, // MT
+  ['cMU']: cM + cU, // MU
+  ['cMV']: cM + cV, // MV
+  ['cMW']: cM + cW, // MW
+  ['cMX']: cM + cX, // MX
+  ['cMY']: cM + cY, // MY
+  ['cMZ']: cM + cZ, // MZ
+
+  // na-NA
+  ['cna']: cn + ca, // na
+  ['cnb']: cn + cb, // nb
+  ['cnc']: cn + cc, // nc
+  ['cnd']: cn + cd, // nd
+  ['cne']: cn + ce, // ne
+  ['cnf']: cn + cf, // nf
+  ['cng']: cn + cg, // ng
+  ['cnh']: cn + ch, // nh
+  ['cni']: cn + ci, // ni
+  ['cnj']: cn + cj, // nj
+  ['cnk']: cn + ck, // nk
+  ['cnl']: cn + cl, // nl
+  ['cnm']: cn + cm, // nm
+  ['cnn']: cn + cn, // nn
+  ['cno']: cn + co, // no
+  ['cnp']: cn + cp, // np
+  ['cnq']: cn + cq, // nq
+  ['cnr']: cn + cr, // nr
+  ['cns']: cn + cs, // ns
+  ['cnt']: cn + ct, // nt
+  ['cnu']: cn + cu, // nu
+  ['cnv']: cn + cv, // nv
+  ['cnw']: cn + cw, // nw
+  ['cnx']: cn + cx, // nx
+  ['cny']: cn + cy, // ny
+  ['cnz']: cn + cz, // nz
+
+  ['cNa']: cN + ca, // Na
+  ['cNb']: cN + cb, // Nb
+  ['cNc']: cN + cc, // Nc
+  ['cNd']: cN + cd, // Nd
+  ['cNe']: cN + ce, // Ne
+  ['cNf']: cN + cf, // Nf
+  ['cNg']: cN + cg, // Ng
+  ['cNh']: cN + ch, // Nh
+  ['cNi']: cN + ci, // Ni
+  ['cNj']: cN + cj, // Nj
+  ['cNk']: cN + ck, // Nk
+  ['cNl']: cN + cl, // Nl
+  ['cNm']: cN + cm, // Nm
+  ['cNn']: cN + cn, // Nn
+  ['cNo']: cN + co, // No
+  ['cNp']: cN + cp, // Np
+  ['cNq']: cN + cq, // Nq
+  ['cNr']: cN + cr, // Nr
+  ['cNs']: cN + cs, // Ns
+  ['cNt']: cN + ct, // Nt
+  ['cNu']: cN + cu, // Nu
+  ['cNv']: cN + cv, // Nv
+  ['cNw']: cN + cw, // Nw
+  ['cNx']: cN + cx, // Nx
+  ['cNy']: cN + cy, // Ny
+  ['cNz']: cN + cz, // Nz
+
+  ['cnA']: cn + cA, // nA
+  ['cnB']: cn + cB, // nB
+  ['cnC']: cn + cC, // nC
+  ['cnD']: cn + cD, // nD
+  ['cnE']: cn + cE, // nE
+  ['cnF']: cn + cF, // nF
+  ['cnG']: cn + cG, // nG
+  ['cnH']: cn + cH, // nH
+  ['cnI']: cn + cI, // nI
+  ['cnJ']: cn + cJ, // nJ
+  ['cnK']: cn + cK, // nK
+  ['cnL']: cn + cL, // nL
+  ['cnM']: cn + cM, // nM
+  ['cnN']: cn + cN, // nN
+  ['cnO']: cn + cO, // nO
+  ['cnP']: cn + cP, // nP
+  ['cnQ']: cn + cQ, // nQ
+  ['cnR']: cn + cR, // nR
+  ['cnS']: cn + cS, // nS
+  ['cnT']: cn + cT, // nT
+  ['cnU']: cn + cU, // nU
+  ['cnV']: cn + cV, // nV
+  ['cnW']: cn + cW, // nW
+  ['cnX']: cn + cX, // nX
+  ['cnY']: cn + cY, // nY
+  ['cnZ']: cn + cZ, // nZ
+
+  ['cNA']: cN + cA, // NA
+  ['cNB']: cN + cB, // NB
+  ['cNC']: cN + cC, // NC
+  ['cND']: cN + cD, // ND
+  ['cNE']: cN + cE, // NE
+  ['cNF']: cN + cF, // NF
+  ['cNG']: cN + cG, // NG
+  ['cNH']: cN + cH, // NH
+  ['cNI']: cN + cI, // NI
+  ['cNJ']: cN + cJ, // NJ
+  ['cNK']: cN + cK, // NK
+  ['cNL']: cN + cL, // NL
+  ['cNM']: cN + cM, // NM
+  ['cNN']: cN + cN, // NN
+  ['cNO']: cN + cO, // NO
+  ['cNP']: cN + cP, // NP
+  ['cNQ']: cN + cQ, // NQ
+  ['cNR']: cN + cR, // NR
+  ['cNS']: cN + cS, // NS
+  ['cNT']: cN + cT, // NT
+  ['cNU']: cN + cU, // NU
+  ['cNV']: cN + cV, // NV
+  ['cNW']: cN + cW, // NW
+  ['cNX']: cN + cX, // NX
+  ['cNY']: cN + cY, // NY
+  ['cNZ']: cN + cZ, // NZ
+
+  // oa-OA
+  ['coa']: co + ca, // oa
+  ['cob']: co + cb, // ob
+  ['coc']: co + cc, // oc
+  ['cod']: co + cd, // od
+  ['coe']: co + ce, // oe
+  ['cof']: co + cf, // of
+  ['cog']: co + cg, // og
+  ['coh']: co + ch, // oh
+  ['coi']: co + ci, // oi
+  ['coj']: co + cj, // oj
+  ['cok']: co + ck, // ok
+  ['col']: co + cl, // ol
+  ['com']: co + cm, // om
+  ['con']: co + cn, // on
+  ['coo']: co + co, // oo
+  ['cop']: co + cp, // op
+  ['coq']: co + cq, // oq
+  ['cor']: co + cr, // or
+  ['cos']: co + cs, // os
+  ['cot']: co + ct, // ot
+  ['cou']: co + cu, // ou
+  ['cov']: co + cv, // ov
+  ['cow']: co + cw, // ow
+  ['cox']: co + cx, // ox
+  ['coy']: co + cy, // oy
+  ['coz']: co + cz, // oz
+
+  ['cOa']: cO + ca, // Oa
+  ['cOb']: cO + cb, // Ob
+  ['cOc']: cO + cc, // Oc
+  ['cOd']: cO + cd, // Od
+  ['cOe']: cO + ce, // Oe
+  ['cOf']: cO + cf, // Of
+  ['cOg']: cO + cg, // Og
+  ['cOh']: cO + ch, // Oh
+  ['cOi']: cO + ci, // Oi
+  ['cOj']: cO + cj, // Oj
+  ['cOk']: cO + ck, // Ok
+  ['cOl']: cO + cl, // Ol
+  ['cOm']: cO + cm, // Om
+  ['cOn']: cO + cn, // On
+  ['cOo']: cO + co, // Oo
+  ['cOp']: cO + cp, // Op
+  ['cOq']: cO + cq, // Oq
+  ['cOr']: cO + cr, // Or
+  ['cOs']: cO + cs, // Os
+  ['cOt']: cO + ct, // Ot
+  ['cOu']: cO + cu, // Ou
+  ['cOv']: cO + cv, // Ov
+  ['cOw']: cO + cw, // Ow
+  ['cOx']: cO + cx, // Ox
+  ['cOy']: cO + cy, // Oy
+  ['cOz']: cO + cz, // Oz
+
+  ['coA']: co + cA, // oA
+  ['coB']: co + cB, // oB
+  ['coC']: co + cC, // oC
+  ['coD']: co + cD, // oD
+  ['coE']: co + cE, // oE
+  ['coF']: co + cF, // oF
+  ['coG']: co + cG, // oG
+  ['coH']: co + cH, // oH
+  ['coI']: co + cI, // oI
+  ['coJ']: co + cJ, // oJ
+  ['coK']: co + cK, // oK
+  ['coL']: co + cL, // oL
+  ['coM']: co + cM, // oM
+  ['coN']: co + cN, // oN
+  ['coO']: co + cO, // oO
+  ['coP']: co + cP, // oP
+  ['coQ']: co + cQ, // oQ
+  ['coR']: co + cR, // oR
+  ['coS']: co + cS, // oS
+  ['coT']: co + cT, // oT
+  ['coU']: co + cU, // oU
+  ['coV']: co + cV, // oV
+  ['coW']: co + cW, // oW
+  ['coX']: co + cX, // oX
+  ['coY']: co + cY, // oY
+  ['coZ']: co + cZ, // oZ
+
+  ['cOA']: cO + cA, // OA
+  ['cOB']: cO + cB, // OB
+  ['cOC']: cO + cC, // OC
+  ['cOD']: cO + cD, // OD
+  ['cOE']: cO + cE, // OE
+  ['cOF']: cO + cF, // OF
+  ['cOG']: cO + cG, // OG
+  ['cOH']: cO + cH, // OH
+  ['cOI']: cO + cI, // OI
+  ['cOJ']: cO + cJ, // OJ
+  ['cOK']: cO + cK, // OK
+  ['cOL']: cO + cL, // OL
+  ['cOM']: cO + cM, // OM
+  ['cON']: cO + cN, // ON
+  ['cOO']: cO + cO, // OO
+  ['cOP']: cO + cP, // OP
+  ['cOQ']: cO + cQ, // OQ
+  ['cOR']: cO + cR, // OR
+  ['cOS']: cO + cS, // OS
+  ['cOT']: cO + cT, // OT
+  ['cOU']: cO + cU, // OU
+  ['cOV']: cO + cV, // OV
+  ['cOW']: cO + cW, // OW
+  ['cOX']: cO + cX, // OX
+  ['cOY']: cO + cY, // OY
+  ['cOZ']: cO + cZ, // OZ
+
+  // pa-PA
+  ['cpa']: cp + ca, // pa
+  ['cpb']: cp + cb, // pb
+  ['cpc']: cp + cc, // pc
+  ['cpd']: cp + cd, // pd
+  ['cpe']: cp + ce, // pe
+  ['cpf']: cp + cf, // pf
+  ['cpg']: cp + cg, // pg
+  ['cph']: cp + ch, // ph
+  ['cpi']: cp + ci, // pi
+  ['cpj']: cp + cj, // pj
+  ['cpk']: cp + ck, // pk
+  ['cpl']: cp + cl, // pl
+  ['cpm']: cp + cm, // pm
+  ['cpn']: cp + cn, // pn
+  ['cpo']: cp + co, // po
+  ['cpp']: cp + cp, // pp
+  ['cpq']: cp + cq, // pq
+  ['cpr']: cp + cr, // pr
+  ['cps']: cp + cs, // ps
+  ['cpt']: cp + ct, // pt
+  ['cpu']: cp + cu, // pu
+  ['cpv']: cp + cv, // pv
+  ['cpw']: cp + cw, // pw
+  ['cpx']: cp + cx, // px
+  ['cpy']: cp + cy, // py
+  ['cpz']: cp + cz, // pz
+
+  ['cPa']: cP + ca, // Pa
+  ['cPb']: cP + cb, // Pb
+  ['cPc']: cP + cc, // Pc
+  ['cPd']: cP + cd, // Pd
+  ['cPe']: cP + ce, // Pe
+  ['cPf']: cP + cf, // Pf
+  ['cPg']: cP + cg, // Pg
+  ['cPh']: cP + ch, // Ph
+  ['cPi']: cP + ci, // Pi
+  ['cPj']: cP + cj, // Pj
+  ['cPk']: cP + ck, // Pk
+  ['cPl']: cP + cl, // Pl
+  ['cPm']: cP + cm, // Pm
+  ['cPn']: cP + cn, // Pn
+  ['cPo']: cP + co, // Po
+  ['cPp']: cP + cp, // Pp
+  ['cPq']: cP + cq, // Pq
+  ['cPr']: cP + cr, // Pr
+  ['cPs']: cP + cs, // Ps
+  ['cPt']: cP + ct, // Pt
+  ['cPu']: cP + cu, // Pu
+  ['cPv']: cP + cv, // Pv
+  ['cPw']: cP + cw, // Pw
+  ['cPx']: cP + cx, // Px
+  ['cPy']: cP + cy, // Py
+  ['cPz']: cP + cz, // Pz
+
+  ['cpA']: cp + cA, // pA
+  ['cpB']: cp + cB, // pB
+  ['cpC']: cp + cC, // pC
+  ['cpD']: cp + cD, // pD
+  ['cpE']: cp + cE, // pE
+  ['cpF']: cp + cF, // pF
+  ['cpG']: cp + cG, // pG
+  ['cpH']: cp + cH, // pH
+  ['cpI']: cp + cI, // pI
+  ['cpJ']: cp + cJ, // pJ
+  ['cpK']: cp + cK, // pK
+  ['cpL']: cp + cL, // pL
+  ['cpM']: cp + cM, // pM
+  ['cpN']: cp + cN, // pN
+  ['cpO']: cp + cO, // pO
+  ['cpP']: cp + cP, // pP
+  ['cpQ']: cp + cQ, // pQ
+  ['cpR']: cp + cR, // pR
+  ['cpS']: cp + cS, // pS
+  ['cpT']: cp + cT, // pT
+  ['cpU']: cp + cU, // pU
+  ['cpV']: cp + cV, // pV
+  ['cpW']: cp + cW, // pW
+  ['cpX']: cp + cX, // pX
+  ['cpY']: cp + cY, // pY
+  ['cpZ']: cp + cZ, // pZ
+
+  ['cPA']: cP + cA, // PA
+  ['cPB']: cP + cB, // PB
+  ['cPC']: cP + cC, // PC
+  ['cPD']: cP + cD, // PD
+  ['cPE']: cP + cE, // PE
+  ['cPF']: cP + cF, // PF
+  ['cPG']: cP + cG, // PG
+  ['cPH']: cP + cH, // PH
+  ['cPI']: cP + cI, // PI
+  ['cPJ']: cP + cJ, // PJ
+  ['cPK']: cP + cK, // PK
+  ['cPL']: cP + cL, // PL
+  ['cPM']: cP + cM, // PM
+  ['cPN']: cP + cN, // PN
+  ['cPO']: cP + cO, // PO
+  ['cPP']: cP + cP, // PP
+  ['cPQ']: cP + cQ, // PQ
+  ['cPR']: cP + cR, // PR
+  ['cPS']: cP + cS, // PS
+  ['cPT']: cP + cT, // PT
+  ['cPU']: cP + cU, // PU
+  ['cPV']: cP + cV, // PV
+  ['cPW']: cP + cW, // PW
+  ['cPX']: cP + cX, // PX
+  ['cPY']: cP + cY, // PY
+  ['cPZ']: cP + cZ, // PZ
+
+  // qa-QA
+  ['cqa']: cq + ca, // qa
+  ['cqb']: cq + cb, // qb
+  ['cqc']: cq + cc, // qc
+  ['cqd']: cq + cd, // qd
+  ['cqe']: cq + ce, // qe
+  ['cqf']: cq + cf, // qf
+  ['cqg']: cq + cg, // qg
+  ['cqh']: cq + ch, // qh
+  ['cqi']: cq + ci, // qi
+  ['cqj']: cq + cj, // qj
+  ['cqk']: cq + ck, // qk
+  ['cql']: cq + cl, // ql
+  ['cqm']: cq + cm, // qm
+  ['cqn']: cq + cn, // qn
+  ['cqo']: cq + co, // qo
+  ['cqp']: cq + cp, // qp
+  ['cqq']: cq + cq, // qq
+  ['cqr']: cq + cr, // qr
+  ['cqs']: cq + cs, // qs
+  ['cqt']: cq + ct, // qt
+  ['cqu']: cq + cu, // qu
+  ['cqv']: cq + cv, // qv
+  ['cqw']: cq + cw, // qw
+  ['cqx']: cq + cx, // qx
+  ['cqy']: cq + cy, // qy
+  ['cqz']: cq + cz, // qz
+
+  ['cQa']: cQ + ca, // Qa
+  ['cQb']: cQ + cb, // Qb
+  ['cQc']: cQ + cc, // Qc
+  ['cQd']: cQ + cd, // Qd
+  ['cQe']: cQ + ce, // Qe
+  ['cQf']: cQ + cf, // Qf
+  ['cQg']: cQ + cg, // Qg
+  ['cQh']: cQ + ch, // Qh
+  ['cQi']: cQ + ci, // Qi
+  ['cQj']: cQ + cj, // Qj
+  ['cQk']: cQ + ck, // Qk
+  ['cQl']: cQ + cl, // Ql
+  ['cQm']: cQ + cm, // Qm
+  ['cQn']: cQ + cn, // Qn
+  ['cQo']: cQ + co, // Qo
+  ['cQp']: cQ + cp, // Qp
+  ['cQq']: cQ + cq, // Qq
+  ['cQr']: cQ + cr, // Qr
+  ['cQs']: cQ + cs, // Qs
+  ['cQt']: cQ + ct, // Qt
+  ['cQu']: cQ + cu, // Qu
+  ['cQv']: cQ + cv, // Qv
+  ['cQw']: cQ + cw, // Qw
+  ['cQx']: cQ + cx, // Qx
+  ['cQy']: cQ + cy, // Qy
+  ['cQz']: cQ + cz, // Qz
+
+  ['cqA']: cq + cA, // qA
+  ['cqB']: cq + cB, // qB
+  ['cqC']: cq + cC, // qC
+  ['cqD']: cq + cD, // qD
+  ['cqE']: cq + cE, // qE
+  ['cqF']: cq + cF, // qF
+  ['cqG']: cq + cG, // qG
+  ['cqH']: cq + cH, // qH
+  ['cqI']: cq + cI, // qI
+  ['cqJ']: cq + cJ, // qJ
+  ['cqK']: cq + cK, // qK
+  ['cqL']: cq + cL, // qL
+  ['cqM']: cq + cM, // qM
+  ['cqN']: cq + cN, // qN
+  ['cqO']: cq + cO, // qO
+  ['cqP']: cq + cP, // qP
+  ['cqQ']: cq + cQ, // qQ
+  ['cqR']: cq + cR, // qR
+  ['cqS']: cq + cS, // qS
+  ['cqT']: cq + cT, // qT
+  ['cqU']: cq + cU, // qU
+  ['cqV']: cq + cV, // qV
+  ['cqW']: cq + cW, // qW
+  ['cqX']: cq + cX, // qX
+  ['cqY']: cq + cY, // qY
+  ['cqZ']: cq + cZ, // qZ
+
+  ['cQA']: cQ + cA, // QA
+  ['cQB']: cQ + cB, // QB
+  ['cQC']: cQ + cC, // QC
+  ['cQD']: cQ + cD, // QD
+  ['cQE']: cQ + cE, // QE
+  ['cQF']: cQ + cF, // QF
+  ['cQG']: cQ + cG, // QG
+  ['cQH']: cQ + cH, // QH
+  ['cQI']: cQ + cI, // QI
+  ['cQJ']: cQ + cJ, // QJ
+  ['cQK']: cQ + cK, // QK
+  ['cQL']: cQ + cL, // QL
+  ['cQM']: cQ + cM, // QM
+  ['cQN']: cQ + cN, // QN
+  ['cQO']: cQ + cO, // QO
+  ['cQP']: cQ + cP, // QP
+  ['cQQ']: cQ + cQ, // QQ
+  ['cQR']: cQ + cR, // QR
+  ['cQS']: cQ + cS, // QS
+  ['cQT']: cQ + cT, // QT
+  ['cQU']: cQ + cU, // QU
+  ['cQV']: cQ + cV, // QV
+  ['cQW']: cQ + cW, // QW
+  ['cQX']: cQ + cX, // QX
+  ['cQY']: cQ + cY, // QY
+  ['cQZ']: cQ + cZ, // QZ
+
+  // ra-RA
+  ['cra']: cr + ca, // ra
+  ['crb']: cr + cb, // rb
+  ['crc']: cr + cc, // rc
+  ['crd']: cr + cd, // rd
+  ['cre']: cr + ce, // re
+  ['crf']: cr + cf, // rf
+  ['crg']: cr + cg, // rg
+  ['crh']: cr + ch, // rh
+  ['cri']: cr + ci, // ri
+  ['crj']: cr + cj, // rj
+  ['crk']: cr + ck, // rk
+  ['crl']: cr + cl, // rl
+  ['crm']: cr + cm, // rm
+  ['crn']: cr + cn, // rn
+  ['cro']: cr + co, // ro
+  ['crp']: cr + cp, // rp
+  ['crq']: cr + cq, // rq
+  ['crr']: cr + cr, // rr
+  ['crs']: cr + cs, // rs
+  ['crt']: cr + ct, // rt
+  ['cru']: cr + cu, // ru
+  ['crv']: cr + cv, // rv
+  ['crw']: cr + cw, // rw
+  ['crx']: cr + cx, // rx
+  ['cry']: cr + cy, // ry
+  ['crz']: cr + cz, // rz
+
+  ['cRa']: cR + ca, // Ra
+  ['cRb']: cR + cb, // Rb
+  ['cRc']: cR + cc, // Rc
+  ['cRd']: cR + cd, // Rd
+  ['cRe']: cR + ce, // Re
+  ['cRf']: cR + cf, // Rf
+  ['cRg']: cR + cg, // Rg
+  ['cRh']: cR + ch, // Rh
+  ['cRi']: cR + ci, // Ri
+  ['cRj']: cR + cj, // Rj
+  ['cRk']: cR + ck, // Rk
+  ['cRl']: cR + cl, // Rl
+  ['cRm']: cR + cm, // Rm
+  ['cRn']: cR + cn, // Rn
+  ['cRo']: cR + co, // Ro
+  ['cRp']: cR + cp, // Rp
+  ['cRq']: cR + cq, // Rq
+  ['cRr']: cR + cr, // Rr
+  ['cRs']: cR + cs, // Rs
+  ['cRt']: cR + ct, // Rt
+  ['cRu']: cR + cu, // Ru
+  ['cRv']: cR + cv, // Rv
+  ['cRw']: cR + cw, // Rw
+  ['cRx']: cR + cx, // Rx
+  ['cRy']: cR + cy, // Ry
+  ['cRz']: cR + cz, // Rz
+
+  ['crA']: cr + cA, // rA
+  ['crB']: cr + cB, // rB
+  ['crC']: cr + cC, // rC
+  ['crD']: cr + cD, // rD
+  ['crE']: cr + cE, // rE
+  ['crF']: cr + cF, // rF
+  ['crG']: cr + cG, // rG
+  ['crH']: cr + cH, // rH
+  ['crI']: cr + cI, // rI
+  ['crJ']: cr + cJ, // rJ
+  ['crK']: cr + cK, // rK
+  ['crL']: cr + cL, // rL
+  ['crM']: cr + cM, // rM
+  ['crN']: cr + cN, // rN
+  ['crO']: cr + cO, // rO
+  ['crP']: cr + cP, // rP
+  ['crQ']: cr + cQ, // rQ
+  ['crR']: cr + cR, // rR
+  ['crS']: cr + cS, // rS
+  ['crT']: cr + cT, // rT
+  ['crU']: cr + cU, // rU
+  ['crV']: cr + cV, // rV
+  ['crW']: cr + cW, // rW
+  ['crX']: cr + cX, // rX
+  ['crY']: cr + cY, // rY
+  ['crZ']: cr + cZ, // rZ
+
+  ['cRA']: cR + cA, // RA
+  ['cRB']: cR + cB, // RB
+  ['cRC']: cR + cC, // RC
+  ['cRD']: cR + cD, // RD
+  ['cRE']: cR + cE, // RE
+  ['cRF']: cR + cF, // RF
+  ['cRG']: cR + cG, // RG
+  ['cRH']: cR + cH, // RH
+  ['cRI']: cR + cI, // RI
+  ['cRJ']: cR + cJ, // RJ
+  ['cRK']: cR + cK, // RK
+  ['cRL']: cR + cL, // RL
+  ['cRM']: cR + cM, // RM
+  ['cRN']: cR + cN, // RN
+  ['cRO']: cR + cO, // RO
+  ['cRP']: cR + cP, // RP
+  ['cRQ']: cR + cQ, // RQ
+  ['cRR']: cR + cR, // RR
+  ['cRS']: cR + cS, // RS
+  ['cRT']: cR + cT, // RT
+  ['cRU']: cR + cU, // RU
+  ['cRV']: cR + cV, // RV
+  ['cRW']: cR + cW, // RW
+  ['cRX']: cR + cX, // RX
+  ['cRY']: cR + cY, // RY
+  ['cRZ']: cR + cZ, // RZ
+
+  // sa-SA
+  ['csa']: cs + ca, // sa
+  ['csb']: cs + cb, // sb
+  ['csc']: cs + cc, // sc
+  ['csd']: cs + cd, // sd
+  ['cse']: cs + ce, // se
+  ['csf']: cs + cf, // sf
+  ['csg']: cs + cg, // sg
+  ['csh']: cs + ch, // sh
+  ['csi']: cs + ci, // si
+  ['csj']: cs + cj, // sj
+  ['csk']: cs + ck, // sk
+  ['csl']: cs + cl, // sl
+  ['csm']: cs + cm, // sm
+  ['csn']: cs + cn, // sn
+  ['cso']: cs + co, // so
+  ['csp']: cs + cp, // sp
+  ['csq']: cs + cq, // sq
+  ['csr']: cs + cr, // sr
+  ['css']: cs + cs, // ss
+  ['cst']: cs + ct, // st
+  ['csu']: cs + cu, // su
+  ['csv']: cs + cv, // sv
+  ['csw']: cs + cw, // sw
+  ['csx']: cs + cx, // sx
+  ['csy']: cs + cy, // sy
+  ['csz']: cs + cz, // sz
+
+  ['cSa']: cS + ca, // Sa
+  ['cSb']: cS + cb, // Sb
+  ['cSc']: cS + cc, // Sc
+  ['cSd']: cS + cd, // Sd
+  ['cSe']: cS + ce, // Se
+  ['cSf']: cS + cf, // Sf
+  ['cSg']: cS + cg, // Sg
+  ['cSh']: cS + ch, // Sh
+  ['cSi']: cS + ci, // Si
+  ['cSj']: cS + cj, // Sj
+  ['cSk']: cS + ck, // Sk
+  ['cSl']: cS + cl, // Sl
+  ['cSm']: cS + cm, // Sm
+  ['cSn']: cS + cn, // Sn
+  ['cSo']: cS + co, // So
+  ['cSp']: cS + cp, // Sp
+  ['cSq']: cS + cq, // Sq
+  ['cSr']: cS + cr, // Sr
+  ['cSs']: cS + cs, // Ss
+  ['cSt']: cS + ct, // St
+  ['cSu']: cS + cu, // Su
+  ['cSv']: cS + cv, // Sv
+  ['cSw']: cS + cw, // Sw
+  ['cSx']: cS + cx, // Sx
+  ['cSy']: cS + cy, // Sy
+  ['cSz']: cS + cz, // Sz
+
+  ['csA']: cs + cA, // sA
+  ['csB']: cs + cB, // sB
+  ['csC']: cs + cC, // sC
+  ['csD']: cs + cD, // sD
+  ['csE']: cs + cE, // sE
+  ['csF']: cs + cF, // sF
+  ['csG']: cs + cG, // sG
+  ['csH']: cs + cH, // sH
+  ['csI']: cs + cI, // sI
+  ['csJ']: cs + cJ, // sJ
+  ['csK']: cs + cK, // sK
+  ['csL']: cs + cL, // sL
+  ['csM']: cs + cM, // sM
+  ['csN']: cs + cN, // sN
+  ['csO']: cs + cO, // sO
+  ['csP']: cs + cP, // sP
+  ['csQ']: cs + cQ, // sQ
+  ['csR']: cs + cR, // sR
+  ['csS']: cs + cS, // sS
+  ['csT']: cs + cT, // sT
+  ['csU']: cs + cU, // sU
+  ['csV']: cs + cV, // sV
+  ['csW']: cs + cW, // sW
+  ['csX']: cs + cX, // sX
+  ['csY']: cs + cY, // sY
+  ['csZ']: cs + cZ, // sZ
+
+  ['cSA']: cS + cA, // SA
+  ['cSB']: cS + cB, // SB
+  ['cSC']: cS + cC, // SC
+  ['cSD']: cS + cD, // SD
+  ['cSE']: cS + cE, // SE
+  ['cSF']: cS + cF, // SF
+  ['cSG']: cS + cG, // SG
+  ['cSH']: cS + cH, // SH
+  ['cSI']: cS + cI, // SI
+  ['cSJ']: cS + cJ, // SJ
+  ['cSK']: cS + cK, // SK
+  ['cSL']: cS + cL, // SL
+  ['cSM']: cS + cM, // SM
+  ['cSN']: cS + cN, // SN
+  ['cSO']: cS + cO, // SO
+  ['cSP']: cS + cP, // SP
+  ['cSQ']: cS + cQ, // SQ
+  ['cSR']: cS + cR, // SR
+  ['cSS']: cS + cS, // SS
+  ['cST']: cS + cT, // ST
+  ['cSU']: cS + cU, // SU
+  ['cSV']: cS + cV, // SV
+  ['cSW']: cS + cW, // SW
+  ['cSX']: cS + cX, // SX
+  ['cSY']: cS + cY, // SY
+  ['cSZ']: cS + cZ, // SZ
+
+  // ta-TA
+  ['cta']: ct + ca, // ta
+  ['ctb']: ct + cb, // tb
+  ['ctc']: ct + cc, // tc
+  ['ctd']: ct + cd, // td
+  ['cte']: ct + ce, // te
+  ['ctf']: ct + cf, // tf
+  ['ctg']: ct + cg, // tg
+  ['cth']: ct + ch, // th
+  ['cti']: ct + ci, // ti
+  ['ctj']: ct + cj, // tj
+  ['ctk']: ct + ck, // tk
+  ['ctl']: ct + cl, // tl
+  ['ctm']: ct + cm, // tm
+  ['ctn']: ct + cn, // tn
+  ['cto']: ct + co, // to
+  ['ctp']: ct + cp, // tp
+  ['ctq']: ct + cq, // tq
+  ['ctr']: ct + cr, // tr
+  ['cts']: ct + cs, // ts
+  ['ctt']: ct + ct, // tt
+  ['ctu']: ct + cu, // tu
+  ['ctv']: ct + cv, // tv
+  ['ctw']: ct + cw, // tw
+  ['ctx']: ct + cx, // tx
+  ['cty']: ct + cy, // ty
+  ['ctz']: ct + cz, // tz
+
+  ['cTa']: cT + ca, // Ta
+  ['cTb']: cT + cb, // Tb
+  ['cTc']: cT + cc, // Tc
+  ['cTd']: cT + cd, // Td
+  ['cTe']: cT + ce, // Te
+  ['cTf']: cT + cf, // Tf
+  ['cTg']: cT + cg, // Tg
+  ['cTh']: cT + ch, // Th
+  ['cTi']: cT + ci, // Ti
+  ['cTj']: cT + cj, // Tj
+  ['cTk']: cT + ck, // Tk
+  ['cTl']: cT + cl, // Tl
+  ['cTm']: cT + cm, // Tm
+  ['cTn']: cT + cn, // Tn
+  ['cTo']: cT + co, // To
+  ['cTp']: cT + cp, // Tp
+  ['cTq']: cT + cq, // Tq
+  ['cTr']: cT + cr, // Tr
+  ['cTs']: cT + cs, // Ts
+  ['cTt']: cT + ct, // Tt
+  ['cTu']: cT + cu, // Tu
+  ['cTv']: cT + cv, // Tv
+  ['cTw']: cT + cw, // Tw
+  ['cTx']: cT + cx, // Tx
+  ['cTy']: cT + cy, // Ty
+  ['cTz']: cT + cz, // Tz
+
+  ['ctA']: ct + cA, // tA
+  ['ctB']: ct + cB, // tB
+  ['ctC']: ct + cC, // tC
+  ['ctD']: ct + cD, // tD
+  ['ctE']: ct + cE, // tE
+  ['ctF']: ct + cF, // tF
+  ['ctG']: ct + cG, // tG
+  ['ctH']: ct + cH, // tH
+  ['ctI']: ct + cI, // tI
+  ['ctJ']: ct + cJ, // tJ
+  ['ctK']: ct + cK, // tK
+  ['ctL']: ct + cL, // tL
+  ['ctM']: ct + cM, // tM
+  ['ctN']: ct + cN, // tN
+  ['ctO']: ct + cO, // tO
+  ['ctP']: ct + cP, // tP
+  ['ctQ']: ct + cQ, // tQ
+  ['ctR']: ct + cR, // tR
+  ['ctS']: ct + cS, // tS
+  ['ctT']: ct + cT, // tT
+  ['ctU']: ct + cU, // tU
+  ['ctV']: ct + cV, // tV
+  ['ctW']: ct + cW, // tW
+  ['ctX']: ct + cX, // tX
+  ['ctY']: ct + cY, // tY
+  ['ctZ']: ct + cZ, // tZ
+
+  ['cTA']: cT + cA, // TA
+  ['cTB']: cT + cB, // TB
+  ['cTC']: cT + cC, // TC
+  ['cTD']: cT + cD, // TD
+  ['cTE']: cT + cE, // TE
+  ['cTF']: cT + cF, // TF
+  ['cTG']: cT + cG, // TG
+  ['cTH']: cT + cH, // TH
+  ['cTI']: cT + cI, // TI
+  ['cTJ']: cT + cJ, // TJ
+  ['cTK']: cT + cK, // TK
+  ['cTL']: cT + cL, // TL
+  ['cTM']: cT + cM, // TM
+  ['cTN']: cT + cN, // TN
+  ['cTO']: cT + cO, // TO
+  ['cTP']: cT + cP, // TP
+  ['cTQ']: cT + cQ, // TQ
+  ['cTR']: cT + cR, // TR
+  ['cTS']: cT + cS, // TS
+  ['cTT']: cT + cT, // TT
+  ['cTU']: cT + cU, // TU
+  ['cTV']: cT + cV, // TV
+  ['cTW']: cT + cW, // TW
+  ['cTX']: cT + cX, // TX
+  ['cTY']: cT + cY, // TY
+  ['cTZ']: cT + cZ, // TZ
+
+  // ua-UA
+  ['cua']: cu + ca, // ua
+  ['cub']: cu + cb, // ub
+  ['cuc']: cu + cc, // uc
+  ['cud']: cu + cd, // ud
+  ['cue']: cu + ce, // ue
+  ['cuf']: cu + cf, // uf
+  ['cug']: cu + cg, // ug
+  ['cuh']: cu + ch, // uh
+  ['cui']: cu + ci, // ui
+  ['cuj']: cu + cj, // uj
+  ['cuk']: cu + ck, // uk
+  ['cul']: cu + cl, // ul
+  ['cum']: cu + cm, // um
+  ['cun']: cu + cn, // un
+  ['cuo']: cu + co, // uo
+  ['cup']: cu + cp, // up
+  ['cuq']: cu + cq, // uq
+  ['cur']: cu + cr, // ur
+  ['cus']: cu + cs, // us
+  ['cut']: cu + ct, // ut
+  ['cuu']: cu + cu, // uu
+  ['cuv']: cu + cv, // uv
+  ['cuw']: cu + cw, // uw
+  ['cux']: cu + cx, // ux
+  ['cuy']: cu + cy, // uy
+  ['cuz']: cu + cz, // uz
+
+  ['cUa']: cU + ca, // Ua
+  ['cUb']: cU + cb, // Ub
+  ['cUc']: cU + cc, // Uc
+  ['cUd']: cU + cd, // Ud
+  ['cUe']: cU + ce, // Ue
+  ['cUf']: cU + cf, // Uf
+  ['cUg']: cU + cg, // Ug
+  ['cUh']: cU + ch, // Uh
+  ['cUi']: cU + ci, // Ui
+  ['cUj']: cU + cj, // Uj
+  ['cUk']: cU + ck, // Uk
+  ['cUl']: cU + cl, // Ul
+  ['cUm']: cU + cm, // Um
+  ['cUn']: cU + cn, // Un
+  ['cUo']: cU + co, // Uo
+  ['cUp']: cU + cp, // Up
+  ['cUq']: cU + cq, // Uq
+  ['cUr']: cU + cr, // Ur
+  ['cUs']: cU + cs, // Us
+  ['cUt']: cU + ct, // Ut
+  ['cUu']: cU + cu, // Uu
+  ['cUv']: cU + cv, // Uv
+  ['cUw']: cU + cw, // Uw
+  ['cUx']: cU + cx, // Ux
+  ['cUy']: cU + cy, // Uy
+  ['cUz']: cU + cz, // Uz
+
+  ['cuA']: cu + cA, // uA
+  ['cuB']: cu + cB, // uB
+  ['cuC']: cu + cC, // uC
+  ['cuD']: cu + cD, // uD
+  ['cuE']: cu + cE, // uE
+  ['cuF']: cu + cF, // uF
+  ['cuG']: cu + cG, // uG
+  ['cuH']: cu + cH, // uH
+  ['cuI']: cu + cI, // uI
+  ['cuJ']: cu + cJ, // uJ
+  ['cuK']: cu + cK, // uK
+  ['cuL']: cu + cL, // uL
+  ['cuM']: cu + cM, // uM
+  ['cuN']: cu + cN, // uN
+  ['cuO']: cu + cO, // uO
+  ['cuP']: cu + cP, // uP
+  ['cuQ']: cu + cQ, // uQ
+  ['cuR']: cu + cR, // uR
+  ['cuS']: cu + cS, // uS
+  ['cuT']: cu + cT, // uT
+  ['cuU']: cu + cU, // uU
+  ['cuV']: cu + cV, // uV
+  ['cuW']: cu + cW, // uW
+  ['cuX']: cu + cX, // uX
+  ['cuY']: cu + cY, // uY
+  ['cuZ']: cu + cZ, // uZ
+
+  ['cUA']: cU + cA, // UA
+  ['cUB']: cU + cB, // UB
+  ['cUC']: cU + cC, // UC
+  ['cUD']: cU + cD, // UD
+  ['cUE']: cU + cE, // UE
+  ['cUF']: cU + cF, // UF
+  ['cUG']: cU + cG, // UG
+  ['cUH']: cU + cH, // UH
+  ['cUI']: cU + cI, // UI
+  ['cUJ']: cU + cJ, // UJ
+  ['cUK']: cU + cK, // UK
+  ['cUL']: cU + cL, // UL
+  ['cUM']: cU + cM, // UM
+  ['cUN']: cU + cN, // UN
+  ['cUO']: cU + cO, // UO
+  ['cUP']: cU + cP, // UP
+  ['cUQ']: cU + cQ, // UQ
+  ['cUR']: cU + cR, // UR
+  ['cUS']: cU + cS, // US
+  ['cUT']: cU + cT, // UT
+  ['cUU']: cU + cU, // UU
+  ['cUV']: cU + cV, // UV
+  ['cUW']: cU + cW, // UW
+  ['cUX']: cU + cX, // UX
+  ['cUY']: cU + cY, // UY
+  ['cUZ']: cU + cZ, // UZ
+
+  // va-VA
+  ['cva']: cv + ca, // va
+  ['cvb']: cv + cb, // vb
+  ['cvc']: cv + cc, // vc
+  ['cvd']: cv + cd, // vd
+  ['cve']: cv + ce, // ve
+  ['cvf']: cv + cf, // vf
+  ['cvg']: cv + cg, // vg
+  ['cvh']: cv + ch, // vh
+  ['cvi']: cv + ci, // vi
+  ['cvj']: cv + cj, // vj
+  ['cvk']: cv + ck, // vk
+  ['cvl']: cv + cl, // vl
+  ['cvm']: cv + cm, // vm
+  ['cvn']: cv + cn, // vn
+  ['cvo']: cv + co, // vo
+  ['cvp']: cv + cp, // vp
+  ['cvq']: cv + cq, // vq
+  ['cvr']: cv + cr, // vr
+  ['cvs']: cv + cs, // vs
+  ['cvt']: cv + ct, // vt
+  ['cvu']: cv + cu, // vu
+  ['cvv']: cv + cv, // vv
+  ['cvw']: cv + cw, // vw
+  ['cvx']: cv + cx, // vx
+  ['cvy']: cv + cy, // vy
+  ['cvz']: cv + cz, // vz
+
+  ['cVa']: cV + ca, // Va
+  ['cVb']: cV + cb, // Vb
+  ['cVc']: cV + cc, // Vc
+  ['cVd']: cV + cd, // Vd
+  ['cVe']: cV + ce, // Ve
+  ['cVf']: cV + cf, // Vf
+  ['cVg']: cV + cg, // Vg
+  ['cVh']: cV + ch, // Vh
+  ['cVi']: cV + ci, // Vi
+  ['cVj']: cV + cj, // Vj
+  ['cVk']: cV + ck, // Vk
+  ['cVl']: cV + cl, // Vl
+  ['cVm']: cV + cm, // Vm
+  ['cVn']: cV + cn, // Vn
+  ['cVo']: cV + co, // Vo
+  ['cVp']: cV + cp, // Vp
+  ['cVq']: cV + cq, // Vq
+  ['cVr']: cV + cr, // Vr
+  ['cVs']: cV + cs, // Vs
+  ['cVt']: cV + ct, // Vt
+  ['cVu']: cV + cu, // Vu
+  ['cVv']: cV + cv, // Vv
+  ['cVw']: cV + cw, // Vw
+  ['cVx']: cV + cx, // Vx
+  ['cVy']: cV + cy, // Vy
+  ['cVz']: cV + cz, // Vz
+
+  ['cvA']: cv + cA, // vA
+  ['cvB']: cv + cB, // vB
+  ['cvC']: cv + cC, // vC
+  ['cvD']: cv + cD, // vD
+  ['cvE']: cv + cE, // vE
+  ['cvF']: cv + cF, // vF
+  ['cvG']: cv + cG, // vG
+  ['cvH']: cv + cH, // vH
+  ['cvI']: cv + cI, // vI
+  ['cvJ']: cv + cJ, // vJ
+  ['cvK']: cv + cK, // vK
+  ['cvL']: cv + cL, // vL
+  ['cvM']: cv + cM, // vM
+  ['cvN']: cv + cN, // vN
+  ['cvO']: cv + cO, // vO
+  ['cvP']: cv + cP, // vP
+  ['cvQ']: cv + cQ, // vQ
+  ['cvR']: cv + cR, // vR
+  ['cvS']: cv + cS, // vS
+  ['cvT']: cv + cT, // vT
+  ['cvU']: cv + cU, // vU
+  ['cvV']: cv + cV, // vV
+  ['cvW']: cv + cW, // vW
+  ['cvX']: cv + cX, // vX
+  ['cvY']: cv + cY, // vY
+  ['cvZ']: cv + cZ, // vZ
+
+  ['cVA']: cV + cA, // VA
+  ['cVB']: cV + cB, // VB
+  ['cVC']: cV + cC, // VC
+  ['cVD']: cV + cD, // VD
+  ['cVE']: cV + cE, // VE
+  ['cVF']: cV + cF, // VF
+  ['cVG']: cV + cG, // VG
+  ['cVH']: cV + cH, // VH
+  ['cVI']: cV + cI, // VI
+  ['cVJ']: cV + cJ, // VJ
+  ['cVK']: cV + cK, // VK
+  ['cVL']: cV + cL, // VL
+  ['cVM']: cV + cM, // VM
+  ['cVN']: cV + cN, // VN
+  ['cVO']: cV + cO, // VO
+  ['cVP']: cV + cP, // VP
+  ['cVQ']: cV + cQ, // VQ
+  ['cVR']: cV + cR, // VR
+  ['cVS']: cV + cS, // VS
+  ['cVT']: cV + cT, // VT
+  ['cVU']: cV + cU, // VU
+  ['cVV']: cV + cV, // VV
+  ['cVW']: cV + cW, // VW
+  ['cVX']: cV + cX, // VX
+  ['cVY']: cV + cY, // VY
+  ['cVZ']: cV + cZ, // VZ
+
+  // wa-WA
+  ['cwa']: cw + ca, // wa
+  ['cwb']: cw + cb, // wb
+  ['cwc']: cw + cc, // wc
+  ['cwd']: cw + cd, // wd
+  ['cwe']: cw + ce, // we
+  ['cwf']: cw + cf, // wf
+  ['cwg']: cw + cg, // wg
+  ['cwh']: cw + ch, // wh
+  ['cwi']: cw + ci, // wi
+  ['cwj']: cw + cj, // wj
+  ['cwk']: cw + ck, // wk
+  ['cwl']: cw + cl, // wl
+  ['cwm']: cw + cm, // wm
+  ['cwn']: cw + cn, // wn
+  ['cwo']: cw + co, // wo
+  ['cwp']: cw + cp, // wp
+  ['cwq']: cw + cq, // wq
+  ['cwr']: cw + cr, // wr
+  ['cws']: cw + cs, // ws
+  ['cwt']: cw + ct, // wt
+  ['cwu']: cw + cu, // wu
+  ['cwv']: cw + cv, // wv
+  ['cww']: cw + cw, // ww
+  ['cwx']: cw + cx, // wx
+  ['cwy']: cw + cy, // wy
+  ['cwz']: cw + cz, // wz
+
+  ['cWa']: cW + ca, // Wa
+  ['cWb']: cW + cb, // Wb
+  ['cWc']: cW + cc, // Wc
+  ['cWd']: cW + cd, // Wd
+  ['cWe']: cW + ce, // We
+  ['cWf']: cW + cf, // Wf
+  ['cWg']: cW + cg, // Wg
+  ['cWh']: cW + ch, // Wh
+  ['cWi']: cW + ci, // Wi
+  ['cWj']: cW + cj, // Wj
+  ['cWk']: cW + ck, // Wk
+  ['cWl']: cW + cl, // Wl
+  ['cWm']: cW + cm, // Wm
+  ['cWn']: cW + cn, // Wn
+  ['cWo']: cW + co, // Wo
+  ['cWp']: cW + cp, // Wp
+  ['cWq']: cW + cq, // Wq
+  ['cWr']: cW + cr, // Wr
+  ['cWs']: cW + cs, // Ws
+  ['cWt']: cW + ct, // Wt
+  ['cWu']: cW + cu, // Wu
+  ['cWv']: cW + cv, // Wv
+  ['cWw']: cW + cw, // Ww
+  ['cWx']: cW + cx, // Wx
+  ['cWy']: cW + cy, // Wy
+  ['cWz']: cW + cz, // Wz
+
+  ['cwA']: cw + cA, // wA
+  ['cwB']: cw + cB, // wB
+  ['cwC']: cw + cC, // wC
+  ['cwD']: cw + cD, // wD
+  ['cwE']: cw + cE, // wE
+  ['cwF']: cw + cF, // wF
+  ['cwG']: cw + cG, // wG
+  ['cwH']: cw + cH, // wH
+  ['cwI']: cw + cI, // wI
+  ['cwJ']: cw + cJ, // wJ
+  ['cwK']: cw + cK, // wK
+  ['cwL']: cw + cL, // wL
+  ['cwM']: cw + cM, // wM
+  ['cwN']: cw + cN, // wN
+  ['cwO']: cw + cO, // wO
+  ['cwP']: cw + cP, // wP
+  ['cwQ']: cw + cQ, // wQ
+  ['cwR']: cw + cR, // wR
+  ['cwS']: cw + cS, // wS
+  ['cwT']: cw + cT, // wT
+  ['cwU']: cw + cU, // wU
+  ['cwV']: cw + cV, // wV
+  ['cwW']: cw + cW, // wW
+  ['cwX']: cw + cX, // wX
+  ['cwY']: cw + cY, // wY
+  ['cwZ']: cw + cZ, // wZ
+
+  ['cWA']: cW + cA, // WA
+  ['cWB']: cW + cB, // WB
+  ['cWC']: cW + cC, // WC
+  ['cWD']: cW + cD, // WD
+  ['cWE']: cW + cE, // WE
+  ['cWF']: cW + cF, // WF
+  ['cWG']: cW + cG, // WG
+  ['cWH']: cW + cH, // WH
+  ['cWI']: cW + cI, // WI
+  ['cWJ']: cW + cJ, // WJ
+  ['cWK']: cW + cK, // WK
+  ['cWL']: cW + cL, // WL
+  ['cWM']: cW + cM, // WM
+  ['cWN']: cW + cN, // WN
+  ['cWO']: cW + cO, // WO
+  ['cWP']: cW + cP, // WP
+  ['cWQ']: cW + cQ, // WQ
+  ['cWR']: cW + cR, // WR
+  ['cWS']: cW + cS, // WS
+  ['cWT']: cW + cT, // WT
+  ['cWU']: cW + cU, // WU
+  ['cWV']: cW + cV, // WV
+  ['cWW']: cW + cW, // WW
+  ['cWX']: cW + cX, // WX
+  ['cWY']: cW + cY, // WY
+  ['cWZ']: cW + cZ, // WZ
+
+  // xa-XA
+  ['cxa']: cx + ca, // xa
+  ['cxb']: cx + cb, // xb
+  ['cxc']: cx + cc, // xc
+  ['cxd']: cx + cd, // xd
+  ['cxe']: cx + ce, // xe
+  ['cxf']: cx + cf, // xf
+  ['cxg']: cx + cg, // xg
+  ['cxh']: cx + ch, // xh
+  ['cxi']: cx + ci, // xi
+  ['cxj']: cx + cj, // xj
+  ['cxk']: cx + ck, // xk
+  ['cxl']: cx + cl, // xl
+  ['cxm']: cx + cm, // xm
+  ['cxn']: cx + cn, // xn
+  ['cxo']: cx + co, // xo
+  ['cxp']: cx + cp, // xp
+  ['cxq']: cx + cq, // xq
+  ['cxr']: cx + cr, // xr
+  ['cxs']: cx + cs, // xs
+  ['cxt']: cx + ct, // xt
+  ['cxu']: cx + cu, // xu
+  ['cxv']: cx + cv, // xv
+  ['cxw']: cx + cw, // xw
+  ['cxx']: cx + cx, // xx
+  ['cxy']: cx + cy, // xy
+  ['cxz']: cx + cz, // xz
+
+  ['cXa']: cX + ca, // Xa
+  ['cXb']: cX + cb, // Xb
+  ['cXc']: cX + cc, // Xc
+  ['cXd']: cX + cd, // Xd
+  ['cXe']: cX + ce, // Xe
+  ['cXf']: cX + cf, // Xf
+  ['cXg']: cX + cg, // Xg
+  ['cXh']: cX + ch, // Xh
+  ['cXi']: cX + ci, // Xi
+  ['cXj']: cX + cj, // Xj
+  ['cXk']: cX + ck, // Xk
+  ['cXl']: cX + cl, // Xl
+  ['cXm']: cX + cm, // Xm
+  ['cXn']: cX + cn, // Xn
+  ['cXo']: cX + co, // Xo
+  ['cXp']: cX + cp, // Xp
+  ['cXq']: cX + cq, // Xq
+  ['cXr']: cX + cr, // Xr
+  ['cXs']: cX + cs, // Xs
+  ['cXt']: cX + ct, // Xt
+  ['cXu']: cX + cu, // Xu
+  ['cXv']: cX + cv, // Xv
+  ['cXw']: cX + cw, // Xw
+  ['cXx']: cX + cx, // Xx
+  ['cXy']: cX + cy, // Xy
+  ['cXz']: cX + cz, // Xz
+
+  ['cxA']: cx + cA, // xA
+  ['cxB']: cx + cB, // xB
+  ['cxC']: cx + cC, // xC
+  ['cxD']: cx + cD, // xD
+  ['cxE']: cx + cE, // xE
+  ['cxF']: cx + cF, // xF
+  ['cxG']: cx + cG, // xG
+  ['cxH']: cx + cH, // xH
+  ['cxI']: cx + cI, // xI
+  ['cxJ']: cx + cJ, // xJ
+  ['cxK']: cx + cK, // xK
+  ['cxL']: cx + cL, // xL
+  ['cxM']: cx + cM, // xM
+  ['cxN']: cx + cN, // xN
+  ['cxO']: cx + cO, // xO
+  ['cxP']: cx + cP, // xP
+  ['cxQ']: cx + cQ, // xQ
+  ['cxR']: cx + cR, // xR
+  ['cxS']: cx + cS, // xS
+  ['cxT']: cx + cT, // xT
+  ['cxU']: cx + cU, // xU
+  ['cxV']: cx + cV, // xV
+  ['cxW']: cx + cW, // xW
+  ['cxX']: cx + cX, // xX
+  ['cxY']: cx + cY, // xY
+  ['cxZ']: cx + cZ, // xZ
+
+  ['cXA']: cX + cA, // XA
+  ['cXB']: cX + cB, // XB
+  ['cXC']: cX + cC, // XC
+  ['cXD']: cX + cD, // XD
+  ['cXE']: cX + cE, // XE
+  ['cXF']: cX + cF, // XF
+  ['cXG']: cX + cG, // XG
+  ['cXH']: cX + cH, // XH
+  ['cXI']: cX + cI, // XI
+  ['cXJ']: cX + cJ, // XJ
+  ['cXK']: cX + cK, // XK
+  ['cXL']: cX + cL, // XL
+  ['cXM']: cX + cM, // XM
+  ['cXN']: cX + cN, // XN
+  ['cXO']: cX + cO, // XO
+  ['cXP']: cX + cP, // XP
+  ['cXQ']: cX + cQ, // XQ
+  ['cXR']: cX + cR, // XR
+  ['cXS']: cX + cS, // XS
+  ['cXT']: cX + cT, // XT
+  ['cXU']: cX + cU, // XU
+  ['cXV']: cX + cV, // XV
+  ['cXW']: cX + cW, // XW
+  ['cXX']: cX + cX, // XX
+  ['cXY']: cX + cY, // XY
+  ['cXZ']: cX + cZ, // XZ
+
+  // ya-YA
+  ['cya']: cy + ca, // ya
+  ['cyb']: cy + cb, // yb
+  ['cyc']: cy + cc, // yc
+  ['cyd']: cy + cd, // yd
+  ['cye']: cy + ce, // ye
+  ['cyf']: cy + cf, // yf
+  ['cyg']: cy + cg, // yg
+  ['cyh']: cy + ch, // yh
+  ['cyi']: cy + ci, // yi
+  ['cyj']: cy + cj, // yj
+  ['cyk']: cy + ck, // yk
+  ['cyl']: cy + cl, // yl
+  ['cym']: cy + cm, // ym
+  ['cyn']: cy + cn, // yn
+  ['cyo']: cy + co, // yo
+  ['cyp']: cy + cp, // yp
+  ['cyq']: cy + cq, // yq
+  ['cyr']: cy + cr, // yr
+  ['cys']: cy + cs, // ys
+  ['cyt']: cy + ct, // yt
+  ['cyu']: cy + cu, // yu
+  ['cyv']: cy + cv, // yv
+  ['cyw']: cy + cw, // yw
+  ['cyx']: cy + cx, // yx
+  ['cyy']: cy + cy, // yy
+  ['cyz']: cy + cz, // yz
+
+  ['cYa']: cY + ca, // Ya
+  ['cYb']: cY + cb, // Yb
+  ['cYc']: cY + cc, // Yc
+  ['cYd']: cY + cd, // Yd
+  ['cYe']: cY + ce, // Ye
+  ['cYf']: cY + cf, // Yf
+  ['cYg']: cY + cg, // Yg
+  ['cYh']: cY + ch, // Yh
+  ['cYi']: cY + ci, // Yi
+  ['cYj']: cY + cj, // Yj
+  ['cYk']: cY + ck, // Yk
+  ['cYl']: cY + cl, // Yl
+  ['cYm']: cY + cm, // Ym
+  ['cYn']: cY + cn, // Yn
+  ['cYo']: cY + co, // Yo
+  ['cYp']: cY + cp, // Yp
+  ['cYq']: cY + cq, // Yq
+  ['cYr']: cY + cr, // Yr
+  ['cYs']: cY + cs, // Ys
+  ['cYt']: cY + ct, // Yt
+  ['cYu']: cY + cu, // Yu
+  ['cYv']: cY + cv, // Yv
+  ['cYw']: cY + cw, // Yw
+  ['cYx']: cY + cx, // Yx
+  ['cYy']: cY + cy, // Yy
+  ['cYz']: cY + cz, // Yz
+
+  ['cyA']: cy + cA, // yA
+  ['cyB']: cy + cB, // yB
+  ['cyC']: cy + cC, // yC
+  ['cyD']: cy + cD, // yD
+  ['cyE']: cy + cE, // yE
+  ['cyF']: cy + cF, // yF
+  ['cyG']: cy + cG, // yG
+  ['cyH']: cy + cH, // yH
+  ['cyI']: cy + cI, // yI
+  ['cyJ']: cy + cJ, // yJ
+  ['cyK']: cy + cK, // yK
+  ['cyL']: cy + cL, // yL
+  ['cyM']: cy + cM, // yM
+  ['cyN']: cy + cN, // yN
+  ['cyO']: cy + cO, // yO
+  ['cyP']: cy + cP, // yP
+  ['cyQ']: cy + cQ, // yQ
+  ['cyR']: cy + cR, // yR
+  ['cyS']: cy + cS, // yS
+  ['cyT']: cy + cT, // yT
+  ['cyU']: cy + cU, // yU
+  ['cyV']: cy + cV, // yV
+  ['cyW']: cy + cW, // yW
+  ['cyX']: cy + cX, // yX
+  ['cyY']: cy + cY, // yY
+  ['cyZ']: cy + cZ, // yZ
+
+  ['cYA']: cY + cA, // YA
+  ['cYB']: cY + cB, // YB
+  ['cYC']: cY + cC, // YC
+  ['cYD']: cY + cD, // YD
+  ['cYE']: cY + cE, // YE
+  ['cYF']: cY + cF, // YF
+  ['cYG']: cY + cG, // YG
+  ['cYH']: cY + cH, // YH
+  ['cYI']: cY + cI, // YI
+  ['cYJ']: cY + cJ, // YJ
+  ['cYK']: cY + cK, // YK
+  ['cYL']: cY + cL, // YL
+  ['cYM']: cY + cM, // YM
+  ['cYN']: cY + cN, // YN
+  ['cYO']: cY + cO, // YO
+  ['cYP']: cY + cP, // YP
+  ['cYQ']: cY + cQ, // YQ
+  ['cYR']: cY + cR, // YR
+  ['cYS']: cY + cS, // YS
+  ['cYT']: cY + cT, // YT
+  ['cYU']: cY + cU, // YU
+  ['cYV']: cY + cV, // YV
+  ['cYW']: cY + cW, // YW
+  ['cYX']: cY + cX, // YX
+  ['cYY']: cY + cY, // YY
+  ['cYZ']: cY + cZ, // YZ
+
+  // za-ZA
+  ['cza']: cz + ca, // za
+  ['czb']: cz + cb, // zb
+  ['czc']: cz + cc, // zc
+  ['czd']: cz + cd, // zd
+  ['cze']: cz + ce, // ze
+  ['czf']: cz + cf, // zf
+  ['czg']: cz + cg, // zg
+  ['czh']: cz + ch, // zh
+  ['czi']: cz + ci, // zi
+  ['czj']: cz + cj, // zj
+  ['czk']: cz + ck, // zk
+  ['czl']: cz + cl, // zl
+  ['czm']: cz + cm, // zm
+  ['czn']: cz + cn, // zn
+  ['czo']: cz + co, // zo
+  ['czp']: cz + cp, // zp
+  ['czq']: cz + cq, // zq
+  ['czr']: cz + cr, // zr
+  ['czs']: cz + cs, // zs
+  ['czt']: cz + ct, // zt
+  ['czu']: cz + cu, // zu
+  ['czv']: cz + cv, // zv
+  ['czw']: cz + cw, // zw
+  ['czx']: cz + cx, // zx
+  ['czy']: cz + cy, // zy
+  ['czz']: cz + cz, // zz
+
+  ['cZa']: cZ + ca, // Za
+  ['cZb']: cZ + cb, // Zb
+  ['cZc']: cZ + cc, // Zc
+  ['cZd']: cZ + cd, // Zd
+  ['cZe']: cZ + ce, // Ze
+  ['cZf']: cZ + cf, // Zf
+  ['cZg']: cZ + cg, // Zg
+  ['cZh']: cZ + ch, // Zh
+  ['cZi']: cZ + ci, // Zi
+  ['cZj']: cZ + cj, // Zj
+  ['cZk']: cZ + ck, // Zk
+  ['cZl']: cZ + cl, // Zl
+  ['cZm']: cZ + cm, // Zm
+  ['cZn']: cZ + cn, // Zn
+  ['cZo']: cZ + co, // Zo
+  ['cZp']: cZ + cp, // Zp
+  ['cZq']: cZ + cq, // Zq
+  ['cZr']: cZ + cr, // Zr
+  ['cZs']: cZ + cs, // Zs
+  ['cZt']: cZ + ct, // Zt
+  ['cZu']: cZ + cu, // Zu
+  ['cZv']: cZ + cv, // Zv
+  ['cZw']: cZ + cw, // Zw
+  ['cZx']: cZ + cx, // Zx
+  ['cZy']: cZ + cy, // Zy
+  ['cZz']: cZ + cz, // Zz
+
+  ['czA']: cz + cA, // zA
+  ['czB']: cz + cB, // zB
+  ['czC']: cz + cC, // zC
+  ['czD']: cz + cD, // zD
+  ['czE']: cz + cE, // zE
+  ['czF']: cz + cF, // zF
+  ['czG']: cz + cG, // zG
+  ['czH']: cz + cH, // zH
+  ['czI']: cz + cI, // zI
+  ['czJ']: cz + cJ, // zJ
+  ['czK']: cz + cK, // zK
+  ['czL']: cz + cL, // zL
+  ['czM']: cz + cM, // zM
+  ['czN']: cz + cN, // zN
+  ['czO']: cz + cO, // zO
+  ['czP']: cz + cP, // zP
+  ['czQ']: cz + cQ, // zQ
+  ['czR']: cz + cR, // zR
+  ['czS']: cz + cS, // zS
+  ['czT']: cz + cT, // zT
+  ['czU']: cz + cU, // zU
+  ['czV']: cz + cV, // zV
+  ['czW']: cz + cW, // zW
+  ['czX']: cz + cX, // zX
+  ['czY']: cz + cY, // zY
+  ['czZ']: cz + cZ, // zZ
+
+  ['cZA']: cZ + cA, // ZA
+  ['cZB']: cZ + cB, // ZB
+  ['cZC']: cZ + cC, // ZC
+  ['cZD']: cZ + cD, // ZD
+  ['cZE']: cZ + cE, // ZE
+  ['cZF']: cZ + cF, // ZF
+  ['cZG']: cZ + cG, // ZG
+  ['cZH']: cZ + cH, // ZH
+  ['cZI']: cZ + cI, // ZI
+  ['cZJ']: cZ + cJ, // ZJ
+  ['cZK']: cZ + cK, // ZK
+  ['cZL']: cZ + cL, // ZL
+  ['cZM']: cZ + cM, // ZM
+  ['cZN']: cZ + cN, // ZN
+  ['cZO']: cZ + cO, // ZO
+  ['cZP']: cZ + cP, // ZP
+  ['cZQ']: cZ + cQ, // ZQ
+  ['cZR']: cZ + cR, // ZR
+  ['cZS']: cZ + cS, // ZS
+  ['cZT']: cZ + cT, // ZT
+  ['cZU']: cZ + cU, // ZU
+  ['cZV']: cZ + cV, // ZV
+  ['cZW']: cZ + cW, // ZW
+  ['cZX']: cZ + cX, // ZX
+  ['cZY']: cZ + cY, // ZY
+  ['cZZ']: cZ + cZ // ZZ
+
+  // inducedConstantsFailure = 'inducedConstantsFailure';
+};
