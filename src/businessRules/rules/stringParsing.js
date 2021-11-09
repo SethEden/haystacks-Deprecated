@@ -6,6 +6,7 @@
  * @module stringParsing
  * @description Contains all system defned business rules for parsing strings,
  * with values of all kinds, and various parsing operations.
+ * @requires module:basic.constants
  * @requires module:configurator
  * @requires module:arrayParsing
  * @requires module:data
@@ -15,6 +16,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../../constants/basic.constants');
 var configurator = require('../../executrix/configurator');
 var arrayParsing = require('./arrayParsing');
 var D = require('../../structures/data');
@@ -38,33 +40,33 @@ var namespacePrefix = `brokers.${baseFileName}.`;
  */
 export const parseSystemRootPath = function(inputData, inputMetaData) {
   let functionName = parseSystemRootPath.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = '';
   if (inputData) {
     let applicationName = inputMetaData; // Rename it for readability.
-    let pathElements = inputData.split('\\');
+    let pathElements = inputData.split(bas.cBackSlash);
     loop1:
     for (let i = 0; i < pathElements.length; i++) {
-      console.log(`BEGIN iteration i: ${i}`);
+      // console.log(`BEGIN iteration i: ${i}`);
       let pathElement = pathElements[i];
-      console.log(`pathElement is: ${pathElement}`);
+      // console.log(`pathElement is: ${pathElement}`);
       if (i === 0) {
-        console.log('case: i === 0');
+        // console.log('case: i === 0');
         returnData = pathElement;
       } else if (pathElement === applicationName) {
-        console.log(`case: pathElement === ${applicationName}`);
-        returnData = `${returnData}\\${pathElement}\\`;
+        // console.log(`case: pathElement === ${applicationName}`);
+        returnData = returnData + bas.cBackSlash + pathElement + bas.cBackSlash; // `${returnData}\\${pathElement}\\`;
         break loop1;
       } else {
-        console.log('case else');
-        returnData = `${returnData}\\${pathElement}`;
+        // console.log('case else');
+        returnData = returnData + bas.cBackSlash + pathElement; // `${returnData}\\${pathElement}`;
       }
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -81,9 +83,9 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
  */
 export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
   let functionName = singleQuoteSwapAfterEquals.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
@@ -102,8 +104,8 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
       returnData = inputData;
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -119,17 +121,17 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
  */
 export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   let functionName = swapForwardSlashToBackSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, '\\']);
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -145,17 +147,17 @@ export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
  */
 export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   let functionName = swapBackSlashToForwardSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, '/']);
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -171,17 +173,17 @@ export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
  */
 export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMetaData) {
   let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, '/']);
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -197,17 +199,17 @@ export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, in
  */
 export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) {
   let functionName = swapDoubleBackSlashToSingleBackSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, '\\']);
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -228,15 +230,15 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
  */
 const replaceCharacterAtIndexOfString = function(originalString, index, replacement) {
   let functionName = replaceCharacterAtIndexOfString.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`originalString is: ${originalString}`);
-  console.log(`index is: ${index}`);
-  console.log(`replacement is: ${replacement}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`originalString is: ${originalString}`);
+  // console.log(`index is: ${index}`);
+  // console.log(`replacement is: ${replacement}`);
   let returnData;
   if (originalString != '' && index >= 0 && replacement != '') {
     returnData = originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
   }
-  console.log(`returnData is: ${returnData}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };

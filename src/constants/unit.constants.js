@@ -3,8 +3,8 @@
  * @module unit-constants
  * @description Contains many unit & unit conversion constants.
  * Also included are units of measurement, units of time, etc...
- * @requires module:basic-constants
- * @requires module:phonic-constants
+ * @requires module:basic.constants
+ * @requires module:phonic.constants
  * @author Seth Hollingsead
  * @date 2020/07/21
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved

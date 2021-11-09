@@ -2,7 +2,11 @@
  * @file rulesLibrary.js
  * @module rulesLibrary
  * @description Contains all of the system defined busness rules as a map between function names and function calls.
+ * @requires module:basic.constants
+ * @requires module:business.constants
+ * @requires module:system.constants
  * @requires module:stringParsing
+ * @requires module:arrayParsing
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -10,12 +14,15 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var biz = require('../constants/business.constants');
+var sys = require('../constants/system.constants');
 var stringParsing = require('./rules/stringParsing');
 var arrayParsing = require('./rules/arrayParsing');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `businessRules.${baseFileName}.`;
+var namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initRulesLibrary
@@ -30,26 +37,26 @@ var namespacePrefix = `businessRules.${baseFileName}.`;
  */
 export const initRulesLibrary = function() {
   let functionName = initRulesLibrary.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  D['businessRules'] = {};
-  D['businessRules'] = {
-    ['echo']: (inputData, inputMetaData) => console.log(JSON.stringify(inputData)),
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  D[sys.cbusinessRules] = {};
+  D[sys.cbusinessRules] = {
+    [biz.cecho]: (inputData, inputMetaData) => console.log(JSON.stringify(inputData)),
 
     // Business Rules
     // ***********************************************
     // stringParsing rules in order
     // ***********************************************
-    ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
-    ['singleQuoteSwapAfterEquals']: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
-    ['swapForwardSlashToBackSlash']: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
-    ['swapBackSlashToForwardSlash']: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
-    ['swapDoubleForwardSlashToSingleForwardSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
-    ['swapDoubleBackSlashToSingleBackSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
+    [biz.cparseSystemRootPath]: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
+    [biz.csingleQuoteSwapAfterEquals]: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
+    [biz.cswapForwardSlashToBackSlash]: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
+    [biz.cswapBackSlashToForwardSlash]: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
+    [biz.cswapDoubleForwardSlashToSingleForwardSlash]: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
+    [biz.cswapDoubleBackSlashToSingleBackSlash]: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
 
     // ***********************************************
     // ArrayParsing rules in order
     // ***********************************************
-    ['replaceCharacterWithCharacter']: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
+    [biz.creplaceCharacterWithCharacter]: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
   }
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };

@@ -4,9 +4,9 @@
  * @description Contains many generic constants.
  * Also included are other generic constants like string numbers like "one", "two", "three".
  * Also included are spellings of Greek letters, military codes/standards, units of measurement, units of time, etc...
- * @requires module:basic-constants
- * @requires module:phonic-constants
- * @requires module:numeric-constants
+ * @requires module:basic.constants
+ * @requires module:phonic.constants
+ * @requires module:numeric.constants
  * @author Seth Hollingsead
  * @date 2020/06/04
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
@@ -307,36 +307,36 @@ module.exports = {
   ['cMostSpecialCharacters']: cMostSpecialCharacters, // !@#$%^&*()_+{}|:"<>?.,~
 
   // File Extensions
-  ['cexe']: cexe // exe
-  ['cExe']: cExe // Exe
-  ['cEXE']: cEXE // EXE
-  ['cdoc']: cdoc // doc
-  ['cDoc']: cDoc // Doc
-  ['cDOC']: cDOC // DOC
-  ['ccom']: ccom // com
-  ['cCom']: cCom // Com
-  ['cCOM']: cCOM // COM
-  ['czip']: czip // zip
-  ['cZip']: cZip // Zip
-  ['cZIP']: cZIP // ZIP
-  ['ctxt']: ctxt // txt
-  ['cTxt']: cTxt // Txt
-  ['cTXT']: cTXT // TXT
-  ['ccsv']: ccsv // csv
-  ['cCsv']: cCsv // Csv
-  ['cCSV']: cCSV // CSV
-  ['cxml']: cxml // xml
-  ['cXml']: cXml // Xml
-  ['cXML']: cXML // XML
-  ['clog']: clog // log
-  ['cLog']: cLog // Log
-  ['cLOG']: cLOG // LOG
-  ['cjson']: cjson // json
-  ['cJson']: cJson // Json
-  ['cJSON']: cJSON // JSON
-  ['cenv']: cenv // env
-  ['cEnv']: cEnv // Env
-  ['cENV']: cENV // ENV
+  ['cexe']: cexe, // exe
+  ['cExe']: cExe, // Exe
+  ['cEXE']: cEXE, // EXE
+  ['cdoc']: cdoc, // doc
+  ['cDoc']: cDoc, // Doc
+  ['cDOC']: cDOC, // DOC
+  ['ccom']: ccom, // com
+  ['cCom']: cCom, // Com
+  ['cCOM']: cCOM, // COM
+  ['czip']: czip, // zip
+  ['cZip']: cZip, // Zip
+  ['cZIP']: cZIP, // ZIP
+  ['ctxt']: ctxt, // txt
+  ['cTxt']: cTxt, // Txt
+  ['cTXT']: cTXT, // TXT
+  ['ccsv']: ccsv, // csv
+  ['cCsv']: cCsv, // Csv
+  ['cCSV']: cCSV, // CSV
+  ['cxml']: cxml, // xml
+  ['cXml']: cXml, // Xml
+  ['cXML']: cXML, // XML
+  ['clog']: clog, // log
+  ['cLog']: cLog, // Log
+  ['cLOG']: cLOG, // LOG
+  ['cjson']: cjson, // json
+  ['cJson']: cJson, // Json
+  ['cJSON']: cJSON, // JSON
+  ['cenv']: cenv, // env
+  ['cEnv']: cEnv, // Env
+  ['cENV']: cENV, // ENV
 
   ['cDotexe']: cDotexe, // .exe
   ['cDotExe']: cDotExe, // .Exe

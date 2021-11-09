@@ -2,11 +2,11 @@
  * @file word.constants.js
  * @module word-constants
  * @description Contains many re-usable word constants.
- * @requires module:basic-constants
- * @requires module:phonic-constants
- * @requires module:numeric-constants
- * @requires module:generic-constants
- * @requires module:unit-constants
+ * @requires module:basic.constants
+ * @requires module:phonic.constants
+ * @requires module:numeric.constants
+ * @requires module:generic.constants
+ * @requires module:unit.constants
  * @author Seth Hollingsead
  * @date 2020/07/16
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
@@ -1767,6 +1767,8 @@ let cstraight = bas.cs + phn.ctra + phn.cight; // straight
 let cStraight = bas.cS + phn.ctra + phn.cight; // Straight
 let cbroker = bas.cbr + phn.coker; // broker
 let cBroker = bas.cBr + phn.coker; // Broker
+let cbrokers = cbroker + bas.cs; // brokers
+let cBrokers = cBroker + bas.cs; // Brokers
 let cpost = bas.cp + phn.cost; // post
 let cPost = bas.cP + phn.cost; // Post
 let cposts = cpost + bas.cs; // posts
@@ -2053,6 +2055,8 @@ let cforces = cforce + bas.cs; // forces
 let cForces = cForce + bas.cs; // Forces
 let cexecutrix = phn.cexe + ccut + phn.crix; // executrix
 let cExecutrix = phn.cExe + ccut + phn.crix; // Executrix
+let cframework = cframe + cwork; // framework
+let cFramework = cFrame + cwork; // Framework
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -2640,8 +2644,8 @@ module.exports = {
   ['cSelect']: cSelect, // Select
   ['ccan']: ccan, // can
   ['cCan']: cCan, // Can
-  ['ccancel']: ccancel,ccel; // cancel
-  ['cCancel']: cCancel,ccel; // Cancel
+  ['ccancel']: ccancel, // cancel
+  ['cCancel']: cCancel, // Cancel
   ['cconfirm']: cconfirm, // confirm
   ['cConfirm']: cConfirm, // Confirm
   ['ccount']: ccount, // count
@@ -4214,6 +4218,8 @@ module.exports = {
   ['cStraight']: cStraight, // Straight
   ['cbroker']: cbroker, // broker
   ['cBroker']: cBroker, // Broker
+  ['cbrokers']: cbrokers, // brokers
+  ['cBrokers']: cBrokers, // Brokers
   ['cpost']: cpost, // post
   ['cPost']: cPost, // Post
   ['cposts']: cposts, // posts
@@ -4500,6 +4506,8 @@ module.exports = {
   ['cForces']: cForces, // Forces
   ['cexecutrix']: cexecutrix, // executrix
   ['cExecutrix']: cExecutrix, // Executrix
+  ['cframework']: cframework, // framework
+  ['cFramework']: cFramework,
   ['cAbsolute']: cAbsolute, // Absolute
   ['cAcid']: cAcid, // Acid
   ['cAir']: cAir, // Air
@@ -4906,6 +4914,6 @@ module.exports = {
   ['cWindsor']: cWindsor, // Windsor
   ['cDregs']: cDregs, // Dregs
   ['cWinter']: cWinter, // Winter
-  ['cDream']: cDream // Dream
-  ['cYale']: cYale, // Yale
+  ['cDream']: cDream, // Dream
+  ['cYale']: cYale // Yale
 };

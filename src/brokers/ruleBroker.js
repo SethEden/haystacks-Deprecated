@@ -2,6 +2,9 @@
  * @file ruleBroker.js
  * @module ruleBroker
  * @description Contains all the functions necessary to manage the business rules system.
+ * @requires module:basic.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:rulesLibrary
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -10,11 +13,14 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var sys = require('../constants/system.constants');
+var wrd = require('../constants/word.constants');
 import * as rules from '../businessRules/rulesLibrary';
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `brokers.${baseFileName}.`;
+var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapBusinessRules
@@ -31,9 +37,9 @@ var namespacePrefix = `brokers.${baseFileName}.`;
  */
 function bootStrapBusinessRules() {
   let functionName = bootStrapBusinessRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rules.initRulesLibrary();
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**
@@ -46,9 +52,9 @@ function bootStrapBusinessRules() {
  */
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  Object.assin(D['businessRules'], clientRules);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  Object.assin(D[sys.cbusinessRules], clientRules);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**
@@ -66,24 +72,24 @@ function addClientRules(clientRules) {
  */
 function processRules(inputData, inputMetaData, rulesToExecute) {
   let functionName = processRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  console.log(`rulesToExecute is: ${JSON.stringify(rulesToExecute)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`rulesToExecute is: ${JSON.stringify(rulesToExecute)}`);
   let returnData = inputData;
   if (rulesToExecute) {
     for (let rule in rulesToExecute) {
       if (rulesToExecute.hasOwnProperty(rule)) {
         let key = rule;
-        console.log(`key is: ${key}`);
+        // console.log(`key is: ${key}`);
         let value = rulesToExecute[key];
-        console.log(`value is: ${value}`);
-        returnData = D['businessRules'][value](returnData, inputMetaData);
+        // console.log(`value is: ${value}`);
+        returnData = D[sys.cbusinessRules][value](returnData, inputMetaData);
       }
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
