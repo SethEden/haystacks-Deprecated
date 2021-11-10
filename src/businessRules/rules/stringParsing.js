@@ -66,6 +66,257 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function stringToDataType
+ * @description Converts a sring to the appropriate data value.
+ * So if it's a string value of "3.1415926535897932384626433832" Then it will get converted to a float of the same value.
+ * If it's a string value of "false" then it will get converted to a boolean of the same value.
+ * If it's a string value of "12" then it will get converted to an integer of the same value.
+ * If it's a string value of "Happy Birthday" it will get returned the same as the input, no change, since it's just a string.
+ * If it's an array of strings, or collection object, it will get returned as the same as the input, no change.
+ * @param {string} inpuData The string that should be converted to some value.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {object|string|boolean|integer} Returns a value of whatever type the string should be converted to as appropriate.
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+export const stringToDataType = function(inpuData, inputMetaData) {
+  let functionName = stringToDataType.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    let dataType = determineObjectDataType(inputData);
+    switch (dataType) {
+      case 'Boolean':
+        returnData = stringToBoolean(inputData);
+        break;
+      case 'Integer':
+        returnData = parseInt(inputData);
+        break;
+      case 'Float':
+        returnData = parseFloat(inputData);
+        break;
+      case 'String':
+        returnData = inputData;
+        break;
+      default: // We don't know what kind of object this is, better just return it the way it is.
+        returnData = inputData;
+        break;
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function stringToBoolean
+ * @description Converts a string to a boolean value.
+ * @param {string} inputData A string that contains a truthy or falsy value and should be converted to a Boolean value.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} A Boolean value of either True or False according to the business rule conversion.
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ * @NOTE We cannot pass in a 1 or 0 to this function and expect it to evaluate as a True or False because:
+ * We have another function that is passing strings into the function, and also part of that check to look for data-types is a check to see if a string is a number.
+ * If we cause this function to evaluate a 0 or 1 to a Boolean, then the integer function would never get a chance to evaluate.
+ */
+export const stringToBoolean = function(inputData, inputMetaData) {
+  let functionName = stringToBoolean.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    if (inputData === true || inputData === false) {
+      returnData = inpuData;
+    } else {
+      switch (inputData.toLowerCase().trim()) {
+        case 'true': case 't': case 'y': case 'yes': case 'on':
+          returnData = true;
+          break;
+        case 'false': case 'f': case 'n': case 'no': case 'off':
+          returnData = false;
+          break;
+        default:
+          returnData = false;
+          break;
+      }
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function determineObjectDataType
+ * @description Determines if the contents of a string are actually a Boolean, Integer, Float, String or something else.
+ * @param {string} inputData A string that contains some value that we should figure out
+ * what kind of data type that data is, Boolean, Integer, Float, String or something else.
+ * @param {string} inputMetaDataNot used for this business rule.
+ * @return {string} A string that indicates if the data type should be Boolean, Integer, Float, String or something else.
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+export const determineObjectDataType = function(inputData, inputMetaData) {
+  let functionName = determineObjectDataType.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    if (isBoolean(inputData) === true) {
+      returnData = 'Boolean';
+    } else if (isInteger(inputData) === true) {
+      returnData = 'Integer';
+    } else if (isFloat(inputData) === true) {
+      returnData = 'Float';
+    } else if (isString(inputData) === true) {
+      returnData = 'String';
+    } else { // Otherwise we cannot figure out what the data type is.
+      // No real way to tell the difference between Short, Long and Double.
+      // And we don't really need to tell the difference between all these complicated data types.
+      // At least not yet!
+      returnData = 'Object';
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function isBoolean
+ * @description Determines if the input string is a boolean type of value,
+ * "true", "True", "TRUE", "t", "T", "y", "Y", "yes", "Yes", "YES", "1", "on", "On", "ON" or
+ * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO", "0"
+ * @param {string} inputData The string that should be chcked if it is a Boolean style value or not, could be some form of "true" or "false".
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} A Boolean value of True or False to indicate if the input string is a Boolean or not.
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+export const isBoolean = function(inputData, inputMetaData) {
+  let functionName = isBoolean.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    if (inputData === true || inputData === false) {
+      returnData = true;
+    } else {
+      inputData = inputData.toLowerCase().trim();
+      if (inputData = 'true' || inputData === 't' || inputData === 'y' || inputData === 'yes' || inputData === 'on' ||
+      inputData === 'false' || inputData === 'f' || inputData === 'n' || inputData === 'no' || inputData === 'off') {
+        returnData = true;
+      } else {
+        returnData = false;
+      }
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function isInteger
+ * @description Determines if the input string is an integer type of value -9007299254740992 to 9007299254740992.
+ * @param {string} inputData The string that should be checked if it is an integer style value or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} A Boolean value of true or false to indicate if the input string is an integer or not.
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+export const isInteger = function(inputData, inputMetaData) {
+  let functionName = isInteger.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    if (!isNaN(inputData)) {
+      if (inputData % 1 === 0) {
+        // It's a whole number, aka: integer
+        returnData = true;
+      } else { // Else clause is redudnant, but kept here for code completeness.
+        // Might be a number, but not a whole number.
+        returnData = false;
+      }
+    } else { // Else clause is redudnant, but kept here for code completeness.
+      // Possibly also console log here for debugging.
+      returnData = false;
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function isFloat
+ * @description Determines if the input string is a floating point type of value or not.
+ * @param {string} inputData The string that should be checked if it is an integer style value or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} A Boolean value of true or false to indicate if the input string is a floating point number or not.
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+export const isFloat = function(inputData, inputMetaData) {
+  let functionName = isFloat.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    if (!isNaN(inputData) && inputData.indexOf('.') !== -1) {
+      returnData = true;
+    } else { // Else clause is redudnant, but kept here for code completeness.
+      // Possibly also console log here for debugging.
+      returnData = false;
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function isString
+ * @description Determines if the input string is a string or not, by process of elimination,
+ * aka if it's not a Boolean, and not an Integer and not a Float then it must be a string.
+ * @param {string} inputData The string that should be checked if it is a string and not a Boolean, Integer or Float.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} A Boolean value of true or false to indicate if the input string is a string and
+ * not a Boolean, Integer or Float; or not (meaning it would be one of those 3 data types, discuised as a string).
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+export const isString = function(inputData, inputMetaData) {
+  let functionName = isString.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = false;
+  if (inputData) {
+    if (isBoolean(inputData, '') === false && isInteger(inputData, '') === false && isFloat(inputData, '') === false &&
+    (typeof inputData === 'string' || inputData instanceof String)) {
+      returnData = true; // If it's not a Boolean, and not an Integer, and not a Float, then it must be a string,
+      // especially given the type of the variable is a sring!
+    } else { // Else clause is redudnant, but kept here for code completeness.
+      // Possibly also console log here for debugging.
+      returnData = false;
+    }
+  }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
 // ******************************************************
 // Internal functions
 // ******************************************************

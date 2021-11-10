@@ -38,7 +38,14 @@ export const initRulesLibrary = function() {
     // ***********************************************
     // stringParsing rules in order
     // ***********************************************
-    ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData)
+    ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
+    ['stringToDataType']: (inputData, inputMetaData) => stringParsing.stringToDataType(inputData, inputMetaData),
+    ['stringToBoolean']: (inputData, inputMetaData) => stringParsing.stringToBoolean(inputData, inputMetaData),
+    ['determineObjectDataType']: (inputData, inputMetaData) => stringParsing.determineObjectDataType(inputData, inputMetaData),
+    ['isBoolean']: (inputData, inputMetaData) => stringParsing.isBoolean(inputData, inputMetaData),
+    ['isInteger']: (inputData, inputMetaData) => stringParsing.isInteger(inputData, inputMetaData),
+    ['isFloat']: (inputData, inputMetaData) => stringParsing.isFloat(inputData, inputMetaData),
+    ['isString']: (inputData, inputMetaData) => stringParsing.isString(inputData, inputMetaData)
   }
   console.log(`END ${namespacePrefix}${functionName} function`);
 };
