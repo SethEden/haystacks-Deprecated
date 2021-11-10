@@ -114,7 +114,7 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
-  returnValue = fullyQualifiedName.substr(0, fully.lastIndexOf('.'));
+  returnValue = fullyQualifiedName.substr(0, fullyQualifiedName.lastIndexOf('.'));
   if (returnValue.includes('debugFunctions') || returnValue.includes('debugFiles')) {
     // We need to strip off the "debugFunctions" & "debugFiles" prefixes along with the pipe that delimits them.
     // At some point we might need these separate designations, like for the colorizer logic, but for now,

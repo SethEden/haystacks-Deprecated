@@ -23,6 +23,7 @@ var wrd = require('../constants/word.constants');
 var chiefData = require('./chiefData');
 var ruleBroker = require('../brokers/ruleBroker');
 var configurator = require('../executrix/configurator');
+var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
@@ -51,12 +52,84 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
-  // TODO: Implement these functions.
-  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wrd.cconfiguration);
-  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
-  // TODO: parseLoadedConfigurationData
-  // TODO: merge App Config Data & Framework Config Data
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  allFrameworkConfigData = chiefData.setupAllJsonConfigData('frameworkConfigPath', 'configuration');
+  allAppConfigData = chiefData.setupAllJsonConfigData('appConfigPath', 'configuration');
+  parseLoadedConfigurationData(allFrameworkConfigData);
+  parseLoadedConfigurationData(allAppConfigData);
+  console.log('ALL DATA IS: ' + JSON.stringify(D));
+  console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+/**
+ * @function parseLoadedConfigurationData
+ * @description Parses through all of the configuration data that we just loaded from the XML files and
+ * adds that data to the correct data structures in the D.[configuration] data hive.
+ * @param {object} allConfigurationData A JSON data structure object that contains all configuration meta-data.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2021/11/10
+ */
+function parseLoadedConfigurationData(allConfigurationData) {
+  let functionName = parseLoadedConfigurationData.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`allConfigurationData is: ${allConfigurationData}`);
+  let highLevelSystemConfigurationContainer = {};
+  let highLevelDebugConfigurationContainer = {};
+  let alSsytemConfigurations = {};
+  let allSystemConfigurations = {};
+  let rules = {};
+  let configurationElement;
+  let configurationSubElement;
+  let fullyQualifiedName;
+  let namespace;
+  let name;
+  let type;
+  let value;
+  let version;
+  let advancedDebugSettingPrefix;
+  rules[0] = 'stringToDataType';
+
+  highLevelSystemConfigurationContainer = allConfigurationData['system'];
+  highLevelDebugConfigurationContainer = allConfigurationData['debugSettings'];
+
+  for (let key in highLevelSystemConfigurationContainer) {
+    fullyQualifiedName = '';
+    namespace = '';
+    name = '';
+    value = '';
+    value = highLevelSystemConfigurationContainer[key];
+    if (!!value || value === false) {
+      fullyQualifiedName = key;
+
+      name = configurator.processConfigurationNameRules(fullyQualifiedName);
+      namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
+      value = configurator.processConfigurationValueRules(name, value);
+      value = ruleBroker.processRules(value, '', rules);
+
+      configurator.setConfigurationSetting(namespace, name, value);
+
+    }
+  }
+
+  for (let key in highLevelDebugConfigurationContainer) {
+    fullyQualifiedName = '';
+    namespace = '';
+    name = '';
+    value = '';
+    value = highLevelDebugConfigurationContainer[key];
+    if (!!value || value === false) {
+      fullyQualifiedName = key;
+
+      name = configurator.processConfigurationNameRules(fullyQualifiedName);
+      namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
+      value = configurator.processConfigurationValueRules(name, value);
+      value = ruleBroker.processRules(value, '', rules);
+
+      configurator.setConfigurationSetting(namespace, name, value);
+
+    }
+  }
+  console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 module.exports = {
