@@ -38,7 +38,14 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   allFrameworkConfigData = chiefData.setupAllJsonConfigData('frameworkConfigPath', 'configuration');
   allAppConfigData = chiefData.setupAllJsonConfigData('appConfigPath', 'configuration');
   // TODO: parseLoadedConfigurationData
+  // NOTE: We cannot really properly implement the parseLoadedConfigurationData until we have a basic business rules system.
   // TODO: merge App Config Data & Framework Config Data
+  console.log('allFrameworkConfigData is: ' + JSON.stringify(allFrameworkConfigData));
+  console.log('allAppConfigData is: ' + JSON.stringify(allAppConfigData));
+  // console.log('ALL DATA BEFORE MERGE IS: ' + JSON.stringify(D));
+  // Object.assign(D, allFrameworkConfigData);
+  // Object.assign(D, allAppConfigData);
+  // console.log('ALL DATA AFTER MERGE IS: ' + JSON.stringify(D));
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
