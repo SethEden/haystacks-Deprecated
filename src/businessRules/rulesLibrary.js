@@ -11,6 +11,7 @@
  */
 
 var stringParsing = require('./rules/stringParsing');
+var arrayParsing = require('./rules/arrayParsing');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -39,6 +40,7 @@ export const initRulesLibrary = function() {
     // stringParsing rules in order
     // ***********************************************
     ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
+<<<<<<< HEAD
     ['stringToDataType']: (inputData, inputMetaData) => stringParsing.stringToDataType(inputData, inputMetaData),
     ['stringToBoolean']: (inputData, inputMetaData) => stringParsing.stringToBoolean(inputData, inputMetaData),
     ['determineObjectDataType']: (inputData, inputMetaData) => stringParsing.determineObjectDataType(inputData, inputMetaData),
@@ -46,6 +48,18 @@ export const initRulesLibrary = function() {
     ['isInteger']: (inputData, inputMetaData) => stringParsing.isInteger(inputData, inputMetaData),
     ['isFloat']: (inputData, inputMetaData) => stringParsing.isFloat(inputData, inputMetaData),
     ['isString']: (inputData, inputMetaData) => stringParsing.isString(inputData, inputMetaData)
+=======
+    ['singleQuoteSwapAfterEquals']: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
+    ['swapForwardSlashToBackSlash']: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
+    ['swapBackSlashToForwardSlash']: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
+    ['swapDoubleForwardSlashToSingleForwardSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
+    ['swapDoubleBackSlashToSingleBackSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
+
+    // ***********************************************
+    // ArrayParsing rules in order
+    // ***********************************************
+    ['replaceCharacterWithCharacter']: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
+>>>>>>> aabb463cbcd2ffd985b50a9eddee3a0cafe7d5d5
   }
   console.log(`END ${namespacePrefix}${functionName} function`);
 };
