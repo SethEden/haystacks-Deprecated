@@ -76,13 +76,13 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
  * If it's a string value of "12" then it will get converted to an integer of the same value.
  * If it's a string value of "Happy Birthday" it will get returned the same as the input, no change, since it's just a string.
  * If it's an array of strings, or collection object, it will get returned as the same as the input, no change.
- * @param {string} inpuData The string that should be converted to some value.
+ * @param {string} inputData The string that should be converted to some value.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {object|string|boolean|integer} Returns a value of whatever type the string should be converted to as appropriate.
  * @author Seth Hollingsead
  * @date 2021/11/10
  */
-export const stringToDataType = function(inpuData, inputMetaData) {
+export const stringToDataType = function(inputData, inputMetaData) {
   let functionName = stringToDataType.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -133,7 +133,7 @@ export const stringToBoolean = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     if (inputData === true || inputData === false) {
-      returnData = inpuData;
+      returnData = inputData;
     } else {
       switch (inputData.toLowerCase().trim()) {
         case 'true': case 't': case 'y': case 'yes': case 'on':
@@ -148,6 +148,9 @@ export const stringToBoolean = function(inputData, inputMetaData) {
       }
     }
   }
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 /**
@@ -205,11 +208,11 @@ export const isBoolean = function(inputData, inputMetaData) {
   console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    if (inputData === true || inputData === false) {
+    if (typeof inputData === 'boolean') {
       returnData = true;
     } else {
       inputData = inputData.toLowerCase().trim();
-      if (inputData = 'true' || inputData === 't' || inputData === 'y' || inputData === 'yes' || inputData === 'on' ||
+      if (inputData === 'true' || inputData === 't' || inputData === 'y' || inputData === 'yes' || inputData === 'on' ||
       inputData === 'false' || inputData === 'f' || inputData === 'n' || inputData === 'no' || inputData === 'off') {
         returnData = true;
       } else {
