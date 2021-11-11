@@ -56,7 +56,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
  * @function parseLoadedConfigurationData
  * @description Parses through all of the configuration data that we just loaded from the XML files and
  * adds that data to the correct data-structures in the D.[configuration] data hive.
- * @param {object} allConfigurationData A JSON data structure object that contains all configuration emta-data.
+ * @param {object} allConfigurationData A JSON data structure object that contains all configuration meta-data.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/11/10

@@ -70,7 +70,7 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
 
 /**
  * @function stringToDataType
- * @description Converts a sring to the appropriate data value.
+ * @description Converts a string to the appropriate data value.
  * So if it's a string value of "3.1415926535897932384626433832" Then it will get converted to a float of the same value.
  * If it's a string value of "false" then it will get converted to a boolean of the same value.
  * If it's a string value of "12" then it will get converted to an integer of the same value.
@@ -89,16 +89,16 @@ export const stringToDataType = function(inputData, inputMetaData) {
   console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    let dataType = determineObjectDataType(inputData);
+    let dataType = determineObjectDataType(inputData, '');
     switch (dataType) {
       case 'Boolean':
-        returnData = stringToBoolean(inputData);
+        returnData = stringToBoolean(inputData, '');
         break;
       case 'Integer':
-        returnData = parseInt(inputData);
+        returnData = parseInt(inputData, '');
         break;
       case 'Float':
-        returnData = parseFloat(inputData);
+        returnData = parseFloat(inputData, '');
         break;
       case 'String':
         returnData = inputData;
@@ -132,7 +132,7 @@ export const stringToBoolean = function(inputData, inputMetaData) {
   console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    if (inputData === true || inputData === false) {
+    if (typeof inputData === 'boolean') {
       returnData = inputData;
     } else {
       switch (inputData.toLowerCase().trim()) {
@@ -158,7 +158,7 @@ export const stringToBoolean = function(inputData, inputMetaData) {
  * @description Determines if the contents of a string are actually a Boolean, Integer, Float, String or something else.
  * @param {string} inputData A string that contains some value that we should figure out
  * what kind of data type that data is, Boolean, Integer, Float, String or something else.
- * @param {string} inputMetaDataNot used for this business rule.
+ * @param {string} inputMetaDataNot Not used for this business rule.
  * @return {string} A string that indicates if the data type should be Boolean, Integer, Float, String or something else.
  * @author Seth Hollingsead
  * @date 2021/11/10
@@ -170,13 +170,13 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
   console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    if (isBoolean(inputData) === true) {
+    if (isBoolean(inputData, '') === true) {
       returnData = 'Boolean';
-    } else if (isInteger(inputData) === true) {
+    } else if (isInteger(inputData, '') === true) {
       returnData = 'Integer';
-    } else if (isFloat(inputData) === true) {
+    } else if (isFloat(inputData, '') === true) {
       returnData = 'Float';
-    } else if (isString(inputData) === true) {
+    } else if (isString(inputData, '') === true) {
       returnData = 'String';
     } else { // Otherwise we cannot figure out what the data type is.
       // No real way to tell the difference between Short, Long and Double.
@@ -193,9 +193,9 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
 /**
  * @function isBoolean
  * @description Determines if the input string is a boolean type of value,
- * "true", "True", "TRUE", "t", "T", "y", "Y", "yes", "Yes", "YES", "1", "on", "On", "ON" or
- * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO", "0"
- * @param {string} inputData The string that should be chcked if it is a Boolean style value or not, could be some form of "true" or "false".
+ * "true", "True", "TRUE", "t", "T", "y", "Y", "yes", "Yes", "YES", "on", "On", "ON" or
+ * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO"
+ * @param {string} inputData The string that should be checked if it is a Boolean style value or not, could be some form of "true" or "false".
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of True or False to indicate if the input string is a Boolean or not.
  * @author Seth Hollingsead
@@ -245,11 +245,11 @@ export const isInteger = function(inputData, inputMetaData) {
       if (inputData % 1 === 0) {
         // It's a whole number, aka: integer
         returnData = true;
-      } else { // Else clause is redudnant, but kept here for code completeness.
+      } else { // Else clause is redundant, but kept here for code completeness.
         // Might be a number, but not a whole number.
         returnData = false;
       }
-    } else { // Else clause is redudnant, but kept here for code completeness.
+    } else { // Else clause is redundant, but kept here for code completeness.
       // Possibly also console log here for debugging.
       returnData = false;
     }
@@ -277,7 +277,7 @@ export const isFloat = function(inputData, inputMetaData) {
   if (inputData) {
     if (!isNaN(inputData) && inputData.indexOf('.') !== -1) {
       returnData = true;
-    } else { // Else clause is redudnant, but kept here for code completeness.
+    } else { // Else clause is redundant, but kept here for code completeness.
       // Possibly also console log here for debugging.
       returnData = false;
     }
@@ -308,8 +308,8 @@ export const isString = function(inputData, inputMetaData) {
     if (isBoolean(inputData, '') === false && isInteger(inputData, '') === false && isFloat(inputData, '') === false &&
     (typeof inputData === 'string' || inputData instanceof String)) {
       returnData = true; // If it's not a Boolean, and not an Integer, and not a Float, then it must be a string,
-      // especially given the type of the variable is a sring!
-    } else { // Else clause is redudnant, but kept here for code completeness.
+      // especially given the type of the variable is a string!
+    } else { // Else clause is redundant, but kept here for code completeness.
       // Possibly also console log here for debugging.
       returnData = false;
     }
