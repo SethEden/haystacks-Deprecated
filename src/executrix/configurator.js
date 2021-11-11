@@ -81,7 +81,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
 
 /**
  * @function processConfigurationNameRules
- * @description Processes a fully qualified name and extracts the configuration anme without the namespace.
+ * @description Processes a fully qualified name and extracts the configuration name without the namespace.
  * @param {string} fullyQualifiedName The fully qualified name with the namespace included.
  * @return {string} The name of the configuration setting without the namespace.
  * @author Seth Hollingsead
@@ -104,7 +104,7 @@ function processConfigurationNameRules(fullyQualifiedName) {
  * @function processConfigurationNamespaceRules
  * @description Processes a fully qualified name and extracts the namespace.
  * @param {string} fullyQualifiedName The fully qualified name with the namespace included.
- * @return {string} The namespace of the configuration setting, wthout the configuration name.
+ * @return {string} The namespace of the configuration setting, without the configuration name.
  * @author Seth Hollingsead
  * @date 2021/10/26
  * @NOTE Cannot use the loggers here, because of a circular dependency.
