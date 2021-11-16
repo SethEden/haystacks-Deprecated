@@ -89,14 +89,6 @@ let cAllowableCharacters = wrd.cAllowable + wrd.cCharacters; // AllowableCharact
 let cSpecialCharacters = wrd.cSpecial + wrd.cCharacters; // SpecialCharacters
 let cTimeoutOverride = wrd.cTimeout + wrd.cOverride; // TimeoutOverride
 let cDwellTime = wrd.cDwell + wrd.cTime; // DwellTime
-let cLogFilePathAndName = wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // LogFilePathAndName
-let cDataLogFilePathAndName = wrd.cData + wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // DataLogFilePathAndName
-let cExecutionJournalFilePathAndName = wrd.cExecution + wrd.cJournal + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // ExecutionJournalFilePathAndName
-let cResultsLogFilePathAndName = wrd.cResults + wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // ResultsLogFilePathAndName
-let cTestDataPath = wrd.cTest + wrd.cData + wrd.cPath; // TestDataPath
-let cConsoleLogEnabled = wrd.cConsole + wrd.cLog + wrd.cEnabled; // ConsoleLogEnabled
-let cLogFileEnabled = wrd.cLog + wrd.cFile + wrd.cEnabled; // LogFileEnabled
-let cIncludeDateTimeStampInLogFiles = wrd.cInclude + wrd.cDate + wrd.cTime + wrd.cStamp + bas.cIn + gen.cLog + wrd.cFiles; // IncludeDateTimeStampInLogFiles
 let cFileCounter = wrd.cFile + wrd.cCounter; // FileCounter
 let cDeltaT = gen.cDelta + bas.cT; // DeltaT
 let cvisibilityCheck = wrd.cvisibility + wrd.cCheck; // visibilityCheck
@@ -269,6 +261,7 @@ let cButton = bas.cBu + bas.ctt + bas.con; // Button
 
 // Environment Variables
 let cQA = bas.cQA; // QA
+let cdev = bas.cde + bas.cv; // dev
 let cDEV = bas.cDE + bas.cV; // DEV
 let cProd = phn.cPro + bas.cd; // Prod
 let cPROD = phn.cPRO + bas.cD; // PROD
@@ -357,6 +350,7 @@ let cSourceResourcesPath = wrd.cSource + wrd.cResources + wrd.cPath; // SourceRe
 let cDestinationResourcesPath = wrd.cDestination + wrd.cResources + wrd.cPath; // BinaryResourcesPath
 let cBinaryRootPath = wrd.cBinary + wrd.cRoot + wrd.cPath; // BinaryRootPath
 let cBinaryReleasePath = wrd.cBinary + wrd.cRelease + wrd.cPath; // BinaryReleasePath
+let cdevtty = bas.cForwardSlash + cdev + bas.cForwardSlash + phn.ctty; // /dev/tty
 
 // Constants Filenames
 let cbasic_constants_js = wrd.cbasic + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // basic.constants.js
@@ -380,361 +374,354 @@ let cword_constants_js = wrd.cword + bas.cDot + wrd.cconstants + bas.cDot + bas.
 
 module.exports = {
   // Miscelaneious
-  ['cENV']: cENV, // ENV
-  ['cLOG']: cLOG, // LOG
-  ['cENVIRONMENT']: cENVIRONMENT, // ENVIRONMENT
-  ['cITERATION']: cITERATION, // ITERATION
-  ['cSTYLE']: cSTYLE, // STYLE
+  [bas.cc + cENV]: cENV, // ENV
+  [bas.cc + cLOG]: cLOG, // LOG
+  [bas.cc + cENVIRONMENT]: cENVIRONMENT, // ENVIRONMENT
+  [bas.cc + cITERATION]: cITERATION, // ITERATION
+  [bas.cc + cSTYLE]: cSTYLE, // STYLE
 
   // Compound System Words
-  ['cunderline']: cunderline, // underline
-  ['cUnderline']: cUnderline, // Underline
-  ['cwithText']: cwithText, // withText
-  ['cWithText']: cWithText, // WithText
-  ['cDebugTest']: cDebugTest, // DebugTest
-  ['cDebugPage']: cDebugPage, // DebugPage
-  ['cDebugTestExhaustive']: cDebugTestExhaustive, // DebugTestExhaustive
-  ['cDebugForceMessageToLogFile']: cDebugForceMessageToLogFile, // DebugForceMessageToLogFile
-  ['cDebugTestData']: cDebugTestData, // DebugTestData
-  ['cDebugPageScripts']: cDebugPageScripts, // DebugPageScripts
-  ['cDebugPageData']: cDebugPageData, // DebugPageData
-  ['cDebugKeywords']: cDebugKeywords, // DebugKeywords
-  ['cLogBrowserActions']: cLogBrowserActions, // LogBrowserActions
-  ['cJournalBrowserActions']: cJournalBrowserActions, // JournalBrowserActions
-  ['cDebugBrowserActions']: cDebugBrowserActions, // DebugBrowserActions
-  ['cDebugSelectors']: cDebugSelectors, // DebugSelectors
-  ['cDebugFunctions']: cDebugFunctions, // DebugFunctions
-  ['cDebugFiles']: cDebugFiles, // DebugFiles
-  ['cTestAutomation']: cTestAutomation, // TestAutomation
-  ['cNumberOfRows']: cNumberOfRows, // NumberOfRows
-  ['cMasterRowNumber']: cMasterRowNumber, // MasterRowNumber
-  ['cEnvironmentRow']: cEnvironmentRow, // EnvironmentRow
-  ['cEnvironmentRowNumber']: cEnvironmentRowNumber, // EnvironmentRowNumber
-  ['cPageScript']: cPageScript, // PageScript
-  ['cIntermediatePath']: cIntermediatePath, // IntermediatePath
-  ['cTimeStamp']: cTimeStamp, // TimeStamp
-  ['cPageScriptTimeStamp']: cPageScriptTimeStamp, // PageScriptTimeStamp
-  ['cDateTimeStamp']: cDateTimeStamp, // DateTimeStamp
-  ['cScriptDateStamp']: cScriptDateStamp, // ScriptDateStamp
-  ['cScriptTimeStamp']: cScriptTimeStamp, // ScriptTimeStamp
-  ['cKeywordTimeStamp']: cKeywordTimeStamp, // KeywordTimeStamp
-  ['cTestTimeStamp']: cTestTimeStamp, // TestTimeStamp
-  ['cScriptDateTimeStamp']: cScriptDateTimeStamp, // ScriptDateTimeStamp
-  ['cBeginScriptTimeStamp']: cBeginScriptTimeStamp, // BeginScriptTimeStamp
-  ['cEndScriptTimeStamp']: cEndScriptTimeStamp, // EndScriptTimeStamp
-  ['cBeginTestTimeStamp']: cBeginTestTimeStamp, // BeginTestTimeStamp
-  ['cEndTestTimeStamp']: cEndTestTimeStamp, // EndTestTimeStamp
-  ['cBeginPageScriptTimeStamp']: cBeginPageScriptTimeStamp, // BeginPageScriptTimeStamp
-  ['cEndPageScriptTimeStamp']: cEndPageScriptTimeStamp, // EndPageScriptTimeStamp
-  ['cBeginKeywordTimeStamp']: cBeginKeywordTimeStamp, // BeginKeywordTimeStamp
-  ['cEndKeywordTimeStamp']: cEndKeywordTimeStamp, // EndKeywordTimeStamp
-  ['cRuntime']: cRuntime, // Runtime
-  ['cRunTime']: cRunTime, // RunTime
-  ['cBrowserName']: cBrowserName, // BrowserName
-  ['cHostName']: cHostName, // HostName
-  ['cTestRunID']: cTestRunID, // TestRunID
-  ['cfilesLists']: cfilesLists, // filesLists
-  ['cFileTypes']: cFileTypes, // FileTypes
-  ['cfilename']: cfilename, // filename
-  ['cFilename']: cFilename, // Filename
-  ['cFileName']: cFileName, // FileName
-  ['cfilenames']: cfilenames, // filenames
-  ['cFilenames']: cFilenames, // Filenames
-  ['cFileNames']: cFileNames, // FileNames
-  ['cPreValidateFileName']: cPreValidateFileName, // PreValidateFileName
-  ['cAsynchSingular']: cAsynchSingular, // AsynchSingular
-  ['cSynchSingular']: cSynchSingular, // SynchSingular
-  ['cParallelMultiUnified']: cParallelMultiUnified, // ParallelMultiUnified
-  ['cAllowableCharacters']: cAllowableCharacters, // AllowableCharacters
-  ['cSpecialCharacters']: cSpecialCharacters, // SpecialCharacters
-  ['cTimeoutOverride']: cTimeoutOverride, // TimeoutOverride
-  ['cDwellTime']: cDwellTime, // DwellTime
-  ['cLogFilePathAndName']: cLogFilePathAndName, // LogFilePathAndName
-  ['cDataLogFilePathAndName']: cDataLogFilePathAndName, // DataLogFilePathAndName
-  ['cExecutionJournalFilePathAndName']: cExecutionJournalFilePathAndName, // ExecutionJournalFilePathAndName
-  ['cResultsLogFilePathAndName']: cResultsLogFilePathAndName, // ResultsLogFilePathAndName
-  ['cTestDataPath']: cTestDataPath, // TestDataPath
-  ['cConsoleLogEnabled']: cConsoleLogEnabled, // ConsoleLogEnabled
-  ['cLogFileEnabled']: cLogFileEnabled, // LogFileEnabled
-  ['cIncludeDateTimeStampInLogFiles']: cIncludeDateTimeStampInLogFiles, // IncludeDateTimeStampInLogFiles
-  ['cFileCounter']: cFileCounter, // FileCounter
-  ['cDeltaT']: cDeltaT, // DeltaT
-  ['cvisibilityCheck']: cvisibilityCheck, // visibilityCheck
-  ['cVisibilityCheck']: cVisibilityCheck, // VisibilityCheck
-  ['cOperatingSystem']: cOperatingSystem, // OperatingSystem
-  ['cinnerText']: cinnerText, // innerText
-  ['cInnerText']: cInnerText, // InnerText
-  ['cinnerHTML']: cinnerHTML, // innerHTML
-  ['cInnerHTML']: cInnerHTML, // InnerHTML
-  ['cTestData']: cTestData, // TestData
-  ['cProcessingTimeout']: cProcessingTimeout, // ProcessingTimeout
-  ['cIngestionCompleteDwellTime']: cIngestionCompleteDwellTime, // IngestionCompleteDwellTime
-  ['cRowNumber']: cRowNumber, // RowNumber
-  ['cUsername']: cUsername, // Username
-  ['cPassword']: cPassword, // Password
-  ['cProjectName']: cProjectName, // ProjectName
-  ['cProjectDescription']: cProjectDescription, // ProjectDescription
-  ['cTestDataFileName']: cTestDataFileName, // TestDataFileName
-  ['cShareEmail']: cShareEmail, // ShareEmail
-  ['cAccessLevel']: cAccessLevel, // AccessLevel
-  ['cFileNumber']: cFileNumber, // FileNumber
-  ['cConfigurationName']: cConfigurationName, // ConfigurationName
-  ['cConfigurationElement']: cConfigurationElement, // ConfigurationElement
-  ['cConfigurationElements']: cConfigurationElements, // ConfigurationElements
-  ['cVersionControl']: cVersionControl, // VersionControl
-  ['cScriptRunTime']: cScriptRunTime, // ScriptRunTime
-  ['cTestRunTime']: cTestRunTime, // TestRunTime
-  ['ctypeText']: ctypeText, // typeText
-  ['cTypeText']: cTypeText, // TypeText
-  ['cAbreviatedSelectors']: cAbreviatedSelectors, // AbreviatedSelectors
-  ['cAbreviatedSelectorsInLogs']: cAbreviatedSelectorsInLogs, // AbreviatedSelectorsInLogs
-  ['cselectorTimeout']: cselectorTimeout, // selectorTimeout
-  ['cchildElementCount']: cchildElementCount, // childElementCount
-  ['cUnderscore']: cUnderscore, // Underscore
-  ['cTestBureau']: cTestBureau, // TestBureau
-  ['caddWithText']: caddWithText, // addWithText
-  ['caddTimeout']: caddTimeout, // addTimeout
-  ['caddParent']: caddParent, // addParent
-  ['caddFindValue']: caddFindValue, // addFindValue
-  ['caddNth']: caddNth, // addNth
-  ['caddSibling']: caddSibling, // addSibling
-  ['caddFilter']: caddFilter, // addFilter
-  ['cgenerateRandom']: cgenerateRandom, // generateRandom
-  ['crandomlyGenerate']: crandomlyGenerate, // randomlyGenerate
-  ['cMixedCase']: cMixedCase, // MixedCase
-  ['cUpperCase']: cUpperCase, // UpperCase
-  ['cLowerCase']: cLowerCase, // LowerCase
-  ['cByLength']: cByLength, // ByLength
-  ['cSpecialCharacter']: cSpecialCharacter, // SpecialCharacter
-  ['cWithSpecialCharacters']: cWithSpecialCharacters, // WithSpecialCharacters
-  ['cTextByLength']: cTextByLength, // TextByLength
-  ['cTextWithSpecialCharacters']: cTextWithSpecialCharacters, // TextWithSpecialCharacters
-  ['cTextWithSpecialCharactersByLength']: cTextWithSpecialCharactersByLength, // TextWithSpecialCharactersByLength
-  ['cAlphaNumeric']: cAlphaNumeric, // AlphaNumeric
-  ['cAlphaNumericCode']: cAlphaNumericCode, // AlphaNumericCode
-  ['cAlphaNumericCodeByLength']: cAlphaNumericCodeByLength, // AlphaNumericCodeByLength
-  ['cNumericCode']: cNumericCode, // NumericCode
-  ['cNumericCodeByLength']: cNumericCodeByLength, // NumericCodeByLength
-  ['cAlphaNumericCodeWithSpecialCharacters']: cAlphaNumericCodeWithSpecialCharacters, // AlphaNumericCodeWithSpecialCharacters
-  ['cAlphaNumericCodeWithSpecialCharactersByLength']: cAlphaNumericCodeWithSpecialCharactersByLength, // AlphaNumericCodeWithSpecialCharactersByLength
-  ['cSpecialCharacterCodeByLength']: cSpecialCharacterCodeByLength, // SpecialCharacterCodeByLength
-  ['cvalidEmail']: cvalidEmail, // validEmail
-  ['cValidEmail']: cValidEmail, // ValidEmail
-  ['cInvalidEmail']: cInvalidEmail, // InvalidEmail
-  ['cgenerateValidEmail']: cgenerateValidEmail, // generateValidEmail
-  ['cgenerateInvalidEmail']: cgenerateInvalidEmail, // generateInvalidEmail
-  ['cRandomValidEmail']: cRandomValidEmail, // RandomValidEmail
-  ['cRandomInvalidEmail']: cRandomInvalidEmail, // RandomInvalidEmail
-  ['cLetterOr']: cLetterOr, // LetterOr
-  ['cLetterOrSpecialCharacter']: cLetterOrSpecialCharacter, // LetterOrSpecialCharacter
-  ['cLetterOrNumberOrSpecialCharacter']: cLetterOrNumberOrSpecialCharacter, // LetterOrNumberOrSpecialCharacter
-  ['cAlphaNumericCharacter']: cAlphaNumericCharacter, // AlphaNumericCharacter
-  ['cSuffixAndDomain']: cSuffixAndDomain, // SuffixAndDomain
-  ['cWithSpecificSuffixAndDomainName']: cWithSpecificSuffixAndDomainName, // WithSpecificSuffixAndDomainName
-  ['cNumericCharacter']: cNumericCharacter, // NumericCharacter
-  ['cNumberInRange']: cNumberInRange, // NumberInRange
-  ['cBooleanValue']: cBooleanValue, // BooleanValue
-  ['cAlphabeticCharacter']: cAlphabeticCharacter, // AlphabeticCharacter
-  ['cCarriageReturn']: cCarriageReturn, // CarriageReturn
-  ['cDashboardLogs']: cDashboardLogs, // DashboardLogs
-  ['cVideoLogs']: cVideoLogs, // VideoLogs
-  ['cForwardSlash']: cForwardSlash, // ForwardSlash
-  ['cBackSlash']: cBackSlash, // BackSlash
-  ['cPage_Keywords']: cPage_Keywords, // Page_Keywords
-  ['cnavigateTo']: cnavigateTo, // navigateTo
-  ['cNavigateTo']: cNavigateTo, // NavigateTo
-  ['cBrowserRefresh']: cBrowserRefresh, // BrowserRefresh
-  ['cSpaceIsColonSpace']: cSpaceIsColonSpace, // is:
-  ['cdeployApplication']: cdeployApplication, // deployApplication
-  ['cdeployMetaData']: cdeployMetaData, // deployMetaData
-  ['creleaseApplication']: creleaseApplication, // releaseApplication
-  ['cbackground']: cbackground, // background
-  ['cBackground']: cBackground, // Background
-  ['cConfiguration_Colors']: cConfiguration_Colors, // Configuration_Colors
-  ['cColorData']: cColorData, // ColorData
-  ['cColorName']: cColorName, // ColorName
-  ['cbusinessRule']: cbusinessRule, // businessRule
-  ['cBusinessRule']: cBusinessRule, // BusinessRule
-  ['cbusinessRules']: cbusinessRules, // businessRules
-  ['cBusinessRules']: cBusinessRules, // BusinessRules
-  ['crulesLibrary']: crulesLibrary, // rulesLibrary
-  ['cframework']: cframework, // framework
-  ['cFramework']: cFramework, // Framework
-  ['cCommandsAliases']: cCommandsAliases, // CommandsAliases
-  ['cCommandWorkflows']: cCommandWorkflows, // CommandWorkflows
-  ['cStandardDeviation']: cStandardDeviation, // StandardDeviation
-  ['cHexValue']: cHexValue, // HexValue
-  ['cexportconst']: cexportconst, // export-const // With a space not a dash, but the validation code is looking for that exact string.
-  ['cExportConst']: cExportConst, // smuggle something
-  ['cDataStorage']: cDataStorage, // DataStorage
-  ['cSource1']: cSource1, // Source1
-  ['cSource2']: cSource2, // Source2
-  ['cbigInteger']: cbigInteger, // bigInteger
-  ['cnumberOfCharactersToGenerate']: cnumberOfCharactersToGenerate, // numberOfCharactersToGenerate
-  ['cgenerateSpecialCharacters']: cgenerateSpecialCharacters, // generateSpecialCharacters
-  ['callowableSpecialCharacters']: callowableSpecialCharacters, // allowableSpecialCharacters
-  ['cspecifiedSuffixAndDomain']: cspecifiedSuffixAndDomain, // specifiedSuffixAndDomain
-  ['cfailureMode']: cfailureMode, // failureMode
-  ['cWithoutThe']: cWithoutThe, // Without the
-  ['cwasCompleted']: cwasCompleted, // was completed
-  ['cGenerateA']: cGenerateA, // Generate a
-  ['cprogramLoop']: cprogramLoop, // program loop
-  ['candPrefix']: candPrefix, // and prefix
-  ['candSuffix']: candSuffix, // and suffix
-  ['cdomainSpaceName']: cdomainSpaceName, // domain name
-  ['candSpaceDomainSpaceName']: candSpaceDomainSpaceName, // and domain name
-  ['ccurrentMasterStringArrayElement']: ccurrentMasterStringArrayElement, // currentMasterStringArrayElement
-  ['cLehmerCodeArray']: cLehmerCodeArray, // LehmerCodeArray
-  ['creturnData']: creturnData, // returnData
-  ['cCamelCase']: cCamelCase, // CamelCase
+  [bas.cc + cunderline]: cunderline, // underline
+  [bas.cc + cUnderline]: cUnderline, // Underline
+  [bas.cc + cwithText]: cwithText, // withText
+  [bas.cc + cWithText]: cWithText, // WithText
+  [bas.cc + cDebugTest]: cDebugTest, // DebugTest
+  [bas.cc + cDebugPage]: cDebugPage, // DebugPage
+  [bas.cc + cDebugTestExhaustive]: cDebugTestExhaustive, // DebugTestExhaustive
+  [bas.cc + cDebugForceMessageToLogFile]: cDebugForceMessageToLogFile, // DebugForceMessageToLogFile
+  [bas.cc + cDebugTestData]: cDebugTestData, // DebugTestData
+  [bas.cc + cDebugPageScripts]: cDebugPageScripts, // DebugPageScripts
+  [bas.cc + cDebugPageData]: cDebugPageData, // DebugPageData
+  [bas.cc + cDebugKeywords]: cDebugKeywords, // DebugKeywords
+  [bas.cc + cLogBrowserActions]: cLogBrowserActions, // LogBrowserActions
+  [bas.cc + cJournalBrowserActions]: cJournalBrowserActions, // JournalBrowserActions
+  [bas.cc + cDebugBrowserActions]: cDebugBrowserActions, // DebugBrowserActions
+  [bas.cc + cDebugSelectors]: cDebugSelectors, // DebugSelectors
+  [bas.cc + cDebugFunctions]: cDebugFunctions, // DebugFunctions
+  [bas.cc + cDebugFiles]: cDebugFiles, // DebugFiles
+  [bas.cc + cTestAutomation]: cTestAutomation, // TestAutomation
+  [bas.cc + cNumberOfRows]: cNumberOfRows, // NumberOfRows
+  [bas.cc + cMasterRowNumber]: cMasterRowNumber, // MasterRowNumber
+  [bas.cc + cEnvironmentRow]: cEnvironmentRow, // EnvironmentRow
+  [bas.cc + cEnvironmentRowNumber]: cEnvironmentRowNumber, // EnvironmentRowNumber
+  [bas.cc + cPageScript]: cPageScript, // PageScript
+  [bas.cc + cIntermediatePath]: cIntermediatePath, // IntermediatePath
+  [bas.cc + cTimeStamp]: cTimeStamp, // TimeStamp
+  [bas.cc + cPageScriptTimeStamp]: cPageScriptTimeStamp, // PageScriptTimeStamp
+  [bas.cc + cDateTimeStamp]: cDateTimeStamp, // DateTimeStamp
+  [bas.cc + cScriptDateStamp]: cScriptDateStamp, // ScriptDateStamp
+  [bas.cc + cScriptTimeStamp]: cScriptTimeStamp, // ScriptTimeStamp
+  [bas.cc + cKeywordTimeStamp]: cKeywordTimeStamp, // KeywordTimeStamp
+  [bas.cc + cTestTimeStamp]: cTestTimeStamp, // TestTimeStamp
+  [bas.cc + cScriptDateTimeStamp]: cScriptDateTimeStamp, // ScriptDateTimeStamp
+  [bas.cc + cBeginScriptTimeStamp]: cBeginScriptTimeStamp, // BeginScriptTimeStamp
+  [bas.cc + cEndScriptTimeStamp]: cEndScriptTimeStamp, // EndScriptTimeStamp
+  [bas.cc + cBeginTestTimeStamp]: cBeginTestTimeStamp, // BeginTestTimeStamp
+  [bas.cc + cEndTestTimeStamp]: cEndTestTimeStamp, // EndTestTimeStamp
+  [bas.cc + cBeginPageScriptTimeStamp]: cBeginPageScriptTimeStamp, // BeginPageScriptTimeStamp
+  [bas.cc + cEndPageScriptTimeStamp]: cEndPageScriptTimeStamp, // EndPageScriptTimeStamp
+  [bas.cc + cBeginKeywordTimeStamp]: cBeginKeywordTimeStamp, // BeginKeywordTimeStamp
+  [bas.cc + cEndKeywordTimeStamp]: cEndKeywordTimeStamp, // EndKeywordTimeStamp
+  [bas.cc + cRuntime]: cRuntime, // Runtime
+  [bas.cc + cRunTime]: cRunTime, // RunTime
+  [bas.cc + cBrowserName]: cBrowserName, // BrowserName
+  [bas.cc + cHostName]: cHostName, // HostName
+  [bas.cc + cTestRunID]: cTestRunID, // TestRunID
+  [bas.cc + cfilesLists]: cfilesLists, // filesLists
+  [bas.cc + cFileTypes]: cFileTypes, // FileTypes
+  [bas.cc + cfilename]: cfilename, // filename
+  [bas.cc + cFilename]: cFilename, // Filename
+  [bas.cc + cFileName]: cFileName, // FileName
+  [bas.cc + cfilenames]: cfilenames, // filenames
+  [bas.cc + cFilenames]: cFilenames, // Filenames
+  [bas.cc + cFileNames]: cFileNames, // FileNames
+  [bas.cc + cPreValidateFileName]: cPreValidateFileName, // PreValidateFileName
+  [bas.cc + cAsynchSingular]: cAsynchSingular, // AsynchSingular
+  [bas.cc + cSynchSingular]: cSynchSingular, // SynchSingular
+  [bas.cc + cParallelMultiUnified]: cParallelMultiUnified, // ParallelMultiUnified
+  [bas.cc + cAllowableCharacters]: cAllowableCharacters, // AllowableCharacters
+  [bas.cc + cSpecialCharacters]: cSpecialCharacters, // SpecialCharacters
+  [bas.cc + cTimeoutOverride]: cTimeoutOverride, // TimeoutOverride
+  [bas.cc + cDwellTime]: cDwellTime, // DwellTime
+  [bas.cc + cFileCounter]: cFileCounter, // FileCounter
+  [bas.cc + cDeltaT]: cDeltaT, // DeltaT
+  [bas.cc + cvisibilityCheck]: cvisibilityCheck, // visibilityCheck
+  [bas.cc + cVisibilityCheck]: cVisibilityCheck, // VisibilityCheck
+  [bas.cc + cOperatingSystem]: cOperatingSystem, // OperatingSystem
+  [bas.cc + cinnerText]: cinnerText, // innerText
+  [bas.cc + cInnerText]: cInnerText, // InnerText
+  [bas.cc + cinnerHTML]: cinnerHTML, // innerHTML
+  [bas.cc + cInnerHTML]: cInnerHTML, // InnerHTML
+  [bas.cc + cTestData]: cTestData, // TestData
+  [bas.cc + cProcessingTimeout]: cProcessingTimeout, // ProcessingTimeout
+  [bas.cc + cIngestionCompleteDwellTime]: cIngestionCompleteDwellTime, // IngestionCompleteDwellTime
+  [bas.cc + cRowNumber]: cRowNumber, // RowNumber
+  [bas.cc + cUsername]: cUsername, // Username
+  [bas.cc + cPassword]: cPassword, // Password
+  [bas.cc + cProjectName]: cProjectName, // ProjectName
+  [bas.cc + cProjectDescription]: cProjectDescription, // ProjectDescription
+  [bas.cc + cTestDataFileName]: cTestDataFileName, // TestDataFileName
+  [bas.cc + cShareEmail]: cShareEmail, // ShareEmail
+  [bas.cc + cAccessLevel]: cAccessLevel, // AccessLevel
+  [bas.cc + cFileNumber]: cFileNumber, // FileNumber
+  [bas.cc + cConfigurationName]: cConfigurationName, // ConfigurationName
+  [bas.cc + cConfigurationElement]: cConfigurationElement, // ConfigurationElement
+  [bas.cc + cConfigurationElements]: cConfigurationElements, // ConfigurationElements
+  [bas.cc + cVersionControl]: cVersionControl, // VersionControl
+  [bas.cc + cScriptRunTime]: cScriptRunTime, // ScriptRunTime
+  [bas.cc + cTestRunTime]: cTestRunTime, // TestRunTime
+  [bas.cc + ctypeText]: ctypeText, // typeText
+  [bas.cc + cTypeText]: cTypeText, // TypeText
+  [bas.cc + cAbreviatedSelectors]: cAbreviatedSelectors, // AbreviatedSelectors
+  [bas.cc + cAbreviatedSelectorsInLogs]: cAbreviatedSelectorsInLogs, // AbreviatedSelectorsInLogs
+  [bas.cc + cselectorTimeout]: cselectorTimeout, // selectorTimeout
+  [bas.cc + cchildElementCount]: cchildElementCount, // childElementCount
+  [bas.cc + cUnderscore]: cUnderscore, // Underscore
+  [bas.cc + cTestBureau]: cTestBureau, // TestBureau
+  [bas.cc + caddWithText]: caddWithText, // addWithText
+  [bas.cc + caddTimeout]: caddTimeout, // addTimeout
+  [bas.cc + caddParent]: caddParent, // addParent
+  [bas.cc + caddFindValue]: caddFindValue, // addFindValue
+  [bas.cc + caddNth]: caddNth, // addNth
+  [bas.cc + caddSibling]: caddSibling, // addSibling
+  [bas.cc + caddFilter]: caddFilter, // addFilter
+  [bas.cc + cgenerateRandom]: cgenerateRandom, // generateRandom
+  [bas.cc + crandomlyGenerate]: crandomlyGenerate, // randomlyGenerate
+  [bas.cc + cMixedCase]: cMixedCase, // MixedCase
+  [bas.cc + cUpperCase]: cUpperCase, // UpperCase
+  [bas.cc + cLowerCase]: cLowerCase, // LowerCase
+  [bas.cc + cByLength]: cByLength, // ByLength
+  [bas.cc + cSpecialCharacter]: cSpecialCharacter, // SpecialCharacter
+  [bas.cc + cWithSpecialCharacters]: cWithSpecialCharacters, // WithSpecialCharacters
+  [bas.cc + cTextByLength]: cTextByLength, // TextByLength
+  [bas.cc + cTextWithSpecialCharacters]: cTextWithSpecialCharacters, // TextWithSpecialCharacters
+  [bas.cc + cTextWithSpecialCharactersByLength]: cTextWithSpecialCharactersByLength, // TextWithSpecialCharactersByLength
+  [bas.cc + cAlphaNumeric]: cAlphaNumeric, // AlphaNumeric
+  [bas.cc + cAlphaNumericCode]: cAlphaNumericCode, // AlphaNumericCode
+  [bas.cc + cAlphaNumericCodeByLength]: cAlphaNumericCodeByLength, // AlphaNumericCodeByLength
+  [bas.cc + cNumericCode]: cNumericCode, // NumericCode
+  [bas.cc + cNumericCodeByLength]: cNumericCodeByLength, // NumericCodeByLength
+  [bas.cc + cAlphaNumericCodeWithSpecialCharacters]: cAlphaNumericCodeWithSpecialCharacters, // AlphaNumericCodeWithSpecialCharacters
+  [bas.cc + cAlphaNumericCodeWithSpecialCharactersByLength]: cAlphaNumericCodeWithSpecialCharactersByLength, // AlphaNumericCodeWithSpecialCharactersByLength
+  [bas.cc + cSpecialCharacterCodeByLength]: cSpecialCharacterCodeByLength, // SpecialCharacterCodeByLength
+  [bas.cc + cvalidEmail]: cvalidEmail, // validEmail
+  [bas.cc + cValidEmail]: cValidEmail, // ValidEmail
+  [bas.cc + cInvalidEmail]: cInvalidEmail, // InvalidEmail
+  [bas.cc + cgenerateValidEmail]: cgenerateValidEmail, // generateValidEmail
+  [bas.cc + cgenerateInvalidEmail]: cgenerateInvalidEmail, // generateInvalidEmail
+  [bas.cc + cRandomValidEmail]: cRandomValidEmail, // RandomValidEmail
+  [bas.cc + cRandomInvalidEmail]: cRandomInvalidEmail, // RandomInvalidEmail
+  [bas.cc + cLetterOr]: cLetterOr, // LetterOr
+  [bas.cc + cLetterOrSpecialCharacter]: cLetterOrSpecialCharacter, // LetterOrSpecialCharacter
+  [bas.cc + cLetterOrNumberOrSpecialCharacter]: cLetterOrNumberOrSpecialCharacter, // LetterOrNumberOrSpecialCharacter
+  [bas.cc + cAlphaNumericCharacter]: cAlphaNumericCharacter, // AlphaNumericCharacter
+  [bas.cc + cSuffixAndDomain]: cSuffixAndDomain, // SuffixAndDomain
+  [bas.cc + cWithSpecificSuffixAndDomainName]: cWithSpecificSuffixAndDomainName, // WithSpecificSuffixAndDomainName
+  [bas.cc + cNumericCharacter]: cNumericCharacter, // NumericCharacter
+  [bas.cc + cNumberInRange]: cNumberInRange, // NumberInRange
+  [bas.cc + cBooleanValue]: cBooleanValue, // BooleanValue
+  [bas.cc + cAlphabeticCharacter]: cAlphabeticCharacter, // AlphabeticCharacter
+  [bas.cc + cCarriageReturn]: cCarriageReturn, // CarriageReturn
+  [bas.cc + cDashboardLogs]: cDashboardLogs, // DashboardLogs
+  [bas.cc + cVideoLogs]: cVideoLogs, // VideoLogs
+  [bas.cc + cForwardSlash]: cForwardSlash, // ForwardSlash
+  [bas.cc + cBackSlash]: cBackSlash, // BackSlash
+  [bas.cc + cPage_Keywords]: cPage_Keywords, // Page_Keywords
+  [bas.cc + cnavigateTo]: cnavigateTo, // navigateTo
+  [bas.cc + cNavigateTo]: cNavigateTo, // NavigateTo
+  [bas.cc + cBrowserRefresh]: cBrowserRefresh, // BrowserRefresh
+  [bas.cc + cSpaceIsColonSpace]: cSpaceIsColonSpace, // is:
+  [bas.cc + cdeployApplication]: cdeployApplication, // deployApplication
+  [bas.cc + cdeployMetaData]: cdeployMetaData, // deployMetaData
+  [bas.cc + creleaseApplication]: creleaseApplication, // releaseApplication
+  [bas.cc + cbackground]: cbackground, // background
+  [bas.cc + cBackground]: cBackground, // Background
+  [bas.cc + cConfiguration_Colors]: cConfiguration_Colors, // Configuration_Colors
+  [bas.cc + cColorData]: cColorData, // ColorData
+  [bas.cc + cColorName]: cColorName, // ColorName
+  [bas.cc + cbusinessRule]: cbusinessRule, // businessRule
+  [bas.cc + cBusinessRule]: cBusinessRule, // BusinessRule
+  [bas.cc + cbusinessRules]: cbusinessRules, // businessRules
+  [bas.cc + cBusinessRules]: cBusinessRules, // BusinessRules
+  [bas.cc + crulesLibrary]: crulesLibrary, // rulesLibrary
+  [bas.cc + cframework]: cframework, // framework
+  [bas.cc + cFramework]: cFramework, // Framework
+  [bas.cc + cCommandsAliases]: cCommandsAliases, // CommandsAliases
+  [bas.cc + cCommandWorkflows]: cCommandWorkflows, // CommandWorkflows
+  [bas.cc + cStandardDeviation]: cStandardDeviation, // StandardDeviation
+  [bas.cc + cHexValue]: cHexValue, // HexValue
+  [bas.cc + cexportconst]: cexportconst, // export-const // With a space not a dash, but the validation code is looking for that exact string.
+  [bas.cc + cExportConst]: cExportConst, // smuggle something
+  [bas.cc + cDataStorage]: cDataStorage, // DataStorage
+  [bas.cc + cSource1]: cSource1, // Source1
+  [bas.cc + cSource2]: cSource2, // Source2
+  [bas.cc + cbigInteger]: cbigInteger, // bigInteger
+  [bas.cc + cnumberOfCharactersToGenerate]: cnumberOfCharactersToGenerate, // numberOfCharactersToGenerate
+  [bas.cc + cgenerateSpecialCharacters]: cgenerateSpecialCharacters, // generateSpecialCharacters
+  [bas.cc + callowableSpecialCharacters]: callowableSpecialCharacters, // allowableSpecialCharacters
+  [bas.cc + cspecifiedSuffixAndDomain]: cspecifiedSuffixAndDomain, // specifiedSuffixAndDomain
+  [bas.cc + cfailureMode]: cfailureMode, // failureMode
+  [bas.cc + cWithoutThe]: cWithoutThe, // Without the
+  [bas.cc + cwasCompleted]: cwasCompleted, // was completed
+  [bas.cc + cGenerateA]: cGenerateA, // Generate a
+  [bas.cc + cprogramLoop]: cprogramLoop, // program loop
+  [bas.cc + candPrefix]: candPrefix, // and prefix
+  [bas.cc + candSuffix]: candSuffix, // and suffix
+  [bas.cc + cdomainSpaceName]: cdomainSpaceName, // domain name
+  [bas.cc + candSpaceDomainSpaceName]: candSpaceDomainSpaceName, // and domain name
+  [bas.cc + ccurrentMasterStringArrayElement]: ccurrentMasterStringArrayElement, // currentMasterStringArrayElement
+  [bas.cc + cLehmerCodeArray]: cLehmerCodeArray, // LehmerCodeArray
+  [bas.cc + creturnData]: creturnData, // returnData
+  [bas.cc + cCamelCase]: cCamelCase, // CamelCase
 
   // Logging Styles Constants
-  ['cModuleFontStyle']: cModuleFontStyle, // ModuleFontStyle
-  ['cFunctionFontStyle']: cFunctionFontStyle, // FunctionFontStyle
-  ['cMessageFontStyle']: cMessageFontStyle, // MessageFontStyle
-  ['cDataFontStyle']: cDataFontStyle, // DataFontStyle
-  ['cModuleFontColor']: cModuleFontColor, // ModuleFontColor
-  ['cFunctionFontColor']: cFunctionFontColor, // FunctionFontColor
-  ['cMessageFontColor']: cMessageFontColor, // MessageFontColor
-  ['cDataFontColor']: cDataFontColor, // DataFontColor
-  ['cModuleFontBackgroundColor']: cModuleFontBackgroundColor, // ModuleFontBackgroundColor
-  ['cFunctionFontBackgroundColor']: cFunctionFontBackgroundColor, // FunctionFontBackgroundColor
-  ['cMessageFontBackgroundColor']: cMessageFontBackgroundColor, // MessageFontBackgroundColor
-  ['cDataFontBackgroundColor']: cDataFontBackgroundColor, // DataFontBackgroundColor
+  [bas.cc + cModuleFontStyle]: cModuleFontStyle, // ModuleFontStyle
+  [bas.cc + cFunctionFontStyle]: cFunctionFontStyle, // FunctionFontStyle
+  [bas.cc + cMessageFontStyle]: cMessageFontStyle, // MessageFontStyle
+  [bas.cc + cDataFontStyle]: cDataFontStyle, // DataFontStyle
+  [bas.cc + cModuleFontColor]: cModuleFontColor, // ModuleFontColor
+  [bas.cc + cFunctionFontColor]: cFunctionFontColor, // FunctionFontColor
+  [bas.cc + cMessageFontColor]: cMessageFontColor, // MessageFontColor
+  [bas.cc + cDataFontColor]: cDataFontColor, // DataFontColor
+  [bas.cc + cModuleFontBackgroundColor]: cModuleFontBackgroundColor, // ModuleFontBackgroundColor
+  [bas.cc + cFunctionFontBackgroundColor]: cFunctionFontBackgroundColor, // FunctionFontBackgroundColor
+  [bas.cc + cMessageFontBackgroundColor]: cMessageFontBackgroundColor, // MessageFontBackgroundColor
+  [bas.cc + cDataFontBackgroundColor]: cDataFontBackgroundColor, // DataFontBackgroundColor
 
   // File Types
-  ['cCatia']: cCatia, // Catia
-  ['cDocument']: cDocument, // Document
-  ['cDocuments']: cDocuments, // Documents
-  ['cDraft']: cDraft, // Draft
-  ['cDWG']: cDWG, // DWG
-  ['cHoops']: cHoops, // Hoops
-  ['cHOOPS']: cHOOPS, // HOOPS
-  ['cImage']: cImage, // Image
-  ['cImages']: cImages, // Images
-  ['cInventor']: cInventor, // Inventor
-  ['cNeutral']: cNeutral, // Neutral
-  ['cNX']: cNX, // NX
-  ['cParasolid']: cParasolid, // Parasolid
-  ['cProE']: cProE, // ProE
-  ['cRhino']: cRhino, // Rhino
-  ['cSolidEdge']: cSolidEdge, // SolidEdge
-  ['cSolidWorks']: cSolidWorks, // SolidWorks
-  ['cvrml']: cvrml, // vrml
-  ['cVrml']: cVrml, // Vrml
-  ['cVRML']: cVRML, // VRML
+  [bas.cc + cCatia]: cCatia, // Catia
+  [bas.cc + cDocument]: cDocument, // Document
+  [bas.cc + cDocuments]: cDocuments, // Documents
+  [bas.cc + cDraft]: cDraft, // Draft
+  [bas.cc + cDWG]: cDWG, // DWG
+  [bas.cc + cHoops]: cHoops, // Hoops
+  [bas.cc + cHOOPS]: cHOOPS, // HOOPS
+  [bas.cc + cImage]: cImage, // Image
+  [bas.cc + cImages]: cImages, // Images
+  [bas.cc + cInventor]: cInventor, // Inventor
+  [bas.cc + cNeutral]: cNeutral, // Neutral
+  [bas.cc + cNX]: cNX, // NX
+  [bas.cc + cParasolid]: cParasolid, // Parasolid
+  [bas.cc + cProE]: cProE, // ProE
+  [bas.cc + cRhino]: cRhino, // Rhino
+  [bas.cc + cSolidEdge]: cSolidEdge, // SolidEdge
+  [bas.cc + cSolidWorks]: cSolidWorks, // SolidWorks
+  [bas.cc + cvrml]: cvrml, // vrml
+  [bas.cc + cVrml]: cVrml, // Vrml
+  [bas.cc + cVRML]: cVRML, // VRML
 
   // UI Element Types
-  ['cButton']: cButton, // Button
+  [bas.cc + cButton]: cButton, // Button
 
   // Environment Variables
-  ['cQA']: cQA, // QA
-  ['cDEV']: cDEV, // DEV
-  ['cProd']: cProd, // Prod
-  ['cPROD']: cPROD, // PROD
-  ['cPre']: cPre, // Pre
-  ['cPRE']: cPRE, // PRE
-  ['cPreProd']: cPreProd, // PreProd
-  ['cPREPROD']: cPREPROD, // PREPROD
+  [bas.cc + cQA]: cQA, // QA
+  [bas.cc + cdev]: cdev, // dev
+  [bas.cc + cDEV]: cDEV, // DEV
+  [bas.cc + cProd]: cProd, // Prod
+  [bas.cc + cPROD]: cPROD, // PROD
+  [bas.cc + cPre]: cPre, // Pre
+  [bas.cc + cPRE]: cPRE, // PRE
+  [bas.cc + cPreProd]: cPreProd, // PreProd
+  [bas.cc + cPREPROD]: cPREPROD, // PREPROD
 
   // Key Combinations
-  ['cctrl_a']: cctrl_a, // ctrl+a
-  ['cctrl_b']: cctrl_b, // ctrl+b
-  ['cctrl_c']: cctrl_c, // ctrl+c
-  ['cctrl_d']: cctrl_d, // ctrl+d
-  ['cctrl_e']: cctrl_e, // ctrl+e
-  ['cctrl_f']: cctrl_f, // ctrl+f
-  ['cctrl_g']: cctrl_g, // ctrl+g
-  ['cctrl_h']: cctrl_h, // ctrl+h
-  ['cctrl_i']: cctrl_i, // ctrl+i
-  ['cctrl_j']: cctrl_j, // ctrl+j
-  ['cctrl_k']: cctrl_k, // ctrl+k
-  ['cctrl_l']: cctrl_l, // ctrl+l
-  ['cctrl_m']: cctrl_m, // ctrl+m
-  ['cctrl_n']: cctrl_n, // ctrl+n
-  ['cctrl_o']: cctrl_o, // ctrl+o
-  ['cctrl_p']: cctrl_p, // ctrl+p
-  ['cctrl_q']: cctrl_q, // ctrl+q
-  ['cctrl_r']: cctrl_r, // ctrl+r
-  ['cctrl_s']: cctrl_s, // ctrl+s
-  ['cctrl_t']: cctrl_t, // ctrl+t
-  ['cctrl_u']: cctrl_u, // ctrl+u
-  ['cctrl_v']: cctrl_v, // ctrl+v
-  ['cctrl_w']: cctrl_w, // ctrl+w
-  ['cctrl_x']: cctrl_x, // ctrl+x
-  ['cctrl_y']: cctrl_y, // ctrl+y
-  ['cctrl_z']: cctrl_z, // ctrl+z
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ca]: cctrl_a, // ctrl+a
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cb]: cctrl_b, // ctrl+b
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cc]: cctrl_c, // ctrl+c
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cd]: cctrl_d, // ctrl+d
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ce]: cctrl_e, // ctrl+e
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cf]: cctrl_f, // ctrl+f
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cg]: cctrl_g, // ctrl+g
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ch]: cctrl_h, // ctrl+h
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ci]: cctrl_i, // ctrl+i
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cj]: cctrl_j, // ctrl+j
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ck]: cctrl_k, // ctrl+k
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cl]: cctrl_l, // ctrl+l
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cm]: cctrl_m, // ctrl+m
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cn]: cctrl_n, // ctrl+n
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.co]: cctrl_o, // ctrl+o
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cp]: cctrl_p, // ctrl+p
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cq]: cctrl_q, // ctrl+q
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cr]: cctrl_r, // ctrl+r
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cs]: cctrl_s, // ctrl+s
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ct]: cctrl_t, // ctrl+t
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cu]: cctrl_u, // ctrl+u
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cv]: cctrl_v, // ctrl+v
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cw]: cctrl_w, // ctrl+w
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cx]: cctrl_x, // ctrl+x
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cy]: cctrl_y, // ctrl+y
+  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cz]: cctrl_z, // ctrl+z
 
   // System Terms
-  ['cframeworkResourcesConfigurationPath']: cframeworkResourcesConfigurationPath, // //resources//configuration//
-  ['csystemConfigFileName']: csystemConfigFileName, // framework.system.json
-  ['capplicationConfigFileName']: capplicationConfigFileName, // application.system.json
-  ['cappConfigPath']: cappConfigPath, // appConfigPath
-  ['cframeworkConfigPath']: cframeworkConfigPath, // frameworkConfigPath
-  ['cApplicationName']: cApplicationName, // ApplicationName
-  ['cApplicationRootPath']: cApplicationRootPath, // ApplicationRootPath
-  ['cApplicationCleanedRootPath']: cApplicationCleanedRootPath, // ApplicationCleanedRootPath
-  ['cConfigurationPath']: cConfigurationPath, // ConfigurationPath
-  ['cApplicationVersionNumber']: cApplicationVersionNumber, // ApplicationVersionNumber
-  ['cApplicationDescription']: cApplicationDescription, // ApplicationDescription
-  ['cDataPath']: cDataPath, // DataPath
-  ['cCtempPath']: cCtempPath, // CtempPath
-  ['cPageDataPath']: cPageDataPath, // PageDataPath
-  ['cWorkflowDataPath']: cWorkflowDataPath, // WorkflowDataPath
-  ['cKeywordsDataPath']: cKeywordsDataPath, // KeywordsDataPath
-  ['cLocatorsDataPath']: cLocatorsDataPath, // LocatorsDataPath
-  ['cClientConstantsPath']: cClientConstantsPath, // ClientConstantsPath
-  ['cSystemConstantsPath']: cSystemConstantsPath, // SystemConstantsPath
-  ['cSystemConstantsPathActual']: cSystemConstantsPathActual, // src/Framework/Constants/
-  ['cclientRulesLibrary']: cclientRulesLibrary, // clientRulesLibrary
-  ['cCommandQueue']: cCommandQueue, // CommandQueue
-  ['cConstantsValidationData']: cConstantsValidationData, // ConstantsValidationData
-  ['cConstantsShortNames']: cConstantsShortNames, // ConstantsShortNames
-  ['cConstantsFileNames']: cConstantsFileNames, // ConstantsFileNames
-  ['cConstantsPrefix']: cConstantsPrefix, // ConstantsPrefix
-  ['cConstantsFilePaths']: cConstantsFilePaths, // ConstantsFilePaths
-  ['cConstantsPhase1ValidationMessages']: cConstantsPhase1ValidationMessages, // ConstantsPhase1ValidationMessages
-  ['cConstantsPhase2ValidationMessages']: cConstantsPhase2ValidationMessages, // ConstantsPhase2ValidationMessages
-  ['cBasicConstantsValidation']: cBasicConstantsValidation, // BasicConstantsValidation
-  ['cBusinessConstantsValidation']: cBusinessConstantsValidation, // BusinessConstantsValidation
-  ['cColorConstantsValidation']: cColorConstantsValidation, // ColorConstantsValidation
-  ['cCommandConstantsValidation']: cCommandConstantsValidation, // CommandConstantsValidation
-  ['cConfigurationConstantsValidation']: cConfigurationConstantsValidation, // ConfigurationConstantsValidation
-  ['cCountryConstantsValidation']: cCountryConstantsValidation, // CountryConstantsValidation
-  ['cElementConstantsValidation']: cElementConstantsValidation, // ElementConstantsValidation
-  ['cGenericConstantsValidation']: cGenericConstantsValidation, // GenericConstantsValidation
-  ['cIsotopeConstantsValidation']: cIsotopeConstantsValidation, // IsotopeConstantsValidation
-  ['cKnotConstantsValidation']: cKnotConstantsValidation, // KnotConstantsValidation
-  ['cLanguageConstantsValidation']: cLanguageConstantsValidation, // LanguageConstantsValidation
-  ['cMessageConstantsValidation']: cMessageConstantsValidation, // MessageConstantsValidation
-  ['cNumericConstantsValidation']: cNumericConstantsValidation, // NumericConstantsValidation
-  ['cPhonicConstantsValidation']: cPhonicConstantsValidation, // PhonicConstantsValidation
-  ['cShapeConstantsValidation']: cShapeConstantsValidation, // ShapeConstantsValidation
-  ['cSystemConstantsValidation']: cSystemConstantsValidation, // SystemConstantsValidation
-  ['cUnitConstantsValidation']: cUnitConstantsValidation, // UnitConstantsValidation
-  ['cWordConstantsValidation']: cWordConstantsValidation, // WordConstantsValidation
-  ['cSourceResourcesPath']: cSourceResourcesPath, // SourceResourcesPath
-  ['cDestinationResourcesPath']: cDestinationResourcesPath, // BinaryResourcesPath
-  ['cBinaryRootPath']: cBinaryRootPath, // BinaryRootPath
-  ['cBinaryReleasePath']: cBinaryReleasePath, // BinaryReleasePath
+  [bas.cc + wrd.cframework + wrd.cResources + wrd.cConfiguration + wrd.cPath]: cframeworkResourcesConfigurationPath, // //resources//configuration//
+  [bas.cc + wrd.csystem + wrd.cConfig + wrd.cFile + wrd.cName]: csystemConfigFileName, // framework.system.json
+  [bas.cc + wrd.capplication + wrd.cConfig + wrd.cFile + wrd.cName]: capplicationConfigFileName, // application.system.json
+  [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
+  [bas.cc + cframeworkConfigPath]: cframeworkConfigPath, // frameworkConfigPath
+  [bas.cc + cApplicationName]: cApplicationName, // ApplicationName
+  [bas.cc + cApplicationRootPath]: cApplicationRootPath, // ApplicationRootPath
+  [bas.cc + cApplicationCleanedRootPath]: cApplicationCleanedRootPath, // ApplicationCleanedRootPath
+  [bas.cc + cConfigurationPath]: cConfigurationPath, // ConfigurationPath
+  [bas.cc + cApplicationVersionNumber]: cApplicationVersionNumber, // ApplicationVersionNumber
+  [bas.cc + cApplicationDescription]: cApplicationDescription, // ApplicationDescription
+  [bas.cc + cDataPath]: cDataPath, // DataPath
+  [bas.cc + cCtempPath]: cCtempPath, // CtempPath
+  [bas.cc + cPageDataPath]: cPageDataPath, // PageDataPath
+  [bas.cc + cWorkflowDataPath]: cWorkflowDataPath, // WorkflowDataPath
+  [bas.cc + cKeywordsDataPath]: cKeywordsDataPath, // KeywordsDataPath
+  [bas.cc + cLocatorsDataPath]: cLocatorsDataPath, // LocatorsDataPath
+  [bas.cc + cClientConstantsPath]: cClientConstantsPath, // ClientConstantsPath
+  [bas.cc + cSystemConstantsPath]: cSystemConstantsPath, // SystemConstantsPath
+  [bas.cc + cSystemConstantsPathActual]: cSystemConstantsPathActual, // src/Framework/Constants/
+  [bas.cc + cclientRulesLibrary]: cclientRulesLibrary, // clientRulesLibrary
+  [bas.cc + cCommandQueue]: cCommandQueue, // CommandQueue
+  [bas.cc + cConstantsValidationData]: cConstantsValidationData, // ConstantsValidationData
+  [bas.cc + cConstantsShortNames]: cConstantsShortNames, // ConstantsShortNames
+  [bas.cc + cConstantsFileNames]: cConstantsFileNames, // ConstantsFileNames
+  [bas.cc + cConstantsPrefix]: cConstantsPrefix, // ConstantsPrefix
+  [bas.cc + cConstantsFilePaths]: cConstantsFilePaths, // ConstantsFilePaths
+  [bas.cc + cConstantsPhase1ValidationMessages]: cConstantsPhase1ValidationMessages, // ConstantsPhase1ValidationMessages
+  [bas.cc + cConstantsPhase2ValidationMessages]: cConstantsPhase2ValidationMessages, // ConstantsPhase2ValidationMessages
+  [bas.cc + cBasicConstantsValidation]: cBasicConstantsValidation, // BasicConstantsValidation
+  [bas.cc + cBusinessConstantsValidation]: cBusinessConstantsValidation, // BusinessConstantsValidation
+  [bas.cc + cColorConstantsValidation]: cColorConstantsValidation, // ColorConstantsValidation
+  [bas.cc + cCommandConstantsValidation]: cCommandConstantsValidation, // CommandConstantsValidation
+  [bas.cc + cConfigurationConstantsValidation]: cConfigurationConstantsValidation, // ConfigurationConstantsValidation
+  [bas.cc + cCountryConstantsValidation]: cCountryConstantsValidation, // CountryConstantsValidation
+  [bas.cc + cElementConstantsValidation]: cElementConstantsValidation, // ElementConstantsValidation
+  [bas.cc + cGenericConstantsValidation]: cGenericConstantsValidation, // GenericConstantsValidation
+  [bas.cc + cIsotopeConstantsValidation]: cIsotopeConstantsValidation, // IsotopeConstantsValidation
+  [bas.cc + cKnotConstantsValidation]: cKnotConstantsValidation, // KnotConstantsValidation
+  [bas.cc + cLanguageConstantsValidation]: cLanguageConstantsValidation, // LanguageConstantsValidation
+  [bas.cc + cMessageConstantsValidation]: cMessageConstantsValidation, // MessageConstantsValidation
+  [bas.cc + cNumericConstantsValidation]: cNumericConstantsValidation, // NumericConstantsValidation
+  [bas.cc + cPhonicConstantsValidation]: cPhonicConstantsValidation, // PhonicConstantsValidation
+  [bas.cc + cShapeConstantsValidation]: cShapeConstantsValidation, // ShapeConstantsValidation
+  [bas.cc + cSystemConstantsValidation]: cSystemConstantsValidation, // SystemConstantsValidation
+  [bas.cc + cUnitConstantsValidation]: cUnitConstantsValidation, // UnitConstantsValidation
+  [bas.cc + cWordConstantsValidation]: cWordConstantsValidation, // WordConstantsValidation
+  [bas.cc + cSourceResourcesPath]: cSourceResourcesPath, // SourceResourcesPath
+  [bas.cc + cDestinationResourcesPath]: cDestinationResourcesPath, // BinaryResourcesPath
+  [bas.cc + cBinaryRootPath]: cBinaryRootPath, // BinaryRootPath
+  [bas.cc + cBinaryReleasePath]: cBinaryReleasePath, // BinaryReleasePath
 
   // Constants Filenames
-  ['cbasic_constants_js']: cbasic_constants_js, // basic.constants.js
-  ['cbusiness_constants_js']: cbusiness_constants_js, // business.constants.js
-  ['ccolor_constants_js']: ccolor_constants_js, // color.constants.js
-  ['ccommand_constants_js']: ccommand_constants_js, // command.constants.js
-  ['cconfiguration_constants_js']: cconfiguration_constants_js, // configuration.constants.js
-  ['ccountry_constants_js']: ccountry_constants_js, // country.constants
-  ['celement_constants_js']: celement_constants_js, // element.constants.js
-  ['cgeneric_constants_js']: cgeneric_constants_js, // generic.constants.js
-  ['cisotope_constants_js']: cisotope_constants_js, // isotope.constants.js
-  ['cknot_constants_js']: cknot_constants_js, // knot.constants.js
-  ['clanguage_constants_js']: clanguage_constants_js, // language.constants.js
-  ['cmessage_constants_js']: cmessage_constants_js, // message.constants.js
-  ['cnumeric_constants_js']: cnumeric_constants_js, // numeric.constants.js
-  ['cphonic_constants_js']: cphonic_constants_js, // phonic.constants.js
-  ['cshape_constants_js']: cshape_constants_js, // shape.constants.js
-  ['csystem_constants_js']: csystem_constants_js, // system.constants.js
-  ['cunit_constants_js']: cunit_constants_js, // unit.constants.js
-  ['cword_constants_js']: cword_constants_js, // word.constants.js
+  [bas.cc + wrd.cbasic + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cbasic_constants_js, // basic.constants.js
+  [bas.cc + wrd.cbusiness + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cbusiness_constants_js, // business.constants.js
+  [bas.cc + wrd.ccolor + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: ccolor_constants_js, // color.constants.js
+  [bas.cc + wrd.ccommand + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: ccommand_constants_js, // command.constants.js
+  [bas.cc + wrd.cconfiguration + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cconfiguration_constants_js, // configuration.constants.js
+  [bas.cc + wrd.ccountry + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: ccountry_constants_js, // country.constants
+  [bas.cc + wrd.celement + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: celement_constants_js, // element.constants.js
+  [bas.cc + wrd.cgeneric + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cgeneric_constants_js, // generic.constants.js
+  [bas.cc + wrd.cisotope + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cisotope_constants_js, // isotope.constants.js
+  [bas.cc + wrd.cknot + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cknot_constants_js, // knot.constants.js
+  [bas.cc + wrd.clanguage + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: clanguage_constants_js, // language.constants.js
+  [bas.cc + wrd.cmessage + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cmessage_constants_js, // message.constants.js
+  [bas.cc + wrd.cnumeric + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cnumeric_constants_js, // numeric.constants.js
+  [bas.cc + wrd.cphonic + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cphonic_constants_js, // phonic.constants.js
+  [bas.cc + wrd.cshape + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cshape_constants_js, // shape.constants.js
+  [bas.cc + wrd.csystem + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: csystem_constants_js, // system.constants.js
+  [bas.cc + wrd.cunit + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cunit_constants_js, // unit.constants.js
+  [bas.cc + wrd.cword + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cword_constants_js, // word.constants.js
 };

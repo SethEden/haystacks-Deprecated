@@ -139,6 +139,9 @@ let cYYYYMMDD_HHmmss  = cYYYYMMDD + bas.cDash + cHHmmss; // YYYYMMDD_HHmmss
 let cYYYYMMDD_HHmmss_SSS = cYYYYMMDD_HHmmss + cSSS; // YYYYMMDD_HHmmss_SSS
 let cYYYY_MM_DD_HH_mm_ss_SSS = cYYYY + bas.cColon + bas.cMM + bas.cColon + bas.cDD + bas.cDash + bas.cHH + bas.cColon + bas.cmm + bas.cColon + bas.css + bas.cColon + cSSS; // YYYY_MM_DD_HH_mm_ss_SSS
 
+// Operating Systems
+let cwin32 = phn.cwin + num.c32;
+
 // Naval & Military Codes
 let cAlfa = bas.cAl + bas.cfa; //  Alfa
 let cBravo = bas.cBr + bas.cav + bas.co; // Bravo
@@ -251,240 +254,247 @@ let cRegExp = cRegEx + bas.cp; // RegExp
 let cbin = bas.cbi + bas.cn; // bin
 let cBin = bas.cBi + bas.cn; // Bin
 let cBIN = bas.cBI + bas.cN; // BIN
+let cinit = phn.cini + bas.ct; // init
+let cInit = phn.cIni + bas.ct; // Init
 
 module.exports = {
-  ['cDotDot']: cDotDot, // ..
-  ['cDotDotForwardSlash']: cDotDotForwardSlash, // ../
+  [bas.cc + 'DotDot']: cDotDot, // ..
+  [bas.cc + 'DotDotForwardSlash']: cDotDotForwardSlash, // ../
 
   // Boolean strings
-  ['cTrue']: cTrue, // True
-  ['cFalse']: cFalse, // False
-  ['ctrue']: ctrue, // true
-  ['cfalse']: cfalse, // false
-  ['cTRUE']: cTRUE, // TRUE
-  ['cFALSE']: cFALSE, // FALSE
-  ['cOff']: cOff, // Off
-  ['coff']: coff, // off
-  ['cOFF']: cOFF, // OFF
-  ['cyes']: cyes, // yes
-  ['cnot']: cnot, // not
-  ['cYes']: cYes, // Yes
-  ['cNot']: cNot, // Not
-  ['cYES']: cYES, // YES
-  ['cNOT']: cNOT, // bas.c_NO + bas.cT; // NOTE cNOT is some how a reserved word that is a variable.
-  ['cnotok']: cnotok, // notok
-  ['cnotOk']: cnotOk, // notOk
-  ['cnotOK']: cnotOK, // notOK
-  ['cNotok']: cNotok, // Notok
-  ['cNotOk']: cNotOk, // NotOk
-  ['cNotOK']: cNotOK, // NotOK
-  ['cNOTok']: cNOTok, // c_NOT = bas.cok;
-  ['cNOTOk']: cNOTOk, // c_NOT = bas.cOk;
-  ['cNOTOK']: cNOTOK, // c_NOT + bas.cOK;
-  ['cnotEql']: cnotEql, // notEql
-  ['cnoteql']: cnoteql, // noteql
-  ['cNotEql']: cNotEql, // NotEql
-  ['cNoteql']: cNoteql, // Noteql
-  ['cmax']: cmax, // max
-  ['cMax']: cMax, // Max
-  ['cmin']: cmin, // min
-  ['cMin']: cMin, // Min
+  [bas.cc + cTrue]: cTrue, // True
+  [bas.cc + cFalse]: cFalse, // False
+  [bas.cc + ctrue]: ctrue, // true
+  [bas.cc + cfalse]: cfalse, // false
+  [bas.cc + cTRUE]: cTRUE, // TRUE
+  [bas.cc + cFALSE]: cFALSE, // FALSE
+  [bas.cc + cOff]: cOff, // Off
+  [bas.cc + coff]: coff, // off
+  [bas.cc + cOFF]: cOFF, // OFF
+  [bas.cc + cyes]: cyes, // yes
+  [bas.cc + cnot]: cnot, // not
+  [bas.cc + cYes]: cYes, // Yes
+  [bas.cc + cNot]: cNot, // Not
+  [bas.cc + cYES]: cYES, // YES
+  [bas.cc + cNOT]: cNOT, // bas.c_NO + bas.cT; // NOTE cNOT is some how a reserved word that is a variable.
+  [bas.cc + cnotok]: cnotok, // notok
+  [bas.cc + cnotOk]: cnotOk, // notOk
+  [bas.cc + cnotOK]: cnotOK, // notOK
+  [bas.cc + cNotok]: cNotok, // Notok
+  [bas.cc + cNotOk]: cNotOk, // NotOk
+  [bas.cc + cNotOK]: cNotOK, // NotOK
+  [bas.cc + cNOTok]: cNOTok, // c_NOT = bas.cok;
+  [bas.cc + cNOTOk]: cNOTOk, // c_NOT = bas.cOk;
+  [bas.cc + cNOTOK]: cNOTOK, // c_NOT + bas.cOK;
+  [bas.cc + cnotEql]: cnotEql, // notEql
+  [bas.cc + cnoteql]: cnoteql, // noteql
+  [bas.cc + cNotEql]: cNotEql, // NotEql
+  [bas.cc + cNoteql]: cNoteql, // Noteql
+  [bas.cc + cmax]: cmax, // max
+  [bas.cc + cMax]: cMax, // Max
+  [bas.cc + cmin]: cmin, // min
+  [bas.cc + cMin]: cMin, // Min
 
   // Test Status
-  ['cPass']: cPass, // Pass
-  ['cWarning']: cWarning, // Warning
-  ['cFail']: cFail, // Fail
+  [bas.cc + cPass]: cPass, // Pass
+  [bas.cc + cWarning]: cWarning, // Warning
+  [bas.cc + cFail]: cFail, // Fail
 
   // Directions
-  ['cDown']: cDown, // Down
-  ['cLeft']: cLeft, // Left
-  ['cRight']: cRight, // Right
+  [bas.cc + cDown]: cDown, // Down
+  [bas.cc + cLeft]: cLeft, // Left
+  [bas.cc + cRight]: cRight, // Right
 
   // Alphabets
-  ['cLowerCaseEnglishAlphabet']: cLowerCaseEnglishAlphabet, // abcdefghijklmnopqrstuvwxyz
-  ['cUpperCaseEnglishAlphabet']: cUpperCaseEnglishAlphabet, // ABCDEFGHIJKLMNOPQRSTUVWXYZ
-  ['cAllNumbers']: cAllNumbers, // 0123456789
-  ['cMostSpecialCharacters']: cMostSpecialCharacters, // !@#$%^&*()_+{}|:"<>?.,~
+  [bas.cc + con.cLowerCaseEnglishAlphabet]: cLowerCaseEnglishAlphabet, // abcdefghijklmnopqrstuvwxyz
+  [bas.cc + con.cUpperCaseEnglishAlphabet]: cUpperCaseEnglishAlphabet, // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  [bas.cc + con.cAllNumbers]: cAllNumbers, // 0123456789
+  [bas.cc + con.cMostSpecialCharacters]: cMostSpecialCharacters, // !@#$%^&*()_+{}|:"<>?.,~
 
   // File Extensions
-  ['cexe']: cexe, // exe
-  ['cExe']: cExe, // Exe
-  ['cEXE']: cEXE, // EXE
-  ['cdoc']: cdoc, // doc
-  ['cDoc']: cDoc, // Doc
-  ['cDOC']: cDOC, // DOC
-  ['ccom']: ccom, // com
-  ['cCom']: cCom, // Com
-  ['cCOM']: cCOM, // COM
-  ['czip']: czip, // zip
-  ['cZip']: cZip, // Zip
-  ['cZIP']: cZIP, // ZIP
-  ['ctxt']: ctxt, // txt
-  ['cTxt']: cTxt, // Txt
-  ['cTXT']: cTXT, // TXT
-  ['ccsv']: ccsv, // csv
-  ['cCsv']: cCsv, // Csv
-  ['cCSV']: cCSV, // CSV
-  ['cxml']: cxml, // xml
-  ['cXml']: cXml, // Xml
-  ['cXML']: cXML, // XML
-  ['clog']: clog, // log
-  ['cLog']: cLog, // Log
-  ['cLOG']: cLOG, // LOG
-  ['cjson']: cjson, // json
-  ['cJson']: cJson, // Json
-  ['cJSON']: cJSON, // JSON
-  ['cenv']: cenv, // env
-  ['cEnv']: cEnv, // Env
-  ['cENV']: cENV, // ENV
+  [bas.cc + cexe]: cexe, // exe
+  [bas.cc + cExe]: cExe, // Exe
+  [bas.cc + cEXE]: cEXE, // EXE
+  [bas.cc + cdoc]: cdoc, // doc
+  [bas.cc + cDoc]: cDoc, // Doc
+  [bas.cc + cDOC]: cDOC, // DOC
+  [bas.cc + ccom]: ccom, // com
+  [bas.cc + cCom]: cCom, // Com
+  [bas.cc + cCOM]: cCOM, // COM
+  [bas.cc + czip]: czip, // zip
+  [bas.cc + cZip]: cZip, // Zip
+  [bas.cc + cZIP]: cZIP, // ZIP
+  [bas.cc + ctxt]: ctxt, // txt
+  [bas.cc + cTxt]: cTxt, // Txt
+  [bas.cc + cTXT]: cTXT, // TXT
+  [bas.cc + ccsv]: ccsv, // csv
+  [bas.cc + cCsv]: cCsv, // Csv
+  [bas.cc + cCSV]: cCSV, // CSV
+  [bas.cc + cxml]: cxml, // xml
+  [bas.cc + cXml]: cXml, // Xml
+  [bas.cc + cXML]: cXML, // XML
+  [bas.cc + clog]: clog, // log
+  [bas.cc + cLog]: cLog, // Log
+  [bas.cc + cLOG]: cLOG, // LOG
+  [bas.cc + cjson]: cjson, // json
+  [bas.cc + cJson]: cJson, // Json
+  [bas.cc + cJSON]: cJSON, // JSON
+  [bas.cc + cenv]: cenv, // env
+  [bas.cc + cEnv]: cEnv, // Env
+  [bas.cc + cENV]: cENV, // ENV
 
-  ['cDotexe']: cDotexe, // .exe
-  ['cDotExe']: cDotExe, // .Exe
-  ['cDotEXE']: cDotEXE, // .EXE
-  ['cDotcsv']: cDotcsv, // .csv
-  ['cDotCsv']: cDotCsv, // .Csv
-  ['cDotCSV']: cDotCSV, // .CSV
-  ['cDotCom']: cDotCom, // .Com
-  ['cDotzip']: cDotzip, // .zip
-  ['cDotZip']: cDotZip, // .Zip
-  ['cDotZIP']: cDotZIP, // .ZIP
-  ['cDottxt']: cDottxt, // .txt
-  ['cDotTxt']: cDotTxt, // .Txt
-  ['cDotTXT']: cDotTXT, // .TXT
-  ['cDotxml']: cDotxml, // .xml
-  ['cDotXml']: cDotXml, // .Xml
-  ['cDotXML']: cDotXML, // .XML
-  ['cDotlog']: cDotlog, // .log
-  ['cDotLog']: cDotLog, // .Log
-  ['cDotLOG']: cDotLOG, // .LOG
-  ['cDotjson']: cDotjson, // .json
-  ['cDotJson']: cDotJson, // .Json
-  ['cDotJSON']: cDotJSON, // .JSON
-  ['cDotenv']: cDotenv, // .env
-  ['cDotEnv']: cDotEnv, // .Env
-  ['cDotENV']: cDotENV, // .ENV
-  ['cascii']: cascii, // ascii
+  [bas.cc + con.cDot + cexe]: cDotexe, // .exe
+  [bas.cc + con.cDot + cExe]: cDotExe, // .Exe
+  [bas.cc + con.cDot + cEXE]: cDotEXE, // .EXE
+  [bas.cc + con.cDot + ccsv]: cDotcsv, // .csv
+  [bas.cc + con.cDot + cCsv]: cDotCsv, // .Csv
+  [bas.cc + con.cDot + cCSV]: cDotCSV, // .CSV
+  [bas.cc + con.cDot + cCom]: cDotCom, // .Com
+  [bas.cc + con.cDot + czip]: cDotzip, // .zip
+  [bas.cc + con.cDot + cZip]: cDotZip, // .Zip
+  [bas.cc + con.cDot + cZIP]: cDotZIP, // .ZIP
+  [bas.cc + con.cDot + ctxt]: cDottxt, // .txt
+  [bas.cc + con.cDot + cTxt]: cDotTxt, // .Txt
+  [bas.cc + con.cDot + cTXT]: cDotTXT, // .TXT
+  [bas.cc + con.cDot + cxml]: cDotxml, // .xml
+  [bas.cc + con.cDot + cXml]: cDotXml, // .Xml
+  [bas.cc + con.cDot + cXML]: cDotXML, // .XML
+  [bas.cc + con.cDot + clog]: cDotlog, // .log
+  [bas.cc + con.cDot + cLog]: cDotLog, // .Log
+  [bas.cc + con.cDot + cLOG]: cDotLOG, // .LOG
+  [bas.cc + con.cDot + cjson]: cDotjson, // .json
+  [bas.cc + con.cDot + cJson]: cDotJson, // .Json
+  [bas.cc + con.cDot + cJSON]: cDotJSON, // .JSON
+  [bas.cc + con.cDot + cenv]: cDotenv, // .env
+  [bas.cc + con.cDot + cEnv]: cDotEnv, // .Env
+  [bas.cc + con.cDot + cENV]: cDotENV, // .ENV
+  [bas.cc + cascii]: cascii, // ascii
 
   // Time Formatting
-  ['cYYYY']: cYYYY, // YYYY
-  ['cSSS']: cSSS, // SSS
-  ['cYYYYMMDD']: cYYYYMMDD, // YYYYMMDD
-  ['cHHmmss']: cHHmmss, // HHmmss
-  ['cHHmmss_SSS']: cHHmmss_SSS, // HHmmss_SSS
-  ['cYYYYMMDD_HHmmss']: cYYYYMMDD_HHmmss, // YYYYMMDD_HHmmss
-  ['cYYYYMMDD_HHmmss_SSS']: cYYYYMMDD_HHmmss_SSS, // YYYYMMDD_HHmmss_SSS
-  ['cYYYY_MM_DD_HH_mm_ss_SSS']: cYYYY_MM_DD_HH_mm_ss_SSS, // YYYY_MM_DD_HH_mm_ss_SSS
+  [bas.cc + cYYYY]: cYYYY, // YYYY
+  [bas.cc + cSSS]: cSSS, // SSS
+  [bas.cc + cYYYYMMDD]: cYYYYMMDD, // YYYYMMDD
+  [bas.cc + cHHmmss]: cHHmmss, // HHmmss
+  [bas.cc + cHHmmss_SSS]: cHHmmss_SSS, // HHmmss_SSS
+  [bas.cc + cYYYYMMDD_HHmmss]: cYYYYMMDD_HHmmss, // YYYYMMDD_HHmmss
+  [bas.cc + cYYYYMMDD_HHmmss_SSS]: cYYYYMMDD_HHmmss_SSS, // YYYYMMDD_HHmmss_SSS
+  [bas.cc + cYYYY_MM_DD_HH_mm_ss_SSS]: cYYYY_MM_DD_HH_mm_ss_SSS, // YYYY_MM_DD_HH_mm_ss_SSS
+
+  // Operating Systems
+  [bas.cc + cwin32]: cwin32, // win32
 
   // Naval & Military Codes
-  ['cAlfa']: cAlfa, //  Alfa
-  ['cBravo']: cBravo, // Bravo
-  ['cCharlie']: cCharlie, // Charlie
-  ['cDelta']: cDelta, // Delta
-  ['cEcho']: cEcho, // Echo
-  ['cFoxtrot']: cFoxtrot, // Foxtrot
-  ['cGolf']: cGolf, // Golf
-  ['cHotel']: cHotel, // Hotel
-  ['cIndia']: cIndia, // India
-  ['cJuliett']: cJuliett, // Juliett
-  ['cKilo']: cKilo, // Kilo
-  ['cLima']: cLima, // Lima
-  ['cMike']: cMike, // Mike
-  ['cNovember']: cNovember,  // November
-  ['cOscar']: cOscar, // Oscar
-  ['cPapa']: cPapa, // Papa
-  ['cQuebec']: cQuebec, // Quebec
-  ['cRomeo']: cRomeo, // Romeo
-  ['cSierra']: cSierra, // Sierra
-  ['cTango']: cTango, // Tango
-  ['cUniform']: cUniform, // Uniform
-  ['cVictor']: cVictor, // Victor
-  ['cWhiskey']: cWhiskey, // Whiskey
-  ['cXray']: cXray, // Xray
-  ['cYankee']: cYankee, // Yankee
-  ['cZulu']: cZulu, // Zulu
+  [bas.cc + cAlfa]: cAlfa, //  Alfa
+  [bas.cc + cBravo]: cBravo, // Bravo
+  [bas.cc + cCharlie]: cCharlie, // Charlie
+  [bas.cc + cDelta]: cDelta, // Delta
+  [bas.cc + cEcho]: cEcho, // Echo
+  [bas.cc + cFoxtrot]: cFoxtrot, // Foxtrot
+  [bas.cc + cGolf]: cGolf, // Golf
+  [bas.cc + cHotel]: cHotel, // Hotel
+  [bas.cc + cIndia]: cIndia, // India
+  [bas.cc + cJuliett]: cJuliett, // Juliett
+  [bas.cc + cKilo]: cKilo, // Kilo
+  [bas.cc + cLima]: cLima, // Lima
+  [bas.cc + cMike]: cMike, // Mike
+  [bas.cc + cNovember]: cNovember,  // November
+  [bas.cc + cOscar]: cOscar, // Oscar
+  [bas.cc + cPapa]: cPapa, // Papa
+  [bas.cc + cQuebec]: cQuebec, // Quebec
+  [bas.cc + cRomeo]: cRomeo, // Romeo
+  [bas.cc + cSierra]: cSierra, // Sierra
+  [bas.cc + cTango]: cTango, // Tango
+  [bas.cc + cUniform]: cUniform, // Uniform
+  [bas.cc + cVictor]: cVictor, // Victor
+  [bas.cc + cWhiskey]: cWhiskey, // Whiskey
+  [bas.cc + cXray]: cXray, // Xray
+  [bas.cc + cYankee]: cYankee, // Yankee
+  [bas.cc + cZulu]: cZulu, // Zulu
 
-  ['cAlpha']: cAlpha, // Alpha
-  ['cBeta']: cBeta, // Beta
-  ['cGamma']: cGamma, // Gamma
-  ['cEpsilon']: cEpsilon, // Epsilon
-  ['cDigamma']: cDigamma, // Digamma
-  ['cZeta']: cZeta, // Zeta
-  ['ceta']: ceta, // eta
-  ['cEta']: cEta, // Eta
-  ['cTheta']: cTheta, // Theta
-  ['cIota']: cIota, // Iota
-  ['cKappa']: cKappa, // Kappa
-  ['cLambda']: cLambda, // Lambda
-  ['cMu']: cMu, // Mu
-  ['cNu']: cNu, // Nu
-  ['cXi']: cXi, // Xi
-  ['cOmicron']: cOmicron, // Omicron
-  ['cPi']: cPi, // Pi
-  ['cSan']: cSan, // San
-  ['cKoppa']: cKoppa, // Koppa
-  ['cRho']: cRho, // Rho
-  ['cSigma']: cSigma, // Sigma
-  ['cTau']: cTau, // Tau
-  ['cUpsilon']: cUpsilon, // Upsilon
-  ['cPhi']: cPhi, // Phi
-  ['cChi']: cChi, // Chi
-  ['cPsi']: cPsi, // Psi
-  ['cOmega']: cOmega, // Omega
+  [bas.cc + cAlpha]: cAlpha, // Alpha
+  [bas.cc + cBeta]: cBeta, // Beta
+  [bas.cc + cGamma]: cGamma, // Gamma
+  [bas.cc + cEpsilon]: cEpsilon, // Epsilon
+  [bas.cc + cDigamma]: cDigamma, // Digamma
+  [bas.cc + cZeta]: cZeta, // Zeta
+  [bas.cc + ceta]: ceta, // eta
+  [bas.cc + cEta]: cEta, // Eta
+  [bas.cc + cTheta]: cTheta, // Theta
+  [bas.cc + cIota]: cIota, // Iota
+  [bas.cc + cKappa]: cKappa, // Kappa
+  [bas.cc + cLambda]: cLambda, // Lambda
+  [bas.cc + cMu]: cMu, // Mu
+  [bas.cc + cNu]: cNu, // Nu
+  [bas.cc + cXi]: cXi, // Xi
+  [bas.cc + cOmicron]: cOmicron, // Omicron
+  [bas.cc + cPi]: cPi, // Pi
+  [bas.cc + cSan]: cSan, // San
+  [bas.cc + cKoppa]: cKoppa, // Koppa
+  [bas.cc + cRho]: cRho, // Rho
+  [bas.cc + cSigma]: cSigma, // Sigma
+  [bas.cc + cTau]: cTau, // Tau
+  [bas.cc + cUpsilon]: cUpsilon, // Upsilon
+  [bas.cc + cPhi]: cPhi, // Phi
+  [bas.cc + cChi]: cChi, // Chi
+  [bas.cc + cPsi]: cPsi, // Psi
+  [bas.cc + cOmega]: cOmega, // Omega
 
   // Months Of The Year
-  ['cJanuary']: cJanuary, // January
-  ['cFebuary']: cFebuary, // Febuary
-  ['cMarch']: cMarch, // March
-  ['cApril']: cApril, // April
-  ['cMay']: cMay, // May
-  ['cJune']: cJune, // June
-  ['cJuly']: cJuly, // July
-  ['cAugust']: cAugust, // August
-  ['cSeptember']: cSeptember, // September
-  ['cOctober']: cOctober, // October
+  [bas.cc + cJanuary]: cJanuary, // January
+  [bas.cc + cFebuary]: cFebuary, // Febuary
+  [bas.cc + cMarch]: cMarch, // March
+  [bas.cc + cApril]: cApril, // April
+  [bas.cc + cMay]: cMay, // May
+  [bas.cc + cJune]: cJune, // June
+  [bas.cc + cJuly]: cJuly, // July
+  [bas.cc + cAugust]: cAugust, // August
+  [bas.cc + cSeptember]: cSeptember, // September
+  [bas.cc + cOctober]: cOctober, // October
   // ['cNovember']: cNovember, // November
-  ['cDecember']: cDecember, // December
+  [bas.cc + cDecember]: cDecember, // December
 
   // Constants Abreviations
-  ['cbas']: cbas, // bas
-  ['cbiz']: cbiz, // biz
-  ['cclr']: cclr, // clr
-  ['ccmd']: ccmd, // cmd
-  ['ccfg']: ccfg, // cfg
-  ['cctr']: cctr, // ctr
-  ['celm']: celm, // elm
-  ['cgen']: cgen, // gen
-  ['ciso']: ciso, // iso
-  ['ckts']: ckts, // kts
-  ['clng']: clng, // lng
-  ['cmsg']: cmsg, // msg
-  ['cnum']: cnum, // num
-  ['cphn']: cphn, // phn
-  ['cshp']: cshp, // shp
-  ['csys']: csys, // sys
-  ['cunt']: cunt, // unt
-  ['cwrd']: cwrd, // wrd
-  ['capc']: capc, // apc
+  [bas.cc + cbas]: cbas, // bas
+  [bas.cc + cbiz]: cbiz, // biz
+  [bas.cc + cclr]: cclr, // clr
+  [bas.cc + ccmd]: ccmd, // cmd
+  [bas.cc + ccfg]: ccfg, // cfg
+  [bas.cc + cctr]: cctr, // ctr
+  [bas.cc + celm]: celm, // elm
+  [bas.cc + cgen]: cgen, // gen
+  [bas.cc + ciso]: ciso, // iso
+  [bas.cc + ckts]: ckts, // kts
+  [bas.cc + clng]: clng, // lng
+  [bas.cc + cmsg]: cmsg, // msg
+  [bas.cc + cnum]: cnum, // num
+  [bas.cc + cphn]: cphn, // phn
+  [bas.cc + cshp]: cshp, // shp
+  [bas.cc + csys]: csys, // sys
+  [bas.cc + cunt]: cunt, // unt
+  [bas.cc + cwrd]: cwrd, // wrd
+  [bas.cc + capc]: capc, // apc
 
   // Miscelanious
-  ['cUTF8']: cUTF8, // UTF8
-  ['cconst']: cconst, // const
-  ['cConst']: cConst, // Const
-  ['cASAP']: cASAP, // ASAP
-  ['capp']: capp, // app
-  ['cApp']: cApp, // App
-  ['cAPP']: cAPP, // APP
-  ['carg']: carg, // arg
-  ['cArg']: cArg, // Arg
-  ['cargs']: cargs, // args
-  ['cArgs']: cArgs, // Args
-  ['chex']: chex, // hex
-  ['cHex']: cHex, // Hex
-  ['cregEx']: cregEx, // regEx
-  ['cRegEx']: cRegEx, // RegEx
-  ['cregExp']: cregExp, // regExp
-  ['cRegExp']: cRegExp, // RegExp
-  ['cbin']: cbin, // bin
-  ['cBin']: cBin, // Bin
-  ['cBIN']: cBIN // BIN
+  [bas.cc + cUTF8]: cUTF8, // UTF8
+  [bas.cc + cconst]: cconst, // const
+  [bas.cc + cConst]: cConst, // Const
+  [bas.cc + cASAP]: cASAP, // ASAP
+  [bas.cc + capp]: capp, // app
+  [bas.cc + cApp]: cApp, // App
+  [bas.cc + cAPP]: cAPP, // APP
+  [bas.cc + carg]: carg, // arg
+  [bas.cc + cArg]: cArg, // Arg
+  [bas.cc + cargs]: cargs, // args
+  [bas.cc + cArgs]: cArgs, // Args
+  [bas.cc + chex]: chex, // hex
+  [bas.cc + cHex]: cHex, // Hex
+  [bas.cc + cregEx]: cregEx, // regEx
+  [bas.cc + cRegEx]: cRegEx, // RegEx
+  [bas.cc + cregExp]: cregExp, // regExp
+  [bas.cc + cRegExp]: cRegExp, // RegExp
+  [bas.cc + cbin]: cbin, // bin
+  [bas.cc + cBin]: cBin, // Bin
+  [bas.cc + cBIN]: cBIN, // BIN
+  [bas.cc + cinit]: cinit, // init
+  [bas.cc + cInit]: cInit // Init
 };

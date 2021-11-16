@@ -14,6 +14,10 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var fnc = require('../constants/function.constants');
+var gen = require('../constants/generic.constants');
+var wrd = require('../constants/word.constants');
 var fs = require('fs');
 var path = require('path');
 var D = require('../structures/data');
@@ -23,7 +27,7 @@ var enableFilesListLimit = false;
 var filesListLimit = -1;
 var hitFileLimit = false;
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `executrix.${baseFileName}.`;
+var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getJsonData
@@ -87,22 +91,23 @@ function readDirectoryContents(directory) {
  * @date 2020/05/22
  */
 function readDirectorySynchronously(directory) {
-  // let functionName = readDirectorySynchronously.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`directory is: ${directory}`);
+  let functionName = readDirectorySynchronously.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`directory is: ${directory}`);
   if (hitFileLimit === false) {
     directory = path.resolve(directory); // Make sure to resolve the path on the local system, just in case there are issues with the OS that the code is running on.
     let currentDirectoryPath = directory;
     let currentDirectory = '';
     try {
-      currentDirectory = fs.readdirSync(currentDirectoryPath, 'UTF8');
+      currentDirectory = fs.readdirSync(currentDirectoryPath, gen.cUTF8);
     } catch (e) {
+      console.log('ERROR: ' + e.message);
       fs.mkdirSync(currentDirectoryPath);
-      currentDirectory = fs.readdirSync(currentDirectoryPath, 'UTF8');
+      currentDirectory = fs.readdirSync(currentDirectoryPath, gen.cUTF8);
     }
     currentDirectory.forEach(file => {
       let filesShouldBeSkipped = directoriesToSkip.indexOf(file) > -1;
-      let pathOfCurrentItem = directory +'/' + file;
+      let pathOfCurrentItem = directory + bas.cForwardSlash + file;
       try {
         if (!filesShouldBeSkipped && fs.statSync(pathOfCurrentItem).isFile()) {
           if (enableFilesListLimit === true && filesListLimit > 0) {
@@ -133,8 +138,8 @@ function readDirectorySynchronously(directory) {
         console.log(`ERROR: Invalid access to: ${pathOfCurrentItem}`);
       }
     });
-    // console.log(`END ${namespacePrefix}${functionName} function`);
-    // console.log('END dataBroker.readDirectorySynchronously function');
+    console.log(`END ${namespacePrefix}${functionName} function`);
+    console.log('END dataBroker.readDirectorySynchronously function');
   }
 };
 
@@ -170,17 +175,17 @@ function cleanRootPath() {
  * @date 2021/10/27
  */
 function appendMessageToFile(file, message) {
-  let functionName = appendMessageToFile.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`file is: ${file}`);
-  console.log(`message is: ${message}`);
+  // let functionName = appendMessageToFile.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`file is: ${file}`);
+  // console.log(`message is: ${message}`);
   let appendSuccess = false;
   if (file && message) {
     try {
       // console.log('open the file sync');
-      fd = fs.openSync(file, 'a');
+      fd = fs.openSync(file, bas.ca);
       // console.log('append to the file sync');
-      fs.appendFileSync(fd, `${message}\r\n`, 'UTF8');
+      fs.appendFileSync(fd, message + bas.cCarriageReturn + bas.cNewLine, gen.cUTF8);
       // console.log('DONE appending to the file');
     } catch (err) {
       return console.log(err);
@@ -190,14 +195,14 @@ function appendMessageToFile(file, message) {
       }
     }
   }
-  console.log(`appendSuccess is: ${appendSuccess}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`appendSuccess is: ${appendSuccess}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return appendSuccess;
 };
 
 module.exports = {
-  ['getJsonData']: (pathAndFilename) => getJsonData(pathAndFilename),
-  ['readDirectoryContents']: (directory) => readDirectoryContents(directory),
-  ['readDirectorySynchronously']: (directory) => readDirectorySynchronously(directory),
-  ['appendMessageToFile']: (file, message) => appendMessageToFile(file, message)
+  [fnc.cgetJsonData]: (pathAndFilename) => getJsonData(pathAndFilename),
+  [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
+  [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
+  [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)
 };

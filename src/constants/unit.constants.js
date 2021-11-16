@@ -64,48 +64,48 @@ let cFemtoSeconds = cFemto + cSeconds; // FemtoSeconds
 
 module.exports = {
   // Units of Measure
-  ['cFemto']: cFemto, // Femto
-  ['cPico']: cPico, // Pico
-  ['cNano']: cNano, // Nano
-  ['cMicro']: cMicro, // Micro
-  ['cMill']: cMill, // Mill
-  ['cMilli']: cMilli, // Milli
+  [bas.cc + cFemto]: cFemto, // Femto
+  [bas.cc + cPico]: cPico, // Pico
+  [bas.cc + cNano]: cNano, // Nano
+  [bas.cc + cMicro]: cMicro, // Micro
+  [bas.cc + cMill]: cMill, // Mill
+  [bas.cc + cMilli]: cMilli, // Milli
 
   // Units of Time
-  ['csecond']: csecond, // second
-  ['cSecond']: cSecond, // Second
-  ['cSeconds']: cSeconds, // Seconds
-  ['cMinute']: cMinute, // Minute
-  ['cMinutes']: cMinutes, // Minutes
-  ['cHour']: cHour, // Hour
-  ['cHours']: cHours, // Hours
-  ['cDay']: cDay, // Day
-  ['cDays']: cDays, // Days
-  ['cWeek']: cWeek, // Week
-  ['cWeeks']: cWeeks, // Weeks
-  ['cMonth']: cMonth, // Month
-  ['cMonths']: cMonths, // Months
-  ['cYear']: cYear, // Year
-  ['cYears']: cYears, // Years
-  ['cDecade']: cDecade, // Decade
-  ['cDecades']: cDecades, // Decades
-  ['ccent']: ccent, // cent
-  ['cCent']: cCent, // Cent
-  ['cCentur']: cCentur, // Centur
-  ['cCentury']: cCentury, // Century
-  ['cCenturies']: cCenturies, // Centuries
-  ['cMillennium']: cMillennium, // Millennium // Millennium Falcon ;-)
-  ['cMillenniums']: cMillenniums, // Millenniums
-  ['cNanoSecond']: cNanoSecond, // NanoSecond
-  ['cNanoSeconds']: cNanoSeconds, // NanoSeconds
-  ['cMicroSecond']: cMicroSecond, // MicroSecond
-  ['cMicroSeconds']: cMicroSeconds, // MicroSeconds
-  ['cMilliSecond']: cMilliSecond, // MilliSecond
-  ['cMilliSeconds']: cMilliSeconds, // MilliSeconds
-  ['cPicoSecond']: cPicoSecond, // PicoSecond
-  ['cPicoSeconds']: cPicoSeconds, // PicoSeconds
-  ['cFemtoSecond']: cFemtoSecond, // FemtoSecond
-  ['cFemtoSeconds']: cFemtoSeconds, // FemtoSeconds
+  [bas.cc + csecond]: csecond, // second
+  [bas.cc + cSecond]: cSecond, // Second
+  [bas.cc + cSeconds]: cSeconds, // Seconds
+  [bas.cc + cMinute]: cMinute, // Minute
+  [bas.cc + cMinutes]: cMinutes, // Minutes
+  [bas.cc + cHour]: cHour, // Hour
+  [bas.cc + cHours]: cHours, // Hours
+  [bas.cc + cDay]: cDay, // Day
+  [bas.cc + cDays]: cDays, // Days
+  [bas.cc + cWeek]: cWeek, // Week
+  [bas.cc + cWeeks]: cWeeks, // Weeks
+  [bas.cc + cMonth]: cMonth, // Month
+  [bas.cc + cMonths]: cMonths, // Months
+  [bas.cc + cYear]: cYear, // Year
+  [bas.cc + cYears]: cYears, // Years
+  [bas.cc + cDecade]: cDecade, // Decade
+  [bas.cc + cDecades]: cDecades, // Decades
+  [bas.cc + ccent]: ccent, // cent
+  [bas.cc + cCent]: cCent, // Cent
+  [bas.cc + cCentur]: cCentur, // Centur
+  [bas.cc + cCentury]: cCentury, // Century
+  [bas.cc + cCenturies]: cCenturies, // Centuries
+  [bas.cc + cMillennium]: cMillennium, // Millennium // Millennium Falcon ;-)
+  [bas.cc + cMillenniums]: cMillenniums, // Millenniums
+  [bas.cc + cNanoSecond]: cNanoSecond, // NanoSecond
+  [bas.cc + cNanoSeconds]: cNanoSeconds, // NanoSeconds
+  [bas.cc + cMicroSecond]: cMicroSecond, // MicroSecond
+  [bas.cc + cMicroSeconds]: cMicroSeconds, // MicroSeconds
+  [bas.cc + cMilliSecond]: cMilliSecond, // MilliSecond
+  [bas.cc + cMilliSeconds]: cMilliSeconds, // MilliSeconds
+  [bas.cc + cPicoSecond]: cPicoSecond, // PicoSecond
+  [bas.cc + cPicoSeconds]: cPicoSeconds, // PicoSeconds
+  [bas.cc + cFemtoSecond]: cFemtoSecond, // FemtoSecond
+  [bas.cc + cFemtoSeconds]: cFemtoSeconds, // FemtoSeconds
 
   // Unit Conversions
   // Miles to Km

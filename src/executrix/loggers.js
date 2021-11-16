@@ -14,28 +14,29 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+
 var configurator = require('./configurator');
 var fileOperations = require('./fileOperations');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `executrix.${baseFileName}.`;
+var namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
   if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
-    let consoleLogEnabled = configurator.getConfigurationSetting('system', 'consoleLogEnabled');
+    let consoleLogEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
       console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       console.log(`classPath is: ${classPath}`);
       console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting('system', 'applicationCleanedRootPath');
+      let logFile = configurator.getConfigurationSetting(wrd.csystem, sys.capplicationCleanedRootPath);
       if (logFile !== undefined) {
         logFile = `${logFile}//logs`;
         console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + '//' + configurator.getConfigurationSetting('system', 'logFilePathAndName');
+        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wrd.csystem, cfg.clogFilePathAndName);
         console.log(`logFile after adding the log filename: ${logFile}`);
       }
 
@@ -51,16 +52,16 @@ function consoleLog(classPath, message) {
       console.log(`configuratinoName is: ${configuratinoName}`);
       configurationNamespace = configurator.processConfigurationNamespaceRules(classPath);
       console.log(`configurationNamespace is: ${configurationNamespace}`);
-      debugFunctionSetting = configurator.getConfigurationSetting(`debugSettings.${configurationNamespace}`, configurationName);
+      debugFunctionSetting = configurator.getConfigurationSetting(cfg.cdebugSettings + bas.cDot + configurationNamespace, configurationName);
       console.log(`debugFunctionSetting is: ${debugFunctionSetting}`);
-      debugFileSetting = configurator.getConfigurationSetting(`debugSettings.${configurationNamespace}`, '');
+      debugFileSetting = configurator.getConfigurationSetting(cfg.cdebugSettings + bas.cDot + configurationNamespace, '');
       console.log(`debugFileSetting is: ${debugFileSetting}`);
       if (debugFunctionSetting || debugFileSetting) {
         debugSetting = true;
       }
       console.log(`debugSetting is: ${debugSetting}`);
       console.log('DONE attempting to get the configuration setting for the class path, now check if it is not undefined and true');
-      if (logFile !== undefined && (logFile.toUpperCase().includes('LOG') || logFile.toUpperCase().includes('TXT'))) {
+      if (logFile !== undefined && (logFile.toUpperCase().includes(gen.cLOG) || logFile.toUpperCase().includes(gen.cTXT))) {
         consoleLogProcess(debugSetting, logFile, classPath, message, true);
       } else { // No text log file specified, proceed with the same process for console only.
         consoleLogProcess(debugSetting, undefined, classPath, message, false);
@@ -109,7 +110,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
       printMessageToFile(ogFile, outputMessage);
       console.log('DONE printing the message to the logFile');
     }
-  } else if (configurator.getConfigurationSetting('system', 'debugTestExhaustive') === true) {
+  } else if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugTestExhaustive) === true) {
     console.log('else-block the debugTestExhaustive setting is true!');
     // TODO: Add rule here to replace double percent with message/class-path.
     // Debug Exhaustive is probably not the best, we might want to consider another configuration setting to
@@ -146,7 +147,7 @@ function validMessage(outputMessage, originalMessage) {
   // been parsed and modified according to the class path.
   if (outputMessage !== false && outputMessage !== originalMessage) {
     returnData = true;
-  } else if (outputMessage !== false && outputMessage.includes('%%') === false) {
+  } else if (outputMessage !== false && outputMessage.includes(bas.cDoublePercent) === false) {
     // This else-if condition catches the case that the caller just wants to dump a generic message,
     // that doesn't have a class-path designation.
     returnData = true;
@@ -233,9 +234,9 @@ function printMessageToFile(file, message) {
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
-      if (configurator.getConfigurationSetting('system', 'includeDateTimeStampInLogFiles') === true) {
+      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
-        dateTimeStamp = timers.getNowMoment('YYYYMMDD_HHmmssSSS');
+        dateTimeStamp = timers.getNowMoment(gen.cYYYYMMDD_HHmmssSSS);
         console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
@@ -247,4 +248,8 @@ function printMessageToFile(file, message) {
     console.log('ERROR: Log File includes undefined.');
   }
   console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+module.exports = {
+  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
 };

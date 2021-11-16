@@ -14,9 +14,10 @@
  */
 
 var bas = require('../constants/basic.constants');
+var fnc = require('../constants/function.constants');
 var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
-import * as rules from '../businessRules/rulesLibrary';
+var rules = require('../businessRules/rulesLibrary');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -94,7 +95,7 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
 };
 
 module.exports = {
-  ['bootStrapBusinessRules']: () => bootStrapBusinessRules(),
-  ['addClientRules']: (clientRules) => addClientRules(clientRules),
-  ['processRules']: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute),
+  [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
+  [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
+  [fnc.cprocessRules]: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)
 };

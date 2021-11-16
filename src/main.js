@@ -14,7 +14,9 @@
  */
 
 var cfg = require('./constants/configuration.constants');
+var fnc = require('./constants/function.constants');
 var sys = require('./constants/system.constants');
+var wrd = require('./constants/word.constants');
 var warden = require('./controllers/warden');
 var prompt = require('./executrix/prompt');
 var path = require('path');
@@ -31,18 +33,18 @@ var namespacePrefix = `${baseFileName}.`;
   * @date 2021/10/07
   */
  function initFramework(clientConfiguration) {
-   // let functionName = initFramework.name;
-   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-   // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+   let functionName = initFramework.name;
+   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+   console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
    let appRootPath = warden.processRootPath(clientConfiguration);
    clientConfiguration[cfg.cappRootPath] = appRootPath;
    clientConfiguration[cfg.cappConfigPath] = appRootPath + clientConfiguration[cfg.cappConfigReferencePath];
    clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
    warden.initFrameworkSchema(clientConfiguration);
-   // console.log(`END ${namespacePrefix}${functionName} function`);
+   console.log(`END ${namespacePrefix}${functionName} function`);
  };
 
 module.exports = {
-  ['initFramework']: (clientConfiguration) => initFramework(clientConfiguration),
-  ['prompt']: (ask) => prompt.prompt(ask)
+  [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
+  [fnc.cprompt]: (ask) => prompt.prompt(ask)
 };

@@ -1,6 +1,6 @@
 /**
  * @file business.constants.js
- * @module business-constants
+ * @module business.constants
  * @description Contains many re-usable business rules constants.
  * @requires module:basic.constants
  * @requires module:phonic.constants
@@ -31,6 +31,13 @@ let creplaceCharacterWithCharacter = wrd.creplace + wrd.cCharacter + wrd.cWith +
 // StringParsing rules in order
 // ********************************
 let cparseSystemRootPath = wrd.cparse + wrd.cSystem + wrd.cRoot + wrd.cPath; // parseSystemRootPath
+let cstringToDataType = wrd.cstring + wrd.cTo + wrd.cData + wrd.cType; // stringToDataType
+let cstringToBoolean = wrd.cstring + wrd.cTo + wrd.cBoolean; // stringToBoolean
+let cdetermineObjectDataType = wrd.cdetermine + wrd.cObject + wrd.cData + wrd.cType; // determineObjectDataType
+let cisBoolean = wrd.cis + wrd.cBoolean; // isBoolean
+let cisInteger = wrd.cis + wrd.cInteger; // isInteger
+let cisFloat = wrd.cis + wrd.cFloat; // isFloat
+let cisString = wrd.cis + wrd.cString; // isString
 let csingleQuoteSwapAfterEquals = wrd.csingle + wrd.cQuote + wrd.cSwap + wrd.cAfter + wrd.cEquals; // singleQuoteSwapAfterEquals
 let cswapForwardSlashToBackSlash = wrd.cswap + sys.cForwardSlash + bas.cTo + sys.cBackSlash; // swapForwadSlashToBackSlash
 let cswapBackSlashToForwardSlash = wrd.cswap + sys.cBackSlash + bas.cTo + sys.cForwardSlash; // swapBackSlashToForwardSlash
@@ -41,15 +48,22 @@ module.exports = {
   // *********************************
   // ArrayParsing rules in order
   // *********************************
-  ['creplaceCharacterWithCharacter']: creplaceCharacterWithCharacter,
+  [bas.cc + creplaceCharacterWithCharacter]: creplaceCharacterWithCharacter,
 
   // ********************************
   // StringParsing rules in order
   // ********************************
-  ['cparseSystemRootPath']: cparseSystemRootPath,
-  ['csingleQuoteSwapAfterEquals']: csingleQuoteSwapAfterEquals,
-  ['cswapForwardSlashToBackSlash']: cswapForwardSlashToBackSlash,
-  ['cswapBackSlashToForwardSlash']: cswapBackSlashToForwardSlash,
-  ['cswapDoubleForwardSlashToSingleForwardSlash']: cswapDoubleForwardSlashToSingleForwardSlash,
-  ['cswapDoubleBackSlashToSingleBackSlash']: cswapDoubleBackSlashToSingleBackSlash
+  [bas.cc + cparseSystemRootPath]: cparseSystemRootPath,
+  [bas.cc + cstringToDataType]: cstringToDataType, // stringToDataType
+  [bas.cc + cstringToBoolean]: cstringToBoolean, // stringToBoolean
+  [bas.cc + cdetermineObjectDataType]: cdetermineObjectDataType, // determineObjectDataType
+  [bas.cc + cisBoolean]: cisBoolean, // isBoolean
+  [bas.cc + cisInteger]: cisInteger, // isInteger
+  [bas.cc + cisFloat]: cisFloat, // isFloat
+  [bas.cc + cisString]: cisString, // isString
+  [bas.cc + csingleQuoteSwapAfterEquals]: csingleQuoteSwapAfterEquals,
+  [bas.cc + cswapForwardSlashToBackSlash]: cswapForwardSlashToBackSlash,
+  [bas.cc + cswapBackSlashToForwardSlash]: cswapBackSlashToForwardSlash,
+  [bas.cc + cswapDoubleForwardSlashToSingleForwardSlash]: cswapDoubleForwardSlashToSingleForwardSlash,
+  [bas.cc + cswapDoubleBackSlashToSingleBackSlash]: cswapDoubleBackSlashToSingleBackSlash
 };

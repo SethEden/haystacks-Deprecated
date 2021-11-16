@@ -20,6 +20,7 @@
 var bas = require('../constants/basic.constants');
 var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
+var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
@@ -40,9 +41,9 @@ var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
  * @date 2021/10/15
  */
 function scanDataPath(dataPath) {
-  // let functionName = scanDataPath.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`dataPath is: ${dataPath}`);
+  let functionName = scanDataPath.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`dataPath is: ${dataPath}`);
   let rules = {};
   let filesFound = [];
   rules[0] = biz.cswapBackSlashToForwardSlash;
@@ -50,8 +51,8 @@ function scanDataPath(dataPath) {
   dataPath = ruleBroker.processRules(dataPath, '', rules);
   // console.log(`dataPath after business rules processing is: ${dataPath}`);
   filesFound = fileOperations.readDirectoryContents(dataPath);
-  // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
 };
 
@@ -67,10 +68,14 @@ function scanDataPath(dataPath) {
  */
 function loadAllJsonData(filesToLoad, contextName) {
   let functionName = loadAllJsonData.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
-  // console.log(`contextName is: ${contextName}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
+  console.log(`contextName is: ${contextName}`);
   let foundSystemData = false;
+
+  console.log(`sys.csystemConfigFileName resolves as: ${sys.csystemConfigFileName}`);
+  console.log(`sys.capplicationConfigFileName resolves as: ${sys.capplicationConfigFileName}`);
+
   let systemConfigFileName = sys.csystemConfigFileName; // 'framework.system.json';
   let applicationConfigFileName = sys.capplicationConfigFileName; // 'application.system.json';
   let multiMergedData = {};
@@ -120,8 +125,8 @@ function loadAllJsonData(filesToLoad, contextName) {
     }
   }
   parsedDataFile = multiMergedData;
-  // console.log(`parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return parsedDataFile;
 };
 
@@ -135,19 +140,19 @@ function loadAllJsonData(filesToLoad, contextName) {
  */
 function preprocessJsonFile(fileToLoad) {
   let functionName = preprocessJsonFile.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
   let filePathRules = {};
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
-  // console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
+  console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
   let finalFileToLoad = ruleBroker.processRules(fileToLoad, '', filePathRules);
   let dataFile = fileOperations.getJsonData(finalFileToLoad);
-  // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
 };
 
 module.exports = {
-  ['scanDataPath']: (dataPath) => scanDataPath(dataPath),
-  ['loadAllJsonData']: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName)
+  [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
+  [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName)
 };

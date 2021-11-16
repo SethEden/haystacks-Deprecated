@@ -260,6 +260,7 @@ let cUnshare = bas.cUn + cshare; // Unshare
 let cUnShare = bas.cUn + cShare; // UnShare
 let cview = bas.cv + phn.ciew; // view
 let cView = bas.cV + phn.ciew; // View
+let cnew = bas.cne + bas.cw; // new
 let cNew = bas.cNe + bas.cw; // New
 let cload = bas.clo + 'ad'; // bas.cad; // load // NOTE: Apparently 'cad' is also a reserved word.
 let cLoad = bas.cLo + 'ad'; // bas.cad; // Load // NOTE: Apparently 'cad' is also a reserved word.
@@ -380,6 +381,12 @@ let cautomation = cauto + phn.cmation; // automation
 let cAutomation = cAuto + phn.cmation; // Automation
 let cnumber = bas.cn + phn.cumber; // number
 let cNumber = bas.cN + phn.cumber; // Number
+let cnumbers = cnumber + bas.cs; // numbers
+let cNumbers = cNumber + bas.cs; // Numbers
+let cnumbered = cnumber + bas.ced; // numbered
+let cNumbered = cNumber + bas.ced; // Numbered
+let cnumbering = cnumber + phn.cing; // numbering
+let cNumbering = cNumber + phn.cing; // Numbering
 let cHost = bas.cHo + bas.cst; // Host
 let cOf = bas.cOf; // Of
 let crow = bas.cro + bas.cw; // row
@@ -654,8 +661,10 @@ let cexisted = cexist + bas.ced; // existed
 let cExisted = cExist + bas.ced; // Existed
 let cexisting = cexist + phn.cing; // existing
 let cExisting = cExist + phn.cing; // Existing
-let cAsynch = bas.cAs + phn.cynch; // Asynch
-let cSynch = bas.cS + phn.cynch; // Synch
+let casync = bas.cas + phn.cync; // async
+let cAsync = bas.cAs + phn.cync; // Async
+let csync = bas.cs + phn.cync; // sync
+let cSync = bas.cS + phn.cync; // Sync
 let cSingular = bas.cSi + bas.cng + bas.cul + bas.car; // Singular
 let cParallel = bas.cPa + bas.cra + bas.cll + bas.cel; // Parallel
 let cMulti = bas.cMu + bas.clt + bas.ci; // Multi
@@ -1709,6 +1718,12 @@ let cmore = bas.cm + phn.core; // more
 let cMore = bas.cM + phn.core; // More
 let chas = bas.cha + bas.cs; // has
 let cHas = bas.cHa + bas.cs; // Has
+let cread = phn.crea + bas.cd; // read
+let cRead = phn.cRea + bas.cd; // Read
+let creads = cread + bas.cs; // reads
+let cReads = cReads + bas.cs; // Reads
+let creading = cread + phn.cing; // reading
+let cReading = cRead + phn.cing; // Reading
 let cready = phn.crea + bas.cdy; // ready
 let cReady = phn.cRea + bas.cdy; // Ready
 let cREADY = phn.cREA + bas.cDY; // READY
@@ -2057,6 +2072,44 @@ let cexecutrix = phn.cexe + ccut + phn.crix; // executrix
 let cExecutrix = phn.cExe + ccut + phn.crix; // Executrix
 let cframework = cframe + cwork; // framework
 let cFramework = cFrame + cwork; // Framework
+let cboot = bas.cbo + bas.cot; // boot
+let cBoot = bas.cBo + bas.cot; // Boot
+let cstrap = bas.cst + phn.crap; // strap
+let cStrap = bas.cSt + phn.crap; // Strap
+let csetup = cset + bas.cup; // setup
+let cSetup = cSet + bas.cup; // Setup
+let csetups = csetup + bas.cs; // setups
+let cSetups = cSetup + bas.cs; // Setups
+let csynchronous = csync + phn.cron + phn.cous; // synchronous
+let cSynchronous = cSync + phn.cron + phn.cous; // Synchronous
+let csynchronously = csynchronous + bas.cly; // synchronously
+let cSynchronously = cSynchronous + bas.cly; // Synchronously
+let cappend = gen.capp + cend; // append
+let cAppend = gen.cApp + cend; // Append
+let cappends = cappend + bas.cs; // appends
+let cAppends = cAppend + bas.cs; // Appends
+let cappended = cappend + bas.ced; // appended
+let cAppended = cAppend + bas.ced; // Appended
+let cappending = cappend + phn.cing; // appending
+let cAppending = cAppend + phn.cing; // Appending
+let cmoment = bas.cmo + phn.cment; // moment
+let cMoment = bas.cMo + phn.cment; // Moment
+let cmoments = cmoment + bas.cs; // moments
+let cMoments = cMoment + bas.cs; // Moments
+let ccompute = phn.ccomp + phn.ccute; // compute
+let cCompute = phn.cComp + phn.ccute; // Compute
+let ccomputes = ccompute + bas.cs; // computes
+let cComputes = cCompute + bas.cs; // Computes
+let ccomputer = ccompute + bas.cr; // computer
+let cComputer = cCompute + bas.cr; // Computer
+let ccomputers = ccomputer + bas.cs; // computers
+let cComputers = cComputer + bas.cs; // Computers
+let ccomputing = phn.ccomp + bas.cut + phn.cing; // computing
+let cComputing = phn.cComp + bas.cut + phn.cing; // Computing
+let cschema = bas.csc + bas.che + bas.cma; // schema
+let cSchema = bas.cSc + bas.che + bas.cma; // Schema
+let cdot = bas.cdo + bas.ct; // dot
+let cDot = bas.cDo + bas.ct; // Dot
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -2470,2450 +2523,2507 @@ let cYale = bas.cYa + bas.cle; // Yale
 
 module.exports = {
   // Miscelaneious Words
-  ['c1a1d']: c1a1d, // ad // 'ca' & 'cd' is some how a reserved word.
-  ['c3d']: c3d, // 3d
-  ['c3D']: c3D, // 3D
-  ['cout']: cout, // out
-  ['cOut']: cOut, // Out
-  ['cLog']: cLog, // Log
-  ['clog']: clog, // log
-  ['cLogs']: cLogs, // Logs
-  ['clogs']: clogs, // logs
-  ['ckey']: ckey, // key
-  ['cKey']: cKey, // Key
-  ['ckeys']: ckeys, // keys
-  ['cKeys']: cKeys, // Keys
-  ['ckeyed']: ckeyed, // keyed
-  ['cKeyed']: cKeyed, // Keyed
-  ['ckeying']: ckeying, // keying
-  ['cKeying']: cKeying, // Keying
-  ['cnode']: cnode, // node
-  ['cNode']: cNode, // Node
-  ['curl']: curl, // url
-  ['cURL']: cURL, // URL
-  ['cnth']: cnth, // nth
-  ['cNth']: cNth, // Nth
-  ['cregEx']: cregEx, // regEx
-  ['cRegEx']: cRegEx, // RegEx
-  ['cflag']: cflag, // flag
-  ['cFlag']: cFlag, // Flag
-  ['cflags']: cflags, // flags
-  ['cFlags']: cFlags, // Flags
+  [bas.cc + num.c1 + bas.ca + num.c1 + bas.cd]: c1a1d, // ad // 'ca' & 'cd' is some how a reserved word.
+  [bas.cc + c3d]: c3d, // 3d
+  [bas.cc + c3D]: c3D, // 3D
+  [bas.cc + cout]: cout, // out
+  [bas.cc + cOut]: cOut, // Out
+  [bas.cc + cLog]: cLog, // Log
+  [bas.cc + clog]: clog, // log
+  [bas.cc + cLogs]: cLogs, // Logs
+  [bas.cc + clogs]: clogs, // logs
+  [bas.cc + ckey]: ckey, // key
+  [bas.cc + cKey]: cKey, // Key
+  [bas.cc + ckeys]: ckeys, // keys
+  [bas.cc + cKeys]: cKeys, // Keys
+  [bas.cc + ckeyed]: ckeyed, // keyed
+  [bas.cc + cKeyed]: cKeyed, // Keyed
+  [bas.cc + ckeying]: ckeying, // keying
+  [bas.cc + cKeying]: cKeying, // Keying
+  [bas.cc + cnode]: cnode, // node
+  [bas.cc + cNode]: cNode, // Node
+  [bas.cc + curl]: curl, // url
+  [bas.cc + cURL]: cURL, // URL
+  [bas.cc + cnth]: cnth, // nth
+  [bas.cc + cNth]: cNth, // Nth
+  [bas.cc + cregEx]: cregEx, // regEx
+  [bas.cc + cRegEx]: cRegEx, // RegEx
+  [bas.cc + cflag]: cflag, // flag
+  [bas.cc + cFlag]: cFlag, // Flag
+  [bas.cc + cflags]: cflags, // flags
+  [bas.cc + cFlags]: cFlags, // Flags
 
   // Data Types
-  ['cstring']: cstring, // string
-  ['cString']: cString, // String
-  ['cstrings']: cstrings, // strings
-  ['cStrings']: cStrings, // Strings
-  ['cinteger']: cinteger, // integer
-  ['cInteger']: cInteger, // Integer
-  ['cintegers']: cintegers, // integers
-  ['cIntegers']: cIntegers, // Integers
-  ['cfloat']: cfloat, // float
-  ['cFloat']: cFloat, // Float
-  ['cfloats']: cfloats, // floats
-  ['cFloats']: cFloats, // Floats
-  ['clong']: clong, // long
-  ['cLong']: cLong, // Long
-  ['clongs']: clongs, // longs
-  ['cLongs']: cLongs, // Longs
-  ['clonger']: clonger, // longer
-  ['cLonger']: cLonger, // Longer
-  ['clongest']: clongest, // longest
-  ['cLongest']: cLongest, // Longest
-  ['cshort']: cshort, // short
-  ['cShort']: cShort, // Short
-  ['cshorts']: cshorts, // shorts
-  ['cShorts']: cShorts, // Shorts
-  ['cshorter']: cshorter, // shorter
-  ['cShorter']: cShorter, // Shorter
-  ['cshortest']: cshortest, // shortest
-  ['cShortest']: cShortest, // Shortest
-  ['cdouble']: cdouble, // double
-  ['cDouble']: cDouble, // Double
-  ['cdoubles']: cdoubles, // doubles
-  ['cDoubles']: cDoubles, // Doubles
-  ['cchar']: cchar, // char
-  ['cChar']: cChar, // Char
-  ['cchars']: cchars, // chars
-  ['cChars']: cChars, // Chars
-  ['cboolean']: cboolean, // boolean
-  ['cBoolean']: cBoolean, // Boolean
-  ['cbooleans']: cbooleans, // booleans
-  ['cBooleans']: cBooleans, // Booleans
-  ['cobject']: cobject, // object
-  ['cObject']: cObject, // Object
-  ['cobjects']: cobjects, // objects
-  ['cObjects']: cObjects, // Objects
+  [bas.cc + cstring]: cstring, // string
+  [bas.cc + cString]: cString, // String
+  [bas.cc + cstrings]: cstrings, // strings
+  [bas.cc + cStrings]: cStrings, // Strings
+  [bas.cc + cinteger]: cinteger, // integer
+  [bas.cc + cInteger]: cInteger, // Integer
+  [bas.cc + cintegers]: cintegers, // integers
+  [bas.cc + cIntegers]: cIntegers, // Integers
+  [bas.cc + cfloat]: cfloat, // float
+  [bas.cc + cFloat]: cFloat, // Float
+  [bas.cc + cfloats]: cfloats, // floats
+  [bas.cc + cFloats]: cFloats, // Floats
+  [bas.cc + clong]: clong, // long
+  [bas.cc + cLong]: cLong, // Long
+  [bas.cc + clongs]: clongs, // longs
+  [bas.cc + cLongs]: cLongs, // Longs
+  [bas.cc + clonger]: clonger, // longer
+  [bas.cc + cLonger]: cLonger, // Longer
+  [bas.cc + clongest]: clongest, // longest
+  [bas.cc + cLongest]: cLongest, // Longest
+  [bas.cc + cshort]: cshort, // short
+  [bas.cc + cShort]: cShort, // Short
+  [bas.cc + cshorts]: cshorts, // shorts
+  [bas.cc + cShorts]: cShorts, // Shorts
+  [bas.cc + cshorter]: cshorter, // shorter
+  [bas.cc + cShorter]: cShorter, // Shorter
+  [bas.cc + cshortest]: cshortest, // shortest
+  [bas.cc + cShortest]: cShortest, // Shortest
+  [bas.cc + cdouble]: cdouble, // double
+  [bas.cc + cDouble]: cDouble, // Double
+  [bas.cc + cdoubles]: cdoubles, // doubles
+  [bas.cc + cDoubles]: cDoubles, // Doubles
+  [bas.cc + cchar]: cchar, // char
+  [bas.cc + cChar]: cChar, // Char
+  [bas.cc + cchars]: cchars, // chars
+  [bas.cc + cChars]: cChars, // Chars
+  [bas.cc + cboolean]: cboolean, // boolean
+  [bas.cc + cBoolean]: cBoolean, // Boolean
+  [bas.cc + cbooleans]: cbooleans, // booleans
+  [bas.cc + cBooleans]: cBooleans, // Booleans
+  [bas.cc + cobject]: cobject, // object
+  [bas.cc + cObject]: cObject, // Object
+  [bas.cc + cobjects]: cobjects, // objects
+  [bas.cc + cObjects]: cObjects, // Objects
 
   // General Use Words
-  ['csubstring']: csubstring, // substring
-  ['csubString']: csubString, // subString
-  ['cSubString']: cSubString, // SubString
-  ['cwind']: cwind, // wind
-  ['cWind']: cWind, // Wind
-  ['cwindow']: cwindow, // window
-  ['cWindow']: cWindow, // Window
-  ['cwindows']: cwindows, // windows
-  ['cWindows']: cWindows, // Windows
-  ['clinux']: clinux, // linux
-  ['cLinux']: cLinux, // Linux
-  ['cword']: cword, // word
-  ['cWord']: cWord, // Word
-  ['cwords']: cwords, // words
-  ['cWords']: cWords, // Words
-  ['coops']: coops, // oops
-  ['cOops']: cOops, // Oops
-  ['cOOPS']: cOOPS, // OOPS
-  ['clet']: clet, // let
-  ['cLet']: cLet, // Let
-  ['clets']: clets, // lets
-  ['cLets']: cLets, // Lets
-  ['cfig']: cfig, // fig
-  ['cFig']: cFig, // Fig
-  ['cfiglet']: cfiglet,
-  ['cFiglet']: cFiglet,
-  ['cconfig']: cconfig, // config
-  ['cConfig']: cConfig, // Config
-  ['cconfiguration']: cconfiguration, // configuration
-  ['cConfiguration']: cConfiguration, // Configuration
-  ['cconfigurations']: cconfigurations, // configurations
-  ['cConfigurations']: cConfigurations, // Configurations
-  ['cconfigured']: cconfigured, // configured
-  ['cConfigured']: cConfigured, // Configured
-  ['cconfiguring']: cconfiguring, // configuring
-  ['cConfiguring']: cConfiguring, // Configuring
-  ['cempty']: cempty, // empty
-  ['cEmpty']: cEmpty, // Empty
-  ['cfull']: cfull, // full
-  ['cFull']: cFull, // Full
-  ['cfully']: cfully, // fully
-  ['cFully']: cFully, // Fully
-  ['ccreate']: ccreate, // create
-  ['cCreate']: cCreate, // Create
-  ['cSubmit']: cSubmit, // Submit
-  ['c_add']: c_add, // add
-  ['cAdd']: cAdd, // Add
-  ['cADD']: cADD, // ADD
-  ['cadded']: cadded, // added
-  ['cAdded']: cAdded, // Added
-  ['cadding']: cadding, // adding
-  ['cAdding']: cAdding, // Adding
-  ['cadditional']: cadditional, // additional
-  ['cAdditional']: cAdditional, // Additional
-  ['cADDITIONAL']: cADDITIONAL, // ADDITIONAL
-  ['cadditionals']: cadditionals, // additionals
-  ['cAdditionals']: cAdditionals, // Additionals
-  ['cpen']: cpen, // pen
-  ['cPen']: cPen, // Pen
-  ['cpens']: cpens, // pens
-  ['cPens']: cPens, // Pens
-  ['cclose']: cclose, // close
-  ['cClose']: cClose, // Close
-  ['cclosed']: cclosed, // closed
-  ['cClosed']: cClosed, // Closed
-  ['cclosing']: cclosing, // closing
-  ['cClosing']: cClosing, // Closing
-  ['copen']: copen, // open
-  ['cOpen']: cOpen, // Open
-  ['copens']: copens, // opens
-  ['cOpens']: cOpens, // Opens
-  ['copened']: copened, // opened
-  ['cOpened']: cOpened, // Opened
-  ['copening']: copening, // opening
-  ['cOpening']: cOpening, // Opening
-  ['cUpdate']: cUpdate, // Update
-  ['cEdit']: cEdit, // Edit
-  ['cdelete']: cdelete, // delete
-  ['cDelete']: cDelete, // Delete
-  ['cdeletion']: cdeletion, // deletion
-  ['cDeletion']: cDeletion, // Deletion
-  ['cinsert']: cinsert, // insert
-  ['cInsert']: cInsert, // Insert
-  ['cinsertion']: cinsertion, // insertion
-  ['cInsertion']: cInsertion, // Insertion
-  ['csubstitute']: csubstitute, // substitute
-  ['cSubstitute']: cSubstitute, // Substitute
-  ['csubstitution']: csubstitution, // substitution
-  ['cSubstitution']: cSubstitution, // Substitution
-  ['call']: call, // all
-  ['cAll']: cAll, // All
-  ['cat']: cat, // at
-  ['cAt']: cAt, // At // Not to be confused with the bas.cAt = '@'!!!
-  ['cselect']: cselect, // select
-  ['cSelect']: cSelect, // Select
-  ['ccan']: ccan, // can
-  ['cCan']: cCan, // Can
-  ['ccancel']: ccancel, // cancel
-  ['cCancel']: cCancel, // Cancel
-  ['cconfirm']: cconfirm, // confirm
-  ['cConfirm']: cConfirm, // Confirm
-  ['ccount']: ccount, // count
-  ['cCount']: cCount, // Count
-  ['ccounter']: ccounter, // counter
-  ['cCounter']: cCounter, // Counter
-  ['cAccount']: cAccount, // Account
-  ['cHamburger']: cHamburger, // Hamburger
-  ['cMe']: cMe, // Me
-  ['cMenu']: cMenu, // Menu
-  ['cwith']: cwith, // with
-  ['cWith']: cWith, // With
-  ['cwithout']: cwithout, // without
-  ['cWithout']: cWithout, // Without
-  ['cdetail']: cdetail, // detail
-  ['cDetail']: cDetail, // Detail
-  ['cdetails']: cdetails, // details
-  ['cDetails']: cDetails, // Details
-  ['cfront']: cfront, // front
-  ['cFront']: cFront, // Front
-  ['cback']: cback, // back
-  ['cBack']: cBack, // Back
-  ['cleft']: cleft, // left
-  ['cLeft']: cLeft, // Left
-  ['cright']: cright, // right
-  ['cRight']: cRight, // Right
-  ['cTo']: cTo, // To
-  ['ctop']: ctop, // top
-  ['cTop']: cTop, // Top
-  ['cbottom']: cbottom, // bottom
-  ['cBottom']: cBottom, // Bottom
-  ['cbegin']: cbegin, // begin
-  ['cBegin']: cBegin, // Begin
-  ['cBEGIN']: cBEGIN, // BEGIN
-  ['cbeginning']: cbeginning, // beginning
-  ['cBeginning']: cBeginning, // Beginning
-  ['cend']: cend, // end
-  ['cEnd']: cEnd, // End
-  ['cEND']: cEND, // END
-  ['cending']: cending, // ending
-  ['cEnding']: cEnding, // Ending
-  ['cthe']: cthe, // the
-  ['cThe']: cThe, // The
-  ['citem']: citem, // item
-  ['cItem']: cItem, // Item
-  ['citems']: citems, // items
-  ['cItems']: cItems, // Items
-  ['clist']: clist, // list
-  ['cList']: cList, // List
-  ['clists']: clists, // lists
-  ['cLists']: cLists, // Lists
-  ['clisted']: clisted, // listed
-  ['cListed']: cListed, // Listed
-  ['cshare']: cshare, // share
-  ['cShare']: cShare, // Share
-  ['cShares']: cShares, // Shares
-  ['cshares']: cshares, // shares
-  ['cshared']: cshared, // shared
-  ['cShared']: cShared, // Shared
-  ['cUnShared']: cUnShared, // UnShared
-  ['cUnshared']: cUnshared, // Unshared
-  ['cUnshare']: cUnshare, // Unshare
-  ['cUnShare']: cUnShare, // UnShare
-  ['cview']: cview, // view
-  ['cView']: cView, // View
-  ['cNew']: cNew, // New
-  ['cload']: cload, // bas.cad; // load // NOTE: Apparently 'cad' is also a reserved word.
-  ['cLoad']: cLoad, // bas.cad; // Load // NOTE: Apparently 'cad' is also a reserved word.
-  ['cloads']: cloads, // loads
-  ['cLoads']: cLoads, // Loads
-  ['cloaded']: cloaded, // loaded
-  ['cLoaded']: cLoaded, // Loaded
-  ['cloading']: cloading, // loading
-  ['cLoading']: cLoading, // Loading
-  ['cclick']: cclick, // click
-  ['cClick']: cClick, // Click
-  ['cpress']: cpress, // press
-  ['cPress']: cPress, // Press
-  ['cpresses']: cpresses, // presses
-  ['cPresses']: cPresses, // Presses
-  ['cpressed']: cpressed, // pressed
-  ['cPressed']: cPressed, // Pressed
-  ['cpressing']: cpressing, // pressing
-  ['cPressing']: cPressing, // Pressing
-  ['cpressKey']: cpressKey, // pressKey
-  ['cPressKey']: cPressKey, // PressKey
-  ['cexpect']: cexpect, // expect
-  ['cExpect']: cExpect, // Expect
-  ['cexpects']: cexpects, // expects
-  ['cExpects']: cExpects, // Expects
-  ['cexpected']: cexpected, // expected
-  ['cExpected']: cExpected, // Expected
-  ['cexpecting']: cexpecting, // expecting
-  ['cExpecting']: cExpecting, // Expecting
-  ['cnavigate']: cnavigate, // navigate
-  ['cNavigate']: cNavigate, // Navigate
-  ['csave']: csave, // Save
-  ['cSave']: cSave, // Save
-  ['cDownload']: cDownload, // Download
-  ['cNegative']: cNegative, // Negative
-  ['cPositive']: cPositive, // Positive
-  ['cEntire']: cEntire, // Entire
-  ['cinfo']: cinfo, // info
-  ['cInfo']: cInfo, // Info
-  ['cLink']: cLink, // Link
-  ['cLabel']: cLabel, // Label
-  ['cField']: cField, // Field
-  ['ctype']: ctype, // type
-  ['cType']: cType, // Type
-  ['cTypes']: cTypes, // Types
-  ['cvalid']: cvalid, // valid
-  ['cValid']: cValid, // Valid
-  ['cVALID']: cVALID, // VALID
-  ['cvalidation']: cvalidation, // validation
-  ['cValidation']: cValidation, // Validation
-  ['cvalidations']: cvalidations, // validations
-  ['cValidations']: cValidations, // Validations
-  ['cvalidate']: cvalidate, // validate
-  ['cValidate']: cValidate, // Validate
-  ['cinvalid']: cinvalid, // invalid
-  ['cInvalid']: cInvalid, // Invalid
-  ['cINVALID']: cINVALID, // INVALID
-  ['cbug']: cbug, // bug
-  ['cdebug']: cdebug, // debug
-  ['cDebug']: cDebug, // Debug
-  ['cpage']: cpage, // page
-  ['cPage']: cPage, // Page
-  ['cpages']: cpages, // pages
-  ['cPages']: cPages, // Pages
-  ['cmessage']: cmessage, // message
-  ['cMessage']: cMessage, // Message
-  ['cmessages']: cmessages, // messages
-  ['cMessages']: cMessages, // Messages
-  ['cScript']: cScript, // Script
-  ['cScripts']: cScripts, // Scripts
-  ['ckeyword']: ckeyword, // keyword
-  ['cKeyword']: cKeyword, // Keyword
-  ['ckeywords']: ckeywords, // keywords
-  ['cKeywords']: cKeywords, // Keywords
-  ['cdata']: cdata, // data
-  ['cData']: cData, // Data
-  ['cDATA']: cDATA, // DATA
-  ['cresult']: cresult, // result
-  ['cResult']: cResult, // Result
-  ['cresults']: cresults, // results
-  ['cResults']: cResults, // Results
-  ['cresulted']: cresulted, // resulted
-  ['cResulted']: cResulted, // Resulted
-  ['cresulting']: cresulting, // resulting
-  ['cResulting']: cResulting, // Resulting
-  ['cwork']: cwork, // work
-  ['cWork']: cWork, // Work
-  ['cflow']: cflow, // flow
-  ['cFlow']: cFlow, // Flow
-  ['cworkflow']: cworkflow, // workflow
-  ['cWorkflow']: cWorkflow, // Workflow
-  ['cworkflows']: cworkflows, // workflows
-  ['cWorkflows']: cWorkflows, // Workflows
-  ['ctest']: ctest, // test
-  ['cTest']: cTest, // Test
-  ['cTEST']: cTEST, // TEST
-  ['ctests']: ctests, // tests
-  ['cTests']: cTests, // Tests
-  ['cTESTS']: cTESTS, // TESTS
-  ['cStatus']: cStatus, // Status
-  ['cTestStatus']: cTestStatus, // TestStatus
-  ['cTestStatusMessage']: cTestStatusMessage, // TestStatusMessage
-  ['cTestWorkflow']: cTestWorkflow, // TestWorkflow
-  ['cBureau']: cBureau, // Bureau
-  ['cExhaustive']: cExhaustive, // Exhaustive
-  ['cBrowser']: cBrowser, // Browser
-  ['cact']: cact, // act
-  ['cAct']: cAct, // Act
-  ['caction']: caction, // action
-  ['cAction']: cAction, // Action
-  ['cactions']: cactions, // actions
-  ['cActions']: cActions, // Actions
-  ['cactual']: cactual, // actual
-  ['cActual']: cActual, // Actual
-  ['cauto']: cauto, // auto
-  ['cAuto']: cAuto, // Auto
-  ['cautomation']: cautomation, // automation
-  ['cAutomation']: cAutomation, // Automation
-  ['cnumber']: cnumber, // number
-  ['cNumber']: cNumber, // Number
-  ['cHost']: cHost, // Host
-  ['cOf']: cOf, // Of
-  ['crow']: crow, // row
-  ['cRow']: cRow, // Row
-  ['crows']: crows, // rows
-  ['cRows']: cRows, // Rows
-  ['crowed']: crowed, // rowed
-  ['cRowed']: cRowed, // Rowed
-  ['crowing']: crowing, // rowing
-  ['cRowing']: cRowing, // Rowing
-  ['crun']: crun, // run
-  ['cRun']: cRun, // Run
-  ['cruns']: cruns, // runs
-  ['cRuns']: cRuns, // Runs
-  ['crunning']: crunning, // running
-  ['cRunning']: cRunning, // Running
-  ['cmaster']: cmaster, // master
-  ['cMaster']: cMaster, // Master
-  ['cEnvironment']: cEnvironment, // Environment
-  ['cname']: cname, // name
-  ['cName']: cName, // Name
-  ['cnames']: cnames, // names
-  ['cNames']: cNames, // Names
-  ['cnamed']: cnamed, // named
-  ['cNamed']: cNamed, // Named
-  ['ckeywordName']: ckeywordName, // keywordName
-  ['cKeywordName']: cKeywordName, // KeywordName
-  ['cPageScriptName']: cPageScriptName, // PageScriptName
-  ['cid']: cid, // id
-  ['cId']: cId, // Id
-  ['cID']: cID, // ID
-  ['cmail']: cmail, // mail
-  ['cEmail']: cEmail, // Email
-  ['cEmails']: cEmails, // Emails
-  ['cReceive']: cReceive, // Receive
-  ['cReceived']: cReceived, // Received
-  ['cdate']: cdate, // date
-  ['cDate']: cDate, // Date
-  ['ctime']: ctime, // time
-  ['cTime']: cTime, // Time
-  ['cruntime']: cruntime, // runtime
-  ['cRuntime']: cRuntime, // Runtime
-  ['cRunTime']: cRunTime, // RunTime
-  ['cstamp']: cstamp, // stamp
-  ['cStamp']: cStamp, // Stamp
-  ['cstamps']: cstamps, // stamps
-  ['cStamps']: cStamps, // Stamps
-  ['cstamped']: cstamped, // stamped
-  ['cStamped']: cStamped, // Stamped
-  ['cstamping']: cstamping, // stamping
-  ['cStamping']: cStamping, // Stamping
-  ['cmediate']: cmediate, // mediate
-  ['cintermediate']: cintermediate, // intermediate
-  ['cIntermediate']: cIntermediate, // Intermediate
-  ['cpath']: cpath, // path
-  ['cPath']: cPath, // Path
-  ['cpaths']: cpaths, // paths
-  ['cPaths']: cPaths, // Paths
-  ['cexit']: cexit, // exit
-  ['cExit']: cExit, // Exit
-  ['cexiting']: cexiting, // exiting
-  ['cExiting']: cExiting, // Exiting
-  ['cViewer']: cViewer, // Viewer
-  ['cPermission']: cPermission, // Permission
-  ['cBug']: cBug, // Bug
-  ['cset']: cset, // set
-  ['cSet']: cSet, // Set
-  ['csetting']: csetting, // setting
-  ['cSetting']: cSetting, // Setting
-  ['csettings']: csettings, // settings
-  ['cSettings']: cSettings, // Settings
-  ['cPreview']: cPreview, // Preview
-  ['climit']: climit, // limit // NOTE: bas.cmi resolves as "s"
-  ['cLimit']: cLimit, // Limit // NOTE: bas.cmi resolves as "s"
-  ['cGate']: cGate, // Gate
-  ['cway']: cway, // way
-  ['cWay']: cWay, // Way
-  ['cGateway']: cGateway, // Gateway
-  ['cprocess']: cprocess, // process
-  ['cProcess']: cProcess, // Process
-  ['cPROCESS']: cPROCESS, // PROCESS
-  ['cprocessed']: cprocessed, // processed
-  ['cProcessed']: cProcessed, // Processed
-  ['cprocesses']: cprocesses, // processes
-  ['cProcesses']: cProcesses, // Processes
-  ['cprocessing']: cprocessing, // processing
-  ['cProcessing']: cProcessing, // Processing
-  ['cPROCESSING']: cPROCESSING, // PROCESSING
-  ['ccomplete']: ccomplete, // complete
-  ['cComplete']: cComplete, // Complete
-  ['ccompleted']: ccompleted, // completed
-  ['cCompleted']: cCompleted, // Completed
-  ['cand']: cand, // and
-  ['cAnd']: cAnd, // And
-  ['cuse']: cuse, // use
-  ['cUse']: cUse, // Use
-  ['cuser']: cuser, // user
-  ['cUser']: cUser, // User
-  ['cAccess']: cAccess, // Access
-  ['clevel']: clevel, // level
-  ['cLevel']: cLevel, // Level
-  ['cget']: cget, // get
-  ['cGet']: cGet, // Get
-  ['cput']: cput, // put
-  ['cPut']: cPut, // Put
-  ['cPUT']: cPUT, // PUT
-  ['cfrom']: cfrom, // from
-  ['cFrom']: cFrom, // From
-  ['cplace']: cplace, // place
-  ['cPlace']: cPlace, // Place
-  ['cplaces']: cplaces, // places
-  ['cPlaces']: cPlaces, // Places
-  ['cplaced']: cplaced, // placed
-  ['cPlaced']: cPlaced, // Placed
-  ['cplacing']: cplacing, // placing
-  ['cPlacing']: cPlacing, // Placing
-  ['cplacement']: cplacement, // placement
-  ['cPlacement']: cPlacement, // Placement
-  ['creplace']: creplace, // replace
-  ['cReplace']: cReplace, // Replace
-  ['creplaces']: creplaces, // replaces
-  ['cReplaces']: cReplaces, // Replaces
-  ['creplaced']: creplaced, // replaced
-  ['cReplaced']: cReplaced, // Replaced
-  ['creplacing']: creplacing, // replacing
-  ['cReplacing']: cReplacing, // Replacing
-  ['creplacement']: creplacement, // replacement
-  ['cReplacement']: cReplacement, // Replacement
-  ['cspace']: cspace, // space
-  ['cSpace']: cSpace, // Space
-  ['cspaces']: cspaces, // spaces
-  ['cSpaces']: cSpaces, // Spaces
-  ['cspaced']: cspaced, // spaced
-  ['cSpaced']: cSpaced, // Spaced
-  ['cplus']: cplus, // plus
-  ['cPlus']: cPlus, // Plus
-  ['ccolon']: ccolon, // colon
-  ['cColon']: cColon, // Colon
-  ['cunder']: cunder, // under
-  ['cUnder']: cUnder, // Under
-  ['cscore']: cscore, // score
-  ['cScore']: cScore, // Score
-  ['cunderscore']: cunderscore, // underscore
-  ['cUnderscore']: cUnderscore, // Underscore
-  ['cCatagory']: cCatagory, // Catagory
-  ['cclean']: cclean, // clean
-  ['cClean']: cClean, // Clean
-  ['ccleaned']: ccleaned, // cleaned
-  ['cCleaned']: cCleaned, // Cleaned
-  ['cCarriage']: cCarriage, // Carriage
-  ['cturn']: cturn, // turn
-  ['creturn']: creturn, // return
-  ['cReturn']: cReturn, // Return
-  ['cconvert']: cconvert, // convert
-  ['cConvert']: cConvert, // Convert
-  ['clow']: clow, // low
-  ['cLow']: cLow, // Low
-  ['clower']: clower, // lower
-  ['cLower']: cLower, // Lower
-  ['ccase']: ccase, // case
-  ['cCase']: cCase, // Case
-  ['cmove']: cmove, // move
-  ['cremove']: cremove, // remove
-  ['cRemove']: cRemove, // Remove
-  ['cExtension']: cExtension, // Extension
-  ['cdig']: cdig, // dig
-  ['cDig']: cDig, // Dig
-  ['cdigit']: cdigit, // digit
-  ['cDigit']: cDigit, // Digit
-  ['cletter']: cletter, // letter
-  ['cLetter']: cLetter, // Letter
-  ['cupper']: cupper, // upper
-  ['cUpper']: cUpper, // Upper
-  ['crandom']: crandom, // random
-  ['cRandom']: cRandom, // Random
-  ['crandomly']: crandomly, // randomly
-  ['cRandomly']: cRandomly, // Randomly
-  ['cgenerate']: cgenerate, // generate
-  ['cGenerate']: cGenerate, // Generate
-  ['cgenerated']: cgenerated, // generated
-  ['cGenerated']: cGenerated, // Generated
-  ['cparent']: cparent, // parent
-  ['cParent']: cParent, // Parent
-  ['cvalue']: cvalue, // value
-  ['cValue']: cValue, // Value
-  ['cvalues']: cvalues, // values
-  ['cValues']: cValues, // Values
-  ['cfind']: cfind, // find
-  ['cFind']: cFind, // Find
-  ['cfindvalue']: cfindvalue, // findvalue
-  ['cfindValue']: cfindValue, // findValue
-  ['cFindValue']: cFindValue, // FindValue
-  ['crange']: crange, // range
-  ['cRange']: cRange, // Range
-  ['cnumeric']: cnumeric, // numeric
-  ['cNumeric']: cNumeric, // Numeric
-  ['cNumerical']: cNumerical, // Numerical
-  ['clength']: clength, // length
-  ['cLength']: cLength, // Length
-  ['ccode']: ccode, // code
-  ['cCode']: cCode, // Code
-  ['ceither']: ceither, // either
-  ['cEither']: cEither, // Either
-  ['cenable']: cenable, // enable
-  ['cEnable']: cEnable, // Enable
-  ['cenabled']: cenabled, // enabled
-  ['cEnabled']: cEnabled, // Enabled
-  ['cdetermine']: cdetermine, // determine
-  ['cDetermine']: cDetermine, // Determine
-  ['cties']: cties, // ties
-  ['cTies']: cTies, // Ties
-  ['cability']: cability, // ability
-  ['cAbility']: cAbility, // Ability
-  ['cabilities']: cabilities, // abilities
-  ['cAbilities']: cAbilities, // Abilities
-  ['cvariable']: cvariable, // variable
-  ['cVariable']: cVariable, // Variable
-  ['cvariables']: cvariables, // variables
-  ['cVariables']: cVariables, // Variables
-  ['cvariability']: cvariability, // variability
-  ['cVariability']: cVariability, // Variability
-  ['cvisibility']: cvisibility, // visibility
-  ['cVisibility']: cVisibility, // Visibility
-  ['cDialog']: cDialog, // Dialog
-  ['clibrary']: clibrary, // library
-  ['cLibrary']: cLibrary, // Library
-  ['ctable']: ctable, // table
-  ['cTable']: cTable, // Table
-  ['cequal']: cequal, // equal
-  ['cEqual']: cEqual, // Equal
-  ['cequals']: cequals, // equals
-  ['cEquals']: cEquals, // Equals
-  ['cequivalence']: cequivalence, // equivalence
-  ['cEquivalence']: cEquivalence, // Equivalence
-  ['cRaw']: cRaw, // Raw
-  ['cOperation']: cOperation, // Operation
-  ['cOperating']: cOperating, // Operating
-  ['csystem']: csystem, // system
-  ['cSystem']: cSystem, // System
-  ['csign']: csign, // sign
-  ['cSign']: cSign, // Sign
-  ['cassign']: cassign, // assign
-  ['cAssign']: cAssign, // Assign
-  ['cassignment']: cassignment, // assignment
-  ['cAssignment']: cAssignment, // Assignment
-  ['cAbreviated']: cAbreviated, // Abreviated
-  ['cwait']: cwait, // wait
-  ['cWait']: cWait, // Wait
-  ['cawait']: cawait, // await
-  ['cHTML']: cHTML, // HTML
-  ['chtml']: chtml, // html
-  ['cinner']: cinner, // inner
-  ['cInner']: cInner, // Inner
-  ['cOver']: cOver, // Over
-  ['cride']: cride, // ride
-  ['cRide']: cRide, // Ride
-  ['cOverride']: cOverride, // Override
-  ['cActionOverride']: cActionOverride, // ActionOverride
-  ['cLocator']: cLocator, // Locator
-  ['cLocators']: cLocators, // Locators
-  ['cLocatorLibrary']: cLocatorLibrary, // LocatorLibrary
-  ['cselector']: cselector, // selector
-  ['cSelector']: cSelector, // Selector
-  ['cSelectors']: cSelectors, // Selectors
-  ['cIndividual']: cIndividual, // Individual
-  ['cIndividually']: cIndividually, // Individually
-  ['cexist']: cexist, // exist
-  ['cExist']: cExist, // Exist
-  ['cexists']: cexists, // exists
-  ['cExists']: cExists, // Exists
-  ['cexisted']: cexisted, // existed
-  ['cExisted']: cExisted, // Existed
-  ['cexisting']: cexisting, // existing
-  ['cExisting']: cExisting, // Existing
-  ['cAsynch']: cAsynch, // Asynch
-  ['cSynch']: cSynch, // Synch
-  ['cSingular']: cSingular, // Singular
-  ['cParallel']: cParallel, // Parallel
-  ['cMulti']: cMulti, // Multi
-  ['cUnified']: cUnified, // Unified
-  ['cfault']: cfault, // fault
-  ['cFault']: cFault, // Fault
-  ['cFAULT']: cFAULT, // FAULT
-  ['cdefault']: cdefault, // default
-  ['cDefault']: cDefault, // Default
-  ['cDEFAULT']: cDEFAULT, // DEFAULT
-  ['csingle']: csingle, // single
-  ['cSingle']: cSingle, // Single
-  ['cquote']: cquote, // quote
-  ['cQuote']: cQuote, // Quote
-  ['cquotes']: cquotes, // quotes
-  ['cQuotes']: cQuotes, // Quotes
-  ['cquoted']: cquoted, // quoted
-  ['cQuoted']: cQuoted, // Quoted
-  ['cswap']: cswap, // swap
-  ['cSwap']: cSwap, // Swap
-  ['cbefore']: cbefore, // before
-  ['cBefore']: cBefore, // Before
-  ['cBEFORE']: cBEFORE, // BEFORE
-  ['cafter']: cafter, // after
-  ['cAfter']: cAfter, // After
-  ['cAFTER']: cAFTER, // AFTER
-  ['cOnce']: cOnce, // Once
-  ['cUpload']: cUpload, // Upload
-  ['cStyle']: cStyle, // Style
-  ['cassert']: cassert, // assert
-  ['cAssert']: cAssert, // Assert
-  ['cless']: cless, // less
-  ['cLess']: cLess, // Less
-  ['cgreat']: cgreat, // great
-  ['cGreat']: cGreat, // Great
-  ['cgreater']: cgreater, // greater
-  ['cGreater']: cGreater, // Greater
-  ['cthen']: cthen, // then
-  ['cThen']: cThen, // Then
-  ['cthan']: cthan, // than
-  ['cThan']: cThan, // Than
-  ['cAssertExists']: cAssertExists, // AssertExists
-  ['cAssertNotExists']: cAssertNotExists, // AssertNotExists
-  ['cAssertValueEqual']: cAssertValueEqual, // AssertValueEqual
-  ['cAssertValueNotEqual']: cAssertValueNotEqual, // AssertValueNotEqual
-  ['cAssertValueLessThan']: cAssertValueLessThan, // AssertValueLessThan
-  ['cAssertValueGreaterThan']: cAssertValueGreaterThan, // AssertValueGreaterThan
-  ['cAssertion']: cAssertion, // Assertion
-  ['cAssertionType']: cAssertionType, // AssertionType
-  ['cUploadStyle']: cUploadStyle, // UploadStyle
-  ['cAssertionStyle']: cAssertionStyle, // AssertionStyle
-  ['cby']: cby, // by
-  ['cBy']: cBy, // By
-  ['cBY']: cBY, // BY
-  ['cOr']: cOr, // Or
-  ['cor']: cor, // or
-  ['cOR']: cOR, // OR
-  ['cmix']: cmix, // mix // For some reason JavaScript doesn't like cmi.
-  ['cMix']: cMix, // Mix
-  ['cmixed']: cmixed, // mixed
-  ['cMixed']: cMixed, // Mixed
-  ['calpha']: calpha, // alpha
-  ['cAlpha']: cAlpha, // Alpha
-  ['cbetic']: cbetic, // betic
-  ['cAlphabetic']: cAlphabetic, // Alphabetic
-  ['ctext']: ctext, // text
-  ['cText']: cText, // Text
-  ['cTEXT']: cTEXT, // TEXT
-  ['ccontext']: ccontext, // context
-  ['cContext']: cContext, // Context
-  ['cinput']: cinput, // input
-  ['cInput']: cInput, // Input
-  ['cINPUT']: cINPUT, // INPUT
-  ['cinputs']: cinputs, // inputs
-  ['cInputs']: cInputs, // Inputs
-  ['cinputting']: cinputting, // inputting
-  ['cInputting']: cInputting, // Inputting
-  ['cdescription']: cdescription, // description
-  ['cDescription']: cDescription, // Description
-  ['cconstant']: cconstant, //constant
-  ['cConstant']: cConstant, // Constant
-  ['cconstants']: cconstants, // constants
-  ['cConstants']: cConstants, // Constants
-  ['citeration']: citeration, // iteration
-  ['cIteration']: cIteration, // Iteration
-  ['cproject']: cproject, // project
-  ['cProject']: cProject, // Project
-  ['cProjects']: cProjects, // Projects
-  ['cAdvance']: cAdvance, // Advance
-  ['cAdvanced']: cAdvanced, // Advanced
-  ['cCreation']: cCreation, // Creation
-  ['ctestData']: ctestData, // testData
-  ['cpageData']: cpageData, // pageData
-  ['cPageData']: cPageData, // PageData
-  ['cTestName']: cTestName, // TestName
-  ['cPageName']: cPageName, // PageName
-  ['cbed']: cbed, // bed
-  ['cBed']: cBed, // Bed
-  ['cbeds']: cbeds, // beds
-  ['cBeds']: cBeds, // Beds
-  ['cbedded']: cbedded, // bedded
-  ['cBedded']: cBedded, // Bedded
-  ['cbedding']: cbedding, // bedding
-  ['cBedding']: cBedding, // Bedding
-  ['cweb']: cweb, // web
-  ['cWeb']: cWeb, // Web
-  ['cwebs']: cwebs, // webs
-  ['cWebs']: cWebs, // Webs
-  ['cwebbed']: cwebbed, // webbed
-  ['cWebbed']: cWebbed, // webbed
-  ['cwebbing']: cwebbing, // webbing
-  ['cWebbing']: cWebbing, // Webbing
-  ['cWebkey']: cWebkey, // Webkey
-  ['cfile']: cfile, // file
-  ['cFile']: cFile, // File
-  ['cfiles']: cfiles, // files
-  ['cFiles']: cFiles, // Files
-  ['cfilename']: cfilename, // filename
-  ['cFilename']: cFilename, // Filename
-  ['cfilenames']: cfilenames, // filenames
-  ['cFilenames']: cFilenames, // Filenames
-  ['cfold']: cfold, // fold
-  ['cFold']: cFold, // Fold
-  ['cFolder']: cFolder, // Folder
-  ['cfolder']: cfolder, // folder
-  ['cfolders']: cfolders, // folders
-  ['cFolders']: cFolders, // Folders
-  ['ccafe']: ccafe, // cafe
-  ['ccert']: ccert, // cert
-  ['csrc']: csrc, // src
-  ['cbin']: cbin, // bin
-  ['cnation']: cnation, // nation
-  ['cNation']: cNation, // Nation
-  ['csource']: csource, // source
-  ['cSource']: cSource, // Source
-  ['cdestination']: cdestination, // destination
-  ['cDestination']: cDestination, // Destination
-  ['cresource']: cresource, // resource
-  ['cResource']: cResource, // Resource
-  ['cresources']: cresources, // resources
-  ['cResources']: cResources, // Resources
-  ['cclass']: cclass, // class
-  ['cClass']: cClass, // Class
-  ['cIngestion']: cIngestion, // Ingestion
-  ['cis']: cis, // is
-  ['cIs']: cIs, // Is
-  ['cIS']: cIS, // IS
-  ['ccheck']: ccheck, // check
-  ['cCheck']: cCheck, // Check
-  ['cchecks']: cchecks, // checks
-  ['cChecks']: cChecks, // Checks
-  ['cchecked']: cchecked, // checked
-  ['cChecked']: cChecked, // Checked
-  ['celement']: celement, // element
-  ['cElement']: cElement, // Element
-  ['celements']: celements, // elements
-  ['cElements']: cElements, // Elements
-  ['cElementName']: cElementName, // ElementName
-  ['callow']: callow, // allow
-  ['cAllow']: cAllow, // Allow
-  ['callowable']: callowable, // allowable
-  ['cAllowable']: cAllowable, // Allowable
-  ['chome']: chome, // home
-  ['cHome']: cHome, // Home
-  ['cpublic']: cpublic, // public
-  ['cPublic']: cPublic, // Public
-  ['cspecial']: cspecial, // special
-  ['cSpecial']: cSpecial, // Special
-  ['ccharacter']: ccharacter, // character
-  ['cCharacter']: cCharacter, // Character
-  ['ccharacters']: ccharacters, // characters
-  ['cCharacters']: cCharacters, // Characters
-  ['cedge']: cedge, // edge
-  ['cEdge']: cEdge, // Edge
-  ['cWorks']: cWorks, // Works
-  ['csolid']: csolid, // solid
-  ['cSolid']: cSolid, // Solid
-  ['cBinary']: cBinary, // Binary
-  ['cTimeout']: cTimeout, // Timeout
-  ['cTimeOut']: cTimeOut, // TimeOut
-  ['cDwell']: cDwell, // Dwell
-  ['ccut']: ccut, // cut
-  ['cCut']: cCut, // Cut
-  ['ccuts']: ccuts, // cuts
-  ['cCuts']: cCuts, // Cuts
-  ['ccutting']: ccutting, // cutting
-  ['cCutting']: cCutting, // Cutting
-  ['ccute']: ccute, // cute
-  ['cCute']: cCute, // Cute
-  ['cexecute']: cexecute, // execute
-  ['cExecute']: cExecute, // Execute
-  ['cexecutes']: cexecutes, // executes
-  ['cExecutes']: cExecutes, // Executes
-  ['cexecuted']: cexecuted, // executed
-  ['cExecuted']: cExecuted, // Executed
-  ['cexecuting']: cexecuting, // executing
-  ['cExecuting']: cExecuting, // Executing
-  ['csibling']: csibling, // sibling
-  ['cSibling']: cSibling, // Sibling
-  ['cchild']: cchild, // child
-  ['cChild']: cChild, // Child
-  ['cfilter']: cfilter, // filter
-  ['cFilter']: cFilter, // Filter
-  ['cattribute']: cattribute, // attribute
-  ['cAttribute']: cAttribute, // Attribute
-  ['cattributes']: cattributes, // attributes
-  ['cAttributes']: cAttributes, // Attributes
-  ['cdisabled']: cdisabled, // disabled
-  ['cDisabled']: cDisabled, // Disabled
-  ['cman']: cman, // man
-  ['cMan']: cMan, // Man
-  ['cwoman']: cwoman, // woman
-  ['cWoman']: cWoman, // Woman
-  ['ccell']: ccell, // cell
-  ['cCell']: cCell, // Cell
-  ['chung']: chung, // hung
-  ['cHung']: cHung, // Hung
-  ['cport']: cport, // port
-  ['cPort']: cPort, // Port
-  ['cConstructor']: cConstructor, // Constructor
-  ['cwarn']: cwarn, // warn
-  ['cWarn']: cWarn, // Warn
-  ['cWARN']: cWARN, // WARN
-  ['cwarning']: cwarning, // warning
-  ['cWarning']: cWarning, // Warning
-  ['cWARNING']: cWARNING, // WARNING
-  ['cwarnings']: cwarnings, // warnings
-  ['cWarnings']: cWarnings, // Warnings
-  ['cerror']: cerror, // error
-  ['cError']: cError, // Error
-  ['cERROR']: cERROR, // ERROR
-  ['cash']: cash, // ash
-  ['cAsh']: cAsh, // Ash
-  ['cdash']: cdash, // dash
-  ['cDash']: cDash, // Dash
-  ['cboard']: cboard, // board
-  ['cDashboard']: cDashboard, // Dashboard
-  ['ccompose']: ccompose, // compose
-  ['cdecompose']: cdecompose, // decompose
-  ['cDecompose']: cDecompose, // Decompose
-  ['carray']: carray, // array
-  ['cArray']: cArray, // Array
-  ['carrays']: carrays, // arrays
-  ['cArrays']: cArrays, // Arrays
-  ['ccamel']: ccamel, // camel
-  ['cCamel']: cCamel, // Camel
-  ['cround']: cround, // round
-  ['cRound']: cRound, // Round
-  ['crounded']: crounded, // rounded
-  ['cRounded']: cRounded, // Rounded
-  ['cquart']: cquart, // quart
-  ['cQuart']: cQuart, // Quart
-  ['cquarter']: cquarter, // quarter
-  ['cQuarter']: cQuarter, // Quarter
-  ['cquaternion']: cquaternion, // quaternion
-  ['cQuaternion']: cQuaternion, // Quaternion
-  ['cnormal']: cnormal, // normal
-  ['cNormal']: cNormal, // Normal
-  ['cnormalize']: cnormalize, // normalize
-  ['cNormalize']: cNormalize, // Normalize
-  ['cnominal']: cnominal, // nominal
-  ['cNominal']: cNominal, // Nominal
-  ['cdegree']: cdegree, // degree
-  ['cDegree']: cDegree, // Degree
-  ['cdegrees']: cdegrees, // degrees
-  ['cDegrees']: cDegrees, // Degrees
-  ['cangle']: cangle, // angle
-  ['cAngle']: cAngle, // Angle
-  ['ctrap']: ctrap, // trap
-  ['cTrap']: cTrap, // Trap
-  ['cFraction']: cFraction, // Fraction
-  ['cvector']: cvector, // vector
-  ['cVector']: cVector, // Vector
-  ['cfor']: cfor, // for
-  ['cFor']: cFor, // For
-  ['cform']: cform, // form
-  ['cForm']: cForm, // Form
-  ['ctransform']: ctransform, // transform
-  ['cTransform']: cTransform, // Transform
-  ['cpoint']: cpoint, // point
-  ['cPoint']: cPoint, // Point
-  ['clocation']: clocation, // location
-  ['cLocation']: cLocation, // Location
-  ['csort']: csort, // sort
-  ['cSort']: cSort, // Sort
-  ['csimplify']: csimplify, // simplify
-  ['cSimplify']: cSimplify, // Simplify
-  ['cconsolidate']: cconsolidate, // consolidate
-  ['cConsolidate']: cConsolidate, // Consolidate
-  ['cconsolidated']: cconsolidated, // consolidated
-  ['cConsolidated']: cConsolidated, // Consolidated
-  ['cconsolidates']: cconsolidates, // consolidates
-  ['cConsolidates']: cConsolidates, // Consolidates
-  ['cconsolidating']: cconsolidating, // consolidating
-  ['cConsolidating']: cConsolidating, // Consolidating
-  ['care']: care, // are
-  ['cAre']: cAre, // Are
-  ['cARE']: cARE, // ARE
-  ['ccompare']: ccompare, // compare
-  ['cCompare']: cCompare, // Compare
-  ['ccompares']: ccompares, // compares
-  ['cCompares']: cCompares, // Compares
-  ['ccompared']: ccompared, // compared
-  ['cCompared']: cCompared, // Compared
-  ['ccomparing']: ccomparing, // comparing
-  ['cComparing']: cComparing, // Comparing
-  ['ccomparison']: ccomparison, // comparison
-  ['cComparison']: cComparison, // Comparison
-  ['ccomparisons']: ccomparisons, // comparisons
-  ['cComparisons']: cComparisons, // Comparisons
-  ['ccontain']: ccontain, // contain
-  ['cContain']: cContain, // Contain
-  ['ccontains']: ccontains, // contains
-  ['cContains']: cContains, // Contains
-  ['ccontained']: ccontained, // contained
-  ['cContained']: cContained, // Contained
-  ['ccontaining']: ccontaining, // containing
-  ['cContaining']: cContaining, // Containing
-  ['cvideo']: cvideo, // video
-  ['cVideo']: cVideo, // Video
-  ['cProduct']: cProduct, // Product
-  ['caggregate']: caggregate, // aggregate
-  ['cAggregate']: cAggregate, // Aggregate
-  ['carguments']: carguments, // arguments
-  ['cArguments']: cArguments, // Arguments
-  ['cDifference']: cDifference, // Difference
-  ['cbet']: cbet, // bet
-  ['cBet']: cBet, // Bet
-  ['cbetween']: cbetween, // between
-  ['cBetween']: cBetween, // Between
-  ['ccertain']: ccertain, // certain
-  ['cascertain']: cascertain, // ascertain
-  ['cAscertain']: cAscertain, // Ascertain
-  ['cmatch']: cmatch, // match
-  ['cMatch']: cMatch, // Match
-  ['cmatching']: cmatching, // matching
-  ['cMatching']: cMatching, // Matching
-  ['cdoes']: cdoes, // does
-  ['cDoes']: cDoes, // Does
-  ['cDOES']: cDOES, // DOES
-  ['capplication']: capplication, // application
-  ['cApplication']: cApplication, // Application
-  ['cAPPLICATION']: cAPPLICATION, // APPLICATION
-  ['cbuild']: cbuild, // build
-  ['cBuild']: cBuild, // Build
-  ['cdeploy']: cdeploy, // deploy
-  ['cDeploy']: cDeploy, // Deploy
-  ['cDEPLOY']: cDEPLOY, // DEPLOY
-  ['cdeployment']: cdeployment, // deployment
-  ['cDeployment']: cDeployment, // Deployment
-  ['clease']: clease, // lease
-  ['cLEASE']: cLEASE, // LEASE
-  ['crelease']: crelease, // release
-  ['cRelease']: cRelease, // Release
-  ['cRELEASE']: cRELEASE, // RELEASE
-  ['creleases']: creleases, // releases
-  ['cReleases']: cReleases, // Releases
-  ['creleased']: creleased, // released
-  ['cReleased']: cReleased, // Released
-  ['creleasing']: creleasing, // releasing
-  ['cReleasing']: cReleasing, // Releasing
-  ['croot']: croot, // root
-  ['cRoot']: cRoot, // Root
-  ['cparse']: cparse, // parse
-  ['cParse']: cParse, // Parse
-  ['cPARSE']: cPARSE, // PARSE
-  ['cparser']: cparser, // parser
-  ['cParser']: cParser, // Parser
-  ['cPARSER']: cPARSER, // PARSER
-  ['cparsed']: cparsed, // parsed
-  ['cParsed']: cParsed, // Parsed
-  ['cparsing']: cparsing, // parsing
-  ['cParsing']: cParsing, // Parsing
-  ['cforward']: cforward, // forward
-  ['cForward']: cForward, // Forward
-  ['cslash']: cslash, // slash
-  ['cSlash']: cSlash, // Slash
-  ['cmeta']: cmeta, // meta
-  ['cMeta']: cMeta, // Meta
-  ['cmetaData']: cmetaData, // metaData
-  ['cMetaData']: cMetaData, // MetaData
-  ['cbusiness']: cbusiness, // business
-  ['cBusiness']: cBusiness, // Business
-  ['crule']: crule, // rule
-  ['cRule']: cRule, // Rule
-  ['cfresh']: cfresh, // fresh
-  ['crefresh']: crefresh, // refresh
-  ['cRefresh']: cRefresh, // Refresh
-  ['ceval']: ceval, // eval
-  ['cEval']: cEval, // Eval
-  ['creload']: creload, // reload
-  ['cReload']: cReload, // Reload
-  ['cdemo']: cdemo, // demo
-  ['cDemo']: cDemo, // Demo
-  ['ccommon']: ccommon, // common
-  ['cCommon']: cCommon, // Common
-  ['cfunction']: cfunction, // function
-  ['cFunction']: cFunction, // Function
-  ['cfunctions']: cfunctions, // functions
-  ['cFunctions']: cFunctions, // Functions
-  ['cmultiple']: cmultiple, // multiple
-  ['cMultiple']: cMultiple, // Multiple
-  ['cJournal']: cJournal, // Journal
-  ['cExecution']: cExecution, // Execution
-  ['cpercent']: cpercent, // percent
-  ['cPercent']: cPercent, // Percent
-  ['cbasic']: cbasic, // basic
-  ['cBasic']: cBasic, // Basic
-  ['codd']: codd, // odd
-  ['cOdd']: cOdd, // Odd
-  ['ceven']: ceven, // even
-  ['cEven']: cEven, // Even
-  ['cEVEN']: cEVEN, // EVEN
-  ['cevent']: cevent, // event
-  ['cEvent']: cEvent, // Event
-  ['cevents']: cevents, // events
-  ['cEvents']: cEvents, // Events
-  ['cface']: cface, // face
-  ['cFace']: cFace, // Face
-  ['cargument']: cargument, // argument
-  ['cArgument']: cArgument, // Argument
-  ['cdrive']: cdrive, // drive
-  ['cDrive']: cDrive, // Drive
-  ['cdriven']: cdriven, // driven
-  ['cDriven']: cDriven, // Driven
-  ['cinterface']: cinterface, // interface
-  ['cInterface']: cInterface, // Interface
-  ['cfont']: cfont, // font
-  ['cFont']: cFont, // Font
-  ['cmodule']: cmodule, // module
-  ['cModule']: cModule, // Module
-  ['ccolor']: ccolor, // color
-  ['cColor']: cColor, // Color
-  ['ccolors']: ccolors, // colors
-  ['cColors']: cColors, // Colors
-  ['ccolored']: ccolored, // colored
-  ['cColored']: cColored, // Colored
-  ['ccolorize']: ccolorize, // colorize
-  ['cColorize']: cColorize, // Colorize
-  ['ccolorized']: ccolorized, // colorized
-  ['cColorized']: cColorized, // Colorized
-  ['cold']: cold, // old
-  ['cOld']: cOld, // Old
-  ['cbold']: cbold, // bold
-  ['cBold']: cBold, // Bold
-  ['cmost']: cmost, // most
-  ['cMost']: cMost, // Most
-  ['cpop']: cpop, // pop
-  ['cPop']: cPop, // Pop
-  ['cPOP']: cPOP, // POP
-  ['cpopular']: cpopular, // popular
-  ['cPopular']: cPopular, // Popular
-  ['calmost']: calmost, // almost
-  ['cAlmost']: cAlmost, // Almost
-  ['cpal']: cpal, // pal
-  ['cPal']: cPal, // Pal
-  ['cpalindrome']: cpalindrome, // palindrome
-  ['cPalindrome']: cPalindrome, // Palindrome
-  ['caverage']: caverage, // average
-  ['cAverage']: cAverage, // Average
-  ['cclient']: cclient, // client
-  ['cClient']: cClient, // Client
-  ['crules']: crules, // rules
-  ['cRules']: cRules, // Rules
-  ['ccustom']: ccustom, // custom
-  ['cCustom']: cCustom, // Custom
-  ['ccommand']: ccommand, // command
-  ['cCommand']: cCommand, // Command
-  ['cCOMMAND']: cCOMMAND, // COMMAND
-  ['ccommands']: ccommands, // commands
-  ['cCommands']: cCommands, // Commands
-  ['cqueue']: cqueue, // queue
-  ['cQueue']: cQueue, // Queue
-  ['cblob']: cblob, // blob
-  ['cBlob']: cBlob, // Blob
-  ['cframe']: cframe, // frame
-  ['cFrame']: cFrame, // Frame
-  ['calias']: calias, // alias
-  ['cAlias']: cAlias, // Alias
-  ['caliases']: caliases, // aliases
-  ['cAliases']: cAliases, // Aliases
-  ['csequencer']: csequencer, // sequencer
-  ['cSequencer']: cSequencer, // Sequencer
-  ['cprimary']: cprimary, // primary
-  ['cPrimary']: cPrimary, // Primary
-  ['csecondary']: csecondary, // secondary
-  ['cSecondary']: cSecondary, // Secondary
-  ['ctertiary']: ctertiary, // tertiary
-  ['cTertiary']: cTertiary, // Tertiary
-  ['cdelimit']: cdelimit, // delimit
-  ['cDelimit']: cDelimit, // Delimit
-  ['cdelimiter']: cdelimiter, // delimiter
-  ['cDelimiter']: cDelimiter, // Delimiter
-  ['cdelimiters']: cdelimiters, // delimiters
-  ['cDelimiters']: cDelimiters, // Delimiters
-  ['cdelimited']: cdelimited, // delimited
-  ['cDelimited']: cDelimited, // Delimited
-  ['cdelimiting']: cdelimiting, // delimiting
-  ['cDelimiting']: cDelimiting, // Delimiting
-  ['chelp']: chelp, // help
-  ['cHelp']: cHelp, // Help
-  ['cprint']: cprint, // print
-  ['cPrint']: cPrint, // Print
-  ['chive']: chive, // hive
-  ['cHive']: cHive, // Hive
-  ['cgenerator']: cgenerator, // generator
-  ['cGenerator']: cGenerator, // Generator
-  ['cindex']: cindex, // index
-  ['cIndex']: cIndex, // Index
-  ['cabout']: cabout, // about
-  ['cAbout']: cAbout, // About
-  ['cstart']: cstart, // start
-  ['cStart']: cStart, // Start
-  ['cstarts']: cstarts, // starts
-  ['cStarts']: cStarts, // Starts
-  ['cstarted']: cstarted, // started
-  ['cStarted']: cStarted, // Started
-  ['cstartup']: cstartup, // startup
-  ['cstarting']: cstarting, // starting
-  ['cStarting']: cStarting, // Starting
-  ['coutput']: coutput, // output
-  ['cOutput']: cOutput, // Output
-  ['cmetric']: cmetric, // metric
-  ['cMetric']: cMetric, // Metric
-  ['cmetrics']: cmetrics, // metrics
-  ['cMetrics']: cMetrics, // Metrics
-  ['crack']: crack, // rack
-  ['cRack']: cRack, // Rack
-  ['ctrack']: ctrack, // track
-  ['cTrack']: cTrack, // Track
-  ['ctracking']: ctracking, // tracking
-  ['cTracking']: cTracking, // Tracking
-  ['cstack']: cstack, // stack
-  ['cStack']: cStack, // Stack
-  ['cstandard']: cstandard, // standard
-  ['cStandard']: cStandard, // Standard
-  ['cdeviation']: cdeviation, // deviation
-  ['cDeviation']: cDeviation, // Deviation
-  ['canalysis']: canalysis, // analysis
-  ['cAnalysis']: cAnalysis, // Analysis
-  ['cclear']: cclear, // clear
-  ['cClear']: cClear, // Clear
-  ['cversion']: cversion, // version
-  ['cVersion']: cVersion, // Version
-  ['ccontrol']: ccontrol, // control
-  ['cControl']: cControl, // Control
-  ['ccontrols']: ccontrols, // controls
-  ['cControls']: cControls, // Controls
-  ['ccontrolled']: ccontrolled, // controlled
-  ['cControlled']: cControlled, // Controlled
-  ['ccontrolling']: ccontrolling, // controlling
-  ['cControlling']: cControlling, // Controlling
-  ['ccontroller']: ccontroller, // controller
-  ['cController']: cController, // Controller
-  ['ccontrollers']: ccontrollers, // controllers
-  ['cControllers']: cControllers, // Controllers
-  ['cperform']: cperform, // perform
-  ['cPerform']: cPerform, // Perform
-  ['cperformance']: cperformance, // performance
-  ['cPerformance']: cPerformance, // Performance
-  ['cconversion']: cconversion, // conversion
-  ['cConversion']: cConversion, // Conversion
-  ['cpass']: cpass, // pass
-  ['cPass']: cPass, // Pass
-  ['cPASS']: cPASS, // PASS
-  ['cpassed']: cpassed, // passed
-  ['cPassed']: cPassed, // Passed
-  ['cPASSED']: cPASSED, // PASSED
-  ['cpassing']: cpassing, // passing
-  ['cPassing']: cPassing, // Passing
-  ['cbypass']: cbypass, // bypass
-  ['cBypass']: cBypass, // Bypass
-  ['cbypasses']: cbypasses, // bypasses
-  ['cBypasses']: cBypasses, // Bypasses
-  ['cbypassed']: cbypassed, // bypassed
-  ['cBypassed']: cBypassed, // Bypassed
-  ['cbypassing']: cbypassing, // bypassing
-  ['cBypassing']: cBypassing, // Bypassing
-  ['cfail']: cfail, // fail
-  ['cFail']: cFail, // Fail
-  ['cFAIL']: cFAIL, // FAIL
-  ['cfailed']: cfailed, // failed
-  ['cFailed']: cFailed, // Failed
-  ['cFAILED']: cFAILED, // FAILED
-  ['cfailure']: cfailure, // failure
-  ['cFailure']: cFailure, // Failure
-  ['csimplified']: csimplified, // simplified
-  ['cSimplified']: cSimplified, // Simplified
-  ['ctraditional']: ctraditional, // traditional
-  ['cTraditional']: cTraditional, // Traditional
-  ['cground']: cground, // ground
-  ['cGround']: cGround, // Ground
-  ['cyell']: cyell, // yell
-  ['cYell']: cYell, // Yell
-  ['clack']: clack, // lack
-  ['cLack']: cLack, // Lack
-  ['clane']: clane, // lane
-  ['cLane']: cLane, // Lane
-  ['csection']: csection, // section
-  ['cSection']: cSection, // Section
-  ['csections']: csections, // sections
-  ['cSections']: cSections, // Sections
-  ['cunit']: cunit, // unit
-  ['cUnit']: cUnit, // Unit
-  ['cunits']: cunits, // units
-  ['cUnits']: cUnits, // Units
-  ['cgeneric']: cgeneric, // generic
-  ['cGeneric']: cGeneric, // Generic
-  ['cisotope']: cisotope, // isotope
-  ['cIsotope']: cIsotope, // Isotope
-  ['cphonic']: cphonic, // phonic
-  ['cPhonic']: cPhonic, // Phonic
-  ['cphonics']: cphonics, // phonics
-  ['cPhonics']: cPhonics, // Phonics
-  ['cshape']: cshape, // shape
-  ['cShape']: cShape, // Shape
-  ['cexport']: cexport, // export
-  ['cExport']: cExport, // Export
-  ['cplay']: cplay, // play
-  ['cPlay']: cPlay, // Play
-  ['cdisplay']: cdisplay, // display
-  ['cDisplay']: cDisplay, // Display
-  ['csum']: csum, // sum
-  ['cSum']: cSum, // Sum
-  ['csummary']: csummary, // summary
-  ['cSummary']: cSummary, // Summary
-  ['csuggest']: csuggest, // suggest
-  ['cSuggest']: cSuggest, // Suggest
-  ['csuggested']: csuggested, // suggested
-  ['cSuggested']: cSuggested, // Suggested
-  ['cline']: cline, // line
-  ['cLine']: cLine, // Line
-  ['cdocument']: cdocument, // document
-  ['cDocument']: cDocument, // Document
-  ['cqualified']: cqualified, // qualified
-  ['cQualified']: cQualified, // Qualified
-  ['cfix']: cfix, // fix
-  ['cFix']: cFix, // Fix
-  ['cprefix']: cprefix, // prefix
-  ['cPrefix']: cPrefix, // Prefix
-  ['csuffix']: csuffix, // suffix
-  ['cSuffix']: cSuffix, // Suffix
-  ['cdevelop']: cdevelop, // develop
-  ['cDevelop']: cDevelop, // Develop
-  ['cDEVELOP']: cDEVELOP, // DEVELOP
-  ['cdevelopment']: cdevelopment, // development
-  ['cDevelopment']: cDevelopment, // Development
-  ['cDEVELOPMENT']: cDEVELOPMENT, // DEVELOPMENT
-  ['cproduction']: cproduction, // production
-  ['cProduction']: cProduction, // Production
-  ['cPRODUCTION']: cPRODUCTION, // PRODUCTION
-  ['cstorage']: cstorage, // storage
-  ['cStorage']: cStorage, // Storage
-  ['cstore']: cstore, // store
-  ['cStore']: cStore, // Store
-  ['cstored']: cstored, // stored
-  ['cStored']: cStored, // Stored
-  ['cunique']: cunique, // unique
-  ['cUnique']: cUnique, // Unique
-  ['cduplicate']: cduplicate, // duplicate
-  ['cDuplicate']: cDuplicate, // Duplicate
-  ['cplease']: cplease, // please
-  ['cPlease']: cPlease, // Please
-  ['center']: center, // enter
-  ['cEnter']: cEnter, // Enter
-  ['centers']: centers, // enters
-  ['cEnters']: cEnters, // Enters
-  ['centered']: centered, // entered
-  ['cEntered']: cEntered, // Entered
-  ['centering']: centering, // entering
-  ['cEntering']: cEntering, // Entering
-  ['cwere']: cwere, // were
-  ['cWere']: cWere, // Were
-  ['cwhere']: cwhere, // where
-  ['cWhere']: cWhere, // Where
-  ['cher']: cher, // her
-  ['cHer']: cHer, // Her
-  ['chim']: chim, // him
-  ['cHim']: cHim, // Him
-  ['chers']: chers, // hers
-  ['cHers']: cHers, // Hers
-  ['chis']: chis, // his
-  ['cHis']: cHis, // His
-  ['cthem']: cthem, // them
-  ['cThem']: cThem, // Them
-  ['cthose']: cthose, // those
-  ['cThose']: cThose, // Those
-  ['cthat']: cthat, // that
-  ['cThat']: cThat, // That
-  ['cthis']: cthis, // this
-  ['cThis']: cThis, // This
-  ['cwhen']: cwhen, // when
-  ['cWhen']: cWhen, // When
-  ['cwhat']: cwhat, // what
-  ['cWhat']: cWhat, // What
-  ['chow']: chow, // how
-  ['cHow']: cHow, // How
-  ['cwhy']: cwhy, // why
-  ['cWhy']: cWhy, // Why
-  ['cother']: cother, // other
-  ['cOther']: cOther, // Other
-  ['cabreviation']: cabreviation, // abreviation
-  ['cAbreviation']: cAbreviation, // Abreviation
-  ['cabreviations']: cabreviations, // abreviations
-  ['cAbreviations']: cAbreviations, // Abreviations
-  ['cacronym']: cacronym, // acronym
-  ['cAcronym']: cAcronym, // Acronym
-  ['cacronyms']: cacronyms, // acronyms
-  ['cAcronyms']: cAcronyms, // Acronyms
-  ['csolve']: csolve, // solve
-  ['cSolve']: cSolve, // Solve
-  ['cLehmer']: cLehmer, // Lehmer
-  ['cdeep']: cdeep, // deep
-  ['cDeep']: cDeep, // Deep
-  ['cclone']: cclone, // clone
-  ['cClone']: cClone, // Clone
-  ['ccursive']: ccursive, // cursive
-  ['cCursive']: cCursive, // Cursive
-  ['crecursive']: crecursive, // recursive
-  ['cRecursive']: cRecursive, // Recursive
-  ['cexpansion']: cexpansion, // expansion
-  ['cExpansion']: cExpansion, // Expansion
-  ['cscreen']: cscreen, // screen
-  ['cScreen']: cScreen, // Screen
-  ['cyou']: cyou, // you
-  ['cYou']: cYou, // You
-  ['cwould']: cwould, // would
-  ['cWould']: cWould, // Would
-  ['cshould']: cshould, // should
-  ['cShould']: cShould, // Should
-  ['ccould']: ccould, // could
-  ['cCould']: cCould, // Could
-  ['clike']: clike, // like
-  ['cLike']: cLike, // Like
-  ['cfine']: cfine, // fine
-  ['cFine']: cFine, // Fine
-  ['cdefine']: cdefine, // define
-  ['cDefine']: cDefine, // Define
-  ['cdefined']: cdefined, // defined
-  ['cDefined']: cDefined, // Defined
-  ['cdefines']: cdefines, // defines
-  ['cDefines']: cDefines, // Defines
-  ['cdefining']: cdefining, // defining
-  ['cDefining']: cDefining, // Defining
-  ['cfill']: cfill, // fill
-  ['cFill']: cFill, // Fill
-  ['cfulfillment']: cfulfillment, // fulfillment
-  ['cFulfillment']: cFulfillment, // Fulfillment
-  ['coptimized']: coptimized, // optimized
-  ['cOptimized']: cOptimized, // Optimized
-  ['csome']: csome, // some
-  ['cSome']: cSome, // Some
-  ['ccomb']: ccomb, // comb
-  ['cComb']: cComb, // Comb
-  ['ccombine']: ccombine, // combine
-  ['cCombine']: cCombine, // Combine
-  ['ccombines']: ccombines, // combines
-  ['cCombines']: cCombines, // Combines
-  ['ccombined']: ccombined, // combined
-  ['cCombined']: cCombined, // Combined
-  ['ccombining']: ccombining, // combining
-  ['cCombining']: cCombining, // Combining
-  ['crecombine']: crecombine, // recombine
-  ['cRecombine']: cRecombine, // Recombine
-  ['ccombination']: ccombination, // combination
-  ['cCombination']: cCombination, // Combination
-  ['ccombinations']: ccombinations, // combinations
-  ['cCombinations']: cCombinations, // Combinations
-  ['crecognizer']: crecognizer, // recognizer
-  ['cRecognizer']: cRecognizer, // Recognizer
-  ['cpat']: cpat, // pat
-  ['cPat']: cPat, // Pat
-  ['cpatt']: cpatt, // patt
-  ['cPatt']: cPatt, // Patt
-  ['cpattern']: cpattern, // pattern
-  ['cPattern']: cPattern, // Pattern
-  ['cpatterns']: cpatterns, // patterns
-  ['cPatterns']: cPatterns, // Patterns
-  ['ccoma']: ccoma, // coma
-  ['cComa']: cComa, // Coma
-  ['ccomas']: ccomas, // comas
-  ['cComas']: cComas, // Comas
-  ['cseparate']: cseparate, // separate
-  ['cSeparate']: cSeparate, // Separate
-  ['cseparated']: cseparated, // separated
-  ['cSeparated']: cSeparated, // Separated
-  ['csea']: csea, // sea
-  ['cSea']: cSea, // Sea
-  ['csearch']: csearch, // search
-  ['cSearch']: cSearch, // Search
-  ['csearches']: csearches, // searches
-  ['cSearches']: cSearches, // Searches
-  ['csearched']: csearched, // searched
-  ['cSearched']: cSearched, // Searched
-  ['csearching']: csearching, // searching
-  ['cSearching']: cSearching, // Searching
-  ['cneed']: cneed, // need
-  ['cNeed']: cNeed, // Need
-  ['cimplement']: cimplement, // implement
-  ['cImplement']: cImplement, // Implement
-  ['cimplements']: cimplements, // implements
-  ['cImplements']: cImplements, // Implements
-  ['cimplementation']: cimplementation, // implementation
-  ['cImplementation']: cImplementation, // Implementation
-  ['cgoing']: cgoing, // going
-  ['cGoing']: cGoing, // Going
-  ['cmain']: cmain, // main
-  ['cMain']: cMain, // Main
-  ['cprogram']: cprogram, // program
-  ['cProgram']: cProgram, // Program
-  ['cloop']: cloop, // loop
-  ['cLoop']: cLoop, // Loop
-  ['cgood']: cgood, // good
-  ['cGood']: cGood, // Good
-  ['cbye']: cbye, // bye
-  ['cBye']: cBye, // Bye
-  ['chave']: chave, // have
-  ['cHave']: cHave, // Have
-  ['cnice']: cnice, // nice
-  ['cNice']: cNice, // Nice
-  ['cday']: cday, // day
-  ['cDay']: cDay, // Day
-  ['cstay']: cstay, // stay
-  ['cStay']: cStay, // Stay
-  ['csafe']: csafe, // safe
-  ['cSafe']: cSafe, // Safe
-  ['cwas']: cwas, // was
-  ['cWas']: cWas, // Was
-  ['cbig']: cbig, // big
-  ['cBig']: cBig, // Big
-  ['cbigger']: cbigger, // bigger
-  ['cBigger']: cBigger, // Bigger
-  ['cbiggest']: cbiggest, // biggest
-  ['cBiggest']: cBiggest, // Biggest
-  ['cspecific']: cspecific, // specific
-  ['cSpecific']: cSpecific, // Specific
-  ['cspecified']: cspecified, // specified
-  ['cSpecified']: cSpecified, // Specified
-  ['cdomain']: cdomain, // domain
-  ['cDomain']: cDomain, // Domain
-  ['cmode']: cmode, // mode
-  ['cMode']: cMode, // Mode
-  ['csymbol']: csymbol, // symbol
-  ['cSymbol']: cSymbol, // Symbol
-  ['csymbols']: csymbols, // symbols
-  ['cSymbols']: cSymbols, // Symbols
-  ['cresolve']: cresolve, // resolve
-  ['cResolve']: cResolve, // Resolve
-  ['cresolved']: cresolved, // resolved
-  ['cResolved']: cResolved, // Resolved
-  ['cresolving']: cresolving, // resolving
-  ['cResolving']: cResolving, // Resolving
-  ['cvariation']: cvariation, // variation
-  ['cVariation']: cVariation, // Variation
-  ['cterm']: cterm, // term
-  ['cTerm']: cTerm, // Term
-  ['ccost']: ccost, // cost
-  ['cCost']: cCost, // Cost
-  ['cperiod']: cperiod, // period
-  ['cPeriod']: cPeriod, // Period
-  ['ccannot']: ccannot, // cannot
-  ['cCannot']: cCannot, // Cannot
-  ['cnothing']: cnothing, // nothing
-  ['cNothing']: cNothing, // Nothing
-  ['cnothingness']: cnothingness, // nothingness
-  ['cNothingness']: cNothingness, // Nothingness
-  ['cused']: cused, // used
-  ['cUsed']: cUsed, // Used
-  ['cusing']: cusing, // using
-  ['cUsing']: cUsing, // Using
-  ['cbreak']: cbreak, // break
-  ['cBreak']: cBreak, // Break
-  ['cinto']: cinto, // into
-  ['cInto']: cInto, // Into
-  ['cunable']: cunable, // unable
-  ['cUnable']: cUnable, // Unable
-  ['cnow']: cnow, // now
-  ['cNow']: cNow, // Now
-  ['cknow']: cknow, // know
-  ['cKnow']: cKnow, // Know
-  ['cknown']: cknown, // known
-  ['cKnown']: cKnown, // Known
-  ['cunknown']: cunknown, // unknown
-  ['cUnknown']: cUnknown, // Unknown
-  ['ctemp']: ctemp, // temp
-  ['cTemp']: cTemp, // Temp
-  ['ctempt']: ctempt, // tempt
-  ['cTempt']: cTempt, // Tempt
-  ['cattempt']: cattempt, // attempt
-  ['cAttempt']: cAttempt, // Attempt
-  ['cattempts']: cattempts, // attempts
-  ['cAttempts']: cAttempts, // Attempts
-  ['cattempted']: cattempted, // attempted
-  ['cAttempted']: cAttempted, // Attempted
-  ['cattempting']: cattempting, // attempting
-  ['cAttempting']: cAttempting, // Attempting
-  ['cmat']: cmat, // mat
-  ['cMat']: cMat, // Mat
-  ['cformat']: cformat, // format
-  ['cFormat']: cFormat, // Format
-  ['cformats']: cformats, // formats
-  ['cFormats']: cFormats, // Formats
-  ['cformatted']: cformatted, // formatted
-  ['cFormatted']: cFormatted, // Formatted
-  ['cformatting']: cformatting, // formatting
-  ['cFormatting']: cFormatting, // Formatting
-  ['creformat']: creformat, // reformat
-  ['cReformat']: cReformat, // Reformat
-  ['creformats']: creformats, // reformats
-  ['cReformats']: cReformats, // Reformats
-  ['creformated']: creformated, // reformatted
-  ['cReformated']: cReformated, // Reformatted
-  ['creformating']: creformating, // reformatting
-  ['cReformating']: cReformating, // Reformatting
-  ['ccorrect']: ccorrect, // correct
-  ['cCorrect']: cCorrect, // Correct
-  ['ccorrects']: ccorrects, // corrects
-  ['cCorrects']: cCorrects, // Corrects
-  ['ccorrected']: ccorrected, // corrected
-  ['cCorrected']: cCorrected, // Corrected
-  ['ccorrectly']: ccorrectly, // correctly
-  ['cCorrectly']: cCorrectly, // Correctly
-  ['ccorrecting']: ccorrecting, // correcting
-  ['cCorrecting']: cCorrecting, // Correcting
-  ['cbut']: cbut, // but
-  ['cBut']: cBut, // But
-  ['crent']: crent, // rent
-  ['cRent']: cRent, // Rent
-  ['ccurrent']: ccurrent, // current
-  ['cCurrent']: cCurrent, // Current
-  ['cdelta']: cdelta, // delta
-  ['cDelta']: cDelta, // Delta
-  ['cbeing']: cbeing, // being
-  ['cBeing']: cBeing, // Being
-  ['cskip']: cskip, // skip
-  ['cSkip']: cSkip, // Skip
-  ['cskips']: cskips, // skips
-  ['cSkips']: cSkips, // Skips
-  ['cskiped']: cskiped, // skiped
-  ['cSkiped']: cSkiped, // Skiped
-  ['cskiping']: cskiping, // skiping
-  ['cSkiping']: cSkiping, // Skiping
-  ['chad']: chad, // had
-  ['cHad']: cHad, // Had
-  ['cchange']: cchange, // change
-  ['cChange']: cChange, // Change
-  ['cCHANGE']: cCHANGE, // CHANGE
-  ['cpush']: cpush, // push
-  ['cPush']: cPush, // Push
-  ['cPUSH']: cPUSH, // PUSH
-  ['cpushes']: cpushes, // pushes
-  ['cPushes']: cPushes, // Pushes
-  ['cpushed']: cpushed, // pushed
-  ['cPushed']: cPushed, // Pushed
-  ['cpushing']: cpushing, // pushing
-  ['cPushing']: cPushing, // Pushing
-  ['cexpand']: cexpand, // expand
-  ['cExpand']: cExpand, // Expand
-  ['cexpands']: cexpands, // expands
-  ['cExpands']: cExpands, // Expands
-  ['cexpanded']: cexpanded, // expanded
-  ['cExpanded']: cExpanded, // Expanded
-  ['cexpanding']: cexpanding, // expanding
-  ['cExpanding']: cExpanding, // Expanding
-  ['ccall']: ccall, // call
-  ['cCall']: cCall, // Call
-  ['ccalls']: ccalls, // calls
-  ['cCalls']: cCalls, // Calls
-  ['ccalled']: ccalled, // called
-  ['cCalled']: cCalled, // Called
-  ['ccalling']: ccalling, // calling
-  ['cCalling']: cCalling, // Calling
-  ['clook']: clook, // look
-  ['cLook']: cLook, // Look
-  ['clooks']: clooks, // looks
-  ['cLooks']: cLooks, // Looks
-  ['clooked']: clooked, // looked
-  ['cLooked']: cLooked, // Looked
-  ['clooking']: clooking, // looking
-  ['cLooking']: cLooking, // Looking
-  ['clookup']: clookup, // lookup
-  ['cLookup']: cLookup, // Lookup
-  ['celse']: celse, // else
-  ['cElse']: cElse, // Else
-  ['cfar']: cfar, // far
-  ['cFar']: cFar, // Far
-  ['cspecify']: cspecify, // specify
-  ['cSpecify']: cSpecify, // Specify
-  ['csupport']: csupport, // support
-  ['cSupport']: cSupport, // Support
-  ['csupports']: csupports, // supports
-  ['cSupports']: cSupports, // Supports
-  ['csupported']: csupported, // supported
-  ['cSupported']: cSupported, // Supported
-  ['csupporting']: csupporting, // supporting
-  ['cSupporting']: cSupporting, // Supporting
-  ['cfound']: cfound, // found
-  ['cFound']: cFound, // Found
-  ['cfounded']: cfounded, // founded
-  ['cFounded']: cFounded, // Founded
-  ['cunfounded']: cunfounded, // unfounded
-  ['cUnfounded']: cUnfounded, // Unfounded
-  ['coriginal']: coriginal, // original
-  ['cOriginal']: cOriginal, // Original
-  ['coriginals']: coriginals, // originals
-  ['cOriginals']: cOriginals, // Originals
-  ['ccause']: ccause, // cause
-  ['cCause']: cCause, // Cause
-  ['cbecause']: cbecause, // because
-  ['cBecause']: cBecause, // Because
-  ['canother']: canother, // another
-  ['cAnother']: cAnother, // Another
-  ['cparameter']: cparameter, // parameter
-  ['cParameter']: cParameter, // Parameter
-  ['cparameters']: cparameters, // parameters
-  ['cParameters']: cParameters, // Parameters
-  ['ctry']: ctry, // try
-  ['cTry']: cTry, // Try
-  ['ctried']: ctried, // tried
-  ['cTried']: cTried, // Tried
-  ['ctrying']: ctrying, // trying
-  ['cTrying']: cTrying, // Trying
-  ['cgain']: cgain, // gain
-  ['cGain']: cGain, // Gain
-  ['cagain']: cagain, // again
-  ['cAgain']: cAgain, // Again
-  ['ctent']: ctent, // tent
-  ['cTent']: cTent, // Tent
-  ['ctents']: ctents, // tents
-  ['cTents']: cTents, // Tents
-  ['ctenting']: ctenting, // tenting
-  ['cTenting']: cTenting, // Tenting
-  ['ccontent']: ccontent, // content
-  ['cContent']: cContent, // Content
-  ['ccontents']: ccontents, // contents
-  ['cContents']: cContents, // Contents
-  ['cmust']: cmust, // must
-  ['cMust']: cMust, // Must
-  ['cprompt']: cprompt, // prompt
-  ['cPrompt']: cPrompt, // Prompt
-  ['cexample']: cexample, // example
-  ['cExample']: cExample, // Example
-  ['cEXAMPLE']: cEXAMPLE, // EXAMPLE
-  ['cstructure']: cstructure, // structure
-  ['cStructure']: cStructure, // Structure
-  ['cstructured']: cstructured, // structured
-  ['cStructured']: cStructured, // Structured
-  ['cstructures']: cstructures, // structures
-  ['cStructures']: cStructures, // Structures
-  ['cmore']: cmore, // more
-  ['cMore']: cMore, // More
-  ['chas']: chas, // has
-  ['cHas']: cHas, // Has
-  ['cready']: cready, // ready
-  ['cReady']: cReady, // Ready
-  ['cREADY']: cREADY, // READY
-  ['calready']: calready, // already
-  ['cAlready']: cAlready, // Already
-  ['cALREADY']: cALREADY, // ALREADY
-  ['cbeen']: cbeen, // been
-  ['cBeen']: cBeen, // Been
-  ['cfollow']: cfollow, // follow
-  ['cFollow']: cFollow, // Follow
-  ['cfollowes']: cfollowes, // followes
-  ['cFollowes']: cFollowes, // Followes
-  ['cfollowed']: cfollowed, // followed
-  ['cFollowed']: cFollowed, // Followed
-  ['cfollowing']: cfollowing, // following
-  ['cFollowing']: cFollowing, // Following
-  ['cdefinition']: cdefinition, // definition
-  ['cDefinition']: cDefinition, // Definition
-  ['cdefinitions']: cdefinitions, // definitions
-  ['cDefinitions']: cDefinitions, // Definitions
-  ['cdone']: cdone, // done
-  ['cDone']: cDone, // Done
-  ['cDONE']: cDONE, // DONE
-  ['cphase']: cphase, // phase
-  ['cPhase']: cPhase, // Phase
-  ['cphases']: cphases, // phases
-  ['cPhases']: cPhases, // Phases
-  ['cphased']: cphased, // phased
-  ['cPhased']: cPhased, // Phased
-  ['cphasing']: cphasing, // phasing
-  ['cPhasing']: cPhasing, // Phasing
-  ['ctick']: ctick, // tick
-  ['cTick']: cTick, // Tick
-  ['cyay']: cyay, // yay
-  ['cYay']: cYay, // Yay
-  ['cYAY']: cYAY, // YAY
-  ['ctag']: ctag, // tag
-  ['cTag']: cTag, // Tag
-  ['ctags']: ctags, // tags
-  ['cTags']: cTags, // Tags
-  ['ctagged']: ctagged, // tagged
-  ['cTagged']: cTagged, // Tagged
-  ['ctagging']: ctagging, // tagging
-  ['cTagging']: cTagging, // Tagging
-  ['clit']: clit, // lit
-  ['cLit']: cLit, // Lit
-  ['csplit']: csplit, // split
-  ['cSplit']: cSplit, // Split
-  ['csplits']: csplits, // splits
-  ['cSplits']: cSplits, // Splits
-  ['csplitting']: csplitting, // splitting
-  ['cSplitting']: cSplitting, // Splitting
-  ['cdoing']: cdoing, // doing
-  ['cDoing']: cDoing, // Doing
-  ['cstraight']: cstraight, // straight
-  ['cStraight']: cStraight, // Straight
-  ['cbroker']: cbroker, // broker
-  ['cBroker']: cBroker, // Broker
-  ['cbrokers']: cbrokers, // brokers
-  ['cBrokers']: cBrokers, // Brokers
-  ['cpost']: cpost, // post
-  ['cPost']: cPost, // Post
-  ['cposts']: cposts, // posts
-  ['cPosts']: cPosts, // Posts
-  ['cposted']: cposted, // posted
-  ['cPosted']: cPosted, // Posted
-  ['cposting']: cposting, // posting
-  ['cPosting']: cPosting, // Posting
-  ['cmerge']: cmerge, // merge
-  ['cMerge']: cMerge, // Merge
-  ['cMERGE']: cMERGE, // MERGE
-  ['cmerges']: cmerges, // merges
-  ['cMerges']: cMerges, // Merges
-  ['cmerged']: cmerged, // merged
-  ['cMerged']: cMerged, // Merged
-  ['cMERGED']: cMERGED, // MERGED
-  ['cmerging']: cmerging, // merging
-  ['cMerging']: cMerging, // Merging
-  ['cinclude']: cinclude, // include
-  ['cInclude']: cInclude, // Include
-  ['cincludes']: cincludes, // includes
-  ['cIncludes']: cIncludes, // Includes
-  ['cincluded']: cincluded, // included
-  ['cIncluded']: cIncluded, // Included
-  ['cincluding']: cincluding, // including
-  ['cIncluding']: cIncluding, // Including
-  ['cfinal']: cfinal, // final
-  ['cFinal']: cFinal, // Final
-  ['cfinals']: cfinals, // finals
-  ['cFinals']: cFinals, // Finals
-  ['cfinally']: cfinally, // finally
-  ['cFinally']: cFinally, // Finally
-  ['ccaught']: ccaught, // caught
-  ['cCaught']: cCaught, // Caught
-  ['cflat']: cflat, // flat
-  ['cFlat']: cFlat, // Flat
-  ['cflats']: cflats, // flats
-  ['cFlats']: cFlats, // Flats
-  ['cflatten']: cflatten, // flatten
-  ['cFlatten']: cFlatten, // Flatten
-  ['cflattened']: cflattened, // flattened
-  ['cFlattened']: cFlattened, // Flattened
-  ['cflattening']: cflattening, // flattening
-  ['cFlattening']: cFlattening, // Flattening
-  ['cside']: cside, // side
-  ['cSide']: cSide, // Side
-  ['csides']: csides, // sides
-  ['cSides']: cSides, // Sides
-  ['csided']: csided, // sided
-  ['cSided']: cSided, // Sided
-  ['csiding']: csiding, // siding
-  ['cSiding']: cSiding, // Siding
-  ['cinside']: cinside, // inside
-  ['cInside']: cInside, // Inside
-  ['ctarget']: ctarget, // target
-  ['cTarget']: cTarget, // Target
-  ['ctargets']: ctargets, // targets
-  ['cTargets']: cTargets, // Targets
-  ['ctargeted']: ctargeted, // targeted
-  ['cTargeted']: cTargeted, // Targeted
-  ['ctargeting']: ctargeting, // targeting
-  ['cTargeting']: cTargeting, // Targeting
-  ['cmodify']: cmodify, // modify
-  ['cModify']: cModify, // Modify
-  ['cmodified']: cmodified, // modified
-  ['cModified']: cModified, // Modified
-  ['cmodifies']: cmodifies, // modifies
-  ['cModifies']: cModifies, // Modifies
-  ['cmodifying']: cmodifying, // modifying
-  ['cModifying']: cModifying, // Modifying
-  ['creference']: creference, // reference
-  ['cReference']: cReference, // Reference
-  ['creferences']: creferences, // references
-  ['cReferences']: cReferences, // References
-  ['creferenced']: creferenced, // referenced
-  ['cReferenced']: cReferenced, // Referenced
-  ['creferencing']: creferencing, // referencing
-  ['cReferencing']: cReferencing, // Referencing
-  ['cwrite']: cwrite, // write
-  ['cWrite']: cWrite, // Write
-  ['cwrites']: cwrites, // writes
-  ['cWrites']: cWrites, // Writes
-  ['cwritten']: cwritten, // written
-  ['cWritten']: cWritten, // Written
-  ['cwriting']: cwriting, // writing
-  ['cWriting']: cWriting, // Writing
-  ['cscan']: cscan, // scan
-  ['cScan']: cScan, // Scan
-  ['cscans']: cscans, // scans
-  ['cScans']: cScans, // Scans
-  ['cscanned']: cscanned, // scanned
-  ['cScanned']: cScanned, // Scanned
-  ['cscanning']: cscanning, // scanning
-  ['cScanning']: cScanning, // Scanning
-  ['cdirect']: cdirect, // direct
-  ['cDirect']: cDirect, // Direct
-  ['cdirects']: cdirects, // directs
-  ['cDirects']: cDirects, // Directs
-  ['cdirected']: cdirected, // directed
-  ['cDirected']: cDirected, // Directed
-  ['cdirector']: cdirector, // director
-  ['cDirector']: cDirector, // Director
-  ['cdirecting']: cdirecting, // directing
-  ['cDirecting']: cDirecting, // Directing
-  ['cdirectors']: cdirectors, // directors
-  ['cDirectors']: cDirectors, // Directors
-  ['cdirectory']: cdirectory, // directory
-  ['cDirectory']: cDirectory, // Directory
-  ['cdirectories']: cdirectories, // directories
-  ['cDirectories']: cDirectories, // Directories
-  ['cchive']: cchive, // chive
-  ['cChive']: cChive, // Chive
-  ['cchives']: cchives, // chives
-  ['cChives']: cChives, // Chives
-  ['carchive']: carchive, // archive
-  ['cArchive']: cArchive, // Archive
-  ['carchived']: carchived, // archived
-  ['cArchived']: cArchived, // Archived
-  ['carchives']: carchives, // archives
-  ['cArchives']: cArchives, // Archives
-  ['carchiving']: carchiving, // archiving
-  ['cArchiving']: cArchiving, // Archiving
-  ['ccop']: ccop, // cop
-  ['cCop']: cCop, // Cop
-  ['ccops']: ccops, // cops
-  ['cCops']: cCops, // Cops
-  ['ccopy']: ccopy, // copy
-  ['cCopy']: cCopy, // Copy
-  ['ccopies']: ccopies, // copies
-  ['cCopies']: cCopies, // Copies
-  ['ccopied']: ccopied, // copied
-  ['cCopied']: cCopied, // Copied
-  ['ccopying']: ccopying, // copying
-  ['cCopying']: cCopying, // Copying
-  ['csuccess']: csuccess, // success
-  ['cSuccess']: cSuccess, // Success
-  ['csuccesses']: csuccesses, // successes
-  ['cSuccesses']: cSuccesses, // Successes
-  ['csuccessful']: csuccessful, // successful
-  ['cSuccessful']: cSuccessful, // Successful
-  ['cpack']: cpack, // pack
-  ['cPack']: cPack, // Pack
-  ['cpacks']: cpacks, // packs
-  ['cPacks']: cPacks, // Packs
-  ['cpacked']: cpacked, // packed
-  ['cPacked']: cPacked, // Packed
-  ['cpacking']: cpacking, // packing
-  ['cPacking']: cPacking, // Packing
-  ['cpackage']: cpackage, // package
-  ['cPackage']: cPackage, // Package
-  ['cpackages']: cpackages, // packages
-  ['cPackages']: cPackages, // Packages
-  ['cpackaged']: cpackaged, // packaged
-  ['cPackaged']: cPackaged, // Packaged
-  ['cpackaging']: cpackaging, // packaging
-  ['cPackaging']: cPackaging, // Packaging
-  ['canalyze']: canalyze, // analyze
-  ['cAnalyze']: cAnalyze, // Analyze
-  ['canalyzes']: canalyzes, // analyzes
-  ['cAnalyzes']: cAnalyzes, // Analyzes
-  ['canalyzed']: canalyzed, // analyzed
-  ['cAnalyzed']: cAnalyzed, // Analyzed
-  ['canalyzing']: canalyzing, // analyzing
-  ['cAnalyzing']: cAnalyzing, // Analyzing
-  ['csame']: csame, // same
-  ['cSame']: cSame, // Same
-  ['cthere']: cthere, // there
-  ['cThere']: cThere, // There
-  ['cbracket']: cbracket, // bracket
-  ['cBracket']: cBracket, // Bracket
-  ['cbrackets']: cbrackets, // brackets
-  ['cBrackets']: cBrackets, // Brackets
-  ['cbracketed']: cbracketed, // bracketed
-  ['cBracketed']: cBracketed, // Bracketed
-  ['cbracketing']: cbracketing, // bracketing
-  ['cBracketing']: cBracketing, // Bracketing
-  ['cregular']: cregular, // regular
-  ['cRegular']: cRegular, // Regular
-  ['cexpression']: cexpression, // expression
-  ['cExpression']: cExpression, // Expression
-  ['cexpressions']: cexpressions, // expressions
-  ['cExpressions']: cExpressions, // Expressions
-  ['clexical']: clexical, // lexical
-  ['cLexical']: cLexical, // Lexical
-  ['clexicon']: clexicon, // lexicon
-  ['cLexicon']: cLexicon, // Lexicon
-  ['clexicons']: clexicons, // lexicons
-  ['cLexicons']: cLexicons, // Lexicons
-  ['cjust']: cjust, // just
-  ['cJust']: cJust, // Just
-  ['cjustice']: cjustice, // justice
-  ['cJustice']: cJustice, // Justice
-  ['cjustified']: cjustified, // justified
-  ['cJustified']: cJustified, // Justified
-  ['cadjust']: cadjust, // adjust
-  ['cAdjust']: cAdjust, // Adjust
-  ['cadjusts']: cadjusts, // adjusts
-  ['cAdjusts']: cAdjusts, // Adjusts
-  ['cadjusted']: cadjusted, // adjusted
-  ['cAdjusted']: cAdjusted, // Adjusted
-  ['cadjusting']: cadjusting, // adjusting
-  ['cAdjusting']: cAdjusting, // Adjusting
-  ['csleep']: csleep, // sleep
-  ['cSleep']: cSleep, // Sleep
-  ['csleeps']: csleeps, // sleeps
-  ['cSleeps']: cSleeps, // Sleeps
-  ['csleeped']: csleeped, // sleeped
-  ['cSleeped']: cSleeped, // Sleeped
-  ['csleeping']: csleeping, // sleeping
-  ['cSleeping']: cSleeping, // Sleeping
-  ['cleaf']: cleaf, // leaf
-  ['cLeaf']: cLeaf, // Leaf
-  ['centry']: centry, // entry
-  ['cEntry']: cEntry, // Entry
-  ['centries']: centries, // entries
-  ['cEntries']: cEntries, // Entries
-  ['centity']: centity, // entity
-  ['cEntity']: cEntity, // Entity
-  ['cmay']: cmay, // may
-  ['cMay']: cMay, // May
-  ['conly']: conly, // only
-  ['cOnly']: cOnly, // Only
-  ['csuch']: csuch, // such
-  ['cSuch']: cSuch, // Such
-  ['cgeneration']: cgeneration, // generation
-  ['cGeneration']: cGeneration, // Generation
-  ['cDemocratic']: cDemocratic, // Democratic
-  ['cRepublic']: cRepublic, // Republic
-  ['cCentral']: cCentral, // Central
-  ['cAfrican']: cAfrican, // African
-  ['cPapua']: cPapua, // Papua
-  ['cTrinidad']: cTrinidad, // Trinidad
-  ['cTabago']: cTabago, // Tabago
-  ['cUnited']: cUnited, // United
-  ['cArab']: cArab, // Arab
-  ['cEmirates']: cEmirates, // Emirates
-  ['cStates']: cStates, // States
-  ['cAmerica']: cAmerica, // America
-  ['cliver']: cliver, // liver
-  ['cLiver']: cLiver, // Liver
-  ['ccountry']: ccountry, // country
-  ['cCountry']: cCountry, // Country
-  ['ccountries']: ccountries, // countries
-  ['cCountries']: cCountries, // Countries
-  ['cknot']: cknot, // knot
-  ['cKnot']: cKnot, // Knot
-  ['cknots']: cknots, // knots
-  ['cKnots']: cKnots, // Knots
-  ['clanguage']: clanguage, // language
-  ['cLanguage']: cLanguage, // Language
-  ['clanguages']: clanguages, // languages
-  ['cLanguages']: cLanguages, // Languages
-  ['csole']: csole, // sole
-  ['cSole']: cSole, // Sole
-  ['cconsole']: cconsole, // console
-  ['cConsole']: cConsole, // Console
-  ['cboss']: cboss, // boss
-  ['cBoss']: cBoss, // Boss
-  ['cpanic']: cpanic, // panic
-  ['cPanic']: cPanic, // Panic
-  ['cslow']: cslow, // slow
-  ['cSlow']: cSlow, // Slow
-  ['cgot']: cgot, // got
-  ['cGot']: cGot, // Got
-  ['cmiss']: cmiss, // miss
-  ['cMiss']: cMiss, // Miss
-  ['cecho']: cecho, // echo
-  ['cEcho']: cEcho, // Echo
-  ['cincrement']: cincrement, // increment
-  ['cIncrement']: cIncrement, // Increment
-  ['cincrements']: cincrements, // increments
-  ['cIncrements']: cIncrements, // Increments
-  ['cincremented']: cincremented, // incremented
-  ['cIncremented']: cIncremented, // Incremented
-  ['cincrementing']: cincrementing, // incrementing
-  ['cIncrementing']: cIncrementing, // Incrementing
-  ['cforce']: cforce, // force
-  ['cForce']: cForce, // Force
-  ['cforced']: cforced, // forced
-  ['cForced']: cForced, // Forced
-  ['cforcing']: cforcing, // forcing
-  ['cForcing']: cForcing, // Forcing
-  ['cforces']: cforces, // forces
-  ['cForces']: cForces, // Forces
-  ['cexecutrix']: cexecutrix, // executrix
-  ['cExecutrix']: cExecutrix, // Executrix
-  ['cframework']: cframework, // framework
-  ['cFramework']: cFramework,
-  ['cAbsolute']: cAbsolute, // Absolute
-  ['cAcid']: cAcid, // Acid
-  ['cAir']: cAir, // Air
-  ['cSuperiority']: cSuperiority, // Superiority
-  ['cAlabaster']: cAlabaster, // Alabaster
-  ['cAlice']: cAlice, // Alice
-  ['cAlloy']: cAlloy, // Alloy
-  ['cAmaranth']: cAmaranth, // Amaranth
-  ['cAndroid']: cAndroid, // Android
-  ['cAntique']: cAntique, // Antique
-  ['cBrass']: cBrass, // Brass
-  ['cBronze']: cBronze, // Bronze
-  ['cApple']: cApple, // Apple
-  ['cApricot']: cApricot, // Apricot
-  ['cArctic']: cArctic, // Arctic
-  ['cArmy']: cArmy, // Army
-  ['cArylide']: cArylide, // Arylide
-  ['cAtomic']: cAtomic, // Atomic
-  ['cBaby']: cBaby, // Baby
-  ['cEyes']: cEyes, // Eyes
-  ['cPowder']: cPowder, // Powder
-  ['cBaker']: cBaker, // Baker
-  ['cMiller']: cMiller, // Miller
-  ['cBanana']: cBanana, // Banana
-  ['cMania']: cMania, // Mania
-  ['cBarbie']: cBarbie, // Barbie
-  ['cBarn']: cBarn, // Barn
-  ['cBattleship']: cBattleship, // Battleship
-  ['cBeau']: cBeau, // Beau
-  ['cDazzled']: cDazzled, // Dazzled
-  ['cBitter']: cBitter, // Bitter
-  ['csweet']: csweet, // sweet
-  ['cSweet']: cSweet, // Sweet
-  ['cBittersweet']: cBittersweet, // Bittersweet
-  ['cShimmer']: cShimmer, // Shimmer
-  ['cBean']: cBean, // Bean
-  ['cChocolate']: cChocolate, // Chocolate
-  ['cShadows']: cShadows, // Shadows
-  ['cBlanched']: cBlanched, // Blanched
-  ['cBlast']: cBlast, // Blast
-  ['cBlizzard']: cBlizzard, // Blizzard
-  ['cBlood']: cBlood, // Blood
-  ['cCrayola']: cCrayola, // Crayola
-  ['cMunsell']: cMunsell, // Munsell
-  ['cPantone']: cPantone, // Pantone
-  ['cPigment']: cPigment, // Pigment
-  ['cBell']: cBell, // Bell
-  ['cwheel']: cwheel, // wheel
-  ['cWheel']: cWheel, // Wheel
-  ['cwheels']: cwheels, // wheels
-  ['cWheels']: cWheels, // Wheels
-  ['cJeans']: cJeans, // Jeans
-  ['cYonder']: cYonder, // Yonder
-  ['cBottle']: cBottle, // Bottle
-  ['cbrick']: cbrick, // brick
-  ['cBrick']: cBrick, // Brick
-  ['cbricks']: cbricks, // bricks
-  ['cBricks']: cBricks, // Bricks
-  ['cBright']: cBright, // Bright
-  ['cBrilliant']: cBrilliant, // Brilliant
-  ['cRacing']: cRacing, // Racing
-  ['cSugar']: cSugar, // Sugar
-  ['cBrunswick']: cBrunswick, // Brunswick
-  ['cBud']: cBud, // Bud
-  ['cBurly']: cBurly, // Burly
-  ['cBurnished']: cBurnished, // Burnished
-  ['cBurnt']: cBurnt, // Burnt
-  ['cCadet']: cCadet, // Cadet
-  ['cCafe']: cCafe, // Cafe
-  ['cCambridge']: cCambridge, // Cambridge
-  ['cCameo']: cCameo, // Cameo
-  ['cCaput']: cCaput, // Caput
-  ['cMortuum']: cMortuum, // Mortuum
-  ['cCaribbean']: cCaribbean, // Caribbean
-  ['cCarnation']: cCarnation, // Carnation
-  ['cCarrot']: cCarrot, // Carrot
-  ['cCastleton']: cCastleton, // Castleton
-  ['cCedar']: cCedar, // Cedar
-  ['cChest']: cChest, // Chest
-  ['cCeladon']: cCeladon, // Celadon
-  ['cCeltic']: cCeltic, // Celtic
-  ['cCharleston']: cCharleston, // Charleston
-  ['cCharm']: cCharm, // Charm
-  ['cChartreuse']: cChartreuse, // Chartreuse
-  ['cCherry']: cCherry, // Cherry
-  ['cBlossom']: cBlossom, // Blossom
-  ['cChestnut']: cChestnut, // Chestnut
-  ['cChrome']: cChrome, // Chrome
-  ['cCinnamon']: cCinnamon, // Cinnamon
-  ['cCocoa']: cCocoa, // Cocoa
-  ['cCoffee']: cCoffee, // Coffee
-  ['cColumbia']: cColumbia, // Columbia
-  ['cCool']: cCool, // Cool
-  ['cflower']: cflower, // flower
-  ['cFlower']: cFlower, // Flower
-  ['cflowers']: cflowers, // flowers
-  ['cFlowers']: cFlowers, // Flowers
-  ['csilk']: csilk, // silk
-  ['cSilk']: cSilk, // Silk
-  ['cCosmic']: cCosmic, // Cosmic
-  ['cLatte']: cLatte, // Latte
-  ['cCoyote']: cCoyote, // Coyote
-  ['cCotton']: cCotton, // Cotton
-  ['cCyber']: cCyber, // Cyber
-  ['cDark']: cDark, // Dark
-  ['cByzantium']: cByzantium, // Byzantium
-  ['cElectric']: cElectric, // Electric
-  ['cKhaki']: cKhaki, // Khaki
-  ['cHorse']: cHorse, // Horse
-  ['cHorses']: cHorses, // Horses
-  ['cMoss']: cMoss, // Moss
-  ['cPastel']: cPastel, // Pastel
-  ['cSky']: cSky, // Sky
-  ['cSlate']: cSlate, // Slate
-  ['cSpring']: cSpring, // Spring
-  ['cDartmouth']: cDartmouth, // Dartmouth
-  ['cDavys']: cDavys, // Davys
-  ['cCerise']: cCerise, // Cerise
-  ['cSparkle']: cSparkle, // Sparkle
-  ['cDim']: cDim, // Dim
-  ['cDodger']: cDodger, // Dodger
-  ['cDogwood']: cDogwood, // Dogwood
-  ['cDuke']: cDuke, // Duke
-  ['cDutch']: cDutch, // Dutch
-  ['cEarth']: cEarth, // Earth
-  ['cEerie']: cEerie, // Eerie
-  ['cEton']: cEton, // Eton
-  ['cFalu']: cFalu, // Falu
-  ['cFashion']: cFashion, // Fashion
-  ['cFern']: cFern, // Fern
-  ['cFiery']: cFiery, // Fiery
-  ['cFire']: cFire, // Fire
-  ['cEngine']: cEngine, // Engine
-  ['cFloral']: cFloral, // Floral
-  ['cFluorescent']: cFluorescent, // Fluorescent
-  ['cForest']: cForest, // Forest
-  ['cFrost']: cFrost, // Frost
-  ['cbite']: cbite, // bite
-  ['cFuzzy']: cFuzzy, // Fuzzy
-  ['cWuzzy']: cWuzzy, // Wuzzy
-  ['cGhost']: cGhost, // Ghost
-  ['cGlossy']: cGlossy, // Glossy
-  ['cMetal']: cMetal, // Metal
-  ['cMetallic']: cMetallic, // Metallic
-  ['cFusion']: cFusion, // Fusion
-  ['cPoppy']: cPoppy, // Poppy
-  ['cGranite']: cGranite, // Granite
-  ['cGranny']: cGranny, // Granny
-  ['cSmith']: cSmith, // Smith
-  ['cLizard']: cLizard, // Lizard
-  ['cGun']: cGun, // Gun
-  ['cHarvest']: cHarvest, // Harvest
-  ['cHeat']: cHeat, // Heat
-  ['cWave']: cWave, // Wave
-  ['cHollywood']: cHollywood, // Hollywood
-  ['cHoney']: cHoney, // Honey
-  ['cdew']: cdew, // dew
-  ['cHonolulu']: cHonolulu, // Honolulu
-  ['cHookers']: cHookers, // Hookers
-  ['cHot']: cHot, // Hot
-  ['cHunter']: cHunter, // Hunter
-  ['cIce']: cIce, // Ice
-  ['cIlluminating']: cIlluminating, // Illuminating
-  ['cImperial']: cImperial, // Imperial
-  ['cworm']: cworm, // worm
-  ['cIndependence']: cIndependence, // Independence
-  ['cIndian']: cIndian, // Indian
-  ['cDye']: cDye, // Dye
-  ['cnational']: cnational, // national
-  ['cNational']: cNational, // National
-  ['cnationals']: cnationals, // nationals
-  ['cNationals']: cNationals, // Nationals
-  ['cInternational']: cInternational, // International
-  ['cAerospace']: cAerospace, // Aerospace
-  ['cEngineering']: cEngineering, // Engineering
-  ['cBridge']: cBridge, // Bridge
-  ['cCarmine']: cCarmine, // Carmine
-  ['cjazz']: cjazz, // jazz
-  ['cJazz']: cJazz, // Jazz
-  ['cberry']: cberry, // berry
-  ['cBerry']: cBerry, // Berry
-  ['cjam']: cjam, // jam
-  ['cJam']: cJam, // Jam
-  ['cKelly']: cKelly, // Kelly
-  ['cKombu']: cKombu, // Kombu
-  ['cLanguid']: cLanguid, // Languid
-  ['cLapis']: cLapis, // Lapis
-  ['cLazuli']: cLazuli, // Lazuli
-  ['cLaser']: cLaser, // Laser
-  ['cLaurel']: cLaurel, // Laurel
-  ['cLawn']: cLawn, // Lawn
-  ['cCurry']: cCurry, // Curry
-  ['cGlacier']: cGlacier, // Glacier
-  ['cMeringue']: cMeringue, // Meringue
-  ['cLight']: cLight, // Light
-  ['cCoral']: cCoral, // Coral
-  ['cSteel']: cSteel, // Steel
-  ['cLuster']: cLuster, // Luster
-  ['cLincoln']: cLincoln, // Lincoln
-  ['cLiseran']: cLiseran, // Liseran
-  ['cLittle']: cLittle, // Little
-  ['cBoy']: cBoy, // Boy
-  ['cDogs']: cDogs, // Dogs
-  ['cOrgan']: cOrgan, // Organ
-  ['cMacaroni']: cMacaroni, // Macaroni
-  ['cCheese']: cCheese, // Cheese
-  ['cMadder']: cMadder, // Madder
-  ['cHaze']: cHaze, // Haze
-  ['cMagic']: cMagic, // Magic
-  ['cMajorelle']: cMajorelle, // Majorelle
-  ['cminimum']: cminimum, // minimum
-  ['cMinimum']: cMinimum, // Minimum
-  ['cminimums']: cminimums, // minimums
-  ['cMinimums']: cMinimums, // Minimums
-  ['cmaximum']: cmaximum, // maximum
-  ['cMaximum']: cMaximum, // Maximum
-  ['cmaximums']: cmaximums, // maximums
-  ['cMaximums']: cMaximums, // Maximums
-  ['cMaya']: cMaya, // Maya
-  ['cMedium']: cMedium, // Medium
-  ['cMellow']: cMellow, // Mellow
-  ['cweed']: cweed, // weed
-  ['cWeed']: cWeed, // Weed
-  ['cweeds']: cweeds, // weeds
-  ['cWeeds']: cWeeds, // Weeds
-  ['cweeded']: cweeded, // weeded
-  ['cWeeded']: cWeeded, // Weeded
-  ['cSeaweed']: cSeaweed, // Seaweed
-  ['csun']: csun, // sun
-  ['cSun']: cSun, // Sun
-  ['csuns']: csuns, // suns
-  ['cSuns']: cSuns, // Suns
-  ['cSunburst']: cSunburst, // Sunburst
-  ['cMexican']: cMexican, // Mexican
-  ['cMiddle']: cMiddle, // Middle
-  ['cMikado']: cMikado, // Mikado
-  ['cMimi']: cMimi, // Mimi
-  ['cMinion']: cMinion, // Minion
-  ['cMisty']: cMisty, // Misty
-  ['cMorning']: cMorning, // Morning
-  ['cMeadow']: cMeadow, // Meadow
-  ['cMount']: cMount, // Mount
-  ['cbatten']: cbatten, // batten
-  ['cMulberry']: cMulberry, // Mulberry
-  ['cMyrtle']: cMyrtle, // Myrtle
-  ['cNadeshiko']: cNadeshiko, // Nadeshiko
-  ['cNaples']: cNaples, // Naples
-  ['cNavajo']: cNavajo, // Navajo
-  ['cNavy']: cNavy, // Navy
-  ['cNeon']: cNeon, // Neon
-  ['cYork']: cYork, // York
-  ['cPhoto']: cPhoto, // Photo
-  ['cOcean']: cOcean, // Ocean
-  ['cLace']: cLace, // Lace
-  ['cOpera']: cOpera, // Opera
-  ['cPeel']: cPeel, // Peel
-  ['cSoda']: cSoda, // Soda
-  ['cOuter']: cOuter, // Outer
-  ['cOutrageous']: cOutrageous, // Outrageous
-  ['cOxford']: cOxford, // Oxford
-  ['cPacific']: cPacific, // Pacific
-  ['cPalatinate']: cPalatinate, // Palatinate
-  ['cPale']: cPale, // Pale
-  ['cPansy']: cPansy, // Pansy
-  ['cPaolo']: cPaolo, // Paolo
-  ['cVeronese']: cVeronese, // Veronese
-  ['cPapaya']: cPapaya, // Papaya
-  ['cWhip']: cWhip, // Whip
-  ['cParadise']: cParadise, // Paradise
-  ['cParis']: cParis, // Paris
-  ['cPaynes']: cPaynes, // Paynes
-  ['cPuff']: cPuff, // Puff
-  ['cPearly']: cPearly, // Pearly
-  ['cPermanent']: cPermanent, // Permanent
-  ['cGeranium']: cGeranium, // Geranium
-  ['cLake']: cLake, // Lake
-  ['cPersian']: cPersian, // Persian
-  ['cPewter']: cPewter, // Pewter
-  ['cPhthalo']: cPhthalo, // Phthalo
-  ['cPicotee']: cPicotee, // Picotee
-  ['cPictorial']: cPictorial, // Pictorial
-  ['cPiggy']: cPiggy, // Piggy
-  ['cPine']: cPine, // Pine
-  ['cTree']: cTree, // Tree
-  ['cFlamingo']: cFlamingo, // Flamingo
-  ['cSherbet']: cSherbet, // Sherbet
-  ['cPlump']: cPlump, // Plump
-  ['cpolish']: cpolish, // polish
-  ['cPolish']: cPolish, // Polish
-  ['cpolished']: cpolished, // polished
-  ['cPolished']: cPolished, // Polished
-  ['cPomp']: cPomp, // Pomp
-  ['cPower']: cPower, // Power
-  ['cPortland']: cPortland, // Portland
-  ['cPrinceton']: cPrinceton, // Princeton
-  ['cPrussian']: cPrussian, // Prussian
-  ['cPsychedelic']: cPsychedelic, // Psychedelic
-  ['cPullman']: cPullman, // Pullman
-  ['cMountain']: cMountain, // Mountain
-  ['cMajesty']: cMajesty, // Majesty
-  ['cPizzazz']: cPizzazz, // Pizzazz
-  ['cQueen']: cQueen, // Queen
-  ['cQuick']: cQuick, // Quick
-  ['cQuinacridone']: cQuinacridone, // Quinacridone
-  ['cRadical']: cRadical, // Radical
-  ['cRaisin']: cRaisin, // Raisin
-  ['cGlace']: cGlace, // Glace
-  ['cRazzle']: cRazzle, // Razzle
-  ['cDazzle']: cDazzle, // Dazzle
-  ['cRazzmic']: cRazzmic, // Razzmic
-  ['cRebecca']: cRebecca, // Rebecca
-  ['cSalsa']: cSalsa, // Salsa
-  ['cResolution']: cResolution, // Resolution
-  ['cRich']: cRich, // Rich
-  ['cRifle']: cRifle, // Rifle
-  ['cRobin']: cRobin, // Robin
-  ['cEgg']: cEgg, // Egg
-  ['cRocket']: cRocket, // Rocket
-  ['cRoman']: cRoman, // Roman
-  ['cBonbon']: cBonbon, // Bonbon
-  ['cDust']: cDust, // Dust
-  ['cEbony']: cEbony, // Ebony
-  ['cQuartz']: cQuartz, // Quartz
-  ['cVale']: cVale, // Vale
-  ['cwood']: cwood, // wood
-  ['cRosso']: cRosso, // Rosso
-  ['cCorsa']: cCorsa, // Corsa
-  ['cRosy']: cRosy, // Rosy
-  ['cRoyal']: cRoyal, // Royal
-  ['crub']: crub, // rub
-  ['cRub']: cRub, // Rub
-  ['crubs']: crubs, // rubs
-  ['cRubs']: cRubs, // Rubs
-  ['crubbed']: crubbed, // rubbed
-  ['cRubbed']: cRubbed, // Rubbed
-  ['crubbing']: crubbing, // rubbing
-  ['cRubbing']: cRubbing, // Rubbing
-  ['cRubine']: cRubine, // Rubine
-  ['cSacramento']: cSacramento, // Sacramento
-  ['cState']: cState, // State
-  ['cSaddle']: cSaddle, // Saddle
-  ['cSafety']: cSafety, // Safety
-  ['cBlaze']: cBlaze, // Blaze
-  ['cPatricks']: cPatricks, // Patricks
-  ['cSandy']: cSandy, // Sandy
-  ['csap']: csap, // sap
-  ['cSap']: cSap, // Sap
-  ['cSatin']: cSatin, // Satin
-  ['cSheen']: cSheen, // Sheen
-  ['cSchauss']: cSchauss, // Schauss
-  ['cSchool']: cSchool, // School
-  ['cBus']: cBus, // Bus
-  ['cScreamin']: cScreamin, // Screamin
-  ['cSeal']: cSeal, // Seal
-  ['cshell']: cshell, // shell
-  ['cSelective']: cSelective, // Selective
-  ['cShamrock']: cShamrock, // Shamrock
-  ['cShimmering']: cShimmering, // Shimmering
-  ['cBlush']: cBlush, // Blush
-  ['cShiny']: cShiny, // Shiny
-  ['cShocking']: cShocking, // Shocking
-  ['cChalice']: cChalice, // Chalice
-  ['cSizzling']: cSizzling, // Sizzling
-  ['cSunrise']: cSunrise, // Sunrise
-  ['cSlimy']: cSlimy, // Slimy
-  ['cSmoky']: cSmoky, // Smoky
-  ['cSonic']: cSonic, // Sonic
-  ['cBistre']: cBistre, // Bistre
-  ['cStar']: cStar, // Star
-  ['cStil']: cStil, // Stil
-  ['cGrain']: cGrain, // Grain
-  ['cglow']: cglow, // glow
-  ['cSuper']: cSuper, // Super
-  ['cTango']: cTango, // Tango
-  ['cTart']: cTart, // Tart
-  ['cTea']: cTea, // Tea
-  ['cTerra']: cTerra, // Terra
-  ['cCotta']: cCotta, // Cotta
-  ['cThulian']: cThulian, // Thulian
-  ['cTickle']: cTickle, // Tickle
-  ['cTiffany']: cTiffany, // Tiffany
-  ['cTimber']: cTimber, // Timber
-  ['cwolf']: cwolf, // wolf
-  ['cTropical']: cTropical, // Tropical
-  ['cRain']: cRain, // Rain
-  ['cTrypan']: cTrypan, // Trypan
-  ['cTufts']: cTufts, // Tufts
-  ['cTumble']: cTumble, // Tumble
-  ['cTwilight']: cTwilight, // Twilight
-  ['cTyrian']: cTyrian, // Tyrian
-  ['cUltra']: cUltra, // Ultra
-  ['cUnbleached']: cUnbleached, // Unbleached
-  ['cNations']: cNations, // Nations
-  ['cUpsdell']: cUpsdell, // Upsdell
-  ['cUranian']: cUranian, // Uranian
-  ['cvan']: cvan, // van
-  ['cVan']: cVan, // Van
-  ['cDyke']: cDyke, // Dyke
-  ['cVegas']: cVegas, // Vegas
-  ['cVenetian']: cVenetian, // Venetian
-  ['cVivid']: cVivid, // Vivid
-  ['cWarm']: cWarm, // Warm
-  ['cWild']: cWild, // Wild
-  ['cWindsor']: cWindsor, // Windsor
-  ['cDregs']: cDregs, // Dregs
-  ['cWinter']: cWinter, // Winter
-  ['cDream']: cDream, // Dream
-  ['cYale']: cYale // Yale
+  [bas.cc + csubstring]: csubstring, // substring
+  [bas.cc + csubString]: csubString, // subString
+  [bas.cc + cSubString]: cSubString, // SubString
+  [bas.cc + cwind]: cwind, // wind
+  [bas.cc + cWind]: cWind, // Wind
+  [bas.cc + cwindow]: cwindow, // window
+  [bas.cc + cWindow]: cWindow, // Window
+  [bas.cc + cwindows]: cwindows, // windows
+  [bas.cc + cWindows]: cWindows, // Windows
+  [bas.cc + clinux]: clinux, // linux
+  [bas.cc + cLinux]: cLinux, // Linux
+  [bas.cc + cword]: cword, // word
+  [bas.cc + cWord]: cWord, // Word
+  [bas.cc + cwords]: cwords, // words
+  [bas.cc + cWords]: cWords, // Words
+  [bas.cc + coops]: coops, // oops
+  [bas.cc + cOops]: cOops, // Oops
+  [bas.cc + cOOPS]: cOOPS, // OOPS
+  [bas.cc + clet]: clet, // let
+  [bas.cc + cLet]: cLet, // Let
+  [bas.cc + clets]: clets, // lets
+  [bas.cc + cLets]: cLets, // Lets
+  [bas.cc + cfig]: cfig, // fig
+  [bas.cc + cFig]: cFig, // Fig
+  [bas.cc + cfiglet]: cfiglet,
+  [bas.cc + cFiglet]: cFiglet,
+  [bas.cc + cconfig]: cconfig, // config
+  [bas.cc + cConfig]: cConfig, // Config
+  [bas.cc + cconfiguration]: cconfiguration, // configuration
+  [bas.cc + cConfiguration]: cConfiguration, // Configuration
+  [bas.cc + cconfigurations]: cconfigurations, // configurations
+  [bas.cc + cConfigurations]: cConfigurations, // Configurations
+  [bas.cc + cconfigured]: cconfigured, // configured
+  [bas.cc + cConfigured]: cConfigured, // Configured
+  [bas.cc + cconfiguring]: cconfiguring, // configuring
+  [bas.cc + cConfiguring]: cConfiguring, // Configuring
+  [bas.cc + cempty]: cempty, // empty
+  [bas.cc + cEmpty]: cEmpty, // Empty
+  [bas.cc + cfull]: cfull, // full
+  [bas.cc + cFull]: cFull, // Full
+  [bas.cc + cfully]: cfully, // fully
+  [bas.cc + cFully]: cFully, // Fully
+  [bas.cc + ccreate]: ccreate, // create
+  [bas.cc + cCreate]: cCreate, // Create
+  [bas.cc + cSubmit]: cSubmit, // Submit
+  [bas.cc + c_add]: c_add, // add
+  [bas.cc + cAdd]: cAdd, // Add
+  [bas.cc + cADD]: cADD, // ADD
+  [bas.cc + cadded]: cadded, // added
+  [bas.cc + cAdded]: cAdded, // Added
+  [bas.cc + cadding]: cadding, // adding
+  [bas.cc + cAdding]: cAdding, // Adding
+  [bas.cc + cadditional]: cadditional, // additional
+  [bas.cc + cAdditional]: cAdditional, // Additional
+  [bas.cc + cADDITIONAL]: cADDITIONAL, // ADDITIONAL
+  [bas.cc + cadditionals]: cadditionals, // additionals
+  [bas.cc + cAdditionals]: cAdditionals, // Additionals
+  [bas.cc + cpen]: cpen, // pen
+  [bas.cc + cPen]: cPen, // Pen
+  [bas.cc + cpens]: cpens, // pens
+  [bas.cc + cPens]: cPens, // Pens
+  [bas.cc + cclose]: cclose, // close
+  [bas.cc + cClose]: cClose, // Close
+  [bas.cc + cclosed]: cclosed, // closed
+  [bas.cc + cClosed]: cClosed, // Closed
+  [bas.cc + cclosing]: cclosing, // closing
+  [bas.cc + cClosing]: cClosing, // Closing
+  [bas.cc + copen]: copen, // open
+  [bas.cc + cOpen]: cOpen, // Open
+  [bas.cc + copens]: copens, // opens
+  [bas.cc + cOpens]: cOpens, // Opens
+  [bas.cc + copened]: copened, // opened
+  [bas.cc + cOpened]: cOpened, // Opened
+  [bas.cc + copening]: copening, // opening
+  [bas.cc + cOpening]: cOpening, // Opening
+  [bas.cc + cUpdate]: cUpdate, // Update
+  [bas.cc + cEdit]: cEdit, // Edit
+  [bas.cc + cdelete]: cdelete, // delete
+  [bas.cc + cDelete]: cDelete, // Delete
+  [bas.cc + cdeletion]: cdeletion, // deletion
+  [bas.cc + cDeletion]: cDeletion, // Deletion
+  [bas.cc + cinsert]: cinsert, // insert
+  [bas.cc + cInsert]: cInsert, // Insert
+  [bas.cc + cinsertion]: cinsertion, // insertion
+  [bas.cc + cInsertion]: cInsertion, // Insertion
+  [bas.cc + csubstitute]: csubstitute, // substitute
+  [bas.cc + cSubstitute]: cSubstitute, // Substitute
+  [bas.cc + csubstitution]: csubstitution, // substitution
+  [bas.cc + cSubstitution]: cSubstitution, // Substitution
+  [bas.cc + call]: call, // all
+  [bas.cc + cAll]: cAll, // All
+  [bas.cc + cat]: cat, // at
+  [bas.cc + cAt]: cAt, // At // Not to be confused with the bas.cAt = '@'!!!
+  [bas.cc + cselect]: cselect, // select
+  [bas.cc + cSelect]: cSelect, // Select
+  [bas.cc + ccan]: ccan, // can
+  [bas.cc + cCan]: cCan, // Can
+  [bas.cc + ccancel]: ccancel, // cancel
+  [bas.cc + cCancel]: cCancel, // Cancel
+  [bas.cc + cconfirm]: cconfirm, // confirm
+  [bas.cc + cConfirm]: cConfirm, // Confirm
+  [bas.cc + ccount]: ccount, // count
+  [bas.cc + cCount]: cCount, // Count
+  [bas.cc + ccounter]: ccounter, // counter
+  [bas.cc + cCounter]: cCounter, // Counter
+  [bas.cc + cAccount]: cAccount, // Account
+  [bas.cc + cHamburger]: cHamburger, // Hamburger
+  [bas.cc + cMe]: cMe, // Me
+  [bas.cc + cMenu]: cMenu, // Menu
+  [bas.cc + cwith]: cwith, // with
+  [bas.cc + cWith]: cWith, // With
+  [bas.cc + cwithout]: cwithout, // without
+  [bas.cc + cWithout]: cWithout, // Without
+  [bas.cc + cdetail]: cdetail, // detail
+  [bas.cc + cDetail]: cDetail, // Detail
+  [bas.cc + cdetails]: cdetails, // details
+  [bas.cc + cDetails]: cDetails, // Details
+  [bas.cc + cfront]: cfront, // front
+  [bas.cc + cFront]: cFront, // Front
+  [bas.cc + cback]: cback, // back
+  [bas.cc + cBack]: cBack, // Back
+  [bas.cc + cleft]: cleft, // left
+  [bas.cc + cLeft]: cLeft, // Left
+  [bas.cc + cright]: cright, // right
+  [bas.cc + cRight]: cRight, // Right
+  [bas.cc + cTo]: cTo, // To
+  [bas.cc + ctop]: ctop, // top
+  [bas.cc + cTop]: cTop, // Top
+  [bas.cc + cbottom]: cbottom, // bottom
+  [bas.cc + cBottom]: cBottom, // Bottom
+  [bas.cc + cbegin]: cbegin, // begin
+  [bas.cc + cBegin]: cBegin, // Begin
+  [bas.cc + cBEGIN]: cBEGIN, // BEGIN
+  [bas.cc + cbeginning]: cbeginning, // beginning
+  [bas.cc + cBeginning]: cBeginning, // Beginning
+  [bas.cc + cend]: cend, // end
+  [bas.cc + cEnd]: cEnd, // End
+  [bas.cc + cEND]: cEND, // END
+  [bas.cc + cending]: cending, // ending
+  [bas.cc + cEnding]: cEnding, // Ending
+  [bas.cc + cthe]: cthe, // the
+  [bas.cc + cThe]: cThe, // The
+  [bas.cc + citem]: citem, // item
+  [bas.cc + cItem]: cItem, // Item
+  [bas.cc + citems]: citems, // items
+  [bas.cc + cItems]: cItems, // Items
+  [bas.cc + clist]: clist, // list
+  [bas.cc + cList]: cList, // List
+  [bas.cc + clists]: clists, // lists
+  [bas.cc + cLists]: cLists, // Lists
+  [bas.cc + clisted]: clisted, // listed
+  [bas.cc + cListed]: cListed, // Listed
+  [bas.cc + cshare]: cshare, // share
+  [bas.cc + cShare]: cShare, // Share
+  [bas.cc + cShares]: cShares, // Shares
+  [bas.cc + cshares]: cshares, // shares
+  [bas.cc + cshared]: cshared, // shared
+  [bas.cc + cShared]: cShared, // Shared
+  [bas.cc + cUnShared]: cUnShared, // UnShared
+  [bas.cc + cUnshared]: cUnshared, // Unshared
+  [bas.cc + cUnshare]: cUnshare, // Unshare
+  [bas.cc + cUnShare]: cUnShare, // UnShare
+  [bas.cc + cview]: cview, // view
+  [bas.cc + cView]: cView, // View
+  [bas.cc + cnew]: cnew, // new
+  [bas.cc + cNew]: cNew, // New
+  [bas.cc + cload]: cload, // bas.cad; // load // NOTE: Apparently 'cad' is also a reserved word.
+  [bas.cc + cLoad]: cLoad, // bas.cad; // Load // NOTE: Apparently 'cad' is also a reserved word.
+  [bas.cc + cloads]: cloads, // loads
+  [bas.cc + cLoads]: cLoads, // Loads
+  [bas.cc + cloaded]: cloaded, // loaded
+  [bas.cc + cLoaded]: cLoaded, // Loaded
+  [bas.cc + cloading]: cloading, // loading
+  [bas.cc + cLoading]: cLoading, // Loading
+  [bas.cc + cclick]: cclick, // click
+  [bas.cc + cClick]: cClick, // Click
+  [bas.cc + cpress]: cpress, // press
+  [bas.cc + cPress]: cPress, // Press
+  [bas.cc + cpresses]: cpresses, // presses
+  [bas.cc + cPresses]: cPresses, // Presses
+  [bas.cc + cpressed]: cpressed, // pressed
+  [bas.cc + cPressed]: cPressed, // Pressed
+  [bas.cc + cpressing]: cpressing, // pressing
+  [bas.cc + cPressing]: cPressing, // Pressing
+  [bas.cc + cpressKey]: cpressKey, // pressKey
+  [bas.cc + cPressKey]: cPressKey, // PressKey
+  [bas.cc + cexpect]: cexpect, // expect
+  [bas.cc + cExpect]: cExpect, // Expect
+  [bas.cc + cexpects]: cexpects, // expects
+  [bas.cc + cExpects]: cExpects, // Expects
+  [bas.cc + cexpected]: cexpected, // expected
+  [bas.cc + cExpected]: cExpected, // Expected
+  [bas.cc + cexpecting]: cexpecting, // expecting
+  [bas.cc + cExpecting]: cExpecting, // Expecting
+  [bas.cc + cnavigate]: cnavigate, // navigate
+  [bas.cc + cNavigate]: cNavigate, // Navigate
+  [bas.cc + csave]: csave, // Save
+  [bas.cc + cSave]: cSave, // Save
+  [bas.cc + cDownload]: cDownload, // Download
+  [bas.cc + cNegative]: cNegative, // Negative
+  [bas.cc + cPositive]: cPositive, // Positive
+  [bas.cc + cEntire]: cEntire, // Entire
+  [bas.cc + cinfo]: cinfo, // info
+  [bas.cc + cInfo]: cInfo, // Info
+  [bas.cc + cLink]: cLink, // Link
+  [bas.cc + cLabel]: cLabel, // Label
+  [bas.cc + cField]: cField, // Field
+  [bas.cc + ctype]: ctype, // type
+  [bas.cc + cType]: cType, // Type
+  [bas.cc + cTypes]: cTypes, // Types
+  [bas.cc + cvalid]: cvalid, // valid
+  [bas.cc + cValid]: cValid, // Valid
+  [bas.cc + cVALID]: cVALID, // VALID
+  [bas.cc + cvalidation]: cvalidation, // validation
+  [bas.cc + cValidation]: cValidation, // Validation
+  [bas.cc + cvalidations]: cvalidations, // validations
+  [bas.cc + cValidations]: cValidations, // Validations
+  [bas.cc + cvalidate]: cvalidate, // validate
+  [bas.cc + cValidate]: cValidate, // Validate
+  [bas.cc + cinvalid]: cinvalid, // invalid
+  [bas.cc + cInvalid]: cInvalid, // Invalid
+  [bas.cc + cINVALID]: cINVALID, // INVALID
+  [bas.cc + cbug]: cbug, // bug
+  [bas.cc + cdebug]: cdebug, // debug
+  [bas.cc + cDebug]: cDebug, // Debug
+  [bas.cc + cpage]: cpage, // page
+  [bas.cc + cPage]: cPage, // Page
+  [bas.cc + cpages]: cpages, // pages
+  [bas.cc + cPages]: cPages, // Pages
+  [bas.cc + cmessage]: cmessage, // message
+  [bas.cc + cMessage]: cMessage, // Message
+  [bas.cc + cmessages]: cmessages, // messages
+  [bas.cc + cMessages]: cMessages, // Messages
+  [bas.cc + cScript]: cScript, // Script
+  [bas.cc + cScripts]: cScripts, // Scripts
+  [bas.cc + ckeyword]: ckeyword, // keyword
+  [bas.cc + cKeyword]: cKeyword, // Keyword
+  [bas.cc + ckeywords]: ckeywords, // keywords
+  [bas.cc + cKeywords]: cKeywords, // Keywords
+  [bas.cc + cdata]: cdata, // data
+  [bas.cc + cData]: cData, // Data
+  [bas.cc + cDATA]: cDATA, // DATA
+  [bas.cc + cresult]: cresult, // result
+  [bas.cc + cResult]: cResult, // Result
+  [bas.cc + cresults]: cresults, // results
+  [bas.cc + cResults]: cResults, // Results
+  [bas.cc + cresulted]: cresulted, // resulted
+  [bas.cc + cResulted]: cResulted, // Resulted
+  [bas.cc + cresulting]: cresulting, // resulting
+  [bas.cc + cResulting]: cResulting, // Resulting
+  [bas.cc + cwork]: cwork, // work
+  [bas.cc + cWork]: cWork, // Work
+  [bas.cc + cflow]: cflow, // flow
+  [bas.cc + cFlow]: cFlow, // Flow
+  [bas.cc + cworkflow]: cworkflow, // workflow
+  [bas.cc + cWorkflow]: cWorkflow, // Workflow
+  [bas.cc + cworkflows]: cworkflows, // workflows
+  [bas.cc + cWorkflows]: cWorkflows, // Workflows
+  [bas.cc + ctest]: ctest, // test
+  [bas.cc + cTest]: cTest, // Test
+  [bas.cc + cTEST]: cTEST, // TEST
+  [bas.cc + ctests]: ctests, // tests
+  [bas.cc + cTests]: cTests, // Tests
+  [bas.cc + cTESTS]: cTESTS, // TESTS
+  [bas.cc + cStatus]: cStatus, // Status
+  [bas.cc + cTestStatus]: cTestStatus, // TestStatus
+  [bas.cc + cTestStatusMessage]: cTestStatusMessage, // TestStatusMessage
+  [bas.cc + cTestWorkflow]: cTestWorkflow, // TestWorkflow
+  [bas.cc + cBureau]: cBureau, // Bureau
+  [bas.cc + cExhaustive]: cExhaustive, // Exhaustive
+  [bas.cc + cBrowser]: cBrowser, // Browser
+  [bas.cc + cact]: cact, // act
+  [bas.cc + cAct]: cAct, // Act
+  [bas.cc + caction]: caction, // action
+  [bas.cc + cAction]: cAction, // Action
+  [bas.cc + cactions]: cactions, // actions
+  [bas.cc + cActions]: cActions, // Actions
+  [bas.cc + cactual]: cactual, // actual
+  [bas.cc + cActual]: cActual, // Actual
+  [bas.cc + cauto]: cauto, // auto
+  [bas.cc + cAuto]: cAuto, // Auto
+  [bas.cc + cautomation]: cautomation, // automation
+  [bas.cc + cAutomation]: cAutomation, // Automation
+  [bas.cc + cnumber]: cnumber, // number
+  [bas.cc + cNumber]: cNumber, // Number
+  [bas.cc + cnumbers]: cnumbers // numbers
+  [bas.cc + cNumbers]: cNumbers // Numbers
+  [bas.cc + cnumbered]: cnumbered // numbered
+  [bas.cc + cNumbered]: cNumbered // Numbered
+  [bas.cc + cnumbering]: cnumbering // numbering
+  [bas.cc + cNumbering]: cNumbering // Numbering
+  [bas.cc + cHost]: cHost, // Host
+  [bas.cc + cOf]: cOf, // Of
+  [bas.cc + crow]: crow, // row
+  [bas.cc + cRow]: cRow, // Row
+  [bas.cc + crows]: crows, // rows
+  [bas.cc + cRows]: cRows, // Rows
+  [bas.cc + crowed]: crowed, // rowed
+  [bas.cc + cRowed]: cRowed, // Rowed
+  [bas.cc + crowing]: crowing, // rowing
+  [bas.cc + cRowing]: cRowing, // Rowing
+  [bas.cc + crun]: crun, // run
+  [bas.cc + cRun]: cRun, // Run
+  [bas.cc + cruns]: cruns, // runs
+  [bas.cc + cRuns]: cRuns, // Runs
+  [bas.cc + crunning]: crunning, // running
+  [bas.cc + cRunning]: cRunning, // Running
+  [bas.cc + cmaster]: cmaster, // master
+  [bas.cc + cMaster]: cMaster, // Master
+  [bas.cc + cEnvironment]: cEnvironment, // Environment
+  [bas.cc + cname]: cname, // name
+  [bas.cc + cName]: cName, // Name
+  [bas.cc + cnames]: cnames, // names
+  [bas.cc + cNames]: cNames, // Names
+  [bas.cc + cnamed]: cnamed, // named
+  [bas.cc + cNamed]: cNamed, // Named
+  [bas.cc + ckeywordName]: ckeywordName, // keywordName
+  [bas.cc + cKeywordName]: cKeywordName, // KeywordName
+  [bas.cc + cPageScriptName]: cPageScriptName, // PageScriptName
+  [bas.cc + cid]: cid, // id
+  [bas.cc + cId]: cId, // Id
+  [bas.cc + cID]: cID, // ID
+  [bas.cc + cmail]: cmail, // mail
+  [bas.cc + cEmail]: cEmail, // Email
+  [bas.cc + cEmails]: cEmails, // Emails
+  [bas.cc + cReceive]: cReceive, // Receive
+  [bas.cc + cReceived]: cReceived, // Received
+  [bas.cc + cdate]: cdate, // date
+  [bas.cc + cDate]: cDate, // Date
+  [bas.cc + ctime]: ctime, // time
+  [bas.cc + cTime]: cTime, // Time
+  [bas.cc + cruntime]: cruntime, // runtime
+  [bas.cc + cRuntime]: cRuntime, // Runtime
+  [bas.cc + cRunTime]: cRunTime, // RunTime
+  [bas.cc + cstamp]: cstamp, // stamp
+  [bas.cc + cStamp]: cStamp, // Stamp
+  [bas.cc + cstamps]: cstamps, // stamps
+  [bas.cc + cStamps]: cStamps, // Stamps
+  [bas.cc + cstamped]: cstamped, // stamped
+  [bas.cc + cStamped]: cStamped, // Stamped
+  [bas.cc + cstamping]: cstamping, // stamping
+  [bas.cc + cStamping]: cStamping, // Stamping
+  [bas.cc + cmediate]: cmediate, // mediate
+  [bas.cc + cintermediate]: cintermediate, // intermediate
+  [bas.cc + cIntermediate]: cIntermediate, // Intermediate
+  [bas.cc + cpath]: cpath, // path
+  [bas.cc + cPath]: cPath, // Path
+  [bas.cc + cpaths]: cpaths, // paths
+  [bas.cc + cPaths]: cPaths, // Paths
+  [bas.cc + cexit]: cexit, // exit
+  [bas.cc + cExit]: cExit, // Exit
+  [bas.cc + cexiting]: cexiting, // exiting
+  [bas.cc + cExiting]: cExiting, // Exiting
+  [bas.cc + cViewer]: cViewer, // Viewer
+  [bas.cc + cPermission]: cPermission, // Permission
+  [bas.cc + cBug]: cBug, // Bug
+  [bas.cc + cset]: cset, // set
+  [bas.cc + cSet]: cSet, // Set
+  [bas.cc + csetting]: csetting, // setting
+  [bas.cc + cSetting]: cSetting, // Setting
+  [bas.cc + csettings]: csettings, // settings
+  [bas.cc + cSettings]: cSettings, // Settings
+  [bas.cc + cPreview]: cPreview, // Preview
+  [bas.cc + climit]: climit, // limit // NOTE: bas.cmi resolves as "s"
+  [bas.cc + cLimit]: cLimit, // Limit // NOTE: bas.cmi resolves as "s"
+  [bas.cc + cGate]: cGate, // Gate
+  [bas.cc + cway]: cway, // way
+  [bas.cc + cWay]: cWay, // Way
+  [bas.cc + cGateway]: cGateway, // Gateway
+  [bas.cc + cprocess]: cprocess, // process
+  [bas.cc + cProcess]: cProcess, // Process
+  [bas.cc + cPROCESS]: cPROCESS, // PROCESS
+  [bas.cc + cprocessed]: cprocessed, // processed
+  [bas.cc + cProcessed]: cProcessed, // Processed
+  [bas.cc + cprocesses]: cprocesses, // processes
+  [bas.cc + cProcesses]: cProcesses, // Processes
+  [bas.cc + cprocessing]: cprocessing, // processing
+  [bas.cc + cProcessing]: cProcessing, // Processing
+  [bas.cc + cPROCESSING]: cPROCESSING, // PROCESSING
+  [bas.cc + ccomplete]: ccomplete, // complete
+  [bas.cc + cComplete]: cComplete, // Complete
+  [bas.cc + ccompleted]: ccompleted, // completed
+  [bas.cc + cCompleted]: cCompleted, // Completed
+  [bas.cc + cand]: cand, // and
+  [bas.cc + cAnd]: cAnd, // And
+  [bas.cc + cuse]: cuse, // use
+  [bas.cc + cUse]: cUse, // Use
+  [bas.cc + cuser]: cuser, // user
+  [bas.cc + cUser]: cUser, // User
+  [bas.cc + cAccess]: cAccess, // Access
+  [bas.cc + clevel]: clevel, // level
+  [bas.cc + cLevel]: cLevel, // Level
+  [bas.cc + cget]: cget, // get
+  [bas.cc + cGet]: cGet, // Get
+  [bas.cc + cput]: cput, // put
+  [bas.cc + cPut]: cPut, // Put
+  [bas.cc + cPUT]: cPUT, // PUT
+  [bas.cc + cfrom]: cfrom, // from
+  [bas.cc + cFrom]: cFrom, // From
+  [bas.cc + cplace]: cplace, // place
+  [bas.cc + cPlace]: cPlace, // Place
+  [bas.cc + cplaces]: cplaces, // places
+  [bas.cc + cPlaces]: cPlaces, // Places
+  [bas.cc + cplaced]: cplaced, // placed
+  [bas.cc + cPlaced]: cPlaced, // Placed
+  [bas.cc + cplacing]: cplacing, // placing
+  [bas.cc + cPlacing]: cPlacing, // Placing
+  [bas.cc + cplacement]: cplacement, // placement
+  [bas.cc + cPlacement]: cPlacement, // Placement
+  [bas.cc + creplace]: creplace, // replace
+  [bas.cc + cReplace]: cReplace, // Replace
+  [bas.cc + creplaces]: creplaces, // replaces
+  [bas.cc + cReplaces]: cReplaces, // Replaces
+  [bas.cc + creplaced]: creplaced, // replaced
+  [bas.cc + cReplaced]: cReplaced, // Replaced
+  [bas.cc + creplacing]: creplacing, // replacing
+  [bas.cc + cReplacing]: cReplacing, // Replacing
+  [bas.cc + creplacement]: creplacement, // replacement
+  [bas.cc + cReplacement]: cReplacement, // Replacement
+  [bas.cc + cspace]: cspace, // space
+  [bas.cc + cSpace]: cSpace, // Space
+  [bas.cc + cspaces]: cspaces, // spaces
+  [bas.cc + cSpaces]: cSpaces, // Spaces
+  [bas.cc + cspaced]: cspaced, // spaced
+  [bas.cc + cSpaced]: cSpaced, // Spaced
+  [bas.cc + cplus]: cplus, // plus
+  [bas.cc + cPlus]: cPlus, // Plus
+  [bas.cc + ccolon]: ccolon, // colon
+  [bas.cc + cColon]: cColon, // Colon
+  [bas.cc + cunder]: cunder, // under
+  [bas.cc + cUnder]: cUnder, // Under
+  [bas.cc + cscore]: cscore, // score
+  [bas.cc + cScore]: cScore, // Score
+  [bas.cc + cunderscore]: cunderscore, // underscore
+  [bas.cc + cUnderscore]: cUnderscore, // Underscore
+  [bas.cc + cCatagory]: cCatagory, // Catagory
+  [bas.cc + cclean]: cclean, // clean
+  [bas.cc + cClean]: cClean, // Clean
+  [bas.cc + ccleaned]: ccleaned, // cleaned
+  [bas.cc + cCleaned]: cCleaned, // Cleaned
+  [bas.cc + cCarriage]: cCarriage, // Carriage
+  [bas.cc + cturn]: cturn, // turn
+  [bas.cc + creturn]: creturn, // return
+  [bas.cc + cReturn]: cReturn, // Return
+  [bas.cc + cconvert]: cconvert, // convert
+  [bas.cc + cConvert]: cConvert, // Convert
+  [bas.cc + clow]: clow, // low
+  [bas.cc + cLow]: cLow, // Low
+  [bas.cc + clower]: clower, // lower
+  [bas.cc + cLower]: cLower, // Lower
+  [bas.cc + ccase]: ccase, // case
+  [bas.cc + cCase]: cCase, // Case
+  [bas.cc + cmove]: cmove, // move
+  [bas.cc + cremove]: cremove, // remove
+  [bas.cc + cRemove]: cRemove, // Remove
+  [bas.cc + cExtension]: cExtension, // Extension
+  [bas.cc + cdig]: cdig, // dig
+  [bas.cc + cDig]: cDig, // Dig
+  [bas.cc + cdigit]: cdigit, // digit
+  [bas.cc + cDigit]: cDigit, // Digit
+  [bas.cc + cletter]: cletter, // letter
+  [bas.cc + cLetter]: cLetter, // Letter
+  [bas.cc + cupper]: cupper, // upper
+  [bas.cc + cUpper]: cUpper, // Upper
+  [bas.cc + crandom]: crandom, // random
+  [bas.cc + cRandom]: cRandom, // Random
+  [bas.cc + crandomly]: crandomly, // randomly
+  [bas.cc + cRandomly]: cRandomly, // Randomly
+  [bas.cc + cgenerate]: cgenerate, // generate
+  [bas.cc + cGenerate]: cGenerate, // Generate
+  [bas.cc + cgenerated]: cgenerated, // generated
+  [bas.cc + cGenerated]: cGenerated, // Generated
+  [bas.cc + cparent]: cparent, // parent
+  [bas.cc + cParent]: cParent, // Parent
+  [bas.cc + cvalue]: cvalue, // value
+  [bas.cc + cValue]: cValue, // Value
+  [bas.cc + cvalues]: cvalues, // values
+  [bas.cc + cValues]: cValues, // Values
+  [bas.cc + cfind]: cfind, // find
+  [bas.cc + cFind]: cFind, // Find
+  [bas.cc + cfindvalue]: cfindvalue, // findvalue
+  [bas.cc + cfindValue]: cfindValue, // findValue
+  [bas.cc + cFindValue]: cFindValue, // FindValue
+  [bas.cc + crange]: crange, // range
+  [bas.cc + cRange]: cRange, // Range
+  [bas.cc + cnumeric]: cnumeric, // numeric
+  [bas.cc + cNumeric]: cNumeric, // Numeric
+  [bas.cc + cNumerical]: cNumerical, // Numerical
+  [bas.cc + clength]: clength, // length
+  [bas.cc + cLength]: cLength, // Length
+  [bas.cc + ccode]: ccode, // code
+  [bas.cc + cCode]: cCode, // Code
+  [bas.cc + ceither]: ceither, // either
+  [bas.cc + cEither]: cEither, // Either
+  [bas.cc + cenable]: cenable, // enable
+  [bas.cc + cEnable]: cEnable, // Enable
+  [bas.cc + cenabled]: cenabled, // enabled
+  [bas.cc + cEnabled]: cEnabled, // Enabled
+  [bas.cc + cdetermine]: cdetermine, // determine
+  [bas.cc + cDetermine]: cDetermine, // Determine
+  [bas.cc + cties]: cties, // ties
+  [bas.cc + cTies]: cTies, // Ties
+  [bas.cc + cability]: cability, // ability
+  [bas.cc + cAbility]: cAbility, // Ability
+  [bas.cc + cabilities]: cabilities, // abilities
+  [bas.cc + cAbilities]: cAbilities, // Abilities
+  [bas.cc + cvariable]: cvariable, // variable
+  [bas.cc + cVariable]: cVariable, // Variable
+  [bas.cc + cvariables]: cvariables, // variables
+  [bas.cc + cVariables]: cVariables, // Variables
+  [bas.cc + cvariability]: cvariability, // variability
+  [bas.cc + cVariability]: cVariability, // Variability
+  [bas.cc + cvisibility]: cvisibility, // visibility
+  [bas.cc + cVisibility]: cVisibility, // Visibility
+  [bas.cc + cDialog]: cDialog, // Dialog
+  [bas.cc + clibrary]: clibrary, // library
+  [bas.cc + cLibrary]: cLibrary, // Library
+  [bas.cc + ctable]: ctable, // table
+  [bas.cc + cTable]: cTable, // Table
+  [bas.cc + cequal]: cequal, // equal
+  [bas.cc + cEqual]: cEqual, // Equal
+  [bas.cc + cequals]: cequals, // equals
+  [bas.cc + cEquals]: cEquals, // Equals
+  [bas.cc + cequivalence]: cequivalence, // equivalence
+  [bas.cc + cEquivalence]: cEquivalence, // Equivalence
+  [bas.cc + cRaw]: cRaw, // Raw
+  [bas.cc + cOperation]: cOperation, // Operation
+  [bas.cc + cOperating]: cOperating, // Operating
+  [bas.cc + csystem]: csystem, // system
+  [bas.cc + cSystem]: cSystem, // System
+  [bas.cc + csign]: csign, // sign
+  [bas.cc + cSign]: cSign, // Sign
+  [bas.cc + cassign]: cassign, // assign
+  [bas.cc + cAssign]: cAssign, // Assign
+  [bas.cc + cassignment]: cassignment, // assignment
+  [bas.cc + cAssignment]: cAssignment, // Assignment
+  [bas.cc + cAbreviated]: cAbreviated, // Abreviated
+  [bas.cc + cwait]: cwait, // wait
+  [bas.cc + cWait]: cWait, // Wait
+  [bas.cc + cawait]: cawait, // await
+  [bas.cc + cHTML]: cHTML, // HTML
+  [bas.cc + chtml]: chtml, // html
+  [bas.cc + cinner]: cinner, // inner
+  [bas.cc + cInner]: cInner, // Inner
+  [bas.cc + cOver]: cOver, // Over
+  [bas.cc + cride]: cride, // ride
+  [bas.cc + cRide]: cRide, // Ride
+  [bas.cc + cOverride]: cOverride, // Override
+  [bas.cc + cActionOverride]: cActionOverride, // ActionOverride
+  [bas.cc + cLocator]: cLocator, // Locator
+  [bas.cc + cLocators]: cLocators, // Locators
+  [bas.cc + cLocatorLibrary]: cLocatorLibrary, // LocatorLibrary
+  [bas.cc + cselector]: cselector, // selector
+  [bas.cc + cSelector]: cSelector, // Selector
+  [bas.cc + cSelectors]: cSelectors, // Selectors
+  [bas.cc + cIndividual]: cIndividual, // Individual
+  [bas.cc + cIndividually]: cIndividually, // Individually
+  [bas.cc + cexist]: cexist, // exist
+  [bas.cc + cExist]: cExist, // Exist
+  [bas.cc + cexists]: cexists, // exists
+  [bas.cc + cExists]: cExists, // Exists
+  [bas.cc + cexisted]: cexisted, // existed
+  [bas.cc + cExisted]: cExisted, // Existed
+  [bas.cc + cexisting]: cexisting, // existing
+  [bas.cc + cExisting]: cExisting, // Existing
+  [bas.cc + casync]: casync, // async
+  [bas.cc + cAsync]: cAsync, // Async
+  [bas.cc + csync]: csync, // sync
+  [bas.cc + cSync]: cSync, // Sync
+  [bas.cc + cSingular]: cSingular, // Singular
+  [bas.cc + cParallel]: cParallel, // Parallel
+  [bas.cc + cMulti]: cMulti, // Multi
+  [bas.cc + cUnified]: cUnified, // Unified
+  [bas.cc + cfault]: cfault, // fault
+  [bas.cc + cFault]: cFault, // Fault
+  [bas.cc + cFAULT]: cFAULT, // FAULT
+  [bas.cc + cdefault]: cdefault, // default
+  [bas.cc + cDefault]: cDefault, // Default
+  [bas.cc + cDEFAULT]: cDEFAULT, // DEFAULT
+  [bas.cc + csingle]: csingle, // single
+  [bas.cc + cSingle]: cSingle, // Single
+  [bas.cc + cquote]: cquote, // quote
+  [bas.cc + cQuote]: cQuote, // Quote
+  [bas.cc + cquotes]: cquotes, // quotes
+  [bas.cc + cQuotes]: cQuotes, // Quotes
+  [bas.cc + cquoted]: cquoted, // quoted
+  [bas.cc + cQuoted]: cQuoted, // Quoted
+  [bas.cc + cswap]: cswap, // swap
+  [bas.cc + cSwap]: cSwap, // Swap
+  [bas.cc + cbefore]: cbefore, // before
+  [bas.cc + cBefore]: cBefore, // Before
+  [bas.cc + cBEFORE]: cBEFORE, // BEFORE
+  [bas.cc + cafter]: cafter, // after
+  [bas.cc + cAfter]: cAfter, // After
+  [bas.cc + cAFTER]: cAFTER, // AFTER
+  [bas.cc + cOnce]: cOnce, // Once
+  [bas.cc + cUpload]: cUpload, // Upload
+  [bas.cc + cStyle]: cStyle, // Style
+  [bas.cc + cassert]: cassert, // assert
+  [bas.cc + cAssert]: cAssert, // Assert
+  [bas.cc + cless]: cless, // less
+  [bas.cc + cLess]: cLess, // Less
+  [bas.cc + cgreat]: cgreat, // great
+  [bas.cc + cGreat]: cGreat, // Great
+  [bas.cc + cgreater]: cgreater, // greater
+  [bas.cc + cGreater]: cGreater, // Greater
+  [bas.cc + cthen]: cthen, // then
+  [bas.cc + cThen]: cThen, // Then
+  [bas.cc + cthan]: cthan, // than
+  [bas.cc + cThan]: cThan, // Than
+  [bas.cc + cAssertExists]: cAssertExists, // AssertExists
+  [bas.cc + cAssertNotExists]: cAssertNotExists, // AssertNotExists
+  [bas.cc + cAssertValueEqual]: cAssertValueEqual, // AssertValueEqual
+  [bas.cc + cAssertValueNotEqual]: cAssertValueNotEqual, // AssertValueNotEqual
+  [bas.cc + cAssertValueLessThan]: cAssertValueLessThan, // AssertValueLessThan
+  [bas.cc + cAssertValueGreaterThan]: cAssertValueGreaterThan, // AssertValueGreaterThan
+  [bas.cc + cAssertion]: cAssertion, // Assertion
+  [bas.cc + cAssertionType]: cAssertionType, // AssertionType
+  [bas.cc + cUploadStyle]: cUploadStyle, // UploadStyle
+  [bas.cc + cAssertionStyle]: cAssertionStyle, // AssertionStyle
+  [bas.cc + cby]: cby, // by
+  [bas.cc + cBy]: cBy, // By
+  [bas.cc + cBY]: cBY, // BY
+  [bas.cc + cOr]: cOr, // Or
+  [bas.cc + cor]: cor, // or
+  [bas.cc + cOR]: cOR, // OR
+  [bas.cc + cmix]: cmix, // mix // For some reason JavaScript doesn't like cmi.
+  [bas.cc + cMix]: cMix, // Mix
+  [bas.cc + cmixed]: cmixed, // mixed
+  [bas.cc + cMixed]: cMixed, // Mixed
+  [bas.cc + calpha]: calpha, // alpha
+  [bas.cc + cAlpha]: cAlpha, // Alpha
+  [bas.cc + cbetic]: cbetic, // betic
+  [bas.cc + cAlphabetic]: cAlphabetic, // Alphabetic
+  [bas.cc + ctext]: ctext, // text
+  [bas.cc + cText]: cText, // Text
+  [bas.cc + cTEXT]: cTEXT, // TEXT
+  [bas.cc + ccontext]: ccontext, // context
+  [bas.cc + cContext]: cContext, // Context
+  [bas.cc + cinput]: cinput, // input
+  [bas.cc + cInput]: cInput, // Input
+  [bas.cc + cINPUT]: cINPUT, // INPUT
+  [bas.cc + cinputs]: cinputs, // inputs
+  [bas.cc + cInputs]: cInputs, // Inputs
+  [bas.cc + cinputting]: cinputting, // inputting
+  [bas.cc + cInputting]: cInputting, // Inputting
+  [bas.cc + cdescription]: cdescription, // description
+  [bas.cc + cDescription]: cDescription, // Description
+  [bas.cc + cconstant]: cconstant, //constant
+  [bas.cc + cConstant]: cConstant, // Constant
+  [bas.cc + cconstants]: cconstants, // constants
+  [bas.cc + cConstants]: cConstants, // Constants
+  [bas.cc + citeration]: citeration, // iteration
+  [bas.cc + cIteration]: cIteration, // Iteration
+  [bas.cc + cproject]: cproject, // project
+  [bas.cc + cProject]: cProject, // Project
+  [bas.cc + cProjects]: cProjects, // Projects
+  [bas.cc + cAdvance]: cAdvance, // Advance
+  [bas.cc + cAdvanced]: cAdvanced, // Advanced
+  [bas.cc + cCreation]: cCreation, // Creation
+  [bas.cc + ctestData]: ctestData, // testData
+  [bas.cc + cpageData]: cpageData, // pageData
+  [bas.cc + cPageData]: cPageData, // PageData
+  [bas.cc + cTestName]: cTestName, // TestName
+  [bas.cc + cPageName]: cPageName, // PageName
+  [bas.cc + cbed]: cbed, // bed
+  [bas.cc + cBed]: cBed, // Bed
+  [bas.cc + cbeds]: cbeds, // beds
+  [bas.cc + cBeds]: cBeds, // Beds
+  [bas.cc + cbedded]: cbedded, // bedded
+  [bas.cc + cBedded]: cBedded, // Bedded
+  [bas.cc + cbedding]: cbedding, // bedding
+  [bas.cc + cBedding]: cBedding, // Bedding
+  [bas.cc + cweb]: cweb, // web
+  [bas.cc + cWeb]: cWeb, // Web
+  [bas.cc + cwebs]: cwebs, // webs
+  [bas.cc + cWebs]: cWebs, // Webs
+  [bas.cc + cwebbed]: cwebbed, // webbed
+  [bas.cc + cWebbed]: cWebbed, // webbed
+  [bas.cc + cwebbing]: cwebbing, // webbing
+  [bas.cc + cWebbing]: cWebbing, // Webbing
+  [bas.cc + cWebkey]: cWebkey, // Webkey
+  [bas.cc + cfile]: cfile, // file
+  [bas.cc + cFile]: cFile, // File
+  [bas.cc + cfiles]: cfiles, // files
+  [bas.cc + cFiles]: cFiles, // Files
+  [bas.cc + cfilename]: cfilename, // filename
+  [bas.cc + cFilename]: cFilename, // Filename
+  [bas.cc + cfilenames]: cfilenames, // filenames
+  [bas.cc + cFilenames]: cFilenames, // Filenames
+  [bas.cc + cfold]: cfold, // fold
+  [bas.cc + cFold]: cFold, // Fold
+  [bas.cc + cFolder]: cFolder, // Folder
+  [bas.cc + cfolder]: cfolder, // folder
+  [bas.cc + cfolders]: cfolders, // folders
+  [bas.cc + cFolders]: cFolders, // Folders
+  [bas.cc + ccafe]: ccafe, // cafe
+  [bas.cc + ccert]: ccert, // cert
+  [bas.cc + csrc]: csrc, // src
+  [bas.cc + cbin]: cbin, // bin
+  [bas.cc + cnation]: cnation, // nation
+  [bas.cc + cNation]: cNation, // Nation
+  [bas.cc + csource]: csource, // source
+  [bas.cc + cSource]: cSource, // Source
+  [bas.cc + cdestination]: cdestination, // destination
+  [bas.cc + cDestination]: cDestination, // Destination
+  [bas.cc + cresource]: cresource, // resource
+  [bas.cc + cResource]: cResource, // Resource
+  [bas.cc + cresources]: cresources, // resources
+  [bas.cc + cResources]: cResources, // Resources
+  [bas.cc + cclass]: cclass, // class
+  [bas.cc + cClass]: cClass, // Class
+  [bas.cc + cIngestion]: cIngestion, // Ingestion
+  [bas.cc + cis]: cis, // is
+  [bas.cc + cIs]: cIs, // Is
+  [bas.cc + cIS]: cIS, // IS
+  [bas.cc + ccheck]: ccheck, // check
+  [bas.cc + cCheck]: cCheck, // Check
+  [bas.cc + cchecks]: cchecks, // checks
+  [bas.cc + cChecks]: cChecks, // Checks
+  [bas.cc + cchecked]: cchecked, // checked
+  [bas.cc + cChecked]: cChecked, // Checked
+  [bas.cc + celement]: celement, // element
+  [bas.cc + cElement]: cElement, // Element
+  [bas.cc + celements]: celements, // elements
+  [bas.cc + cElements]: cElements, // Elements
+  [bas.cc + cElementName]: cElementName, // ElementName
+  [bas.cc + callow]: callow, // allow
+  [bas.cc + cAllow]: cAllow, // Allow
+  [bas.cc + callowable]: callowable, // allowable
+  [bas.cc + cAllowable]: cAllowable, // Allowable
+  [bas.cc + chome]: chome, // home
+  [bas.cc + cHome]: cHome, // Home
+  [bas.cc + cpublic]: cpublic, // public
+  [bas.cc + cPublic]: cPublic, // Public
+  [bas.cc + cspecial]: cspecial, // special
+  [bas.cc + cSpecial]: cSpecial, // Special
+  [bas.cc + ccharacter]: ccharacter, // character
+  [bas.cc + cCharacter]: cCharacter, // Character
+  [bas.cc + ccharacters]: ccharacters, // characters
+  [bas.cc + cCharacters]: cCharacters, // Characters
+  [bas.cc + cedge]: cedge, // edge
+  [bas.cc + cEdge]: cEdge, // Edge
+  [bas.cc + cWorks]: cWorks, // Works
+  [bas.cc + csolid]: csolid, // solid
+  [bas.cc + cSolid]: cSolid, // Solid
+  [bas.cc + cBinary]: cBinary, // Binary
+  [bas.cc + cTimeout]: cTimeout, // Timeout
+  [bas.cc + cTimeOut]: cTimeOut, // TimeOut
+  [bas.cc + cDwell]: cDwell, // Dwell
+  [bas.cc + ccut]: ccut, // cut
+  [bas.cc + cCut]: cCut, // Cut
+  [bas.cc + ccuts]: ccuts, // cuts
+  [bas.cc + cCuts]: cCuts, // Cuts
+  [bas.cc + ccutting]: ccutting, // cutting
+  [bas.cc + cCutting]: cCutting, // Cutting
+  [bas.cc + ccute]: ccute, // cute
+  [bas.cc + cCute]: cCute, // Cute
+  [bas.cc + cexecute]: cexecute, // execute
+  [bas.cc + cExecute]: cExecute, // Execute
+  [bas.cc + cexecutes]: cexecutes, // executes
+  [bas.cc + cExecutes]: cExecutes, // Executes
+  [bas.cc + cexecuted]: cexecuted, // executed
+  [bas.cc + cExecuted]: cExecuted, // Executed
+  [bas.cc + cexecuting]: cexecuting, // executing
+  [bas.cc + cExecuting]: cExecuting, // Executing
+  [bas.cc + csibling]: csibling, // sibling
+  [bas.cc + cSibling]: cSibling, // Sibling
+  [bas.cc + cchild]: cchild, // child
+  [bas.cc + cChild]: cChild, // Child
+  [bas.cc + cfilter]: cfilter, // filter
+  [bas.cc + cFilter]: cFilter, // Filter
+  [bas.cc + cattribute]: cattribute, // attribute
+  [bas.cc + cAttribute]: cAttribute, // Attribute
+  [bas.cc + cattributes]: cattributes, // attributes
+  [bas.cc + cAttributes]: cAttributes, // Attributes
+  [bas.cc + cdisabled]: cdisabled, // disabled
+  [bas.cc + cDisabled]: cDisabled, // Disabled
+  [bas.cc + cman]: cman, // man
+  [bas.cc + cMan]: cMan, // Man
+  [bas.cc + cwoman]: cwoman, // woman
+  [bas.cc + cWoman]: cWoman, // Woman
+  [bas.cc + ccell]: ccell, // cell
+  [bas.cc + cCell]: cCell, // Cell
+  [bas.cc + chung]: chung, // hung
+  [bas.cc + cHung]: cHung, // Hung
+  [bas.cc + cport]: cport, // port
+  [bas.cc + cPort]: cPort, // Port
+  [bas.cc + cConstructor]: cConstructor, // Constructor
+  [bas.cc + cwarn]: cwarn, // warn
+  [bas.cc + cWarn]: cWarn, // Warn
+  [bas.cc + cWARN]: cWARN, // WARN
+  [bas.cc + cwarning]: cwarning, // warning
+  [bas.cc + cWarning]: cWarning, // Warning
+  [bas.cc + cWARNING]: cWARNING, // WARNING
+  [bas.cc + cwarnings]: cwarnings, // warnings
+  [bas.cc + cWarnings]: cWarnings, // Warnings
+  [bas.cc + cerror]: cerror, // error
+  [bas.cc + cError]: cError, // Error
+  [bas.cc + cERROR]: cERROR, // ERROR
+  [bas.cc + cash]: cash, // ash
+  [bas.cc + cAsh]: cAsh, // Ash
+  [bas.cc + cdash]: cdash, // dash
+  [bas.cc + cDash]: cDash, // Dash
+  [bas.cc + cboard]: cboard, // board
+  [bas.cc + cDashboard]: cDashboard, // Dashboard
+  [bas.cc + ccompose]: ccompose, // compose
+  [bas.cc + cdecompose]: cdecompose, // decompose
+  [bas.cc + cDecompose]: cDecompose, // Decompose
+  [bas.cc + carray]: carray, // array
+  [bas.cc + cArray]: cArray, // Array
+  [bas.cc + carrays]: carrays, // arrays
+  [bas.cc + cArrays]: cArrays, // Arrays
+  [bas.cc + ccamel]: ccamel, // camel
+  [bas.cc + cCamel]: cCamel, // Camel
+  [bas.cc + cround]: cround, // round
+  [bas.cc + cRound]: cRound, // Round
+  [bas.cc + crounded]: crounded, // rounded
+  [bas.cc + cRounded]: cRounded, // Rounded
+  [bas.cc + cquart]: cquart, // quart
+  [bas.cc + cQuart]: cQuart, // Quart
+  [bas.cc + cquarter]: cquarter, // quarter
+  [bas.cc + cQuarter]: cQuarter, // Quarter
+  [bas.cc + cquaternion]: cquaternion, // quaternion
+  [bas.cc + cQuaternion]: cQuaternion, // Quaternion
+  [bas.cc + cnormal]: cnormal, // normal
+  [bas.cc + cNormal]: cNormal, // Normal
+  [bas.cc + cnormalize]: cnormalize, // normalize
+  [bas.cc + cNormalize]: cNormalize, // Normalize
+  [bas.cc + cnominal]: cnominal, // nominal
+  [bas.cc + cNominal]: cNominal, // Nominal
+  [bas.cc + cdegree]: cdegree, // degree
+  [bas.cc + cDegree]: cDegree, // Degree
+  [bas.cc + cdegrees]: cdegrees, // degrees
+  [bas.cc + cDegrees]: cDegrees, // Degrees
+  [bas.cc + cangle]: cangle, // angle
+  [bas.cc + cAngle]: cAngle, // Angle
+  [bas.cc + ctrap]: ctrap, // trap
+  [bas.cc + cTrap]: cTrap, // Trap
+  [bas.cc + cFraction]: cFraction, // Fraction
+  [bas.cc + cvector]: cvector, // vector
+  [bas.cc + cVector]: cVector, // Vector
+  [bas.cc + cfor]: cfor, // for
+  [bas.cc + cFor]: cFor, // For
+  [bas.cc + cform]: cform, // form
+  [bas.cc + cForm]: cForm, // Form
+  [bas.cc + ctransform]: ctransform, // transform
+  [bas.cc + cTransform]: cTransform, // Transform
+  [bas.cc + cpoint]: cpoint, // point
+  [bas.cc + cPoint]: cPoint, // Point
+  [bas.cc + clocation]: clocation, // location
+  [bas.cc + cLocation]: cLocation, // Location
+  [bas.cc + csort]: csort, // sort
+  [bas.cc + cSort]: cSort, // Sort
+  [bas.cc + csimplify]: csimplify, // simplify
+  [bas.cc + cSimplify]: cSimplify, // Simplify
+  [bas.cc + cconsolidate]: cconsolidate, // consolidate
+  [bas.cc + cConsolidate]: cConsolidate, // Consolidate
+  [bas.cc + cconsolidated]: cconsolidated, // consolidated
+  [bas.cc + cConsolidated]: cConsolidated, // Consolidated
+  [bas.cc + cconsolidates]: cconsolidates, // consolidates
+  [bas.cc + cConsolidates]: cConsolidates, // Consolidates
+  [bas.cc + cconsolidating]: cconsolidating, // consolidating
+  [bas.cc + cConsolidating]: cConsolidating, // Consolidating
+  [bas.cc + care]: care, // are
+  [bas.cc + cAre]: cAre, // Are
+  [bas.cc + cARE]: cARE, // ARE
+  [bas.cc + ccompare]: ccompare, // compare
+  [bas.cc + cCompare]: cCompare, // Compare
+  [bas.cc + ccompares]: ccompares, // compares
+  [bas.cc + cCompares]: cCompares, // Compares
+  [bas.cc + ccompared]: ccompared, // compared
+  [bas.cc + cCompared]: cCompared, // Compared
+  [bas.cc + ccomparing]: ccomparing, // comparing
+  [bas.cc + cComparing]: cComparing, // Comparing
+  [bas.cc + ccomparison]: ccomparison, // comparison
+  [bas.cc + cComparison]: cComparison, // Comparison
+  [bas.cc + ccomparisons]: ccomparisons, // comparisons
+  [bas.cc + cComparisons]: cComparisons, // Comparisons
+  [bas.cc + ccontain]: ccontain, // contain
+  [bas.cc + cContain]: cContain, // Contain
+  [bas.cc + ccontains]: ccontains, // contains
+  [bas.cc + cContains]: cContains, // Contains
+  [bas.cc + ccontained]: ccontained, // contained
+  [bas.cc + cContained]: cContained, // Contained
+  [bas.cc + ccontaining]: ccontaining, // containing
+  [bas.cc + cContaining]: cContaining, // Containing
+  [bas.cc + cvideo]: cvideo, // video
+  [bas.cc + cVideo]: cVideo, // Video
+  [bas.cc + cProduct]: cProduct, // Product
+  [bas.cc + caggregate]: caggregate, // aggregate
+  [bas.cc + cAggregate]: cAggregate, // Aggregate
+  [bas.cc + carguments]: carguments, // arguments
+  [bas.cc + cArguments]: cArguments, // Arguments
+  [bas.cc + cDifference]: cDifference, // Difference
+  [bas.cc + cbet]: cbet, // bet
+  [bas.cc + cBet]: cBet, // Bet
+  [bas.cc + cbetween]: cbetween, // between
+  [bas.cc + cBetween]: cBetween, // Between
+  [bas.cc + ccertain]: ccertain, // certain
+  [bas.cc + cascertain]: cascertain, // ascertain
+  [bas.cc + cAscertain]: cAscertain, // Ascertain
+  [bas.cc + cmatch]: cmatch, // match
+  [bas.cc + cMatch]: cMatch, // Match
+  [bas.cc + cmatching]: cmatching, // matching
+  [bas.cc + cMatching]: cMatching, // Matching
+  [bas.cc + cdoes]: cdoes, // does
+  [bas.cc + cDoes]: cDoes, // Does
+  [bas.cc + cDOES]: cDOES, // DOES
+  [bas.cc + capplication]: capplication, // application
+  [bas.cc + cApplication]: cApplication, // Application
+  [bas.cc + cAPPLICATION]: cAPPLICATION, // APPLICATION
+  [bas.cc + cbuild]: cbuild, // build
+  [bas.cc + cBuild]: cBuild, // Build
+  [bas.cc + cdeploy]: cdeploy, // deploy
+  [bas.cc + cDeploy]: cDeploy, // Deploy
+  [bas.cc + cDEPLOY]: cDEPLOY, // DEPLOY
+  [bas.cc + cdeployment]: cdeployment, // deployment
+  [bas.cc + cDeployment]: cDeployment, // Deployment
+  [bas.cc + clease]: clease, // lease
+  [bas.cc + cLEASE]: cLEASE, // LEASE
+  [bas.cc + crelease]: crelease, // release
+  [bas.cc + cRelease]: cRelease, // Release
+  [bas.cc + cRELEASE]: cRELEASE, // RELEASE
+  [bas.cc + creleases]: creleases, // releases
+  [bas.cc + cReleases]: cReleases, // Releases
+  [bas.cc + creleased]: creleased, // released
+  [bas.cc + cReleased]: cReleased, // Released
+  [bas.cc + creleasing]: creleasing, // releasing
+  [bas.cc + cReleasing]: cReleasing, // Releasing
+  [bas.cc + croot]: croot, // root
+  [bas.cc + cRoot]: cRoot, // Root
+  [bas.cc + cparse]: cparse, // parse
+  [bas.cc + cParse]: cParse, // Parse
+  [bas.cc + cPARSE]: cPARSE, // PARSE
+  [bas.cc + cparser]: cparser, // parser
+  [bas.cc + cParser]: cParser, // Parser
+  [bas.cc + cPARSER]: cPARSER, // PARSER
+  [bas.cc + cparsed]: cparsed, // parsed
+  [bas.cc + cParsed]: cParsed, // Parsed
+  [bas.cc + cparsing]: cparsing, // parsing
+  [bas.cc + cParsing]: cParsing, // Parsing
+  [bas.cc + cforward]: cforward, // forward
+  [bas.cc + cForward]: cForward, // Forward
+  [bas.cc + cslash]: cslash, // slash
+  [bas.cc + cSlash]: cSlash, // Slash
+  [bas.cc + cmeta]: cmeta, // meta
+  [bas.cc + cMeta]: cMeta, // Meta
+  [bas.cc + cmetaData]: cmetaData, // metaData
+  [bas.cc + cMetaData]: cMetaData, // MetaData
+  [bas.cc + cbusiness]: cbusiness, // business
+  [bas.cc + cBusiness]: cBusiness, // Business
+  [bas.cc + crule]: crule, // rule
+  [bas.cc + cRule]: cRule, // Rule
+  [bas.cc + cfresh]: cfresh, // fresh
+  [bas.cc + crefresh]: crefresh, // refresh
+  [bas.cc + cRefresh]: cRefresh, // Refresh
+  [bas.cc + ceval]: ceval, // eval
+  [bas.cc + cEval]: cEval, // Eval
+  [bas.cc + creload]: creload, // reload
+  [bas.cc + cReload]: cReload, // Reload
+  [bas.cc + cdemo]: cdemo, // demo
+  [bas.cc + cDemo]: cDemo, // Demo
+  [bas.cc + ccommon]: ccommon, // common
+  [bas.cc + cCommon]: cCommon, // Common
+  [bas.cc + cfunction]: cfunction, // function
+  [bas.cc + cFunction]: cFunction, // Function
+  [bas.cc + cfunctions]: cfunctions, // functions
+  [bas.cc + cFunctions]: cFunctions, // Functions
+  [bas.cc + cmultiple]: cmultiple, // multiple
+  [bas.cc + cMultiple]: cMultiple, // Multiple
+  [bas.cc + cJournal]: cJournal, // Journal
+  [bas.cc + cExecution]: cExecution, // Execution
+  [bas.cc + cpercent]: cpercent, // percent
+  [bas.cc + cPercent]: cPercent, // Percent
+  [bas.cc + cbasic]: cbasic, // basic
+  [bas.cc + cBasic]: cBasic, // Basic
+  [bas.cc + codd]: codd, // odd
+  [bas.cc + cOdd]: cOdd, // Odd
+  [bas.cc + ceven]: ceven, // even
+  [bas.cc + cEven]: cEven, // Even
+  [bas.cc + cEVEN]: cEVEN, // EVEN
+  [bas.cc + cevent]: cevent, // event
+  [bas.cc + cEvent]: cEvent, // Event
+  [bas.cc + cevents]: cevents, // events
+  [bas.cc + cEvents]: cEvents, // Events
+  [bas.cc + cface]: cface, // face
+  [bas.cc + cFace]: cFace, // Face
+  [bas.cc + cargument]: cargument, // argument
+  [bas.cc + cArgument]: cArgument, // Argument
+  [bas.cc + cdrive]: cdrive, // drive
+  [bas.cc + cDrive]: cDrive, // Drive
+  [bas.cc + cdriven]: cdriven, // driven
+  [bas.cc + cDriven]: cDriven, // Driven
+  [bas.cc + cinterface]: cinterface, // interface
+  [bas.cc + cInterface]: cInterface, // Interface
+  [bas.cc + cfont]: cfont, // font
+  [bas.cc + cFont]: cFont, // Font
+  [bas.cc + cmodule]: cmodule, // module
+  [bas.cc + cModule]: cModule, // Module
+  [bas.cc + ccolor]: ccolor, // color
+  [bas.cc + cColor]: cColor, // Color
+  [bas.cc + ccolors]: ccolors, // colors
+  [bas.cc + cColors]: cColors, // Colors
+  [bas.cc + ccolored]: ccolored, // colored
+  [bas.cc + cColored]: cColored, // Colored
+  [bas.cc + ccolorize]: ccolorize, // colorize
+  [bas.cc + cColorize]: cColorize, // Colorize
+  [bas.cc + ccolorized]: ccolorized, // colorized
+  [bas.cc + cColorized]: cColorized, // Colorized
+  [bas.cc + cold]: cold, // old
+  [bas.cc + cOld]: cOld, // Old
+  [bas.cc + cbold]: cbold, // bold
+  [bas.cc + cBold]: cBold, // Bold
+  [bas.cc + cmost]: cmost, // most
+  [bas.cc + cMost]: cMost, // Most
+  [bas.cc + cpop]: cpop, // pop
+  [bas.cc + cPop]: cPop, // Pop
+  [bas.cc + cPOP]: cPOP, // POP
+  [bas.cc + cpopular]: cpopular, // popular
+  [bas.cc + cPopular]: cPopular, // Popular
+  [bas.cc + calmost]: calmost, // almost
+  [bas.cc + cAlmost]: cAlmost, // Almost
+  [bas.cc + cpal]: cpal, // pal
+  [bas.cc + cPal]: cPal, // Pal
+  [bas.cc + cpalindrome]: cpalindrome, // palindrome
+  [bas.cc + cPalindrome]: cPalindrome, // Palindrome
+  [bas.cc + caverage]: caverage, // average
+  [bas.cc + cAverage]: cAverage, // Average
+  [bas.cc + cclient]: cclient, // client
+  [bas.cc + cClient]: cClient, // Client
+  [bas.cc + crules]: crules, // rules
+  [bas.cc + cRules]: cRules, // Rules
+  [bas.cc + ccustom]: ccustom, // custom
+  [bas.cc + cCustom]: cCustom, // Custom
+  [bas.cc + ccommand]: ccommand, // command
+  [bas.cc + cCommand]: cCommand, // Command
+  [bas.cc + cCOMMAND]: cCOMMAND, // COMMAND
+  [bas.cc + ccommands]: ccommands, // commands
+  [bas.cc + cCommands]: cCommands, // Commands
+  [bas.cc + cqueue]: cqueue, // queue
+  [bas.cc + cQueue]: cQueue, // Queue
+  [bas.cc + cblob]: cblob, // blob
+  [bas.cc + cBlob]: cBlob, // Blob
+  [bas.cc + cframe]: cframe, // frame
+  [bas.cc + cFrame]: cFrame, // Frame
+  [bas.cc + calias]: calias, // alias
+  [bas.cc + cAlias]: cAlias, // Alias
+  [bas.cc + caliases]: caliases, // aliases
+  [bas.cc + cAliases]: cAliases, // Aliases
+  [bas.cc + csequencer]: csequencer, // sequencer
+  [bas.cc + cSequencer]: cSequencer, // Sequencer
+  [bas.cc + cprimary]: cprimary, // primary
+  [bas.cc + cPrimary]: cPrimary, // Primary
+  [bas.cc + csecondary]: csecondary, // secondary
+  [bas.cc + cSecondary]: cSecondary, // Secondary
+  [bas.cc + ctertiary]: ctertiary, // tertiary
+  [bas.cc + cTertiary]: cTertiary, // Tertiary
+  [bas.cc + cdelimit]: cdelimit, // delimit
+  [bas.cc + cDelimit]: cDelimit, // Delimit
+  [bas.cc + cdelimiter]: cdelimiter, // delimiter
+  [bas.cc + cDelimiter]: cDelimiter, // Delimiter
+  [bas.cc + cdelimiters]: cdelimiters, // delimiters
+  [bas.cc + cDelimiters]: cDelimiters, // Delimiters
+  [bas.cc + cdelimited]: cdelimited, // delimited
+  [bas.cc + cDelimited]: cDelimited, // Delimited
+  [bas.cc + cdelimiting]: cdelimiting, // delimiting
+  [bas.cc + cDelimiting]: cDelimiting, // Delimiting
+  [bas.cc + chelp]: chelp, // help
+  [bas.cc + cHelp]: cHelp, // Help
+  [bas.cc + cprint]: cprint, // print
+  [bas.cc + cPrint]: cPrint, // Print
+  [bas.cc + chive]: chive, // hive
+  [bas.cc + cHive]: cHive, // Hive
+  [bas.cc + cgenerator]: cgenerator, // generator
+  [bas.cc + cGenerator]: cGenerator, // Generator
+  [bas.cc + cindex]: cindex, // index
+  [bas.cc + cIndex]: cIndex, // Index
+  [bas.cc + cabout]: cabout, // about
+  [bas.cc + cAbout]: cAbout, // About
+  [bas.cc + cstart]: cstart, // start
+  [bas.cc + cStart]: cStart, // Start
+  [bas.cc + cstarts]: cstarts, // starts
+  [bas.cc + cStarts]: cStarts, // Starts
+  [bas.cc + cstarted]: cstarted, // started
+  [bas.cc + cStarted]: cStarted, // Started
+  [bas.cc + cstartup]: cstartup, // startup
+  [bas.cc + cstarting]: cstarting, // starting
+  [bas.cc + cStarting]: cStarting, // Starting
+  [bas.cc + coutput]: coutput, // output
+  [bas.cc + cOutput]: cOutput, // Output
+  [bas.cc + cmetric]: cmetric, // metric
+  [bas.cc + cMetric]: cMetric, // Metric
+  [bas.cc + cmetrics]: cmetrics, // metrics
+  [bas.cc + cMetrics]: cMetrics, // Metrics
+  [bas.cc + crack]: crack, // rack
+  [bas.cc + cRack]: cRack, // Rack
+  [bas.cc + ctrack]: ctrack, // track
+  [bas.cc + cTrack]: cTrack, // Track
+  [bas.cc + ctracking]: ctracking, // tracking
+  [bas.cc + cTracking]: cTracking, // Tracking
+  [bas.cc + cstack]: cstack, // stack
+  [bas.cc + cStack]: cStack, // Stack
+  [bas.cc + cstandard]: cstandard, // standard
+  [bas.cc + cStandard]: cStandard, // Standard
+  [bas.cc + cdeviation]: cdeviation, // deviation
+  [bas.cc + cDeviation]: cDeviation, // Deviation
+  [bas.cc + canalysis]: canalysis, // analysis
+  [bas.cc + cAnalysis]: cAnalysis, // Analysis
+  [bas.cc + cclear]: cclear, // clear
+  [bas.cc + cClear]: cClear, // Clear
+  [bas.cc + cversion]: cversion, // version
+  [bas.cc + cVersion]: cVersion, // Version
+  [bas.cc + ccontrol]: ccontrol, // control
+  [bas.cc + cControl]: cControl, // Control
+  [bas.cc + ccontrols]: ccontrols, // controls
+  [bas.cc + cControls]: cControls, // Controls
+  [bas.cc + ccontrolled]: ccontrolled, // controlled
+  [bas.cc + cControlled]: cControlled, // Controlled
+  [bas.cc + ccontrolling]: ccontrolling, // controlling
+  [bas.cc + cControlling]: cControlling, // Controlling
+  [bas.cc + ccontroller]: ccontroller, // controller
+  [bas.cc + cController]: cController, // Controller
+  [bas.cc + ccontrollers]: ccontrollers, // controllers
+  [bas.cc + cControllers]: cControllers, // Controllers
+  [bas.cc + cperform]: cperform, // perform
+  [bas.cc + cPerform]: cPerform, // Perform
+  [bas.cc + cperformance]: cperformance, // performance
+  [bas.cc + cPerformance]: cPerformance, // Performance
+  [bas.cc + cconversion]: cconversion, // conversion
+  [bas.cc + cConversion]: cConversion, // Conversion
+  [bas.cc + cpass]: cpass, // pass
+  [bas.cc + cPass]: cPass, // Pass
+  [bas.cc + cPASS]: cPASS, // PASS
+  [bas.cc + cpassed]: cpassed, // passed
+  [bas.cc + cPassed]: cPassed, // Passed
+  [bas.cc + cPASSED]: cPASSED, // PASSED
+  [bas.cc + cpassing]: cpassing, // passing
+  [bas.cc + cPassing]: cPassing, // Passing
+  [bas.cc + cbypass]: cbypass, // bypass
+  [bas.cc + cBypass]: cBypass, // Bypass
+  [bas.cc + cbypasses]: cbypasses, // bypasses
+  [bas.cc + cBypasses]: cBypasses, // Bypasses
+  [bas.cc + cbypassed]: cbypassed, // bypassed
+  [bas.cc + cBypassed]: cBypassed, // Bypassed
+  [bas.cc + cbypassing]: cbypassing, // bypassing
+  [bas.cc + cBypassing]: cBypassing, // Bypassing
+  [bas.cc + cfail]: cfail, // fail
+  [bas.cc + cFail]: cFail, // Fail
+  [bas.cc + cFAIL]: cFAIL, // FAIL
+  [bas.cc + cfailed]: cfailed, // failed
+  [bas.cc + cFailed]: cFailed, // Failed
+  [bas.cc + cFAILED]: cFAILED, // FAILED
+  [bas.cc + cfailure]: cfailure, // failure
+  [bas.cc + cFailure]: cFailure, // Failure
+  [bas.cc + csimplified]: csimplified, // simplified
+  [bas.cc + cSimplified]: cSimplified, // Simplified
+  [bas.cc + ctraditional]: ctraditional, // traditional
+  [bas.cc + cTraditional]: cTraditional, // Traditional
+  [bas.cc + cground]: cground, // ground
+  [bas.cc + cGround]: cGround, // Ground
+  [bas.cc + cyell]: cyell, // yell
+  [bas.cc + cYell]: cYell, // Yell
+  [bas.cc + clack]: clack, // lack
+  [bas.cc + cLack]: cLack, // Lack
+  [bas.cc + clane]: clane, // lane
+  [bas.cc + cLane]: cLane, // Lane
+  [bas.cc + csection]: csection, // section
+  [bas.cc + cSection]: cSection, // Section
+  [bas.cc + csections]: csections, // sections
+  [bas.cc + cSections]: cSections, // Sections
+  [bas.cc + cunit]: cunit, // unit
+  [bas.cc + cUnit]: cUnit, // Unit
+  [bas.cc + cunits]: cunits, // units
+  [bas.cc + cUnits]: cUnits, // Units
+  [bas.cc + cgeneric]: cgeneric, // generic
+  [bas.cc + cGeneric]: cGeneric, // Generic
+  [bas.cc + cisotope]: cisotope, // isotope
+  [bas.cc + cIsotope]: cIsotope, // Isotope
+  [bas.cc + cphonic]: cphonic, // phonic
+  [bas.cc + cPhonic]: cPhonic, // Phonic
+  [bas.cc + cphonics]: cphonics, // phonics
+  [bas.cc + cPhonics]: cPhonics, // Phonics
+  [bas.cc + cshape]: cshape, // shape
+  [bas.cc + cShape]: cShape, // Shape
+  [bas.cc + cexport]: cexport, // export
+  [bas.cc + cExport]: cExport, // Export
+  [bas.cc + cplay]: cplay, // play
+  [bas.cc + cPlay]: cPlay, // Play
+  [bas.cc + cdisplay]: cdisplay, // display
+  [bas.cc + cDisplay]: cDisplay, // Display
+  [bas.cc + csum]: csum, // sum
+  [bas.cc + cSum]: cSum, // Sum
+  [bas.cc + csummary]: csummary, // summary
+  [bas.cc + cSummary]: cSummary, // Summary
+  [bas.cc + csuggest]: csuggest, // suggest
+  [bas.cc + cSuggest]: cSuggest, // Suggest
+  [bas.cc + csuggested]: csuggested, // suggested
+  [bas.cc + cSuggested]: cSuggested, // Suggested
+  [bas.cc + cline]: cline, // line
+  [bas.cc + cLine]: cLine, // Line
+  [bas.cc + cdocument]: cdocument, // document
+  [bas.cc + cDocument]: cDocument, // Document
+  [bas.cc + cqualified]: cqualified, // qualified
+  [bas.cc + cQualified]: cQualified, // Qualified
+  [bas.cc + cfix]: cfix, // fix
+  [bas.cc + cFix]: cFix, // Fix
+  [bas.cc + cprefix]: cprefix, // prefix
+  [bas.cc + cPrefix]: cPrefix, // Prefix
+  [bas.cc + csuffix]: csuffix, // suffix
+  [bas.cc + cSuffix]: cSuffix, // Suffix
+  [bas.cc + cdevelop]: cdevelop, // develop
+  [bas.cc + cDevelop]: cDevelop, // Develop
+  [bas.cc + cDEVELOP]: cDEVELOP, // DEVELOP
+  [bas.cc + cdevelopment]: cdevelopment, // development
+  [bas.cc + cDevelopment]: cDevelopment, // Development
+  [bas.cc + cDEVELOPMENT]: cDEVELOPMENT, // DEVELOPMENT
+  [bas.cc + cproduction]: cproduction, // production
+  [bas.cc + cProduction]: cProduction, // Production
+  [bas.cc + cPRODUCTION]: cPRODUCTION, // PRODUCTION
+  [bas.cc + cstorage]: cstorage, // storage
+  [bas.cc + cStorage]: cStorage, // Storage
+  [bas.cc + cstore]: cstore, // store
+  [bas.cc + cStore]: cStore, // Store
+  [bas.cc + cstored]: cstored, // stored
+  [bas.cc + cStored]: cStored, // Stored
+  [bas.cc + cunique]: cunique, // unique
+  [bas.cc + cUnique]: cUnique, // Unique
+  [bas.cc + cduplicate]: cduplicate, // duplicate
+  [bas.cc + cDuplicate]: cDuplicate, // Duplicate
+  [bas.cc + cplease]: cplease, // please
+  [bas.cc + cPlease]: cPlease, // Please
+  [bas.cc + center]: center, // enter
+  [bas.cc + cEnter]: cEnter, // Enter
+  [bas.cc + centers]: centers, // enters
+  [bas.cc + cEnters]: cEnters, // Enters
+  [bas.cc + centered]: centered, // entered
+  [bas.cc + cEntered]: cEntered, // Entered
+  [bas.cc + centering]: centering, // entering
+  [bas.cc + cEntering]: cEntering, // Entering
+  [bas.cc + cwere]: cwere, // were
+  [bas.cc + cWere]: cWere, // Were
+  [bas.cc + cwhere]: cwhere, // where
+  [bas.cc + cWhere]: cWhere, // Where
+  [bas.cc + cher]: cher, // her
+  [bas.cc + cHer]: cHer, // Her
+  [bas.cc + chim]: chim, // him
+  [bas.cc + cHim]: cHim, // Him
+  [bas.cc + chers]: chers, // hers
+  [bas.cc + cHers]: cHers, // Hers
+  [bas.cc + chis]: chis, // his
+  [bas.cc + cHis]: cHis, // His
+  [bas.cc + cthem]: cthem, // them
+  [bas.cc + cThem]: cThem, // Them
+  [bas.cc + cthose]: cthose, // those
+  [bas.cc + cThose]: cThose, // Those
+  [bas.cc + cthat]: cthat, // that
+  [bas.cc + cThat]: cThat, // That
+  [bas.cc + cthis]: cthis, // this
+  [bas.cc + cThis]: cThis, // This
+  [bas.cc + cwhen]: cwhen, // when
+  [bas.cc + cWhen]: cWhen, // When
+  [bas.cc + cwhat]: cwhat, // what
+  [bas.cc + cWhat]: cWhat, // What
+  [bas.cc + chow]: chow, // how
+  [bas.cc + cHow]: cHow, // How
+  [bas.cc + cwhy]: cwhy, // why
+  [bas.cc + cWhy]: cWhy, // Why
+  [bas.cc + cother]: cother, // other
+  [bas.cc + cOther]: cOther, // Other
+  [bas.cc + cabreviation]: cabreviation, // abreviation
+  [bas.cc + cAbreviation]: cAbreviation, // Abreviation
+  [bas.cc + cabreviations]: cabreviations, // abreviations
+  [bas.cc + cAbreviations]: cAbreviations, // Abreviations
+  [bas.cc + cacronym]: cacronym, // acronym
+  [bas.cc + cAcronym]: cAcronym, // Acronym
+  [bas.cc + cacronyms]: cacronyms, // acronyms
+  [bas.cc + cAcronyms]: cAcronyms, // Acronyms
+  [bas.cc + csolve]: csolve, // solve
+  [bas.cc + cSolve]: cSolve, // Solve
+  [bas.cc + cLehmer]: cLehmer, // Lehmer
+  [bas.cc + cdeep]: cdeep, // deep
+  [bas.cc + cDeep]: cDeep, // Deep
+  [bas.cc + cclone]: cclone, // clone
+  [bas.cc + cClone]: cClone, // Clone
+  [bas.cc + ccursive]: ccursive, // cursive
+  [bas.cc + cCursive]: cCursive, // Cursive
+  [bas.cc + crecursive]: crecursive, // recursive
+  [bas.cc + cRecursive]: cRecursive, // Recursive
+  [bas.cc + cexpansion]: cexpansion, // expansion
+  [bas.cc + cExpansion]: cExpansion, // Expansion
+  [bas.cc + cscreen]: cscreen, // screen
+  [bas.cc + cScreen]: cScreen, // Screen
+  [bas.cc + cyou]: cyou, // you
+  [bas.cc + cYou]: cYou, // You
+  [bas.cc + cwould]: cwould, // would
+  [bas.cc + cWould]: cWould, // Would
+  [bas.cc + cshould]: cshould, // should
+  [bas.cc + cShould]: cShould, // Should
+  [bas.cc + ccould]: ccould, // could
+  [bas.cc + cCould]: cCould, // Could
+  [bas.cc + clike]: clike, // like
+  [bas.cc + cLike]: cLike, // Like
+  [bas.cc + cfine]: cfine, // fine
+  [bas.cc + cFine]: cFine, // Fine
+  [bas.cc + cdefine]: cdefine, // define
+  [bas.cc + cDefine]: cDefine, // Define
+  [bas.cc + cdefined]: cdefined, // defined
+  [bas.cc + cDefined]: cDefined, // Defined
+  [bas.cc + cdefines]: cdefines, // defines
+  [bas.cc + cDefines]: cDefines, // Defines
+  [bas.cc + cdefining]: cdefining, // defining
+  [bas.cc + cDefining]: cDefining, // Defining
+  [bas.cc + cfill]: cfill, // fill
+  [bas.cc + cFill]: cFill, // Fill
+  [bas.cc + cfulfillment]: cfulfillment, // fulfillment
+  [bas.cc + cFulfillment]: cFulfillment, // Fulfillment
+  [bas.cc + coptimized]: coptimized, // optimized
+  [bas.cc + cOptimized]: cOptimized, // Optimized
+  [bas.cc + csome]: csome, // some
+  [bas.cc + cSome]: cSome, // Some
+  [bas.cc + ccomb]: ccomb, // comb
+  [bas.cc + cComb]: cComb, // Comb
+  [bas.cc + ccombine]: ccombine, // combine
+  [bas.cc + cCombine]: cCombine, // Combine
+  [bas.cc + ccombines]: ccombines, // combines
+  [bas.cc + cCombines]: cCombines, // Combines
+  [bas.cc + ccombined]: ccombined, // combined
+  [bas.cc + cCombined]: cCombined, // Combined
+  [bas.cc + ccombining]: ccombining, // combining
+  [bas.cc + cCombining]: cCombining, // Combining
+  [bas.cc + crecombine]: crecombine, // recombine
+  [bas.cc + cRecombine]: cRecombine, // Recombine
+  [bas.cc + ccombination]: ccombination, // combination
+  [bas.cc + cCombination]: cCombination, // Combination
+  [bas.cc + ccombinations]: ccombinations, // combinations
+  [bas.cc + cCombinations]: cCombinations, // Combinations
+  [bas.cc + crecognizer]: crecognizer, // recognizer
+  [bas.cc + cRecognizer]: cRecognizer, // Recognizer
+  [bas.cc + cpat]: cpat, // pat
+  [bas.cc + cPat]: cPat, // Pat
+  [bas.cc + cpatt]: cpatt, // patt
+  [bas.cc + cPatt]: cPatt, // Patt
+  [bas.cc + cpattern]: cpattern, // pattern
+  [bas.cc + cPattern]: cPattern, // Pattern
+  [bas.cc + cpatterns]: cpatterns, // patterns
+  [bas.cc + cPatterns]: cPatterns, // Patterns
+  [bas.cc + ccoma]: ccoma, // coma
+  [bas.cc + cComa]: cComa, // Coma
+  [bas.cc + ccomas]: ccomas, // comas
+  [bas.cc + cComas]: cComas, // Comas
+  [bas.cc + cseparate]: cseparate, // separate
+  [bas.cc + cSeparate]: cSeparate, // Separate
+  [bas.cc + cseparated]: cseparated, // separated
+  [bas.cc + cSeparated]: cSeparated, // Separated
+  [bas.cc + csea]: csea, // sea
+  [bas.cc + cSea]: cSea, // Sea
+  [bas.cc + csearch]: csearch, // search
+  [bas.cc + cSearch]: cSearch, // Search
+  [bas.cc + csearches]: csearches, // searches
+  [bas.cc + cSearches]: cSearches, // Searches
+  [bas.cc + csearched]: csearched, // searched
+  [bas.cc + cSearched]: cSearched, // Searched
+  [bas.cc + csearching]: csearching, // searching
+  [bas.cc + cSearching]: cSearching, // Searching
+  [bas.cc + cneed]: cneed, // need
+  [bas.cc + cNeed]: cNeed, // Need
+  [bas.cc + cimplement]: cimplement, // implement
+  [bas.cc + cImplement]: cImplement, // Implement
+  [bas.cc + cimplements]: cimplements, // implements
+  [bas.cc + cImplements]: cImplements, // Implements
+  [bas.cc + cimplementation]: cimplementation, // implementation
+  [bas.cc + cImplementation]: cImplementation, // Implementation
+  [bas.cc + cgoing]: cgoing, // going
+  [bas.cc + cGoing]: cGoing, // Going
+  [bas.cc + cmain]: cmain, // main
+  [bas.cc + cMain]: cMain, // Main
+  [bas.cc + cprogram]: cprogram, // program
+  [bas.cc + cProgram]: cProgram, // Program
+  [bas.cc + cloop]: cloop, // loop
+  [bas.cc + cLoop]: cLoop, // Loop
+  [bas.cc + cgood]: cgood, // good
+  [bas.cc + cGood]: cGood, // Good
+  [bas.cc + cbye]: cbye, // bye
+  [bas.cc + cBye]: cBye, // Bye
+  [bas.cc + chave]: chave, // have
+  [bas.cc + cHave]: cHave, // Have
+  [bas.cc + cnice]: cnice, // nice
+  [bas.cc + cNice]: cNice, // Nice
+  [bas.cc + cday]: cday, // day
+  [bas.cc + cDay]: cDay, // Day
+  [bas.cc + cstay]: cstay, // stay
+  [bas.cc + cStay]: cStay, // Stay
+  [bas.cc + csafe]: csafe, // safe
+  [bas.cc + cSafe]: cSafe, // Safe
+  [bas.cc + cwas]: cwas, // was
+  [bas.cc + cWas]: cWas, // Was
+  [bas.cc + cbig]: cbig, // big
+  [bas.cc + cBig]: cBig, // Big
+  [bas.cc + cbigger]: cbigger, // bigger
+  [bas.cc + cBigger]: cBigger, // Bigger
+  [bas.cc + cbiggest]: cbiggest, // biggest
+  [bas.cc + cBiggest]: cBiggest, // Biggest
+  [bas.cc + cspecific]: cspecific, // specific
+  [bas.cc + cSpecific]: cSpecific, // Specific
+  [bas.cc + cspecified]: cspecified, // specified
+  [bas.cc + cSpecified]: cSpecified, // Specified
+  [bas.cc + cdomain]: cdomain, // domain
+  [bas.cc + cDomain]: cDomain, // Domain
+  [bas.cc + cmode]: cmode, // mode
+  [bas.cc + cMode]: cMode, // Mode
+  [bas.cc + csymbol]: csymbol, // symbol
+  [bas.cc + cSymbol]: cSymbol, // Symbol
+  [bas.cc + csymbols]: csymbols, // symbols
+  [bas.cc + cSymbols]: cSymbols, // Symbols
+  [bas.cc + cresolve]: cresolve, // resolve
+  [bas.cc + cResolve]: cResolve, // Resolve
+  [bas.cc + cresolved]: cresolved, // resolved
+  [bas.cc + cResolved]: cResolved, // Resolved
+  [bas.cc + cresolving]: cresolving, // resolving
+  [bas.cc + cResolving]: cResolving, // Resolving
+  [bas.cc + cvariation]: cvariation, // variation
+  [bas.cc + cVariation]: cVariation, // Variation
+  [bas.cc + cterm]: cterm, // term
+  [bas.cc + cTerm]: cTerm, // Term
+  [bas.cc + ccost]: ccost, // cost
+  [bas.cc + cCost]: cCost, // Cost
+  [bas.cc + cperiod]: cperiod, // period
+  [bas.cc + cPeriod]: cPeriod, // Period
+  [bas.cc + ccannot]: ccannot, // cannot
+  [bas.cc + cCannot]: cCannot, // Cannot
+  [bas.cc + cnothing]: cnothing, // nothing
+  [bas.cc + cNothing]: cNothing, // Nothing
+  [bas.cc + cnothingness]: cnothingness, // nothingness
+  [bas.cc + cNothingness]: cNothingness, // Nothingness
+  [bas.cc + cused]: cused, // used
+  [bas.cc + cUsed]: cUsed, // Used
+  [bas.cc + cusing]: cusing, // using
+  [bas.cc + cUsing]: cUsing, // Using
+  [bas.cc + cbreak]: cbreak, // break
+  [bas.cc + cBreak]: cBreak, // Break
+  [bas.cc + cinto]: cinto, // into
+  [bas.cc + cInto]: cInto, // Into
+  [bas.cc + cunable]: cunable, // unable
+  [bas.cc + cUnable]: cUnable, // Unable
+  [bas.cc + cnow]: cnow, // now
+  [bas.cc + cNow]: cNow, // Now
+  [bas.cc + cknow]: cknow, // know
+  [bas.cc + cKnow]: cKnow, // Know
+  [bas.cc + cknown]: cknown, // known
+  [bas.cc + cKnown]: cKnown, // Known
+  [bas.cc + cunknown]: cunknown, // unknown
+  [bas.cc + cUnknown]: cUnknown, // Unknown
+  [bas.cc + ctemp]: ctemp, // temp
+  [bas.cc + cTemp]: cTemp, // Temp
+  [bas.cc + ctempt]: ctempt, // tempt
+  [bas.cc + cTempt]: cTempt, // Tempt
+  [bas.cc + cattempt]: cattempt, // attempt
+  [bas.cc + cAttempt]: cAttempt, // Attempt
+  [bas.cc + cattempts]: cattempts, // attempts
+  [bas.cc + cAttempts]: cAttempts, // Attempts
+  [bas.cc + cattempted]: cattempted, // attempted
+  [bas.cc + cAttempted]: cAttempted, // Attempted
+  [bas.cc + cattempting]: cattempting, // attempting
+  [bas.cc + cAttempting]: cAttempting, // Attempting
+  [bas.cc + cmat]: cmat, // mat
+  [bas.cc + cMat]: cMat, // Mat
+  [bas.cc + cformat]: cformat, // format
+  [bas.cc + cFormat]: cFormat, // Format
+  [bas.cc + cformats]: cformats, // formats
+  [bas.cc + cFormats]: cFormats, // Formats
+  [bas.cc + cformatted]: cformatted, // formatted
+  [bas.cc + cFormatted]: cFormatted, // Formatted
+  [bas.cc + cformatting]: cformatting, // formatting
+  [bas.cc + cFormatting]: cFormatting, // Formatting
+  [bas.cc + creformat]: creformat, // reformat
+  [bas.cc + cReformat]: cReformat, // Reformat
+  [bas.cc + creformats]: creformats, // reformats
+  [bas.cc + cReformats]: cReformats, // Reformats
+  [bas.cc + creformated]: creformated, // reformatted
+  [bas.cc + cReformated]: cReformated, // Reformatted
+  [bas.cc + creformating]: creformating, // reformatting
+  [bas.cc + cReformating]: cReformating, // Reformatting
+  [bas.cc + ccorrect]: ccorrect, // correct
+  [bas.cc + cCorrect]: cCorrect, // Correct
+  [bas.cc + ccorrects]: ccorrects, // corrects
+  [bas.cc + cCorrects]: cCorrects, // Corrects
+  [bas.cc + ccorrected]: ccorrected, // corrected
+  [bas.cc + cCorrected]: cCorrected, // Corrected
+  [bas.cc + ccorrectly]: ccorrectly, // correctly
+  [bas.cc + cCorrectly]: cCorrectly, // Correctly
+  [bas.cc + ccorrecting]: ccorrecting, // correcting
+  [bas.cc + cCorrecting]: cCorrecting, // Correcting
+  [bas.cc + cbut]: cbut, // but
+  [bas.cc + cBut]: cBut, // But
+  [bas.cc + crent]: crent, // rent
+  [bas.cc + cRent]: cRent, // Rent
+  [bas.cc + ccurrent]: ccurrent, // current
+  [bas.cc + cCurrent]: cCurrent, // Current
+  [bas.cc + cdelta]: cdelta, // delta
+  [bas.cc + cDelta]: cDelta, // Delta
+  [bas.cc + cbeing]: cbeing, // being
+  [bas.cc + cBeing]: cBeing, // Being
+  [bas.cc + cskip]: cskip, // skip
+  [bas.cc + cSkip]: cSkip, // Skip
+  [bas.cc + cskips]: cskips, // skips
+  [bas.cc + cSkips]: cSkips, // Skips
+  [bas.cc + cskiped]: cskiped, // skiped
+  [bas.cc + cSkiped]: cSkiped, // Skiped
+  [bas.cc + cskiping]: cskiping, // skiping
+  [bas.cc + cSkiping]: cSkiping, // Skiping
+  [bas.cc + chad]: chad, // had
+  [bas.cc + cHad]: cHad, // Had
+  [bas.cc + cchange]: cchange, // change
+  [bas.cc + cChange]: cChange, // Change
+  [bas.cc + cCHANGE]: cCHANGE, // CHANGE
+  [bas.cc + cpush]: cpush, // push
+  [bas.cc + cPush]: cPush, // Push
+  [bas.cc + cPUSH]: cPUSH, // PUSH
+  [bas.cc + cpushes]: cpushes, // pushes
+  [bas.cc + cPushes]: cPushes, // Pushes
+  [bas.cc + cpushed]: cpushed, // pushed
+  [bas.cc + cPushed]: cPushed, // Pushed
+  [bas.cc + cpushing]: cpushing, // pushing
+  [bas.cc + cPushing]: cPushing, // Pushing
+  [bas.cc + cexpand]: cexpand, // expand
+  [bas.cc + cExpand]: cExpand, // Expand
+  [bas.cc + cexpands]: cexpands, // expands
+  [bas.cc + cExpands]: cExpands, // Expands
+  [bas.cc + cexpanded]: cexpanded, // expanded
+  [bas.cc + cExpanded]: cExpanded, // Expanded
+  [bas.cc + cexpanding]: cexpanding, // expanding
+  [bas.cc + cExpanding]: cExpanding, // Expanding
+  [bas.cc + ccall]: ccall, // call
+  [bas.cc + cCall]: cCall, // Call
+  [bas.cc + ccalls]: ccalls, // calls
+  [bas.cc + cCalls]: cCalls, // Calls
+  [bas.cc + ccalled]: ccalled, // called
+  [bas.cc + cCalled]: cCalled, // Called
+  [bas.cc + ccalling]: ccalling, // calling
+  [bas.cc + cCalling]: cCalling, // Calling
+  [bas.cc + clook]: clook, // look
+  [bas.cc + cLook]: cLook, // Look
+  [bas.cc + clooks]: clooks, // looks
+  [bas.cc + cLooks]: cLooks, // Looks
+  [bas.cc + clooked]: clooked, // looked
+  [bas.cc + cLooked]: cLooked, // Looked
+  [bas.cc + clooking]: clooking, // looking
+  [bas.cc + cLooking]: cLooking, // Looking
+  [bas.cc + clookup]: clookup, // lookup
+  [bas.cc + cLookup]: cLookup, // Lookup
+  [bas.cc + celse]: celse, // else
+  [bas.cc + cElse]: cElse, // Else
+  [bas.cc + cfar]: cfar, // far
+  [bas.cc + cFar]: cFar, // Far
+  [bas.cc + cspecify]: cspecify, // specify
+  [bas.cc + cSpecify]: cSpecify, // Specify
+  [bas.cc + csupport]: csupport, // support
+  [bas.cc + cSupport]: cSupport, // Support
+  [bas.cc + csupports]: csupports, // supports
+  [bas.cc + cSupports]: cSupports, // Supports
+  [bas.cc + csupported]: csupported, // supported
+  [bas.cc + cSupported]: cSupported, // Supported
+  [bas.cc + csupporting]: csupporting, // supporting
+  [bas.cc + cSupporting]: cSupporting, // Supporting
+  [bas.cc + cfound]: cfound, // found
+  [bas.cc + cFound]: cFound, // Found
+  [bas.cc + cfounded]: cfounded, // founded
+  [bas.cc + cFounded]: cFounded, // Founded
+  [bas.cc + cunfounded]: cunfounded, // unfounded
+  [bas.cc + cUnfounded]: cUnfounded, // Unfounded
+  [bas.cc + coriginal]: coriginal, // original
+  [bas.cc + cOriginal]: cOriginal, // Original
+  [bas.cc + coriginals]: coriginals, // originals
+  [bas.cc + cOriginals]: cOriginals, // Originals
+  [bas.cc + ccause]: ccause, // cause
+  [bas.cc + cCause]: cCause, // Cause
+  [bas.cc + cbecause]: cbecause, // because
+  [bas.cc + cBecause]: cBecause, // Because
+  [bas.cc + canother]: canother, // another
+  [bas.cc + cAnother]: cAnother, // Another
+  [bas.cc + cparameter]: cparameter, // parameter
+  [bas.cc + cParameter]: cParameter, // Parameter
+  [bas.cc + cparameters]: cparameters, // parameters
+  [bas.cc + cParameters]: cParameters, // Parameters
+  [bas.cc + ctry]: ctry, // try
+  [bas.cc + cTry]: cTry, // Try
+  [bas.cc + ctried]: ctried, // tried
+  [bas.cc + cTried]: cTried, // Tried
+  [bas.cc + ctrying]: ctrying, // trying
+  [bas.cc + cTrying]: cTrying, // Trying
+  [bas.cc + cgain]: cgain, // gain
+  [bas.cc + cGain]: cGain, // Gain
+  [bas.cc + cagain]: cagain, // again
+  [bas.cc + cAgain]: cAgain, // Again
+  [bas.cc + ctent]: ctent, // tent
+  [bas.cc + cTent]: cTent, // Tent
+  [bas.cc + ctents]: ctents, // tents
+  [bas.cc + cTents]: cTents, // Tents
+  [bas.cc + ctenting]: ctenting, // tenting
+  [bas.cc + cTenting]: cTenting, // Tenting
+  [bas.cc + ccontent]: ccontent, // content
+  [bas.cc + cContent]: cContent, // Content
+  [bas.cc + ccontents]: ccontents, // contents
+  [bas.cc + cContents]: cContents, // Contents
+  [bas.cc + cmust]: cmust, // must
+  [bas.cc + cMust]: cMust, // Must
+  [bas.cc + cprompt]: cprompt, // prompt
+  [bas.cc + cPrompt]: cPrompt, // Prompt
+  [bas.cc + cexample]: cexample, // example
+  [bas.cc + cExample]: cExample, // Example
+  [bas.cc + cEXAMPLE]: cEXAMPLE, // EXAMPLE
+  [bas.cc + cstructure]: cstructure, // structure
+  [bas.cc + cStructure]: cStructure, // Structure
+  [bas.cc + cstructured]: cstructured, // structured
+  [bas.cc + cStructured]: cStructured, // Structured
+  [bas.cc + cstructures]: cstructures, // structures
+  [bas.cc + cStructures]: cStructures, // Structures
+  [bas.cc + cmore]: cmore, // more
+  [bas.cc + cMore]: cMore, // More
+  [bas.cc + chas]: chas, // has
+  [bas.cc + cHas]: cHas, // Has
+  [bas.cc + cread]: cread, // read
+  [bas.cc + cRead]: cRead, // Read
+  [bas.cc + creads]: creads, // reads
+  [bas.cc + cReads]: cReads, // Reads
+  [bas.cc + creading]: creading, // reading
+  [bas.cc + cReading]: cReading, // Reading
+  [bas.cc + cready]: cready, // ready
+  [bas.cc + cReady]: cReady, // Ready
+  [bas.cc + cREADY]: cREADY, // READY
+  [bas.cc + calready]: calready, // already
+  [bas.cc + cAlready]: cAlready, // Already
+  [bas.cc + cALREADY]: cALREADY, // ALREADY
+  [bas.cc + cbeen]: cbeen, // been
+  [bas.cc + cBeen]: cBeen, // Been
+  [bas.cc + cfollow]: cfollow, // follow
+  [bas.cc + cFollow]: cFollow, // Follow
+  [bas.cc + cfollowes]: cfollowes, // followes
+  [bas.cc + cFollowes]: cFollowes, // Followes
+  [bas.cc + cfollowed]: cfollowed, // followed
+  [bas.cc + cFollowed]: cFollowed, // Followed
+  [bas.cc + cfollowing]: cfollowing, // following
+  [bas.cc + cFollowing]: cFollowing, // Following
+  [bas.cc + cdefinition]: cdefinition, // definition
+  [bas.cc + cDefinition]: cDefinition, // Definition
+  [bas.cc + cdefinitions]: cdefinitions, // definitions
+  [bas.cc + cDefinitions]: cDefinitions, // Definitions
+  [bas.cc + cdone]: cdone, // done
+  [bas.cc + cDone]: cDone, // Done
+  [bas.cc + cDONE]: cDONE, // DONE
+  [bas.cc + cphase]: cphase, // phase
+  [bas.cc + cPhase]: cPhase, // Phase
+  [bas.cc + cphases]: cphases, // phases
+  [bas.cc + cPhases]: cPhases, // Phases
+  [bas.cc + cphased]: cphased, // phased
+  [bas.cc + cPhased]: cPhased, // Phased
+  [bas.cc + cphasing]: cphasing, // phasing
+  [bas.cc + cPhasing]: cPhasing, // Phasing
+  [bas.cc + ctick]: ctick, // tick
+  [bas.cc + cTick]: cTick, // Tick
+  [bas.cc + cyay]: cyay, // yay
+  [bas.cc + cYay]: cYay, // Yay
+  [bas.cc + cYAY]: cYAY, // YAY
+  [bas.cc + ctag]: ctag, // tag
+  [bas.cc + cTag]: cTag, // Tag
+  [bas.cc + ctags]: ctags, // tags
+  [bas.cc + cTags]: cTags, // Tags
+  [bas.cc + ctagged]: ctagged, // tagged
+  [bas.cc + cTagged]: cTagged, // Tagged
+  [bas.cc + ctagging]: ctagging, // tagging
+  [bas.cc + cTagging]: cTagging, // Tagging
+  [bas.cc + clit]: clit, // lit
+  [bas.cc + cLit]: cLit, // Lit
+  [bas.cc + csplit]: csplit, // split
+  [bas.cc + cSplit]: cSplit, // Split
+  [bas.cc + csplits]: csplits, // splits
+  [bas.cc + cSplits]: cSplits, // Splits
+  [bas.cc + csplitting]: csplitting, // splitting
+  [bas.cc + cSplitting]: cSplitting, // Splitting
+  [bas.cc + cdoing]: cdoing, // doing
+  [bas.cc + cDoing]: cDoing, // Doing
+  [bas.cc + cstraight]: cstraight, // straight
+  [bas.cc + cStraight]: cStraight, // Straight
+  [bas.cc + cbroker]: cbroker, // broker
+  [bas.cc + cBroker]: cBroker, // Broker
+  [bas.cc + cbrokers]: cbrokers, // brokers
+  [bas.cc + cBrokers]: cBrokers, // Brokers
+  [bas.cc + cpost]: cpost, // post
+  [bas.cc + cPost]: cPost, // Post
+  [bas.cc + cposts]: cposts, // posts
+  [bas.cc + cPosts]: cPosts, // Posts
+  [bas.cc + cposted]: cposted, // posted
+  [bas.cc + cPosted]: cPosted, // Posted
+  [bas.cc + cposting]: cposting, // posting
+  [bas.cc + cPosting]: cPosting, // Posting
+  [bas.cc + cmerge]: cmerge, // merge
+  [bas.cc + cMerge]: cMerge, // Merge
+  [bas.cc + cMERGE]: cMERGE, // MERGE
+  [bas.cc + cmerges]: cmerges, // merges
+  [bas.cc + cMerges]: cMerges, // Merges
+  [bas.cc + cmerged]: cmerged, // merged
+  [bas.cc + cMerged]: cMerged, // Merged
+  [bas.cc + cMERGED]: cMERGED, // MERGED
+  [bas.cc + cmerging]: cmerging, // merging
+  [bas.cc + cMerging]: cMerging, // Merging
+  [bas.cc + cinclude]: cinclude, // include
+  [bas.cc + cInclude]: cInclude, // Include
+  [bas.cc + cincludes]: cincludes, // includes
+  [bas.cc + cIncludes]: cIncludes, // Includes
+  [bas.cc + cincluded]: cincluded, // included
+  [bas.cc + cIncluded]: cIncluded, // Included
+  [bas.cc + cincluding]: cincluding, // including
+  [bas.cc + cIncluding]: cIncluding, // Including
+  [bas.cc + cfinal]: cfinal, // final
+  [bas.cc + cFinal]: cFinal, // Final
+  [bas.cc + cfinals]: cfinals, // finals
+  [bas.cc + cFinals]: cFinals, // Finals
+  [bas.cc + cfinally]: cfinally, // finally
+  [bas.cc + cFinally]: cFinally, // Finally
+  [bas.cc + ccaught]: ccaught, // caught
+  [bas.cc + cCaught]: cCaught, // Caught
+  [bas.cc + cflat]: cflat, // flat
+  [bas.cc + cFlat]: cFlat, // Flat
+  [bas.cc + cflats]: cflats, // flats
+  [bas.cc + cFlats]: cFlats, // Flats
+  [bas.cc + cflatten]: cflatten, // flatten
+  [bas.cc + cFlatten]: cFlatten, // Flatten
+  [bas.cc + cflattened]: cflattened, // flattened
+  [bas.cc + cFlattened]: cFlattened, // Flattened
+  [bas.cc + cflattening]: cflattening, // flattening
+  [bas.cc + cFlattening]: cFlattening, // Flattening
+  [bas.cc + cside]: cside, // side
+  [bas.cc + cSide]: cSide, // Side
+  [bas.cc + csides]: csides, // sides
+  [bas.cc + cSides]: cSides, // Sides
+  [bas.cc + csided]: csided, // sided
+  [bas.cc + cSided]: cSided, // Sided
+  [bas.cc + csiding]: csiding, // siding
+  [bas.cc + cSiding]: cSiding, // Siding
+  [bas.cc + cinside]: cinside, // inside
+  [bas.cc + cInside]: cInside, // Inside
+  [bas.cc + ctarget]: ctarget, // target
+  [bas.cc + cTarget]: cTarget, // Target
+  [bas.cc + ctargets]: ctargets, // targets
+  [bas.cc + cTargets]: cTargets, // Targets
+  [bas.cc + ctargeted]: ctargeted, // targeted
+  [bas.cc + cTargeted]: cTargeted, // Targeted
+  [bas.cc + ctargeting]: ctargeting, // targeting
+  [bas.cc + cTargeting]: cTargeting, // Targeting
+  [bas.cc + cmodify]: cmodify, // modify
+  [bas.cc + cModify]: cModify, // Modify
+  [bas.cc + cmodified]: cmodified, // modified
+  [bas.cc + cModified]: cModified, // Modified
+  [bas.cc + cmodifies]: cmodifies, // modifies
+  [bas.cc + cModifies]: cModifies, // Modifies
+  [bas.cc + cmodifying]: cmodifying, // modifying
+  [bas.cc + cModifying]: cModifying, // Modifying
+  [bas.cc + creference]: creference, // reference
+  [bas.cc + cReference]: cReference, // Reference
+  [bas.cc + creferences]: creferences, // references
+  [bas.cc + cReferences]: cReferences, // References
+  [bas.cc + creferenced]: creferenced, // referenced
+  [bas.cc + cReferenced]: cReferenced, // Referenced
+  [bas.cc + creferencing]: creferencing, // referencing
+  [bas.cc + cReferencing]: cReferencing, // Referencing
+  [bas.cc + cwrite]: cwrite, // write
+  [bas.cc + cWrite]: cWrite, // Write
+  [bas.cc + cwrites]: cwrites, // writes
+  [bas.cc + cWrites]: cWrites, // Writes
+  [bas.cc + cwritten]: cwritten, // written
+  [bas.cc + cWritten]: cWritten, // Written
+  [bas.cc + cwriting]: cwriting, // writing
+  [bas.cc + cWriting]: cWriting, // Writing
+  [bas.cc + cscan]: cscan, // scan
+  [bas.cc + cScan]: cScan, // Scan
+  [bas.cc + cscans]: cscans, // scans
+  [bas.cc + cScans]: cScans, // Scans
+  [bas.cc + cscanned]: cscanned, // scanned
+  [bas.cc + cScanned]: cScanned, // Scanned
+  [bas.cc + cscanning]: cscanning, // scanning
+  [bas.cc + cScanning]: cScanning, // Scanning
+  [bas.cc + cdirect]: cdirect, // direct
+  [bas.cc + cDirect]: cDirect, // Direct
+  [bas.cc + cdirects]: cdirects, // directs
+  [bas.cc + cDirects]: cDirects, // Directs
+  [bas.cc + cdirected]: cdirected, // directed
+  [bas.cc + cDirected]: cDirected, // Directed
+  [bas.cc + cdirector]: cdirector, // director
+  [bas.cc + cDirector]: cDirector, // Director
+  [bas.cc + cdirecting]: cdirecting, // directing
+  [bas.cc + cDirecting]: cDirecting, // Directing
+  [bas.cc + cdirectors]: cdirectors, // directors
+  [bas.cc + cDirectors]: cDirectors, // Directors
+  [bas.cc + cdirectory]: cdirectory, // directory
+  [bas.cc + cDirectory]: cDirectory, // Directory
+  [bas.cc + cdirectories]: cdirectories, // directories
+  [bas.cc + cDirectories]: cDirectories, // Directories
+  [bas.cc + cchive]: cchive, // chive
+  [bas.cc + cChive]: cChive, // Chive
+  [bas.cc + cchives]: cchives, // chives
+  [bas.cc + cChives]: cChives, // Chives
+  [bas.cc + carchive]: carchive, // archive
+  [bas.cc + cArchive]: cArchive, // Archive
+  [bas.cc + carchived]: carchived, // archived
+  [bas.cc + cArchived]: cArchived, // Archived
+  [bas.cc + carchives]: carchives, // archives
+  [bas.cc + cArchives]: cArchives, // Archives
+  [bas.cc + carchiving]: carchiving, // archiving
+  [bas.cc + cArchiving]: cArchiving, // Archiving
+  [bas.cc + ccop]: ccop, // cop
+  [bas.cc + cCop]: cCop, // Cop
+  [bas.cc + ccops]: ccops, // cops
+  [bas.cc + cCops]: cCops, // Cops
+  [bas.cc + ccopy]: ccopy, // copy
+  [bas.cc + cCopy]: cCopy, // Copy
+  [bas.cc + ccopies]: ccopies, // copies
+  [bas.cc + cCopies]: cCopies, // Copies
+  [bas.cc + ccopied]: ccopied, // copied
+  [bas.cc + cCopied]: cCopied, // Copied
+  [bas.cc + ccopying]: ccopying, // copying
+  [bas.cc + cCopying]: cCopying, // Copying
+  [bas.cc + csuccess]: csuccess, // success
+  [bas.cc + cSuccess]: cSuccess, // Success
+  [bas.cc + csuccesses]: csuccesses, // successes
+  [bas.cc + cSuccesses]: cSuccesses, // Successes
+  [bas.cc + csuccessful]: csuccessful, // successful
+  [bas.cc + cSuccessful]: cSuccessful, // Successful
+  [bas.cc + cpack]: cpack, // pack
+  [bas.cc + cPack]: cPack, // Pack
+  [bas.cc + cpacks]: cpacks, // packs
+  [bas.cc + cPacks]: cPacks, // Packs
+  [bas.cc + cpacked]: cpacked, // packed
+  [bas.cc + cPacked]: cPacked, // Packed
+  [bas.cc + cpacking]: cpacking, // packing
+  [bas.cc + cPacking]: cPacking, // Packing
+  [bas.cc + cpackage]: cpackage, // package
+  [bas.cc + cPackage]: cPackage, // Package
+  [bas.cc + cpackages]: cpackages, // packages
+  [bas.cc + cPackages]: cPackages, // Packages
+  [bas.cc + cpackaged]: cpackaged, // packaged
+  [bas.cc + cPackaged]: cPackaged, // Packaged
+  [bas.cc + cpackaging]: cpackaging, // packaging
+  [bas.cc + cPackaging]: cPackaging, // Packaging
+  [bas.cc + canalyze]: canalyze, // analyze
+  [bas.cc + cAnalyze]: cAnalyze, // Analyze
+  [bas.cc + canalyzes]: canalyzes, // analyzes
+  [bas.cc + cAnalyzes]: cAnalyzes, // Analyzes
+  [bas.cc + canalyzed]: canalyzed, // analyzed
+  [bas.cc + cAnalyzed]: cAnalyzed, // Analyzed
+  [bas.cc + canalyzing]: canalyzing, // analyzing
+  [bas.cc + cAnalyzing]: cAnalyzing, // Analyzing
+  [bas.cc + csame]: csame, // same
+  [bas.cc + cSame]: cSame, // Same
+  [bas.cc + cthere]: cthere, // there
+  [bas.cc + cThere]: cThere, // There
+  [bas.cc + cbracket]: cbracket, // bracket
+  [bas.cc + cBracket]: cBracket, // Bracket
+  [bas.cc + cbrackets]: cbrackets, // brackets
+  [bas.cc + cBrackets]: cBrackets, // Brackets
+  [bas.cc + cbracketed]: cbracketed, // bracketed
+  [bas.cc + cBracketed]: cBracketed, // Bracketed
+  [bas.cc + cbracketing]: cbracketing, // bracketing
+  [bas.cc + cBracketing]: cBracketing, // Bracketing
+  [bas.cc + cregular]: cregular, // regular
+  [bas.cc + cRegular]: cRegular, // Regular
+  [bas.cc + cexpression]: cexpression, // expression
+  [bas.cc + cExpression]: cExpression, // Expression
+  [bas.cc + cexpressions]: cexpressions, // expressions
+  [bas.cc + cExpressions]: cExpressions, // Expressions
+  [bas.cc + clexical]: clexical, // lexical
+  [bas.cc + cLexical]: cLexical, // Lexical
+  [bas.cc + clexicon]: clexicon, // lexicon
+  [bas.cc + cLexicon]: cLexicon, // Lexicon
+  [bas.cc + clexicons]: clexicons, // lexicons
+  [bas.cc + cLexicons]: cLexicons, // Lexicons
+  [bas.cc + cjust]: cjust, // just
+  [bas.cc + cJust]: cJust, // Just
+  [bas.cc + cjustice]: cjustice, // justice
+  [bas.cc + cJustice]: cJustice, // Justice
+  [bas.cc + cjustified]: cjustified, // justified
+  [bas.cc + cJustified]: cJustified, // Justified
+  [bas.cc + cadjust]: cadjust, // adjust
+  [bas.cc + cAdjust]: cAdjust, // Adjust
+  [bas.cc + cadjusts]: cadjusts, // adjusts
+  [bas.cc + cAdjusts]: cAdjusts, // Adjusts
+  [bas.cc + cadjusted]: cadjusted, // adjusted
+  [bas.cc + cAdjusted]: cAdjusted, // Adjusted
+  [bas.cc + cadjusting]: cadjusting, // adjusting
+  [bas.cc + cAdjusting]: cAdjusting, // Adjusting
+  [bas.cc + csleep]: csleep, // sleep
+  [bas.cc + cSleep]: cSleep, // Sleep
+  [bas.cc + csleeps]: csleeps, // sleeps
+  [bas.cc + cSleeps]: cSleeps, // Sleeps
+  [bas.cc + csleeped]: csleeped, // sleeped
+  [bas.cc + cSleeped]: cSleeped, // Sleeped
+  [bas.cc + csleeping]: csleeping, // sleeping
+  [bas.cc + cSleeping]: cSleeping, // Sleeping
+  [bas.cc + cleaf]: cleaf, // leaf
+  [bas.cc + cLeaf]: cLeaf, // Leaf
+  [bas.cc + centry]: centry, // entry
+  [bas.cc + cEntry]: cEntry, // Entry
+  [bas.cc + centries]: centries, // entries
+  [bas.cc + cEntries]: cEntries, // Entries
+  [bas.cc + centity]: centity, // entity
+  [bas.cc + cEntity]: cEntity, // Entity
+  [bas.cc + cmay]: cmay, // may
+  [bas.cc + cMay]: cMay, // May
+  [bas.cc + conly]: conly, // only
+  [bas.cc + cOnly]: cOnly, // Only
+  [bas.cc + csuch]: csuch, // such
+  [bas.cc + cSuch]: cSuch, // Such
+  [bas.cc + cgeneration]: cgeneration, // generation
+  [bas.cc + cGeneration]: cGeneration, // Generation
+  [bas.cc + cDemocratic]: cDemocratic, // Democratic
+  [bas.cc + cRepublic]: cRepublic, // Republic
+  [bas.cc + cCentral]: cCentral, // Central
+  [bas.cc + cAfrican]: cAfrican, // African
+  [bas.cc + cPapua]: cPapua, // Papua
+  [bas.cc + cTrinidad]: cTrinidad, // Trinidad
+  [bas.cc + cTabago]: cTabago, // Tabago
+  [bas.cc + cUnited]: cUnited, // United
+  [bas.cc + cArab]: cArab, // Arab
+  [bas.cc + cEmirates]: cEmirates, // Emirates
+  [bas.cc + cStates]: cStates, // States
+  [bas.cc + cAmerica]: cAmerica, // America
+  [bas.cc + cliver]: cliver, // liver
+  [bas.cc + cLiver]: cLiver, // Liver
+  [bas.cc + ccountry]: ccountry, // country
+  [bas.cc + cCountry]: cCountry, // Country
+  [bas.cc + ccountries]: ccountries, // countries
+  [bas.cc + cCountries]: cCountries, // Countries
+  [bas.cc + cknot]: cknot, // knot
+  [bas.cc + cKnot]: cKnot, // Knot
+  [bas.cc + cknots]: cknots, // knots
+  [bas.cc + cKnots]: cKnots, // Knots
+  [bas.cc + clanguage]: clanguage, // language
+  [bas.cc + cLanguage]: cLanguage, // Language
+  [bas.cc + clanguages]: clanguages, // languages
+  [bas.cc + cLanguages]: cLanguages, // Languages
+  [bas.cc + csole]: csole, // sole
+  [bas.cc + cSole]: cSole, // Sole
+  [bas.cc + cconsole]: cconsole, // console
+  [bas.cc + cConsole]: cConsole, // Console
+  [bas.cc + cboss]: cboss, // boss
+  [bas.cc + cBoss]: cBoss, // Boss
+  [bas.cc + cpanic]: cpanic, // panic
+  [bas.cc + cPanic]: cPanic, // Panic
+  [bas.cc + cslow]: cslow, // slow
+  [bas.cc + cSlow]: cSlow, // Slow
+  [bas.cc + cgot]: cgot, // got
+  [bas.cc + cGot]: cGot, // Got
+  [bas.cc + cmiss]: cmiss, // miss
+  [bas.cc + cMiss]: cMiss, // Miss
+  [bas.cc + cecho]: cecho, // echo
+  [bas.cc + cEcho]: cEcho, // Echo
+  [bas.cc + cincrement]: cincrement, // increment
+  [bas.cc + cIncrement]: cIncrement, // Increment
+  [bas.cc + cincrements]: cincrements, // increments
+  [bas.cc + cIncrements]: cIncrements, // Increments
+  [bas.cc + cincremented]: cincremented, // incremented
+  [bas.cc + cIncremented]: cIncremented, // Incremented
+  [bas.cc + cincrementing]: cincrementing, // incrementing
+  [bas.cc + cIncrementing]: cIncrementing, // Incrementing
+  [bas.cc + cforce]: cforce, // force
+  [bas.cc + cForce]: cForce, // Force
+  [bas.cc + cforced]: cforced, // forced
+  [bas.cc + cForced]: cForced, // Forced
+  [bas.cc + cforcing]: cforcing, // forcing
+  [bas.cc + cForcing]: cForcing, // Forcing
+  [bas.cc + cforces]: cforces, // forces
+  [bas.cc + cForces]: cForces, // Forces
+  [bas.cc + cexecutrix]: cexecutrix, // executrix
+  [bas.cc + cExecutrix]: cExecutrix, // Executrix
+  [bas.cc + cframework]: cframework, // framework
+  [bas.cc + cFramework]: cFramework, // Framework
+  [bas.cc + cboot]: cboot, // boot
+  [bas.cc + cBoot]: cBoot, // Boot
+  [bas.cc + cstrap]: cstrap, // strap
+  [bas.cc + cStrap]: cStrap, // Strap
+  [bas.cc + csetup]: csetup, // setup
+  [bas.cc + cSetup]: cSetup, // Setup
+  [bas.cc + csetups]: csetups, // setups
+  [bas.cc + cSetups]: cSetups, // Setups
+  [bas.cc + csynchronous]: csynchronous, // synchronous
+  [bas.cc + cSynchronous]: cSynchronous, // Synchronous
+  [bas.cc + csynchronously]: csynchronously, // synchronously
+  [bas.cc + cSynchronously]: cSynchronously, // Synchronously
+  [bas.cc + cappend]: cappend, // append
+  [bas.cc + cAppend]: cAppend, // Append
+  [bas.cc + cappends]: cappends, // appends
+  [bas.cc + cAppends]: cAppends, // Appends
+  [bas.cc + cappended]: cappended, // appended
+  [bas.cc + cAppended]: cAppended, // Appended
+  [bas.cc + cappending]: cappending, // appending
+  [bas.cc + cAppending]: cAppending, // Appending
+  [bas.cc + cmoment]: cmoment, // moment
+  [bas.cc + cMoment]: cMoment, // Moment
+  [bas.cc + cmoments]: cmoments, // moments
+  [bas.cc + cMoments]: cMoments, // Moments
+  [bas.cc + ccompute]: ccompute, // compute
+  [bas.cc + cCompute]: cCompute, // Compute
+  [bas.cc + ccomputes]: ccomputes, // computes
+  [bas.cc + cComputes]: cComputes, // Computes
+  [bas.cc + ccomputer]: ccomputer, // computer
+  [bas.cc + cComputer]: cComputer, // Computer
+  [bas.cc + ccomputers]: ccomputers, // computers
+  [bas.cc + cComputers]: cComputers, // Computers
+  [bas.cc + ccomputing]: ccomputing, // computing
+  [bas.cc + cComputing]: cComputing, // Computing
+  [bas.cc + cschema]: cschema, // schema
+  [bas.cc + cSchema]: cSchema, // Schema
+  [bas.cc + cdot]: cdot, // dot
+  [bas.cc + cDot]: cDot, // Dot
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  [bas.cc + cAbsolute]: cAbsolute, // Absolute
+  [bas.cc + cAcid]: cAcid, // Acid
+  [bas.cc + cAir]: cAir, // Air
+  [bas.cc + cSuperiority]: cSuperiority, // Superiority
+  [bas.cc + cAlabaster]: cAlabaster, // Alabaster
+  [bas.cc + cAlice]: cAlice, // Alice
+  [bas.cc + cAlloy]: cAlloy, // Alloy
+  [bas.cc + cAmaranth]: cAmaranth, // Amaranth
+  [bas.cc + cAndroid]: cAndroid, // Android
+  [bas.cc + cAntique]: cAntique, // Antique
+  [bas.cc + cBrass]: cBrass, // Brass
+  [bas.cc + cBronze]: cBronze, // Bronze
+  [bas.cc + cApple]: cApple, // Apple
+  [bas.cc + cApricot]: cApricot, // Apricot
+  [bas.cc + cArctic]: cArctic, // Arctic
+  [bas.cc + cArmy]: cArmy, // Army
+  [bas.cc + cArylide]: cArylide, // Arylide
+  [bas.cc + cAtomic]: cAtomic, // Atomic
+  [bas.cc + cBaby]: cBaby, // Baby
+  [bas.cc + cEyes]: cEyes, // Eyes
+  [bas.cc + cPowder]: cPowder, // Powder
+  [bas.cc + cBaker]: cBaker, // Baker
+  [bas.cc + cMiller]: cMiller, // Miller
+  [bas.cc + cBanana]: cBanana, // Banana
+  [bas.cc + cMania]: cMania, // Mania
+  [bas.cc + cBarbie]: cBarbie, // Barbie
+  [bas.cc + cBarn]: cBarn, // Barn
+  [bas.cc + cBattleship]: cBattleship, // Battleship
+  [bas.cc + cBeau]: cBeau, // Beau
+  [bas.cc + cDazzled]: cDazzled, // Dazzled
+  [bas.cc + cBitter]: cBitter, // Bitter
+  [bas.cc + csweet]: csweet, // sweet
+  [bas.cc + cSweet]: cSweet, // Sweet
+  [bas.cc + cBittersweet]: cBittersweet, // Bittersweet
+  [bas.cc + cShimmer]: cShimmer, // Shimmer
+  [bas.cc + cBean]: cBean, // Bean
+  [bas.cc + cChocolate]: cChocolate, // Chocolate
+  [bas.cc + cShadows]: cShadows, // Shadows
+  [bas.cc + cBlanched]: cBlanched, // Blanched
+  [bas.cc + cBlast]: cBlast, // Blast
+  [bas.cc + cBlizzard]: cBlizzard, // Blizzard
+  [bas.cc + cBlood]: cBlood, // Blood
+  [bas.cc + cCrayola]: cCrayola, // Crayola
+  [bas.cc + cMunsell]: cMunsell, // Munsell
+  [bas.cc + cPantone]: cPantone, // Pantone
+  [bas.cc + cPigment]: cPigment, // Pigment
+  [bas.cc + cBell]: cBell, // Bell
+  [bas.cc + cwheel]: cwheel, // wheel
+  [bas.cc + cWheel]: cWheel, // Wheel
+  [bas.cc + cwheels]: cwheels, // wheels
+  [bas.cc + cWheels]: cWheels, // Wheels
+  [bas.cc + cJeans]: cJeans, // Jeans
+  [bas.cc + cYonder]: cYonder, // Yonder
+  [bas.cc + cBottle]: cBottle, // Bottle
+  [bas.cc + cbrick]: cbrick, // brick
+  [bas.cc + cBrick]: cBrick, // Brick
+  [bas.cc + cbricks]: cbricks, // bricks
+  [bas.cc + cBricks]: cBricks, // Bricks
+  [bas.cc + cBright]: cBright, // Bright
+  [bas.cc + cBrilliant]: cBrilliant, // Brilliant
+  [bas.cc + cRacing]: cRacing, // Racing
+  [bas.cc + cSugar]: cSugar, // Sugar
+  [bas.cc + cBrunswick]: cBrunswick, // Brunswick
+  [bas.cc + cBud]: cBud, // Bud
+  [bas.cc + cBurly]: cBurly, // Burly
+  [bas.cc + cBurnished]: cBurnished, // Burnished
+  [bas.cc + cBurnt]: cBurnt, // Burnt
+  [bas.cc + cCadet]: cCadet, // Cadet
+  [bas.cc + cCafe]: cCafe, // Cafe
+  [bas.cc + cCambridge]: cCambridge, // Cambridge
+  [bas.cc + cCameo]: cCameo, // Cameo
+  [bas.cc + cCaput]: cCaput, // Caput
+  [bas.cc + cMortuum]: cMortuum, // Mortuum
+  [bas.cc + cCaribbean]: cCaribbean, // Caribbean
+  [bas.cc + cCarnation]: cCarnation, // Carnation
+  [bas.cc + cCarrot]: cCarrot, // Carrot
+  [bas.cc + cCastleton]: cCastleton, // Castleton
+  [bas.cc + cCedar]: cCedar, // Cedar
+  [bas.cc + cChest]: cChest, // Chest
+  [bas.cc + cCeladon]: cCeladon, // Celadon
+  [bas.cc + cCeltic]: cCeltic, // Celtic
+  [bas.cc + cCharleston]: cCharleston, // Charleston
+  [bas.cc + cCharm]: cCharm, // Charm
+  [bas.cc + cChartreuse]: cChartreuse, // Chartreuse
+  [bas.cc + cCherry]: cCherry, // Cherry
+  [bas.cc + cBlossom]: cBlossom, // Blossom
+  [bas.cc + cChestnut]: cChestnut, // Chestnut
+  [bas.cc + cChrome]: cChrome, // Chrome
+  [bas.cc + cCinnamon]: cCinnamon, // Cinnamon
+  [bas.cc + cCocoa]: cCocoa, // Cocoa
+  [bas.cc + cCoffee]: cCoffee, // Coffee
+  [bas.cc + cColumbia]: cColumbia, // Columbia
+  [bas.cc + cCool]: cCool, // Cool
+  [bas.cc + cflower]: cflower, // flower
+  [bas.cc + cFlower]: cFlower, // Flower
+  [bas.cc + cflowers]: cflowers, // flowers
+  [bas.cc + cFlowers]: cFlowers, // Flowers
+  [bas.cc + csilk]: csilk, // silk
+  [bas.cc + cSilk]: cSilk, // Silk
+  [bas.cc + cCosmic]: cCosmic, // Cosmic
+  [bas.cc + cLatte]: cLatte, // Latte
+  [bas.cc + cCoyote]: cCoyote, // Coyote
+  [bas.cc + cCotton]: cCotton, // Cotton
+  [bas.cc + cCyber]: cCyber, // Cyber
+  [bas.cc + cDark]: cDark, // Dark
+  [bas.cc + cByzantium]: cByzantium, // Byzantium
+  [bas.cc + cElectric]: cElectric, // Electric
+  [bas.cc + cKhaki]: cKhaki, // Khaki
+  [bas.cc + cHorse]: cHorse, // Horse
+  [bas.cc + cHorses]: cHorses, // Horses
+  [bas.cc + cMoss]: cMoss, // Moss
+  [bas.cc + cPastel]: cPastel, // Pastel
+  [bas.cc + cSky]: cSky, // Sky
+  [bas.cc + cSlate]: cSlate, // Slate
+  [bas.cc + cSpring]: cSpring, // Spring
+  [bas.cc + cDartmouth]: cDartmouth, // Dartmouth
+  [bas.cc + cDavys]: cDavys, // Davys
+  [bas.cc + cCerise]: cCerise, // Cerise
+  [bas.cc + cSparkle]: cSparkle, // Sparkle
+  [bas.cc + cDim]: cDim, // Dim
+  [bas.cc + cDodger]: cDodger, // Dodger
+  [bas.cc + cDogwood]: cDogwood, // Dogwood
+  [bas.cc + cDuke]: cDuke, // Duke
+  [bas.cc + cDutch]: cDutch, // Dutch
+  [bas.cc + cEarth]: cEarth, // Earth
+  [bas.cc + cEerie]: cEerie, // Eerie
+  [bas.cc + cEton]: cEton, // Eton
+  [bas.cc + cFalu]: cFalu, // Falu
+  [bas.cc + cFashion]: cFashion, // Fashion
+  [bas.cc + cFern]: cFern, // Fern
+  [bas.cc + cFiery]: cFiery, // Fiery
+  [bas.cc + cFire]: cFire, // Fire
+  [bas.cc + cEngine]: cEngine, // Engine
+  [bas.cc + cFloral]: cFloral, // Floral
+  [bas.cc + cFluorescent]: cFluorescent, // Fluorescent
+  [bas.cc + cForest]: cForest, // Forest
+  [bas.cc + cFrost]: cFrost, // Frost
+  [bas.cc + cbite]: cbite, // bite
+  [bas.cc + cFuzzy]: cFuzzy, // Fuzzy
+  [bas.cc + cWuzzy]: cWuzzy, // Wuzzy
+  [bas.cc + cGhost]: cGhost, // Ghost
+  [bas.cc + cGlossy]: cGlossy, // Glossy
+  [bas.cc + cMetal]: cMetal, // Metal
+  [bas.cc + cMetallic]: cMetallic, // Metallic
+  [bas.cc + cFusion]: cFusion, // Fusion
+  [bas.cc + cPoppy]: cPoppy, // Poppy
+  [bas.cc + cGranite]: cGranite, // Granite
+  [bas.cc + cGranny]: cGranny, // Granny
+  [bas.cc + cSmith]: cSmith, // Smith
+  [bas.cc + cLizard]: cLizard, // Lizard
+  [bas.cc + cGun]: cGun, // Gun
+  [bas.cc + cHarvest]: cHarvest, // Harvest
+  [bas.cc + cHeat]: cHeat, // Heat
+  [bas.cc + cWave]: cWave, // Wave
+  [bas.cc + cHollywood]: cHollywood, // Hollywood
+  [bas.cc + cHoney]: cHoney, // Honey
+  [bas.cc + cdew]: cdew, // dew
+  [bas.cc + cHonolulu]: cHonolulu, // Honolulu
+  [bas.cc + cHookers]: cHookers, // Hookers
+  [bas.cc + cHot]: cHot, // Hot
+  [bas.cc + cHunter]: cHunter, // Hunter
+  [bas.cc + cIce]: cIce, // Ice
+  [bas.cc + cIlluminating]: cIlluminating, // Illuminating
+  [bas.cc + cImperial]: cImperial, // Imperial
+  [bas.cc + cworm]: cworm, // worm
+  [bas.cc + cIndependence]: cIndependence, // Independence
+  [bas.cc + cIndian]: cIndian, // Indian
+  [bas.cc + cDye]: cDye, // Dye
+  [bas.cc + cnational]: cnational, // national
+  [bas.cc + cNational]: cNational, // National
+  [bas.cc + cnationals]: cnationals, // nationals
+  [bas.cc + cNationals]: cNationals, // Nationals
+  [bas.cc + cInternational]: cInternational, // International
+  [bas.cc + cAerospace]: cAerospace, // Aerospace
+  [bas.cc + cEngineering]: cEngineering, // Engineering
+  [bas.cc + cBridge]: cBridge, // Bridge
+  [bas.cc + cCarmine]: cCarmine, // Carmine
+  [bas.cc + cjazz]: cjazz, // jazz
+  [bas.cc + cJazz]: cJazz, // Jazz
+  [bas.cc + cberry]: cberry, // berry
+  [bas.cc + cBerry]: cBerry, // Berry
+  [bas.cc + cjam]: cjam, // jam
+  [bas.cc + cJam]: cJam, // Jam
+  [bas.cc + cKelly]: cKelly, // Kelly
+  [bas.cc + cKombu]: cKombu, // Kombu
+  [bas.cc + cLanguid]: cLanguid, // Languid
+  [bas.cc + cLapis]: cLapis, // Lapis
+  [bas.cc + cLazuli]: cLazuli, // Lazuli
+  [bas.cc + cLaser]: cLaser, // Laser
+  [bas.cc + cLaurel]: cLaurel, // Laurel
+  [bas.cc + cLawn]: cLawn, // Lawn
+  [bas.cc + cCurry]: cCurry, // Curry
+  [bas.cc + cGlacier]: cGlacier, // Glacier
+  [bas.cc + cMeringue]: cMeringue, // Meringue
+  [bas.cc + cLight]: cLight, // Light
+  [bas.cc + cCoral]: cCoral, // Coral
+  [bas.cc + cSteel]: cSteel, // Steel
+  [bas.cc + cLuster]: cLuster, // Luster
+  [bas.cc + cLincoln]: cLincoln, // Lincoln
+  [bas.cc + cLiseran]: cLiseran, // Liseran
+  [bas.cc + cLittle]: cLittle, // Little
+  [bas.cc + cBoy]: cBoy, // Boy
+  [bas.cc + cDogs]: cDogs, // Dogs
+  [bas.cc + cOrgan]: cOrgan, // Organ
+  [bas.cc + cMacaroni]: cMacaroni, // Macaroni
+  [bas.cc + cCheese]: cCheese, // Cheese
+  [bas.cc + cMadder]: cMadder, // Madder
+  [bas.cc + cHaze]: cHaze, // Haze
+  [bas.cc + cMagic]: cMagic, // Magic
+  [bas.cc + cMajorelle]: cMajorelle, // Majorelle
+  [bas.cc + cminimum]: cminimum, // minimum
+  [bas.cc + cMinimum]: cMinimum, // Minimum
+  [bas.cc + cminimums]: cminimums, // minimums
+  [bas.cc + cMinimums]: cMinimums, // Minimums
+  [bas.cc + cmaximum]: cmaximum, // maximum
+  [bas.cc + cMaximum]: cMaximum, // Maximum
+  [bas.cc + cmaximums]: cmaximums, // maximums
+  [bas.cc + cMaximums]: cMaximums, // Maximums
+  [bas.cc + cMaya]: cMaya, // Maya
+  [bas.cc + cMedium]: cMedium, // Medium
+  [bas.cc + cMellow]: cMellow, // Mellow
+  [bas.cc + cweed]: cweed, // weed
+  [bas.cc + cWeed]: cWeed, // Weed
+  [bas.cc + cweeds]: cweeds, // weeds
+  [bas.cc + cWeeds]: cWeeds, // Weeds
+  [bas.cc + cweeded]: cweeded, // weeded
+  [bas.cc + cWeeded]: cWeeded, // Weeded
+  [bas.cc + cSeaweed]: cSeaweed, // Seaweed
+  [bas.cc + csun]: csun, // sun
+  [bas.cc + cSun]: cSun, // Sun
+  [bas.cc + csuns]: csuns, // suns
+  [bas.cc + cSuns]: cSuns, // Suns
+  [bas.cc + cSunburst]: cSunburst, // Sunburst
+  [bas.cc + cMexican]: cMexican, // Mexican
+  [bas.cc + cMiddle]: cMiddle, // Middle
+  [bas.cc + cMikado]: cMikado, // Mikado
+  [bas.cc + cMimi]: cMimi, // Mimi
+  [bas.cc + cMinion]: cMinion, // Minion
+  [bas.cc + cMisty]: cMisty, // Misty
+  [bas.cc + cMorning]: cMorning, // Morning
+  [bas.cc + cMeadow]: cMeadow, // Meadow
+  [bas.cc + cMount]: cMount, // Mount
+  [bas.cc + cbatten]: cbatten, // batten
+  [bas.cc + cMulberry]: cMulberry, // Mulberry
+  [bas.cc + cMyrtle]: cMyrtle, // Myrtle
+  [bas.cc + cNadeshiko]: cNadeshiko, // Nadeshiko
+  [bas.cc + cNaples]: cNaples, // Naples
+  [bas.cc + cNavajo]: cNavajo, // Navajo
+  [bas.cc + cNavy]: cNavy, // Navy
+  [bas.cc + cNeon]: cNeon, // Neon
+  [bas.cc + cYork]: cYork, // York
+  [bas.cc + cPhoto]: cPhoto, // Photo
+  [bas.cc + cOcean]: cOcean, // Ocean
+  [bas.cc + cLace]: cLace, // Lace
+  [bas.cc + cOpera]: cOpera, // Opera
+  [bas.cc + cPeel]: cPeel, // Peel
+  [bas.cc + cSoda]: cSoda, // Soda
+  [bas.cc + cOuter]: cOuter, // Outer
+  [bas.cc + cOutrageous]: cOutrageous, // Outrageous
+  [bas.cc + cOxford]: cOxford, // Oxford
+  [bas.cc + cPacific]: cPacific, // Pacific
+  [bas.cc + cPalatinate]: cPalatinate, // Palatinate
+  [bas.cc + cPale]: cPale, // Pale
+  [bas.cc + cPansy]: cPansy, // Pansy
+  [bas.cc + cPaolo]: cPaolo, // Paolo
+  [bas.cc + cVeronese]: cVeronese, // Veronese
+  [bas.cc + cPapaya]: cPapaya, // Papaya
+  [bas.cc + cWhip]: cWhip, // Whip
+  [bas.cc + cParadise]: cParadise, // Paradise
+  [bas.cc + cParis]: cParis, // Paris
+  [bas.cc + cPaynes]: cPaynes, // Paynes
+  [bas.cc + cPuff]: cPuff, // Puff
+  [bas.cc + cPearly]: cPearly, // Pearly
+  [bas.cc + cPermanent]: cPermanent, // Permanent
+  [bas.cc + cGeranium]: cGeranium, // Geranium
+  [bas.cc + cLake]: cLake, // Lake
+  [bas.cc + cPersian]: cPersian, // Persian
+  [bas.cc + cPewter]: cPewter, // Pewter
+  [bas.cc + cPhthalo]: cPhthalo, // Phthalo
+  [bas.cc + cPicotee]: cPicotee, // Picotee
+  [bas.cc + cPictorial]: cPictorial, // Pictorial
+  [bas.cc + cPiggy]: cPiggy, // Piggy
+  [bas.cc + cPine]: cPine, // Pine
+  [bas.cc + cTree]: cTree, // Tree
+  [bas.cc + cFlamingo]: cFlamingo, // Flamingo
+  [bas.cc + cSherbet]: cSherbet, // Sherbet
+  [bas.cc + cPlump]: cPlump, // Plump
+  [bas.cc + cpolish]: cpolish, // polish
+  [bas.cc + cPolish]: cPolish, // Polish
+  [bas.cc + cpolished]: cpolished, // polished
+  [bas.cc + cPolished]: cPolished, // Polished
+  [bas.cc + cPomp]: cPomp, // Pomp
+  [bas.cc + cPower]: cPower, // Power
+  [bas.cc + cPortland]: cPortland, // Portland
+  [bas.cc + cPrinceton]: cPrinceton, // Princeton
+  [bas.cc + cPrussian]: cPrussian, // Prussian
+  [bas.cc + cPsychedelic]: cPsychedelic, // Psychedelic
+  [bas.cc + cPullman]: cPullman, // Pullman
+  [bas.cc + cMountain]: cMountain, // Mountain
+  [bas.cc + cMajesty]: cMajesty, // Majesty
+  [bas.cc + cPizzazz]: cPizzazz, // Pizzazz
+  [bas.cc + cQueen]: cQueen, // Queen
+  [bas.cc + cQuick]: cQuick, // Quick
+  [bas.cc + cQuinacridone]: cQuinacridone, // Quinacridone
+  [bas.cc + cRadical]: cRadical, // Radical
+  [bas.cc + cRaisin]: cRaisin, // Raisin
+  [bas.cc + cGlace]: cGlace, // Glace
+  [bas.cc + cRazzle]: cRazzle, // Razzle
+  [bas.cc + cDazzle]: cDazzle, // Dazzle
+  [bas.cc + cRazzmic]: cRazzmic, // Razzmic
+  [bas.cc + cRebecca]: cRebecca, // Rebecca
+  [bas.cc + cSalsa]: cSalsa, // Salsa
+  [bas.cc + cResolution]: cResolution, // Resolution
+  [bas.cc + cRich]: cRich, // Rich
+  [bas.cc + cRifle]: cRifle, // Rifle
+  [bas.cc + cRobin]: cRobin, // Robin
+  [bas.cc + cEgg]: cEgg, // Egg
+  [bas.cc + cRocket]: cRocket, // Rocket
+  [bas.cc + cRoman]: cRoman, // Roman
+  [bas.cc + cBonbon]: cBonbon, // Bonbon
+  [bas.cc + cDust]: cDust, // Dust
+  [bas.cc + cEbony]: cEbony, // Ebony
+  [bas.cc + cQuartz]: cQuartz, // Quartz
+  [bas.cc + cVale]: cVale, // Vale
+  [bas.cc + cwood]: cwood, // wood
+  [bas.cc + cRosso]: cRosso, // Rosso
+  [bas.cc + cCorsa]: cCorsa, // Corsa
+  [bas.cc + cRosy]: cRosy, // Rosy
+  [bas.cc + cRoyal]: cRoyal, // Royal
+  [bas.cc + crub]: crub, // rub
+  [bas.cc + cRub]: cRub, // Rub
+  [bas.cc + crubs]: crubs, // rubs
+  [bas.cc + cRubs]: cRubs, // Rubs
+  [bas.cc + crubbed]: crubbed, // rubbed
+  [bas.cc + cRubbed]: cRubbed, // Rubbed
+  [bas.cc + crubbing]: crubbing, // rubbing
+  [bas.cc + cRubbing]: cRubbing, // Rubbing
+  [bas.cc + cRubine]: cRubine, // Rubine
+  [bas.cc + cSacramento]: cSacramento, // Sacramento
+  [bas.cc + cState]: cState, // State
+  [bas.cc + cSaddle]: cSaddle, // Saddle
+  [bas.cc + cSafety]: cSafety, // Safety
+  [bas.cc + cBlaze]: cBlaze, // Blaze
+  [bas.cc + cPatricks]: cPatricks, // Patricks
+  [bas.cc + cSandy]: cSandy, // Sandy
+  [bas.cc + csap]: csap, // sap
+  [bas.cc + cSap]: cSap, // Sap
+  [bas.cc + cSatin]: cSatin, // Satin
+  [bas.cc + cSheen]: cSheen, // Sheen
+  [bas.cc + cSchauss]: cSchauss, // Schauss
+  [bas.cc + cSchool]: cSchool, // School
+  [bas.cc + cBus]: cBus, // Bus
+  [bas.cc + cScreamin]: cScreamin, // Screamin
+  [bas.cc + cSeal]: cSeal, // Seal
+  [bas.cc + cshell]: cshell, // shell
+  [bas.cc + cSelective]: cSelective, // Selective
+  [bas.cc + cShamrock]: cShamrock, // Shamrock
+  [bas.cc + cShimmering]: cShimmering, // Shimmering
+  [bas.cc + cBlush]: cBlush, // Blush
+  [bas.cc + cShiny]: cShiny, // Shiny
+  [bas.cc + cShocking]: cShocking, // Shocking
+  [bas.cc + cChalice]: cChalice, // Chalice
+  [bas.cc + cSizzling]: cSizzling, // Sizzling
+  [bas.cc + cSunrise]: cSunrise, // Sunrise
+  [bas.cc + cSlimy]: cSlimy, // Slimy
+  [bas.cc + cSmoky]: cSmoky, // Smoky
+  [bas.cc + cSonic]: cSonic, // Sonic
+  [bas.cc + cBistre]: cBistre, // Bistre
+  [bas.cc + cStar]: cStar, // Star
+  [bas.cc + cStil]: cStil, // Stil
+  [bas.cc + cGrain]: cGrain, // Grain
+  [bas.cc + cglow]: cglow, // glow
+  [bas.cc + cSuper]: cSuper, // Super
+  [bas.cc + cTango]: cTango, // Tango
+  [bas.cc + cTart]: cTart, // Tart
+  [bas.cc + cTea]: cTea, // Tea
+  [bas.cc + cTerra]: cTerra, // Terra
+  [bas.cc + cCotta]: cCotta, // Cotta
+  [bas.cc + cThulian]: cThulian, // Thulian
+  [bas.cc + cTickle]: cTickle, // Tickle
+  [bas.cc + cTiffany]: cTiffany, // Tiffany
+  [bas.cc + cTimber]: cTimber, // Timber
+  [bas.cc + cwolf]: cwolf, // wolf
+  [bas.cc + cTropical]: cTropical, // Tropical
+  [bas.cc + cRain]: cRain, // Rain
+  [bas.cc + cTrypan]: cTrypan, // Trypan
+  [bas.cc + cTufts]: cTufts, // Tufts
+  [bas.cc + cTumble]: cTumble, // Tumble
+  [bas.cc + cTwilight]: cTwilight, // Twilight
+  [bas.cc + cTyrian]: cTyrian, // Tyrian
+  [bas.cc + cUltra]: cUltra, // Ultra
+  [bas.cc + cUnbleached]: cUnbleached, // Unbleached
+  [bas.cc + cNations]: cNations, // Nations
+  [bas.cc + cUpsdell]: cUpsdell, // Upsdell
+  [bas.cc + cUranian]: cUranian, // Uranian
+  [bas.cc + cvan]: cvan, // van
+  [bas.cc + cVan]: cVan, // Van
+  [bas.cc + cDyke]: cDyke, // Dyke
+  [bas.cc + cVegas]: cVegas, // Vegas
+  [bas.cc + cVenetian]: cVenetian, // Venetian
+  [bas.cc + cVivid]: cVivid, // Vivid
+  [bas.cc + cWarm]: cWarm, // Warm
+  [bas.cc + cWild]: cWild, // Wild
+  [bas.cc + cWindsor]: cWindsor, // Windsor
+  [bas.cc + cDregs]: cDregs, // Dregs
+  [bas.cc + cWinter]: cWinter, // Winter
+  [bas.cc + cDream]: cDream, // Dream
+  [bas.cc + cYale]: cYale // Yale
 };

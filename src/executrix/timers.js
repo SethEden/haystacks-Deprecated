@@ -10,10 +10,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
- var path = require('path');
- var moment = require('moment');
- var baseFileName = path.basename(module.filename, path.extname(module.filename));
- var namespacePrefix = `executrix.${baseFileName}.`;
+var bas = require('../constants/basic.constants');
+var wrd = require('../constants/word.constants');
+var path = require('path');
+var moment = require('moment');
+var baseFileName = path.basename(module.filename, path.extname(module.filename));
+var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getNowMoment
@@ -45,16 +47,16 @@
  * @date 2021/10/19
  */
 function computeDeltaTime(startTime, endTime) {
-  let functionName = computeDeltaTime.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`startTime is: ${startTime}`);
-  console.log(`endTime is: ${endTime}`);
+  // let functionName = computeDeltaTime.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`startTime is: ${startTime}`);
+  // console.log(`endTime is: ${endTime}`);
   let deltaTimeResult;
-  startTime = moment(startTime, 'YYYYMMDD_HHmmss_SSS');
-  endTime = moment(endTime, 'YYYYMMDD_HHmmss_SSS');
+  startTime = moment(startTime, gen.cYYYYMMDD_HHmmss_SSS);
+  endTime = moment(endTime, gen.cYYYYMMDD_HHmmss_SSS);
   deltaTimeResult = endTime.diff(startTime); // Should wok in milliseconds out of the box!
-  console.log(`deltaTimeResult is: ${deltaTimeResult}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`deltaTimeResult is: ${deltaTimeResult}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return deltaTimeResult;
 };
 

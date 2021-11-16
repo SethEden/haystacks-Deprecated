@@ -7,10 +7,13 @@
  * @date 2021/10/26
  */
 
+var bas = require('../constants/basic.constants');
+var gen = require('../constants/generic.constants');
+var wrd = require('../constants/word.constants');
 var fs = require('fs');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `framework.${baseFileName}.`;
+var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 var term = 13; // carriage return
 
 /**
@@ -32,19 +35,19 @@ function prompt(ask) {
 
   var
     buffer = Buffer.alloc(1024),
-    fd = process.platform === 'win32' ? process.stdin.fd : fs.openSync('/dev/tty', 'r'),
+    fd = process.platform === gen.cwin32 ? process.stdin.fd : fs.openSync(sys.cdevtty, bas.cr),
     //readSize = fs.readSync(fd, buffer, 0, 1024);
     readSize = fs.readSync(0, buffer, 0, 1024);
 
   // console.log('INPUT: ' + buffer.toString('utf8', 0, readSize));
-  input = buffer.toString('utf8', 0, readSize);
+  input = buffer.toString(gen.cUTF8, 0, readSize);
   if (input.includes(String.fromCharCode(term))) {
     // console.log('caught the case that the input string contains the global carriage return term.')
     // console.log('index of the carriage return character: ' + input.indexOf(String.fromCharCode(term)));
     input = input.slice(0, input.indexOf(String.fromCharCode(term)));
-  } else if (input.includes('\r\n')) {
+  } else if (input.includes(bas.cCarriageReturn + bas.cNewLine)) {
     // console.log('caught the case that the string includes a carriage return and new line characters.');
-    input = input.slice(0, input.indexOf('\r\n'));
+    input = input.slice(0, input.indexOf(bas.cCarriageReturn + bas.cNewLine));
   }
   // console.log(`input is: ${JSON.stringify(input)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
