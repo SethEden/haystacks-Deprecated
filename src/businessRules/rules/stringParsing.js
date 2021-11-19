@@ -4,7 +4,7 @@
 /**
  * @file stringParsing.js
  * @module stringParsing
- * @description Contains all system defned business rules for parsing strings,
+ * @description Contains all system defined business rules for parsing strings,
  * with values of all kinds, and various parsing operations.
  * @requires module:configurator
  * @requires module:arrayParsing
@@ -20,7 +20,7 @@ var arrayParsing = require('./arrayParsing');
 var D = require('../../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `brokers.${baseFileName}.`;
+var namespacePrefix = `businessRules.rules.${baseFileName}.`;
 
 /**
  * @function parseSystemRootPath
@@ -29,10 +29,10 @@ var namespacePrefix = `brokers.${baseFileName}.`;
  * and will parse that out to determine where on the hard drive this "appName" folder is installed at.
  * @NOTE: The "AppName" is derived from the configuration settings called "applicationName"
  * which should have been set by the system when it was loaded.
- * @param {string} inputData The root path as dfined by calling path.resolve(__dirname);
+ * @param {string} inputData The root path as defined by calling path.resolve(__dirname);
  * @param {string} inputMetaData The name of the application.
- * @return {string} A string ith the path up to the application folder,
- * where ever that is installed on the local system executing the tests.
+ * @return {string} A string with the path up to the application folder,
+ * where ever that is installed on the local system currently executing.
  * @author Seth Hollingsead
  * @date 2021/10/27
  */
@@ -61,8 +61,8 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
         console.log('case else');
         returnData = `${returnData}\\${pathElement}`;
       }
-    }
-  }
+    } // End for-loop: (let i = 0; i < pathElements.length; i++)
+  } // End-if (inputData)
   console.log(`returnData is: ${JSON.stringify(returnData)}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -107,7 +107,7 @@ export const stringToDataType = function(inputData, inputMetaData) {
         returnData = inputData;
         break;
     }
-  }
+  } // End-if (inputData)
   console.log(`returnData is: ${JSON.stringify(returnData)}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -116,7 +116,7 @@ export const stringToDataType = function(inputData, inputMetaData) {
 /**
  * @function stringToBoolean
  * @description Converts a string to a boolean value.
- * @param {string} inputData A string that contains a truthy or falsy value and should be converted to a Boolean value.
+ * @param {string} inputData A string that contains a truthy or falsy value and should be converted to a boolean value.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of either True or False according to the business rule conversion.
  * @author Seth Hollingsead
