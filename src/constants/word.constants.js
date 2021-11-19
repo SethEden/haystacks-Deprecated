@@ -729,6 +729,9 @@ let cMixed = cMix + bas.ced; // Mixed
 let calpha = bas.ca + phn.clpha; // alpha
 let cAlpha = bas.cA + phn.clpha; // Alpha
 let cbetic = bas.cbe + bas.cti + bas.cc; // betic
+let calphabet = calpha + phn.cbet; // alphabet
+let cAlphabet = cAlpha + phn.cbet; // Alphabet
+let calphabetic = calpha + cbetic; // alphabetic
 let cAlphabetic = cAlpha + cbetic; // Alphabetic
 let ctext = bas.ct + phn.cext; // text
 let cText = bas.cT + phn.cext; // Text
@@ -2885,12 +2888,12 @@ module.exports = {
   [bas.cc + cAutomation]: cAutomation, // Automation
   [bas.cc + cnumber]: cnumber, // number
   [bas.cc + cNumber]: cNumber, // Number
-  [bas.cc + cnumbers]: cnumbers // numbers
-  [bas.cc + cNumbers]: cNumbers // Numbers
-  [bas.cc + cnumbered]: cnumbered // numbered
-  [bas.cc + cNumbered]: cNumbered // Numbered
-  [bas.cc + cnumbering]: cnumbering // numbering
-  [bas.cc + cNumbering]: cNumbering // Numbering
+  [bas.cc + cnumbers]: cnumbers, // numbers
+  [bas.cc + cNumbers]: cNumbers, // Numbers
+  [bas.cc + cnumbered]: cnumbered, // numbered
+  [bas.cc + cNumbered]: cNumbered, // Numbered
+  [bas.cc + cnumbering]: cnumbering, // numbering
+  [bas.cc + cNumbering]: cNumbering, // Numbering
   [bas.cc + cHost]: cHost, // Host
   [bas.cc + cOf]: cOf, // Of
   [bas.cc + crow]: crow, // row
@@ -3233,6 +3236,7 @@ module.exports = {
   [bas.cc + calpha]: calpha, // alpha
   [bas.cc + cAlpha]: cAlpha, // Alpha
   [bas.cc + cbetic]: cbetic, // betic
+  [bas.cc + calphabetic]: calphabetic, // alphabetic
   [bas.cc + cAlphabetic]: cAlphabetic, // Alphabetic
   [bas.cc + ctext]: ctext, // text
   [bas.cc + cText]: cText, // Text

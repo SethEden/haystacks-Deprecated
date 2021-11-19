@@ -1095,6 +1095,7 @@ let cler = bas.cle + bas.cr; // ler
 let ching = bas.ch + cing; // hing
 let cwin = bas.cwi + bas.cn; // win
 let ctty = bas.ctt + bas.cy; // tty
+let cbet = bas.cbe + bas.ct; // bet
 
 module.exports = {
   // Reusable Grammer
@@ -2180,7 +2181,8 @@ module.exports = {
   [bas.cc + cler]: cler, // ler
   [bas.cc + ching]: ching, // hing
   [bas.cc + cwin]: cwin, // win
-  [bas.cc + ctty]: ctty // tty
+  [bas.cc + ctty]: ctty, // tty
+  [bas.cc + cbet]: cbet // bet]
 };
 
 //////////////////////////////////////////////////////////////////

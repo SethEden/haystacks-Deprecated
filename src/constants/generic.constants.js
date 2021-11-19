@@ -13,6 +13,7 @@
  */
 
 var bas = require('./basic.constants');
+var con = require('./constant.constants');
 var phn = require('./phonic.constants');
 var num = require('./numeric.constants');
 
@@ -258,8 +259,8 @@ let cinit = phn.cini + bas.ct; // init
 let cInit = phn.cIni + bas.ct; // Init
 
 module.exports = {
-  [bas.cc + 'DotDot']: cDotDot, // ..
-  [bas.cc + 'DotDotForwardSlash']: cDotDotForwardSlash, // ../
+  [bas.cc + con.cDot + con.cDot]: cDotDot, // ..
+  [bas.cc + con.cDot + con.cDot + con.cForwardSlash]: cDotDotForwardSlash, // ../
 
   // Boolean strings
   [bas.cc + cTrue]: cTrue, // True

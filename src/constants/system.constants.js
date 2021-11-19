@@ -4,9 +4,10 @@
  * @description Contains system defined acronyms, many of them derived from the basic.constants.
  * The constants contained in this file are system words, phrases, codes and paths.
  * @requires module:basic.constants
- * @requires module:phonic.constants
+ * @requires module:constant.constants
  * @requires module:generic.constants
  * @requires module:numeric.constants
+ * @requires module:phonic.constants
  * @requires module:word.constants
  * @author Seth Hollingsead
  * @date 2021/11/09
@@ -14,9 +15,10 @@
  */
 
 var bas = require('./basic.constants');
-var phn = require('./phonic.constants');
+var con = require('./constant.constants');
 var gen = require('./generic.constants');
 var num = require('./numeric.constants');
+var phn = require('./phonic.constants');
 var wrd = require('./word.constants');
 
 // Miscelaneious
@@ -358,6 +360,7 @@ let cbusiness_constants_js = wrd.cbusiness + bas.cDot + wrd.cconstants + bas.cDo
 let ccolor_constants_js = wrd.ccolor + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // color.constants.js
 let ccommand_constants_js = wrd.ccommand + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // command.constants.js
 let cconfiguration_constants_js = wrd.cconfiguration + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // configuration.constants.js
+let cconstant_constants_js = wrd.cconstant + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // constant.constants.js
 let ccountry_constants_js = wrd.ccountry + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // country.constants
 let celement_constants_js = wrd.celement + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // element.constants.js
 let cgeneric_constants_js = wrd.cgeneric + bas.cDot + wrd.cconstants + bas.cDot + bas.cjs; // generic.constants.js
@@ -625,37 +628,37 @@ module.exports = {
   [bas.cc + cPREPROD]: cPREPROD, // PREPROD
 
   // Key Combinations
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ca]: cctrl_a, // ctrl+a
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cb]: cctrl_b, // ctrl+b
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cc]: cctrl_c, // ctrl+c
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cd]: cctrl_d, // ctrl+d
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ce]: cctrl_e, // ctrl+e
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cf]: cctrl_f, // ctrl+f
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cg]: cctrl_g, // ctrl+g
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ch]: cctrl_h, // ctrl+h
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ci]: cctrl_i, // ctrl+i
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cj]: cctrl_j, // ctrl+j
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ck]: cctrl_k, // ctrl+k
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cl]: cctrl_l, // ctrl+l
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cm]: cctrl_m, // ctrl+m
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cn]: cctrl_n, // ctrl+n
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.co]: cctrl_o, // ctrl+o
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cp]: cctrl_p, // ctrl+p
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cq]: cctrl_q, // ctrl+q
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cr]: cctrl_r, // ctrl+r
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cs]: cctrl_s, // ctrl+s
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.ct]: cctrl_t, // ctrl+t
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cu]: cctrl_u, // ctrl+u
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cv]: cctrl_v, // ctrl+v
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cw]: cctrl_w, // ctrl+w
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cx]: cctrl_x, // ctrl+x
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cy]: cctrl_y, // ctrl+y
-  [bas.ccc + phn.ctrl + bas.cUnderscore + bas.cz]: cctrl_z, // ctrl+z
+  [bas.cc + con.cctrl_a]: cctrl_a, // ctrl+a
+  [bas.cc + con.cctrl_b]: cctrl_b, // ctrl+b
+  [bas.cc + con.cctrl_c]: cctrl_c, // ctrl+c
+  [bas.cc + con.cctrl_d]: cctrl_d, // ctrl+d
+  [bas.cc + con.cctrl_e]: cctrl_e, // ctrl+e
+  [bas.cc + con.cctrl_f]: cctrl_f, // ctrl+f
+  [bas.cc + con.cctrl_g]: cctrl_g, // ctrl+g
+  [bas.cc + con.cctrl_h]: cctrl_h, // ctrl+h
+  [bas.cc + con.cctrl_i]: cctrl_i, // ctrl+i
+  [bas.cc + con.cctrl_j]: cctrl_j, // ctrl+j
+  [bas.cc + con.cctrl_k]: cctrl_k, // ctrl+k
+  [bas.cc + con.cctrl_l]: cctrl_l, // ctrl+l
+  [bas.cc + con.cctrl_m]: cctrl_m, // ctrl+m
+  [bas.cc + con.cctrl_n]: cctrl_n, // ctrl+n
+  [bas.cc + con.cctrl_o]: cctrl_o, // ctrl+o
+  [bas.cc + con.cctrl_p]: cctrl_p, // ctrl+p
+  [bas.cc + con.cctrl_q]: cctrl_q, // ctrl+q
+  [bas.cc + con.cctrl_r]: cctrl_r, // ctrl+r
+  [bas.cc + con.cctrl_s]: cctrl_s, // ctrl+s
+  [bas.cc + con.cctrl_t]: cctrl_t, // ctrl+t
+  [bas.cc + con.cctrl_u]: cctrl_u, // ctrl+u
+  [bas.cc + con.cctrl_v]: cctrl_v, // ctrl+v
+  [bas.cc + con.cctrl_w]: cctrl_w, // ctrl+w
+  [bas.cc + con.cctrl_x]: cctrl_x, // ctrl+x
+  [bas.cc + con.cctrl_y]: cctrl_y, // ctrl+y
+  [bas.cc + con.cctrl_z]: cctrl_z, // ctrl+z
 
   // System Terms
-  [bas.cc + wrd.cframework + wrd.cResources + wrd.cConfiguration + wrd.cPath]: cframeworkResourcesConfigurationPath, // //resources//configuration//
-  [bas.cc + wrd.csystem + wrd.cConfig + wrd.cFile + wrd.cName]: csystemConfigFileName, // framework.system.json
-  [bas.cc + wrd.capplication + wrd.cConfig + wrd.cFile + wrd.cName]: capplicationConfigFileName, // application.system.json
+  [bas.cc + con.cframeworkResourcesConfigurationPath]: cframeworkResourcesConfigurationPath, // //resources//configuration//
+  [bas.cc + con.csystemConfigFileName]: csystemConfigFileName, // framework.system.json
+  [bas.cc + con.capplicationConfigFileName]: capplicationConfigFileName, // application.system.json
   [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
   [bas.cc + cframeworkConfigPath]: cframeworkConfigPath, // frameworkConfigPath
   [bas.cc + cApplicationName]: cApplicationName, // ApplicationName
@@ -706,22 +709,23 @@ module.exports = {
   [bas.cc + cBinaryReleasePath]: cBinaryReleasePath, // BinaryReleasePath
 
   // Constants Filenames
-  [bas.cc + wrd.cbasic + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cbasic_constants_js, // basic.constants.js
-  [bas.cc + wrd.cbusiness + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cbusiness_constants_js, // business.constants.js
-  [bas.cc + wrd.ccolor + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: ccolor_constants_js, // color.constants.js
-  [bas.cc + wrd.ccommand + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: ccommand_constants_js, // command.constants.js
-  [bas.cc + wrd.cconfiguration + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cconfiguration_constants_js, // configuration.constants.js
-  [bas.cc + wrd.ccountry + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: ccountry_constants_js, // country.constants
-  [bas.cc + wrd.celement + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: celement_constants_js, // element.constants.js
-  [bas.cc + wrd.cgeneric + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cgeneric_constants_js, // generic.constants.js
-  [bas.cc + wrd.cisotope + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cisotope_constants_js, // isotope.constants.js
-  [bas.cc + wrd.cknot + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cknot_constants_js, // knot.constants.js
-  [bas.cc + wrd.clanguage + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: clanguage_constants_js, // language.constants.js
-  [bas.cc + wrd.cmessage + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cmessage_constants_js, // message.constants.js
-  [bas.cc + wrd.cnumeric + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cnumeric_constants_js, // numeric.constants.js
-  [bas.cc + wrd.cphonic + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cphonic_constants_js, // phonic.constants.js
-  [bas.cc + wrd.cshape + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cshape_constants_js, // shape.constants.js
-  [bas.cc + wrd.csystem + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: csystem_constants_js, // system.constants.js
-  [bas.cc + wrd.cunit + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cunit_constants_js, // unit.constants.js
-  [bas.cc + wrd.cword + bas.cUnderscore + wrd.cconstants + bas.cUnderscore + bas.cjs]: cword_constants_js, // word.constants.js
+  [bas.cc + con.cbasic_constants_js]: cbasic_constants_js, // basic.constants.js
+  [bas.cc + con.cbusiness_constants_js]: cbusiness_constants_js, // business.constants.js
+  [bas.cc + con.ccolor_constants_js]: ccolor_constants_js, // color.constants.js
+  [bas.cc + con.ccommand_constants_js]: ccommand_constants_js, // command.constants.js
+  [bas.cc + con.cconfiguration_constants_js]: cconfiguration_constants_js, // configuration.constants.js
+  [bas.cc + con.cconstant_constants_js]: cconstant_constants_js, // constant.constants.js
+  [bas.cc + con.ccountry_constants_js]: ccountry_constants_js, // country.constants
+  [bas.cc + con.celement_constants_js]: celement_constants_js, // element.constants.js
+  [bas.cc + con.cgeneric_constants_js]: cgeneric_constants_js, // generic.constants.js
+  [bas.cc + con.cisotope_constants_js]: cisotope_constants_js, // isotope.constants.js
+  [bas.cc + con.cknot_constants_js]: cknot_constants_js, // knot.constants.js
+  [bas.cc + con.clanguage_constants_js]: clanguage_constants_js, // language.constants.js
+  [bas.cc + con.cmessage_constants_js]: cmessage_constants_js, // message.constants.js
+  [bas.cc + con.cnumeric_constants_js]: cnumeric_constants_js, // numeric.constants.js
+  [bas.cc + con.cphonic_constants_js]: cphonic_constants_js, // phonic.constants.js
+  [bas.cc + con.cshape_constants_js]: cshape_constants_js, // shape.constants.js
+  [bas.cc + con.csystem_constants_js]: csystem_constants_js, // system.constants.js
+  [bas.cc + con.cunit_constants_js]: cunit_constants_js, // unit.constants.js
+  [bas.cc + con.cword_constants_js]: cword_constants_js, // word.constants.js
 };
