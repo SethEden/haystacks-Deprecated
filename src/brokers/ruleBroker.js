@@ -47,7 +47,7 @@ function bootStrapBusinessRules() {
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  Object.assin(D['businessRules'], clientRules);
+  Object.assign(D['businessRules'], clientRules);
   console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
@@ -90,5 +90,5 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
 module.exports = {
   ['bootStrapBusinessRules']: () => bootStrapBusinessRules(),
   ['addClientRules']: (clientRules) => addClientRules(clientRules),
-  ['processRules']: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute),
+  ['processRules']: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)
 };
