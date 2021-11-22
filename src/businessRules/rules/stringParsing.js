@@ -4,7 +4,7 @@
 /**
  * @file stringParsing.js
  * @module stringParsing
- * @description Contains all system defned business rules for parsing strings,
+ * @description Contains all system defined business rules for parsing strings,
  * with values of all kinds, and various parsing operations.
  * @requires module:configurator
  * @requires module:arrayParsing
@@ -20,7 +20,7 @@ var arrayParsing = require('./arrayParsing');
 var D = require('../../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `brokers.${baseFileName}.`;
+var namespacePrefix = `businessRules.rules.${baseFileName}.`;
 
 /**
  * @function parseSystemRootPath
@@ -29,10 +29,10 @@ var namespacePrefix = `brokers.${baseFileName}.`;
  * and will parse that out to determine where on the hard drive this "appName" folder is installed at.
  * @NOTE: The "AppName" is derived from the configuration settings called "applicationName"
  * which should have been set by the system when it was loaded.
- * @param {string} inputData The root path as dfined by calling path.resolve(__dirname);
+ * @param {string} inputData The root path as defined by calling path.resolve(__dirname);
  * @param {string} inputMetaData The name of the application.
- * @return {string} A string ith the path up to the application folder,
- * where ever that is installed on the local system executing the tests.
+ * @return {string} A string with the path up to the application folder,
+ * where ever that is installed on the local system currently executing.
  * @author Seth Hollingsead
  * @date 2021/10/27
  */
@@ -61,8 +61,8 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
         console.log('case else');
         returnData = `${returnData}\\${pathElement}`;
       }
-    }
-  }
+    } // End for-loop: (let i = 0; i < pathElements.length; i++)
+  } // End-if (inputData)
   console.log(`returnData is: ${JSON.stringify(returnData)}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -72,7 +72,7 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
  * @function stringToDataType
  * @description Converts a string to the appropriate data value.
  * So if it's a string value of "3.1415926535897932384626433832" Then it will get converted to a float of the same value.
- * If it's a string value of "false" then it will get converted to a Boolean of the same value.
+ * If it's a string value of "false" then it will get converted to a boolean of the same value.
  * If it's a string value of "12" then it will get converted to an integer of the same value.
  * If it's a string value of "Happy Birthday" it will get returned the same as the input, no change, since it's just a string.
  * If it's an array of strings, or collection object, it will get returned as the same as the input, no change.
@@ -107,7 +107,7 @@ export const stringToDataType = function(inputData, inputMetaData) {
         returnData = inputData;
         break;
     }
-  }
+  } // End-if (inputData)
   console.log(`returnData is: ${JSON.stringify(returnData)}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -116,13 +116,13 @@ export const stringToDataType = function(inputData, inputMetaData) {
 /**
  * @function stringToBoolean
  * @description Converts a string to a boolean value.
- * @param {string} inputData A string that contains a truthy or falsy value and should be converted to a Boolean value.
+ * @param {string} inputData A string that contains a truthy or falsy value and should be converted to a boolean value.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of either True or False according to the business rule conversion.
  * @author Seth Hollingsead
  * @date 2021/11/10
  * @NOTE We cannot pass in a 1 or 0 to this function and expect it to evaluate as a True or False because:
- * We have another function that is passng strings into the function, and also part of that check to look for data-types is a check to see if a sring is a number.
+ * We have another function that is passing strings into the function, and also part of that check to look for data-types is a check to see if a string is a number.
  * If we cause this function to evaluate a 0 or 1 to a Boolean, then the integer function would never get a chance to evaluate.
  */
 export const stringToBoolean = function(inputData, inputMetaData) {
@@ -155,11 +155,11 @@ export const stringToBoolean = function(inputData, inputMetaData) {
 
 /**
  * @function determineObjectDataType
- * @description Determines if the contents fo a string are actually a Boolean, Integer, Float, String or something else.
+ * @description Determines if the contents of a string are actually a Boolean, Integer, Float, String or something else.
  * @param {string} inputData A string that contains some value that we should figure out
  * what kind of data type that data is, Boolean, Integer, Float, String or something else.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A strng that ndicates if the data type should be Boolean, Inteer, Float, String or something else.
+ * @param {string} inputMetaDataNot Not used for this business rule.
+ * @return {string} A string that indicates if the data type should be Boolean, Integer, Float, String or something else.
  * @author Seth Hollingsead
  * @date 2021/11/10
  */
@@ -192,10 +192,10 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
 
 /**
  * @function isBoolean
- * @description Determines if the input strng is a Boolean type of value,
+ * @description Determines if the input string is a boolean type of value,
  * "true", "True", "TRUE", "t", "T", "y", "Y", "yes", "Yes", "YES", "on", "On", "ON" or
  * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO"
- * @param {string} inputData The string that should be checked if it is a Boolean style value or not, culd be some form of "true" or "false".
+ * @param {string} inputData The string that should be checked if it is a Boolean style value or not, could be some form of "true" or "false".
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of True or False to indicate if the input string is a Boolean or not.
  * @author Seth Hollingsead
@@ -230,7 +230,7 @@ export const isBoolean = function(inputData, inputMetaData) {
  * @description Determines if the input string is an integer type of value -9007299254740992 to 9007299254740992.
  * @param {string} inputData The string that should be checked if it is an integer style value or not.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {boolean} A Boolean value of True or False to indicate if the input string is an integer or not.
+ * @return {boolean} A Boolean value of true or false to indicate if the input string is an integer or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
  */
@@ -246,7 +246,7 @@ export const isInteger = function(inputData, inputMetaData) {
         // It's a whole number, aka: integer
         returnData = true;
       } else { // Else clause is redundant, but kept here for code completeness.
-        // Might be a number, but ot a whole number.
+        // Might be a number, but not a whole number.
         returnData = false;
       }
     } else { // Else clause is redundant, but kept here for code completeness.
@@ -261,10 +261,10 @@ export const isInteger = function(inputData, inputMetaData) {
 
 /**
  * @function isFloat
- * @description Determines if the input string is a floating point type of vaue or not.
+ * @description Determines if the input string is a floating point type of value or not.
  * @param {string} inputData The string that should be checked if it is an integer style value or not.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {boolean} A Boolean value of True or False to ndicate if the input string is a foatng point number or not.
+ * @return {boolean} A Boolean value of true or false to indicate if the input string is a floating point number or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
  */
@@ -293,8 +293,8 @@ export const isFloat = function(inputData, inputMetaData) {
  * aka if it's not a Boolean, and not an Integer and not a Float then it must be a string.
  * @param {string} inputData The string that should be checked if it is a string and not a Boolean, Integer or Float.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {boolean} A Boolean value of True or False to indicate if the input string is a string and
- * not a Boolean, Integer or Float; or not (meaning is would be one of those 3 data types, discuised as a string).
+ * @return {boolean} A Boolean value of true or false to indicate if the input string is a string and
+ * not a Boolean, Integer or Float; or not (meaning it would be one of those 3 data types, discuised as a string).
  * @author Seth Hollingsead
  * @date 2021/11/10
  */
@@ -310,7 +310,7 @@ export const isString = function(inputData, inputMetaData) {
       returnData = true; // If it's not a Boolean, and not an Integer, and not a Float, then it must be a string,
       // especially given the type of the variable is a string!
     } else { // Else clause is redundant, but kept here for code completeness.
-      // Possilby also console log here for debugging.
+      // Possibly also console log here for debugging.
       returnData = false;
     }
   }
@@ -320,148 +320,147 @@ export const isString = function(inputData, inputMetaData) {
 };
 
 /**
- * @function singleQuoteSwapAfterEquals
- * @description Swaps single quote characters in the middle of the string wih double quote characters n the middle of the string.
- * input: 'inut[name='emailAddress'][class='username']'
- * output: 'input[name="emailAddress"][class="username"]'
- * @param {string} inputData A string that contains text with single quotes that should be swapped for double quotes.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A string that contains text where single quotes have been exchanged for double quotes.
- * @author Seth Hollingsead
- * @date 2021/10/28
- */
+* @function singleQuoteSwapAfterEquals
+* @description Swaps single quote characters in the middle of the string wih double quote characters n the middle of the string.
+* input: 'inut[name='emailAddress'][class='username']'
+* output: 'input[name="emailAddress"][class="username"]'
+* @param {string} inputData A string that contains text with single quotes that should be swapped for double quotes.
+* @param {string} inputMetaData Not used for this business rule.
+* @return {string} A string that contains text where single quotes have been exchanged for double quotes.
+* @author Seth Hollingsead
+* @date 2021/10/28
+*/
 export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
-  let functionName = singleQuoteSwapAfterEquals.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  let returnData;
-  if (!inputData) {
-    returnData = false;
-  } else {
-    if (inputData.includes('\'') === true) {
-      // First replace all the quotes in the string with double quotes.
-      returnData = inputData.replace(/'/g, '"');
-      // Next replace the first and last double quote with single quote.
-      if (returnData.indexOf('"') === 0) {
-        returnData = inputData.replace('"', '\'');
-      }
-      if (returnData.charAt(returnData.length - 1) === '"') {
-        returnData = returnData.slice(0, -1) + '\'';
-      }
-    } else {
-      returnData = inputData;
-    }
-  }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
-  return returnData;
+ let functionName = singleQuoteSwapAfterEquals.name;
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`inputData is: ${JSON.stringify(inputData)}`);
+ console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+ let returnData;
+ if (!inputData) {
+   returnData = false;
+ } else {
+   if (inputData.includes('\'') === true) {
+     // First replace all the quotes in the string with double quotes.
+     returnData = inputData.replace(/'/g, '"');
+     // Next replace the first and last double quote with single quote.
+     if (returnData.indexOf('"') === 0) {
+       returnData = inputData.replace('"', '\'');
+     }
+     if (returnData.charAt(returnData.length - 1) === '"') {
+       returnData = returnData.slice(0, -1) + '\'';
+     }
+   } else {
+     returnData = inputData;
+   }
+ }
+ console.log(`returnData is: ${JSON.stringify(returnData)}`);
+ console.log(`END ${namespacePrefix}${functionName} function`);
+ return returnData;
 };
 
 /**
- * @function swapForwardSlashToBackSlash
- * @description Swaps all forward slash characters in a string for back slash characters.
- * @param {string} inputData String that might contain some forward slashes.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The same as the input string, just all forward slash characters
- * swapped for back slash characters.
- * @author Seth Hollingsead
- * @date 2021/10/28
- */
+* @function swapForwardSlashToBackSlash
+* @description Swaps all forward slash characters in a string for back slash characters.
+* @param {string} inputData String that might contain some forward slashes.
+* @param {string} inputMetaData Not used for this business rule.
+* @return {string} The same as the input string, just all forward slash characters
+* swapped for back slash characters.
+* @author Seth Hollingsead
+* @date 2021/10/28
+*/
 export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
-  let functionName = swapForwardSlashToBackSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  let returnData;
-  if (!inputData) {
-    returnData = false;
-  } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, '\\']);
-  }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
-  return returnData;
+ let functionName = swapForwardSlashToBackSlash.name;
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`inputData is: ${JSON.stringify(inputData)}`);
+ console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+ let returnData;
+ if (!inputData) {
+   returnData = false;
+ } else {
+   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, '\\']);
+ }
+ console.log(`returnData is: ${JSON.stringify(returnData)}`);
+ console.log(`END ${namespacePrefix}${functionName} function`);
+ return returnData;
 };
 
 /**
- * @function swapBackSlashToForwardSlash
- * @description Swaps all back slash characters in a string for forward slash characters.
- * @param {string} inputData String that might contains some back slashes.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The same as the input string, just all back slash characters
- * swapped for forward slash characters.
- * @author Seth Hollingsead
- * @date 2021/10/28
- */
+* @function swapBackSlashToForwardSlash
+* @description Swaps all back slash characters in a string for forward slash characters.
+* @param {string} inputData String that might contains some back slashes.
+* @param {string} inputMetaData Not used for this business rule.
+* @return {string} The same as the input string, just all back slash characters
+* swapped for forward slash characters.
+* @author Seth Hollingsead
+* @date 2021/10/28
+*/
 export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
-  let functionName = swapBackSlashToForwardSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  let returnData;
-  if (!inputData) {
-    returnData = false;
-  } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, '/']);
-  }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
-  return returnData;
+ let functionName = swapBackSlashToForwardSlash.name;
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`inputData is: ${JSON.stringify(inputData)}`);
+ console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+ let returnData;
+ if (!inputData) {
+   returnData = false;
+ } else {
+   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, '/']);
+ }
+ console.log(`returnData is: ${JSON.stringify(returnData)}`);
+ console.log(`END ${namespacePrefix}${functionName} function`);
+ return returnData;
 };
 
 /**
- * @function swapDoubleForwardSlashToSingleForwardSlash
- * @description Swaps all double forward slash characters for sinle forward slash characters.
- * @param {string} inputData String that might contain some double forward slashes.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The same as the input string, just all double forward slash characters
- * swapped for single forward slash characters.
- * @author Seth Hollingsead
- * @date 2021/10/28
- */
+* @function swapDoubleForwardSlashToSingleForwardSlash
+* @description Swaps all double forward slash characters for sinle forward slash characters.
+* @param {string} inputData String that might contain some double forward slashes.
+* @param {string} inputMetaData Not used for this business rule.
+* @return {string} The same as the input string, just all double forward slash characters
+* swapped for single forward slash characters.
+* @author Seth Hollingsead
+* @date 2021/10/28
+*/
 export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMetaData) {
-  let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  let returnData;
-  if (!inputData) {
-    returnData = false;
-  } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, '/']);
-  }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
-  return returnData;
+ let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`inputData is: ${JSON.stringify(inputData)}`);
+ console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+ let returnData;
+ if (!inputData) {
+   returnData = false;
+ } else {
+   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, '/']);
+ }
+ console.log(`returnData is: ${JSON.stringify(returnData)}`);
+ console.log(`END ${namespacePrefix}${functionName} function`);
+ return returnData;
 };
 
 /**
- * @function swapDoubleBackSlashToSingleBackSlash
- * @description Swaps all double back slash characters for single back slash characters.
- * @param {string} inputData String that might contain some double back slashes.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The same as the input string, just all duble back slash characters
- * swapped for single back slash characters.
- * @author Seth Hollingsead
- * @date 2021/10/28
- */
+* @function swapDoubleBackSlashToSingleBackSlash
+* @description Swaps all double back slash characters for single back slash characters.
+* @param {string} inputData String that might contain some double back slashes.
+* @param {string} inputMetaData Not used for this business rule.
+* @return {string} The same as the input string, just all duble back slash characters
+* swapped for single back slash characters.
+* @author Seth Hollingsead
+* @date 2021/10/28
+*/
 export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) {
-  let functionName = swapDoubleBackSlashToSingleBackSlash.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  let returnData;
-  if (!inputData) {
-    returnData = false;
-  } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, '\\']);
-  }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
-  return returnData;
+ let functionName = swapDoubleBackSlashToSingleBackSlash.name;
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`inputData is: ${JSON.stringify(inputData)}`);
+ console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+ let returnData;
+ if (!inputData) {
+   returnData = false;
+ } else {
+   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, '\\']);
+ }
+ console.log(`returnData is: ${JSON.stringify(returnData)}`);
+ console.log(`END ${namespacePrefix}${functionName} function`);
+ return returnData;
 };
-
 // ******************************************************
 // Internal functions
 // ******************************************************
