@@ -55,5 +55,5 @@ function prompt(ask) {
 };
 
 module.exports = {
-  ['prompt']: (ask) => prompt(ask)
+  [fnc.cprompt]: (ask) => prompt(ask)
 };

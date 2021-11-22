@@ -61,6 +61,6 @@ function computeDeltaTime(startTime, endTime) {
 };
 
 module.exports = {
-  ['getNowMoment']: (formatting) => getNowMoment(formatting),
-  ['computeDeltaTime']: (startTime, endTime) => computeDeltaTime(startTime, endTime)
+  [fnc.cgetNowMoment]: (formatting) => getNowMoment(formatting),
+  [fnc.ccomputeDeltaTime]: (startTime, endTime) => computeDeltaTime(startTime, endTime)
 };
