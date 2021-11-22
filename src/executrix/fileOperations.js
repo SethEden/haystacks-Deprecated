@@ -6,8 +6,12 @@
  * Including loading files, saving files, reloading files, resaving files,
  * copying files, moving files, copying folders including copying folders recursively,
  * zipping files and saving zip-packages as part of a deployment/release process.
+ * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:generic.constants
+ * @requires module:word.constants
  * @requires module:data
- * @requires {@link https://www.npmjs.com/package/fs|fs}
+ * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -18,9 +22,9 @@ var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var wrd = require('../constants/word.constants');
+var D = require('../structures/data');
 var fs = require('fs');
 var path = require('path');
-var D = require('../structures/data');
 var filesCollection = [];
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
 var enableFilesListLimit = false;

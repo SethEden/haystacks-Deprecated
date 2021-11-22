@@ -2,6 +2,9 @@
  * @file arrayParsing.js
  * @module arrayParsing
  * @description Contains all system defined business rules for parsing arrays with various operations.
+ * @requires module:basic.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/28

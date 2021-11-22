@@ -4,6 +4,7 @@
  * @description Contains all the functions to manage the loading and processing of data,
  * such as XML files, CSV files or JSON files. Additional file type processing should be added in this module.
  * @requires module:basic.constants
+ * @requires module:function.constants
  * @requires module:word.constants
  * @requires module:dataBroker
  * @requires module:configurator

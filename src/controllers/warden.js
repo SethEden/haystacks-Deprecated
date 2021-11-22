@@ -6,6 +6,7 @@
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
+ * @requires module:function.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:chiefConfiguration

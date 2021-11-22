@@ -7,6 +7,9 @@
  * @description Contains all system defined business rules for parsing strings,
  * with values of all kinds, and various parsing operations.
  * @requires module:basic.constants
+ * @requires module:generic.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:arrayParsing
  * @requires module:data

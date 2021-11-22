@@ -6,8 +6,8 @@
  * Additional logic is in place to allow the configuration file to define which
  * modules/files & functions should participate in logging operations.
  * @requires module:configurator
+ * @requires module:fileOperations
  * @requires module:data
- * @requires {@link https://www.npmjs.com/package/fs|fs}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/18

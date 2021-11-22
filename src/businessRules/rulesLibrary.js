@@ -4,6 +4,7 @@
  * @description Contains all of the system defined busness rules as a map between function names and function calls.
  * @requires module:basic.constants
  * @requires module:business.constants
+ * @requires module:function.constants
  * @requires module:system.constants
  * @requires module:arrayParsing
  * @requires module:stringParsing

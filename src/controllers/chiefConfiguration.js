@@ -5,11 +5,14 @@
  * such as oading, setup, parsing & processing.
  * @requires module:basic.constants
  * @requires module:business.constants
+ * @requires module:configuration.constants
+ * @requires module:function.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:chiefData
  * @requires module:ruleBroker
  * @requires module:configurator
+ * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/13

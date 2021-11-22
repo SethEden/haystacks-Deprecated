@@ -3,6 +3,9 @@
  * @module timers
  * @description Contains all of the functions needed for generating time stamps,
  * reformatting time stamps and tracking time durations.
+ * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:word.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://www.npmjs.com/package/moment|moment}
  * @author Seth Hollingsead
@@ -11,6 +14,7 @@
  */
 
 var bas = require('../constants/basic.constants');
+var fnc = require('../constants/function.constants');
 var wrd = require('../constants/word.constants');
 var path = require('path');
 var moment = require('moment');

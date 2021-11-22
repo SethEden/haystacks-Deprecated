@@ -2,12 +2,18 @@
  * @file prompt.js
  * @module prompt
  * @description A simple prompt module to get input from the user using process.stdin.
- * @requires {@link https://www.npmjs.com/package/fs|fs}
+ * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:generic.constants
+ * @requires module:word.constants
+ * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/26
  */
 
 var bas = require('../constants/basic.constants');
+var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var wrd = require('../constants/word.constants');
 var fs = require('fs');
