@@ -5,8 +5,8 @@
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:system.constants
- * @requires module:stringParsing
  * @requires module:arrayParsing
+ * @requires module:stringParsing
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -18,8 +18,8 @@ var bas = require('../constants/basic.constants');
 var biz = require('../constants/business.constants');
 var fnc = require('../constants/function.constants');
 var sys = require('../constants/system.constants');
-var stringParsing = require('./rules/stringParsing');
 var arrayParsing = require('./rules/arrayParsing');
+var stringParsing = require('./rules/stringParsing');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -33,7 +33,7 @@ var namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
  * @date 2021/10/27
  * @NOTE Please be aware that the Commands and BusinessRules data fields in the
  * D-data structure are going to display as empty when printing out the D-data structure even when using JSON.stringify().
- * This is because the fnctions cannot really be serialized in any way. It actually kind of makes sense,
+ * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
  function initRulesLibrary() {

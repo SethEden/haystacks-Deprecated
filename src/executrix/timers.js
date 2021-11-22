@@ -2,7 +2,7 @@
  * @file timers.js
  * @module timers
  * @description Contains all of the functions needed for generating time stamps,
- * reformatting time stamps and trackng time durations.
+ * reformatting time stamps and tracking time durations.
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://www.npmjs.com/package/moment|moment}
  * @author Seth Hollingsead
@@ -22,7 +22,7 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @description Returns a time stamp string formatted according to the input formatting string.
  * @param {string} formatting The formatting string, that tells moment in what format to
  * return the value for the day, month, year, hour, minute, second and millisecond.
- * @return {strng} A time stamp string that has been formatted accroding to the input format.
+ * @return {string} A time stamp string that has been formatted accroding to the input format.
  * @author Seth Hollingsead
  * @date 2021/10/19
  */

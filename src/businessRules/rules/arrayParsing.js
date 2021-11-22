@@ -20,11 +20,11 @@ var namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + ba
  * @description Replaces all of the specified character in the inputData with another specified character.
  * @param {string} inputData A string that may or may not contain the specified
  * characters that should be converted to another specified character.
- * @param {array<string,string} inputMetaData An array of data that contains 2 aditional string parameters:
+ * @param {array<string,string} inputMetaData An array of data that contains 2 additional string parameters:
  * inputMetaData[0] === character2Find - The character to be searched and replaced from the input string.
  * inputMetaData[1] === character2Replace - The character that should be used to replace
  * the character specified for replacement from the input data.
- * @return {string} The same as the input string but with specified characters cnverted to the other specified character.
+ * @return {string} The same as the input string but with specified characters converted to the other specified character.
  * @author Seth Hollingsead
  * @date 2021/10/28
  */

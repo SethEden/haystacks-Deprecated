@@ -24,7 +24,8 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 /**
  * @function setConfigurationSetting
  * @description Sets a configuration setting on the configuration data structure stored on the D-data structure.
- * @param {array<string>} configurationNamespace The path in the configurationJSON object where the configuration setting should be set.
+ * @param {array<string>} configurationNamespace The path in the configuration JSON object
+ * where the configuration setting should be set.
  * @param {string} configurationName The key of the configuration setting.
  * @param {string|integer|boolean|double} configurationValue The value of the configuration setting.
  * @author Seth Hollingsead
@@ -62,10 +63,6 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
   // console.log(`configurationName is: ${configurationName}`);
   let returnConfigurationValue;
   let namespaceConfigObject = undefined;
-  let parentConfigurationNamespaceArray = undefined;
-  let newParentConfigurationName = undefined;
-  let newParentConfigurationNamespace = undefined;
-  let parentNamespaceCnfigObject = undefined;
   namespaceConfigObject = getConfigurationNamespaceObject(configurationNamespace.split(bas.cDot));
   if (namespaceConfigObject) {
     if (configurationName) {
@@ -85,7 +82,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
 
 /**
  * @function processConfigurationNameRules
- * @description Processes a fully qualified name and extracts the configuration anme without the namespace.
+ * @description Processes a fully qualified name and extracts the configuration name without the namespace.
  * @param {string} fullyQualifiedName The fully qualified name with the namespace included.
  * @return {string} The name of the configuration setting without the namespace.
  * @author Seth Hollingsead
@@ -108,7 +105,7 @@ function processConfigurationNameRules(fullyQualifiedName) {
  * @function processConfigurationNamespaceRules
  * @description Processes a fully qualified name and extracts the namespace.
  * @param {string} fullyQualifiedName The fully qualified name with the namespace included.
- * @return {string} The namespace of the configuration setting, wthout the configuration name.
+ * @return {string} The namespace of the configuration setting, without the configuration name.
  * @author Seth Hollingsead
  * @date 2021/10/26
  * @NOTE Cannot use the loggers here, because of a circular dependency.
@@ -153,11 +150,11 @@ function processConfigurationValueRules(name, value) {
   switch (name) {
     case cfg.cdateTimeStamp: case cfg.cdateStamp: case cfg.ctimeStamp:
       // NOTE: All of these three configurations are processed exactly the same way.
-      // As long as waht is stored in the configuration file is correct, then they should be processed correctly here.
+      // As long as what is stored in the configuration file is correct, then they should be processed correctly here.
       returnValue = timers.getNowMoment(value);
       break;
     default: // We don't know what the value is.
-      // We have to just eturn the value as it has passed in, no processing.
+      // We have to just return the value as it was passed in, no processing.
       // We don't want to corrupt the other data that may be passed into this function.
       returnValue = value;
       break;
@@ -175,8 +172,8 @@ function processConfigurationValueRules(name, value) {
  * @param {string} configurationNamespace The fully qualified path in the configuration JSON object
  * where the configuration setting should be found.
  * @param {string} optionalFunctionNameAppendix An optional function name appendix that could
- * poentially be added to the end of the function name.
- * Ex: @ModuleFondBackgroundColor
+ * potentially be added to the end of the function name.
+ * Ex: @ModuleFontBackgroundColor
  * @return {object|boolean} The parent of the object found at the specified namespace address in the configuration data object,
  * or False if nothing was found.
  * @author Seth Hollingsead
