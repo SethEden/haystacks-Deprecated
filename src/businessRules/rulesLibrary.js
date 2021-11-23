@@ -1,7 +1,11 @@
 /**
  * @file rulesLibrary.js
  * @module rulesLibrary
- * @description Contains all of the system defined business rules as a map between function names and function calls.
+ * @description Contains all of the system defined busness rules as a map between function names and function calls.
+ * @requires module:basic.constants
+ * @requires module:business.constants
+ * @requires module:function.constants
+ * @requires module:system.constants
  * @requires module:arrayParsing
  * @requires module:stringParsing
  * @requires module:data
@@ -11,12 +15,16 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var biz = require('../constants/business.constants');
+var fnc = require('../constants/function.constants');
+var sys = require('../constants/system.constants');
 var arrayParsing = require('./rules/arrayParsing');
 var stringParsing = require('./rules/stringParsing');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `businessRules.${baseFileName}.`;
+var namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initRulesLibrary
@@ -29,35 +37,39 @@ var namespacePrefix = `businessRules.${baseFileName}.`;
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
-export const initRulesLibrary = function() {
-  let functionName = initRulesLibrary.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  D['businessRules'] = {};
-  D['businessRules'] = {
-    ['echo']: (inputData, inputMetaData) => console.log(JSON.stringify(inputData)),
+ function initRulesLibrary() {
+   let functionName = initRulesLibrary.name;
+   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+   D[sys.cbusinessRules] = {};
+   D[sys.cbusinessRules] = {
+     [biz.cecho]: (inputData, inputMetaData) => console.log(JSON.stringify(inputData)),
 
-    // Business Rules
-    // ***********************************************
-    // stringParsing rules in order
-    // ***********************************************
-    ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
-    ['stringToDataType']: (inputData, inputMetaData) => stringParsing.stringToDataType(inputData, inputMetaData),
-    ['stringToBoolean']: (inputData, inputMetaData) => stringParsing.stringToBoolean(inputData, inputMetaData),
-    ['determineObjectDataType']: (inputData, inputMetaData) => stringParsing.determineObjectDataType(inputData, inputMetaData),
-    ['isBoolean']: (inputData, inputMetaData) => stringParsing.isBoolean(inputData, inputMetaData),
-    ['isInteger']: (inputData, inputMetaData) => stringParsing.isInteger(inputData, inputMetaData),
-    ['isFloat']: (inputData, inputMetaData) => stringParsing.isFloat(inputData, inputMetaData),
-    ['isString']: (inputData, inputMetaData) => stringParsing.isString(inputData, inputMetaData),
-    ['singleQuoteSwapAfterEquals']: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
-    ['swapForwardSlashToBackSlash']: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
-    ['swapBackSlashToForwardSlash']: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
-    ['swapDoubleForwardSlashToSingleForwardSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
-    ['swapDoubleBackSlashToSingleBackSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
+     // Business Rules
+     // ***********************************************
+     // stringParsing rules in order
+     // ***********************************************
+     [biz.cparseSystemRootPath]: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
+     [biz.cstringToDataType]: (inputData, inputMetaData) => stringParsing.stringToDataType(inputData, inputMetaData),
+     [biz.cstringToBoolean]: (inputData, inputMetaData) => stringParsing.stringToBoolean(inputData, inputMetaData),
+     [biz.cdetermineObjectDataType]: (inputData, inputMetaData) => stringParsing.determineObjectDataType(inputData, inputMetaData),
+     [biz.cisBoolean]: (inputData, inputMetaData) => stringParsing.isBoolean(inputData, inputMetaData),
+     [biz.cisInteger]: (inputData, inputMetaData) => stringParsing.isInteger(inputData, inputMetaData),
+     [biz.cisFloat]: (inputData, inputMetaData) => stringParsing.isFloat(inputData, inputMetaData),
+     [biz.cisString]: (inputData, inputMetaData) => stringParsing.isString(inputData, inputMetaData),
+     [biz.csingleQuoteSwapAfterEquals]: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
+     [biz.cswapForwardSlashToBackSlash]: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
+     [biz.cswapBackSlashToForwardSlash]: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
+     [biz.cswapDoubleForwardSlashToSingleForwardSlash]: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
+     [biz.cswapDoubleBackSlashToSingleBackSlash]: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
 
-    // ***********************************************
-    // arrayParsing rules in order
-    // ***********************************************
-    ['replaceCharacterWithCharacter']: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
-  };
-  console.log(`END ${namespacePrefix}${functionName} function`);
+     // ***********************************************
+     // ArrayParsing rules in order
+     // ***********************************************
+     [biz.creplaceCharacterWithCharacter]: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
+   }
+   // console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+module.exports = {
+  [fnc.cinitRulesLibrary]: () => initRulesLibrary()
 };

@@ -3,22 +3,35 @@
  * @module chiefConfiguration
  * @description Contains all the functions to manage the configuration system,
  * such as oading, setup, parsing & processing.
+ * @requires module:basic.constants
+ * @requires module:business.constants
+ * @requires module:configuration.constants
+ * @requires module:function.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:chiefData
  * @requires module:ruleBroker
  * @requires module:configurator
+ * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/13
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var biz = require('../constants/business.constants');
+var cfg = require('../constants/configuration.constants');
+var fnc = require('../constants/function.constants');
+var sys = require('../constants/system.constants');
+var wrd = require('../constants/word.constants');
 var chiefData = require('./chiefData');
 var ruleBroker = require('../brokers/ruleBroker');
 var configurator = require('../executrix/configurator');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `controllers.${baseFileName}.`;
+var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
 
 /**
  * @function setupConfiguration
@@ -35,17 +48,17 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   console.log(`appConfigPath is: ${appConfigPath}`);
   console.log(`frameworkConfigPath is: ${frameworkConfigPath}`);
   let rules = {};
-  rules[0] = 'swapBackSlashToForwardSlash';
+  rules[0] = biz.cswapBackSlashToForwardSlash;
   appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
   console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
   frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
   console.log(`frameworkConfigPath after rule processing is: ${frameworkConfigPath}`);
-  configurator.setConfigurationSetting('system', 'appConfigPath', appConfigPath);
-  configurator.setConfigurationSetting('system', 'frameworkConfigPath', frameworkConfigPath);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cappConfigPath, appConfigPath);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
-  allFrameworkConfigData = chiefData.setupAllJsonConfigData('frameworkConfigPath', 'configuration');
-  allAppConfigData = chiefData.setupAllJsonConfigData('appConfigPath', 'configuration');
+  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wrd.cconfiguration);
+  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
   console.log('ALL DATA IS: ' + JSON.stringify(D));
@@ -78,10 +91,10 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let value;
   let version;
   let advancedDebugSettingPrefix;
-  rules[0] = 'stringToDataType';
+  rules[0] = biz.cstringToDataType;
 
-  highLevelSystemConfigurationContainer = allConfigurationData['system'];
-  highLevelDebugConfigurationContainer = allConfigurationData['debugSettings'];
+  highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
+  highLevelDebugConfigurationContainer = allConfigurationData[cfg.cdebugSettings];
 
   for (let key in highLevelSystemConfigurationContainer) {
     fullyQualifiedName = '';
@@ -124,5 +137,5 @@ function parseLoadedConfigurationData(allConfigurationData) {
 };
 
 module.exports = {
-  ['setupConfiguration']: (appConfigPath, frameworkConfigPath) => setupConfiguration(appConfigPath, frameworkConfigPath)
+  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(appConfigPath, frameworkConfigPath)
 };

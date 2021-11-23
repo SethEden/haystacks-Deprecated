@@ -4,6 +4,8 @@
  * @file main.js
  * @module main
  * @description Contains all customer facing functions to are used to interface with the rest of the application framework.
+ * @requires module:configuration.constants
+ * @requires module:system.constants
  * @requires module:warden
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -11,11 +13,15 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var cfg = require('./constants/configuration.constants');
+var fnc = require('./constants/function.constants');
+var sys = require('./constants/system.constants');
+var wrd = require('./constants/word.constants');
 var warden = require('./controllers/warden');
 var prompt = require('./executrix/prompt');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `framework.${baseFileName}.`;
+var namespacePrefix = `${baseFileName}.`;
 
  /**
   * @function initFramework
@@ -27,18 +33,18 @@ var namespacePrefix = `framework.${baseFileName}.`;
   * @date 2021/10/07
   */
  function initFramework(clientConfiguration) {
-   // let functionName = initFramework.name;
-   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-   // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+   let functionName = initFramework.name;
+   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+   console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
    let appRootPath = warden.processRootPath(clientConfiguration);
-   clientConfiguration['appRootPath'] = appRootPath;
-   clientConfiguration['appConfigPath'] = appRootPath + clientConfiguration['appConfigReferencePath'];
-   clientConfiguration['frameworkConfigPath'] = __dirname + '//resources//configuration//';
+   clientConfiguration[cfg.cappRootPath] = appRootPath;
+   clientConfiguration[cfg.cappConfigPath] = appRootPath + clientConfiguration[cfg.cappConfigReferencePath];
+   clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
    warden.initFrameworkSchema(clientConfiguration);
-   // console.log(`END ${namespacePrefix}${functionName} function`);
+   console.log(`END ${namespacePrefix}${functionName} function`);
  };
 
 module.exports = {
-  ['initFramework']: (clientConfiguration) => initFramework(clientConfiguration),
-  ['prompt']: (ask) => prompt.prompt(ask)
+  [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
+  [fnc.cprompt]: (ask) => prompt.prompt(ask)
 };

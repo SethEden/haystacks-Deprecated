@@ -3,17 +3,25 @@
  * @module chiefData
  * @description Contains all the functions to manage the loading and processing of data,
  * such as XML files, CSV files or JSON files. Additional file type processing should be added in this module.
+ * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:word.constants
+ * @requires module:dataBroker
+ * @requires module:configurator
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/13
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var fnc = require('../constants/function.constants');
+var wrd = require('../constants/word.constants');
 var dataBroker = require('../brokers/dataBroker');
 var configurator = require('../executrix/configurator');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `controllers.${baseFileName}.`;
+var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function setupAllJsonConfigData
@@ -30,15 +38,15 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
   console.log(`contextName is: ${contextName}`);
   let loadedAndMergedDataAllFiles = {};
-  let dataPath = configurator.getConfigurationSetting('system', dataPathConfigurationName);
+  let dataPath = configurator.getConfigurationSetting(wrd.csystem, dataPathConfigurationName);
   dataPath = path.resolve(dataPath);
   let filesToLoad = dataBroker.scanDataPath(dataPath, contextName);
   loadedAndMergedDataAllFiles = dataBroker.loadAllJsonData(filesToLoad, contextName);
-  // console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return loadedAndMergedDataAllFiles;
 };
 
 module.exports = {
-  ['setupAllJsonConfigData']: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName)
+  [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName)
 };

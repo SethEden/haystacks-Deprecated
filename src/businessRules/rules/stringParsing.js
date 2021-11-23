@@ -6,6 +6,10 @@
  * @module stringParsing
  * @description Contains all system defined business rules for parsing strings,
  * with values of all kinds, and various parsing operations.
+ * @requires module:basic.constants
+ * @requires module:generic.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:arrayParsing
  * @requires module:data
@@ -15,12 +19,16 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../../constants/basic.constants');
+var gen = require('../../constants/generic.constants');
+var sys = require('../../constants/system.constants');
+var wrd = require('../../constants/word.constants');
 var configurator = require('../../executrix/configurator');
 var arrayParsing = require('./arrayParsing');
 var D = require('../../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `businessRules.rules.${baseFileName}.`;
+var namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function parseSystemRootPath
@@ -38,33 +46,33 @@ var namespacePrefix = `businessRules.rules.${baseFileName}.`;
  */
 export const parseSystemRootPath = function(inputData, inputMetaData) {
   let functionName = parseSystemRootPath.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = '';
   if (inputData) {
     let applicationName = inputMetaData; // Rename it for readability.
-    let pathElements = inputData.split('\\');
+    let pathElements = inputData.split(bas.cBackSlash);
     loop1:
     for (let i = 0; i < pathElements.length; i++) {
-      console.log(`BEGIN iteration i: ${i}`);
+      // console.log(`BEGIN iteration i: ${i}`);
       let pathElement = pathElements[i];
-      console.log(`pathElement is: ${pathElement}`);
+      // console.log(`pathElement is: ${pathElement}`);
       if (i === 0) {
-        console.log('case: i === 0');
+        // console.log('case: i === 0');
         returnData = pathElement;
       } else if (pathElement === applicationName) {
-        console.log(`case: pathElement === ${applicationName}`);
-        returnData = `${returnData}\\${pathElement}\\`;
+        // console.log(`case: pathElement === ${applicationName}`);
+        returnData = returnData + bas.cBackSlash + pathElement + bas.cBackSlash; // `${returnData}\\${pathElement}\\`;
         break loop1;
       } else {
-        console.log('case else');
-        returnData = `${returnData}\\${pathElement}`;
+        // console.log('case else');
+        returnData = returnData + bas.cBackSlash + pathElement; // `${returnData}\\${pathElement}`;
       }
     } // End for-loop: (let i = 0; i < pathElements.length; i++)
   } // End-if (inputData)
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -91,16 +99,16 @@ export const stringToDataType = function(inputData, inputMetaData) {
   if (inputData) {
     let dataType = determineObjectDataType(inputData, '');
     switch (dataType) {
-      case 'Boolean':
+      case wrd.cBoolean:
         returnData = stringToBoolean(inputData, '');
         break;
-      case 'Integer':
+      case wrd.cInteger:
         returnData = parseInt(inputData, '');
         break;
-      case 'Float':
+      case wrd.cFloat:
         returnData = parseFloat(inputData, '');
         break;
-      case 'String':
+      case wrd.cString:
         returnData = inputData;
         break;
       default: // We don't know what kind of object this is, better just return it the way it is.
@@ -132,14 +140,14 @@ export const stringToBoolean = function(inputData, inputMetaData) {
   console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    if (typeof inputData === 'boolean') {
+    if (typeof inputData === wrd.cboolean) {
       returnData = inputData;
     } else {
       switch (inputData.toLowerCase().trim()) {
-        case 'true': case 't': case 'y': case 'yes': case 'on':
+        case gen.ctrue: case bas.ct: case bas.cy: case gen.cyes: case bas.con:
           returnData = true;
           break;
-        case 'false': case 'f': case 'n': case 'no': case 'off':
+        case gen.cfalse: case bas.cf: case bas.cn: case bas.cno: case gen.coff:
           returnData = false;
           break;
         default:
@@ -171,18 +179,18 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     if (isBoolean(inputData, '') === true) {
-      returnData = 'Boolean';
+      returnData = wrd.cBoolean;
     } else if (isInteger(inputData, '') === true) {
-      returnData = 'Integer';
+      returnData = wrd.cInteger;
     } else if (isFloat(inputData, '') === true) {
-      returnData = 'Float';
+      returnData = wrd.cFloat;
     } else if (isString(inputData, '') === true) {
-      returnData = 'String';
+      returnData = wrd.cString;
     } else { // Otherwise we cannot figure out what the data type is.
       // No real way to tell the difference between Short, Long and Double.
       // And we don't really need to tell the difference between all these complicated data types.
       // At least not yet!
-      returnData = 'Object';
+      returnData = wrd.cObject;
     }
   }
   console.log(`returnData is: ${JSON.stringify(returnData)}`);
@@ -212,8 +220,8 @@ export const isBoolean = function(inputData, inputMetaData) {
       returnData = true;
     } else {
       inputData = inputData.toLowerCase().trim();
-      if (inputData === 'true' || inputData === 't' || inputData === 'y' || inputData === 'yes' || inputData === 'on' ||
-      inputData === 'false' || inputData === 'f' || inputData === 'n' || inputData === 'no' || inputData === 'off') {
+      if (inputData === gen.ctrue || inputData === bas.ct || inputData === bas.cy || inputData === gen.cyes || inputData === bas.con ||
+      inputData === gen.cfalse || inputData === bas.cf || inputData === bas.cn || inputData === bas.cno || inputData === gen.coff) {
         returnData = true;
       } else {
         returnData = false;
@@ -275,7 +283,7 @@ export const isFloat = function(inputData, inputMetaData) {
   console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    if (!isNaN(inputData) && inputData.indexOf('.') !== -1) {
+    if (!isNaN(inputData) && inputData.indexOf(bas.cDot) !== -1) {
       returnData = true;
     } else { // Else clause is redundant, but kept here for code completeness.
       // Possibly also console log here for debugging.
@@ -306,7 +314,7 @@ export const isString = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     if (isBoolean(inputData, '') === false && isInteger(inputData, '') === false && isFloat(inputData, '') === false &&
-    (typeof inputData === 'string' || inputData instanceof String)) {
+    (typeof inputData === wrd.cstring || inputData instanceof String)) {
       returnData = true; // If it's not a Boolean, and not an Integer, and not a Float, then it must be a string,
       // especially given the type of the variable is a string!
     } else { // Else clause is redundant, but kept here for code completeness.
@@ -331,31 +339,31 @@ export const isString = function(inputData, inputMetaData) {
 * @date 2021/10/28
 */
 export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
- let functionName = singleQuoteSwapAfterEquals.name;
- console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- console.log(`inputData is: ${JSON.stringify(inputData)}`);
- console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
- let returnData;
- if (!inputData) {
-   returnData = false;
- } else {
-   if (inputData.includes('\'') === true) {
-     // First replace all the quotes in the string with double quotes.
-     returnData = inputData.replace(/'/g, '"');
-     // Next replace the first and last double quote with single quote.
-     if (returnData.indexOf('"') === 0) {
-       returnData = inputData.replace('"', '\'');
-     }
-     if (returnData.charAt(returnData.length - 1) === '"') {
-       returnData = returnData.slice(0, -1) + '\'';
-     }
-   } else {
-     returnData = inputData;
-   }
- }
- console.log(`returnData is: ${JSON.stringify(returnData)}`);
- console.log(`END ${namespacePrefix}${functionName} function`);
- return returnData;
+  let functionName = singleQuoteSwapAfterEquals.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData;
+  if (!inputData) {
+    returnData = false;
+  } else {
+    if (inputData.includes(bas.cSingleQuote) === true) {
+      // First replace all the quotes in the string with double quotes.
+      returnData = inputData.replace(/'/g, bas.cDoubleQuote);
+      // Next replace the first and last double quote with single quote.
+      if (returnData.indexOf(bas.cDoubleQuote) === 0) {
+        returnData = inputData.replace(bas.cDoubleQuote, bas.cSingleQuote);
+      }
+      if (returnData.charAt(returnData.length - 1) === bas.cDoubleQuote) {
+        returnData = returnData.slice(0, -1) + bas.cSingleQuote;
+      }
+    } else {
+      returnData = inputData;
+    }
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 /**
@@ -369,19 +377,19 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
 * @date 2021/10/28
 */
 export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
- let functionName = swapForwardSlashToBackSlash.name;
- console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- console.log(`inputData is: ${JSON.stringify(inputData)}`);
- console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
- let returnData;
- if (!inputData) {
-   returnData = false;
- } else {
-   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, '\\']);
- }
- console.log(`returnData is: ${JSON.stringify(returnData)}`);
- console.log(`END ${namespacePrefix}${functionName} function`);
- return returnData;
+  let functionName = swapForwardSlashToBackSlash.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData;
+  if (!inputData) {
+    returnData = false;
+  } else {
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, bas.cBackSlash]);
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 /**
@@ -395,19 +403,19 @@ export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
 * @date 2021/10/28
 */
 export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
- let functionName = swapBackSlashToForwardSlash.name;
- console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- console.log(`inputData is: ${JSON.stringify(inputData)}`);
- console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
- let returnData;
- if (!inputData) {
-   returnData = false;
- } else {
-   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, '/']);
- }
- console.log(`returnData is: ${JSON.stringify(returnData)}`);
- console.log(`END ${namespacePrefix}${functionName} function`);
- return returnData;
+  let functionName = swapBackSlashToForwardSlash.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData;
+  if (!inputData) {
+    returnData = false;
+  } else {
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 /**
@@ -421,19 +429,19 @@ export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
 * @date 2021/10/28
 */
 export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMetaData) {
- let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
- console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- console.log(`inputData is: ${JSON.stringify(inputData)}`);
- console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
- let returnData;
- if (!inputData) {
-   returnData = false;
- } else {
-   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, '/']);
- }
- console.log(`returnData is: ${JSON.stringify(returnData)}`);
- console.log(`END ${namespacePrefix}${functionName} function`);
- return returnData;
+  let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData;
+  if (!inputData) {
+    returnData = false;
+  } else {
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 /**
@@ -447,19 +455,19 @@ export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, in
 * @date 2021/10/28
 */
 export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) {
- let functionName = swapDoubleBackSlashToSingleBackSlash.name;
- console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- console.log(`inputData is: ${JSON.stringify(inputData)}`);
- console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
- let returnData;
- if (!inputData) {
-   returnData = false;
- } else {
-   returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, '\\']);
- }
- console.log(`returnData is: ${JSON.stringify(returnData)}`);
- console.log(`END ${namespacePrefix}${functionName} function`);
- return returnData;
+  let functionName = swapDoubleBackSlashToSingleBackSlash.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData;
+  if (!inputData) {
+    returnData = false;
+  } else {
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, bas.cBackSlash]);
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 // ******************************************************
 // Internal functions
@@ -478,15 +486,15 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
  */
 const replaceCharacterAtIndexOfString = function(originalString, index, replacement) {
   let functionName = replaceCharacterAtIndexOfString.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`originalString is: ${originalString}`);
-  console.log(`index is: ${index}`);
-  console.log(`replacement is: ${replacement}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`originalString is: ${originalString}`);
+  // console.log(`index is: ${index}`);
+  // console.log(`replacement is: ${replacement}`);
   let returnData;
   if (originalString != '' && index >= 0 && replacement != '') {
     returnData = originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
   }
-  console.log(`returnData is: ${returnData}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };

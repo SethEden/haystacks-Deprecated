@@ -3,6 +3,12 @@
  * @module dataBroker
  * @description Contains all of the lower level data processing functions,
  * and also acts as an interface for calling the fileBroker.
+ * @requires module:basic.constants
+ * @requires module:business.constants
+ * @requires module:configuration.contants
+ * @requires module:generic.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:ruleBroker
  * @requires module:fileOperations
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -11,11 +17,18 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var biz = require('../constants/business.constants');
+var cfg = require('../constants/configuration.constants');
+var fnc = require('../constants/function.constants');
+var gen = require('../constants/generic.constants');
+var sys = require('../constants/system.constants');
+var wrd = require('../constants/word.constants');
 var ruleBroker = require('./ruleBroker');
 var fileOperations = require('../executrix/fileOperations');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `brokers.${baseFileName}.`;
+var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function scanDataPath
@@ -28,18 +41,18 @@ var namespacePrefix = `brokers.${baseFileName}.`;
  * @date 2021/10/15
  */
 function scanDataPath(dataPath) {
-  // let functionName = scanDataPath.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`dataPath is: ${dataPath}`);
+  let functionName = scanDataPath.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`dataPath is: ${dataPath}`);
   let rules = {};
   let filesFound = [];
-  rules[0] = 'swapBackSlashToForwardSlash';
-  console.log(`execute business rules: ${JSON.stringify(rules)}`);
+  rules[0] = biz.cswapBackSlashToForwardSlash;
+  // console.log(`execute business rules: ${JSON.stringify(rules)}`);
   dataPath = ruleBroker.processRules(dataPath, '', rules);
-  console.log(`dataPath after business rules processing is: ${dataPath}`);
+  // console.log(`dataPath after business rules processing is: ${dataPath}`);
   filesFound = fileOperations.readDirectoryContents(dataPath);
-  // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
 };
 
@@ -55,12 +68,16 @@ function scanDataPath(dataPath) {
  */
 function loadAllJsonData(filesToLoad, contextName) {
   let functionName = loadAllJsonData.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
-  // console.log(`contextName is: ${contextName}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
+  console.log(`contextName is: ${contextName}`);
   let foundSystemData = false;
-  let systemConfigFileName = 'framework.system.json';
-  let applicationConfigFileName = 'application.system.json';
+
+  console.log(`sys.csystemConfigFileName resolves as: ${sys.csystemConfigFileName}`);
+  console.log(`sys.capplicationConfigFileName resolves as: ${sys.capplicationConfigFileName}`);
+
+  let systemConfigFileName = sys.csystemConfigFileName; // 'framework.system.json';
+  let applicationConfigFileName = sys.capplicationConfigFileName; // 'application.system.json';
   let multiMergedData = {};
   let parsedDataFile = {};
 
@@ -78,8 +95,8 @@ function loadAllJsonData(filesToLoad, contextName) {
       // We will have a new setting that determines if all the extra debug settings should be loaded or not.
       // This way the application performance can be seriously optimized to greater levels of lean performance.
       // Adding all that extra debugging cnfiguration settings can affect load times, and application performance to a much lesser degree.
-      multiMergedData['system'] = {};
-      multiMergedData['system'] = dataFile;
+      multiMergedData[wrd.csystem] = {};
+      multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
     }
     if (foundSystemData === true) {
@@ -88,28 +105,28 @@ function loadAllJsonData(filesToLoad, contextName) {
   }
 
   // Now we need to determine if we should load the rest of the data.
-  if (multiMergedData['system']['system.enableDebugConfigurationSettings']) {
-    if (multiMergedData['system']['system.enableDebugConfigurationSettings'] === true ||
-    multiMergedData['system']['system.enableDebugConfigurationSettings'].toUpperCase() === 'TRUE') {
+  if (multiMergedData[wrd.csystem][cfg.csystemEnableDebugConfigurationSettings]) {
+    if (multiMergedData[wrd.csystem][cfg.csystemEnableDebugConfigurationSettings] === true ||
+    multiMergedData[wrd.csystem][cfg.csystemEnableDebugConfigurationSettings].toUpperCase() === gen.cTRUE) {
       for (let j = 0; j < filesToLoad.length; j++) {
         let fileToLoad = filesToLoad[j];
         if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
-        && fileToLoad.toUpperCase().includes('.JSON')) {
+        && fileToLoad.toUpperCase().includes(gen.cDotJSON)) {
           let dataFile = preprocessJsonFile(fileToLoad);
 
-          if (!multiMergedData['debugSettings']) {
-            multiMergedData['debugSettings'] = {};
-            multiMergedData['debugSettings'] = dataFile;
+          if (!multiMergedData[cfg.cdebugSettings]) {
+            multiMergedData[cfg.cdebugSettings] = {};
+            multiMergedData[cfg.cdebugSettings] = dataFile;
           } else {
-            Object.assign(multiMergedData['debugSettings'], dataFile);
+            Object.assign(multiMergedData[cfg.cdebugSettings], dataFile);
           }
         }
       }
     }
   }
   parsedDataFile = multiMergedData;
-  // console.log(`parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return parsedDataFile;
 };
 
@@ -123,19 +140,19 @@ function loadAllJsonData(filesToLoad, contextName) {
  */
 function preprocessJsonFile(fileToLoad) {
   let functionName = preprocessJsonFile.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
   let filePathRules = {};
-  filePathRules[0] = 'swapDoubleForwardSlashToSingleForwardSlash'
+  filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
   let finalFileToLoad = ruleBroker.processRules(fileToLoad, '', filePathRules);
   let dataFile = fileOperations.getJsonData(finalFileToLoad);
-  // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
 };
 
 module.exports = {
-  ['scanDataPath']: (dataPath) => scanDataPath(dataPath),
-  ['loadAllJsonData']: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName)
+  [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
+  [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName)
 };

@@ -3,6 +3,12 @@
  * @module warden
  * @description Contains all the functions to manage the entire application framework at the highest level.
  * Also provides an interface to easily manage all the framework features & various functionality from a single entry point.
+ * @requires module:basic.constants
+ * @requires module:business.constants
+ * @requires module:configuration.constants
+ * @requires module:function.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:chiefConfiguration
  * @requires module:ruleBroker
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -11,11 +17,17 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('../constants/basic.constants');
+var biz = require('../constants/business.constants');
+var cfg = require('../constants/configuration.constants');
+var fnc = require('../constants/function.constants');
+var sys = require('../constants/system.constants');
+var wrd = require('../constants/word.constants');
 var chiefConfiguration = require('./chiefConfiguration');
 var ruleBroker = require('../brokers/ruleBroker');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `controllers.${baseFileName}.`;
+var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**
  * @function processRootPath
@@ -31,13 +43,14 @@ var namespacePrefix = `controllers.${baseFileName}.`;
  */
 function processRootPath(configData) {
   let functionName = processRootPath.name;
+  console.log('bas.cDot resolves as: ' + bas.cDot);
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`configData is: ${JSON.stringify(configData)}`);
   let rules = {};
-  rules[0] = 'parseSystemRootPath';
+  rules[0] = biz.cparseSystemRootPath;
   ruleBroker.bootStrapBusinessRules();
-  let applicationName = configData['applicationName'];
-  let pathToProcess = configData['rootPath'];
+  let applicationName = configData[sys.capplicationName];
+  let pathToProcess = configData[cfg.crootPath];
   let resolvedPath = ruleBroker.processRules(pathToProcess, applicationName, rules);
   let rootPath = path.resolve(resolvedPath);
   console.log(`rootPath is: ${rootPath}`);
@@ -57,13 +70,13 @@ function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`configData is: ${JSON.stringify(configData)}`);
-  let appConfigPath = configData['appConfigPath'];
-  let frameworkConfigPath = configData['frameworkConfigPath'];
+  let appConfigPath = configData[cfg.cappConfigPath];
+  let frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
   console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 module.exports = {
-  ['processRootPath']: (configData) => processRootPath(configData),
-  ['initFrameworkSchema']: (configData) => initFrameworkSchema(configData)
+  [fnc.cprocessRootPath]: (configData) => processRootPath(configData),
+  [fnc.cinitFrameworkSchema]: (configData) => initFrameworkSchema(configData)
 };
