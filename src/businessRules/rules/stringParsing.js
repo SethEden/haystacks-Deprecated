@@ -195,7 +195,8 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
  * @description Determines if the input string is a boolean type of value,
  * "true", "True", "TRUE", "t", "T", "y", "Y", "yes", "Yes", "YES", "on", "On", "ON" or
  * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO"
- * @param {string} inputData The string that should be checked if it is a Boolean style value or not, could be some form of "true" or "false".
+ * @param {string} inputData The string that should be checked if it is a Boolean style value or not,
+ * could be some form of "true" or "false".
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of True or False to indicate if the input string is a Boolean or not.
  * @author Seth Hollingsead
