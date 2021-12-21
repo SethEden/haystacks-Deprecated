@@ -5,8 +5,12 @@
  * @module main
  * @description Contains all customer facing functions to are used to interface with the rest of the application framework.
  * @requires module:configuration.constants
+ * @requires module:function.constants
  * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:warden
+ * @requires module:loggers
+ * @requires module:prompt
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/14
@@ -18,6 +22,7 @@ var fnc = require('./constants/function.constants');
 var sys = require('./constants/system.constants');
 var wrd = require('./constants/word.constants');
 var warden = require('./controllers/warden');
+var loggers = require('./executrix/loggers');
 var prompt = require('./executrix/prompt');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
