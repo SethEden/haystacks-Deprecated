@@ -94,7 +94,9 @@ function parseLoadedConfigurationData(allConfigurationData) {
   rules[0] = biz.cstringToDataType;
 
   highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
+  console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
   highLevelDebugConfigurationContainer = allConfigurationData[cfg.cdebugSettings];
+  console.log('highLevelDebugConfigurationContainer is: ' + JSON.stringify(highLevelDebugConfigurationContainer));
 
   for (let key in highLevelSystemConfigurationContainer) {
     fullyQualifiedName = '';
@@ -102,13 +104,19 @@ function parseLoadedConfigurationData(allConfigurationData) {
     name = '';
     value = '';
     value = highLevelSystemConfigurationContainer[key];
+    console.log('value is: ' + value);
     if (!!value || value === false) {
       fullyQualifiedName = key;
+      console.log('fullyQualifiedName is: ' + fullyQualifiedName);
 
       name = configurator.processConfigurationNameRules(fullyQualifiedName);
+      console.log('name is: ' + name);
       namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
+      console.log('namespace is: ' + namespace);
       value = configurator.processConfigurationValueRules(name, value);
+      console.log('value BEFORE rule processing is: ' + value);
       value = ruleBroker.processRules(value, '', rules);
+      console.log('value AFTER rule processing is: ' + value);
 
       configurator.setConfigurationSetting(namespace, name, value);
 
@@ -121,13 +129,19 @@ function parseLoadedConfigurationData(allConfigurationData) {
     name = '';
     value = '';
     value = highLevelDebugConfigurationContainer[key];
+    console.log('value is: ' + value);
     if (!!value || value === false) {
       fullyQualifiedName = key;
+      console.log('fullyQualifiedName is: ' + fullyQualifiedName);
 
       name = configurator.processConfigurationNameRules(fullyQualifiedName);
+      console.log('name is: ' + name);
       namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
+      console.log('namespace is: ' + namespace);
       value = configurator.processConfigurationValueRules(name, value);
+      console.log('value BEFORE rule processing is: ' + value);
       value = ruleBroker.processRules(value, '', rules);
+      console.log('value AFTER rule processing is: ' + value);
 
       configurator.setConfigurationSetting(namespace, name, value);
 

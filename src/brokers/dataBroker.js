@@ -26,6 +26,7 @@ var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
 var ruleBroker = require('./ruleBroker');
 var fileOperations = require('../executrix/fileOperations');
+var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -105,21 +106,18 @@ function loadAllJsonData(filesToLoad, contextName) {
   }
 
   // Now we need to determine if we should load the rest of the data.
-  if (multiMergedData[wrd.csystem][cfg.csystemEnableDebugConfigurationSettings]) {
-    if (multiMergedData[wrd.csystem][cfg.csystemEnableDebugConfigurationSettings] === true ||
-    multiMergedData[wrd.csystem][cfg.csystemEnableDebugConfigurationSettings].toUpperCase() === gen.cTRUE) {
-      for (let j = 0; j < filesToLoad.length; j++) {
-        let fileToLoad = filesToLoad[j];
-        if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
-        && fileToLoad.toUpperCase().includes(gen.cDotJSON)) {
-          let dataFile = preprocessJsonFile(fileToLoad);
-
-          if (!multiMergedData[cfg.cdebugSettings]) {
-            multiMergedData[cfg.cdebugSettings] = {};
-            multiMergedData[cfg.cdebugSettings] = dataFile;
-          } else {
-            Object.assign(multiMergedData[cfg.cdebugSettings], dataFile);
-          }
+  if (debugSettingsEnabledLogic(multiMergedData) === true) {
+    for (let j = 0; j < filesToLoad.length; j++) {
+      let fileToLoad = filesToLoad[j];
+      if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
+      && fileToLoad.toUpperCase().includes(gen.cDotJSON)) {
+        let dataFile = preprocessJsonFile(fileToLoad);
+        console.log('dataFile to merge is: ' + JSON.stringify(dataFile));
+        if (!multiMergedData[cfg.cdebugSettings]) {
+          multiMergedData[cfg.cdebugSettings] = {};
+          multiMergedData[cfg.cdebugSettings] = dataFile;
+        } else {
+          Object.assign(multiMergedData[cfg.cdebugSettings], dataFile);
         }
       }
     }
@@ -150,6 +148,66 @@ function preprocessJsonFile(fileToLoad) {
   console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
+};
+
+/**
+ * @function debugSettingsEnabledLogic
+ * @description Runs the logic to determine if a debug configuration setting can be found or not.
+ * @param {object} mergedData The data that was loaded and merged, should be checked for a debug configuration setting flag.
+ * @return {boolean} True or False to indicate if the configuration debug setting was set to true or false,
+ * no matter where the setting was found (D-data structure or in the mergedData object).
+ * @author Seth Hollingsead
+ * @date 2021/12/21
+ * @NOTE: This logic is really critical for optimizing performance, while also enabling rich/powerful debugging capabilities!
+ */
+function debugSettingsEnabledLogic(mergedData) {
+  let functionName = debugSettingsEnabledLogic.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`mergedData is: ${JSON.stringify(mergedData)}`);
+  let debugConfigurationSettingValue = false;
+  let systemDotDebugSettings = wrd.csystem + bas.cDot + cfg.cdebugSettings;
+
+  if (!mergedData[wrd.csystem] && !D[wrd.csystem]) {
+    console.log('!mergedData[wrd.csystem] && !D[wrd.csystem] === true');
+    debugConfigurationSettingValue = false;
+  } else if (!mergedData[wrd.csystem] && D[wrd.csystem]) {
+    console.log('!mergedData[wrd.csystem] && D[wrd.csystem] === true');
+    if (D[wrd.csystem][systemDotDebugSettings]) {
+      console.log('D[wrd.csystem][systemDotDebugSettings] === true');
+      debugConfigurationSettingValue = true;
+    } else {
+      console.log('D[wrd.csystem][systemDotDebugSettings] === false');
+      debugConfigurationSettingValue = false;
+    }
+  } else if (mergedData[wrd.csystem] && !D[wrd.csystem]) {
+    console.log('mergedData[wrd.csystem] && !D[wrd.csystem] === true');
+    if (mergedData[wrd.csystem][systemDotDebugSettings]) {
+      console.log('mergedData[wrd.csystem][systemDotDebugSettings] === true');
+      debugConfigurationSettingValue = true;
+    } else {
+      console.log('mergedData[wrd.csystem][systemDotDebugSettingss] === false');
+      debugConfigurationSettingValue = false;
+    }
+  } else { // Only possible case left is they are both equal to something!
+    console.log('else mergedData[wrd.csystem] && D[wrd.csystem] === true');
+    if (!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings]) {
+      console.log('!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
+      debugConfigurationSettingValue = false;
+    } else if (!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings]) {
+      console.log('!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
+      debugConfigurationSettingValue = true;
+    } else if (mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings]) {
+      console.log('mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
+      debugConfigurationSettingValue = true;
+    } else { // Only possible case left is they are both equal to something!
+      console.log('mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
+      debugConfigurationSettingValue = true;
+    }
+  }
+
+  console.log(`debugConfigurationSettingValue is: ${debugConfigurationSettingValue}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
+  return debugConfigurationSettingValue;
 };
 
 module.exports = {

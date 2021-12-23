@@ -5,6 +5,11 @@
  * and logging to a system-specified log file.
  * Additional logic is in place to allow the configuration file to define which
  * modules/files & functions should participate in logging operations.
+ * @requires module:basic.constants
+ * @requires module:configuration.constants
+ * @requires module:function.constants
+ * @requires module:system.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:data
@@ -14,7 +19,11 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-
+var bas = require('../constants/basic.constants');
+var cfg = require('../constants/configuration.constants');
+var fnc = require('../constants/function.constants');
+var sys = require('../constants/system.constants');
+var wrd = require('../constants/word.constants');
 var configurator = require('./configurator');
 var fileOperations = require('./fileOperations');
 var D = require('../structures/data');
@@ -47,14 +56,14 @@ function consoleLog(classPath, message) {
       let configurationName = '';
       let configurationNamespace = '';
 
-      console.log('determine if there is a configuration setting for the class path.');
-      configuratinoName = configurator.processConfigurationNameRules(classPath);
-      console.log(`configuratinoName is: ${configuratinoName}`);
+      console.log('Determine if there is a configuration setting for the class path.');
+      configurationName = configurator.processConfigurationNameRules(classPath);
+      console.log(`configurationName is: ${configurationName}`);
       configurationNamespace = configurator.processConfigurationNamespaceRules(classPath);
       console.log(`configurationNamespace is: ${configurationNamespace}`);
-      debugFunctionSetting = configurator.getConfigurationSetting(cfg.cdebugSettings + bas.cDot + configurationNamespace, configurationName);
+      debugFunctionSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, configurationName);
       console.log(`debugFunctionSetting is: ${debugFunctionSetting}`);
-      debugFileSetting = configurator.getConfigurationSetting(cfg.cdebugSettings + bas.cDot + configurationNamespace, '');
+      debugFileSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, '');
       console.log(`debugFileSetting is: ${debugFileSetting}`);
       if (debugFunctionSetting || debugFileSetting) {
         debugSetting = true;
@@ -186,13 +195,13 @@ function parseClassPath(logFile, classPath, message) {
   classFunctionName = configurator.processConfigurationNameRules(classPath);
   console.log(`classFunctionName is: ${classFunctionName}`);
 
-  printMessageToFile(logFile, `Getting configuration setting value for: debugFunctions|${className}.${classFunctionName}`);
-  console.log(`Getting configuration setting value for: debugFunctions|${className}.${classFunctionName}`);
+  // printMessageToFile(logFile, `Getting configuration setting value for: debugFunctions|${className}.${classFunctionName}`);
+  console.log(`Getting configuration setting value for: ${className}.${classFunctionName}`);
   debugFunctionsSetting = configurator.getConfigurationSetting(className, classFunctionName);
-  printMessageToFile(logFile, `debugFunctionsSetting is: ${debugFunctionsSetting}`);
+  // printMessageToFile(logFile, `debugFunctionsSetting is: ${debugFunctionsSetting}`);
   console.log(`debugFunctionsSetting is: ${debugFunctionsSetting}`);
   debugFilesSetting = configurator.getConfigurationSetting(className, '');
-  printMessageToFile(logFile, `debugFilesSetting is: ${debugFilesSetting}`);
+  // printMessageToFile(logFile, `debugFilesSetting is: ${debugFilesSetting}`);
   console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
     // TODO: Implement the colorizing of the message here.

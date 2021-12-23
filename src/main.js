@@ -25,6 +25,7 @@ var warden = require('./controllers/warden');
 var loggers = require('./executrix/loggers');
 var prompt = require('./executrix/prompt');
 var path = require('path');
+var D = require('./structures/data');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = `${baseFileName}.`;
 
@@ -39,14 +40,17 @@ var namespacePrefix = `${baseFileName}.`;
   */
  function initFramework(clientConfiguration) {
    let functionName = initFramework.name;
-   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-   console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+   loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+   // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
    let appRootPath = warden.processRootPath(clientConfiguration);
    clientConfiguration[cfg.cappRootPath] = appRootPath;
    clientConfiguration[cfg.cappConfigPath] = appRootPath + clientConfiguration[cfg.cappConfigReferencePath];
    clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
    warden.initFrameworkSchema(clientConfiguration);
+   console.log('All loaded data is: ' + JSON.stringify(D));
    console.log(`END ${namespacePrefix}${functionName} function`);
+   loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
  };
 
 module.exports = {

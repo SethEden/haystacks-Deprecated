@@ -43,7 +43,6 @@ var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  */
 function processRootPath(configData) {
   let functionName = processRootPath.name;
-  console.log('bas.cDot resolves as: ' + bas.cDot);
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`configData is: ${JSON.stringify(configData)}`);
   let rules = {};
