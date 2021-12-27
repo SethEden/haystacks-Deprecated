@@ -7,6 +7,7 @@
  * @requires module:business.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:ruleBroker
@@ -24,6 +25,7 @@ var bas = require('../constants/basic.constants');
 var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
+var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
 var ruleBroker = require('../brokers/ruleBroker');
@@ -49,9 +51,9 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`appConfigPath is: ${appConfigPath}`);
   // console.log(`frameworkConfigPath is: ${frameworkConfigPath}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `appConfigPath is: ${appConfigPath}`);
-  loggers.consoleLog(namespacePrefix + functionName, `frameworkConfigPath is: ${frameworkConfigPath}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigPathIs + appConfigPath);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + frameworkConfigPath);
   let rules = {};
   rules[0] = biz.cswapBackSlashToForwardSlash;
   appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
@@ -68,8 +70,8 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   parseLoadedConfigurationData(allAppConfigData);
   // console.log('ALL DATA IS: ' + JSON.stringify(D));
   // console.log(`END ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, 'ALL DATA IS: ' + JSON.stringify(D));
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
 /**
@@ -80,6 +82,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function parseLoadedConfigurationData(allConfigurationData) {
   let functionName = parseLoadedConfigurationData.name;

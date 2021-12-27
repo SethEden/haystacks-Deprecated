@@ -7,6 +7,7 @@
  * @requires module:business.constants
  * @requires module:configuration.contants
  * @requires module:generic.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:ruleBroker
@@ -23,6 +24,7 @@ var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
+var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
 var ruleBroker = require('./ruleBroker');
@@ -47,8 +49,8 @@ function scanDataPath(dataPath) {
   let functionName = scanDataPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`dataPath is: ${dataPath}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `dataPath is: ${dataPath}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + dataPath);
   let rules = {};
   let filesFound = [];
   rules[0] = biz.cswapBackSlashToForwardSlash;
@@ -56,8 +58,8 @@ function scanDataPath(dataPath) {
   dataPath = ruleBroker.processRules(dataPath, '', rules);
   // console.log(`dataPath after business rules processing is: ${dataPath}`);
   filesFound = fileOperations.readDirectoryContents(dataPath);
-  loggers.consoleLog(namespacePrefix + functionName, `filesFound is: ${JSON.stringify(filesFound)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundIs + JSON.stringify(filesFound));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
@@ -78,16 +80,10 @@ function loadAllJsonData(filesToLoad, contextName) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
   // console.log(`contextName is: ${contextName}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `filesToLoad is: ${JSON.stringify(filesToLoad)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `contextName is: ${contextName}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilesToLoadIs + JSON.stringify(filesToLoad));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let foundSystemData = false;
-
-  // console.log(`sys.csystemConfigFileName resolves as: ${sys.csystemConfigFileName}`);
-  // console.log(`sys.capplicationConfigFileName resolves as: ${sys.capplicationConfigFileName}`);
-  loggers.consoleLog(namespacePrefix + functionName, `sys.csystemConfigFileName resolves as: ${sys.csystemConfigFileName}`);
-  loggers.consoleLog(namespacePrefix + functionName, `sys.capplicationConfigFileName resolves as: ${sys.capplicationConfigFileName}`);
-
   let systemConfigFileName = sys.csystemConfigFileName; // 'framework.system.json';
   let applicationConfigFileName = sys.capplicationConfigFileName; // 'application.system.json';
   let multiMergedData = {};
@@ -124,7 +120,7 @@ function loadAllJsonData(filesToLoad, contextName) {
       && fileToLoad.toUpperCase().includes(gen.cDotJSON)) {
         let dataFile = preprocessJsonFile(fileToLoad);
         // console.log('dataFile to merge is: ' + JSON.stringify(dataFile));
-        loggers.consoleLog(namespacePrefix + functionName, 'dataFile to merge is: ' + JSON.stringify(dataFile));
+        loggers.consoleLog(namespacePrefix + functionName, msg.cdataFileToMergeIs + JSON.stringify(dataFile));
         if (!multiMergedData[cfg.cdebugSettings]) {
           multiMergedData[cfg.cdebugSettings] = {};
           multiMergedData[cfg.cdebugSettings] = dataFile;
@@ -137,8 +133,8 @@ function loadAllJsonData(filesToLoad, contextName) {
   parsedDataFile = multiMergedData;
   // console.log(`parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, `parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
 };
 
@@ -154,16 +150,16 @@ function preprocessJsonFile(fileToLoad) {
   let functionName = preprocessJsonFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `fileToLoad is: ${JSON.stringify(fileToLoad)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfileToLoadIs + JSON.stringify(fileToLoad));
   let filePathRules = {};
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   // console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `execute business rules: ${JSON.stringify(filePathRules)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRules + JSON.stringify(filePathRules));
   let finalFileToLoad = ruleBroker.processRules(fileToLoad, '', filePathRules);
   let dataFile = fileOperations.getJsonData(finalFileToLoad);
-  loggers.consoleLog(namespacePrefix + functionName, `dataFile is: ${JSON.stringify(dataFile)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataFileIs + JSON.stringify(dataFile));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
@@ -183,64 +179,64 @@ function debugSettingsEnabledLogic(mergedData) {
   let functionName = debugSettingsEnabledLogic.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`mergedData is: ${JSON.stringify(mergedData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `mergedData is: ${JSON.stringify(mergedData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cmergedDataIs + JSON.stringify(mergedData));
   let debugConfigurationSettingValue = false;
   let systemDotDebugSettings = wrd.csystem + bas.cDot + cfg.cdebugSettings;
 
   if (!mergedData[wrd.csystem] && !D[wrd.csystem]) {
     // console.log('!mergedData[wrd.csystem] && !D[wrd.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, '!mergedData[wrd.csystem] && !D[wrd.csystem] === true');
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic01);
     debugConfigurationSettingValue = false;
   } else if (!mergedData[wrd.csystem] && D[wrd.csystem]) {
     // console.log('!mergedData[wrd.csystem] && D[wrd.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, '!mergedData[wrd.csystem] && D[wrd.csystem] === true');
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic02);
     if (D[wrd.csystem][systemDotDebugSettings]) {
       // console.log('D[wrd.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, 'D[wrd.csystem][systemDotDebugSettings] === true');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic03);
       debugConfigurationSettingValue = true;
     } else {
       // console.log('D[wrd.csystem][systemDotDebugSettings] === false');
-      loggers.consoleLog(namespacePrefix + functionName, 'D[wrd.csystem][systemDotDebugSettings] === false');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic04);
       debugConfigurationSettingValue = false;
     }
   } else if (mergedData[wrd.csystem] && !D[wrd.csystem]) {
     // console.log('mergedData[wrd.csystem] && !D[wrd.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, 'mergedData[wrd.csystem] && !D[wrd.csystem] === true');
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic05);
     if (mergedData[wrd.csystem][systemDotDebugSettings]) {
       // console.log('mergedData[wrd.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, 'mergedData[wrd.csystem][systemDotDebugSettings] === true');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic06);
       debugConfigurationSettingValue = true;
     } else {
       // console.log('mergedData[wrd.csystem][systemDotDebugSettingss] === false');
-      loggers.consoleLog(namespacePrefix + functionName, 'mergedData[wrd.csystem][systemDotDebugSettingss] === false');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic07);
       debugConfigurationSettingValue = false;
     }
   } else { // Only possible case left is they are both equal to something!
     // console.log('else mergedData[wrd.csystem] && D[wrd.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, 'else mergedData[wrd.csystem] && D[wrd.csystem] === true');
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic08);
     if (!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings]) {
       // console.log('!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, '!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic09);
       debugConfigurationSettingValue = false;
     } else if (!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings]) {
       // console.log('!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, '!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic10);
       debugConfigurationSettingValue = true;
     } else if (mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings]) {
       // console.log('mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, 'mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic11);
       debugConfigurationSettingValue = true;
     } else { // Only possible case left is they are both equal to something!
       // console.log('mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, 'mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic12);
       debugConfigurationSettingValue = true;
     }
   }
   // console.log(`debugConfigurationSettingValue is: ${debugConfigurationSettingValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, `debugConfigurationSettingValue is: ${debugConfigurationSettingValue}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdebugConfigurationSettingValueIs + debugConfigurationSettingValue);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return debugConfigurationSettingValue;
 };
 

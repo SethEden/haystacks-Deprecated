@@ -3,6 +3,7 @@
  * @module arrayParsing
  * @description Contains all system defined business rules for parsing arrays with various operations.
  * @requires module:basic.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:loggers
@@ -13,6 +14,7 @@
  */
 
 var bas = require('../../constants/basic.constants');
+var msg = require('../../constants/message.constants');
 var sys = require('../../constants/system.constants');
 var wrd = require('../../constants/word.constants');
 var loggers = require('../../executrix/loggers');
@@ -38,9 +40,9 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${inputData}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   let character2Find = inputMetaData[0];
   let character2Replace = inputMetaData[1];
@@ -49,8 +51,8 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   } else {
     returnData = inputData.replace(character2Find, character2Replace);
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

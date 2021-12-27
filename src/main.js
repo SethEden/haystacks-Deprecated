@@ -6,6 +6,7 @@
  * @description Contains all customer facing functions to are used to interface with the rest of the application framework.
  * @requires module:configuration.constants
  * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:warden
@@ -17,9 +18,19 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+var bas = require('./constants/basic.constants');
+var biz = require('./constants/business.constants');
 var cfg = require('./constants/configuration.constants');
+var con = require('./constants/constant.constants');
+var ctr = require('./constants/country.constants');
 var fnc = require('./constants/function.constants');
+var gen = require('./constants/generic.constants');
+var lng = require('./constants/language.constants');
+var msg = require('./constants/message.constants');
+var num = require('./constants/numeric.constants');
+var phn = require('./constants/phonic.constants');
 var sys = require('./constants/system.constants');
+var unt = require('./constants/unit.constants');
 var wrd = require('./constants/word.constants');
 var warden = require('./controllers/warden');
 var loggers = require('./executrix/loggers');
@@ -40,21 +51,36 @@ var namespacePrefix = `${baseFileName}.`;
   */
  function initFramework(clientConfiguration) {
    let functionName = initFramework.name;
-   loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-   loggers.consoleLog(namespacePrefix + functionName, `clientConfiguration is: ${clientConfiguration}`);
    // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
    // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+   loggers.consoleLog(namespacePrefix + functionName, msg.cclientConfigurationIs + clientConfiguration);
    let appRootPath = warden.processRootPath(clientConfiguration);
    clientConfiguration[cfg.cappRootPath] = appRootPath;
    clientConfiguration[cfg.cappConfigPath] = appRootPath + clientConfiguration[cfg.cappConfigReferencePath];
    clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
    warden.initFrameworkSchema(clientConfiguration);
-   console.log('All loaded data is: ' + JSON.stringify(D));
+   loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
+   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+   // console.log('All loaded data is: ' + JSON.stringify(D));
    // console.log(`END ${namespacePrefix}${functionName} function`);
-   loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
  };
 
 module.exports = {
   [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
-  [fnc.cprompt]: (ask) => prompt.prompt(ask)
+  [fnc.cprompt]: (ask) => prompt.prompt(ask),
+  [gen.cbas]: bas,
+  [gen.cbiz]: biz,
+  [gen.ccfg]: cfg,
+  [gen.ccon]: con,
+  [gen.cctr]: ctr,
+  [gen.cfnc]: fnc,
+  [gen.cgen]: gen,
+  [gen.clng]: lng,
+  [gen.cmsg]: msg,
+  [gen.cnum]: num,
+  [gen.cphn]: phn,
+  [gen.csys]: sys,
+  [gen.cunt]: unt,
+  [gen.cwrd]: wrd
 };

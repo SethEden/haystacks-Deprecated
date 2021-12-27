@@ -5,6 +5,7 @@
  * such as XML files, CSV files or JSON files. Additional file type processing should be added in this module.
  * @requires module:basic.constants
  * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:word.constants
  * @requires module:dataBroker
  * @requires module:configurator
@@ -16,6 +17,7 @@
 
 var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
+var msg = require('../constants/message.constants');
 var wrd = require('../constants/word.constants');
 var dataBroker = require('../brokers/dataBroker');
 var configurator = require('../executrix/configurator');
@@ -31,6 +33,7 @@ var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * @return {object} A JSON object that contains all of the data that was loaded and merged together.
  * @author Seth Hollingsead
  * @date 2021/03/31
+ * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   let functionName = setupAllJsonConfigData.name;

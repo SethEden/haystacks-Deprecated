@@ -5,6 +5,7 @@
  * reformatting time stamps and tracking time durations.
  * @requires module:basic.constants
  * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:word.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://www.npmjs.com/package/moment|moment}
@@ -15,6 +16,7 @@
 
 var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
+var msg = require('../constants/message.constants');
 var wrd = require('../constants/word.constants');
 var path = require('path');
 var moment = require('moment');
@@ -29,17 +31,14 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @return {string} A time stamp string that has been formatted accroding to the input format.
  * @author Seth Hollingsead
  * @date 2021/10/19
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
  function getNowMoment(formatting) {
    let functionName = getNowMoment.name;
    // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
    // console.log(`formatting is: ${formatting}`);
-   loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-   loggers.consoleLog(namespacePrefix + functionName, `formatting is: ${formatting}`);
    let returnData = '';
    returnData = moment().format(formatting);
-   loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${returnData}`);
-   loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
    // console.log(`returnData is: ${returnData}`);
    // console.log(`END ${namespacePrefix}${functionName} function`);
    return returnData;
@@ -59,15 +58,15 @@ function computeDeltaTime(startTime, endTime) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`startTime is: ${startTime}`);
   // console.log(`endTime is: ${endTime}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `startTime is: ${startTime}`);
-  loggers.consoleLog(namespacePrefix + functionName, `endTime is: ${endTime}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cstartTimeIs + startTime);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cendTimeIs + endTime);
   let deltaTimeResult;
   startTime = moment(startTime, gen.cYYYYMMDD_HHmmss_SSS);
   endTime = moment(endTime, gen.cYYYYMMDD_HHmmss_SSS);
   deltaTimeResult = endTime.diff(startTime); // Should wok in milliseconds out of the box!
-  loggers.consoleLog(namespacePrefix + functionName, `deltaTimeResult is: ${deltaTimeResult}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdeltaTimeResultIs + deltaTimeResult);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`deltaTimeResult is: ${deltaTimeResult}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return deltaTimeResult;

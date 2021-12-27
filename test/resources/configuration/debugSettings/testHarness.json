@@ -1,0 +1,4 @@
+{
+  "debugFiles|debugSetting.testHarness": true,
+  "debugFunctions|debugSetting.testHarness.application": true
+}

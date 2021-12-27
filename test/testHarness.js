@@ -5,6 +5,10 @@
  * @module testHarness
  * @description This is the main init for the testHarness application.
  * It contains just enough of the main program loop and/or basic argument parsing to effectively test the framework.
+ * @requires module:haystacks.main
+ * @requires module:haystacks.constants.basic
+ * @requires module:haystacks.constants.message
+ * @requires module:application.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/07
@@ -12,11 +16,14 @@
  */
 
 import haystacks from '../src/main.js';
+var bas = haystacks.bas;
+var msg = haystacks.msg;
+var apc = require('./constants/application.constants');
 var path = require('path');
 global.appRot = path.resolve(process.cwd());
 var rootPath = '';
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `${baseFileName}.`;
+var namespacePrefix = baseFileName + bas.cDot;
 
 /**
  * @function bootstrapApplication

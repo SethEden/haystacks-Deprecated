@@ -8,6 +8,7 @@
  * with values of all kinds, and various parsing operations.
  * @requires module:basic.constants
  * @requires module:generic.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:configurator
@@ -22,6 +23,7 @@
 
 var bas = require('../../constants/basic.constants');
 var gen = require('../../constants/generic.constants');
+var msg = require('../../constants/message.constants');
 var sys = require('../../constants/system.constants');
 var wrd = require('../../constants/word.constants');
 var configurator = require('../../executrix/configurator');
@@ -353,9 +355,9 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   if (!inputData) {
     returnData = false;
@@ -374,8 +376,8 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
       returnData = inputData;
     }
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -396,17 +398,17 @@ export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, bas.cBackSlash]);
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -427,17 +429,17 @@ export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -458,17 +460,17 @@ export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, in
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -489,17 +491,17 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, bas.cBackSlash]);
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

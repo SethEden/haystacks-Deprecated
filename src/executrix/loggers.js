@@ -34,6 +34,21 @@ var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
+/**
+ * @function consoleLog
+ * @description Compares the class path to a series of configuration settings to determine
+ * if we should log to the console or not.
+ * Also can provisionally log to a log file as well since the console
+ * is technically a transient data output.
+ * @NOTE When it comes to dumping large amounts of data out of a script the console will not do,
+ * And dumping data to an output log file is critical to debuggin certain tests and workflows.
+ * @param {string} classPath The class path for the caller of this function file.function or class.method.
+ * @param {string} message The message or data contents that should be dumped to the output.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2021/12/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
+ */
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
   if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
@@ -96,6 +111,7 @@ function consoleLog(classPath, message) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToFileAndConsole) {
   let functionName = consoleLogProcess.name;
@@ -146,6 +162,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
  * @return {boolean} A TRUE or FALSE to indicate if the output message should be dumped to the log file and/or the console.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function validMessage(outputMessage, originalMessage) {
   let functionName = validMessage.name;
@@ -178,6 +195,7 @@ function validMessage(outputMessage, originalMessage) {
  * @return {string} Returns the message that should be printed out to the console and logged to the log file.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function parseClassPath(logFile, classPath, message) {
   let functionName = parseClassPath.name;
@@ -234,6 +252,7 @@ function parseClassPath(logFile, classPath, message) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function printMessageToFile(file, message) {
   let functionName = printMessageToFile.name;

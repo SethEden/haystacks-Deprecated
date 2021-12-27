@@ -15,6 +15,7 @@
 
 var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
+var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
 var rules = require('../businessRules/rulesLibrary');
@@ -55,9 +56,9 @@ function bootStrapBusinessRules() {
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   Object.assign(D[sys.cbusinessRules], clientRules);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 

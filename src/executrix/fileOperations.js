@@ -9,6 +9,7 @@
  * @requires module:basic.constants
  * @requires module:function.constants
  * @requires module:generic.constants
+ * @requires module:message.constants
  * @requires module:word.constants
  * @requires module:loggers
  * @requires module:data
@@ -22,6 +23,7 @@
 var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
+var msg = require('../constants/message.constants');
 var wrd = require('../constants/word.constants');
 var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
@@ -52,7 +54,7 @@ function getJsonData(pathAndFilename) {
   // Make sure to resolve the path on the local system,
   // just in case tehre are issues with the OS that the code is running on.
   pathAndFilename = path.resolve(pathAndFilename);
-  let rawData = fs.readFileSync(pathAndFilename, { encoding: 'UTF8'});
+  let rawData = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8});
   let parsedData = JSON.parse(rawData);
   // console.log(`DONE loading data from: ${pathAndFilename}`);
   // console.log(`loaded data is: ${JSON.stringify(parsedData)}`);
@@ -110,7 +112,7 @@ function readDirectorySynchronously(directory) {
     try {
       currentDirectory = fs.readdirSync(currentDirectoryPath, gen.cUTF8);
     } catch (e) {
-      console.log('ERROR: ' + e.message);
+      console.log(msg.cERROR + e.message);
       fs.mkdirSync(currentDirectoryPath);
       currentDirectory = fs.readdirSync(currentDirectoryPath, gen.cUTF8);
     }
@@ -144,7 +146,7 @@ function readDirectorySynchronously(directory) {
           readDirectorySynchronously(directoryPath);
         }
       } catch (e) { // Catch the error in the hopes that we can continue scanning the file system.
-        console.log(`ERROR: Invalid access to: ${pathOfCurrentItem}`);
+        console.log(msg.cErrorInvalidAccessTo + pathOfCurrentItem);
       }
     });
     // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -165,11 +167,11 @@ function readDirectorySynchronously(directory) {
 function cleanRootPath() {
   let functionName = cleanRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let rootPath;
 
-  loggers.consoleLog(namespacePrefix + functionName, `rootPath is: ${rootPath}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.crootPathIs + rootPath);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`rootPath is: ${rootPath}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
