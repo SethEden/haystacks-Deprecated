@@ -35,6 +35,7 @@ var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function bootStrapBusinessRules() {
   let functionName = bootStrapBusinessRules.name;
@@ -54,7 +55,9 @@ function bootStrapBusinessRules() {
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
   Object.assign(D[sys.cbusinessRules], clientRules);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 

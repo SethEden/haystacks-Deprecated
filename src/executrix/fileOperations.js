@@ -10,6 +10,7 @@
  * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:word.constants
+ * @requires module:loggers
  * @requires module:data
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -22,6 +23,7 @@ var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var wrd = require('../constants/word.constants');
+var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var fs = require('fs');
 var path = require('path');
@@ -41,9 +43,10 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @return {object} The JSON object as it was loaded from the file with minimal to no additional processing.
  * @author Seth Hollingsead
  * @date 2021/10/15
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getJsonData(pathAndFilename) {
-  // let functionName = getJsonData.name;
+  let functionName = getJsonData.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`pathAndFilename is: ${pathAndFilename}`);
   // Make sure to resolve the path on the local system,
@@ -66,9 +69,10 @@ function getJsonData(pathAndFilename) {
  * @return {object} An object containing any array of all the files in the folder and all sub-folders.
  * @author Seth Hollingsead
  * @date 2021/10/15
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function readDirectoryContents(directory) {
-  // let functionName = readDirectoryContents.name;
+  let functionName = readDirectoryContents.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`directory is: ${directory}`);
   let filesFound = [];
@@ -93,11 +97,12 @@ function readDirectoryContents(directory) {
  * @author wn050
  * @reference https://stackoverflow.com/questions/41462606/get-all-files-recursively-in-directores-nodejs
  * @date 2020/05/22
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function readDirectorySynchronously(directory) {
   let functionName = readDirectorySynchronously.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`directory is: ${directory}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`directory is: ${directory}`);
   if (hitFileLimit === false) {
     directory = path.resolve(directory); // Make sure to resolve the path on the local system, just in case there are issues with the OS that the code is running on.
     let currentDirectoryPath = directory;
@@ -125,7 +130,7 @@ function readDirectorySynchronously(directory) {
               return;
             }
           } else {
-            // console.log('adding the file the old fashioned way');
+            // console.log('Adding the file the old fashioned way.');
             filesCollection.push(pathOfCurrentItem);
           }
         } else if (!filesShouldBeSkipped) {
@@ -135,15 +140,14 @@ function readDirectorySynchronously(directory) {
           // Then handle each case appropriately.
           let directoryPath = '';
           directoryPath = path.resolve(directory + bas.cForwardSlash + file);
-          console.log(`directoryPath is: ${directoryPath}`);
+          // console.log(`directoryPath is: ${directoryPath}`);
           readDirectorySynchronously(directoryPath);
         }
       } catch (e) { // Catch the error in the hopes that we can continue scanning the file system.
         console.log(`ERROR: Invalid access to: ${pathOfCurrentItem}`);
       }
     });
-    console.log(`END ${namespacePrefix}${functionName} function`);
-    console.log('END dataBroker.readDirectorySynchronously function');
+    // console.log(`END ${namespacePrefix}${functionName} function`);
   }
 };
 
@@ -160,11 +164,14 @@ function readDirectorySynchronously(directory) {
  */
 function cleanRootPath() {
   let functionName = cleanRootPath.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
   let rootPath;
 
-  console.log(`rootPath is: ${rootPath}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  loggers.consoleLog(namespacePrefix + functionName, `rootPath is: ${rootPath}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  // console.log(`rootPath is: ${rootPath}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
 };
 
@@ -177,9 +184,10 @@ function cleanRootPath() {
  * @return {boolean} A TRUE or FALSE to indicate if the append happened successfully or not.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function appendMessageToFile(file, message) {
-  // let functionName = appendMessageToFile.name;
+  let functionName = appendMessageToFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);

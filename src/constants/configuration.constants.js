@@ -21,15 +21,17 @@ let cappRootPath = gen.capp + wrd.cRoot + wrd.cPath; // appRootPath
 let cappConfigPath = gen.capp + wrd.cConfig + wrd.cPath; // appConfigPath
 let cframeworkConfigPath = wrd.cframework + wrd.cConfig + wrd.cPath; // frameworkConfigPath
 let cappConfigReferencePath = gen.capp + wrd.cConfig + wrd.cReference + wrd.cPath; // appConfigReferencePath
-let csystemEnableDebugConfigurationSettings = wrd.csystem + bas.cDot + wrd.cenable + wrd.cDebug + wrd.cConfiguration + wrd.cSettings; // system.enableDebugConfigurationSettings
+let cdebugSetting = wrd.cdebug + wrd.cSetting; // debugSetting
 let cdebugSettings = wrd.cdebug + wrd.cSettings; // debugSettings
+let cdebugFiles = wrd.cdebug + wrd.cFiles; // debugFiles
+let cdebugFunctions = wrd.cdebug + wrd.cFunctions; // debugFunctions
 let cincludeDateTimeStampInLogFiles = wrd.cinclude + wrd.cDate + wrd.cTime + wrd.cStamp + bas.cIn + gen.cLog + wrd.cFiles; // includeDateTimeStampInLogFiles
 let cLogFilePathAndName = wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // LogFilePathAndName
 let cDataLogFilePathAndName = wrd.cData + wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // DataLogFilePathAndName
 let cExecutionJournalFilePathAndName = wrd.cExecution + wrd.cJournal + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // ExecutionJournalFilePathAndName
 let cResultsLogFilePathAndName = wrd.cResults + wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // ResultsLogFilePathAndName
 let cTestDataPath = wrd.cTest + wrd.cData + wrd.cPath; // TestDataPath
-let cConsoleLogEnabled = wrd.cConsole + wrd.cLog + wrd.cEnabled; // ConsoleLogEnabled
+let cconsoleLogEnabled = wrd.cconsole + wrd.cLog + wrd.cEnabled; // consoleLogEnabled
 let cLogFileEnabled = wrd.cLog + wrd.cFile + wrd.cEnabled; // LogFileEnabled
 let cIncludeDateTimeStampInLogFiles = wrd.cInclude + wrd.cDate + wrd.cTime + wrd.cStamp + bas.cIn + gen.cLog + wrd.cFiles; // IncludeDateTimeStampInLogFiles
 
@@ -39,15 +41,17 @@ module.exports = {
   [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
   [bas.cc + cframeworkConfigPath]: cframeworkConfigPath, // frameworkConfigPath
   [bas.cc + cappConfigReferencePath]: cappConfigReferencePath, // appConfigReferencePath
-  [bas.cc + csystemEnableDebugConfigurationSettings]: csystemEnableDebugConfigurationSettings, // system.enableDebugConfigurationSettings
-  [bas.cc + cdebugSettings]: cdebugSettings,
+  [bas.cc + cdebugSetting]: cdebugSetting, // debugSetting
+  [bas.cc + cdebugSettings]: cdebugSettings, // debugSettings
+  [bas.cc + cdebugFunctions]: cdebugFunctions, // debugFunctions
+  [bas.cc + cdebugFiles]: cdebugFiles, // debugFiles
   [bas.cc + cincludeDateTimeStampInLogFiles]: cincludeDateTimeStampInLogFiles,
   [bas.cc + cLogFilePathAndName]: cLogFilePathAndName, // LogFilePathAndName
   [bas.cc + cDataLogFilePathAndName]: cDataLogFilePathAndName, // DataLogFilePathAndName
   [bas.cc + cExecutionJournalFilePathAndName]: cExecutionJournalFilePathAndName, // ExecutionJournalFilePathAndName
   [bas.cc + cResultsLogFilePathAndName]: cResultsLogFilePathAndName, // ResultsLogFilePathAndName
   [bas.cc + cTestDataPath]: cTestDataPath, // TestDataPath
-  [bas.cc + cConsoleLogEnabled]: cConsoleLogEnabled, // ConsoleLogEnabled
+  [bas.cc + cconsoleLogEnabled]: cconsoleLogEnabled, // consoleLogEnabled
   [bas.cc + cLogFileEnabled]: cLogFileEnabled, // LogFileEnabled
   [bas.cc + cIncludeDateTimeStampInLogFiles]: cIncludeDateTimeStampInLogFiles // IncludeDateTimeStampInLogFiles
 };

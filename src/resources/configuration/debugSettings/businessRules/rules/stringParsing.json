@@ -1,0 +1,8 @@
+{
+  "debugFiles|debugSetting.businessRules.rules.stringParsing": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.singleQuoteSwapAfterEquals": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapForwardSlashToBackSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapBackSlashToForwardSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapDoubleForwardSlashToSingleForwardSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapDoubleBackSlashToSingleBackSlash": true
+}

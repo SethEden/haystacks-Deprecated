@@ -5,6 +5,7 @@
  * @requires module:basic.constants
  * @requires module:system.constants
  * @requires module:word.constants
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/28
@@ -14,6 +15,7 @@
 var bas = require('../../constants/basic.constants');
 var sys = require('../../constants/system.constants');
 var wrd = require('../../constants/word.constants');
+var loggers = require('../../executrix/loggers');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
@@ -36,6 +38,9 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${inputData}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   let character2Find = inputMetaData[0];
   let character2Replace = inputMetaData[1];
@@ -44,6 +49,8 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   } else {
     returnData = inputData.replace(character2Find, character2Replace);
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

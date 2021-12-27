@@ -45,8 +45,6 @@ let cLogBrowserActions = wrd.cLog + wrd.cBrowser + wrd.cActions; // LogBrowserAc
 let cJournalBrowserActions = wrd.cJournal + wrd.cBrowser + wrd.cActions; // JournalBrowserActions
 let cDebugBrowserActions = wrd.cDebug + wrd.cBrowser + wrd.cActions; // DebugBrowserActions
 let cDebugSelectors = wrd.cDebug + wrd.cSelectors; // DebugSelectors
-let cDebugFunctions = wrd.cDebug + wrd.cFunctions; // DebugFunctions
-let cDebugFiles = wrd.cDebug + wrd.cFiles; // DebugFiles
 let cTestAutomation = wrd.cTest + wrd.cAutomation; // TestAutomation
 let cNumberOfRows = wrd.cNumber + wrd.cOf + wrd.cRows; // NumberOfRows
 let cMasterRowNumber = wrd.cMaster + wrd.cRow + wrd.cNumber; // MasterRowNumber
@@ -400,8 +398,6 @@ module.exports = {
   [bas.cc + cJournalBrowserActions]: cJournalBrowserActions, // JournalBrowserActions
   [bas.cc + cDebugBrowserActions]: cDebugBrowserActions, // DebugBrowserActions
   [bas.cc + cDebugSelectors]: cDebugSelectors, // DebugSelectors
-  [bas.cc + cDebugFunctions]: cDebugFunctions, // DebugFunctions
-  [bas.cc + cDebugFiles]: cDebugFiles, // DebugFiles
   [bas.cc + cTestAutomation]: cTestAutomation, // TestAutomation
   [bas.cc + cNumberOfRows]: cNumberOfRows, // NumberOfRows
   [bas.cc + cMasterRowNumber]: cMasterRowNumber, // MasterRowNumber
