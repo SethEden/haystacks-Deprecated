@@ -1,0 +1,4 @@
+{
+  "debugFiles|debugSetting.executrix.fileOperations": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.cleanRootPath": true
+}

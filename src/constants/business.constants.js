@@ -43,6 +43,7 @@ let cswapForwardSlashToBackSlash = wrd.cswap + sys.cForwardSlash + bas.cTo + sys
 let cswapBackSlashToForwardSlash = wrd.cswap + sys.cBackSlash + bas.cTo + sys.cForwardSlash; // swapBackSlashToForwardSlash
 let cswapDoubleForwardSlashToSingleForwardSlash = wrd.cswap + wrd.cDouble + sys.cForwardSlash + bas.cTo + wrd.cSingle + sys.cForwardSlash; // swapDoubleForwardSlashToSingleForwardSlash
 let cswapDoubleBackSlashToSingleBackSlash = wrd.cswap + wrd.cDouble + sys.cBackSlash + bas.cTo + wrd.cSingle + sys.cBackSlash; // swapDoubleBackSlashToSingleBackSlash
+let creplaceDoublePercentWithMessage = wrd.creplace + wrd.cDouble + wrd.cPercent + wrd.cWith + wrd.cMessage; // replaceDoublePercentWithMessage
 
 module.exports = {
   // *********************************
@@ -65,5 +66,6 @@ module.exports = {
   [bas.cc + cswapForwardSlashToBackSlash]: cswapForwardSlashToBackSlash,
   [bas.cc + cswapBackSlashToForwardSlash]: cswapBackSlashToForwardSlash,
   [bas.cc + cswapDoubleForwardSlashToSingleForwardSlash]: cswapDoubleForwardSlashToSingleForwardSlash,
-  [bas.cc + cswapDoubleBackSlashToSingleBackSlash]: cswapDoubleBackSlashToSingleBackSlash
+  [bas.cc + cswapDoubleBackSlashToSingleBackSlash]: cswapDoubleBackSlashToSingleBackSlash,
+  [bas.cc + creplaceDoublePercentWithMessage]: creplaceDoublePercentWithMessage
 };

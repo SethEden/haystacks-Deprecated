@@ -11,6 +11,7 @@
  * @requires module:system.constants
  * @requires module:word.constants
  * @requires module:configurator
+ * @requires module:loggers
  * @requires module:arrayParsing
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -24,6 +25,7 @@ var gen = require('../../constants/generic.constants');
 var sys = require('../../constants/system.constants');
 var wrd = require('../../constants/word.constants');
 var configurator = require('../../executrix/configurator');
+var loggers = require('../../executrix/loggers');
 var arrayParsing = require('./arrayParsing');
 var D = require('../../structures/data');
 var path = require('path');
@@ -43,6 +45,7 @@ var namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + ba
  * where ever that is installed on the local system currently executing.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 export const parseSystemRootPath = function(inputData, inputMetaData) {
   let functionName = parseSystemRootPath.name;
@@ -89,12 +92,13 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
  * @return {object|string|boolean|integer} Returns a value of whatever type the string should be converted to as appropriate.
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const stringToDataType = function(inputData, inputMetaData) {
   let functionName = stringToDataType.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     let dataType = determineObjectDataType(inputData, '');
@@ -116,8 +120,8 @@ export const stringToDataType = function(inputData, inputMetaData) {
         break;
     }
   } // End-if (inputData)
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -132,12 +136,13 @@ export const stringToDataType = function(inputData, inputMetaData) {
  * @NOTE We cannot pass in a 1 or 0 to this function and expect it to evaluate as a True or False because:
  * We have another function that is passing strings into the function, and also part of that check to look for data-types is a check to see if a string is a number.
  * If we cause this function to evaluate a 0 or 1 to a Boolean, then the integer function would never get a chance to evaluate.
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const stringToBoolean = function(inputData, inputMetaData) {
   let functionName = stringToBoolean.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     if (typeof inputData === wrd.cboolean) {
@@ -156,8 +161,8 @@ export const stringToBoolean = function(inputData, inputMetaData) {
       }
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -170,12 +175,13 @@ export const stringToBoolean = function(inputData, inputMetaData) {
  * @return {string} A string that indicates if the data type should be Boolean, Integer, Float, String or something else.
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const determineObjectDataType = function(inputData, inputMetaData) {
   let functionName = determineObjectDataType.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     if (isBoolean(inputData, '') === true) {
@@ -193,8 +199,8 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
       returnData = wrd.cObject;
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -208,12 +214,13 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
  * @return {boolean} A Boolean value of True or False to indicate if the input string is a Boolean or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const isBoolean = function(inputData, inputMetaData) {
   let functionName = isBoolean.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     if (typeof inputData === 'boolean') {
@@ -228,8 +235,8 @@ export const isBoolean = function(inputData, inputMetaData) {
       }
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -241,12 +248,13 @@ export const isBoolean = function(inputData, inputMetaData) {
  * @return {boolean} A Boolean value of true or false to indicate if the input string is an integer or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const isInteger = function(inputData, inputMetaData) {
   let functionName = isInteger.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     if (!isNaN(inputData)) {
@@ -262,8 +270,8 @@ export const isInteger = function(inputData, inputMetaData) {
       returnData = false;
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -275,12 +283,13 @@ export const isInteger = function(inputData, inputMetaData) {
  * @return {boolean} A Boolean value of true or false to indicate if the input string is a floating point number or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const isFloat = function(inputData, inputMetaData) {
   let functionName = isFloat.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     if (!isNaN(inputData) && inputData.indexOf(bas.cDot) !== -1) {
@@ -290,8 +299,8 @@ export const isFloat = function(inputData, inputMetaData) {
       returnData = false;
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -305,12 +314,13 @@ export const isFloat = function(inputData, inputMetaData) {
  * not a Boolean, Integer or Float; or not (meaning it would be one of those 3 data types, discuised as a string).
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 export const isString = function(inputData, inputMetaData) {
   let functionName = isString.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
     if (isBoolean(inputData, '') === false && isInteger(inputData, '') === false && isFloat(inputData, '') === false &&
@@ -322,8 +332,8 @@ export const isString = function(inputData, inputMetaData) {
       returnData = false;
     }
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -343,6 +353,9 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
@@ -361,6 +374,8 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
       returnData = inputData;
     }
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -381,12 +396,17 @@ export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, bas.cBackSlash]);
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -407,12 +427,17 @@ export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -433,12 +458,17 @@ export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, in
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -459,16 +489,47 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${JSON.stringify(inputData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   if (!inputData) {
     returnData = false;
   } else {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, bas.cBackSlash]);
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
+
+/**
+ * @function replaceDoublePercentWithMessage
+ * @description Parses the input string and replaces any instance of a double percentage sign
+ * with the input Meta Data string.
+ * @param {string} inputData The string that might contain the double percentage signs.
+ * @param {string} inputMetaData The string that should replace the double percentage signs.
+ * @return {string} The modified string with the message inserted.
+ * @author Seth Hollingsead
+ * @date 2021/12/24
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
+ */
+export const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
+  let functionName = replaceDoublePercentWithMessage.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = '';
+  if (inputData) {
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [bas.cDoublePercent, inputMetaData]);
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
 // ******************************************************
 // Internal functions
 // ******************************************************
@@ -483,6 +544,7 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
  * @author Seth Hollingsead
  * @date 2021/10/28
  * @NOTE: https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const replaceCharacterAtIndexOfString = function(originalString, index, replacement) {
   let functionName = replaceCharacterAtIndexOfString.name;

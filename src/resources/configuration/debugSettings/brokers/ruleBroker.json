@@ -1,0 +1,4 @@
+{
+  "debugFiles|debugSetting.brokers.ruleBroker": true,
+  "debugFunctions|debugSetting.brokers.ruleBroker.addClientRules": true
+}
