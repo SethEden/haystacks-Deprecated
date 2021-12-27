@@ -11,6 +11,7 @@
  * @requires module:word.constants
  * @requires module:ruleBroker
  * @requires module:fileOperations
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -26,6 +27,7 @@ var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
 var ruleBroker = require('./ruleBroker');
 var fileOperations = require('../executrix/fileOperations');
+var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));

@@ -23,7 +23,7 @@ var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var wrd = require('../constants/word.constants');
-var loggers = require('./loggers');
+var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var fs = require('fs');
 var path = require('path');
@@ -43,21 +43,17 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @return {object} The JSON object as it was loaded from the file with minimal to no additional processing.
  * @author Seth Hollingsead
  * @date 2021/10/15
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getJsonData(pathAndFilename) {
   let functionName = getJsonData.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`pathAndFilename is: ${pathAndFilename}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `pathAndFilename: ${pathAndFilename}`);
   // Make sure to resolve the path on the local system,
   // just in case tehre are issues with the OS that the code is running on.
   pathAndFilename = path.resolve(pathAndFilename);
   let rawData = fs.readFileSync(pathAndFilename, { encoding: 'UTF8'});
   let parsedData = JSON.parse(rawData);
-  loggers.consoleLog(namespacePrefix + functionName, `DONE loading data from: ${pathAndFilename}`);
-  loggers.consoleLog(namespacePrefix + functionName, `loaded data is: ${JSON.stringify(parsedData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`DONE loading data from: ${pathAndFilename}`);
   // console.log(`loaded data is: ${JSON.stringify(parsedData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -73,13 +69,12 @@ function getJsonData(pathAndFilename) {
  * @return {object} An object containing any array of all the files in the folder and all sub-folders.
  * @author Seth Hollingsead
  * @date 2021/10/15
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function readDirectoryContents(directory) {
   let functionName = readDirectoryContents.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`directory is: ${directory}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `directory is: ${directory}`);
   let filesFound = [];
   // Make sure to resolve the path on the local system,
   // just in case there are issues with the OS that the code is running on.
@@ -88,8 +83,6 @@ function readDirectoryContents(directory) {
   filesFound = filesCollection; // Copy the data ino a local variable first.
   filesCollection = undefined; // Make sure to clear it so we don't have a chance of it corrupting any other file operations.
   filesCollection = [];
-  loggers.consoleLog(namespacePrefix + functionName, `filesFound is: ${JSON.stringify(filesFound)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
@@ -104,13 +97,12 @@ function readDirectoryContents(directory) {
  * @author wn050
  * @reference https://stackoverflow.com/questions/41462606/get-all-files-recursively-in-directores-nodejs
  * @date 2020/05/22
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function readDirectorySynchronously(directory) {
   let functionName = readDirectorySynchronously.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`directory is: ${directory}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `directory is: ${directory}`);
   if (hitFileLimit === false) {
     directory = path.resolve(directory); // Make sure to resolve the path on the local system, just in case there are issues with the OS that the code is running on.
     let currentDirectoryPath = directory;
@@ -130,19 +122,15 @@ function readDirectorySynchronously(directory) {
           if (enableFilesListLimit === true && filesListLimit > 0) {
             if (filesCollection.length <= filesListLimit) {
               // console.log('Did not hit the file limit yet!');
-              loggers.consoleLog(namespacePrefix + functionName, 'Did not hit the file limit yet!');
               filesCollection.push(pathOfCurrentItem);
               // console.log('filesCollection is: ' + JSON.stringify(filesCollection));
-              loggers.consoleLog(namespacePrefix + functionName, 'filesCollection is: ' + JSON.stringify(filesCollection));
             } else {
               // console.log('Hit the file limit!!');
-              loggers.consoleLog(namespacePrefix + functionName, 'Hit the file limit!!');
               hitFileLimit = true;
               return;
             }
           } else {
             // console.log('Adding the file the old fashioned way.');
-            loggers.consoleLog(namespacePrefix + functionName, 'Adding the file the old fashioned way.');
             filesCollection.push(pathOfCurrentItem);
           }
         } else if (!filesShouldBeSkipped) {
@@ -153,7 +141,6 @@ function readDirectorySynchronously(directory) {
           let directoryPath = '';
           directoryPath = path.resolve(directory + bas.cForwardSlash + file);
           // console.log(`directoryPath is: ${directoryPath}`);
-          loggers.consoleLog(namespacePrefix + functionName, `directoryPath is: ${directoryPath}`);
           readDirectorySynchronously(directoryPath);
         }
       } catch (e) { // Catch the error in the hopes that we can continue scanning the file system.
@@ -161,7 +148,6 @@ function readDirectorySynchronously(directory) {
       }
     });
     // console.log(`END ${namespacePrefix}${functionName} function`);
-    loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   }
 };
 
@@ -198,26 +184,21 @@ function cleanRootPath() {
  * @return {boolean} A TRUE or FALSE to indicate if the append happened successfully or not.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function appendMessageToFile(file, message) {
   let functionName = appendMessageToFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `file is: ${file}`);
-  loggers.consoleLog(namespacePrefix + functionName, `message is: ${message}`);
   let appendSuccess = false;
   if (file && message) {
     try {
       // console.log('open the file sync');
-      loggers.consoleLog(namespacePrefix + functionName, 'open the file sync');
       fd = fs.openSync(file, bas.ca);
       // console.log('append to the file sync');
-      loggers.consoleLog(namespacePrefix + functionName, 'append to the file sync');
       fs.appendFileSync(fd, message + bas.cCarriageReturn + bas.cNewLine, gen.cUTF8);
       // console.log('DONE appending to the file');
-      loggers.consoleLog(namespacePrefix + functionName, 'DONE appending to the file');
     } catch (err) {
       return console.log(err);
     } finally {
@@ -226,8 +207,6 @@ function appendMessageToFile(file, message) {
       }
     }
   }
-  loggers.consoleLog(namespacePrefix + functionName, `appendSuccess is: ${appendSuccess}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`appendSuccess is: ${appendSuccess}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return appendSuccess;
