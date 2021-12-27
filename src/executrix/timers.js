@@ -31,11 +31,15 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @date 2021/10/19
  */
  function getNowMoment(formatting) {
-   // let functionName = getNowMoment.name;
+   let functionName = getNowMoment.name;
    // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
    // console.log(`formatting is: ${formatting}`);
+   loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+   loggers.consoleLog(namespacePrefix + functionName, `formatting is: ${formatting}`);
    let returnData = '';
    returnData = moment().format(formatting);
+   loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${returnData}`);
+   loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
    // console.log(`returnData is: ${returnData}`);
    // console.log(`END ${namespacePrefix}${functionName} function`);
    return returnData;
@@ -51,14 +55,19 @@ var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @date 2021/10/19
  */
 function computeDeltaTime(startTime, endTime) {
-  // let functionName = computeDeltaTime.name;
+  let functionName = computeDeltaTime.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`startTime is: ${startTime}`);
   // console.log(`endTime is: ${endTime}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `startTime is: ${startTime}`);
+  loggers.consoleLog(namespacePrefix + functionName, `endTime is: ${endTime}`);
   let deltaTimeResult;
   startTime = moment(startTime, gen.cYYYYMMDD_HHmmss_SSS);
   endTime = moment(endTime, gen.cYYYYMMDD_HHmmss_SSS);
   deltaTimeResult = endTime.diff(startTime); // Should wok in milliseconds out of the box!
+  loggers.consoleLog(namespacePrefix + functionName, `deltaTimeResult is: ${deltaTimeResult}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`deltaTimeResult is: ${deltaTimeResult}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return deltaTimeResult;

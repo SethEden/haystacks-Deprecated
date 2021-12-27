@@ -9,8 +9,9 @@
  * @requires module:function.constants
  * @requires module:system.constants
  * @requires module:word.constants
- * @requires module:chiefConfiguration
  * @requires module:ruleBroker
+ * @requires module:chiefConfiguration
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -23,8 +24,9 @@ var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
 var sys = require('../constants/system.constants');
 var wrd = require('../constants/word.constants');
-var chiefConfiguration = require('./chiefConfiguration');
 var ruleBroker = require('../brokers/ruleBroker');
+var chiefConfiguration = require('./chiefConfiguration');
+var loggers = require('../executrix/loggers');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
@@ -43,8 +45,8 @@ var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  */
 function processRootPath(configData) {
   let functionName = processRootPath.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configData is: ${JSON.stringify(configData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configData is: ${JSON.stringify(configData)}`);
   let rules = {};
   rules[0] = biz.cparseSystemRootPath;
   ruleBroker.bootStrapBusinessRules();
@@ -52,8 +54,8 @@ function processRootPath(configData) {
   let pathToProcess = configData[cfg.crootPath];
   let resolvedPath = ruleBroker.processRules(pathToProcess, applicationName, rules);
   let rootPath = path.resolve(resolvedPath);
-  console.log(`rootPath is: ${rootPath}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`rootPath is: ${rootPath}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
 };
 
@@ -67,12 +69,15 @@ function processRootPath(configData) {
  */
 function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configData is: ${JSON.stringify(configData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `configData is: ${configData}`);
   let appConfigPath = configData[cfg.cappConfigPath];
   let frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
 };
 
 module.exports = {

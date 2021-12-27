@@ -54,7 +54,9 @@ function bootStrapBusinessRules() {
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
   Object.assign(D[sys.cbusinessRules], clientRules);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 

@@ -469,6 +469,31 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
+
+/**
+ * @function replaceDoublePercentWithMessage
+ * @description Parses the input string and replaces any instance of a double percentage sign
+ * with the input Meta Data string.
+ * @param {string} inputData The string that might contain the double percentage signs.
+ * @param {string} inputMetaData The string that should replace the double percentage signs.
+ * @return {string} The modified string with the message inserted.
+ * @author Seth Hollingsead
+ * @date 2021/12/24
+ */
+export const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
+  let functionName = replaceDoublePercentWithMessage.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  let returnData = '';
+  if (inputData) {
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [bas.cDoublePercent, inputMetaData]);
+  }
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
 // ******************************************************
 // Internal functions
 // ******************************************************

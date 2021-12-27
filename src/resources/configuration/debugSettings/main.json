@@ -1,4 +1,4 @@
 {
-  "debugFiles|debugSetting.main": true,
-  "debugFunctions|debugSetting.main.initFramework": true
+  "debugFiles|debugSetting.main": false,
+  "debugFunctions|debugSetting.main.initFramework": false
 }

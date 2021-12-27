@@ -1,0 +1,8 @@
+{
+  "debugFiles|debugSetting.executrix.fileOperations": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.getJsonData": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.readDirectoryContents": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.readDirectorySynchronously": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.cleanRootPath": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.appendMessageToFile": true
+}

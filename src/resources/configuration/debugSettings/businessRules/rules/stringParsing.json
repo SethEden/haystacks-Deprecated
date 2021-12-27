@@ -1,0 +1,17 @@
+{
+  "debugFiles|debugSetting.businessRules.rules.stringParsing": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.stringToDataType": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.stringToBoolean": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.determineObjectDataType": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.isBoolean": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.isInteger": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.isFloat": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.isString": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.singleQuoteSwapAfterEquals": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapForwardSlashToBackSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapBackSlashToForwardSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapDoubleForwardSlashToSingleForwardSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.swapDoubleBackSlashToSingleBackSlash": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.replaceDoublePercentWithMessage": true,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.replaceCharacterAtIndexOfString": true
+}

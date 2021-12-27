@@ -36,6 +36,9 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${inputData}`);
+  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   let character2Find = inputMetaData[0];
   let character2Replace = inputMetaData[1];
@@ -44,6 +47,8 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   } else {
     returnData = inputData.replace(character2Find, character2Replace);
   }
+  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

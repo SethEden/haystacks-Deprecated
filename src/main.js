@@ -41,6 +41,7 @@ var namespacePrefix = `${baseFileName}.`;
  function initFramework(clientConfiguration) {
    let functionName = initFramework.name;
    loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
+   loggers.consoleLog(namespacePrefix + functionName, `clientConfiguration is: ${clientConfiguration}`);
    // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
    // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
    let appRootPath = warden.processRootPath(clientConfiguration);
@@ -49,7 +50,7 @@ var namespacePrefix = `${baseFileName}.`;
    clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
    warden.initFrameworkSchema(clientConfiguration);
    console.log('All loaded data is: ' + JSON.stringify(D));
-   console.log(`END ${namespacePrefix}${functionName} function`);
+   // console.log(`END ${namespacePrefix}${functionName} function`);
    loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
  };
 
