@@ -6,7 +6,7 @@
  * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:message.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:loggers
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -18,12 +18,12 @@ var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var msg = require('../constants/message.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var loggers = require('./loggers');
 var fs = require('fs');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 var term = 13; // carriage return
 
 /**

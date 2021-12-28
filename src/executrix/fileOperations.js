@@ -10,7 +10,7 @@
  * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:message.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
@@ -24,7 +24,7 @@ var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var msg = require('../constants/message.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var fs = require('fs');
@@ -35,7 +35,7 @@ var enableFilesListLimit = false;
 var filesListLimit = -1;
 var hitFileLimit = false;
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getJsonData

@@ -9,7 +9,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:ruleBroker
  * @requires module:chiefData
  * @requires module:configurator
@@ -27,7 +27,7 @@ var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
 var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var ruleBroker = require('../brokers/ruleBroker');
 var chiefData = require('./chiefData');
 var configurator = require('../executrix/configurator');
@@ -35,7 +35,7 @@ var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
+var namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
 
 /**
  * @function setupConfiguration
@@ -60,12 +60,12 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   // console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
   frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
   // console.log(`frameworkConfigPath after rule processing is: ${frameworkConfigPath}`);
-  configurator.setConfigurationSetting(wrd.csystem, sys.cappConfigPath, appConfigPath);
-  configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cappConfigPath, appConfigPath);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
-  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wrd.cconfiguration);
-  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
+  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wr1.cconfiguration);
+  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wr1.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
   // console.log('ALL DATA IS: ' + JSON.stringify(D));
@@ -103,7 +103,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let advancedDebugSettingPrefix;
   rules[0] = biz.cstringToDataType;
 
-  highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
+  highLevelSystemConfigurationContainer = allConfigurationData[wr1.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
   highLevelDebugConfigurationContainer = allConfigurationData[cfg.cdebugSettings];
   // console.log('highLevelDebugConfigurationContainer is: ' + JSON.stringify(highLevelDebugConfigurationContainer));

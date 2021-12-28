@@ -4,11 +4,20 @@
  * @file main.js
  * @module main
  * @description Contains all customer facing functions to are used to interface with the rest of the application framework.
+ * @requires module:basic.constants
+ * @requires module:business.constants
  * @requires module:configuration.constants
+ * @requires module:constant.constants
+ * @requires module:country.constants
  * @requires module:function.constants
+ * @requires module:generic.constants
+ * @requires module:language.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
+ * @requires module:phonic.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:unit.constants
+ * @requires module:word1.constants
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
@@ -31,14 +40,14 @@ var num = require('./constants/numeric.constants');
 var phn = require('./constants/phonic.constants');
 var sys = require('./constants/system.constants');
 var unt = require('./constants/unit.constants');
-var wrd = require('./constants/word.constants');
+var wr1 = require('./constants/word1.constants');
 var warden = require('./controllers/warden');
 var loggers = require('./executrix/loggers');
 var prompt = require('./executrix/prompt');
 var path = require('path');
 var D = require('./structures/data');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `${baseFileName}.`;
+var namespacePrefix = baseFileName + bas.cDot;
 
  /**
   * @function initFramework
@@ -82,5 +91,5 @@ module.exports = {
   [gen.cphn]: phn,
   [gen.csys]: sys,
   [gen.cunt]: unt,
-  [gen.cwrd]: wrd
+  [gen.cwr1]: wr1
 };

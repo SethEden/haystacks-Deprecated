@@ -9,7 +9,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:ruleBroker
  * @requires module:chiefConfiguration
  * @requires module:loggers
@@ -25,13 +25,13 @@ var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
 var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var ruleBroker = require('../brokers/ruleBroker');
 var chiefConfiguration = require('./chiefConfiguration');
 var loggers = require('../executrix/loggers');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**
  * @function processRootPath

@@ -4,7 +4,7 @@
  * @description Contains all the functions necessary to manage the business rules system.
  * @requires module:basic.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:rulesLibrary
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -17,12 +17,12 @@ var bas = require('../constants/basic.constants');
 var fnc = require('../constants/function.constants');
 var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var rules = require('../businessRules/rulesLibrary');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapBusinessRules
@@ -69,7 +69,7 @@ function addClientRules(clientRules) {
  * @param {string|integer|boolean|object|function} inputData The primary input data that should be processed by the business rule.
  * @param {string|integer|boolean|object|function} inputMetaData Additional meta-data that should be used when processing the business rule.
  * @param {array<string>} rulesToExecute The name(s) of the rule(s) that should be executed for modding the input data.
- * @return {string|integer|boolean|object|function|} A modified data Object/String/Integer/Boolean/Function
+ * @return {string|integer|boolean|object|function} A modified data Object/String/Integer/Boolean/Function
  * where the data has been modified based on the input data, input meta-data, and business rule that was executed.
  * @author Seth Hollingsead
  * @date 2021/10/27

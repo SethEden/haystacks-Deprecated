@@ -362,6 +362,7 @@ let cator = bas.cat + bas.cor; // ator
 let cdex = bas.cde + bas.cx; // dex
 let call = bas.cal + bas.cl; // all
 let cAll = bas.cAl + bas.cl; // All
+let cALL = bas.cAL + bas.cL; // ALL
 let creg = bas.cre + bas.cg; // reg
 let cReg = bas.cRe + bas.cg; // Reg
 let ctain = bas.cta + bas.cin; // tain
@@ -1449,6 +1450,7 @@ module.exports = {
   [bas.cc + cdex]: cdex, // dex
   [bas.cc + call]: call, // all
   [bas.cc + cAll]: cAll, // All
+  [bas.cc + cALL]: cALL, // ALL
   [bas.cc + creg]: creg, // reg
   [bas.cc + cReg]: cReg, // Reg
   [bas.cc + ctain]: ctain, // tain

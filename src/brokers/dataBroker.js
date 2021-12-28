@@ -9,7 +9,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:ruleBroker
  * @requires module:fileOperations
  * @requires module:loggers
@@ -26,14 +26,14 @@ var fnc = require('../constants/function.constants');
 var gen = require('../constants/generic.constants');
 var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var ruleBroker = require('./ruleBroker');
 var fileOperations = require('../executrix/fileOperations');
 var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function scanDataPath
@@ -93,6 +93,7 @@ function loadAllJsonData(filesToLoad, contextName) {
   // There will be a system configuration setting that will tell us if we need to load the debug setngs or not.
   for (let i = 0; i < filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
+    // console.log('fileToLoad is: ' + fileToLoad);
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
       let dataFile = preprocessJsonFile(fileToLoad);
 
@@ -103,8 +104,8 @@ function loadAllJsonData(filesToLoad, contextName) {
       // We will have a new setting that determines if all the extra debug settings should be loaded or not.
       // This way the application performance can be seriously optimized to greater levels of lean performance.
       // Adding all that extra debugging cnfiguration settings can affect load times, and application performance to a much lesser degree.
-      multiMergedData[wrd.csystem] = {};
-      multiMergedData[wrd.csystem] = dataFile;
+      multiMergedData[wr1.csystem] = {};
+      multiMergedData[wr1.csystem] = dataFile;
       foundSystemData = true;
     }
     if (foundSystemData === true) {
@@ -182,53 +183,53 @@ function debugSettingsEnabledLogic(mergedData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cmergedDataIs + JSON.stringify(mergedData));
   let debugConfigurationSettingValue = false;
-  let systemDotDebugSettings = wrd.csystem + bas.cDot + cfg.cdebugSettings;
+  let systemDotDebugSettings = wr1.csystem + bas.cDot + cfg.cdebugSettings;
 
-  if (!mergedData[wrd.csystem] && !D[wrd.csystem]) {
-    // console.log('!mergedData[wrd.csystem] && !D[wrd.csystem] === true');
+  if (!mergedData[wr1.csystem] && !D[wr1.csystem]) {
+    // console.log('!mergedData[wr1.csystem] && !D[wr1.csystem] === true');
     loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic01);
     debugConfigurationSettingValue = false;
-  } else if (!mergedData[wrd.csystem] && D[wrd.csystem]) {
-    // console.log('!mergedData[wrd.csystem] && D[wrd.csystem] === true');
+  } else if (!mergedData[wr1.csystem] && D[wr1.csystem]) {
+    // console.log('!mergedData[wr1.csystem] && D[wr1.csystem] === true');
     loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic02);
-    if (D[wrd.csystem][systemDotDebugSettings]) {
-      // console.log('D[wrd.csystem][systemDotDebugSettings] === true');
+    if (D[wr1.csystem][systemDotDebugSettings]) {
+      // console.log('D[wr1.csystem][systemDotDebugSettings] === true');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic03);
       debugConfigurationSettingValue = true;
     } else {
-      // console.log('D[wrd.csystem][systemDotDebugSettings] === false');
+      // console.log('D[wr1.csystem][systemDotDebugSettings] === false');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic04);
       debugConfigurationSettingValue = false;
     }
-  } else if (mergedData[wrd.csystem] && !D[wrd.csystem]) {
-    // console.log('mergedData[wrd.csystem] && !D[wrd.csystem] === true');
+  } else if (mergedData[wr1.csystem] && !D[wr1.csystem]) {
+    // console.log('mergedData[wr1.csystem] && !D[wr1.csystem] === true');
     loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic05);
-    if (mergedData[wrd.csystem][systemDotDebugSettings]) {
-      // console.log('mergedData[wrd.csystem][systemDotDebugSettings] === true');
+    if (mergedData[wr1.csystem][systemDotDebugSettings]) {
+      // console.log('mergedData[wr1.csystem][systemDotDebugSettings] === true');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic06);
       debugConfigurationSettingValue = true;
     } else {
-      // console.log('mergedData[wrd.csystem][systemDotDebugSettingss] === false');
+      // console.log('mergedData[wr1.csystem][systemDotDebugSettingss] === false');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic07);
       debugConfigurationSettingValue = false;
     }
   } else { // Only possible case left is they are both equal to something!
-    // console.log('else mergedData[wrd.csystem] && D[wrd.csystem] === true');
+    // console.log('else mergedData[wr1.csystem] && D[wr1.csystem] === true');
     loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic08);
-    if (!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings]) {
-      // console.log('!mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
+    if (!mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings]) {
+      // console.log('!mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic09);
       debugConfigurationSettingValue = false;
-    } else if (!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings]) {
-      // console.log('!mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
+    } else if (!mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings]) {
+      // console.log('!mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic10);
       debugConfigurationSettingValue = true;
-    } else if (mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings]) {
-      // console.log('mergedData[wrd.csystem][systemDotDebugSettings] && !D[wrd.csystem][systemDotDebugSettings] === true');
+    } else if (mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings]) {
+      // console.log('mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic11);
       debugConfigurationSettingValue = true;
     } else { // Only possible case left is they are both equal to something!
-      // console.log('mergedData[wrd.csystem][systemDotDebugSettings] && D[wrd.csystem][systemDotDebugSettings] === true');
+      // console.log('mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true');
       loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic12);
       debugConfigurationSettingValue = true;
     }

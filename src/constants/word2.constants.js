@@ -1,31 +1,468 @@
 /**
- * @file word.constants.js
- * @module word-constants
- * @description Contains many re-usable word constants.
+ * @file word2.constants.js
+ * @module word2.constants
+ * @description Contains many re-usable word constants with a limited set of dependencies.
  * @requires module:basic.constants
  * @requires module:phonic.constants
- * @requires module:numeric.constants
- * @requires module:generic.constants
- * @requires module:unit.constants
  * @author Seth Hollingsead
- * @date 2020/07/16
- * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
+ * @date 2021/12/28
+ * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
+ * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
  */
 
 var bas = require('./basic.constants');
 var phn = require('./phonic.constants');
-var num = require('./numeric.constants');
-var gen = require('./generic.constants');
-var unt = require('./unit.constants');
+
+// *************************************************************
+// BEGIN Redefinition of numeric constants, needed here to remove circular dependent constant definitions.
+// *************************************************************
+// Numbers
+let c0 = '0'; // 0
+let c1 = '1'; // 1
+let c2 = '2'; // 2
+let c3 = '3'; // 3
+let c4 = '4'; // 4
+let c5 = '5'; // 5
+let c6 = '6'; // 6
+let c7 = '7'; // 7
+let c8 = '8'; // 8
+let c9 = '9'; // 9
+
+// String Numbers
+let czero = bas.cze + bas.cro; // zero
+let cZero = bas.cZe + bas.cro; // Zero
+let cone = bas.co + bas.cne; // one
+let ctwo = bas.ct + bas.cwo; // two
+let cthree = bas.ct + phn.chree; // three
+let cfour = bas.cf + phn.cour; // four
+let cfive = bas.cf + phn.cive; // five
+let csix = bas.cs + bas.cix; // six
+let cseven = bas.cs + phn.ceven; // seven
+let ceight = bas.ce + phn.cight; // eight
+let cnine = bas.cn + phn.cine; // nine
+let cten = bas.ct + bas.cen; // ten
+let celeven = bas.ce + phn.cleven; // eleven
+let ctwelve = bas.ct + phn.cwelve; // twelve
+let cthirteen = bas.ct + phn.chir + phn.cteen; // thirteen
+let cfourteen = cfour + phn.cteen; // fourteen
+let cfifteen = bas.cf + bas.cif + phn.cteen; // fifteen
+let csixteen = csix + phn.cteen; // sixteen
+let cseventeen = cseven + phn.cteen; // seventeen
+let ceighteen = bas.ce + phn.cigh + phn.cteen; // eighteen
+let cnineteen = cnine + phn.cteen; // nineteen
+let ctwenty = bas.ct + phn.cwenty; // twenty
+let cthirty = bas.ct + phn.chirty; // thirty
+let cfourty = cfour + bas.cty; // fourty
+let cfifty = bas.cf + phn.cifty; // fifty
+let csixty = csix + bas.cty; // sixty
+let cseventy = cseven + bas.cty; // seventy
+let ceighty = ceight + bas.cy; // eighty
+let cninety = cnine + bas.cty; // ninety
+let chundred = bas.ch + phn.cundred; // hundred
+let cthousand = bas.ct + phn.chousand; // thousand
+let cmillion = bas.cm + phn.cillion; // million
+let cbillion = bas.cb + phn.cillion; // billion
+let ctrillion = bas.ctr + phn.cillion; // trillion
+let cOne = bas.cO + bas.cne; // One
+let cTwo = bas.cT + bas.cwo; // Two
+let cThree = bas.cT + phn.chree; // Three
+let cFour = bas.cF + phn.cour; // Four
+let cFive = bas.cF + phn.cive; // Five
+let cSix = bas.cS + bas.cix; // Six
+let cSeven = bas.cS + phn.ceven; // Seven
+let cEight = bas.cE + phn.cight; // Eight
+let cNine = bas.cN + phn.cine; // Nine
+let cTen = bas.cT + bas.cen; // Ten
+let cEleven = bas.cE + phn.cleven; // Eleven
+let cTwelve = bas.cT + phn.cwelve; // Twelve
+let cThirteen = bas.cT + phn.chir + phn.cteen; // Thirteen
+let cFourteen = cFour + phn.cteen; // Fourteen
+let cFifteen = bas.cF + bas.cif + phn.cteen; // Fifteen
+let cSixteen = cSix + phn.cteen; // Sixteen
+let cSeventeen = cSeven + phn.cteen; // Seventeen
+let cEighteen = bas.cE + phn.cigh + phn.cteen; // Eighteen
+let cNineteen = cNine + phn.cteen; // Nineteen
+let cTwenty = bas.cT + phn.cwenty; // Twenty
+let cThirty = bas.cT + phn.chirty; // Thirty
+let cFourty = cFour + bas.cty; // Fourty
+let cFifty = bas.cF + phn.cifty; // Fifty
+let cSixty = cSix + bas.cty; // Sixty
+let cSeventy = cSeven + bas.cty; // Seventy
+let cEighty = cEight + bas.cy; // Eighty
+let cNinety = cNine + bas.cty; // Ninety
+let cHundred = bas.cH + phn.cundred; // Hundred
+let cThousand = bas.cT + phn.chousand; // Thousand
+let cMillion = bas.cM + phn.cillion; // Million
+let cBillion = bas.cB + phn.cillion; // Billion
+let cTrillion = bas.cTr + phn.cillion; // Trillion
+
+// String Number Values
+let cfirst = bas.cfi + bas.crs + bas.ct; // first
+let cFirst = bas.cFi + bas.crs + bas.ct; // First
+// Second - See below
+let cthird = bas.cth + bas.cir + bas.cd; // third
+let cThird = bas.cTh + bas.cir + bas.cd; // Third
+let cfourth = cfour + bas.cth; // fourth
+let cFourth = cFour + bas.cth; // Fourth
+let cfifth = bas.cfi + bas.cft + bas.ch; // fifth
+let cFifth = bas.cFi + bas.cft + bas.ch; // Fifth
+let csixth = csix + bas.cth; // sixth
+let cSixth = cSix + bas.cth; // Sixth
+let cseventh = cseven + bas.cth; // seventh
+let cSeventh = cSeven + bas.cth; // Seventh
+let ceighth = ceight + bas.ch; // eighth
+let cEighth = cEight + bas.ch; // Eighth
+let ctenth = cten + bas.cth; // tenth
+let cTenth = cTen + bas.cth; // Tenth
+let celeventh = celeven + bas.cth; // eleventh
+let cEleventh = cEleven + bas.cth; // Eleventh
+let ctwelveth = ctwelve + bas.cth; // twelveth
+let cTwelveth = cTwelve + bas.cth; // Twelveth
+let cthirteenth = cthirteen + bas.cth; // thirteenth
+let cThirteenth = cThirteen + bas.cth; // Thirteenth
+let cfourteenth = cfourteen + bas.cth; // fourteenth
+let cFourteenth = cFourteen + bas.cth; // Fourteenth
+let cfifteenth = cfifteen + bas.cth; // fifteenth
+let cFifteenth = cFifteen + bas.cth; // Fifteenth
+let csixteenth = csixteen + bas.cth; // sixteenth
+let cSixteenth = cSixteen + bas.cth; // Sixteenth
+let cseventeenth = cseventeen + bas.cth; // seventeenth
+let cSeventeenth = cSeventeen + bas.cth; // Seventeenth
+let ceighteenth = ceighteen + bas.cth; // eighteenth
+let cEighteenth = cEighteen + bas.cth; // Eighteenth
+let cnineteenth = cnineteen + bas.cth; // nineteenth
+let cNineteenth = cNineteen + bas.cth; // Nineteenth
+let ctwentieth = bas.ctw + bas.cen + phn.ctieth; // twentieth
+let cTwentieth = bas.cTw + bas.cen + phn.ctieth; // Twentieth
+let cthirtieth = bas.cth + bas.cir + phn.ctieth; // thirtieth
+let cThirtieth = bas.cTh + bas.cir + phn.ctieth; // Thirtieth
+let cfourtieth = cfour + phn.ctieth; // fourtieth
+let cFourtieth = cFour + phn.ctieth; // Fourtieth
+let cfiftieth = bas.cfi + bas.cf + phn.ctieth; // fiftieth
+let cFiftieth = bas.cFi + bas.cf + phn.ctieth; // Fiftieth
+let csixtieth = csix + phn.ctieth; // sixtieth
+let cSixtieth = cSix + phn.ctieth; // Sixtieth
+let cseventieth = cseven + phn.ctieth; // seventieth
+let cSeventieth = cSeven + phn.ctieth; // Seventieth
+let ceightieth = ceight + phn.cieth; // eightieth
+let cEightieth = cEight + phn.cieth; // Eightieth
+let cninetieth = cnine + phn.ctieth; // ninetieth
+let cNinetieth = cNine + phn.ctieth; // Ninetieth
+let chundredth = chundred + bas.cth; // hundredth
+let cHundredth = cHundred + bas.cth; // Hundredth
+let cthousandth = cthousand + bas.cth; // thousandth
+let cThousandth = cThousand + bas.cth; // Thousandth
+let cmillionth = cmillion + bas.cth; // millionth
+let cMillionth = cMillion + bas.cth; // Millionth
+let cbillionth = cbillion + bas.cth; // billionth
+let cBillionth = cBillion + bas.cth; // Billionth
+let ctrillionth = ctrillion + bas.cth; // trillionth
+let cTrillionth = cTrillion + bas.cth; // Trillionth
+// *************************************************************
+// END Redefinition of numeric constants, needed here to remove circular dependent constant definitions.
+// *************************************************************
+
+// *************************************************************
+// BEGIN Redefinition of generic constants, needed here to remove circular dependent constant definitions.
+// *************************************************************
+// Boolean strings
+let cTrue = bas.cT + phn.crue; // True
+let cFalse = bas.cF + phn.calse; // False
+let ctrue = bas.ct + phn.crue; // true
+let cfalse = bas.cf + phn.calse; // false
+let cTRUE = bas.cTR + bas.cUE; // TRUE
+let cFALSE = bas.cFA + bas.cLS + bas.cE; // FALSE
+let cOff = bas.cO + bas.cff; // Off
+let coff = bas.co + bas.cff; // off
+let cOFF = bas.cOF + bas.cF; // OFF
+let cyes = bas.cy + bas.ces; // yes
+let cnot = bas.cno + bas.ct; // not
+let cYes = bas.cY + bas.ces; // Yes
+let cNot = bas.cNo + bas.ct; // Not
+let cYES = bas.cYE + bas.cS; // YES
+let cNOT = 'NOT'; // bas.c_NO + bas.cT; // NOTE cNOT is some how a reserved word that is a variable.
+let cnotok = cnot + bas.cok; // notok
+let cnotOk = cnot + bas.cOk; // notOk
+let cnotOK = cnot + bas.cOK; // notOK
+let cNotok = cNot + bas.cok; // Notok
+let cNotOk = cNot + bas.cOk; // NotOk
+let cNotOK = cNot + bas.cOK; // NotOK
+let cNOTok = 'NOTok'; // c_NOT = bas.cok;
+let cNOTOk = 'NOTOk'; // c_NOT = bas.cOk;
+let cNOTOK = 'NOTOK'; // c_NOT + bas.cOK;
+let cnotEql = cnot + phn.cEql; // notEql
+let cnoteql = cnot + phn.ceql; // noteql
+let cNotEql = cNot + phn.cEql; // NotEql
+let cNoteql = cNot + phn.ceql; // Noteql
+let cmax = phn.cmax; // max
+let cMax = phn.cMax; // Max
+let cmin = phn.cmin; // min
+let cMin = phn.cMin; // Min
+
+// Test Status
+let cPass = bas.cPa + bas.css; // Pass
+let cWarning = bas.cWa + bas.crn + bas.cin + bas.cg; // Warning
+let cFail = bas.cFa + bas.cil; // Fail
+
+// Directions
+let cDown = bas.cDo + bas.cwn; // Down
+let cLeft = bas.cLe + bas.cft; // Left
+let cRight = bas.cRi + bas.cgh + bas.ct; // Right
+
+// Alphabets
+let cLowerCaseEnglishAlphabet = bas.cab + bas.ccd + bas.cef + bas.cgh + bas.cij + bas.ckl + bas.cmn + bas.cop + bas.cqr + bas.cst + bas.cuv + bas.cwx + bas.cyz; // abcdefghijklmnopqrstuvwxyz
+let cUpperCaseEnglishAlphabet = bas.cAB + bas.cCD + bas.cEF + bas.cGH + bas.cIJ + bas.cKL + bas.cMN + bas.cOP + bas.cQR + bas.cST + bas.cUV + bas.cWX + bas.cYZ; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+let cMostSpecialCharacters = bas.cExclamation + bas.cAt + bas.cHash + bas.cDollar + bas.cPercent + bas.cCarrot + bas.cAndPersand + bas.cStar + bas.cOpenParenthesis + bas.cCloseParenthesis + bas.cUnderscore + bas.cPlus +
+bas.cOpenCurlyBrace + bas.cCloseCurlyBrace + bas.cPipe + bas.cColon + bas.cDoubleQuote + bas.cLessThan + bas.cGreaterThan + bas.cQuestion + bas.cDot + bas.cComa + bas.cTilde; // !@#$%^&*()_+{}|:"<>?.,~
+
+// File Extensions
+let cexe = bas.cex + bas.ce; // exe
+let cExe = bas.cEx + bas.ce; // Exe
+let cEXE = bas.cEX + bas.cE; // EXE
+let cdoc = bas.cdo + bas.cc; // doc
+let cDoc = bas.cDo + bas.cc; // Doc
+let cDOC = bas.cDO + bas.cC; // DOC
+let ccom = bas.cco + bas.cm; // com
+let cCom = bas.cCo + bas.cm; // Com
+let cCOM = bas.cCO + bas.cM; // COM
+let czip = bas.cz + bas.cip; // zip
+let cZip = bas.cZ + bas.cip; // Zip
+let cZIP = bas.cZ + bas.cIP; // ZIP
+let ctxt = bas.ct + bas.cxt; // txt
+let cTxt = bas.cT + bas.cxt; // Txt
+let cTXT = bas.cT + bas.cXT; // TXT
+let ccsv = bas.ccs + bas.cv; // csv
+let cCsv = bas.cCs + bas.cv; // Csv
+let cCSV = bas.cCS + bas.cV; // CSV
+let cxml = bas.cxm + bas.cl; // xml
+let cXml = bas.cXm + bas.cl; // Xml
+let cXML = bas.cXM + bas.cL; // XML
+let clog = bas.clo + bas.cg; // log
+let cLog = bas.cLo + bas.cg; // Log
+let cLOG = bas.cLO + bas.cG; // LOG
+let cjson = bas.cjs + bas.con; // json
+let cJson = bas.cJs + bas.con; // Json
+let cJSON = bas.cJS + bas.cON; // JSON
+let cenv = bas.cen + bas.cv; // env
+let cEnv = bas.cEn + bas.cv; // Env
+let cENV = bas.cEN + bas.cV; // ENV
+
+let cDotexe = bas.cDot + cexe; // .exe
+let cDotExe = bas.cDot + cExe; // .Exe
+let cDotEXE = bas.cDot + cEXE; // .EXE
+let cDotcsv = bas.cDot + ccsv; // .csv
+let cDotCsv = bas.cDot + cCsv; // .Csv
+let cDotCSV = bas.cDot + cCSV; // .CSV
+let cDotCom = bas.cDot + cCom; // .Com
+let cDotzip = bas.cDot + czip; // .zip
+let cDotZip = bas.cDot + cZip; // .Zip
+let cDotZIP = bas.cDot + cZIP; // .ZIP
+let cDottxt = bas.cDot + ctxt; // .txt
+let cDotTxt = bas.cDot + cTxt; // .Txt
+let cDotTXT = bas.cDot + cTXT; // .TXT
+let cDotxml = bas.cDot + cxml; // .xml
+let cDotXml = bas.cDot + cXml; // .Xml
+let cDotXML = bas.cDot + cXML; // .XML
+let cDotlog = bas.cDot + clog; // .log
+let cDotLog = bas.cDot + cLog; // .Log
+let cDotLOG = bas.cDot + cLOG; // .LOG
+let cDotjson = bas.cDot + cjson; // .json
+let cDotJson = bas.cDot + cJson; // .Json
+let cDotJSON = bas.cDot + cJSON; // .JSON
+let cDotenv = bas.cDot + cenv; // .env
+let cDotEnv = bas.cDot + cEnv; // .Env
+let cDotENV = bas.cDot + cENV; // .ENV
+let cascii = bas.cas + bas.cci + bas.ci; // ascii
+
+// Time Formatting
+let cYYYY = bas.cYY + bas.cYY; // YYYY
+let cSSS = bas.cSS + bas.cS; // SSS
+let cYYYYMMDD = cYYYY + bas.cMM + bas.cDD; // YYYYMMDD
+let cHHmmss = bas.cHH + bas.cmm + bas.css; // HHmmss
+let cHHmmss_SSS = cHHmmss + bas.cDash + cSSS; // HHmmss_SSS
+let cYYYYMMDD_HHmmss  = cYYYYMMDD + bas.cDash + cHHmmss; // YYYYMMDD_HHmmss
+let cYYYYMMDD_HHmmss_SSS = cYYYYMMDD_HHmmss + cSSS; // YYYYMMDD_HHmmss_SSS
+let cYYYY_MM_DD_HH_mm_ss_SSS = cYYYY + bas.cColon + bas.cMM + bas.cColon + bas.cDD + bas.cDash + bas.cHH + bas.cColon + bas.cmm + bas.cColon + bas.css + bas.cColon + cSSS; // YYYY_MM_DD_HH_mm_ss_SSS
+
+// Operating Systems
+let cwin32 = phn.cwin + c3 + c2;
+
+// Naval & Military Codes
+let cAlfa = bas.cAl + bas.cfa; //  Alfa
+let cBravo = bas.cBr + bas.cav + bas.co; // Bravo
+let cCharlie = bas.cCh + bas.car + bas.cli + bas.ce; // Charlie
+let cDelta = bas.cDe + bas.clt + bas.ca; // Delta
+let cEcho = bas.cEc + bas.cho; // Echo
+let cFoxtrot = bas.cFo + bas.cxt + bas.cro + bas.ct; // Foxtrot
+let cGolf = bas.cGo + bas.clf; // Golf
+let cHotel = bas.cHo + bas.cte + bas.cl; // Hotel
+let cIndia = bas.cIn + bas.cdi + bas.ca; // India
+let cJuliett = bas.cJu + bas.cli + bas.cet + bas.ct; // Juliett
+let cKilo = bas.cKi + bas.clo; // Kilo
+let cLima = bas.cLi + bas.cma; // Lima
+let cMike = bas.cMi + bas.cke; // Mike
+let cNovember = bas.cNo + bas.cv + phn.cemb + bas.cer;  // November
+let cOscar = bas.cOs + bas.cca + bas.cr; // Oscar
+let cPapa = bas.cPa + bas.cpa; // Papa
+let cQuebec = bas.cQu + bas.ceb + bas.cec; // Quebec
+let cRomeo = bas.cRo + bas.cme + bas.co; // Romeo
+let cSierra = bas.cSi + bas.cer + bas.cra; // Sierra
+let cTango = bas.cTa + bas.cng + bas.co; // Tango
+let cUniform = bas.cUn + bas.cif + bas.cor + bas.cm; // Uniform
+let cVictor = bas.cVi + phn.cctor; // Victor
+let cWhiskey = bas.cWh + bas.cis + bas.cke + bas.cy; // Whiskey
+let cXray = bas.cXr + bas.cay; // Xray
+let cYankee = bas.cYa + bas.cnk + bas.cee; // Yankee
+let cZulu = bas.cZu + bas.clu; // Zulu
+
+let cAlpha = bas.cAl + bas.cph + bas.ca; // Alpha
+let cBeta = bas.cBe + bas.cta; // Beta
+let cGamma = bas.cGa + bas.cmm + bas.ca; // Gamma
+let cEpsilon = bas.cEp + bas.csi + bas.clo + bas.cn; // Epsilon
+let cDigamma = bas.cDi + bas.cga + bas.cmm + bas.ca; // Digamma
+let cZeta = bas.cZe + bas.cta; // Zeta
+let ceta = bas.cet + bas.ca; // eta
+let cEta = bas.cEt + bas.ca; // Eta
+let cTheta = bas.cTh + bas.cet + bas.ca; // Theta
+let cIota = bas.cIo + bas.cta; // Iota
+let cKappa = bas.cKa + bas.cpp + bas.ca; // Kappa
+let cLambda = bas.cLa + bas.cmb + bas.cda; // Lambda
+let cMu = bas.cMu; // Mu
+let cNu = bas.cNu; // Nu
+let cXi = bas.cXi; // Xi
+let cOmicron = bas.cOm + bas.cic + bas.cro + bas.cn; // Omicron
+let cPi = bas.cPi; // Pi
+let cSan = bas.cSa + bas.cn; // San
+let cKoppa = bas.cKo + bas.cpp + bas.ca; // Koppa
+let cRho = bas.cRh + bas.co; // Rho
+let cSigma = bas.cSi + bas.cgm + bas.ca; // Sigma
+let cTau = bas.cTa + bas.cu; // Tau
+let cUpsilon = bas.cUp + bas.csi + bas.clo + bas.cn; // Upsilon
+let cPhi = bas.cPh + bas.ci; // Phi
+let cChi = bas.cCh + bas.ci; // Chi
+let cPsi = bas.cPs + bas.ci; // Psi
+let cOmega = bas.cOm + bas.ceg + bas.ca; // Omega
+
+// Months Of The Year
+let cJanuary = bas.cJa + bas.cn + phn.cuary; // January
+let cFebuary = bas.cFe + bas.cb + phn.cuary; // Febuary
+let cMarch = bas.cMa + bas.crc + bas.ch; // March
+let cApril = bas.cAp + bas.cri + bas.cl; // April
+let cMay = bas.cMa + bas.cy; // May
+let cJune = bas.cJu + bas.cne; // June
+let cJuly = bas.cJu + bas.cly; // July
+let cAugust = bas.cAu + bas.cgu + bas.cst; // August
+let cSeptember = bas.cSe + bas.cpt + phn.cemb + bas.cer; // September
+let cOctober = bas.cOc + bas.cto + bas.cb + bas.cer; // October
+// cNovember = bas.cNo + bas.cv + bas.cemb + bas.cer; // November
+let cDecember = bas.cDe + bas.cc + phn.cemb + bas.cer; // December
+
+// Constants Abreviations
+let cbas = bas.cba + bas.cs; // bas
+let cbiz = bas.cbi + bas.cz; // biz
+let cclr = phn.cclr; // clr
+let ccmd = bas.ccm + bas.cd; // cmd
+let ccfg = bas.ccf + bas.cg; // cfg
+let ccon = bas.co + bas.cn; // con
+let cctr = phn.cctr; // ctr
+let cfnc = bas.cfn + bas.c; // fnc
+let celm = bas.cel + bas.cm; // elm
+let cgen = phn.cgen; // gen
+let ciso = phn.ciso; // iso
+let ckts = bas.ckt + bas.cs; // kts
+let clng = bas.cln + bas.cg; // lng
+let cmes = bas.cme + bas.cs; // mes
+let cnum = phn.cnum; // num
+let cphn = bas.cph + bas.cn; // phn
+let cshp = phn.cshp; // shp
+let csys = bas.csy + bas.cs; // sys
+let cunt = phn.cunt; // unt
+let cwrd = bas.cwr + bas.cd; // wrd
+let capc = bas.cap + bas.cc; // apc
+
+// Miscelanious
+let cUTF8 = bas.cUT + bas.cF + c8; // UTF8
+let cconst = phn.ccon + bas.cst; // const
+let cConst = phn.cCon + bas.cst; // Const
+let cASAP = bas.cAS + bas.cAP; // ASAP
+let capp = bas.cap + bas.cp; // app
+let cApp = bas.cAp + bas.cp; // App
+let cAPP = bas.cAP + bas.cP; // APP
+let carg = bas.car + bas.cg; // arg
+let cArg = bas.cAr + bas.cg; // Arg
+let cargs = bas.ca + phn.crgs; // args
+let cArgs = bas.cA + phn.crgs; // Args
+let chex = bas.che + bas.cx; // hex
+let cHex = bas.cHe + bas.cx; // Hex
+let cregEx = phn.creg + bas.cEx; // regEx
+let cRegEx = phn.cReg + bas.cEx; // RegEx
+let cregExp = cregEx + bas.cp; // regExp
+let cRegExp = cRegEx + bas.cp; // RegExp
+let cbin = bas.cbi + bas.cn; // bin
+let cBin = bas.cBi + bas.cn; // Bin
+let cBIN = bas.cBI + bas.cN; // BIN
+let cinit = phn.cini + bas.ct; // init
+let cInit = phn.cIni + bas.ct; // Init
+// *************************************************************
+// END Redefinition of generic constants, needed here to remove circular dependent constant definitions.
+// *************************************************************
+
+// *************************************************************
+// BEGIN Redefinition of unit constants, needed here to remove circular dependent constant definitions.
+// *************************************************************
+// Units of Measure
+let cFemto = bas.cFe + bas.cmt + bas.co; // Femto
+let cPico = bas.cPi + bas.cco; // Pico
+let cNano = bas.cNa + bas.cno; // Nano
+let cMicro = bas.cMi + bas.ccr + bas.co; // Micro
+let cMill = bas.cMi + bas.cll; // Mill
+let cMilli = cMill + bas.ci; // Milli
+
+// Units of Time
+let csecond = bas.cse + phn.ccond; // second
+let cSecond = bas.cSe + phn.ccond; // Second
+let cSeconds = cSecond + bas.cs; // Seconds
+let cMinute = bas.cMi + bas.cnu + bas.cte; // Minute
+let cMinutes = cMinute + bas.cs; // Minutes
+let cHour = bas.cHo + bas.cur; // Hour
+let cHours = cHour + bas.cs; // Hours
+let cDay = bas.cDa + bas.cy; // Day
+let cDays = cDay + bas.cs; // Days
+let cWeek = bas.cW + bas.cee + bas.ck; // Week
+let cWeeks = cWeek + bas.cs; // Weeks
+let cMonth = bas.cMo + bas.cn + bas.cth; // Month
+let cMonths = cMonth + bas.cs; // Months
+let cYear = bas.cYe + bas.car; // Year
+let cYears = cYear + bas.cs; // Years
+let cDecade = bas.cDe + bas.cca + bas.cde; // Decade
+let cDecades = cDecade + bas.cs; // Decades
+let ccent = bas.cc + phn.cent; // cent
+let cCent = bas.cC + phn.cent; // Cent
+let cCentur = cCent + bas.cur; // Centur
+let cCentury = cCentur + bas.cy; // Century
+let cCenturies = cCentur + phn.cies; // Centuries
+let cMillennium = cMill + bas.cen + bas.cni + bas.cum; // Millennium // Millennium Falcon ;-)
+let cMillenniums = cMillennium + bas.cs; // Millenniums
+let cNanoSecond = cNano + cSecond; // NanoSecond
+let cNanoSeconds = cNano + cSeconds; // NanoSeconds
+let cMicroSecond = cMicro + cSecond; // MicroSecond
+let cMicroSeconds = cMicro + cSeconds; // MicroSeconds
+let cMilliSecond = cMilli + cSecond; // MilliSecond
+let cMilliSeconds = cMilli + cSeconds; // MilliSeconds
+let cPicoSecond = cPico + cSecond; // PicoSecond
+let cPicoSeconds = cPico + cSeconds; // PicoSeconds
+let cFemtoSecond = cFemto + cSecond; // FemtoSecond
+let cFemtoSeconds = cFemto + cSeconds; // FemtoSeconds
+// *************************************************************
+// END Redefinition of unit constants, needed here to remove circular dependent constant definitions.
+// *************************************************************
 
 // Miscelaneious Words
 let c1a1d = 'a' + 'd'; // ad // 'ca' & 'cd' is some how a reserved word.
-let c3d = num.c3 + bas.cd; // 3d
-let c3D = num.c3 + bas.cD; // 3D
+let c3d = c3 + bas.cd; // 3d
+let c3D = c3 + bas.cD; // 3D
 let cout = bas.co + bas.cut; // out
 let cOut = bas.cO + bas.cut; // Out
-let cLog = bas.cL + bas.cog; // Log
-let clog = bas.cl + bas.cog; // log
 let cLogs = cLog + bas.cs; // Logs
 let clogs = clog + bas.cs; // logs
 let ckey = bas.ck + bas.cey; // key
@@ -42,8 +479,6 @@ let curl = bas.cur + bas.cl; // url
 let cURL = bas.cUR + bas.cL; // URL
 let cnth = bas.cn + bas.cth; // nth
 let cNth = bas.cN + bas.cth; // Nth
-let cregEx = phn.creg + bas.cEx; // regEx
-let cRegEx = phn.cReg + bas.cEx; // RegEx
 let cflag = bas.cfl + bas.cag; // flag
 let cFlag = bas.cFl + bas.cag; // Flag
 let cflags = cflag + bas.cs; // flags
@@ -187,6 +622,7 @@ let csubstitution = phn.csub + bas.cs + phn.ctit + bas.cu + phn.ction; // substi
 let cSubstitution = phn.cSub + bas.cs + phn.ctit + bas.cu + phn.ction; // Substitution
 let call = phn.call; // all
 let cAll = phn.cAll; // All
+let cALL = phn.cALL; // ALL
 let cat = bas.ca + bas.ct; // at
 let cAt = bas.cA + bas.ct; // At // Not to be confused with the bas.cAt = '@'!!!
 let cselect = bas.cse + bas.cle + bas.cct; // select
@@ -218,9 +654,7 @@ let cFront = bas.cFr + bas.con + bas.ct; // Front
 let cback = bas.cba + bas.cck; // back
 let cBack = bas.cBa + bas.cck; // Back
 let cleft = bas.cle + bas.cft; // left
-let cLeft = bas.cLe + bas.cft; // Left
 let cright = bas.cri + bas.cgh + bas.ct; // right
-let cRight = bas.cRi + bas.cgh + bas.ct; // Right
 let cTo = bas.cTo; // To
 let ctop = bas.cto + bas.cp; // top
 let cTop = cTo + bas.cp; // Top
@@ -475,8 +909,8 @@ let cProcesses = cProcess + bas.ces; // Processes
 let cprocessing = cprocess + phn.cing; // processing
 let cProcessing = cProcess + phn.cing; // Processing
 let cPROCESSING = cPROCESS + phn.cING; // PROCESSING
-let ccomplete = gen.ccom + bas.cp + phn.clete; // complete
-let cComplete = gen.cCom + bas.cp + phn.clete; // Complete
+let ccomplete = ccom + bas.cp + phn.clete; // complete
+let cComplete = cCom + bas.cp + phn.clete; // Complete
 let ccompleted = ccomplete + bas.cd; // completed
 let cCompleted = cComplete + bas.cd; // Completed
 let cand = bas.can + bas.cd; // and
@@ -707,9 +1141,9 @@ let cThen = bas.cT + phn.chen; // Then
 let cthan = bas.ct + phn.chan; // than
 let cThan = bas.cT + phn.chan; // Than
 let cAssertExists = cAssert + cExists; // AssertExists
-let cAssertNotExists = cAssert + gen.cNot + cExists; // AssertNotExists
+let cAssertNotExists = cAssert + cNot + cExists; // AssertNotExists
 let cAssertValueEqual = cAssert + cValue + cEqual; // AssertValueEqual
-let cAssertValueNotEqual = cAssert + cValue + gen.cNot + cEqual; // AssertValueNotEqual
+let cAssertValueNotEqual = cAssert + cValue + cNot + cEqual; // AssertValueNotEqual
 let cAssertValueLessThan = cAssert + cValue + cLess + cThan; // AssertValueLessThan
 let cAssertValueGreaterThan = cAssert + cValue + cGreater + cThan; // AssertValueGreaterThan
 let cAssertion = cAssert + phn.cion; // Assertion
@@ -727,7 +1161,6 @@ let cMix = bas.cMi + bas.cx; // Mix
 let cmixed = cmix + bas.ced; // mixed
 let cMixed = cMix + bas.ced; // Mixed
 let calpha = bas.ca + phn.clpha; // alpha
-let cAlpha = bas.cA + phn.clpha; // Alpha
 let cbetic = bas.cbe + bas.cti + bas.cc; // betic
 let calphabet = calpha + phn.cbet; // alphabet
 let cAlphabet = cAlpha + phn.cbet; // Alphabet
@@ -798,7 +1231,6 @@ let cFolders = cFolder + bas.cs; // Folders
 let ccafe = bas.cca + bas.cfe; // cafe
 let ccert = bas.cce + bas.crt; // cert
 let csrc = bas.csr + bas.cc; // src
-let cbin = bas.cbi + bas.cn; // bin
 let cnation = bas.cn + phn.cation; // nation
 let cNation = bas.cN + phn.cation; // Nation
 let csource = bas.cs + phn.cource; // source
@@ -857,14 +1289,14 @@ let ccutting = ccut + bas.ct + phn.cing; // cutting
 let cCutting = cCut + bas.ct + phn.cing; // Cutting
 let ccute = bas.cc + phn.cute; // cute
 let cCute = bas.cC + phn.cute; // Cute
-let cexecute = gen.cexe + ccute; // execute
-let cExecute = gen.cExe + ccute; // Execute
+let cexecute = cexe + ccute; // execute
+let cExecute = cExe + ccute; // Execute
 let cexecutes = cexecute + bas.cs; // executes
 let cExecutes = cExecute + bas.cs; // Executes
 let cexecuted = cexecute + bas.cd; // executed
 let cExecuted = cExecute + bas.cd; // Executed
-let cexecuting = gen.cexe + ccut + phn.cing; // executing
-let cExecuting = gen.cExe + ccut + phn.cing; // Executing
+let cexecuting = cexe + ccut + phn.cing; // executing
+let cExecuting = cExe + ccut + phn.cing; // Executing
 let csibling = bas.cs + phn.cibling; // sibling
 let cSibling = bas.cS + phn.cibling; // Sibling
 let cchild = bas.cc + phn.child; // child
@@ -892,7 +1324,6 @@ let cwarn = bas.cw + phn.carn; // warn
 let cWarn = bas.cW + phn.carn; // Warn
 let cWARN = bas.cW + bas.cAR + bas.cN; // WARN
 let cwarning = cwarn + phn.cing; // warning
-let cWarning = cWarn + phn.cing; // Warning
 let cWARNING = cWARN + phn.cING; // WARNING
 let cwarnings = cwarning + bas.cs; // warnings
 let cWarnings = cWarning + bas.cs; // Warnings
@@ -1153,8 +1584,8 @@ let csequencer = phn.cseq + bas.cue + phn.cncer; // sequencer
 let cSequencer = phn.cSeq + bas.cue + phn.cncer; // Sequencer
 let cprimary = phn.cpri + phn.cmary; // primary
 let cPrimary = phn.cPri + phn.cmary; // Primary
-let csecondary = unt.csecond + phn.cary; // secondary
-let cSecondary = unt.cSecond + phn.cary; // Secondary
+let csecondary = csecond + phn.cary; // secondary
+let cSecondary = cSecond + phn.cary; // Secondary
 let ctertiary = phn.ctert + phn.ciary; // tertiary
 let cTertiary = phn.cTert + phn.ciary; // Tertiary
 let cdelimit = bas.cde + climit; // delimit
@@ -1231,7 +1662,6 @@ let cPerformance = cPerform + phn.cance; // Performance
 let cconversion = phn.ccon + cversion; // conversion
 let cConversion = phn.cCon + cversion; // Conversion
 let cpass = bas.cp + phn.cass; // pass
-let cPass = bas.cP + phn.cass; // Pass
 let cPASS = bas.cP + phn.cASS; // PASS
 let cpassed = cpass + bas.ced; // passed
 let cPassed = cPass + bas.ced; // Passed
@@ -1247,7 +1677,6 @@ let cBypassed = cBypass + bas.ced; // Bypassed
 let cbypassing = cbypass + phn.cing; // bypassing
 let cBypassing = cBypass + phn.cing; // Bypassing
 let cfail = bas.cf + phn.cail; // fail
-let cFail = bas.cF + phn.cail; // Fail
 let cFAIL = bas.cF + phn.cAIL; // FAIL
 let cfailed = cfail + bas.ced; // failed
 let cFailed = cFail + bas.ced; // Failed
@@ -1300,8 +1729,8 @@ let csuggested = csuggest + bas.ced; // suggested
 let cSuggested = cSuggest + bas.ced; // Suggested
 let cline = bas.cli + bas.cne; // line
 let cLine = bas.cLi + bas.cne; // Line
-let cdocument = gen.cdoc + bas.cu + phn.cment; // document
-let cDocument = gen.cDoc + bas.cu + phn.cment; // Document
+let cdocument = cdoc + bas.cu + phn.cment; // document
+let cDocument = cDoc + bas.cu + phn.cment; // Document
 let cqualified = bas.cq + phn.cual + phn.cified; // qualified
 let cQualified = bas.cQ + phn.cual + phn.cified; // Qualified
 let cfix = bas.cf + bas.cix; // fix
@@ -1382,8 +1811,8 @@ let cSolve = bas.cS + phn.colve; // Solve
 let cLehmer = bas.cLe + bas.chm + bas.cer; // Lehmer
 let cdeep = bas.cd + phn.ceep; // deep
 let cDeep = bas.cD + phn.ceep; // Deep
-let cclone = bas.ccl + num.cone; // clone
-let cClone = bas.cCl + num.cone; // Clone
+let cclone = bas.ccl + cone; // clone
+let cClone = bas.cCl + cone; // Clone
 let ccursive = phn.ccur + phn.csive; // cursive
 let cCursive = phn.cCur + phn.csive; // Cursive
 let crecursive = bas.cre + ccursive; // recursive
@@ -1446,8 +1875,8 @@ let cpattern = cpatt + phn.cern; // pattern
 let cPattern = cPatt + phn.cern; // Pattern
 let cpatterns = cpattern + bas.cs; // patterns
 let cPatterns = cPattern + bas.cs; // Patterns
-let ccoma = gen.ccom + bas.ca; // coma
-let cComa = gen.cCom + bas.ca; // Coma
+let ccoma = ccom + bas.ca; // coma
+let cComa = cCom + bas.ca; // Coma
 let ccomas = ccoma + bas.cs; // comas
 let cComas = cComa + bas.cs; // Comas
 let cseparate = bas.cse + bas.cpa + phn.crate; // separate
@@ -1489,7 +1918,6 @@ let cHave = bas.cH + phn.cave; // Have
 let cnice = bas.cn + phn.cice; // nice
 let cNice = bas.cN + phn.cice; // Nice
 let cday = bas.cda + bas.cy; // day
-let cDay = bas.cDa + bas.cy; // Day
 let cstay = bas.cs + phn.ctay; // stay
 let cStay = bas.cS + phn.ctay; // Stay
 let csafe = bas.cs + phn.cafe; // safe
@@ -1528,10 +1956,10 @@ let ccost = bas.cc + phn.cost; // cost
 let cCost = bas.cC + phn.cost; // Cost
 let cperiod = phn.cper + phn.ciod; // period
 let cPeriod = phn.cPer + phn.ciod; // Period
-let ccannot = ccan + gen.cnot; // cannot
-let cCannot = cCan + gen.cnot; // Cannot
-let cnothing = gen.cnot + phn.ching; // nothing
-let cNothing = gen.cNot + phn.ching; // Nothing
+let ccannot = ccan + cnot; // cannot
+let cCannot = cCan + cnot; // Cannot
+let cnothing = cnot + phn.ching; // nothing
+let cNothing = cNot + phn.ching; // Nothing
 let cnothingness = cnothing + phn.cness; // nothingness
 let cNothingness = cNothing + phn.cness; // Nothingness
 let cused = cuse + bas.cd; // used
@@ -1599,7 +2027,6 @@ let cRent = bas.cR + phn.cent; // Rent
 let ccurrent = phn.ccur + crent; // current
 let cCurrent = phn.cCur + crent; // Current
 let cdelta = bas.cde + phn.clta; // delta
-let cDelta = bas.cDe + phn.clta; // Delta
 let cbeing = bas.cbe + phn.cing; // being
 let cBeing = bas.cBe + phn.cing; // Being
 let cskip = bas.csk + bas.cip; // skip
@@ -2006,7 +2433,6 @@ let cEntries = bas.cEn + bas.ctr + phn.cies; // Entries
 let centity = bas.cen + phn.ctity; // entity
 let cEntity = bas.cEn + phn.ctity; // Entity
 let cmay = bas.cma + bas.cy; // may
-let cMay = bas.cMa + bas.cy; // May
 let conly = bas.co + phn.cnly; // only
 let cOnly = bas.cO + phn.cnly; // Only
 let csuch = bas.cs + phn.cuch; // such
@@ -2015,7 +2441,7 @@ let cgeneration = phn.cgen + bas.cer + phn.cation; // generation
 let cGeneration = phn.cGen + bas.cer + phn.cation; // Generation
 let cDemocratic = cDemo + bas.ccr + phn.cati + bas.cc; // Democratic
 let cRepublic = bas.cRe + cpublic; // Republic
-let cCentral = unt.cCent + phn.cral; // Central
+let cCentral = cCent + phn.cral; // Central
 let cAfrican = bas.cAf + phn.crica + bas.cn; // African
 let cPapua = bas.cPa + bas.cpu + bas.ca; // Papua
 let cTrinidad = phn.cTri + bas.cni + bas.cda + bas.cd; // Trinidad
@@ -2031,8 +2457,8 @@ let ccountry = ccount + bas.cry; // country
 let cCountry = cCount + bas.cry; // Country
 let ccountries = ccount + phn.cries; // countries
 let cCountries = cCount + phn.cries; // Countries
-let cknot = bas.ck + gen.cnot; // knot
-let cKnot = bas.cK + gen.cnot; // Knot
+let cknot = bas.ck + cnot; // knot
+let cKnot = bas.cK + cnot; // Knot
 let cknots = cknot + bas.cs; // knots
 let cKnots = cKnot + bas.cs; // Knots
 let clanguage = phn.clang + phn.cuage; // language
@@ -2054,7 +2480,6 @@ let cGot = bas.cGo + bas.ct; // Got
 let cmiss = bas.cm + phn.ciss; // miss
 let cMiss = bas.cM + phn.ciss; // Miss
 let cecho = bas.cec + bas.cho; // echo
-let cEcho = bas.cEc + bas.cho; // Echo
 let cincrement = phn.cinc + bas.cre + phn.cment; // increment
 let cIncrement = phn.cInc + bas.cre + phn.cment; // Increment
 let cincrements = cincrement + bas.cs; // increments
@@ -2087,8 +2512,8 @@ let csynchronous = csync + phn.cron + phn.cous; // synchronous
 let cSynchronous = cSync + phn.cron + phn.cous; // Synchronous
 let csynchronously = csynchronous + bas.cly; // synchronously
 let cSynchronously = cSynchronous + bas.cly; // Synchronously
-let cappend = gen.capp + cend; // append
-let cAppend = gen.cApp + cend; // Append
+let cappend = capp + cend; // append
+let cAppend = cApp + cend; // Append
 let cappends = cappend + bas.cs; // appends
 let cAppends = cAppend + bas.cs; // Appends
 let cappended = cappend + bas.ced; // appended
@@ -2113,6 +2538,10 @@ let cschema = bas.csc + bas.che + bas.cma; // schema
 let cSchema = bas.cSc + bas.che + bas.cma; // Schema
 let cdot = bas.cdo + bas.ct; // dot
 let cDot = bas.cDo + bas.ct; // Dot
+let clogic = clog + bas.cic; // logic
+let cLogic = cLog + bas.cic; // Logic
+let clogical = clogic + bas.cal; // logical
+let cLogical = cLogic + bas.cal; // Logical
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -2127,7 +2556,7 @@ let cAndroid = cAnd + bas.cro + bas.cid; // Android
 let cAntique = bas.cAn + bas.cti + phn.cque; // Antique
 let cBrass = phn.cBra + bas.css; // Brass
 let cBronze = bas.cBr + phn.conze; // Bronze
-let cApple = gen.cApp + bas.cle; // Apple
+let cApple = cApp + bas.cle; // Apple
 let cApricot = bas.cAp + phn.cricot; // Apricot
 let cArctic = bas.cAr + bas.cct + bas.cic; // Arctic
 let cArmy = bas.cAr + bas.cmy; // Army
@@ -2137,7 +2566,7 @@ let cBaby = bas.cBa + bas.cby; // Baby
 let cEyes = bas.cEy + bas.ces; // Eyes
 let cPowder = bas.cPo + phn.cwder; // Powder
 let cBaker = bas.cBa + bas.cke + bas.cr; // Baker
-let cMiller = unt.cMill + bas.cer; // Miller
+let cMiller = cMill + bas.cer; // Miller
 let cBanana = bas.cBa + bas.cna + bas.cna; // Banana
 let cMania = cMan + bas.cia; // Mania
 let cBarbie = bas.cBa + bas.crb + bas.cie; // Barbie
@@ -2281,7 +2710,7 @@ let cIlluminating = bas.cIl + phn.clum + phn.cina + phn.ctin + bas.cg; // Illumi
 let cImperial = bas.cIm + phn.cper + bas.cia + bas.cl; // Imperial
 let cworm = bas.cwo + bas.crm; // worm
 let cIndependence = bas.cIn + bas.cde + cpen + phn.cden + bas.cce; // Independence
-let cIndian = gen.cIndia + bas.cn; // Indian
+let cIndian = cIndia + bas.cn; // Indian
 let cDye = bas.cDy + bas.ce; // Dye
 let cnational = cnation + bas.cal; // national
 let cNational = cNation + bas.cal; // National
@@ -2325,15 +2754,15 @@ let cMadder = bas.cMa + phn.cdder; // Madder
 let cHaze = bas.cHa + bas.cze; // Haze
 let cMagic = bas.cMa + bas.cgi + bas.cc; // Magic
 let cMajorelle = bas.cMa + bas.cjo + bas.cre + bas.cll + bas.ce; // Majorelle
-let cminimum = gen.cmin + phn.cimum; // minimum
-let cMinimum = gen.cMin + phn.cimum; // Minimum
+let cminimum = cmin + phn.cimum; // minimum
+let cMinimum = cMin + phn.cimum; // Minimum
 let cminimums = cminimum + bas.cs; // minimums
 let cMinimums = cMinimum + bas.cs; // Minimums
-let cmaximum = gen.cmax + phn.cimum; // maximum
-let cMaximum = gen.cMax + phn.cimum; // Maximum
+let cmaximum = cmax + phn.cimum; // maximum
+let cMaximum = cMax + phn.cimum; // Maximum
 let cmaximums = cmaximum + bas.cs; // maximums
 let cMaximums = cMaximum + bas.cs; // Maximums
-let cMaya = gen.cMay + bas.ca; // Maya
+let cMaya = cMay + bas.ca; // Maya
 let cMedium = bas.cMe + phn.cdium; // Medium
 let cMellow = bas.cMe + phn.cllow; // Mellow
 let cweed = bas.cwe + bas.ced; // weed
@@ -2352,7 +2781,7 @@ let cMexican = bas.cMe + bas.cxi + phn.ccan; // Mexican
 let cMiddle = bas.cMi + bas.cdd + bas.cle; // Middle
 let cMikado = bas.cMi + bas.cka + bas.cdo; // Mikado
 let cMimi = bas.cMi + bas.cm + bas.ci; // Mimi
-let cMinion = gen.cMin + phn.cion; // Minion
+let cMinion = cMin + phn.cion; // Minion
 let cMisty = phn.cMis + bas.cty; // Misty
 let cMorning = bas.cMo + bas.crn + phn.cing; // Morning
 let cMeadow = bas.cMe + phn.cadow; // Meadow
@@ -2380,8 +2809,8 @@ let cPalatinate = cPal + phn.catin + phn.cate; // Palatinate
 let cPale = cPal + bas.ce; // Pale
 let cPansy = bas.cPa + bas.cns + bas.cy; // Pansy
 let cPaolo = bas.cPa + bas.col + bas.co; // Paolo
-let cVeronese = phn.cVer + num.cone + bas.cse; // Veronese
-let cPapaya = gen.cPapa + bas.cya; // Papaya
+let cVeronese = phn.cVer + cone + bas.cse; // Veronese
+let cPapaya = cPapa + bas.cya; // Papaya
 let cWhip = bas.cWh + bas.cip; // Whip
 let cParadise = phn.cPara + bas.cdi + bas.cse; // Paradise
 let cParis = bas.cPa + phn.cris; // Paris
@@ -2394,7 +2823,7 @@ let cLake = bas.cLa + bas.cke; // Lake
 let cPersian = phn.cPer + phn.csia + bas.cn; // Persian
 let cPewter = bas.cPe + bas.cwt + bas.cer; // Pewter
 let cPhthalo = bas.cPh + bas.cth + bas.cal + bas.co; // Phthalo
-let cPicotee = unt.cPico + phn.ctee; // Picotee
+let cPicotee = cPico + phn.ctee; // Picotee
 let cPictorial = bas.cPi + phn.cctor + bas.cia + bas.cl; // Pictorial
 let cPiggy = bas.cPi + bas.cgg + bas.cy; // Piggy
 let cPine = bas.cPi + bas.cne; // Pine
@@ -2418,7 +2847,7 @@ let cMajesty = bas.cMa + bas.cje + phn.csty; // Majesty
 let cPizzazz = bas.cPi + bas.czz + phn.cazz; // Pizzazz
 let cQueen = phn.cQue + bas.cen; // Queen
 let cQuick = bas.cQu + phn.cick; // Quick
-let cQuinacridone = bas.cQu + phn.cina + bas.ccr + bas.cid + num.cone; // Quinacridone
+let cQuinacridone = bas.cQu + phn.cina + bas.ccr + bas.cid + cone; // Quinacridone
 let cRadical = bas.cRa + bas.cdi + phn.ccal; // Radical
 let cRaisin = bas.cRa + bas.cis + bas.cin; // Raisin
 let cGlace = bas.cGl + phn.cace; // Glace
@@ -2430,7 +2859,7 @@ let cSalsa = bas.cSa + bas.cls + bas.ca; // Salsa
 let cResolution = phn.cRes + bas.col + bas.cut + phn.cion; // Resolution
 let cRich = bas.cRi + bas.cch; // Rich
 let cRifle = bas.cRi + bas.cfl + bas.ce; // Rifle
-let cRobin = bas.cRo + gen.cbin; // Robin
+let cRobin = bas.cRo + cbin; // Robin
 let cEgg = bas.cEg + bas.cg; // Egg
 let cRocket = bas.cRo + bas.cck + bas.cet; // Rocket
 let cRoman = bas.cRo + cman; // Roman
@@ -2459,7 +2888,7 @@ let cSaddle = bas.cSa + bas.cdd + bas.cle; // Saddle
 let cSafety = cSafe + bas.cty; // Safety
 let cBlaze = bas.cBl + phn.caze; // Blaze
 let cPatricks = cPat + phn.crick + bas.cs; // Patricks
-let cSandy = gen.cSan + bas.cdy; // Sandy
+let cSandy = cSan + bas.cdy; // Sandy
 let csap = bas.csa + bas.cp; // sap
 let cSap = bas.cSa + bas.cp; // Sap
 let cSatin = bas.cSa + phn.ctin; // Satin
@@ -2488,7 +2917,6 @@ let cStil = bas.cSt + bas.cil; // Stil
 let cGrain = bas.cGr + phn.cain; // Grain
 let cglow = bas.cg + clow; // glow
 let cSuper = phn.cSup + bas.cer; // Super
-let cTango = gen.cTango; // Tango
 let cTart = phn.cTart; // Tart
 let cTea = bas.cTe + bas.ca; // Tea
 let cTerra = bas.cTe + phn.crra; // Terra
@@ -2525,8 +2953,20 @@ let cDream = bas.cDr + phn.ceam; // Dream
 let cYale = bas.cYa + bas.cle; // Yale
 
 module.exports = {
+  // Numbers
+  [bas.cc + c0]: c0, // 0
+  [bas.cc + c1]: c1, // 1
+  [bas.cc + c2]: c2, // 2
+  [bas.cc + c3]: c3, // 3
+  [bas.cc + c4]: c4, // 4
+  [bas.cc + c5]: c5, // 5
+  [bas.cc + c6]: c6, // 6
+  [bas.cc + c7]: c7, // 7
+  [bas.cc + c8]: c8, // 8
+  [bas.cc + c9]: c9, // 9
+
   // Miscelaneious Words
-  [bas.cc + num.c1 + bas.ca + num.c1 + bas.cd]: c1a1d, // ad // 'ca' & 'cd' is some how a reserved word.
+  [bas.cc + c1 + bas.ca + c1 + bas.cd]: c1a1d, // ad // 'ca' & 'cd' is some how a reserved word.
   [bas.cc + c3d]: c3d, // 3d
   [bas.cc + c3D]: c3D, // 3D
   [bas.cc + cout]: cout, // out
@@ -2694,6 +3134,7 @@ module.exports = {
   [bas.cc + cSubstitution]: cSubstitution, // Substitution
   [bas.cc + call]: call, // all
   [bas.cc + cAll]: cAll, // All
+  [bas.cc + cALL]: cALL, // ALL
   [bas.cc + cat]: cat, // at
   [bas.cc + cAt]: cAt, // At // Not to be confused with the bas.cAt = '@'!!!
   [bas.cc + cselect]: cselect, // select
@@ -4618,6 +5059,10 @@ module.exports = {
   [bas.cc + cSchema]: cSchema, // Schema
   [bas.cc + cdot]: cdot, // dot
   [bas.cc + cDot]: cDot, // Dot
+  [bas.cc + clogic]: clogic, // logic
+  [bas.cc + cLogic]: cLogic, // Logic
+  [bas.cc + clogical]: clogical, // logical
+  [bas.cc + cLogical]: cLogical, // Logical
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

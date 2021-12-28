@@ -227,13 +227,14 @@ let cgen = phn.cgen; // gen
 let ciso = phn.ciso; // iso
 let ckts = bas.ckt + bas.cs; // kts
 let clng = bas.cln + bas.cg; // lng
-let cmsg = bas.cms + bas.cg; // msg
+let cmes = bas.cme + bas.cs; // mes
 let cnum = phn.cnum; // num
 let cphn = bas.cph + bas.cn; // phn
 let cshp = phn.cshp; // shp
 let csys = bas.csy + bas.cs; // sys
 let cunt = phn.cunt; // unt
-let cwrd = bas.cwr + bas.cd; // wrd
+let cwr1 = bas.cwr + num.c1; // wr1
+let cwr2 = bas.cwr + num.c2; // wr2
 let capc = bas.cap + bas.cc; // apc
 
 // Miscelanious
@@ -468,13 +469,14 @@ module.exports = {
   [bas.cc + ciso]: ciso, // iso
   [bas.cc + ckts]: ckts, // kts
   [bas.cc + clng]: clng, // lng
-  [bas.cc + cmsg]: cmsg, // msg
+  [bas.cc + cmes]: cmes, // mes
   [bas.cc + cnum]: cnum, // num
   [bas.cc + cphn]: cphn, // phn
   [bas.cc + cshp]: cshp, // shp
   [bas.cc + csys]: csys, // sys
   [bas.cc + cunt]: cunt, // unt
-  [bas.cc + cwrd]: cwrd, // wrd
+  [bas.cc + cwr1]: cwr1, // cwr1
+  [bas.cc + cwr2]: cwr2, // cwr2
   [bas.cc + capc]: capc, // apc
 
   // Miscelanious

@@ -10,7 +10,7 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:data
@@ -25,14 +25,15 @@ var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
-var ruleBroker = require('../brokers/ruleBroker');
+var wr1 = require('../constants/word1.constants');
+// var ruleBroker = require('../brokers/ruleBroker');
+var stringParsingUtilities = require('../businessRules/rules/stringParsingUtilities');
 var configurator = require('./configurator');
 var fileOperations = require('./fileOperations');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function consoleLog
@@ -52,18 +53,18 @@ var namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
   if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
-    let consoleLogEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cconsoleLogEnabled);
+    let consoleLogEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       // console.log(`classPath is: ${classPath}`);
       // console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting(wrd.csystem, sys.capplicationCleanedRootPath);
+      let logFile = configurator.getConfigurationSetting(wr1.csystem, sys.capplicationCleanedRootPath);
       if (logFile !== undefined) {
         logFile = `${logFile}//logs`;
         // console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         // console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wrd.csystem, cfg.clogFilePathAndName);
+        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFilePathAndName);
         // console.log(`logFile after adding the log filename: ${logFile}`);
       }
 
@@ -137,7 +138,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
       printMessageToFile(logFile, outputMessage);
       // console.log('DONE printing the message to the logFile');
     }
-  } else if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugTestExhaustive) === true) {
+  } else if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugTestExhaustive) === true) {
     // console.log('else-block the debugTestExhaustive setting is true!');
     // TODO: Add rule here to replace double percent with message/class-path.
     // Debug Exhaustive is probably not the best, we might want to consider another configuration setting to
@@ -226,7 +227,13 @@ function parseClassPath(logFile, classPath, message) {
   // console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
     // TODO: Implement the colorizing of the message here.
-    message = ruleBroker.processRules(message, configurationNamespace + bas.cDot + configurationName, rules);
+    if (message.includes(bas.cDoublePercent)) {
+      let myNameSpace = configurationNamespace + bas.cDot + configurationName;
+      // console.log('message is: ' + message);
+      // console.log('myNameSpace is: ' + myNameSpace);
+      // console.log('rules is: ' + JSON.stringify(rules));
+      message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
+    }
     // console.log('setting the returnData to the message: ' + message);
     returnData = message;
   } else if ((debugFunctionsSetting === undefined && debugFilesSetting === undefined) ||
@@ -267,7 +274,7 @@ function printMessageToFile(file, message) {
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
-      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
+      if (configurator.getConfigurationSetting(wr1.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
         dateTimeStamp = timers.getNowMoment(gen.cYYYYMMDD_HHmmssSSS);
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
