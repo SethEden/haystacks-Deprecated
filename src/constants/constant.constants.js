@@ -159,6 +159,9 @@ let cclientConfigurationIs = wr2.cclient + wr2.cConfiguration + wr2.cIs; // clie
 let cprompt01 = wr2.cprompt + wr2.c0 + wr2.c1; // prompt01
 let cprompt02 = wr2.cprompt + wr2.c0 + wr2.c2; // prompt02
 let cprompt03 = wr2.cprompt + wr2.c0 + wr2.c3; // prompt03
+let cprintMessageToFile01 = wr2.cprint + wr2.cMessage + wr2.cTo + wr2.cFile + wr2.c0 + wr2.c1;
+let cprintMessageToFile02 = wr2.cprint + wr2.cMessage + wr2.cTo + wr2.cFile + wr2.c0 + wr2.c2;
+let cprintMessageToFile03 = wr2.cprint + wr2.cMessage + wr2.cTo + wr2.cFile + wr2.c0 + wr2.c3;
 
 // Coded System Messages constant constants
 let cdebugSettingsEnabledLogic01 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c1; // debugSettingsEnabledLogic01
@@ -309,6 +312,9 @@ module.exports = {
   [bas.cc + cprompt01]: cprompt01, // prompt01
   [bas.cc + cprompt02]: cprompt02, // prompt02
   [bas.cc + cprompt03]: cprompt03, // prompt03
+  [bas.cc + cprintMessageToFile01]: cprintMessageToFile01, // cprintMessageToFile01
+  [bas.cc + cprintMessageToFile02]: cprintMessageToFile02, // cprintMessageToFile02
+  [bas.cc + cprintMessageToFile03]: cprintMessageToFile03, // cprintMessageToFile03
 
   // Coded System Messages constant constants
   [bas.cc + cdebugSettingsEnabledLogic01]: cdebugSettingsEnabledLogic01, // debugSettingsEnabledLogic01

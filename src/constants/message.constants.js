@@ -67,6 +67,12 @@ let cprompt01 = 'cprompt01';
 let cprompt02 = 'cprompt02';
 // 'Caught the case that the string includes a carriage return and new line characters.'
 let cprompt03 = 'cprompt03';
+// '!file.includes(undefined)'
+let cprintMessageToFile01 = 'cprintMessageToFile01';
+// 'ERROR: Failure to log to file: '
+let cprintMessageToFile02 = 'cprintMessageToFile02';
+// 'ERROR: Log File includes undefined.'
+let cprintMessageToFile03 = 'cprintMessageToFile03';
 
 // Coded System Messages
 // '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'
@@ -136,6 +142,9 @@ module.exports = {
   [bas.cc + con.cprompt01]: cprompt01, // 'Caught the case that the input string contains the global carriage return term.'
   [bas.cc + con.cprompt02]: cprompt02, // 'index of the carriage return character: '
   [bas.cc + con.cprompt03]: cprompt03, // 'Caught the case that the string includes a carriage return and new line characters.'
+  [bas.cc + con.cprintMessageToFile01]: cprintMessageToFile01, // '!file.includes(undefined)'
+  [bas.cc + con.cprintMessageToFile02]: cprintMessageToFile02, // 'ERROR: Failure to log to file: '
+  [bas.cc + con.cprintMessageToFile03]: cprintMessageToFile03, // 'ERROR: Log File includes undefined.'
 
   // Coded System Messages
   [bas.cc + con.cdebugSettingsEnabledLogic01]: cdebugSettingsEnabledLogic01, // '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'

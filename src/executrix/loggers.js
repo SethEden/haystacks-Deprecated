@@ -27,6 +27,9 @@ var fnc = require('../constants/function.constants');
 var sys = require('../constants/system.constants');
 var wr1 = require('../constants/word1.constants');
 // var ruleBroker = require('../brokers/ruleBroker');
+// NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
+// We will need to refactor the business rules to accept a callback function that does the logging.
+// Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
 var stringParsingUtilities = require('../businessRules/rules/stringParsingUtilities');
 var configurator = require('./configurator');
 var fileOperations = require('./fileOperations');
@@ -60,7 +63,7 @@ function consoleLog(classPath, message) {
       // console.log(`message is: ${message}`);
       let logFile = configurator.getConfigurationSetting(wr1.csystem, sys.capplicationCleanedRootPath);
       if (logFile !== undefined) {
-        logFile = `${logFile}//logs`;
+        logFile = logFile + bas.cDoubleForwardSlash + wr1.cLogs;
         // console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         // console.log(`Logfile after path.resolve is: ${logFile}`);
@@ -232,6 +235,9 @@ function parseClassPath(logFile, classPath, message) {
       // console.log('message is: ' + message);
       // console.log('myNameSpace is: ' + myNameSpace);
       // console.log('rules is: ' + JSON.stringify(rules));
+      // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
+      // We will need to refactor the business rules to accept a callback function that does the logging.
+      // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
       message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
     }
     // console.log('setting the returnData to the message: ' + message);
@@ -267,9 +273,10 @@ function printMessageToFile(file, message) {
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);
   let dateTimeStamp = '';
-  if (!file.includes('undefined')) {
-    console.log('!file.includes(undefined)');
-    if (configurator.getConfigurationSetting('system', 'logFileEnabled') === true) {
+  if (!file.includes('undefined')) { // NOTE: This usage of the string undefined, must be hard-coded here.
+    // '!file.includes(undefined)'
+    console.log(msg.cprintMessageToFile01);
+    if (configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
@@ -282,10 +289,12 @@ function printMessageToFile(file, message) {
       }
       fileOperations.appendMessageToFile(file, message);
     } else {
-      console.log('ERROR: Failure to log to file: ' + file);
+      // 'ERROR: Failure to log to file: '
+      console.log(msg.cprintMessageToFile02 + file);
     }
   } else {
-    console.log('ERROR: Log File includes undefined.');
+    // 'ERROR: Log File includes undefined.'
+    console.log(msg.cprintMessageToFile03);
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };

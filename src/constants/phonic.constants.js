@@ -49,7 +49,10 @@ let cition = bas.ci + ction; // ition
 let cITION = bas.cI + cTION; // ITION
 let cage = bas.cag + bas.ce; // age
 let cest = bas.ces + bas.ct; // est
-let chare = bas.cha + bas.cre; // hare
+let char = bas.cha + bas.cr; // har
+let cHar = bas.cHa + bas.cr; // Har
+let cHAR = bas.cHA + bas.cR; // HAR
+let chare = char + bas.ce; // hare
 let c_lass = bas.cla + bas.css; // lass
 let ctemp = bas.cte + bas.cmp; // temp
 let chref = bas.chr + bas.cef; // href
@@ -277,6 +280,7 @@ let clash = bas.cla + bas.csh; // lash
 let cENV = bas.cE + bas.cNV; // ENV
 let cavigate = bas.cav + bas.cig + cate; // avigate
 let cness = bas.cne + bas.css; // ness
+let cNESS = bas.cNE + bas.cSS; // NESS
 let cusiness = bas.cus + bas.ci + cness; // usiness
 let cule = bas.cul + bas.ce; // ule
 let cait = bas.cai + bas.ct; // ait
@@ -1137,6 +1141,9 @@ module.exports = {
   [bas.cc + cITION]: cITION, // ITION
   [bas.cc + cage]: cage, // age
   [bas.cc + cest]: cest, // est
+  [bas.cc + char]: char, // har
+  [bas.cc + cHar]: cHar, // Har
+  [bas.cc + cHAR]: cHAR, // HAR
   [bas.cc + chare]: chare, // hare
   [bas.cc + c_lass]: c_lass, // lass
   [bas.cc + ctemp]: ctemp, // temp
@@ -1365,6 +1372,7 @@ module.exports = {
   [bas.cc + cENV]: cENV, // ENV
   [bas.cc + cavigate]: cavigate, // avigate
   [bas.cc + cness]: cness, // ness
+  [bas.cc + cNESS]: cNESS, // NESS
   [bas.cc + cusiness]: cusiness, // usiness
   [bas.cc + cule]: cule, // ule
   [bas.cc + cait]: cait, // ait

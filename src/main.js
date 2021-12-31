@@ -41,6 +41,7 @@ var phn = require('./constants/phonic.constants');
 var sys = require('./constants/system.constants');
 var unt = require('./constants/unit.constants');
 var wr1 = require('./constants/word1.constants');
+var wr2 = require('./constants/word2.constants');
 var warden = require('./controllers/warden');
 var loggers = require('./executrix/loggers');
 var prompt = require('./executrix/prompt');
@@ -49,34 +50,53 @@ var D = require('./structures/data');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 var namespacePrefix = baseFileName + bas.cDot;
 
- /**
-  * @function initFramework
-  * @description Initializes the framework systems.
-  * @param {object} clientConfiguration A configuration data object that contains
-  * all the data needed to bootstrap the framework for a client application.
-  * @return {void}
-  * @author Seth Hollingsead
-  * @date 2021/10/07
-  */
- function initFramework(clientConfiguration) {
-   let functionName = initFramework.name;
-   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-   // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
-   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-   loggers.consoleLog(namespacePrefix + functionName, msg.cclientConfigurationIs + clientConfiguration);
-   let appRootPath = warden.processRootPath(clientConfiguration);
-   clientConfiguration[cfg.cappRootPath] = appRootPath;
-   clientConfiguration[cfg.cappConfigPath] = appRootPath + clientConfiguration[cfg.cappConfigReferencePath];
-   clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
-   warden.initFrameworkSchema(clientConfiguration);
-   loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
-   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-   // console.log('All loaded data is: ' + JSON.stringify(D));
-   // console.log(`END ${namespacePrefix}${functionName} function`);
- };
+/**
+* @function initFramework
+* @description Initializes the framework systems.
+* @param {object} clientConfiguration A configuration data object that contains
+* all the data needed to bootstrap the framework for a client application.
+* @return {void}
+* @author Seth Hollingsead
+* @date 2021/10/07
+*/
+function initFramework(clientConfiguration) {
+ let functionName = initFramework.name;
+ // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+ loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+ loggers.consoleLog(namespacePrefix + functionName, msg.cclientConfigurationIs + clientConfiguration);
+ let appRootPath = warden.processRootPath(clientConfiguration);
+ clientConfiguration[cfg.cappRootPath] = appRootPath;
+ clientConfiguration[cfg.cappConfigPath] = appRootPath + clientConfiguration[cfg.cappConfigReferencePath];
+ clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
+ warden.initFrameworkSchema(clientConfiguration);
+ loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
+ loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+ // console.log('All loaded data is: ' + JSON.stringify(D));
+ // console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+/**
+ * @function consoleLog
+ * @description A wrapper function to expose the loggers.consoleLog function to the client application.
+ * @param {string} namespacePrefix The namespace of the log that is being sent. Ex: folder.filename
+ * @param {string} functionName The name of the function that log is being called from.
+ * @param {string|object} message The message that should be logged.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2021/12/30
+ */
+function consoleLog(namespacePrefix, functionName, message) {
+  let thisFunctionName = consoleLog.name;
+  // console.log(`BEGIN ${namespacePrefix}${thisFunctionName} function`);
+  // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+  loggers.consoleLog(namespacePrefix + functionName, message);
+  // console.log(`END ${namespacePrefix}${thisFunctionName} function`);
+};
 
 module.exports = {
   [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
+  [fnc.cconsoleLog]: (namespacePrefix, functionName, message) => consoleLog(namespacePrefix, functionName, message),
   [fnc.cprompt]: (ask) => prompt.prompt(ask),
   [gen.cbas]: bas,
   [gen.cbiz]: biz,
@@ -91,5 +111,6 @@ module.exports = {
   [gen.cphn]: phn,
   [gen.csys]: sys,
   [gen.cunt]: unt,
-  [gen.cwr1]: wr1
+  [gen.cwr1]: wr1,
+  [gen.cwr2]: wr2
 };

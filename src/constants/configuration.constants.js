@@ -17,6 +17,7 @@ var wr1 = require('./word1.constants');
 var sys = require('./system.constants');
 
 let crootPath = wr1.croot + wr1.cPath; // rootPath
+let cRootPath = wr1.cRoot + wr1.cPath; // RootPath
 let cappRootPath = gen.capp + wr1.cRoot + wr1.cPath; // appRootPath
 let cappConfigPath = gen.capp + wr1.cConfig + wr1.cPath; // appConfigPath
 let cframeworkConfigPath = wr1.cframework + wr1.cConfig + wr1.cPath; // frameworkConfigPath
@@ -37,6 +38,7 @@ let cIncludeDateTimeStampInLogFiles = wr1.cInclude + wr1.cDate + wr1.cTime + wr1
 
 module.exports = {
   [bas.cc + crootPath]: crootPath, // rootPath
+  [bas.cc + cRootPath]: cRootPath, // RootPath
   [bas.cc + cappRootPath]: cappRootPath, // appRootPath
   [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
   [bas.cc + cframeworkConfigPath]: cframeworkConfigPath, // frameworkConfigPath

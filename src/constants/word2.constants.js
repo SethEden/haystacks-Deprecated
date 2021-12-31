@@ -881,6 +881,7 @@ let cpaths = cpath + bas.cs; // paths
 let cPaths = cPath + bas.cs; // Paths
 let cexit = bas.cex + bas.cit; // exit
 let cExit = bas.cEx + bas.cit; // Exit
+let cEXIT = bas.cEX + bas.cIT; // EXIT
 let cexiting = cexit + phn.cing; // exiting
 let cExiting = cExit + phn.cing; // Exiting
 let cViewer = bas.cVi + bas.cew + bas.cer; // Viewer
@@ -2542,6 +2543,9 @@ let clogic = clog + bas.cic; // logic
 let cLogic = cLog + bas.cic; // Logic
 let clogical = clogic + bas.cal; // logical
 let cLogical = cLogic + bas.cal; // Logical
+let charness = phn.char + phn.cness; // harness
+let cHarness = phn.cHar + phn.cness; // Harness
+let cHARNESS = phn.cHAR + phn.cNESS; // HARNESS
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -3395,6 +3399,7 @@ module.exports = {
   [bas.cc + cPaths]: cPaths, // Paths
   [bas.cc + cexit]: cexit, // exit
   [bas.cc + cExit]: cExit, // Exit
+  [bas.cc + cEXIT]: cEXIT, // EXIT
   [bas.cc + cexiting]: cexiting, // exiting
   [bas.cc + cExiting]: cExiting, // Exiting
   [bas.cc + cViewer]: cViewer, // Viewer
@@ -5063,6 +5068,9 @@ module.exports = {
   [bas.cc + cLogic]: cLogic, // Logic
   [bas.cc + clogical]: clogical, // logical
   [bas.cc + cLogical]: cLogical, // Logical
+  [bas.cc + charness]: charness, // harness
+  [bas.cc + cHarness]: cHarness, // Harness
+  [bas.cc + cHARNESS]: cHARNESS, // HARNESS
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
