@@ -18,7 +18,21 @@ var configurator = require('../executrix/configurator');
 var D = require('../structures/data');
 var fs = require('fs');
 var path = require('path');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = `executrix.${baseFileName}.`;
 
+/**
+ * @function consoleLog
+ * @description Compares the class path to a series of configuration settings to determine
+ * if we should log to the console or not.
+ * Also can provisionally log to a log file as well since the console
+ * is technically a transient data output.
+ * @param {string} classPath The class path for the caller of this function file.function or class.method.
+ * @param {string} message The message or data contents that should be dumped to the output.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/01/13
+ */
 function consoleLog(classPath, message) {
   if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
     let consoleLogEnabled = configurator.getConfigurationSetting('consoleLogEnabled');

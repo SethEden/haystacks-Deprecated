@@ -41,7 +41,7 @@ function scanDataPath(dataPath) {
  * then loads them accordingly in the D.contextName.
  * @param {array<string>} filesToLoad The data structure containing all of the files to load data from.
  * @param {string} contextName The context name that should be used when adding data to the D-data structure.
- * @return {object} A JSON object that contains all fo the data that was loaded and parsed from all the input files list.
+ * @return {object} A JSON object that contains all for the data that was loaded and parsed from all the input files list.
  * @author Seth Hollingsead
  * @date 2021/10/15
  */
@@ -57,7 +57,7 @@ function loadAllJsonData(filesToLoad, contextName) {
   let parsedDataFile = {};
 
   // Before we load all configuration data we need to FIRST load all the system configuration settings.
-  // There will be a system configuration setting that will tell us if we need to load the debug setngs or not.
+  // There will be a system configuration setting that will tell us if we need to load the debug settings or not.
   for (let i = 0; i < filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
@@ -69,7 +69,7 @@ function loadAllJsonData(filesToLoad, contextName) {
       // but there will be a setting here we should examin to determine if the rest of the data should even be loadd or not.
       // We will have a new setting that determines if all the extra debug settings should be loaded or not.
       // This way the application performance can be seriously optimized to greater levels of lean performance.
-      // Adding all that extra debugging cnfiguration settings can affect load times, and application performance to a much lesser degree.
+      // Adding all that extra debugging configuration settings can affect load times, and application performance to a much lesser degree.
       multiMergedData['system'] = {};
       multiMergedData['system'] = dataFile;
       foundSystemData = true;

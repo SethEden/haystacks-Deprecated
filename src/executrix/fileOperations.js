@@ -14,16 +14,16 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var fs = require('fs');
-var path = require('path');
-var D = require('../structures/data');
-var filesCollection = [];
+let D = require('../structures/data');
+let fs = require('fs');
+let path = require('path');
+let filesCollection = [];
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
-var enableFilesListLimit = false;
-var filesListLimit = -1;
-var hitFileLimit = false;
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `executrix.${baseFileName}.`;
+let enableFilesListLimit = false;
+let filesListLimit = -1;
+let hitFileLimit = false;
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = `executrix.${baseFileName}.`;
 
 /**
  * @function getJsonData
@@ -41,8 +41,13 @@ function getJsonData(pathAndFilename) {
   // Make sure to resolve the path on the local system,
   // just in case tehre are issues with the OS that the code is running on.
   pathAndFilename = path.resolve(pathAndFilename);
-  let rawData = fs.readFileSync(pathAndFilename, { encoding: 'UTF8'});
-  let parsedData = JSON.parse(rawData);
+  let rawData, parsedData;
+  try {
+    rawData = fs.readFileSync(pathAndFilename, { encoding: 'UTF8'});
+    parsedData = JSON.parse(rawData);
+  } catch (e) {
+      console.log('ERROR: ' + e.message);
+  }
   // console.log(`DONE loading data from: ${pathAndFilename}`);
   // console.log(`loaded data is: ${JSON.stringify(parsedData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -52,7 +57,7 @@ function getJsonData(pathAndFilename) {
 /**
  * @function readDirectoryContents
  * @description This function acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
- * Also taht function doesn't technically return anything, it works with a global variable that
+ * Also that function doesn't technically return anything, it works with a global variable that
  * needs to be reset after the work is done with it. So these are the things that this wrapper function can do.
  * @param {string} directory The path that needs to be scanned.
  * @return {object} An object containing any array of all the files in the folder and all sub-folders.
@@ -102,7 +107,7 @@ function readDirectorySynchronously(directory) {
     }
     currentDirectory.forEach(file => {
       let filesShouldBeSkipped = directoriesToSkip.indexOf(file) > -1;
-      let pathOfCurrentItem = directory +'/' + file;
+      let pathOfCurrentItem = directory + '/' + file;
       try {
         if (!filesShouldBeSkipped && fs.statSync(pathOfCurrentItem).isFile()) {
           if (enableFilesListLimit === true && filesListLimit > 0) {
@@ -153,7 +158,7 @@ function cleanRootPath() {
   let functionName = cleanRootPath.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   let rootPath;
-  
+
   console.log(`rootPath is: ${rootPath}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
@@ -162,5 +167,5 @@ function cleanRootPath() {
 module.exports = {
   ['getJsonData']: (pathAndFilename) => getJsonData(pathAndFilename),
   ['readDirectoryContents']: (directory) => readDirectoryContents(directory),
-  ['readDirectorySynchronously']: (directory) => readDirectorySynchronously(directory),
+  ['readDirectorySynchronously']: (directory) => readDirectorySynchronously(directory)
 };
