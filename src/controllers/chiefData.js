@@ -3,6 +3,8 @@
  * @module chiefData
  * @description Contains all the functions to manage the loading and processing of data,
  * such as XML files, CSV files or JSON files. Additional file type processing should be added in this module.
+ * @requires module:dataBroker
+ * @requires module:configurator
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/13

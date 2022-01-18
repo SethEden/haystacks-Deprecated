@@ -322,7 +322,7 @@ export const isString = function(inputData, inputMetaData) {
 
 /**
 * @function singleQuoteSwapAfterEquals
-* @description Swaps single quote characters in the middle of the string wih double quote characters n the middle of the string.
+* @description Swaps single quote characters in the middle of the string with double quote characters in the middle of the string.
 * input: 'inut[name='emailAddress'][class='username']'
 * output: 'input[name="emailAddress"][class="username"]'
 * @param {string} inputData A string that contains text with single quotes that should be swapped for double quotes.
@@ -342,10 +342,12 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
  } else {
    if (inputData.includes('\'') === true) {
      // First replace all the quotes in the string with double quotes.
-     returnData = inputData.replace(/'/g, '"');
+     // returnData = inputData.replace(/'/g, '"');
+     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/'/g, '"']);
      // Next replace the first and last double quote with single quote.
      if (returnData.indexOf('"') === 0) {
-       returnData = inputData.replace('"', '\'');
+       // returnData = inputData.replace('"', '\'');
+       returnData = arrayParsing.replaceCharacterWithCharacter(inputData, ['"', '\'']);
      }
      if (returnData.charAt(returnData.length - 1) === '"') {
        returnData = returnData.slice(0, -1) + '\'';
@@ -413,7 +415,7 @@ export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
 
 /**
 * @function swapDoubleForwardSlashToSingleForwardSlash
-* @description Swaps all double forward slash characters for sinle forward slash characters.
+* @description Swaps all double forward slash characters for single forward slash characters.
 * @param {string} inputData String that might contain some double forward slashes.
 * @param {string} inputMetaData Not used for this business rule.
 * @return {string} The same as the input string, just all double forward slash characters

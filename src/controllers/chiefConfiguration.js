@@ -67,17 +67,17 @@ function parseLoadedConfigurationData(allConfigurationData) {
   console.log(`allConfigurationData is: ${JSON.stringify(allConfigurationData)}`);
   let highLevelSystemConfigurationContainer = {};
   let highLevelDebugConfigurationContainer = {};
-  let allSystemConfigurations = {};
+  // let allSystemConfigurations = {};
   let rules = {};
-  let configurationElement;
-  let configurationSubElement;
+  // let configurationElement;
+  // let configurationSubElement;
   let fullyQualifiedName;
   let namespace;
   let name;
-  let type;
+  // let type;
   let value;
-  let version;
-  let advancedDebugSettingPrefix;
+  // let version;
+  // let advancedDebugSettingPrefix;
   rules[0] = 'stringToDataType';
 
   highLevelSystemConfigurationContainer = allConfigurationData['system'];
@@ -91,16 +91,13 @@ function parseLoadedConfigurationData(allConfigurationData) {
     value = highLevelSystemConfigurationContainer[key];
     if (!!value || value === false) {
       fullyQualifiedName = key;
-
       name = configurator.processConfigurationNameRules(fullyQualifiedName);
       namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
       value = configurator.processConfigurationValueRules(name, value);
       value = ruleBroker.processRules(value, '', rules);
-
       configurator.setConfigurationSetting(namespace, name, value);
-
     }
-  }
+  } // end-for (let key in highLevelSystemConfigurationContainer)
 
   for (let key in highLevelDebugConfigurationContainer) {
     fullyQualifiedName = '';
@@ -110,16 +107,13 @@ function parseLoadedConfigurationData(allConfigurationData) {
     value = highLevelDebugConfigurationContainer[key];
     if (!!value || value === false) {
       fullyQualifiedName = key;
-
       name = configurator.processConfigurationNameRules(fullyQualifiedName);
       namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
       value = configurator.processConfigurationValueRules(name, value);
       value = ruleBroker.processRules(value, '', rules);
-
       configurator.setConfigurationSetting(namespace, name, value);
-
     }
-  }
+  } // end-for (let key in highLevelDebugConfigurationContainer)
   console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
