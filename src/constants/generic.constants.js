@@ -227,7 +227,7 @@ let cgen = phn.cgen; // gen
 let ciso = phn.ciso; // iso
 let ckts = bas.ckt + bas.cs; // kts
 let clng = bas.cln + bas.cg; // lng
-let cmes = bas.cme + bas.cs; // mes
+let cmsg = bas.cms + bas.cg; // msg
 let cnum = phn.cnum; // num
 let cphn = bas.cph + bas.cn; // phn
 let cshp = phn.cshp; // shp
@@ -469,7 +469,7 @@ module.exports = {
   [bas.cc + ciso]: ciso, // iso
   [bas.cc + ckts]: ckts, // kts
   [bas.cc + clng]: clng, // lng
-  [bas.cc + cmes]: cmes, // mes
+  [bas.cc + cmsg]: cmsg, // msg
   [bas.cc + cnum]: cnum, // num
   [bas.cc + cphn]: cphn, // phn
   [bas.cc + cshp]: cshp, // shp

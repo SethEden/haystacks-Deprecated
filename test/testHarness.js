@@ -26,6 +26,7 @@ var path = require('path');
 global.appRot = path.resolve(process.cwd());
 var bas = haystacks.bas;
 var cfg = haystacks.cfg;
+var gen = haystacks.gen;
 var msg = haystacks.msg;
 var sys = haystacks.sys;
 var wr1 = haystacks.wr1;
@@ -42,6 +43,8 @@ var namespacePrefix = baseFileName + bas.cDot;
  * @date 2021/10/15
  */
 function bootstrapApplication() {
+  let functionName = bootstrapApplication.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = path.resolve(process.cwd());
   const {capplicationName} = sys;
   const {crootPath, cappConfigReferencePath} = cfg;
@@ -51,6 +54,7 @@ function bootstrapApplication() {
     cappConfigReferencePath: apc.cclientConfigurationPath
   };
   haystacks.initFramework(appConfig);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**
@@ -62,7 +66,6 @@ function bootstrapApplication() {
  */
 async function application() {
   let functionName = application.name;
-  console.log('msg.cBEGIN_Function resolves as: ' + msg.cBEGIN_Function);
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   let argumnentDrivenInterface = false;
