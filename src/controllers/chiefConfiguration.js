@@ -7,8 +7,9 @@
  * @requires module:business.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:ruleBroker
  * @requires module:chiefData
  * @requires module:configurator
@@ -24,8 +25,9 @@ var bas = require('../constants/basic.constants');
 var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
+var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var ruleBroker = require('../brokers/ruleBroker');
 var chiefData = require('./chiefData');
 var configurator = require('../executrix/configurator');
@@ -33,7 +35,7 @@ var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
+var namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
 
 /**
  * @function setupConfiguration
@@ -49,27 +51,30 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`appConfigPath is: ${appConfigPath}`);
   // console.log(`frameworkConfigPath is: ${frameworkConfigPath}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `appConfigPath is: ${appConfigPath}`);
-  loggers.consoleLog(namespacePrefix + functionName, `frameworkConfigPath is: ${frameworkConfigPath}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigPathIs + appConfigPath);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + frameworkConfigPath);
   let rules = {};
   rules[0] = biz.cswapBackSlashToForwardSlash;
   appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
   // console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
   frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
   // console.log(`frameworkConfigPath after rule processing is: ${frameworkConfigPath}`);
-  configurator.setConfigurationSetting(wrd.csystem, sys.cappConfigPath, appConfigPath);
-  configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cappConfigPath, appConfigPath);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
-  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wrd.cconfiguration);
-  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
+  let universalDebugConfigSetting = chiefData.searchForUniversalDebugConfigSetting(
+    sys.cappConfigPath, sys.cframeworkConfigPath
+  );
+  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wr1.cconfiguration);
+  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wr1.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
   // console.log('ALL DATA IS: ' + JSON.stringify(D));
   // console.log(`END ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, 'ALL DATA IS: ' + JSON.stringify(D));
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
 /**
@@ -80,6 +85,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/11/10
+ * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function parseLoadedConfigurationData(allConfigurationData) {
   let functionName = parseLoadedConfigurationData.name;
@@ -100,7 +106,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let advancedDebugSettingPrefix;
   rules[0] = biz.cstringToDataType;
 
-  highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
+  highLevelSystemConfigurationContainer = allConfigurationData[wr1.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
   highLevelDebugConfigurationContainer = allConfigurationData[cfg.cdebugSettings];
   // console.log('highLevelDebugConfigurationContainer is: ' + JSON.stringify(highLevelDebugConfigurationContainer));
@@ -124,9 +130,15 @@ function parseLoadedConfigurationData(allConfigurationData) {
       // console.log('value BEFORE rule processing is: ' + value);
       value = ruleBroker.processRules(value, '', rules);
       // console.log('value AFTER rule processing is: ' + value);
-
-      configurator.setConfigurationSetting(namespace, name, value);
-
+      if ((namespace === wr1.csystem && name === cfg.cdebugSettings) &&
+      configurator.getConfigurationSetting(namespace, name) === true) {
+        // console.log('CAUGHT THE CASE THAT WE ARE SETTING A FALSE VALUE FOR DEBUG-SETTINGS');
+        // NOTE: DO NOT over write the value because the base value is already saved as true.
+        // Over writing it with true, doesn't do anything, and over writing it with false
+        // destroys whatever setting the user may have set from the client application.
+      } else {
+        configurator.setConfigurationSetting(namespace, name, value);
+      }
     }
   }
 
@@ -158,5 +170,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
 };
 
 module.exports = {
-  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(appConfigPath, frameworkConfigPath)
+  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
+    appConfigPath, frameworkConfigPath
+  )
 };

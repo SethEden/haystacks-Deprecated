@@ -3,8 +3,10 @@
  * @module arrayParsing
  * @description Contains all system defined business rules for parsing arrays with various operations.
  * @requires module:basic.constants
+ * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
+ * @requires module:stringParsingUtilities
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -13,12 +15,14 @@
  */
 
 var bas = require('../../constants/basic.constants');
+var msg = require('../../constants/message.constants');
 var sys = require('../../constants/system.constants');
-var wrd = require('../../constants/word.constants');
+var wr1 = require('../../constants/word1.constants');
+var stringParsingUtilities = require('./stringParsingUtilities');
 var loggers = require('../../executrix/loggers');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function replaceCharacterWithCharacter
@@ -38,19 +42,17 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `inputData is: ${inputData}`);
-  loggers.consoleLog(namespacePrefix + functionName, `inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
-  let character2Find = inputMetaData[0];
-  let character2Replace = inputMetaData[1];
-  if (!inputData && !character2Find && !character2Replace) {
+  if (!inputData && !inputMetaData) {
     returnData = false;
   } else {
-    returnData = inputData.replace(character2Find, character2Replace);
+    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData);
   }
-  loggers.consoleLog(namespacePrefix + functionName, `returnData is: ${JSON.stringify(returnData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

@@ -5,113 +5,42 @@
  * These remove the need for cirulcar dependencies even though some of them are re-definitions from other files.
  * @requires module:basic.constants
  * @requires module:phonic.constants
+ * @requires module:word2.constants
  * @author Seth Hollingsead
  * @date 2021/11/16
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
+ * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
+ * Also so we don't have to redefine all the words in this file.
  */
 
 import * as bas from './basic.constants';
 import * as phn from './phonic.constants';
+import * as wr2 from './word2.constants';
 
 // Redefined words, used below in this file, redefined so we don't have circular dependencies
-let cCongo = bas.cC + phn.congo; // Congo
-let cDemo = bas.cD + phn.cemo; // Demo
-let cDemocratic = cDemo + bas.ccr + phn.cati + bas.cc; // Democratic
-let cpublic = bas.cpu + bas.cbl + bas.cic; // public
-let cRepublic = bas.cRe + cpublic; // Republic
-let cCent = bas.cC + phn.cent; // Cent
-let cCentral = cCent + phn.cral; // Central
-let cAfrican = bas.cAf + phn.crica + bas.cn; // African
-let cCost = bas.cC + phn.cost; // Cost
-let cThe = bas.cTh + bas.ce; // The
-let cNew = bas.cNe + bas.cw; // New
-let cPapua = bas.cPa + bas.cpu + bas.ca; // Papua
-let cGuinea = bas.cGu + phn.cinea; // Guinea
-let cTrinidad = phn.cTri + bas.cni + bas.cda + bas.cd; // Trinidad
-let cTabago = bas.cTa + bas.cba + bas.cgo; // Tabago
-let cunit = phn.cuni + bas.ct; // unit
-let cUnit = phn.cUni + bas.ct; // Unit
-let cUnited = cUnit + bas.ced; // United
-let cArab = bas.cAr + bas.cab; // Arab
-let cEmirates = bas.cEm + bas.cir + phn.cates; // Emirates
-let cStates = bas.cSt + phn.cates; // States
-let cAmerica = bas.cAm + bas.cer + phn.cica; // America
-let cone = bas.co + bas.cne; // one
-let cAnd = bas.cAn + bas.cd; // And
-let cLow = bas.cLo + bas.cw; // Low
-let cLower = cLow + bas.cer; // Lower
-let cCase = bas.cC + phn.c_ase; // Case
-let cAlpha = bas.cA + phn.clpha; // Alpha
-let cbetic = bas.cbe + bas.cti + bas.cc; // betic
-let cAlphabetic = cAlpha + cbetic; // Alphabetic
-let cAll = phn.cAll; // All
-let cNumber = bas.cN + phn.cumber; // Number
-let cNumbers = cNumber + bas.cs; // Numbers
-let cMost = bas.cM + phn.cost; // Most
-let cSpecial = bas.cSp + bas.cec + bas.cia + bas.cl; // Special
-let cChar = bas.cCh + bas.car; // Char
-let cCharacter = cChar + bas.cac + phn.cter; // Character
-let cCharacters = cCharacter + bas.cs; // Characters
 let cDot = bas.cDo + bas.ct; // Dot
-let cframe = bas.cf + phn.crame; // frame
-let cwork = bas.cwo + bas.crk; // work
-let cframework = cframe + cwork; // framework
-let csource = bas.cs + phn.cource; // source
-let cResource = bas.cRe + csource; // Resource
-let cResources = cResource + bas.cs; // Resources
-let cfig = bas.cf + bas.cig; // fig
-let cconfig = phn.ccon + cfig; // config
-let cConfig = phn.cCon + cfig; // Config
-let cconfiguration = cconfig + bas.cur + phn.cation; // configuration
-let cConfiguration = cConfig + bas.cur + phn.cation; // Configuration
-let cPath = bas.cP + phn.cath; // Path
-let csystem = bas.csy + bas.cst + bas.cem; // system
-let cFile = bas.cF + phn.cile; // File
-let cName = bas.cN + phn.came; // Name
-let capplication = phn.capp + phn.clica + phn.ction; // application
-let cbasic = bas.cb + phn.casic; // basic
-let cconstant = phn.ccon + phn.cstant; //constant
-let cconstants = cconstant + bas.cs; // constants
-let cbusiness = bas.cb + phn.cusiness; // business
-let ccolor = phn.ccol + bas.cor; // color
-let ccommand = phn.ccom + phn.cmand; // command
-let ccount = bas.cco + phn.cunt; // count
-let ccountry = ccount + bas.cry; // country
-let celement = bas.cel + bas.ce + phn.cment; // element
-let cgeneric = phn.cgen + bas.ce + phn.cric; // generic
-let cisotope = phn.ciso + phn.ctope; // isotope
-let cnot = bas.cno + bas.ct; // not
-let cknot = bas.ck + cnot; // knot
-let clanguage = phn.clang + phn.cuage; // language
-let cmessage = bas.cme + bas.css + phn.cage; // message
-let cnumeric = bas.cnu + bas.cme + bas.cri + bas.cc; // numeric
-let cphonic = phn.cphon + bas.cic; // phonic
-let cshape = phn.csha + bas.cpe; // shape
-let cword = bas.cw + phn.cord; // word
+let cCongo = bas.cC + phn.congo; // Congo
+let cGuinea = bas.cGu + phn.cinea; // Guinea
+let cone = bas.co + bas.cne; // one
 let cSan = bas.cSa + bas.cn; // San
 let cSierra = bas.cSi + bas.cer + bas.cra; // Sierra
 let cEnglish = bas.cEn + bas.cgl + phn.cish; // English
-let cAlphabet = cAlpha + phn.cbet; // Alphabet
-let cUpper = bas.cUp + bas.cp + bas.cer; // Upper
-let cFor = bas.cFo + bas.cr; // For
-let cForward = cFor + phn.cward; // Forward
-let cSlash = bas.cS + phn.clash; // Slash
 
 let cCotedlvoire = bas.cCo + bas.cte + bas.cd + bas.clv + bas.coi + bas.cre; // Cotedlvoire
 let cCaboVerde = bas.cCa + bas.cbo + phn.cVer + bas.cde; // CaboVerde
-let cCentralAfricanRepublic = cCentral + cAfrican + cRepublic; // CentralAfricanRepublic
-let cCostaRica = cCost + bas.ca + bas.cR + phn.cica; // CostaRica
-let cDemocraticRepublicOfTheCongo = cDemocratic + cRepublic + bas.cOf + cThe + cCongo; // DemocraticRepublicOfTheCongo
+let cCentralAfricanRepublic = wr2.cCentral + wr2.cAfrican + wr2.cRepublic; // CentralAfricanRepublic
+let cCostaRica = wr2.cCost + bas.ca + bas.cR + phn.cica; // CostaRica
+let cDemocraticRepublicOfTheCongo = wr2.cDemocratic + wr2.cRepublic + bas.cOf + wr2.cThe + cCongo; // DemocraticRepublicOfTheCongo
 let cDominicanRepublic = bas.cDo + phn.cminica + bas.cn + bas.cR + bas.cep + phn.cublic; // cDominicanRepublic
 let cElSalvador = bas.cEl + bas.cSa + bas.clv + phn.cador; // ElSalvador
 let cEquatorialGuinea = phn.cEqu + phn.cator + bas.cia + bas.cl + bas.cG + phn.cuinea; // EquatorialGuinea
 let cGuineaBissau = bas.cGu + phn.cinea + bas.cBi + bas.css + bas.cau; // GuineaBissau
 let cHolySee = bas.cHo + bas.cly + bas.cSe + bas.ce; // HolySee
 let cMarshallIslands = bas.cMa + bas.crs + bas.cha + bas.cll + bas.cIs + bas.cla + phn.cnds; // MarshallIslands
-let cNewZealand = cNew + bas.cZe + phn.cala + bas.cnd; // NewZealand
+let cNewZealand = wr2.cNew + bas.cZe + phn.cala + bas.cnd; // NewZealand
 let cNorthKorea = bas.cNo + bas.crt + bas.ch + bas.cK + phn.corea; // NorthKorea
 let cNorthMacedonia = bas.cNo + bas.crt + bas.ch + bas.cM + phn.cace + bas.cdo + phn.cnia; // NorthMacedonia
-let cPapuaNewGuinea = cPapua + cNew + cGuinea; // PapuaNewGuinea
+let cPapuaNewGuinea = wr2.cPapua + wr2.cNew + cGuinea; // PapuaNewGuinea
 let cSaintKitts = bas.cSa + phn.cint + bas.cKi + bas.ctt + bas.cs; // SaintKitts
 let cSaintLucia = bas.cSa + phn.cint + bas.cLu + bas.cci + bas.ca; // SaintLucia
 let cSaintVincent = bas.cSa + phn.cint + bas.cVi + phn.cnce + bas.cnt; // SaintVincent
@@ -125,15 +54,15 @@ let cSouthKorea = bas.cSo + bas.cut + bas.ch + bas.cK + phn.corea; // SouthKorea
 let cSouthSudan = bas.cSo + bas.cut + bas.ch + bas.cS + phn.cudan; // SouthSudan
 let cSriLanka = bas.cSr + bas.ci + bas.cL + bas.can + bas.cka; // SriLanka
 let cTimorLeste = bas.cTi + bas.cmo + bas.cr + bas.cL + phn.cest + bas.ce; // TimorLeste
-let cTrinidadAndTabago = cTrinidad + cAnd + cTabago; // TrinidadAndTabago
-let cUnitedArabEmirates = cUnited + cArab + cEmirates; // UnitedArabEmirates
-let cUnitedKingdom = cUnited + bas.cKi + bas.cng + phn.cdom; // UnitedKingdom
-let cUnitedStatesOfAmerica = cUnited + cStates + bas.cOf + cAmerica; // UnitedStatesOfAmmerica
+let cTrinidadAndTabago = wr2.cTrinidad + wr2.cAnd + wr2.cTabago; // TrinidadAndTabago
+let cUnitedArabEmirates = wr2.cUnited + wr2.cArab + wr2.cEmirates; // UnitedArabEmirates
+let cUnitedKingdom = wr2.cUnited + bas.cKi + bas.cng + phn.cdom; // UnitedKingdom
+let cUnitedStatesOfAmerica = wr2.cUnited + wr2.cStates + bas.cOf + wr2.cAmerica; // UnitedStatesOfAmmerica
 
-let cLowerCaseEnglishAlphabet = cLower + cCase + cEnglish + cAlphabet; // LowerCaseEnglishAlphabet
-let cUpperCaseEnglishAlphabet = cUpper + cCase + cEnglish + cAlphabet; // UpperCaseEnglishAlphabet
-let cAllNumbers = cAll + cNumbers; // AllNumbers
-let cMostSpecialCharacters = cMost + cSpecial + cCharacters; // MostSpecialCharacters
+let cLowerCaseEnglishAlphabet = wr2.cLower + wr2.cCase + cEnglish + wr2.cAlphabet; // LowerCaseEnglishAlphabet
+let cUpperCaseEnglishAlphabet = wr2.cUpper + wr2.cCase + cEnglish + wr2.cAlphabet; // UpperCaseEnglishAlphabet
+let cAllNumbers = wr2.cAll + wr2.cNumbers; // AllNumbers
+let cMostSpecialCharacters = wr2.cMost + wr2.cSpecial + wr2.cCharacters; // MostSpecialCharacters
 
 let cctrl_a = phn.cctrl + bas.cUnderscore + bas.ca; // ctrl_a
 let cctrl_b = phn.cctrl + bas.cUnderscore + bas.cb; // ctrl_b
@@ -162,34 +91,94 @@ let cctrl_x = phn.cctrl + bas.cUnderscore + bas.cx; // ctrl_x
 let cctrl_y = phn.cctrl + bas.cUnderscore + bas.cy; // ctrl_y
 let cctrl_z = phn.cctrl + bas.cUnderscore + bas.cz; // ctrl_z
 
-let cframeworkResourcesConfigurationPath = cframework + cResources + cConfiguration + cPath; // cframeworkResourcesConfigurationPath
-let csystemConfigFileName = csystem + cConfig + cFile + cName; // csystemConfigFileName
-let capplicationConfigFileName = capplication + cConfig + cFile + cName; // capplicationConfigFileName
+let cframeworkResourcesConfigurationPath = wr2.cframework + wr2.cResources + wr2.cConfiguration + wr2.cPath; // cframeworkResourcesConfigurationPath
+let csystemConfigFileName = wr2.csystem + wr2.cConfig + wr2.cFile + wr2.cName; // csystemConfigFileName
+let capplicationConfigFileName = wr2.capplication + wr2.cConfig + wr2.cFile + wr2.cName; // capplicationConfigFileName
 
 // Constants Filenames
-let cbasic_constants_js = cbasic + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // basic_constants_js
-let cbusiness_constants_js = cbusiness + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // business_constants_js
-let ccolor_constants_js = ccolor + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // color_constants_js
-let ccommand_constants_js = ccommand + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // command_constants_js
-let cconfiguration_constants_js = cconfiguration + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // configuration_constants_js
-let cconstant_constants_js = cconstant + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // constant_constant_js
-let ccountry_constants_js = ccountry + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // country_constants_js
-let celement_constants_js = celement + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // element_constants_js
-let cgeneric_constants_js = cgeneric + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // generic_constants_js
-let cisotope_constants_js = cisotope + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // isotope_constants_js
-let cknot_constants_js = cknot + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // knot_constants_js
-let clanguage_constants_js = clanguage + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // language_constants_js
-let cmessage_constants_js = cmessage + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // message_constants_js
-let cnumeric_constants_js = cnumeric + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // numeric_constants_js
-let cphonic_constants_js = cphonic + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // phonic_constants_js
-let cshape_constants_js = cshape + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // shape_constants_js
-let csystem_constants_js = csystem + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // system_constants_js
-let cunit_constants_js = cunit + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // unit_constants_js
-let cword_constants_js = cword + bas.cUnderscore + cconstants + bas.cUnderscore + bas.cjs; // word_constants_js
+let cbasic_constants_js = wr2.cbasic + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // basic_constants_js
+let cbusiness_constants_js = wr2.cbusiness + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // business_constants_js
+let ccolor_constants_js = wr2.ccolor + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // color_constants_js
+let ccommand_constants_js = wr2.ccommand + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // command_constants_js
+let cconfiguration_constants_js = wr2.cconfiguration + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // configuration_constants_js
+let cconstant_constants_js = wr2.cconstant + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // constant_constant_js
+let ccountry_constants_js = wr2.ccountry + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // country_constants_js
+let celement_constants_js = wr2.celement + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // element_constants_js
+let cgeneric_constants_js = wr2.cgeneric + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // generic_constants_js
+let cisotope_constants_js = wr2.cisotope + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // isotope_constants_js
+let cknot_constants_js = wr2.cknot + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // knot_constants_js
+let clanguage_constants_js = wr2.clanguage + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // language_constants_js
+let cmessage_constants_js = wr2.cmessage + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // message_constants_js
+let cnumeric_constants_js = wr2.cnumeric + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // numeric_constants_js
+let cphonic_constants_js = wr2.cphonic + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // phonic_constants_js
+let cshape_constants_js = wr2.cshape + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // shape_constants_js
+let csystem_constants_js = wr2.csystem + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // system_constants_js
+let cunit_constants_js = wr2.cunit + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // unit_constants_js
+let cword_constants_js = wr2.cword + bas.cUnderscore + wr2.cconstants + bas.cUnderscore + bas.cjs; // word_constants_js
+
+// Message constant constants
+// Logging constant constants
+let cBEGIN_Function = wr2.cBEGIN + bas.cUnderscore + wr2.cFunction; // BEGIN_Function
+let cEND_Function = wr2.cEND + bas.cUnderscore + wr2.cFunction; // END_Function
+let cinputData = wr2.cinput + wr2.cData; // inputData
+let cInputData = wr2.cInput + wr2.cData; // InputData
+let cinputMetaData = wr2.cinput + wr2.cMetaData; // inputMetaData
+let cInputMetaData = wr2.cInput + wr2.cMetaData; // InputMetaData
+let cinputDataIs = wr2.cinput + wr2.cData + wr2.cIs; // inputDataIs
+let cinputMetaDataIs = wr2.cinput + wr2.cMetaData + wr2.cIs; // inputMetaDataIs
+let creturnDataIs = wr2.creturn + wr2.cData + wr2.cIs; // returnDataIs
+let cSpaceIsColonSpace = wr2.cSpace + wr2.cIs + wr2.cColon + wr2.cSpace; // cSpaceIsColonSpace
+
+// System Messages constant constants
+let cdataPathIs = wr2.cdata + wr2.cPath + wr2.cIs; // dataPathIs
+let cfilesFoundIs = wr2.cfiles + wr2.cFound + wr2.cIs; // filesFoundIs
+let cfileToLoadIs = wr2.cfile + wr2.cTo + wr2.cLoad + wr2.cIs; // fileToLoadIs
+let cfilesToLoadIs = wr2.cfiles + wr2.cTo + wr2.cLoad + wr2.cIs; // filesToLoadIs
+let ccontextNameIs = wr2.ccontext + wr2.cName + wr2.cIs; // contextNameIs
+let cdataFileToMergeIs = wr2.cdata + wr2.cFile + bas.cTo + wr2.cMerge + wr2.cIs; // dataFileToMergeIs
+let cparsedDataFileIs = wr2.cparsed + wr2.cData + wr2.cFile + wr2.cIs; // parsedDataFileIs
+let cexecuteBusinessRules = wr2.cexecute + wr2.cBusiness + wr2.cRules; // executeBusinessRules
+let cdataFileIs = wr2.cdata + wr2.cFile + wr2.cIs; // dataFileIs
+let cmergedDataIs = wr2.cmerged + wr2.cData + wr2.cIs; // mergedDataIs
+let cdebugConfigurationSettingValueIs = wr2.cdebug + wr2.cConfiguration + wr2.cSetting + wr2.cValue + wr2.cIs; // debugConfigurationSettingValueIs
+let cappConfigPathIs = phn.capp + wr2.cConfig + wr2.cPath + wr2.cIs; // appConfigPathIs
+let cframeworkConfigPathIs = wr2.cframework + wr2.cConfig + wr2.cPath + wr2.cIs; // frameworkConfigPathIs
+let cALL_DATA_IS = wr2.cALL + bas.cUnderscore + wr2.cDATA + bas.cUnderscore + wr2.cIS; // ALL_DATA_IS
+let cAllLoadedDataIs = wr2.cAll + wr2.cLoaded + wr2.cData + wr2.cIs; // AllLoadedDataIs
+let cconfigDataIs = wr2.cconfig + wr2.cData + wr2.cIs; // configDataIs
+let cERROR = wr2.cERROR; // ERROR:
+let cErrorInvalidAccessTo = wr2.cError + wr2.cInvalid + wr2.cAccess + wr2.cTo; // ErrorInvalidAccessTo
+let crootPathIs = wr2.croot + wr2.cPath + wr2.cIs; // rootPathIs
+let caskIs = wr2.cask + wr2.cIs; // askIs
+let cINPUT = wr2.cINPUT; // INPUT
+let cinputIs = wr2.cinput + wr2.cIs; // inputIs
+let cstartTimeIs = wr2.cstart + wr2.cTime + wr2.cIs; // startTimeIs
+let cendTimeIs = wr2.cend + wr2.cTime + wr2.cIs; // endTimeIs
+let cdeltaTimeResultIs = wr2.cdelta + wr2.cTime + wr2.cResult + wr2.cIs; // deltaTimeResultIs
+let cclientConfigurationIs = wr2.cclient + wr2.cConfiguration + wr2.cIs; // clientConfigurationIs
+let cprompt01 = wr2.cprompt + wr2.c0 + wr2.c1; // prompt01
+let cprompt02 = wr2.cprompt + wr2.c0 + wr2.c2; // prompt02
+let cprompt03 = wr2.cprompt + wr2.c0 + wr2.c3; // prompt03
+let cprintMessageToFile01 = wr2.cprint + wr2.cMessage + wr2.cTo + wr2.cFile + wr2.c0 + wr2.c1;
+let cprintMessageToFile02 = wr2.cprint + wr2.cMessage + wr2.cTo + wr2.cFile + wr2.c0 + wr2.c2;
+let cprintMessageToFile03 = wr2.cprint + wr2.cMessage + wr2.cTo + wr2.cFile + wr2.c0 + wr2.c3;
+
+// Coded System Messages constant constants
+let cdebugSettingsEnabledLogic01 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c1; // debugSettingsEnabledLogic01
+let cdebugSettingsEnabledLogic02 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c2; // debugSettingsEnabledLogic02
+let cdebugSettingsEnabledLogic03 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c3; // debugSettingsEnabledLogic03
+let cdebugSettingsEnabledLogic04 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c4; // debugSettingsEnabledLogic04
+let cdebugSettingsEnabledLogic05 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c5; // debugSettingsEnabledLogic05
+let cdebugSettingsEnabledLogic06 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c6; // debugSettingsEnabledLogic06
+let cdebugSettingsEnabledLogic07 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c7; // debugSettingsEnabledLogic07
+let cdebugSettingsEnabledLogic08 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c8; // debugSettingsEnabledLogic08
+let cdebugSettingsEnabledLogic09 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c0 + wr2.c9; // debugSettingsEnabledLogic09
+let cdebugSettingsEnabledLogic10 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c1 + wr2.c0; // debugSettingsEnabledLogic10
+let cdebugSettingsEnabledLogic11 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c1 + wr2.c1; // debugSettingsEnabledLogic11
+let cdebugSettingsEnabledLogic12 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c1 + wr2.c2; // debugSettingsEnabledLogic12
 
 module.exports = {
   [bas.cc + cDot]: cDot, // Dot
-  [bas.cc + cForward + cSlash]: cForward + cSlash, // FowardSlash
   [bas.cc + cCotedlvoire]: cCotedlvoire, // Cotedlvoire
   [bas.cc + cCaboVerde]: cCaboVerde, // CaboVerde
   [bas.cc + cCentralAfricanRepublic]: cCentralAfricanRepublic, // CentralAfricanRepublic
@@ -279,4 +268,65 @@ module.exports = {
   [bas.cc + csystem_constants_js]: csystem_constants_js, // system_constants_js
   [bas.cc + cunit_constants_js]: cunit_constants_js, // unit_constants_js
   [bas.cc + cword_constants_js]: cword_constants_js, // word_constants_js
+
+  // Message constant constants
+  // Logging constant constants
+  [bas.cc + cBEGIN_Function]: cBEGIN_Function, // BEGIN_Function
+  [bas.cc + cEND_Function]: cEND_Function, // END_Function
+  [bas.cc + cinputData]: cinputData, // inputData
+  [bas.cc + cInputData]: cInputData, // InputData
+  [bas.cc + cinputMetaData]: cinputMetaData, // inputMetaData
+  [bas.cc + cInputMetaData]: cInputMetaData, // InputMetaData
+  [bas.cc + cinputDataIs]: cinputDataIs, // inputDataIs
+  [bas.cc + cinputMetaDataIs]: cinputMetaDataIs, // inputMetaDataIs
+  [bas.cc + creturnDataIs]: creturnDataIs, // returnDataIs
+  [bas.cc + cSpaceIsColonSpace]: cSpaceIsColonSpace, // cSpaceIsColonSpace
+
+  // System Messages constant constants
+  [bas.cc + cdataPathIs]: cdataPathIs, // dataPathIs
+  [bas.cc + cfilesFoundIs]: cfilesFoundIs, // filesFoundIs
+  [bas.cc + cfileToLoadIs]: cfileToLoadIs, // fileToLoadIs
+  [bas.cc + cfilesToLoadIs]: cfilesToLoadIs, // filesToLoadIs
+  [bas.cc + ccontextNameIs]: ccontextNameIs, // contextNameIs
+  [bas.cc + cdataFileToMergeIs]: cdataFileToMergeIs, // dataFileToMergeIs
+  [bas.cc + cparsedDataFileIs]: cparsedDataFileIs, // parsedDataFileIs
+  [bas.cc + cexecuteBusinessRules]: cexecuteBusinessRules, // executeBusinessRules
+  [bas.cc + cdataFileIs]: cdataFileIs, // dataFileIs
+  [bas.cc + cmergedDataIs]: cmergedDataIs, // mergedDataIs
+  [bas.cc + cdebugConfigurationSettingValueIs]: cdebugConfigurationSettingValueIs, // debugConfigurationSettingValueIs
+  [bas.cc + cappConfigPathIs]: cappConfigPathIs, // appConfigPathIs
+  [bas.cc + cframeworkConfigPathIs]: cframeworkConfigPathIs, // frameworkConfigPathIs
+  [bas.cc + cALL_DATA_IS]: cALL_DATA_IS, // ALL_DATA_IS
+  [bas.cc + cAllLoadedDataIs]: cAllLoadedDataIs, // AllLoadedDataIs
+  [bas.cc + cconfigDataIs]: cconfigDataIs, // configDataIs
+  [bas.cc + cERROR]: cERROR, // ERROR:
+  [bas.cc + cErrorInvalidAccessTo]: cErrorInvalidAccessTo, // ErrorInvalidAccessTo
+  [bas.cc + crootPathIs]: crootPathIs, // rootPathIs
+  [bas.cc + caskIs]: caskIs, // askIs
+  [bas.cc + cINPUT]: cINPUT, // INPUT
+  [bas.cc + cinputIs]: cinputIs, // inputIs
+  [bas.cc + cstartTimeIs]: cstartTimeIs, // startTimeIs
+  [bas.cc + cendTimeIs]: cendTimeIs, // endTimeIs
+  [bas.cc + cdeltaTimeResultIs]: cdeltaTimeResultIs, // deltaTimeResultIs
+  [bas.cc + cclientConfigurationIs]: cclientConfigurationIs, // clientConfigurationIs
+  [bas.cc + cprompt01]: cprompt01, // prompt01
+  [bas.cc + cprompt02]: cprompt02, // prompt02
+  [bas.cc + cprompt03]: cprompt03, // prompt03
+  [bas.cc + cprintMessageToFile01]: cprintMessageToFile01, // cprintMessageToFile01
+  [bas.cc + cprintMessageToFile02]: cprintMessageToFile02, // cprintMessageToFile02
+  [bas.cc + cprintMessageToFile03]: cprintMessageToFile03, // cprintMessageToFile03
+
+  // Coded System Messages constant constants
+  [bas.cc + cdebugSettingsEnabledLogic01]: cdebugSettingsEnabledLogic01, // debugSettingsEnabledLogic01
+  [bas.cc + cdebugSettingsEnabledLogic02]: cdebugSettingsEnabledLogic02, // debugSettingsEnabledLogic02
+  [bas.cc + cdebugSettingsEnabledLogic03]: cdebugSettingsEnabledLogic03, // debugSettingsEnabledLogic03
+  [bas.cc + cdebugSettingsEnabledLogic04]: cdebugSettingsEnabledLogic04, // debugSettingsEnabledLogic04
+  [bas.cc + cdebugSettingsEnabledLogic05]: cdebugSettingsEnabledLogic05, // debugSettingsEnabledLogic05
+  [bas.cc + cdebugSettingsEnabledLogic06]: cdebugSettingsEnabledLogic06, // debugSettingsEnabledLogic06
+  [bas.cc + cdebugSettingsEnabledLogic07]: cdebugSettingsEnabledLogic07, // debugSettingsEnabledLogic07
+  [bas.cc + cdebugSettingsEnabledLogic08]: cdebugSettingsEnabledLogic08, // debugSettingsEnabledLogic08
+  [bas.cc + cdebugSettingsEnabledLogic09]: cdebugSettingsEnabledLogic09, // debugSettingsEnabledLogic09
+  [bas.cc + cdebugSettingsEnabledLogic10]: cdebugSettingsEnabledLogic10, // debugSettingsEnabledLogic10
+  [bas.cc + cdebugSettingsEnabledLogic11]: cdebugSettingsEnabledLogic11, // debugSettingsEnabledLogic11
+  [bas.cc + cdebugSettingsEnabledLogic12]: cdebugSettingsEnabledLogic12 // debugSettingsEnabledLogic12
 };

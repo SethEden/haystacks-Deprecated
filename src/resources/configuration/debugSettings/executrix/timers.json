@@ -1,5 +1,4 @@
 {
   "debugFiles|debugSetting.executrix.timers": false,
-  "debugFunctions|debugSetting.executrix.timers.getNowMoment": false,
   "debugFunctions|debugSetting.executrix.timers.computeDeltaTime": false
 }

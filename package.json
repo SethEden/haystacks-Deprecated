@@ -1,6 +1,6 @@
 {
   "name": "haystacks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
   "scripts": {
@@ -28,6 +28,8 @@
     "@babel/node": "7.15.8",
     "@babel/preset-env": "7.15.8",
     "haystacks": "^0.0.1",
+    "marked": ">=4.0.10",
+    "markdown-it": ">=12.3.2",
     "jsdoc": "^3.6.7",
     "standard-version": "^9.3.2"
   },

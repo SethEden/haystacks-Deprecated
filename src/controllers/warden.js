@@ -7,8 +7,9 @@
  * @requires module:business.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:ruleBroker
  * @requires module:chiefConfiguration
  * @requires module:loggers
@@ -22,14 +23,15 @@ var bas = require('../constants/basic.constants');
 var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
+var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var ruleBroker = require('../brokers/ruleBroker');
 var chiefConfiguration = require('./chiefConfiguration');
 var loggers = require('../executrix/loggers');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**
  * @function processRootPath
@@ -42,6 +44,7 @@ var namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * @return {string} the true root path of the application.
  * @author Seth Hollingsead
  * @date 2021/10/12
+ * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function processRootPath(configData) {
   let functionName = processRootPath.name;
@@ -71,13 +74,13 @@ function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configData is: ${JSON.stringify(configData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, 'BEGIN %% function');
-  loggers.consoleLog(namespacePrefix + functionName, `configData is: ${configData}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + configData);
   let appConfigPath = configData[cfg.cappConfigPath];
   let frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, 'END %% function');
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
 module.exports = {

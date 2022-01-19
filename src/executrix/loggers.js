@@ -10,7 +10,7 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:system.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:data
@@ -25,30 +25,49 @@ var biz = require('../constants/business.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
 var sys = require('../constants/system.constants');
-var wrd = require('../constants/word.constants');
-var ruleBroker = require('../brokers/ruleBroker');
+var wr1 = require('../constants/word1.constants');
+// var ruleBroker = require('../brokers/ruleBroker');
+// NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
+// We will need to refactor the business rules to accept a callback function that does the logging.
+// Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
+var stringParsingUtilities = require('../businessRules/rules/stringParsingUtilities');
 var configurator = require('./configurator');
 var fileOperations = require('./fileOperations');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
+/**
+ * @function consoleLog
+ * @description Compares the class path to a series of configuration settings to determine
+ * if we should log to the console or not.
+ * Also can provisionally log to a log file as well since the console
+ * is technically a transient data output.
+ * @NOTE When it comes to dumping large amounts of data out of a script the console will not do,
+ * And dumping data to an output log file is critical to debuggin certain tests and workflows.
+ * @param {string} classPath The class path for the caller of this function file.function or class.method.
+ * @param {string} message The message or data contents that should be dumped to the output.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2021/12/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
+ */
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
   if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
-    let consoleLogEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cconsoleLogEnabled);
+    let consoleLogEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       // console.log(`classPath is: ${classPath}`);
       // console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting(wrd.csystem, sys.capplicationCleanedRootPath);
+      let logFile = configurator.getConfigurationSetting(wr1.csystem, sys.capplicationCleanedRootPath);
       if (logFile !== undefined) {
-        logFile = `${logFile}//logs`;
+        logFile = logFile + bas.cDoubleForwardSlash + wr1.cLogs;
         // console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         // console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wrd.csystem, cfg.clogFilePathAndName);
+        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFilePathAndName);
         // console.log(`logFile after adding the log filename: ${logFile}`);
       }
 
@@ -96,6 +115,7 @@ function consoleLog(classPath, message) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToFileAndConsole) {
   let functionName = consoleLogProcess.name;
@@ -121,7 +141,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
       printMessageToFile(logFile, outputMessage);
       // console.log('DONE printing the message to the logFile');
     }
-  } else if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugTestExhaustive) === true) {
+  } else if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugTestExhaustive) === true) {
     // console.log('else-block the debugTestExhaustive setting is true!');
     // TODO: Add rule here to replace double percent with message/class-path.
     // Debug Exhaustive is probably not the best, we might want to consider another configuration setting to
@@ -146,6 +166,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
  * @return {boolean} A TRUE or FALSE to indicate if the output message should be dumped to the log file and/or the console.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function validMessage(outputMessage, originalMessage) {
   let functionName = validMessage.name;
@@ -178,6 +199,7 @@ function validMessage(outputMessage, originalMessage) {
  * @return {string} Returns the message that should be printed out to the console and logged to the log file.
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function parseClassPath(logFile, classPath, message) {
   let functionName = parseClassPath.name;
@@ -208,7 +230,16 @@ function parseClassPath(logFile, classPath, message) {
   // console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
     // TODO: Implement the colorizing of the message here.
-    message = ruleBroker.processRules(message, configurationNamespace + bas.cDot + configurationName, rules);
+    if (message.includes(bas.cDoublePercent)) {
+      let myNameSpace = configurationNamespace + bas.cDot + configurationName;
+      // console.log('message is: ' + message);
+      // console.log('myNameSpace is: ' + myNameSpace);
+      // console.log('rules is: ' + JSON.stringify(rules));
+      // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
+      // We will need to refactor the business rules to accept a callback function that does the logging.
+      // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
+      message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
+    }
     // console.log('setting the returnData to the message: ' + message);
     returnData = message;
   } else if ((debugFunctionsSetting === undefined && debugFilesSetting === undefined) ||
@@ -234,6 +265,7 @@ function parseClassPath(logFile, classPath, message) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function printMessageToFile(file, message) {
   let functionName = printMessageToFile.name;
@@ -241,14 +273,15 @@ function printMessageToFile(file, message) {
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);
   let dateTimeStamp = '';
-  if (!file.includes('undefined')) {
-    console.log('!file.includes(undefined)');
-    if (configurator.getConfigurationSetting('system', 'logFileEnabled') === true) {
+  if (!file.includes('undefined')) { // NOTE: This usage of the string undefined, must be hard-coded here.
+    // '!file.includes(undefined)'
+    console.log(msg.cprintMessageToFile01);
+    if (configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
-      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
+      if (configurator.getConfigurationSetting(wr1.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
         dateTimeStamp = timers.getNowMoment(gen.cYYYYMMDD_HHmmssSSS);
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
@@ -256,10 +289,12 @@ function printMessageToFile(file, message) {
       }
       fileOperations.appendMessageToFile(file, message);
     } else {
-      console.log('ERROR: Failure to log to file: ' + file);
+      // 'ERROR: Failure to log to file: '
+      console.log(msg.cprintMessageToFile02 + file);
     }
   } else {
-    console.log('ERROR: Log File includes undefined.');
+    // 'ERROR: Log File includes undefined.'
+    console.log(msg.cprintMessageToFile03);
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };

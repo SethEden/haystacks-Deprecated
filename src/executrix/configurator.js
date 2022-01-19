@@ -5,7 +5,7 @@
  * @requires module:basic.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -18,12 +18,12 @@
 var bas = require('../constants/basic.constants');
 var cfg = require('../constants/configuration.constants');
 var fnc = require('../constants/function.constants');
-var wrd = require('../constants/word.constants');
+var wr1 = require('../constants/word1.constants');
 var timers = require('./timers');
 var D = require('../structures/data');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function setConfigurationSetting
@@ -223,11 +223,11 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configurationNamespace is: ${configurationNamespace}`);
   let returnValue = true; // Assume there will be a return value.
-  let configurationDataRoot = D[wrd.cconfiguration];
+  let configurationDataRoot = D[wr1.cconfiguration];
   let configurationPathObject = configurationDataRoot;
   if (!configurationPathObject) { // Need to handle the case that the configuration data object doesn't even exist at all!
-    D[wrd.cconfiguration] = {};
-    configurationDataRoot = D[wrd.cconfiguration];
+    D[wr1.cconfiguration] = {};
+    configurationDataRoot = D[wr1.cconfiguration];
     configurationPathObject = configurationDataRoot;
   }
   for (let i = 0; i < configurationNamespace.length; i++) {

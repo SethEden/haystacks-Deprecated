@@ -4,65 +4,71 @@
  * @description Contains all re-usable function name constants, organized by file.
  * @requires module:phonic.constants
  * @requires module:generic.constants
- * @requires module:word.constants
+ * @requires module:word1.constants
+ * @author Seth Hollingsead
+ * @date 2021/12/28
+ * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
 var bas = require('./basic.constants');
 var phn = require('./phonic.constants');
 var gen = require('./generic.constants');
-var wrd = require('./word.constants');
+var wr1 = require('./word1.constants');
 
 // dataBroker
-let cscanDataPath = wrd.cscan + wrd.cData + wrd.cPath; // scanDataPath
-let cloadAllJsonData = wrd.cload + phn.cAll + gen.cJson + wrd.cData; // loadAllJsonData
+let cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath
+let cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // findUniversalDebugConfigSetting
+let cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
 
 // ruleBroker
-let cbootStrapBusinessRules = wrd.cboot + wrd.cStrap + wrd.cBusiness + wrd.cRules; // bootStrapBusinessRules
-let caddClientRules = wrd.c_add + wrd.cClient + wrd.cRules; // addClientRules
-let cprocessRules = wrd.cprocess + wrd.cRules; // processRules
+let cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
+let caddClientRules = wr1.cadd + wr1.cClient + wr1.cRules; // addClientRules
+let cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 
 // rulesLibrary
-let cinitRulesLibrary = gen.cinit + wrd.cRules + wrd.cLibrary; // initRulesLibrary
+let cinitRulesLibrary = gen.cinit + wr1.cRules + wr1.cLibrary; // initRulesLibrary
 
 // chiefConfiguration
-let csetupConfiguration = wrd.csetup + wrd.cConfiguration; // setupConfiguration
+let csetupConfiguration = wr1.csetup + wr1.cConfiguration; // setupConfiguration
 
 // chiefData
-let csetupAllJsonConfigData = wrd.csetup + phn.cAll + gen.cJson + wrd.cConfig + wrd.cData; // setupAllJsonConfigData
+let csearchForUniversalDebugConfigSetting = wr1.csearch + wr1.cFor + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // searchForUniversalDebugConfigSetting
+let csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
 
 // warden
-let cprocessRootPath = wrd.cprocess + wrd.cRoot + wrd.cPath; // processRootPath
-let cinitFrameworkSchema = gen.cinit + wrd.cFramework + wrd.cSchema; // initFrameworkSchema
+let cprocessRootPath = wr1.cprocess + wr1.cRoot + wr1.cPath; // processRootPath
+let cinitFrameworkSchema = gen.cinit + wr1.cFramework + wr1.cSchema; // initFrameworkSchema
 
 // configurator
-let csetConfigurationSetting = wrd.cset + wrd.cConfiguration + wrd.cSetting; // setConfigurationSetting
-let cgetConfigurationSetting = wrd.cget + wrd.cConfiguration + wrd.cSetting; // getConfigurationSetting
-let cprocessConfigurationNameRules = wrd.cprocess + wrd.cConfiguration + wrd.cName + wrd.cRules; // processConfigurationNameRules
-let cprocessConfigurationNamespaceRules = wrd.cprocess + wrd.cConfiguration + wrd.cName + wrd.cspace + wrd.cRules; // processConfigurationNamespaceRules
-let cprocessConfigurationValueRules = wrd.cprocess + wrd.cConfiguration + wrd.cValue + wrd.cRules; // processConfigurationValueRules
+let csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
+let cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
+let cprocessConfigurationNameRules = wr1.cprocess + wr1.cConfiguration + wr1.cName + wr1.cRules; // processConfigurationNameRules
+let cprocessConfigurationNamespaceRules = wr1.cprocess + wr1.cConfiguration + wr1.cName + wr1.cspace + wr1.cRules; // processConfigurationNamespaceRules
+let cprocessConfigurationValueRules = wr1.cprocess + wr1.cConfiguration + wr1.cValue + wr1.cRules; // processConfigurationValueRules
 
 // fileOperations
-let cgetJsonData = wrd.cget + gen.cJson + wrd.cData; // getJsonData
-let creadDirectoryContents = wrd.cread + wrd.cDirectory + wrd.cContents; // readDirectoryContents
-let creadDirectorySynchronously = wrd.cread + wrd.cDirectory + wrd.cSynchronously; // readDirectorySynchronously
-let cappendMessageToFile = wrd.cappend + wrd.cMessage + bas.cTo + wrd.cFile; // appendMessageToFile
+let cgetJsonData = wr1.cget + gen.cJson + wr1.cData; // getJsonData
+let creadDirectoryContents = wr1.cread + wr1.cDirectory + wr1.cContents; // readDirectoryContents
+let creadDirectorySynchronously = wr1.cread + wr1.cDirectory + wr1.cSynchronously; // readDirectorySynchronously
+let cappendMessageToFile = wr1.cappend + wr1.cMessage + bas.cTo + wr1.cFile; // appendMessageToFile
 
 // loggers
-let cconsoleLog = wrd.cconsole + gen.cLog; // consoleLog
+let cconsoleLog = wr1.cconsole + gen.cLog; // consoleLog
 
 // prompt
-let cprompt = wrd.cprompt; // prompt
+let cprompt = wr1.cprompt; // prompt
 
 // timers
-let cgetNowMoment = wrd.cget + wrd.cNow + wrd.cMoment; // getNowMoment
-let ccomputeDeltaTime = wrd.ccompute + gen.cDelta + wrd.cTime; // computeDeltaTime
+let cgetNowMoment = wr1.cget + wr1.cNow + wr1.cMoment; // getNowMoment
+let ccomputeDeltaTime = wr1.ccompute + gen.cDelta + wr1.cTime; // computeDeltaTime
 
 // main
-let cinitFramework = gen.cinit + wrd.cFramework; // initFramework
+let cinitFramework = gen.cinit + wr1.cFramework; // initFramework
 
 module.exports = {
   // dataBroker
   [bas.cc + cscanDataPath]: cscanDataPath, // scanDataPath
+  [bas.cc + cfindUniversalDebugConfigSetting]: cfindUniversalDebugConfigSetting, // findUniversalDebugConfigSetting
   [bas.cc + cloadAllJsonData]: cloadAllJsonData, // loadAllJsonData
 
   // ruleBroker
@@ -77,6 +83,7 @@ module.exports = {
   [bas.cc + csetupConfiguration]: csetupConfiguration, // setupConfiguration
 
   // chiefData
+  [bas.cc + csearchForUniversalDebugConfigSetting]: csearchForUniversalDebugConfigSetting, // searchForUniversalDebugConfigSetting
   [bas.cc + csetupAllJsonConfigData]: csetupAllJsonConfigData, // setupAllJsonConfigData
 
   // warden

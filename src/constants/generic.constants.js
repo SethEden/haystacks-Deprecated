@@ -219,7 +219,9 @@ let cbiz = bas.cbi + bas.cz; // biz
 let cclr = phn.cclr; // clr
 let ccmd = bas.ccm + bas.cd; // cmd
 let ccfg = bas.ccf + bas.cg; // cfg
+let ccon = bas.co + bas.cn; // con
 let cctr = phn.cctr; // ctr
+let cfnc = bas.cfn + bas.c; // fnc
 let celm = bas.cel + bas.cm; // elm
 let cgen = phn.cgen; // gen
 let ciso = phn.ciso; // iso
@@ -231,7 +233,8 @@ let cphn = bas.cph + bas.cn; // phn
 let cshp = phn.cshp; // shp
 let csys = bas.csy + bas.cs; // sys
 let cunt = phn.cunt; // unt
-let cwrd = bas.cwr + bas.cd; // wrd
+let cwr1 = bas.cwr + num.c1; // wr1
+let cwr2 = bas.cwr + num.c2; // wr2
 let capc = bas.cap + bas.cc; // apc
 
 // Miscelanious
@@ -472,7 +475,8 @@ module.exports = {
   [bas.cc + cshp]: cshp, // shp
   [bas.cc + csys]: csys, // sys
   [bas.cc + cunt]: cunt, // unt
-  [bas.cc + cwrd]: cwrd, // wrd
+  [bas.cc + cwr1]: cwr1, // cwr1
+  [bas.cc + cwr2]: cwr2, // cwr2
   [bas.cc + capc]: capc, // apc
 
   // Miscelanious
