@@ -2,6 +2,5 @@
   "debugFiles|debugSetting.brokers.dataBroker": true,
   "debugFunctions|debugSetting.brokers.dataBroker.scanDataPath": true,
   "debugFunctions|debugSetting.brokers.dataBroker.loadAllJsonData": true,
-  "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile": true,
-  "debugFunctions|debugSetting.brokers.dataBroker.debugSettingsEnabledLogic": true
+  "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile": true
 }

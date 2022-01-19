@@ -6,6 +6,7 @@
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.contants
+ * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
@@ -28,6 +29,7 @@ var msg = require('../constants/message.constants');
 var sys = require('../constants/system.constants');
 var wr1 = require('../constants/word1.constants');
 var ruleBroker = require('./ruleBroker');
+var configurator = require('../executrix/configurator');
 var fileOperations = require('../executrix/fileOperations');
 var loggers = require('../executrix/loggers');
 var D = require('../structures/data');
@@ -63,6 +65,79 @@ function scanDataPath(dataPath) {
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
+};
+
+/**
+ * @function findUniversalDebugConfigSetting
+ * @description Determines if there is any True setting for the debug settings
+ * in either the application system config or the framework system config files.
+ * @param {array<string>} appConfigFilesToLoad The list of files for the app config files.
+ * @param {array<string>} frameworkConfigFilesToLoad The list of files for the framework config files.
+ * @return {boolean} A True or False value to indicate if debug setting value is set in
+ * either the app config system file or the framework config system file.
+ * @author Seth Hollingsead
+ * @date 2022/01/18
+ */
+function findUniversalDebugConfigSetting(appConfigFilesToLoad, frameworkConfigFilesToLoad) {
+  let functionName = findUniversalDebugConfigSetting.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`appConfigFilesToLoad is: ${JSON.stringify(appConfigFilesToLoad)}`);
+  // console.log(`frameworkConfigFilesToLoad is: ${JSON.stringify(frameworkConfigFilesToLoad)}`);
+  let universalDebugConfigSetting = false;
+  let appConfigDebugSetting = false;
+  let frameworkConfigDebugSetting = false;
+  appConfigDebugSetting = findIndividualDebugConfigSetting(appConfigFilesToLoad);
+  frameworkConfigDebugSetting = findIndividualDebugConfigSetting(frameworkConfigFilesToLoad);
+  if (appConfigDebugSetting === true || frameworkConfigDebugSetting === true) {
+    universalDebugConfigSetting = true;
+  }
+  // console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return universalDebugConfigSetting;
+};
+
+/**
+ * @function findIndividualDebugConfigSetting
+ * @description Finds if a debugSetting is set for a particular set of config files.
+ * @param {array<string>} filesToLoad A list of files that should be searched for
+ * a system config file and then for a debugSetting in that file.
+ * @return {boolean} A True or False value to indicate what the value of
+ * the debug setting is for the set of system config files.
+ * @author Seth Hollingsead
+ * @date 2022/01/18
+ */
+function findIndividualDebugConfigSetting(filesToLoad) {
+  let functionName = findIndividualDebugConfigSetting.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
+  let individualDebugConfigSetting = false;
+  let foundSystemData = false;
+  let systemConfigFileName = sys.csystemConfigFileName; // 'framework.system.json';
+  let applicationConfigFileName = sys.capplicationConfigFileName; // 'application.system.json';
+  let multiMergedData = {};
+  let systemDotDebugSettings = wr1.csystem + bas.cDot + cfg.cdebugSettings;
+
+  for (let i = 0; i < filesToLoad.length; i++) {
+    let fileToLoad = filesToLoad[i];
+    // console.log('fileToLoad is: ' + fileToLoad);
+    if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
+      let dataFile = preprocessJsonFile(fileToLoad);
+      multiMergedData[wr1.csystem] = {};
+      multiMergedData[wr1.csystem] = dataFile;
+      foundSystemData = true;
+    }
+    if (foundSystemData === true) {
+      break;
+    }
+  }
+  if (multiMergedData[wr1.csystem]) {
+    if (multiMergedData[wr1.csystem][systemDotDebugSettings]) {
+      individualDebugConfigSetting = true;
+    }
+  }
+  // console.log(`individualDebugConfigSetting is: ${individualDebugConfigSetting}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return individualDebugConfigSetting;
 };
 
 /**
@@ -114,7 +189,7 @@ function loadAllJsonData(filesToLoad, contextName) {
   }
 
   // Now we need to determine if we should load the rest of the data.
-  if (debugSettingsEnabledLogic(multiMergedData) === true) {
+  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugSettings) === true) {
     for (let j = 0; j < filesToLoad.length; j++) {
       let fileToLoad = filesToLoad[j];
       if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
@@ -166,82 +241,10 @@ function preprocessJsonFile(fileToLoad) {
   return dataFile;
 };
 
-/**
- * @function debugSettingsEnabledLogic
- * @description Runs the logic to determine if a debug configuration setting can be found or not.
- * @param {object} mergedData The data that was loaded and merged, should be checked for a debug configuration setting flag.
- * @return {boolean} True or False to indicate if the configuration debug setting was set to true or false,
- * no matter where the setting was found (D-data structure or in the mergedData object).
- * @author Seth Hollingsead
- * @date 2021/12/21
- * @NOTE: This logic is really critical for optimizing performance, while also enabling rich/powerful debugging capabilities!
- */
-function debugSettingsEnabledLogic(mergedData) {
-  let functionName = debugSettingsEnabledLogic.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`mergedData is: ${JSON.stringify(mergedData)}`);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cmergedDataIs + JSON.stringify(mergedData));
-  let debugConfigurationSettingValue = false;
-  let systemDotDebugSettings = wr1.csystem + bas.cDot + cfg.cdebugSettings;
-
-  if (!mergedData[wr1.csystem] && !D[wr1.csystem]) {
-    // console.log('!mergedData[wr1.csystem] && !D[wr1.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic01);
-    debugConfigurationSettingValue = false;
-  } else if (!mergedData[wr1.csystem] && D[wr1.csystem]) {
-    // console.log('!mergedData[wr1.csystem] && D[wr1.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic02);
-    if (D[wr1.csystem][systemDotDebugSettings]) {
-      // console.log('D[wr1.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic03);
-      debugConfigurationSettingValue = true;
-    } else {
-      // console.log('D[wr1.csystem][systemDotDebugSettings] === false');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic04);
-      debugConfigurationSettingValue = false;
-    }
-  } else if (mergedData[wr1.csystem] && !D[wr1.csystem]) {
-    // console.log('mergedData[wr1.csystem] && !D[wr1.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic05);
-    if (mergedData[wr1.csystem][systemDotDebugSettings]) {
-      // console.log('mergedData[wr1.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic06);
-      debugConfigurationSettingValue = true;
-    } else {
-      // console.log('mergedData[wr1.csystem][systemDotDebugSettingss] === false');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic07);
-      debugConfigurationSettingValue = false;
-    }
-  } else { // Only possible case left is they are both equal to something!
-    // console.log('else mergedData[wr1.csystem] && D[wr1.csystem] === true');
-    loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic08);
-    if (!mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings]) {
-      // console.log('!mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic09);
-      debugConfigurationSettingValue = false;
-    } else if (!mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings]) {
-      // console.log('!mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic10);
-      debugConfigurationSettingValue = true;
-    } else if (mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings]) {
-      // console.log('mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic11);
-      debugConfigurationSettingValue = true;
-    } else { // Only possible case left is they are both equal to something!
-      // console.log('mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true');
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccdebugSettingsEnabledLogic12);
-      debugConfigurationSettingValue = true;
-    }
-  }
-  // console.log(`debugConfigurationSettingValue is: ${debugConfigurationSettingValue}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdebugConfigurationSettingValueIs + debugConfigurationSettingValue);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return debugConfigurationSettingValue;
-};
-
 module.exports = {
+  [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
+    appConfigFilesToLoad, frameworkConfigFilesToLoad
+  ),
   [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName)
 };

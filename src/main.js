@@ -79,24 +79,26 @@ function initFramework(clientConfiguration) {
 /**
  * @function consoleLog
  * @description A wrapper function to expose the loggers.consoleLog function to the client application.
- * @param {string} namespacePrefix The namespace of the log that is being sent. Ex: folder.filename
- * @param {string} functionName The name of the function that log is being called from.
+ * @param {string} theNamespacePrefix The namespace of the log that is being sent. Ex: folder.filename
+ * @param {string} theFunctionName The name of the function that log is being called from.
  * @param {string|object} message The message that should be logged.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/12/30
  */
-function consoleLog(namespacePrefix, functionName, message) {
-  let thisFunctionName = consoleLog.name;
-  // console.log(`BEGIN ${namespacePrefix}${thisFunctionName} function`);
-  // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
-  loggers.consoleLog(namespacePrefix + functionName, message);
-  // console.log(`END ${namespacePrefix}${thisFunctionName} function`);
+function consoleLog(theNamespacePrefix, theFunctionName, message) {
+  let functionName = consoleLog.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`theNamespacePrefix is: ${theNamespacePrefix}`);
+  // console.log(`theFunctionName is: ${theFunctionName}`);
+  // console.log(`message is: ${JSON.stringify(message)}`);
+  loggers.consoleLog(theNamespacePrefix + theFunctionName, message);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 module.exports = {
   [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
-  [fnc.cconsoleLog]: (namespacePrefix, functionName, message) => consoleLog(namespacePrefix, functionName, message),
+  [fnc.cconsoleLog]: (theNamespacePrefix, theFunctionName, message) => consoleLog(theNamespacePrefix, theFunctionName, message),
   [fnc.cprompt]: (ask) => prompt.prompt(ask),
   [gen.cbas]: bas,
   [gen.cbiz]: biz,

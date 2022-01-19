@@ -2102,8 +2102,8 @@ let cmoment = bas.cmo + phn.cment; // moment
 let cMoment = bas.cMo + phn.cment; // Moment
 let cmoments = cmoment + bas.cs; // moments
 let cMoments = cMoment + bas.cs; // Moments
-let ccompute = phn.ccomp + phn.ccute; // compute
-let cCompute = phn.cComp + phn.ccute; // Compute
+let ccompute = phn.ccomp + phn.cute; // compute
+let cCompute = phn.cComp + phn.cute; // Compute
 let ccomputes = ccompute + bas.cs; // computes
 let cComputes = cCompute + bas.cs; // Computes
 let ccomputer = ccompute + bas.cr; // computer
@@ -2123,6 +2123,8 @@ let cLogical = cLogic + bas.cal; // Logical
 let charness = phn.char + phn.cness; // harness
 let cHarness = phn.cHar + phn.cness; // Harness
 let cHARNESS = phn.cHAR + phn.cNESS; // HARNESS
+let cuniversal = phn.cuni + phn.cver + phn.csal; // universal
+let cUniversal = phn.cUni + phn.cver + phn.csal; // Universal
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -4637,6 +4639,8 @@ module.exports = {
   [bas.cc + charness]: charness, // harness
   [bas.cc + cHarness]: cHarness, // Harness
   [bas.cc + cHARNESS]: cHARNESS, // HARNESS
+  [bas.cc + cuniversal]: cuniversal, // universal
+  [bas.cc + cUniversal]: cUniversal, // Universal
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -64,6 +64,9 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   configurator.setConfigurationSetting(wr1.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
+  let universalDebugConfigSetting = chiefData.searchForUniversalDebugConfigSetting(
+    sys.cappConfigPath, sys.cframeworkConfigPath
+  );
   allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wr1.cconfiguration);
   allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wr1.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
@@ -127,9 +130,15 @@ function parseLoadedConfigurationData(allConfigurationData) {
       // console.log('value BEFORE rule processing is: ' + value);
       value = ruleBroker.processRules(value, '', rules);
       // console.log('value AFTER rule processing is: ' + value);
-
-      configurator.setConfigurationSetting(namespace, name, value);
-
+      if ((namespace === wr1.csystem && name === cfg.cdebugSettings) &&
+      configurator.getConfigurationSetting(namespace, name) === true) {
+        // console.log('CAUGHT THE CASE THAT WE ARE SETTING A FALSE VALUE FOR DEBUG-SETTINGS');
+        // NOTE: DO NOT over write the value because the base value is already saved as true.
+        // Over writing it with true, doesn't do anything, and over writing it with false
+        // destroys whatever setting the user may have set from the client application.
+      } else {
+        configurator.setConfigurationSetting(namespace, name, value);
+      }
     }
   }
 
@@ -161,5 +170,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
 };
 
 module.exports = {
-  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(appConfigPath, frameworkConfigPath)
+  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
+    appConfigPath, frameworkConfigPath
+  )
 };

@@ -17,11 +17,12 @@ var wr1 = require('./word1.constants');
 
 // dataBroker
 let cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath
+let cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // findUniversalDebugConfigSetting
 let cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
 
 // ruleBroker
 let cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
-let caddClientRules = wr1.c_add + wr1.cClient + wr1.cRules; // addClientRules
+let caddClientRules = wr1.cadd + wr1.cClient + wr1.cRules; // addClientRules
 let cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 
 // rulesLibrary
@@ -31,6 +32,7 @@ let cinitRulesLibrary = gen.cinit + wr1.cRules + wr1.cLibrary; // initRulesLibra
 let csetupConfiguration = wr1.csetup + wr1.cConfiguration; // setupConfiguration
 
 // chiefData
+let csearchForUniversalDebugConfigSetting = wr1.csearch + wr1.cFor + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // searchForUniversalDebugConfigSetting
 let csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
 
 // warden
@@ -66,6 +68,7 @@ let cinitFramework = gen.cinit + wr1.cFramework; // initFramework
 module.exports = {
   // dataBroker
   [bas.cc + cscanDataPath]: cscanDataPath, // scanDataPath
+  [bas.cc + cfindUniversalDebugConfigSetting]: cfindUniversalDebugConfigSetting, // findUniversalDebugConfigSetting
   [bas.cc + cloadAllJsonData]: cloadAllJsonData, // loadAllJsonData
 
   // ruleBroker
@@ -80,6 +83,7 @@ module.exports = {
   [bas.cc + csetupConfiguration]: csetupConfiguration, // setupConfiguration
 
   // chiefData
+  [bas.cc + csearchForUniversalDebugConfigSetting]: csearchForUniversalDebugConfigSetting, // searchForUniversalDebugConfigSetting
   [bas.cc + csetupAllJsonConfigData]: csetupAllJsonConfigData, // setupAllJsonConfigData
 
   // warden

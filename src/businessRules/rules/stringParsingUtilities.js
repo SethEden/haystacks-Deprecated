@@ -348,7 +348,7 @@
    // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
    let returnData = '';
    if (inputData) {
-     returnData = utilitiesReplaceCharacterWithCharacter(inputData, [bas.cDoublePercent, inputMetaData]);
+     returnData = utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData);
    }
    // console.log(`returnData is: ${JSON.stringify(returnData)}`);
    // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -377,8 +377,13 @@
    let character2Find = inputMetaData[0];
    let character2Replace = inputMetaData[1];
    if (!inputData && !character2Find && !character2Replace) {
+     // console.log('Either inputData, character2Find or character2Replace are undefined');
+     // console.log(`character2Find is: ${JSON.stringify(character2Find)}`);
+     // console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
      returnData = false;
    } else {
+     // console.log(`character2Find is: ${JSON.stringify(character2Find)}`);
+     // console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
      returnData = inputData.replace(character2Find, character2Replace);
    }
    // console.log(`returnData is: ${JSON.stringify(returnData)}`);

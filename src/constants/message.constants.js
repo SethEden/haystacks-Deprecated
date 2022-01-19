@@ -75,30 +75,8 @@ let cprintMessageToFile02 = 'cprintMessageToFile02';
 let cprintMessageToFile03 = 'cprintMessageToFile03';
 
 // Coded System Messages
+// EXAMPLE:
 // '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'
-let cdebugSettingsEnabledLogic01 = 'cdebugSettingsEnabledLogic01';
-// '!mergedData[wr1.csystem] && D[wr1.csystem] === true'
-let cdebugSettingsEnabledLogic02 = 'cdebugSettingsEnabledLogic02';
-// 'D[wr1.csystem][systemDotDebugSettings] === true'
-let cdebugSettingsEnabledLogic03 = 'cdebugSettingsEnabledLogic03';
-// 'D[wr1.csystem][systemDotDebugSettings] === false'
-let cdebugSettingsEnabledLogic04 = 'cdebugSettingsEnabledLogic04';
-// 'mergedData[wr1.csystem] && !D[wr1.csystem] === true'
-let cdebugSettingsEnabledLogic05 = 'cdebugSettingsEnabledLogic05';
-// 'mergedData[wr1.csystem][systemDotDebugSettings] === true'
-let cdebugSettingsEnabledLogic06 = 'cdebugSettingsEnabledLogic06';
-// 'mergedData[wr1.csystem][systemDotDebugSettingss] === false'
-let cdebugSettingsEnabledLogic07 = 'cdebugSettingsEnabledLogic07';
-// 'else mergedData[wr1.csystem] && D[wr1.csystem] === true'
-let cdebugSettingsEnabledLogic08 = 'cdebugSettingsEnabledLogic08';
-// '!mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true'
-let cdebugSettingsEnabledLogic09 = 'cdebugSettingsEnabledLogic09';
-// '!mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true'
-let cdebugSettingsEnabledLogic10 = 'cdebugSettingsEnabledLogic10';
-// 'mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true'
-let cdebugSettingsEnabledLogic11 = 'cdebugSettingsEnabledLogic11';
-// 'mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true'
-let cdebugSettingsEnabledLogic12 = 'cdebugSettingsEnabledLogic12';
 
 module.exports = {
   // Logging Constants
@@ -147,16 +125,5 @@ module.exports = {
   [bas.cc + con.cprintMessageToFile03]: cprintMessageToFile03, // 'ERROR: Log File includes undefined.'
 
   // Coded System Messages
-  [bas.cc + con.cdebugSettingsEnabledLogic01]: cdebugSettingsEnabledLogic01, // '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic02]: cdebugSettingsEnabledLogic02, // '!mergedData[wr1.csystem] && D[wr1.csystem] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic03]: cdebugSettingsEnabledLogic03, // 'D[wr1.csystem][systemDotDebugSettings] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic04]: cdebugSettingsEnabledLogic04, // 'D[wr1.csystem][systemDotDebugSettings] === false'
-  [bas.cc + con.cdebugSettingsEnabledLogic05]: cdebugSettingsEnabledLogic05, // 'mergedData[wr1.csystem] && !D[wr1.csystem] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic06]: cdebugSettingsEnabledLogic06, // 'mergedData[wr1.csystem][systemDotDebugSettings] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic07]: cdebugSettingsEnabledLogic07, // 'mergedData[wr1.csystem][systemDotDebugSettingss] === false'
-  [bas.cc + con.cdebugSettingsEnabledLogic08]: cdebugSettingsEnabledLogic08, // 'else mergedData[wr1.csystem] && D[wr1.csystem] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic09]: cdebugSettingsEnabledLogic09, // '!mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic10]: cdebugSettingsEnabledLogic10, // '!mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic11]: cdebugSettingsEnabledLogic11, // 'mergedData[wr1.csystem][systemDotDebugSettings] && !D[wr1.csystem][systemDotDebugSettings] === true'
-  [bas.cc + con.cdebugSettingsEnabledLogic12]: cdebugSettingsEnabledLogic12 // 'mergedData[wr1.csystem][systemDotDebugSettings] && D[wr1.csystem][systemDotDebugSettings] === true'
+  // EXAMPLE: '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'
 };

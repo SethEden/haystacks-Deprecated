@@ -1,3 +1,9 @@
 {
+  "system.dateTimeStamp": "YYYYMMDD-HHmmss-SSS",
+  "system.dateStamp": "YYYYMMDD",
+  "system.timeStamp": "HHmmss-SSS",
+  "system.argumentDrivenInterface": false,
+  "system.debugSettings": true,
+  "system.consoleLogEnabled": true,
   "system.AppSetting": "TrunkMonkey"
 }

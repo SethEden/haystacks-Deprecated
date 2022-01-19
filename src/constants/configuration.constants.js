@@ -21,6 +21,8 @@ let cRootPath = wr1.cRoot + wr1.cPath; // RootPath
 let cappRootPath = gen.capp + wr1.cRoot + wr1.cPath; // appRootPath
 let cappConfigPath = gen.capp + wr1.cConfig + wr1.cPath; // appConfigPath
 let cframeworkConfigPath = wr1.cframework + wr1.cConfig + wr1.cPath; // frameworkConfigPath
+let cappConfigFiles = gen.capp + wr1.cConfig + wr1.cFiles; // appConfigFiles
+let cframeworkConfigFiles = wr1.cframework + wr1.cConfig + wr1.cFiles; // frameworkConfigFiles
 let cappConfigReferencePath = gen.capp + wr1.cConfig + wr1.cReference + wr1.cPath; // appConfigReferencePath
 let cdebugSetting = wr1.cdebug + wr1.cSetting; // debugSetting
 let cdebugSettings = wr1.cdebug + wr1.cSettings; // debugSettings
@@ -42,6 +44,8 @@ module.exports = {
   [bas.cc + cappRootPath]: cappRootPath, // appRootPath
   [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
   [bas.cc + cframeworkConfigPath]: cframeworkConfigPath, // frameworkConfigPath
+  [bas.cc + cappConfigFiles]: cappConfigFiles, // appConfigFiles
+  [bas.cc + cframeworkConfigFiles]: cframeworkConfigFiles, // frameworkConfigFiles
   [bas.cc + cappConfigReferencePath]: cappConfigReferencePath, // appConfigReferencePath
   [bas.cc + cdebugSetting]: cdebugSetting, // debugSetting
   [bas.cc + cdebugSettings]: cdebugSettings, // debugSettings

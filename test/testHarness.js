@@ -21,6 +21,7 @@
 
 import haystacks from '../src/main.js';
 var apc = require('./constants/application.constants');
+var apcon = require('./constants/application.constant.constants');
 var apmsg = require('./constants/application.message.constants');
 var path = require('path');
 global.appRot = path.resolve(process.cwd());
@@ -49,9 +50,9 @@ function bootstrapApplication() {
   const {capplicationName} = sys;
   const {crootPath, cappConfigReferencePath} = cfg;
   let appConfig = {
-    capplicationName: apc.chaystacks,
-    crootPath: rootPath,
-    cappConfigReferencePath: apc.cclientConfigurationPath
+    applicationName: apc.chaystacks,
+    rootPath: rootPath,
+    appConfigReferencePath: apc.cclientConfigurationPath
   };
   haystacks.initFramework(appConfig);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -66,33 +67,32 @@ function bootstrapApplication() {
  */
 async function application() {
   let functionName = application.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   let argumnentDrivenInterface = false;
   let commandInput;
   let commandResult;
   if (argumnentDrivenInterface === false) {
     // BEGIN main program loop
-    console.log(apmsg.capplicationMessage01);
+    haystacks.consoleLog(namespacePrefix, functionName, apmsg.capplicationMessage01);
+
     // BEGIN cmmand parser
-    console.log(apmsg.capplicationMessage02);
+    haystacks.consoleLog(namespacePrefix, functionName, apmsg.capplicationMessage02);
 
     while(programRunning === true) {
       commandInput = haystacks.prompt('>');
       if (commandInput.toUpperCase() === wr1.cEXIT) {
         // END command parser
-        console.log(apmsg.capplicationMessage03);
+        haystacks.consoleLog(namespacePrefix, functionName, apmsg.capplicationMessage03);
         programRunning = false;
         // END main program loop
-        console.log(apmsg.capplicationMessage04);
+        haystacks.consoleLog(namespacePrefix, functionName, apmsg.capplicationMessage04);
         // Exiting TEST HARNESS APPLICATION
-        console.log(apmsg.capplicationMessage05);
+        haystacks.consoleLog(namespacePrefix, functionName, apmsg.capplicationMessage05);
         break;
       }
     }
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 // Launch the Test Harness application!!
