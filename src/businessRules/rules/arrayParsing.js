@@ -57,3 +57,84 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
+
+/**
+ * @function convertCamelCaseStringToArray
+ * @description Takes a string in camelCase and returns an array of the words.
+ * @param {string} inputData String to decompose into an array.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string} The array of words that were composed in the original string.
+ * @author Seth Hollingsead
+ * @date 2022/01/18
+ * @NOTE Might not work so well with numbers as part of the string, they are not treated as capital letters.
+ * We might need to do some refactoring of this function if
+ * mixed numbers and camel case strings ever becomes a requirement as input to this function.
+ */
+export const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
+  let functionName = convertCamelCaseStringToArray.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData;
+  let caps = [];
+  for (let i = 1; i < inputData.length; i++) {
+    if (gen.cUpperCaseEnglishAlphabet.includes(inputData.charAt(i))) { caps.push(i); }
+  }
+  if (caps.length > 0) {
+    let last = 0;
+    let decomposedString = [];
+    for (let j = 0; j < caps.length; j++) {
+      decomposedString.push(inputData.slice(last, caps[j]));
+      last = caps[j];
+    }
+    decomposedString.push(inputData.slice(last));
+    returnData = decomposedString;
+  } else {
+    returnData = [inputData];
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getWordsArrayFromString
+ * @description Gets an array of words from a string,
+ * automatically determining how the words are delimited based on common word delimiters: camel case, space, period, dash & underscore.
+ * @param {string} inputData The string that should be broken down into words and returned as an array.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string>} The array of words found in the string.
+ * @author Seth Hollingsead
+ * @date 2022/01/18
+ */
+export const getWordsArrayFromString = function(inputData, inputMetaData) {
+  let functionName = getWordsArrayFromString.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData;
+  if (inputData) {
+    let wordCount = strParse.getWordCountInString(inputData, '');
+    // wordCount is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cwordCountIs + wordCount);
+    if (wordCount > 0) {
+      let wordDelimiter = strParse.determineWordDelimiter(inputData, inputMetaData);
+      // wordDelimiter is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cwordDelimiterIs + wordDelimiter);
+      let stringContainsAcronym = strParse.doesStringContainAcronym(inputData, '');
+      // stringContainsAcronym is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cstringContainsAcronymIs + stringContainsAcronym);
+      if (wordDelimiter === sys.cCamelCase && stringContainsAcronym === false) {
+        returnData = convertCamelCaseStringToArray(inputData, '');
+      } else if (wordDelimiter != '' && wordDelimiter != sys.cCamelCase) {
+        returnData = inputData.split(wordDelimiter);
+      } else {
+        // We don't need to be showing this warning unless we are debugging.
+        loggers.consoleLog(namespacePrefix + functionName, msg.cGetWordsArrayFromStringMessage1 + msg.cGetWordsArrayFromStringMessage2 + msg.cGetWordsArrayFromStringMessage3);
+      }
+    } // end-if (wordCount > 0)
+  } // end-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
