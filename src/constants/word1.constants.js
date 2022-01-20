@@ -790,8 +790,12 @@ let cfiles = cfile + bas.cs; // files
 let cFiles = cFile + bas.cs; // Files
 let cfilename = cfile + cname; // filename
 let cFilename = cFile + cname; // Filename
+let cfileName = cfile + cName; // fileName
+let cFileName = cFile + cName; // FileName
 let cfilenames = cfilename + bas.cs; // filenames
 let cFilenames = cFilename + bas.cs; // Filenames
+let cfileNames = cfileName + bas.cs; // fileNames
+let cFileNames = cFileName + bas.cs; // FileNames
 let cfold = bas.cfo + bas.cld; // fold
 let cFold = bas.cFo + bas.cld; // Fold
 let cFolder = cFold + bas.cer; // Folder
@@ -2125,6 +2129,14 @@ let cHarness = phn.cHar + phn.cness; // Harness
 let cHARNESS = phn.cHAR + phn.cNESS; // HARNESS
 let cuniversal = phn.cuni + phn.cver + phn.csal; // universal
 let cUniversal = phn.cUni + phn.cver + phn.csal; // Universal
+let cmath = cmat + bas.ch; // math
+let cMath = cMat + bas.ch; // Math
+let cmathematics = cmath + bas.ce + cmat + phn.cics; // mathematics
+let cMathematics = cMath + bas.ce + cmat + phn.cics; // Mathematics
+let cmathematician = cmath + bas.ce + cmat + bas.cic + phn.cian; // mathematician
+let cMathematician = cMath + bas.ce + cmat + bas.cic + phn.cian; // Mathematician
+let cmathematicians = cmathematician + bas.cs; // mathematicians
+let cMathematicians = cMathematician + bas.cs; // Mathematicians
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -3306,8 +3318,12 @@ module.exports = {
   [bas.cc + cFiles]: cFiles, // Files
   [bas.cc + cfilename]: cfilename, // filename
   [bas.cc + cFilename]: cFilename, // Filename
+  [bas.cc + cfileName]: cfileName, // fileName
+  [bas.cc + cFileName]: cFileName, // FileName
   [bas.cc + cfilenames]: cfilenames, // filenames
   [bas.cc + cFilenames]: cFilenames, // Filenames
+  [bas.cc + cfileNames]: cfileNames, // fileNames
+  [bas.cc + cFileNames]: cFileNames, // FileNames
   [bas.cc + cfold]: cfold, // fold
   [bas.cc + cFold]: cFold, // Fold
   [bas.cc + cFolder]: cFolder, // Folder
@@ -4641,6 +4657,14 @@ module.exports = {
   [bas.cc + cHARNESS]: cHARNESS, // HARNESS
   [bas.cc + cuniversal]: cuniversal, // universal
   [bas.cc + cUniversal]: cUniversal, // Universal
+  [bas.cc + cmath]: cmath, // math
+  [bas.cc + cMath]: cMath, // Math
+  [bas.cc + cmathematics]: cmathematics, // mathematics
+  [bas.cc + cMathematics]: cMathematics, // Mathematics
+  [bas.cc + cmathematician]: cmathematician, // mathematician
+  [bas.cc + cMathematician]: cMathematician, // Mathematician
+  [bas.cc + cmathematicians]: cmathematicians, // mathematicians
+  [bas.cc + cMathematicians]: cMathematicians, // Mathematicians
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

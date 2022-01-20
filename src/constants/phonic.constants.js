@@ -95,6 +95,8 @@ let cility = cili + bas.cty; // ility
 let cibility = bas.cib + cility; // ibility
 let cisibility = bas.cis + cibility; // isibility
 let cith = bas.ci + bas.cth; // ith
+let cjth = bas.cj + bas.cth; // jth
+let ckth = bas.ck + bas.cth; // kth
 let crent = bas.cre + bas.cnt; // rent
 let carent = bas.ca + crent; // arent
 let ctor = bas.cto + bas.cr; // tor
@@ -1189,6 +1191,8 @@ module.exports = {
   [bas.cc + cibility]: cibility, // ibility
   [bas.cc + cisibility]: cisibility, // isibility
   [bas.cc + cith]: cith, // ith
+  [bas.cc + cjth]: cjth, // jth
+  [bas.cc + ckth]: ckth, // kth
   [bas.cc + crent]: crent, // rent
   [bas.cc + carent]: carent, // arent
   [bas.cc + ctor]: ctor, // tor
