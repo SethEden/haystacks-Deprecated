@@ -11,9 +11,9 @@
  */
 
 import haystacks from '../../src/main.js';
-var apcon = require('./application.constant.constants');
-var bas = haystacks.bas;
-var wr1 = haystacks.wr1;
+let apcon = require('./application.constant.constants');
+let bas = haystacks.bas;
+let wr1 = haystacks.wr1;
 
 // "//test//resources//configuration//"
 let cclientConfigurationPath = bas.cDoubleForwardSlash + wr1.ctest + bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash;

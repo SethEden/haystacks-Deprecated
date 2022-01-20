@@ -20,22 +20,22 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../constants/basic.constants');
-var fnc = require('../constants/function.constants');
-var gen = require('../constants/generic.constants');
-var msg = require('../constants/message.constants');
-var wr1 = require('../constants/word1.constants');
-var loggers = require('../executrix/loggers');
-var D = require('../structures/data');
-var fs = require('fs');
-var path = require('path');
-var filesCollection = [];
+let bas = require('../constants/basic.constants');
+let fnc = require('../constants/function.constants');
+let gen = require('../constants/generic.constants');
+let msg = require('../constants/message.constants');
+let wr1 = require('../constants/word1.constants');
+let loggers = require('../executrix/loggers');
+let D = require('../structures/data');
+let fs = require('fs');
+let path = require('path');
+let filesCollection = [];
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
-var enableFilesListLimit = false;
-var filesListLimit = -1;
-var hitFileLimit = false;
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+let enableFilesListLimit = false;
+let filesListLimit = -1;
+let hitFileLimit = false;
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getJsonData

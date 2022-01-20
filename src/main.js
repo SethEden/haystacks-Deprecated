@@ -27,28 +27,28 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./constants/basic.constants');
-var biz = require('./constants/business.constants');
-var cfg = require('./constants/configuration.constants');
-var con = require('./constants/constant.constants');
-var ctr = require('./constants/country.constants');
-var fnc = require('./constants/function.constants');
-var gen = require('./constants/generic.constants');
-var lng = require('./constants/language.constants');
-var msg = require('./constants/message.constants');
-var num = require('./constants/numeric.constants');
-var phn = require('./constants/phonic.constants');
-var sys = require('./constants/system.constants');
-var unt = require('./constants/unit.constants');
-var wr1 = require('./constants/word1.constants');
-var wr2 = require('./constants/word2.constants');
-var warden = require('./controllers/warden');
-var loggers = require('./executrix/loggers');
-var prompt = require('./executrix/prompt');
-var path = require('path');
-var D = require('./structures/data');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = baseFileName + bas.cDot;
+let bas = require('./constants/basic.constants');
+let biz = require('./constants/business.constants');
+let cfg = require('./constants/configuration.constants');
+let con = require('./constants/constant.constants');
+let ctr = require('./constants/country.constants');
+let fnc = require('./constants/function.constants');
+let gen = require('./constants/generic.constants');
+let lng = require('./constants/language.constants');
+let msg = require('./constants/message.constants');
+let num = require('./constants/numeric.constants');
+let phn = require('./constants/phonic.constants');
+let sys = require('./constants/system.constants');
+let unt = require('./constants/unit.constants');
+let wr1 = require('./constants/word1.constants');
+let wr2 = require('./constants/word2.constants');
+let warden = require('./controllers/warden');
+let loggers = require('./executrix/loggers');
+let prompt = require('./executrix/prompt');
+let path = require('path');
+let D = require('./structures/data');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = baseFileName + bas.cDot;
 
 /**
 * @function initFramework

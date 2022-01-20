@@ -14,12 +14,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var con = require('./constant.constants');
-var gen = require('./generic.constants');
-var num = require('./numeric.constants');
-var phn = require('./phonic.constants');
-var wr1 = require('./word1.constants');
+let bas = require('./basic.constants');
+let con = require('./constant.constants');
+let gen = require('./generic.constants');
+let num = require('./numeric.constants');
+let phn = require('./phonic.constants');
+let wr1 = require('./word1.constants');
 
 // Miscelaneious
 let cENV = bas.cEN + bas.cV; // ENV

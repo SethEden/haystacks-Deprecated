@@ -16,17 +16,17 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../constants/basic.constants');
-var biz = require('../constants/business.constants');
-var fnc = require('../constants/function.constants');
-var sys = require('../constants/system.constants');
-var arrayParsing = require('./rules/arrayParsing');
-var stringParsing = require('./rules/stringParsing');
-var stringParsingUtilities = require('./rules/stringParsingUtilities');
-var D = require('../structures/data');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
+let bas = require('../constants/basic.constants');
+let biz = require('../constants/business.constants');
+let fnc = require('../constants/function.constants');
+let sys = require('../constants/system.constants');
+let arrayParsing = require('./rules/arrayParsing');
+let stringParsing = require('./rules/stringParsing');
+let stringParsingUtilities = require('./rules/stringParsingUtilities');
+let D = require('../structures/data');
+let path = require('path');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initRulesLibrary

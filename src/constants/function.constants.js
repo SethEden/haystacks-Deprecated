@@ -10,10 +10,10 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var phn = require('./phonic.constants');
-var gen = require('./generic.constants');
-var wr1 = require('./word1.constants');
+let bas = require('./basic.constants');
+let phn = require('./phonic.constants');
+let gen = require('./generic.constants');
+let wr1 = require('./word1.constants');
 
 // dataBroker
 let cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath

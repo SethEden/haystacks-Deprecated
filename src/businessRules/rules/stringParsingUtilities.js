@@ -16,14 +16,14 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
- var bas = require('../../constants/basic.constants');
- var gen = require('../../constants/generic.constants');
- var msg = require('../../constants/message.constants');
- var sys = require('../../constants/system.constants');
- var wr1 = require('../../constants/word1.constants');
- var path = require('path');
- var baseFileName = path.basename(module.filename, path.extname(module.filename));
- var namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+let bas = require('../../constants/basic.constants');
+let gen = require('../../constants/generic.constants');
+let msg = require('../../constants/message.constants');
+let sys = require('../../constants/system.constants');
+let wr1 = require('../../constants/word1.constants');
+let path = require('path');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
  /**
   * @function parseSystemRootPath

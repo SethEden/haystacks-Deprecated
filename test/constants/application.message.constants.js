@@ -10,9 +10,9 @@
  */
 
 import haystacks from '../../src/main.js';
-var apcon = require('./application.constant.constants');
-var bas = haystacks.bas;
-var wr1 = haystacks.wr1;
+let apcon = require('./application.constant.constants');
+let bas = haystacks.bas;
+let wr1 = haystacks.wr1;
 
 let capplicationMessage01 = wr1.cBEGIN + bas.cSpace + wr1.cmain + bas.cSpace + wr1.cprogram + bas.cSpace + wr1.cloop; // BEGIN main program loop
 let capplicationMessage02 = wr1.cBEGIN + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cparser; // BEGIN command parser

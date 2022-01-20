@@ -9,7 +9,7 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
+let bas = require('./basic.constants');
 
 // Reusable Grammer
 let chree = bas.chr + bas.cee;

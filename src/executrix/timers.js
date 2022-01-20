@@ -14,14 +14,14 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../constants/basic.constants');
-var fnc = require('../constants/function.constants');
-var msg = require('../constants/message.constants');
-var wr1 = require('../constants/word1.constants');
-var path = require('path');
-var moment = require('moment');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+let bas = require('../constants/basic.constants');
+let fnc = require('../constants/function.constants');
+let msg = require('../constants/message.constants');
+let wr1 = require('../constants/word1.constants');
+let path = require('path');
+let moment = require('moment');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getNowMoment

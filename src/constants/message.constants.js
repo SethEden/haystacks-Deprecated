@@ -14,13 +14,13 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var con = require('./constant.constants');
-var phn = require('./phonic.constants');
-var num = require('./numeric.constants');
-var gen = require('./generic.constants');
-var sys = require('./system.constants');
-var wr1 = require('./word1.constants');
+let bas = require('./basic.constants');
+let con = require('./constant.constants');
+let phn = require('./phonic.constants');
+let num = require('./numeric.constants');
+let gen = require('./generic.constants');
+let sys = require('./system.constants');
+let wr1 = require('./word1.constants');
 
 // Logging Constants
 let cBEGIN_Function = wr1.cBEGIN + bas.cSpace + bas.cDoublePercent + bas.cSpace + wr1.cFunction; // BEGIN %% Function

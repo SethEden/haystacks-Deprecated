@@ -14,15 +14,16 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../../constants/basic.constants');
-var msg = require('../../constants/message.constants');
-var sys = require('../../constants/system.constants');
-var wr1 = require('../../constants/word1.constants');
-var stringParsingUtilities = require('./stringParsingUtilities');
-var loggers = require('../../executrix/loggers');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+let bas = require('../../constants/basic.constants');
+let msg = require('../../constants/message.constants');
+let sys = require('../../constants/system.constants');
+let wr1 = require('../../constants/word1.constants');
+let stringParsingUtilities = require('./stringParsingUtilities');
+let loggers = require('../../executrix/loggers');
+let path = require('path');
+
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function replaceCharacterWithCharacter
@@ -461,6 +462,57 @@ export const searchForPatternsInStringArray = function(inputData, inputMetaData)
     loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInSringArrayMessage4);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function vaidatePatternsThatNeedImplementation
+ * @description Scans through an array of strings and determines which ones are not yet implemented in the constants system.
+ * @param {array<string>} inputData The array of strings that should be checked if they are already implemented in the constants system or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A coma seperated list of constants that are not yet implemented.
+ * @author Seth Hollingsead
+ * @date 2022/01/20
+ */
+export const validatePatternsThatNeedImplementation = function(inputData, inputMetaData) {
+  let functionName = validatePatternsThatNeedImplementation.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let passMessage = '';
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
+    for (let i = 0; i < inputData.length; i++) {
+      let currentString = inputData[i];
+      if (strParse.doesConstantExist(currentString, '') === false) {
+        // Constant does NOT exist:
+        passMessage = msg.cConstantDoesNotExist + currentString;
+        // TODO: Colorize the pass message here:
+        console.log(passMessage);
+        // constant does NOT exist:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesNotExist + currentString);
+        // Make sure we add all the strings that do not exist to a coma-seperated list,
+        // so we can enqueue it to the constantsGeneratorList command and generate actual new constants lines of code.
+        if (j === 0) {
+          returnData = currentString;
+        } else {
+          returnData = returnData + bas.cComa + currentString;
+        }
+        j++;
+      } else { // Else-clause for if (strParse.doesConstantExist(currentString, '') === false)
+        // Constant does exist:
+        passMessage = msg.cConstantDoesExist + currentString;
+        // TODO: Colorize the pass message here:
+        console.log(passMessage);
+        // constant does exist:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesExist + currentString);
+      }
+    } // End-for (let i = 0; i < inputData.length; i++)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

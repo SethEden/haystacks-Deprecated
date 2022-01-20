@@ -21,21 +21,21 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../constants/basic.constants');
-var biz = require('../constants/business.constants');
-var cfg = require('../constants/configuration.constants');
-var fnc = require('../constants/function.constants');
-var msg = require('../constants/message.constants');
-var sys = require('../constants/system.constants');
-var wr1 = require('../constants/word1.constants');
-var ruleBroker = require('../brokers/ruleBroker');
-var chiefData = require('./chiefData');
-var configurator = require('../executrix/configurator');
-var loggers = require('../executrix/loggers');
-var D = require('../structures/data');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
+let bas = require('../constants/basic.constants');
+let biz = require('../constants/business.constants');
+let cfg = require('../constants/configuration.constants');
+let fnc = require('../constants/function.constants');
+let msg = require('../constants/message.constants');
+let sys = require('../constants/system.constants');
+let wr1 = require('../constants/word1.constants');
+let ruleBroker = require('../brokers/ruleBroker');
+let chiefData = require('./chiefData');
+let configurator = require('../executrix/configurator');
+let loggers = require('../executrix/loggers');
+let D = require('../structures/data');
+let path = require('path');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
 
 /**
  * @function setupConfiguration

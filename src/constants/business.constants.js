@@ -12,11 +12,11 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var phn = require('./phonic.constants');
-var num = require('./numeric.constants');
-var wr1 = require('./word1.constants');
-var sys = require('./system.constants');
+let bas = require('./basic.constants');
+let phn = require('./phonic.constants');
+let num = require('./numeric.constants');
+let wr1 = require('./word1.constants');
+let sys = require('./system.constants');
 
 // Business Rules
 let cecho = wr1.cecho; // echo

@@ -9,8 +9,8 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var wr1 = require('../constants/word1.constants');
-var data = {};
+let wr1 = require('../constants/word1.constants');
+let data = {};
 
 module.exports = {
   [wr1.cdata]: data

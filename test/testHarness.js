@@ -20,21 +20,21 @@
  */
 
 import haystacks from '../src/main.js';
-var apc = require('./constants/application.constants');
-var apcon = require('./constants/application.constant.constants');
-var apmsg = require('./constants/application.message.constants');
-var path = require('path');
+let apc = require('./constants/application.constants');
+let apcon = require('./constants/application.constant.constants');
+let apmsg = require('./constants/application.message.constants');
+let path = require('path');
 global.appRot = path.resolve(process.cwd());
-var bas = haystacks.bas;
-var cfg = haystacks.cfg;
-var gen = haystacks.gen;
-var msg = haystacks.msg;
-var sys = haystacks.sys;
-var wr1 = haystacks.wr1;
-var phn = haystacks.phn;
-var rootPath = '';
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = baseFileName + bas.cDot;
+let bas = haystacks.bas;
+let cfg = haystacks.cfg;
+let gen = haystacks.gen;
+let msg = haystacks.msg;
+let sys = haystacks.sys;
+let wr1 = haystacks.wr1;
+let phn = haystacks.phn;
+let rootPath = '';
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = baseFileName + bas.cDot;
 
 /**
  * @function bootstrapApplication
@@ -96,7 +96,7 @@ async function application() {
 };
 
 // Launch the Test Harness application!!
-var programRunning = false;
+let programRunning = false;
 bootstrapApplication();
 programRunning = true;
 application();
