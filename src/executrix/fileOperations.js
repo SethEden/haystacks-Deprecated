@@ -73,7 +73,7 @@ function readDirectoryContents(directory) {
   // just in case there are issues with the OS that the code is running on.
   directory = path.resolve(directory);
   readDirectorySynchronously(directory);
-  filesFound = filesCollection; // Copy the data ino a local variable first.
+  filesFound = filesCollection; // Copy the data into a local variable first.
   filesCollection = undefined; // Make sure to clear it so we don't have a chance of it corrupting any other file operations.
   filesCollection = [];
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
@@ -92,9 +92,9 @@ function readDirectoryContents(directory) {
  * @date 2020/05/22
  */
 function readDirectorySynchronously(directory) {
-  // let functionName = readDirectorySynchronously.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`directory is: ${directory}`);
+  let functionName = readDirectorySynchronously.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`directory is: ${directory}`);
   if (hitFileLimit === false) {
     directory = path.resolve(directory); // Make sure to resolve the path on the local system, just in case there are issues with the OS that the code is running on.
     let currentDirectoryPath = directory;
@@ -138,8 +138,8 @@ function readDirectorySynchronously(directory) {
         console.log(`ERROR: Invalid access to: ${pathOfCurrentItem}`);
       }
     });
-    // console.log(`END ${namespacePrefix}${functionName} function`);
-    // console.log('END dataBroker.readDirectorySynchronously function');
+    console.log(`END ${namespacePrefix}${functionName} function`);
+    console.log('END dataBroker.readDirectorySynchronously function');
   }
 };
 
