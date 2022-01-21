@@ -6,6 +6,7 @@
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
+ * @requires module:stringParsing
  * @requires module:stringParsingUtilities
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/lodash|lodash}
@@ -21,6 +22,7 @@ let bas = require('../../constants/basic.constants');
 let msg = require('../../constants/message.constants');
 let sys = require('../../constants/system.constants');
 let wr1 = require('../../constants/word1.constants');
+let stringParsing = require('./stringParsing');
 let stringParsingUtilities = require('./stringParsingUtilities');
 let configurator = require('../../executrix/configurator');
 let loggers = require('../../executrix/loggers');
@@ -121,14 +123,14 @@ export const getWordsArrayFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    let wordCount = strParse.getWordCountInString(inputData, '');
+    let wordCount = stringParsing.getWordCountInString(inputData, '');
     // wordCount is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cwordCountIs + wordCount);
     if (wordCount > 0) {
-      let wordDelimiter = strParse.determineWordDelimiter(inputData, inputMetaData);
+      let wordDelimiter = stringParsing.determineWordDelimiter(inputData, inputMetaData);
       // wordDelimiter is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cwordDelimiterIs + wordDelimiter);
-      let stringContainsAcronym = strParse.doesStringContainAcronym(inputData, '');
+      let stringContainsAcronym = stringParsing.doesStringContainAcronym(inputData, '');
       // stringContainsAcronym is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cstringContainsAcronymIs + stringContainsAcronym);
       if (wordDelimiter === sys.cCamelCase && stringContainsAcronym === false) {
@@ -191,7 +193,7 @@ export const convertArrayToCamelCaseString = function(inputData, inputMetaData) 
   loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    returnData = inputData.map((key, index) => strParse.mapWordToCamelCaseWord(key, index));
+    returnData = inputData.map((key, index) => stringParsing.mapWordToCamelCaseWord(key, index));
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -215,9 +217,9 @@ export const doesArrayContainLowerCaseConsolidatedString = function(inputData, i
   let returnData;
   if (inputData && inputMetaData) {
     // I'm not sure if value1 & value2 below should be referanced to inputData & inputMetaData?
-    // I get the arrow function is passign these values to the strParse.aggregateNumericalDifferenceBetweenTwoStrings function.
+    // I get the arrow function is passign these values to the stringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
     // But I'm not sure how or what values are being passed for value1 & value2.
-    let stringDelta = (value1, value2) => strParse.aggregateNumericalDifferenceBetweenTwoStrings(value1, value2) < 2;
+    let stringDelta = (value1, value2) => stringParsing.aggregateNumericalDifferenceBetweenTwoStrings(value1, value2) < 2;
     // stringDelta value is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cstringDeltaValueIs + stringDelta);
     returnData = doesArrayContainValue(inputData, inputMetaData, stringDelta);
@@ -336,12 +338,12 @@ export const doesArrayContainFilename = function(inputData, inputMetaData) {
   // And I'm not going to spend the time trying to figure out why,
   // when it will be much simpler to ust call that same funtion in a loop to figure out the result.
   // Can solve this when we build unit tests.
-  returnData = doesArrayContainValue(inputData, inputMetaData, strParse.ascertainMatchingFilenames);
+  returnData = doesArrayContainValue(inputData, inputMetaData, stringParsing.ascertainMatchingFilenames);
 
   // NOTE: The beow code also orks, I am going to attempt to re-enable the above code and see if it alo works.
   // YES! This is a second way of doing the same thing. If the above code ever has a problem, we can fall back to this method.
   // for (let i = 0; i < inputData.Length; i++) {
-  //   if (strParse.ascertainMatchingFilenames(inputData[i], inputMetaData) === true) {
+  //   if (stringParsing.ascertainMatchingFilenames(inputData[i], inputMetaData) === true) {
   //     returnData = true;
   //     break;
   //   }
@@ -493,7 +495,7 @@ export const validatePatternsThatNeedImplementation = function(inputData, inputM
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
     for (let i = 0; i < inputData.length; i++) {
       let currentString = inputData[i];
-      if (strParse.doesConstantExist(currentString, '') === false) {
+      if (stringParsing.doesConstantExist(currentString, '') === false) {
         // Constant does NOT exist:
         passMessage = msg.cConstantDoesNotExist + currentString;
         if (colorizeLogsEnabled === true) {
@@ -511,7 +513,7 @@ export const validatePatternsThatNeedImplementation = function(inputData, inputM
           returnData = returnData + bas.cComa + currentString;
         }
         j++;
-      } else { // Else-clause for if (strParse.doesConstantExist(currentString, '') === false)
+      } else { // Else-clause for if (stringParsing.doesConstantExist(currentString, '') === false)
         // Constant does exist:
         passMessage = msg.cConstantDoesExist + currentString;
         if (colorizeLogsEnabled === true) {
@@ -1056,9 +1058,9 @@ export const generateCommandAliases = function(inputData, inputMetaData) {
       masterArrayIndex[i] = commandWordAliasesArray.length - 1;
       for (let j = 0; j < commandWordAliasesArray.length; j++) {
         let commandAliasWord = commandWordAliasesArray[j];
-        if (strParse.isFirstCharacterLowerCase(commandAliasWord, '') === true) {
+        if (stringParsing.isFirstCharacterLowerCase(commandAliasWord, '') === true) {
           let firstLetterOfCommandAliasWord = commandAliasWord.charAt(0).toUpperCase();
-          commandAliasWord = strParse.replaceCharacterAtIndexOfString(commandAliasWord, 0, firstLetterOfCommandAliasWord);
+          commandAliasWord = stringParsing.replaceCharacterAtIndexOfString(commandAliasWord, 0, firstLetterOfCommandAliasWord);
           commandWordAliasesArray[j] = commandAliasWord; // Saved the changes back to array.
         }
       } // End-for (let j = 0; j < commandWordAliasesArray.length; j++)
@@ -1118,9 +1120,9 @@ export const aggregateCommandArguments = function(inputData, inputMetaData) {
         // BEGIN i-th iteration:
         loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIteration + i);
         if (i === 2) {
-          returnData = strParse.cleanCommandInput(inputData[i]);
+          returnData = stringParsing.cleanCommandInput(inputData[i]);
         } else {
-          returnData = returnData + bas.cSpace + strParse.cleanCommandInput(inputData[i]);
+          returnData = returnData + bas.cSpace + stringParsing.cleanCommandInput(inputData[i]);
         }
         // returnData is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -1128,7 +1130,7 @@ export const aggregateCommandArguments = function(inputData, inputMetaData) {
         loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
       } // End-for (let i = 2; i < inputData.length; i++)
     } else { // else-clause if (inputData.length > 3)
-      returnData = strParse.cleanCommandInput(inputData[2], '');
+      returnData = stringParsing.cleanCommandInput(inputData[2], '');
     }
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

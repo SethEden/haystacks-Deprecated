@@ -257,6 +257,7 @@ function appendMessageToFile(file, message) {
 module.exports = {
   [fnc.cgetJsonData]: (pathAndFilename) => getJsonData(pathAndFilename),
   [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
+  [fnc.cscanDirectoryContents]: (directory, enableLimit, filesLimit) => scanDirectoryContents(directory, enableLimit, filesLimit),
   [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
   [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)
 };

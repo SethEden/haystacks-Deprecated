@@ -53,6 +53,7 @@ let cprocessConfigurationValueRules = wr1.cprocess + wr1.cConfiguration + wr1.cV
 // fileOperations
 let cgetJsonData = wr1.cget + gen.cJson + wr1.cData; // getJsonData
 let creadDirectoryContents = wr1.cread + wr1.cDirectory + wr1.cContents; // readDirectoryContents
+let cscanDirectoryContents = wr1.cscan + wr1.cDirectory + wr1.cContents; // scanDirectoryContents
 let creadDirectorySynchronously = wr1.cread + wr1.cDirectory + wr1.cSynchronously; // readDirectorySynchronously
 let cappendMessageToFile = wr1.cappend + wr1.cMessage + bas.cTo + wr1.cFile; // appendMessageToFile
 
@@ -108,6 +109,7 @@ module.exports = {
   // fileOperations
   [bas.cc + cgetJsonData]: cgetJsonData, // getJsonData
   [bas.cc + creadDirectoryContents]: creadDirectoryContents, // readDirectoryContents
+  [bas.cc + cscanDirectoryContents]: cscanDirectoryContents, // scanDirectoryContents
   [bas.cc + creadDirectorySynchronously]: creadDirectorySynchronously, // readDirectorySynchronously
   [bas.cc + cappendMessageToFile]: cappendMessageToFile, // appendMessageToFile
 
