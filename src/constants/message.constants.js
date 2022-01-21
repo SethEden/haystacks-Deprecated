@@ -500,6 +500,9 @@ let callClientConstantsValidationDataIs = wr1.call + wr1.cClient + wr1.cConstant
 let cconstantLibraryDataIs = wr1.cconstant + wr1.cLibrary + wr1.cData + sys.cSpaceIsColonSpace; // constantLibraryData is:
 let cclientValidationDataIs = wr1.cclient + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // clientValidationData is:
 let carrayValidationDataIs = wr1.carray + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // arrayValidationData is:
+let cfilesListLimitIs = wr1.cfiles + wr1.cList + wr1.cLimit + sys.cSpaceIsColonSpace; // filesListLimit is:
+let cenableLimitIs = wr1.cenable + wr1.cLimit + sys.cSpaceIsColonSpace; // enableLimit is:
+let cfilesLimitIs = wr1.cfiles + wr1.cLimit + sys.cSpaceIsColonSpace; // filesLimit is:
 
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 let cDetermineWordDelimiterMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // WARNING: Mixed string.
@@ -1109,6 +1112,9 @@ module.exports = {
   [bas.cc + con.cconstantLibraryDataIs]: cconstantLibraryDataIs, // constantLibraryData is:
   [bas.cc + con.cclientValidationDataIs]: cclientValidationDataIs, // clientValidationData is:
   [bas.cc + con.carrayValidationDataIs]: carrayValidationDataIs, // arrayValidationData is:
+  [bas.cc + con.cfilesListLimitIs]: cfilesListLimitIs, // filesListLimit is:
+  [bas.cc + con.cenableLimitIs]: cenableLimitIs, // enableLimit is:
+  [bas.cc + con.cfilesLimitIs]: cfilesLimitIs, // filesLimit is:
 
   // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
   [bas.cc + con.cDetermineWordDelimiterMessage1]: cDetermineWordDelimiterMessage1, // WARNING: Mixed string.

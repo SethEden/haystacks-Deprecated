@@ -560,7 +560,7 @@ export const solveLehmerCode = function(inputData, inputMetaData) {
     let lehmerCodeArray = Array.from(Array(lengthOfInputData), () => 0);
     expandedLehmerCodeArray = arrayDeepClone(recursiveArrayExpansion([0, lehmerCodeArray], inputData));
     // expandedLehmerCodeArray is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cexpandedLehmerCodeArrayIs + JSON.stringify((expandedLehmerCodeArray));
+    loggers.consoleLog(namespacePrefix + functionName, msg.cexpandedLehmerCodeArrayIs + JSON.stringify(expandedLehmerCodeArray));
 
     // Now we just iterate over each array in expandedLehmerCodeArray and call: getLehmerCodeValue
     for (let i = 0; i < expandedLehmerCodeArray.length - 1; i++) {
@@ -590,7 +590,7 @@ export const recursiveArrayExpansion = function(inputData, inputMetaData) {
   let functionName = recursiveArrayExpansion.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [];
   if (inputData && inputMetaData && isArray(inputData) === true && isArray(inputMetaData) === true && inputData.length > 0 && inputMetaData.length > 0) {
     // Setup & parse the inputData & inputMetaData into a format we can use to actually do recursive array expansion.
@@ -706,7 +706,7 @@ export const getLehmerCodeValue = function(inputData, inputMetaData) {
       let lookupIndex = inputData[i];
       // lookupIndex is:
       loggers.consoleLog(namespacePrefix + functionName, msg.clookupIndexIs + lookupIndex);
-      et lookupValue = inputMetaData[i][lookupIndex];
+      let lookupValue = inputMetaData[i][lookupIndex];
       // lookupValue is:
       loggers.consoleLog(namespacePrefix + functionName, msg.clookupValueIs + lookupValue);
       returnData = returnData + lookupValue;
@@ -790,6 +790,485 @@ export const getStoredData = function(inputData, inputMetData) {
     returnData = dataBroker.getDate(inputData);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isObjectEmpty
+ * @description Determines if a JSON object is empty or not.
+ * @param {object} inputData The object that should be checked for emptyness.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the object is empty or not empty.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const isObjectEmpty = function(inputData, inputMetaData) {
+  let functionName = isObjectEmpty.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData) {
+    for (let key in inputData) {
+      if (inputData.hasOwnProperty(key)) {
+        returnData = false;
+        // It may have a value, but is that value === null, if it is, reset back to true.
+        if (inputData[key] === null) {
+          returnData = true;
+        }
+      } // End-if (inputData.hasOwnProperty(key))
+    } // End-for (let key in inputData)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isArrayEmpty
+ * @description Determines if a JSON array is empty or not.
+ * @param {array<string|integer|boolean|float|object>} inputData The array that should be checked for emptyness.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the array is empty or not empty.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const isArrayEmpty = function(inputData, inputMetaData) {
+  let functionName = isArrayEmpty.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = true;
+  if (inputData) {
+    returnData = !Object.keys(inputData).length;
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isObject
+ * @description Determines if an object is a JSON object or not.
+ * @param {object|array<string|integer|boolean|float|object>} inputData The object taht should be tested to see if it is a JSON object or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the input object is an array or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const isObject = function(inputData, inputMetaData) {
+  let functionName = isObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (typeof inputData === 'object') {
+      returnData = true;
+    }
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isArray
+ * @description Determines if an object is an array or not.
+ * @param {object|array<string|integer|boolean|float|object>} inputData The object that
+ * should be tested to see if it is an array or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the input object is an array or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const isArray = function(inputData, inputMetaData) {
+  let functionName = isArray.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    returnData = Array.isArray(inputData);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isArrayOrObject
+ * @description Determines if an input object is either an array or a JSON object.
+ * @param {object|array<string|integer|boolean|float|object>} inputData The object that
+ * should be tested to see if it is either an array or a JSON object or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the input object is either an array or a JSON object.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const isArrayOrObject = function(inputData, inputMetaData) {
+  let functionName = isArrayOrObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (isObject(inputData, '') === true || isArray(inputData, '') === true) {
+      returnData = true;
+    }
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isNonZeroLengthArray
+ * @description Determines if an object is an array of length greater than or equal to one or not.
+ * @param {object|array<string|integer|boolean|float|object>} inputData The object/array that
+ * should be tested to see if it is an array of length greater than or equal to 1 or not.
+ * @param {string} inputMetData Not used for this business rule.
+ * @return {boolean} True or False to indiate if the input object is an array of length greater than equal to zero or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const isNonZeroLengthArray = function(inputData, inputMetData) {
+  let functionName = isNonZeroLengthArray.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (isArray(inputData, '') === true && inputData.length >= 1) {
+      returnData = true;
+    }
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function arrayDeepClone
+ * @description Clones an array by using JSON.stringify & JSON.parse.
+ * Almost all other methods of cloning an array will actually clone by referance which essentially just clones the pointer to the array.
+ * @NOTE: https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/
+ * @param {array<string|integer|boolean|float|object>} inputData The array that should be deeply cloned.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string|integer|boolean|float|object>} The new array object after being cloned deeply.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const arrayDeepClone = function(inputData, inputMetaData) {
+  let functionName = arrayDeepClone.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData && isArray(inputData, '') === true && isArrayEmpty(inputData, '') === false) {
+    returnData = JSON.parse(JSON.stringify(inputData));
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function replaceCharacterAtIndex
+ * @description Replaces a character at the specified index with another character.
+ * @param {string} inputData The string which should have the specified character changed, then returned.
+ * @param {array<integer,string>} inputMetaData An array ith an integer of what index the character should be replaced,
+ * and a string with the character or characters that should be inserted at the specified index.
+ * @return {string} The modified string.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ * @reference: {@link https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript}
+ */
+export const replaceCharacterAtIndex = function(inputData, inputMetaData) {
+  let functionName = replaceCharacterAtIndex.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  if (inputData) {
+    let indexOfReplacement;
+    let stringToReplaceWith;
+    if (inputMetaData.length === 2) {
+      indexOfReplacement = inputMetaData[0];
+      stringToReplaceWith = inputMetaData[1];
+      let strngAray = inputData.split('');
+      stringArray.splice(indexOfReplacement, 1, stringToReplaceWith);
+      returnData = stringArray.join('');
+    } // End-if (inputMetaData.length === 2)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function generateCommandAliases
+ * @description Generates all possible combinations of command aliases given a set of command words and command word abreviations.
+ * @param {object} inputData An object containing all of the meta-data needed for command words and
+ * command word abreviations needed to generate every possible combination of command aliases.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A coma-separated list of every possible combination of command aliases.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const generateCommandAliases = function(inputData, inputMetaData) {
+  let functionName = generateCommandAliases.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    // {"wonder":"wondr,wundr,wndr","Woman":"wman,wmn,womn","Amazing":"amzing,amzng"}
+    //
+    // {
+    // "wonder": "wondr,wundr,wndr",
+    // "Woman": "wman,wmn,womn",
+    // "Amazing": "amzing,amzng"
+    // }
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter);
+    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cTertiaryCommandDelimiter);
+    let commandDelimiter = '';
+    let commandWordsKey1 = Object.keys(inputData);
+    let commandWordAliasesArray = [];
+    let masterCommandWordAliasesArray = [commandWordsKeys1.length - 1];
+    let masterArrayIndex = [commandWordsKeys1.length - 1];
+    for (let i = 0; i < commandWordsKeys1.length; i++) {
+      // commandWordsKeys1.forEach((key1) => {
+      let key1 = commandWordsKeys1[i];
+      if (commandWordAliases.includes(primaryCommandDelimiter)) {
+        commandDelimiter = primaryCommandDelimiter;
+      } else if (commandWordAliases.includes(secondaryCommandDelimiter)) {
+        commandDelimiter = secondaryCommandDelimiter;
+      } else if (commandWordAliases.includes(tertiaryCommandDelimiter)) {
+        commandDelimiter = tertiaryCommandDelimiter;
+      }
+      commandWordAliases = commandWordAliases + commandDelimiter + key1;
+      // commandWordAliases BEFORE CHANGE is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandWordAliasesBeforeChangeIs + commandWordAliases);
+      commandWordAliasesArray = commandWordAliases.split(commandDelimiter);
+      masterArrayIndex[i] = commandWordAliasesArray.length - 1;
+      for (let j = 0; j < commandWordAliasesArray.length; j++) {
+        let commandAliasWord = commandWordAliasesArray[j];
+        if (strParse.isFirstCharacterLowerCase(commandAliasWord, '') === true) {
+          let firstLetterOfCommandAliasWord = commandAliasWord.charAt(0).toUpperCase();
+          commandAliasWord = strParse.replaceCharacterAtIndexOfString(commandAliasWord, 0, firstLetterOfCommandAliasWord);
+          commandWordAliasesArray[j] = commandAliasWord; // Saved the changes back to array.
+        }
+      } // End-for (let j = 0; j < commandWordAliasesArray.length; j++)
+      // commandWordAliasesArray AFTER CHANGE is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandWordAliasesAfterChangeIs + JSON.stringify(commandWordAliasesArray));
+      masterCommandWordAliasesArray[i] = commandWordAliasesArray; // Try to build an array of arrays (2D)
+    } // End-for (let i = 0; i < commandWordsKeys1.length; i++)
+    // masterCommandWordAliasesArray is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cmasterCommandWordAlisesArrayIs + JSON.stringify(masterCommandWordAliasesArray));
+    // masterArrayIndex is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cmasterArrayIndexIs + JSON.stringify(masterArrayIndex));
+
+    // NOTES: Console output is:
+    // masterCommandWordAliasesArray is: [["Wondr","Wundr","Wndr","Wonder"],["Wman","Wmn","Womn","Woman"],["Amzing","Amzng","Amazing"]]
+    // masterArrayIndex is: [4,4,3]
+    //
+    // We should be able to have 2 nested for-loops, and we will declare a counter array initialized to [0,0,0] to match the masterArrayIndex above.
+    // The counter array tells us which combination of words we should get.
+    // We can simply push those combination of words as a string on a stack we will make for this business rule.
+    // Then iterate the last array element as long as it's not greater than the number in the master array index and do the same things over again.
+    // When the array index for the last element in the array reaches the masterArrayIndex for the same array index then we increment the second from the last array counter.
+    // and start over again with the last element in the array counter.
+    // This way we should be able to iterate over the entire 2D array and get every combination without having to create x number of nested for-loops.
+    // Essentially we will be having 2-nested for-loops looping over the counter array. The top level loop will be looping over masterArrayIndex.length,
+    // and the second loop will be iterating over the integers in the counter array.
+    // The counter array will tell the algorthim which combination of words to put together and push on the stack.
+    //
+    // NOTE: The algorthim described above is called: Lehmer code
+    // https://en.wikipedia.org/wiki/Lehmer_code
+    let returnData = solveLehmerCode(masterArrayIndex, masterCommandWordAliasesArray);
+    // Command Aliases are:
+    console.log(msg.cCommandAliasesAre + returnData);
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function aggregateCommandArguments
+ * @description Combines all of the input arguments into a single command line to be executed by the command parser.
+ * @param {array<string>} inputData An array of strings that represents the command and command parameters to execute.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A sinle string command line of code that should be sent to the command parser.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const aggregateCommandArguments = function(inputData, inputMetaData) {
+  let functionName = aggregateCommandArguments.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    if (inputData.length > 3) {
+      for (let i = 2; i < inputData.length; i++) {
+        // BEGIN i-th iteration:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIteration + i);
+        if (i === 2) {
+          returnData = strParse.cleanCommandInput(inputData[i]);
+        } else {
+          returnData = returnData + bas.cSpace + strParse.cleanCommandInput(inputData[i]);
+        }
+        // returnData is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+        // END i-th iteration:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
+      } // End-for (let i = 2; i < inputData.length; i++)
+    } else { // else-clause if (inputData.length > 3)
+      returnData = strParse.cleanCommandInput(inputData[2], '');
+    }
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getFileAndPathListForPath
+ * @description Scans all files and folders recursively given an input path and
+ * returns a list of all files and their full paths fournd under the specified input path.
+ * @param {string} inputData The path that should be scanned for files and their full paths.
+ * @param {integer} inputMetaData Optional file limit, ignored if the configuration flag is not set to true,
+ * if nothign is passed the configuratino setting will be used.
+ * @return {array<string>} The array that contains the full path and file name for every file found under the specified path.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const getFileAndPathListForPath = function(inputData, inputMetaData) {
+  let functionName = getFileAndPathListForPath.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    if (inputMetaData) {
+      enableFilesListLimit = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableFilesListLimit);
+      filesListLimit = inputMetaData;
+    } else {
+      enableFilesListLimit = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableFilesListLimit);
+      filesListLimit = configurator.getConfigurationSetting(wr1.csystem, cfg.cFilesListLimit);
+    }
+    // filesListLimit is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cfilesListLimitIs + filesListLimit);
+    returnData = fileBroker.scanDirectoryContents(inputData, enableFilesListLimit, filesListLimit);
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function parseColorRangeInputs
+ * @description Parses minimum and maximum range integer values to ensure they are in the range of 0 - 255.
+ * @param {string|integer} inputData The number in either numeric or string format that
+ * represents the minimum range that should be used to generate the random color.
+ * @param {string|integer} inputMetaData The nubmer in either numeric or string format that
+ * represents the maximum range that should be used to generate the random color.
+ * @return {array<integer>} The minimum and maximum values returned in an array.
+ * returnData[0] = minimum value.
+ * returnData[1] = maximum value.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const parseColorRangeInputs = function(inputData, inputMetaData) {
+  let functionName = parseColorRangeInputs.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = [0,0,0];
+  let minimuColorRange = 0;
+  let tempMinimumColorRange = 0;
+  let maximumColorRange = 0;
+  let tempMaximumColorRange = 0;
+  if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
+    // Try to parse them as numbers for the range.
+    if (typeof(inputData) === 'string') {
+      tempMinimumColorRange = parseInt(inputData);
+    } else if (typeof(inputData) === 'number') {
+      tempMinimumColorRange = inputData;
+    }
+    if (typeof(inputMetaData) === 'string') {
+      tempMaximumColorRange = parseInt(inputMetaData);
+    } else if (typeof(inputMetaData) === 'number') {
+      tempMaximumColorRange = inputMetaData;
+    }
+    if (tempMinimumColorRange < tempMaximumColorRange) {
+      minimumColorRange = tempMinimumColorRange;
+      maximumColorRange = tempMaximumColorRange;
+    } else if (tempMinimumColorRange > tempMaximumColorRange) {
+      minimumColorRange = tempMaximumColorRange;
+      maximumColorRange = tempMinimumColorRange;
+    }
+  } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
+  if (minimumColorRange < 0) {
+    minimumColorRange = Math.abs(minimumColorRange);
+  } else if (minimumColorRange > 255) {
+    minimumColorRange = 255;
+  }
+  if (maximumColorRange < 0) {
+    maximumColorRange = Math.abs(maximumColorRange);
+  } else if (maximumColorRange > 255) {
+    maximumColorRange = 255;
+  }
+  returnData = [minimumColorRange, maximumColorRange];
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+// ******************************************************
+// Internal functions
+// ******************************************************
+
+/**
+ * @function doesArrayContainValue
+ * @description Checks if an array contains a value, checking equality by function(val, arr[i]).
+ * @param {array<string|integer|boolean|float|object>} array the input array that should be searched for the given input value.
+ * @param {string|integer|boolean|float|object} value The value that should be searched for in the input array.
+ * @param {function} myFunction The function that should be used to do the search.
+ * @return {boolean} A True or False to indicate if the value was found in the array or not found.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+function doesArrayContainValue(array, value, myFunction) {
+  let functionName = doesArrayContainValue.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // array is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.carrayIs + JSON.stringify(array));
+  // value is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cvalueIs + value);
+  // Not sure how this will output, would be good to also put some type checing on this input variable.
+  // myFunction is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cmyFunctionIs + JSON.stringify(myFunction));
+  let returnData = false;
+  if (_.isArray(array) === false) {
+    // array input object is not an array.
+    loggers.consoleLog(namespacePrefix + functionName, msg.carrayInputObjectIsNotAnArray);
+    returnData = false;
+  }
+  if (!!array.find(i => myFunction(i, value))) {
+    // The value was found in the array.
+    loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
+    returnData = true;
+  } else {
+    // The value was NOT found in the array.
+    loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
+    returnData = false;
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

@@ -91,6 +91,46 @@ function readDirectoryContents(directory) {
 };
 
 /**
+ * @function scanDirectoryContents
+ * @description This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
+ * The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
+ * Really this is used for scanning large volumes of data such as the entire C-Drive.
+ * This way the user can control the number of files that are returned by the system.
+ * The user might only want 10,000 files or just the first million files found. etc...
+ * @param {sring} directory The path that should be scanned for files including all sub-folders and all sub-files.
+ * @param {boolean} enableLimit True or False to indicate if the boolean limit should be enabled or not.
+ * @param {integer} filesLimit The number of files that should be limited when scanning, if the enableLimit is set to True.
+ * @return {array<string>} An array of all the files in the folder up to the limit if specified.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+function scanDirectoryContents(directory, enableLimit, filesLimit) {
+  let functionName = scanDirectoryContents.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // Path that should be scanned is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cPathThatShouldBeScannedIs + directory);
+  // enableLimit is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cenableLimitIs + enableLimit);
+  // filesLimit is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilesLimitIs + filesLimit);
+  let filesFound = [];
+  directory = path.resolve(directory);
+  enableFilesListLimit = enableLimit;
+  filesListLimit = filesLimit;
+  readDirectorySynchronously(directory);
+  filesFound = filesCollection; // Copy the data into a local variable first.
+  filesCollection = undefined; // Make sure to clear it so we don't have a chance of it corrupting any other file operations.
+  filesCollection = [];
+  enableFilesListLimit = false;
+  filesListLimit = -1;
+  hitFileLimit = false;
+  // files found are:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundAre + JSON.stringify(filesFound));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return filesFound;
+};
+
+/**
  * @function readDirectorySynchronously
  * @description Recursively parses through all the sub-folders in a given path and loads all of the files contained in each sub-folder into a map.
  * @param {string} directory The system path that should be scanned recursively for files.
