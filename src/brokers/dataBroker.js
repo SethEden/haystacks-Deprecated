@@ -241,10 +241,97 @@ function preprocessJsonFile(fileToLoad) {
   return dataFile;
 };
 
+/**
+ * @function setupDataStorage
+ * @description Does the initial setup of data storage on the D data structure.
+ * @return {void} Nothing to return.
+ * @author Seth Hollingsead
+ * @date 2022/01/20
+ */
+function setupDataStorage() {
+  let functionName = storeData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  D[sys.cDataStorage] = {};
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function storeData
+ * @description Stores some data in a data storage hive on the D data structure, under a caller specified sub-data storage hie name.
+ * @param {string} dataStorageContextName The sub-data storage hive under-which the data should be stored.
+ * @param {string|boolean|integer|float|array|object} dataToStore The data that should be stored, in any format.
+ * @return {boolean} A True or False to indicate if the data storage was successful or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/20
+ */
+function storeData(dataStorageContextName, dataToStore) {
+  let functionName = storeData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // dataStorageContextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataStorageContextNameIs + dataStorageContextName);
+  // data To Store is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToStoreIs + JSON.stringify(dataToStore));
+  let returnData = false;
+  D[sys.cDataStorage][dataStorageContextName] = {};
+  D[sys.cDataStorage][dataStorageContextName] = dataToStore;
+  returnData = true;
+  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getData
+ * @description Gets some data from a caller specified sub-data storage hive name.
+ * @param {string} dataStorageContextName The sub-data storage hive which should be retrieved.
+ * @return {object} the data that is found, if any at the specified location on the data storage hive.
+ * @author Seth Hollingsead
+ * @date 2022/01/20
+ */
+function getData(dataStorageContextName) {
+  let functionName = storeData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // dataStorageContextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataStorageContextNameIs + dataStorageContextName);
+  let returnData = false;
+  if (D[sys.cDataStorage][dataStorageContextName] !== null && !!D[sys.cDataStorage][dataStorageContextName]) {
+    returnData = D[sys.cDataStorage][dataStorageContextName];
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function clearData
+ * @description Clears out all of the data stored in the DataStorage data hive of the D data structure,
+ * or a particular stored data element if a contextName is provided.
+ * @param {string} dataStorageContextName (OPTIONAL) The sub-data storage hive which should be cleared.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/01/20
+ */
+function clearData(dataStorageContextName) {
+  let functionName = clearData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // dataStorageContextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataStorageContextNameIs + dataStorageContextName);
+  if (D[sys.cDataStorage][dataStorageContextName] !== null && !!D[sys.cDataStorage][dataStorageContextName] && dataStorageContextName !== '') {
+    D[sys.cDataStorage][dataStorageContextName] = {};
+  } else {
+    D[sys.cDataStorage] = {};
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
 module.exports = {
   [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
     appConfigFilesToLoad, frameworkConfigFilesToLoad
   ),
   [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
-  [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName)
+  [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
+  [fnc.csetupDataStorage]: () => setupDataStorage(),
+  [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
+  [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),
+  [fnc.cclearData]: (dataStorageContextName) => clearData(dataStorageContextName)
 };

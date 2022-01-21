@@ -19,6 +19,10 @@ let wr1 = require('./word1.constants');
 let cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath
 let cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // findUniversalDebugConfigSetting
 let cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
+let csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setupDataStorage
+let cstoreData = wr1.cstore + wr1.cData; // storeData
+let cgetData = wr1.cget + wr1.cData; // getData
+let cclearData = wr1.cclear + wr1.cData; // clearData
 
 // ruleBroker
 let cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
@@ -70,6 +74,10 @@ module.exports = {
   [bas.cc + cscanDataPath]: cscanDataPath, // scanDataPath
   [bas.cc + cfindUniversalDebugConfigSetting]: cfindUniversalDebugConfigSetting, // findUniversalDebugConfigSetting
   [bas.cc + cloadAllJsonData]: cloadAllJsonData, // loadAllJsonData
+  [bas.cc + csetupDataStorage]: csetupDataStorage, // setupDataStorage
+  [bas.cc + cstoreData]: cstoreData, // storeData
+  [bas.cc + cgetData]: cgetData, // getData
+  [bas.cc + cclearData]: cclearData, // clearData
 
   // ruleBroker
   [bas.cc + cbootStrapBusinessRules]: cbootStrapBusinessRules, // bootStrapBusinessRules
