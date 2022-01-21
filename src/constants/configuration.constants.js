@@ -11,11 +11,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var gen = require('./generic.constants');
-var wr1 = require('./word1.constants');
-var sys = require('./system.constants');
+let bas = require('./basic.constants');
+let gen = require('./generic.constants');
+let wr1 = require('./word1.constants');
+let sys = require('./system.constants');
 
+// Configuration Settings
 let crootPath = wr1.croot + wr1.cPath; // rootPath
 let cRootPath = wr1.cRoot + wr1.cPath; // RootPath
 let cappRootPath = gen.capp + wr1.cRoot + wr1.cPath; // appRootPath
@@ -37,6 +38,7 @@ let cTestDataPath = wr1.cTest + wr1.cData + wr1.cPath; // TestDataPath
 let cconsoleLogEnabled = wr1.cconsole + wr1.cLog + wr1.cEnabled; // consoleLogEnabled
 let cLogFileEnabled = wr1.cLog + wr1.cFile + wr1.cEnabled; // LogFileEnabled
 let cIncludeDateTimeStampInLogFiles = wr1.cInclude + wr1.cDate + wr1.cTime + wr1.cStamp + bas.cIn + gen.cLog + wr1.cFiles; // IncludeDateTimeStampInLogFiles
+let cEnableColorizedConsoleLogs = wr1.cEnable + wr1.cColorized + wr1.cConsole + wr1.cLogs; // EnableColorizedConsoleLogs
 
 module.exports = {
   [bas.cc + crootPath]: crootPath, // rootPath
@@ -59,5 +61,6 @@ module.exports = {
   [bas.cc + cTestDataPath]: cTestDataPath, // TestDataPath
   [bas.cc + cconsoleLogEnabled]: cconsoleLogEnabled, // consoleLogEnabled
   [bas.cc + cLogFileEnabled]: cLogFileEnabled, // LogFileEnabled
-  [bas.cc + cIncludeDateTimeStampInLogFiles]: cIncludeDateTimeStampInLogFiles // IncludeDateTimeStampInLogFiles
+  [bas.cc + cIncludeDateTimeStampInLogFiles]: cIncludeDateTimeStampInLogFiles, // IncludeDateTimeStampInLogFiles
+  [bas.cc + cEnableColorizedConsoleLogs]: cEnableColorizedConsoleLogs // EnableColorizedConsoleLogs
 };

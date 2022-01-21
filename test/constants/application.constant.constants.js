@@ -10,8 +10,8 @@
  */
 
 import haystacks from '../../src/main.js';
-var bas = haystacks.bas;
-var wr2 = haystacks.wr2;
+let bas = haystacks.bas;
+let wr2 = haystacks.wr2;
 
 let capplicationMessage = wr2.capplication + wr2.cMessage; // applicationMessage
 

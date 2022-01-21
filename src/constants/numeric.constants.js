@@ -9,8 +9,8 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var phn = require('./phonic.constants');
+let bas = require('./basic.constants');
+let phn = require('./phonic.constants');
 
 // Numbers
 let c0 = '0'; // 0

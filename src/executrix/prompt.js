@@ -14,17 +14,17 @@
  * @date 2021/10/26
  */
 
-var bas = require('../constants/basic.constants');
-var fnc = require('../constants/function.constants');
-var gen = require('../constants/generic.constants');
-var msg = require('../constants/message.constants');
-var wr1 = require('../constants/word1.constants');
-var loggers = require('./loggers');
-var fs = require('fs');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
-var term = 13; // carriage return
+let bas = require('../constants/basic.constants');
+let fnc = require('../constants/function.constants');
+let gen = require('../constants/generic.constants');
+let msg = require('../constants/message.constants');
+let wr1 = require('../constants/word1.constants');
+let loggers = require('./loggers');
+let fs = require('fs');
+let path = require('path');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+let term = 13; // carriage return
 
 /**
  * @function prompt

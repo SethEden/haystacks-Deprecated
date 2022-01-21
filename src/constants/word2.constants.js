@@ -10,8 +10,8 @@
  * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
  */
 
-var bas = require('./basic.constants');
-var phn = require('./phonic.constants');
+let bas = require('./basic.constants');
+let phn = require('./phonic.constants');
 
 // *************************************************************
 // BEGIN Redefinition of numeric constants, needed here to remove circular dependent constant definitions.
@@ -1221,8 +1221,12 @@ let cfiles = cfile + bas.cs; // files
 let cFiles = cFile + bas.cs; // Files
 let cfilename = cfile + cname; // filename
 let cFilename = cFile + cname; // Filename
+let cfileName = cfile + cName; // fileName
+let cFileName = cFile + cName; // FileName
 let cfilenames = cfilename + bas.cs; // filenames
 let cFilenames = cFilename + bas.cs; // Filenames
+let cfileNames = cfileName + bas.cs; // fileNames
+let cFileNames = cFileName + bas.cs; // FileNames
 let cfold = bas.cfo + bas.cld; // fold
 let cFold = bas.cFo + bas.cld; // Fold
 let cFolder = cFold + bas.cer; // Folder
@@ -1729,7 +1733,7 @@ let cSuggest = phn.cSug + phn.cgest; // Suggest
 let csuggested = csuggest + bas.ced; // suggested
 let cSuggested = cSuggest + bas.ced; // Suggested
 let cline = bas.cli + bas.cne; // line
-let cLine = bas.cLi + bas.cne; // Line
+let cLine = bas.cLi + bas.cne; // LinecWithout
 let cdocument = cdoc + bas.cu + phn.cment; // document
 let cDocument = cDoc + bas.cu + phn.cment; // Document
 let cqualified = bas.cq + phn.cual + phn.cified; // qualified
@@ -2525,8 +2529,8 @@ let cmoment = bas.cmo + phn.cment; // moment
 let cMoment = bas.cMo + phn.cment; // Moment
 let cmoments = cmoment + bas.cs; // moments
 let cMoments = cMoment + bas.cs; // Moments
-let ccompute = phn.ccomp + phn.ccute; // compute
-let cCompute = phn.cComp + phn.ccute; // Compute
+let ccompute = phn.ccomp + phn.cute; // compute
+let cCompute = phn.cComp + phn.cute; // Compute
 let ccomputes = ccompute + bas.cs; // computes
 let cComputes = cCompute + bas.cs; // Computes
 let ccomputer = ccompute + bas.cr; // computer
@@ -2546,6 +2550,16 @@ let cLogical = cLogic + bas.cal; // Logical
 let charness = phn.char + phn.cness; // harness
 let cHarness = phn.cHar + phn.cness; // Harness
 let cHARNESS = phn.cHAR + phn.cNESS; // HARNESS
+let cuniversal = phn.cuni + phn.cver + phn.csal; // universal
+let cUniversal = phn.cUni + phn.cver + phn.csal; // Universal
+let cmath = cmat + bas.ch; // math
+let cMath = cMat + bas.ch; // Math
+let cmathematics = cmath + bas.ce + cmat + phn.cics; // mathematics
+let cMathematics = cMath + bas.ce + cmat + phn.cics; // Mathematics
+let cmathematician = cmath + bas.ce + cmat + bas.cic + phn.cian; // mathematician
+let cMathematician = cMath + bas.ce + cmat + bas.cic + phn.cian; // Mathematician
+let cmathematicians = cmathematician + bas.cs; // mathematicians
+let cMathematicians = cMathematician + bas.cs; // Mathematicians
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 let cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute
@@ -3738,8 +3752,12 @@ module.exports = {
   [bas.cc + cFiles]: cFiles, // Files
   [bas.cc + cfilename]: cfilename, // filename
   [bas.cc + cFilename]: cFilename, // Filename
+  [bas.cc + cfileName]: cfileName, // fileName
+  [bas.cc + cFileName]: cFileName, // FileName
   [bas.cc + cfilenames]: cfilenames, // filenames
   [bas.cc + cFilenames]: cFilenames, // Filenames
+  [bas.cc + cfileNames]: cfileNames, // fileNames
+  [bas.cc + cFileNames]: cFileNames, // FileNames
   [bas.cc + cfold]: cfold, // fold
   [bas.cc + cFold]: cFold, // Fold
   [bas.cc + cFolder]: cFolder, // Folder
@@ -5071,6 +5089,16 @@ module.exports = {
   [bas.cc + charness]: charness, // harness
   [bas.cc + cHarness]: cHarness, // Harness
   [bas.cc + cHARNESS]: cHARNESS, // HARNESS
+  [bas.cc + cuniversal]: cuniversal, // universal
+  [bas.cc + cUniversal]: cUniversal, // Universal
+  [bas.cc + cmath]: cmath, // math
+  [bas.cc + cMath]: cMath, // Math
+  [bas.cc + cmathematics]: cmathematics, // mathematics
+  [bas.cc + cMathematics]: cMathematics, // Mathematics
+  [bas.cc + cmathematician]: cmathematician, // mathematician
+  [bas.cc + cMathematician]: cMathematician, // Mathematician
+  [bas.cc + cmathematicians]: cmathematicians, // mathematicians
+  [bas.cc + cMathematicians]: cMathematicians, // Mathematicians
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

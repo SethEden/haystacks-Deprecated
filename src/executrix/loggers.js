@@ -20,23 +20,23 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../constants/basic.constants');
-var biz = require('../constants/business.constants');
-var cfg = require('../constants/configuration.constants');
-var fnc = require('../constants/function.constants');
-var sys = require('../constants/system.constants');
-var wr1 = require('../constants/word1.constants');
+let bas = require('../constants/basic.constants');
+let biz = require('../constants/business.constants');
+let cfg = require('../constants/configuration.constants');
+let fnc = require('../constants/function.constants');
+let sys = require('../constants/system.constants');
+let wr1 = require('../constants/word1.constants');
 // var ruleBroker = require('../brokers/ruleBroker');
 // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
 // We will need to refactor the business rules to accept a callback function that does the logging.
 // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-var stringParsingUtilities = require('../businessRules/rules/stringParsingUtilities');
-var configurator = require('./configurator');
-var fileOperations = require('./fileOperations');
-var D = require('../structures/data');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+let stringParsingUtilities = require('../businessRules/rules/stringParsingUtilities');
+let configurator = require('./configurator');
+let fileOperations = require('./fileOperations');
+let D = require('../structures/data');
+let path = require('path');
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function consoleLog

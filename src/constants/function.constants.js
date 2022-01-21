@@ -10,15 +10,19 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('./basic.constants');
-var phn = require('./phonic.constants');
-var gen = require('./generic.constants');
-var wr1 = require('./word1.constants');
+let bas = require('./basic.constants');
+let phn = require('./phonic.constants');
+let gen = require('./generic.constants');
+let wr1 = require('./word1.constants');
 
 // dataBroker
 let cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath
 let cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // findUniversalDebugConfigSetting
 let cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
+let csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setupDataStorage
+let cstoreData = wr1.cstore + wr1.cData; // storeData
+let cgetData = wr1.cget + wr1.cData; // getData
+let cclearData = wr1.cclear + wr1.cData; // clearData
 
 // ruleBroker
 let cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
@@ -49,6 +53,7 @@ let cprocessConfigurationValueRules = wr1.cprocess + wr1.cConfiguration + wr1.cV
 // fileOperations
 let cgetJsonData = wr1.cget + gen.cJson + wr1.cData; // getJsonData
 let creadDirectoryContents = wr1.cread + wr1.cDirectory + wr1.cContents; // readDirectoryContents
+let cscanDirectoryContents = wr1.cscan + wr1.cDirectory + wr1.cContents; // scanDirectoryContents
 let creadDirectorySynchronously = wr1.cread + wr1.cDirectory + wr1.cSynchronously; // readDirectorySynchronously
 let cappendMessageToFile = wr1.cappend + wr1.cMessage + bas.cTo + wr1.cFile; // appendMessageToFile
 
@@ -70,6 +75,10 @@ module.exports = {
   [bas.cc + cscanDataPath]: cscanDataPath, // scanDataPath
   [bas.cc + cfindUniversalDebugConfigSetting]: cfindUniversalDebugConfigSetting, // findUniversalDebugConfigSetting
   [bas.cc + cloadAllJsonData]: cloadAllJsonData, // loadAllJsonData
+  [bas.cc + csetupDataStorage]: csetupDataStorage, // setupDataStorage
+  [bas.cc + cstoreData]: cstoreData, // storeData
+  [bas.cc + cgetData]: cgetData, // getData
+  [bas.cc + cclearData]: cclearData, // clearData
 
   // ruleBroker
   [bas.cc + cbootStrapBusinessRules]: cbootStrapBusinessRules, // bootStrapBusinessRules
@@ -100,6 +109,7 @@ module.exports = {
   // fileOperations
   [bas.cc + cgetJsonData]: cgetJsonData, // getJsonData
   [bas.cc + creadDirectoryContents]: creadDirectoryContents, // readDirectoryContents
+  [bas.cc + cscanDirectoryContents]: cscanDirectoryContents, // scanDirectoryContents
   [bas.cc + creadDirectorySynchronously]: creadDirectorySynchronously, // readDirectorySynchronously
   [bas.cc + cappendMessageToFile]: cappendMessageToFile, // appendMessageToFile
 

@@ -20,22 +20,22 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-var bas = require('../constants/basic.constants');
-var fnc = require('../constants/function.constants');
-var gen = require('../constants/generic.constants');
-var msg = require('../constants/message.constants');
-var wr1 = require('../constants/word1.constants');
-var loggers = require('../executrix/loggers');
-var D = require('../structures/data');
-var fs = require('fs');
-var path = require('path');
-var filesCollection = [];
+let bas = require('../constants/basic.constants');
+let fnc = require('../constants/function.constants');
+let gen = require('../constants/generic.constants');
+let msg = require('../constants/message.constants');
+let wr1 = require('../constants/word1.constants');
+let loggers = require('../executrix/loggers');
+let D = require('../structures/data');
+let fs = require('fs');
+let path = require('path');
+let filesCollection = [];
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
-var enableFilesListLimit = false;
-var filesListLimit = -1;
-var hitFileLimit = false;
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+let enableFilesListLimit = false;
+let filesListLimit = -1;
+let hitFileLimit = false;
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getJsonData
@@ -87,6 +87,46 @@ function readDirectoryContents(directory) {
   filesCollection = [];
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
+  return filesFound;
+};
+
+/**
+ * @function scanDirectoryContents
+ * @description This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
+ * The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
+ * Really this is used for scanning large volumes of data such as the entire C-Drive.
+ * This way the user can control the number of files that are returned by the system.
+ * The user might only want 10,000 files or just the first million files found. etc...
+ * @param {sring} directory The path that should be scanned for files including all sub-folders and all sub-files.
+ * @param {boolean} enableLimit True or False to indicate if the boolean limit should be enabled or not.
+ * @param {integer} filesLimit The number of files that should be limited when scanning, if the enableLimit is set to True.
+ * @return {array<string>} An array of all the files in the folder up to the limit if specified.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+function scanDirectoryContents(directory, enableLimit, filesLimit) {
+  let functionName = scanDirectoryContents.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // Path that should be scanned is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cPathThatShouldBeScannedIs + directory);
+  // enableLimit is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cenableLimitIs + enableLimit);
+  // filesLimit is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilesLimitIs + filesLimit);
+  let filesFound = [];
+  directory = path.resolve(directory);
+  enableFilesListLimit = enableLimit;
+  filesListLimit = filesLimit;
+  readDirectorySynchronously(directory);
+  filesFound = filesCollection; // Copy the data into a local variable first.
+  filesCollection = undefined; // Make sure to clear it so we don't have a chance of it corrupting any other file operations.
+  filesCollection = [];
+  enableFilesListLimit = false;
+  filesListLimit = -1;
+  hitFileLimit = false;
+  // files found are:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundAre + JSON.stringify(filesFound));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return filesFound;
 };
 
@@ -217,6 +257,7 @@ function appendMessageToFile(file, message) {
 module.exports = {
   [fnc.cgetJsonData]: (pathAndFilename) => getJsonData(pathAndFilename),
   [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
+  [fnc.cscanDirectoryContents]: (directory, enableLimit, filesLimit) => scanDirectoryContents(directory, enableLimit, filesLimit),
   [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
   [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)
 };
