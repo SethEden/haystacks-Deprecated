@@ -199,6 +199,53 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
   return returnData;
 };
 
+/**
+ * @function getUserNameFromEmail
+ * @description Converts an email input into a username.
+ * @param {string} inputData A string that contains an email address value.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A string value of the sub-string from before the '@' symbol.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const getUserNameFromEmail = function(inputData, inputMetaData) {
+  let functionName = getUserNameFromEmail.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    loggers.consoleLog(namespacePrefix + functionName, msg.cIndexOfTheSpace + bas.cAt +
+      sys.cSpaceIsColonSpace + inputData.indexOf(bas.cAt));
+    returnData = inputData.substr(0, inputData.indexOf(bas.cAt));
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function replaceSpacesWithPlus
+ * @description Replaces all spaces in the input string with plus symbols.
+ * @param {string} inputData A string that contains spaces that should be converted to plus symbols.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The same as the input string but with space characters converted to plus symbols.
+ * @author Seth Hollingsead
+ * @date 2022/01/21
+ */
+export const replaceSpacesWithPlus = function(inputData, inputMetaData) {
+  let functionName = replaceSpacesWithPlus.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    // returnData = inputData.replace(/ /g, bas.cPlus);
+    returnData = aryParse.replaceCharacterWithCharacter(inputData, [/ /g, bas.cPlus]);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 // ******************************************************
 // Internal functions
 // ******************************************************
