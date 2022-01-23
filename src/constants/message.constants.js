@@ -97,6 +97,8 @@ let cspacesCountIs = wr1.cspaces + wr1.cCount + sys.cSpaceIsColonSpace; // space
 let cperiodCountIs = wr1.cperiod + wr1.cCount + sys.cSpaceIsColonSpace; // periodCount is:
 let cdashCountIs = wr1.cdash + wr1.cCount + sys.cSpaceIsColonSpace; // dashCount is:
 let cunderscoreCountIs = wr1.cunderscore + wr1.cCount + sys.cSpaceIsColonSpace; // underscoreCount is:
+let cplusCountIs = wr1.cplus + wr1.cCount + sys.cSpaceIsColonSpace; // plusCount is:
+let cpercentCountIs = wr1.cpercent + wr1.cCount + sys.cSpaceIsColonSpace; // percentCount is:
 let cstringDeltaValueIs = wr1.cstring + gen.cDelta + bas.cSpace + wr1.cvalue + sys.cSpaceIsColonSpace; // stringDelta value is:
 let cFilenamesMatch = wr1.cFilenames + bas.cSpace + wr1.cmatch; // Filenames match
 let cFilenamesDoNotMatch = wr1.cFilenames + bas.cSpace + bas.cdo + bas.cSpace + gen.cnot + bas.cSpace + wr1.cmatch; // Filenames do not match
@@ -503,6 +505,7 @@ let carrayValidationDataIs = wr1.carray + wr1.cValidation + wr1.cData + sys.cSpa
 let cfilesListLimitIs = wr1.cfiles + wr1.cList + wr1.cLimit + sys.cSpaceIsColonSpace; // filesListLimit is:
 let cenableLimitIs = wr1.cenable + wr1.cLimit + sys.cSpaceIsColonSpace; // enableLimit is:
 let cfilesLimitIs = wr1.cfiles + wr1.cLimit + sys.cSpaceIsColonSpace; // filesLimit is:
+let cinputDataRightBeforeProcessingIs = cinputData + wr1.cRight + wr1.cBefore + wr1.cProcessing + sys.cSpaceIsColonSpace; // inputData right before processing is:
 
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 let cDetermineWordDelimiterMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // WARNING: Mixed string.
@@ -709,6 +712,8 @@ module.exports = {
   [bas.cc + con.cperiodCountIs]: cperiodCountIs, // periodCount is:
   [bas.cc + con.cdashCountIs]: cdashCountIs, // dashCount is:
   [bas.cc + con.cunderscoreCountIs]: cunderscoreCountIs, // underscoreCount is:
+  [bas.cc + con.cplusCountIs]: cplusCountIs, // plusCount is:
+  [bas.cc + con.cpercentCountIs]: cpercentCountIs, // percentCount is:
   [bas.cc + con.cstringDeltaValueIs]: cstringDeltaValueIs, // stringDelta value is:
   [bas.cc + con.cFilenamesMatch]: cFilenamesMatch, // Filenames match
   [bas.cc + con.cFilenamesDoNotMatch]: cFilenamesDoNotMatch, // Filenames do not match
@@ -1115,6 +1120,7 @@ module.exports = {
   [bas.cc + con.cfilesListLimitIs]: cfilesListLimitIs, // filesListLimit is:
   [bas.cc + con.cenableLimitIs]: cenableLimitIs, // enableLimit is:
   [bas.cc + con.cfilesLimitIs]: cfilesLimitIs, // filesLimit is:
+  [bas.cc + con.cinputDataRightBeforeProcessingIs]: cinputDataRightBeforeProcessingIs, // inputData right before processing is:
 
   // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
   [bas.cc + con.cDetermineWordDelimiterMessage1]: cDetermineWordDelimiterMessage1, // WARNING: Mixed string.
