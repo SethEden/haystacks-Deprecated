@@ -1051,11 +1051,72 @@ export const validateConstantsDataValidation = function(inputData, inputMetaData
   let returnData = false;
   let foundAFailure = false;
   if (inputData && inputMetaData) {
-    
+    const liner = new lineByLine(inputData);
+    let line;
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+
+    while (line = liner.next()) {
+      loggers.consoleLog(namespacePrefix + functionName, 'constants line is: ' + line.toString(gen.cascii));
+      let lineInCode = line.toString(gen.cascii);
+      let foundConstant = false;
+      // TODO: This logic will need to change!!
+      if (lineInCode.includes(sys.cexportconst) === true) {
+        let lineArray = lineInCode.split(bas.cSpace);
+        // lineArray[2] is
+        loggers.consoleLog(namespacePrefix + functionName, msg.cineArray2Is + lineArray[2]);
+        foundConstant = validateConstantsDataValidationLineItemName(lineAray[2], inputMetaData);
+        let qualifiedConstantsFilename = getFileNameFromPath(inputData, '');
+        if (foundConstant === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true) {
+            let passMessage = wr1.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cPASS;
+            if (colorizeLogsEnabled === true) {
+              passMessage = chalk.rgb(0,0,0)(passMessage);
+              passMessage = chalk.bgRgb(0,255,0)(passMessage);
+            }
+            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
+          } // End-if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
+        } else { // Else-clause if (foundConstant === true)
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true) {
+            let failMessage = wr1.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL;
+            if (colorizeLogsEnabled === true) {
+              failMessage = chalk.rgb(0,0,0)(failMessage);
+              failMessage = chalk.bgRgb(255,0,0)(failMessage);
+            }
+            let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
+            console.log(qualifiedCosntantsFilename + bas.cColon + bas.cSpace + failMessage);
+            // loggers.consoleLog(namespacePrefix + functionName, wr1.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL);
+            let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
+            if (suggestedLineOfCode !== '') {
+              if (colorizeLogsEnabled === true) {
+                suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
+                suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
+              }
+              // Suggested line of code is:
+              console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
+            } // End-if (suggestedLineOfCode !== '')
+          } // End-if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
+          foundAFailure = true;
+        }
+      } // End-if (lineInCode.includes(sys.cexportconst) === true)
+    } // End-while (line = liner.next())
+  } // End-if (inputData && inputMetaData)
+  if (foundAFailure === false) {
+    returnData = true;
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+/**
+ * @function determineConstantsContextQualifiedPrefix
+ * @description
+ * @param  {[type]} inputData                   [description]
+ * @param  {[type]} inputMetaData               [description]
+ * @return {[type]}               [description]
+ */
+export const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaData) {
+
 };
 
 // ******************************************************
