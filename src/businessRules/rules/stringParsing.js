@@ -1110,12 +1110,799 @@ export const validateConstantsDataValidation = function(inputData, inputMetaData
 
 /**
  * @function determineConstantsContextQualifiedPrefix
- * @description
- * @param  {[type]} inputData                   [description]
- * @param  {[type]} inputMetaData               [description]
- * @return {[type]}               [description]
+ * @description Takes the filename to a constants file and determines
+ * The standard prefix that should be used in the code to referance that constants file.
+ * @param {string} inputData The filename of the constants file or
+ * the full path and file name of the constants file. (Should work just the same with either one)
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A string code that represents the method to referance a constants file in the code.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
  */
 export const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaData) {
+  let functionName = determineConstantsContextQualifiedPrefix.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    returnData = inputData;
+    let inputDataAsArray = inputData.split(bas.cDot);
+    let constantsFileNames = D[sys.cConstantsValidationData][sys.cConstantsFileNames];
+    let constantsShortNames = D[sys.cConstantsValidationData][sys.cConstantsShortNames];
+    for (let key in constantsFileNames) {
+      if (inputData === constantsFileNames[key]) {
+        returnData = constantsShortNames[key];
+      }
+    } // End-for (let key in constantsFileNames)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function determineSuggestedConstantsValidationLineOfCode
+ * @description Takes the name of the missing constant and determines a suggested lin of code to ad to the appropriate constants vaidation file.
+ * This will make it really easy for developers to maintain the constants validation system.
+ * @param {string} inputData The name of the constant file that is missing and should have a line of code generated for it.
+ * @param {string} inputMetaData The prefix used to referance the constants file in the code.
+ * @return {string} The suggested line of code that should be added to the appropriate constants validation code file.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const determineSuggestedConstantsValidationLineOfCode = function(inputData, inputMetaData) {
+  let functionName = determineSuggestedConstantsValidationLineOfCode.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData && inputMetaData) {
+    returnData = inputData;
+    // Input: cZZTopInternationalSuccess
+    // Output: {Name: 'cZZTopInternationalSuccess', Actual: wrd.cZZTopInternationalSuccess, Expected: 'ZZTopInternationalSuccess'}
+    if (inputData.charAt(0) === bas.cc) {
+      let literalValue = inputData.substr(1);
+      // `{Name: '${inputData}', Actual: ${inputMetaData}.${inputData}, Expected: '${literalValue}'}`;
+      returnData = bas.cOpenCurlyBrace + wr1.cName + bas.cColon + bas.cSpace + bas.cSingleQuote + inputData +
+        bas.cSingleQuote + bas.cComa + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace + inputMetaData +
+        bas.cDot + inputData + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace +
+        bas.cSingleQuote + literalValue + bas.cSingleQuote + bas.cCloseCurlyBrace;
+    } else { // Else-clause if (inputData.charAt(0) === bas.cc)
+      // 'ERROR: Attempted to generate a suggested line of code to validate the constant, ' +
+      // 'but the constant is not formatted correctly, it should begin with a lower case "c". ' +
+      // 'Please reformat the constant correctly so a line of code can be generated for you.'
+      console.log(msg.cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage1 +
+        msg.cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage2 +
+        msg.cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage3 +
+        msg.cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage4 +
+        msg.cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage5 +
+        msg.cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage6);
+      returnData = '';
+    }
+  } // End-if (inputData && inputMetaData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function validateConstantsDataValidationLineItemName
+ * @description Loops through all of the constants validation data and verifies if a matching constan definition can be found, or not found.
+ * @param {string} inputData the constant definition that should be searched for.
+ * @param {string} inputMetaData The name of the data hive that contains the appropriate matching constants validation data.
+ * @return {boolean} True or False to indicate if a match was found or not found.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const validateConstantsDataValidationLineItemName = function(inputData, inputMetaData) {
+  let functionName = validateConstantsDataValidationLineItemName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData && inputMetaData) {
+    for (let i = 0; i < D[sys.cConstantsValidationData][inputMetaData].length; i++) {
+      let validationLineItem = D[sys.cConstantsValidationData][inputMetaData][i];
+      if (validationLineItem) {
+        if (inputData === validationLineItem.Name) {
+          returnData = true;
+          break;
+        }
+      } // End-if (validationLineItem)
+    } // End-for (let i = 0; i < D[sys.cConstantsValidationData][inputMetaData].length; i++)
+  } // End-if (inputData && inputMetaData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function doesConstantExist
+ * @description Walks through all of the constants validation files and
+ * checks to see if any of the expected values match the string that is passed in.
+ * @param {string} inputData The value that should be looked for in all the constants files.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if a matching constant definition was found or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const doesConstantExist = function(inputData, inputMetaData) {
+  let functionName = doesConstantExist.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
+    // constantsTypesKeys is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
+loop1:
+    for (let i = 0; i < constantsTypesKeys.length; i++) {
+      let consteantTypeKey = constantsTypesKeys[i];
+      // constantTypeKey is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
+      let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
+      // constantTypeValues is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
+      let consteantsKeys = Object.keys(constantTypeValues);
+      // constantsKeys is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
+loop2:
+      for (let j = 0; j < constantsKeys.length; j++) {
+        let constantKey = constantsKeys[j];
+        // constantKey is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
+        let constantActualValue = constantTypeValues[constantKey];
+        // constantActualValue is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantActualValueIs + JSON.stringify(constantActualValue));
+        if (inputData === constantActualValue.Actual) {
+          returnData = true;
+          break loop1;
+        }
+      } // End-for (let j = 0; j < constantsKeys.length; j++)
+    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getConstantType
+ * @description Determines what constant library a particular constant is defined in.
+ * (This will aid developers who are trying to understand & develop under this complicated constants system.)
+ * @NOTE Just because a constant is found we do not break the loop,
+ * but this function will report back all constants libraries where a particular constant would be defined.
+ * Passing in a True to the inputMetaData will cause the function to exit upon first discovered match.
+ * @param {string} inputData The string value that should be searched in all of the constants libraries.
+ * @param {boolean} inputMetaData True or False to indicate if the function should exit on first discovery or continue to discover all possible matches.
+ * @return {string} A list of constants libraries where the constant was found to be defined in.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const getConstantType = function(inputData, inputMetaData) {
+  let functionName = getConstantType.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
+    // constantsTypesKeys is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
+loop1:
+    for (let i = 0; i < constantsTypesKeys.length; i++) {
+      let constantTypeKey = constantsTypesKeys[i];
+      // constantTypeKey is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
+      let constantTypeValues = D[sys.cConstantsVaidationData][constantTypeKey];
+      // constantTypeValues is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
+      let constantsKeys = Object.keys(constantTypeValues);
+      // constantsKeys is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
+loop2:
+      for (let j = 0; j < constantsKeys.length; j++) {
+        let constKey = constantsKeys[j];
+        // constantKey is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
+        let constantActualValue = constantTypeValues[constantKey];
+        // constantActualValue is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantActualValueIs + JSON.stringify(constantActualValue));
+        if (inputData === constantActualValue.Actual) {
+          if (returnData === '') {
+            returnData = constantTypeKey;
+            // NOTE: This is our first discovered match. Check the inputMetaData to see if we should exit or continue searching?
+            if (inputMetaData === true) {
+              // We are doing it this way so we can re-use this function as part of the optimized constants fulfillment system algorithm.
+              break loop1;
+            }
+          } else {
+            returnData = returnData + bas.cComa + constantTypeKey;
+          }
+        } // End-if (inputData === constantActualValue.Actual)
+      } // End-for (let j = 0; j < constantsKeys.length; j++)
+    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getConstantActualValue
+ * @description Determines the actual value of the named constant given the constant type.
+ * @param {string} inputData The name of the constant we are looking for to get the actual value of the constant.
+ * @param {string} inputMetaData (OPTIONAL) The type or library where the constant should be found.
+ * @return {string} The actual value of the string.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const getConstantActualValue = function(inputData, inputMetaData) {
+  let functionName = getConstantActualValue.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    if (isConstantTypeValid(inputMetaData, '') === true) {
+      let constantTypeValues1 = D[sys.cConstantsValidationData][inputMetaData];
+      // 1 constantsTypeValues is:
+      loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues1));
+      let constantsKeys1 = Object.keys(constantTypeValues1);
+      // 1 constantsKeys is:
+      loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantsKeysIs + JSON.stringify(constantsKeys1));
+loop1:
+      for (let i = 0; i < constantsKeys1.length; i++) {
+        let constantKey1 = constantsKeys1[i];
+        // 1 constantKey is:
+        loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantKeyIs + JSON.stringify(constantKey1));
+        let constantActualValue1 = constantTypeValues1[constantKey1];
+        // 1 constantActualValue is:
+        loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantActualValueIs + JSON.stringify(constantActualValue1));
+        if (inputData === constantActualValue1.Name) {
+          returnData = constantActualValue1.Actual;
+        }
+      } // End-for (let i = 0; i < constantsKeys1.length; i++)
+    } else { // Else-clause if (isConstantTypeValid(inputMetaData, '') === true)
+      let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
+      // constantsTypesKeys is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
+loop2:
+      for (let j = 0; j < constantsTypesKeys.length; j++) {
+        let constantTypeKey = constantsTypesKeys[j];
+        // constantTypeKey is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
+        let constantTypeValues2 = D[sys.cConstantsValidationData][constantTypeKey];
+        // 2 constantTypeValues is:
+        loggers.consoleLog(namespacePrefix + functionName, num.c2 + bas.cSpace + msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues2));
+        let constantsKeys2 = Object.keys(constantTypeValues2);
+        // 2 constantsKeys is:
+        loggers.consoleLog(namespacePrefix + functionName, num.c2 + bas.cSpace + msg.cconstantsKeysIs + JSON.stringify(constantsKeys2));
+loop3:
+        for (let k = 0; k < constantsKeys2.length; k++) {
+          let constantKey2 = constantsKeys2[k];
+          // 2 constantKey is:
+          loggers.consoleLog(namespacePrefix + functionName, num.c2 + bas.cSpace + msg.cconstantKeyIs + JSON.stringify(constantKey2));
+          let constantActualValue1 = constantTypeValues2[constantKey2];
+          // 1 constantActualValue is:
+          loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantActualValueIs + JSON.stringify(constantActualValue1));
+          if (inputData === constantActualValue1.Name) {
+            returnData = constantActualValue1.Actual;
+          }
+        } // End-for (let k = 0; k < constantsKeys2.length; k++)
+      } // End-for (let j = 0; j < constantsTypesKeys.length; j++)
+    } // else clause for the case that inputMetaData did not match a valid constant type in the system.
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getConstantName
+ * @description Gets the constant name given the constant value, or what the constant should resolve as.
+ * Can only return the first instance.
+ * @param {string} inputData The constant string value that should be used when getting the constant name.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The name of the constant: eg: cSystem
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const getConstantName = function(inputData, inputMetaData) {
+  let functionName = getConstantName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
+    // constantsTypesKeys is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
+loop1:
+    for (let i = 0; i < constantsTypesKeys.length; i++) {
+      let constantTypeKey = constantsTypesKeys[i];
+      // constantTypeKey is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
+      let constantTypeValues = D[sys.cConstantsVaidationData][constantTypeKey];
+      // constantTypeValues is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
+      let constantsKeys = Object.keys(constantTypeValues);
+      // constantsKeys is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
+loop2:
+      for (let j = 0; j < constantsKeys.length; j++) {
+        let constantKey = constantsKeys[j];
+        // constantKey is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
+        let constantActualValue = constantTypeValues[constantKey];
+        // constantActualValue is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantActualValueIs + JSON.stringify(constantActualValue));
+        if (inputData === constantActualValue.Actual) {
+          returnData = constantActualValue.Name;
+          break loop1;
+        }
+      } // End-for ((let j = 0; j < constantsKeys.length; j++)
+    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function findConstantName
+ * @description Looks through a string and tries to weed out a constant name.
+ * @param {string} inputData The string that should be searched for a constant name.
+ * @param {string} inutMetaData Not used for this business rule.
+ * @return {string} The name of the constant that was found.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const findConstantName = function(inputData, inutMetaData) {
+  let functionName = findConstantName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    if (inputData.includes(bas.cDot)) {
+      returnData = inputData.substr(inputData.lastIndexOf(bas.cDot) + 1, inputData.length);
+    }
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isConstantTypeValid
+ * @description Determiens if a sring is a valid constant type/library or not.
+ * @param {string} inputData The string that should be validated if it is a valid constant type or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the string is a
+ * valid constant type/library that exists within the system or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const isConstantTypeValid = function(inputData, inputMetaData) {
+  let functionName = isConstantTypeValid.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    let constantsShortNames = D[sys.cConstantsValidatinoData][sys.cConstantsShortNames];
+    for (let key in constantsShortNames) {
+      if (inputData === key || inputData === constantsShortNames[key]) {
+        returnData = true;
+        break;
+      }
+    } // End-for (let key in constantsShortNames)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function convertConstantTypeToConstantPrefix
+ * @description Converts the constant type to a constant prefix so it can be used to assist with defining an optimized constant definition.
+ * @param {string} inputData The constant type that should be used when converting to a constant prefix.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The appropriate constant prefix.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const convertConstantTypeToConstantPrefix = function(inputData, inputMetaData) {
+  let functionName = convertConstantTypeToConstantPrefix.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    returnData = inputData;
+    let constantsPrefixData = D[sys.cConstantsValidationData][sys.cConstantsPrefix];
+    for (let key in constantsPrefixData) {
+      if (inputData === key) {
+        returnData = constantsPrefixData[key];
+      }
+    } // End-for (let key in constantsPrefixData)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function constantsOptimizedFulfillmentSystem
+ * @description Determines what is the most optimized way to define a string using existing constant strings.
+ * @param {string} inputData the string that should be determined or find a constant to fulfill part of the string.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A constant that represents part of the input string.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
+  let functionName = constantsOptimizedFulfillmentSystem.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  let constantType = '';
+  let constantName = '';
+  if (inputData) {
+    if (doesConstantExist(inputData, '') === false) {
+      returnData = constantsOptimizedFulfillmentSystem(inputData.subString(0, inputData.length - 1), inputMetaData);
+    } else {
+      constantType = getConstantType(inputData, true);
+      constantName = getConstantName(inputData, '');
+      let constantPrefix = convertConstantTypeToConstantPrefix(constantType, '');
+      returnData = constantprefix + constantName;
+    }
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function constantsFulfillmentSystem
+ * @description Determines what is the most optimized way to define a new constant using existing constant strings.
+ * @param {string} inputData The constant to be defined/fulfilled.
+ * @param {string} inputMetaData The original user-defined constant to be fulfilled,
+ * so the recursive algorithm can continue processing the rest of the string, after a first match is found.
+ * @return {string} The fully optimized definition for the new constant.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const constantsFulfillmentSystem = function(inputData, inputMetaData) {
+  let functionName = constantsFulfillmentSystem.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  let constantName = '';
+  let constantType = '';
+  if (inputData) {
+    returnData = constantsOptimizedFulfilmentSystem(inputData, '');
+    // We found the first part of the string, now lets continue processing the rest of the string!
+    // First determien how many characters are being returned so we can
+    // determine what portion of the string we need to continue processing with.
+    constName = findConstantName(returnData, '');
+    // constantName is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cconstantNameIs + constantName);
+    let constantValue = getConstantActualValue(constantName, '');
+    // constantValue is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cconstantValueIs + constantValue);
+
+    let deltaLength = inputData.length - constantValue.length;
+    // deltaLength is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cdeltaLengthIs + deltaLength);
+    if (deltaLength != 0) {
+      let recursiveSubString = inputMetaData.substring(inputMetaData.length - deltaLe, inputMetaData.length);
+      // recursiveSubString is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.crecursivesu + recursiveSubString);
+      returnData = returnData + bas.cSpace + bas.cPlus + bas.cSpace + constantsFulfillmentSystem(recursiveSubString, inputData);
+    } // End-if (deltaLength != 0)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function validateConstantsDataValues
+ * @description Iterates over all the constants values in the constants validation data
+ * specified by the input parameter and validates the content.
+ * @param {string} inputData The name of the data-hive that should contain all of
+ * the validation data that should be used to execute the validation procedures.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the validation passed for the
+ * entire data hive or if it did not pass.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const validateConstantsDataValues = function(inputData, inputMetaData) {
+  let functionName = validateConstantsDataValues.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let passMessage = '';
+  if (inputData) {
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++) {
+      passMessage = '';
+      let validationLineItem = D[sys.cConstantsValidationData][inputData][i];
+      if (validationLineItem) {
+        if (validationLineItem.Actual === validationLineItem.Expected) {
+          // PASS
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true) {
+            // `PASS -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- PASS`;
+            passMessage = wr1.cPASS + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + vaidationLineItem.Expected + bas.cSpace +
+              bas.cDoubleDash + bas.cSpace + wr1.cPASS;
+            if (colorizeLogsEnabled === true) {
+              passMessage = chalk.rgb(0,0,0)(passMessage);
+              passMessage = chalk.bgRgb(0,255,0)(passMessage);
+            }
+            console.log(passMessage);
+          }
+        } else {
+          // FAIL
+          returnData = false;
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true) {
+            // `FAIL -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- FAIL`;
+            passMessage = wr1.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
+              vaidationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + vaidationLineItem.Expected + bas.cSpace +
+              bas.cDoubleDash + bas.cSpace + wr1.cFAIL;
+            if (colorizeLogsEnabled === true) {
+              passMessage = chalk.rgb(0,0,0)(passMessage);
+              passMessage = chalk.bgRgb(255,0,0)(passMessage);
+            }
+            console.log(passMessage);
+          }
+        }
+      } else { // Else-clause if (validationLineItem)
+        // `FAIL -- ${inputData} -- FAIL`
+        passMessage = wr1.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + bas.cDoubleDash + bas.cSpace + wr1.cFAIL;
+        if (colorizeLogsEnabled === true) {
+          passMessage = chalk.rgb(0,0,0)(passMessage);
+          passMessage = chalk.bgRgb(255,0,0)(passMessage);
+        }
+        console.log(passMessage);
+      } // End else-clause if (validationLineItem)
+    } // End-for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isValidCommandNameString
+ * @description Determines if the command name is a valid command name or not.
+ * @NOTE Not in the sense that it is checking if the command name exists in the system or not,
+ * but is it formatted properly enough to be considered as a command name.
+ * @param {string} inputData The string that should be evaluated if it is sufficently formatted
+ * such that it could qualify as a command name.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the string is sufficently formatted to be considered as a command name in the system.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const isValidCommandNameString = function(inputData, inputMetaData) {
+  let functionName = isValidCommandNameString.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    // NOTE: Teh beow call to convert the string to a camel-case array doesn't garantee that the string is actually camel-case.
+    // It could actually be a single word, but of course we want to make sure it's more than 3 characters long.
+    // Less than that, shouldn't really be considered a valid word, but could be appropriate as a command alias/abreviation.
+    if (inputData.length > 3) {
+      let camelCaseArray = aryParse.convertCamelCaseStringToArray(inputData, '');
+      if (camelCaseArray.length === 1) {
+        if (isFirstCharacterLowerCase(inputData, '') === true) { returnData = true; }
+      } else if (camelCaseArray.length > 1) {
+        if (isStringCamelCase(inputData, '') === true) { returnData = true; }
+      }
+    } // End-if (inputData.length > 3)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isConstantValid
+ * @description Determines if the user entered some valid input constant string or not. User must have entered more than 4 characters.
+ * @param {string} inputData The value of the constant as a string.
+ * @param {string} inputMetaData Not used for thsi business rule.
+ * @return {boolean} True or False to indicate if the user entered a valid constant or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const isConstantValid = function(inputData, inputMetaData) {
+  let functionName = isConstantValid.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (inputData.length >= 4) {
+      returnData = true;
+    }
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function countDuplicateCommandAliases
+ * @description Counts the number of command aliases that match the input command alias.
+ * @param {string} inputData Teh command alias that should have duplicates counted for.
+ * @param {object} inputMetaData The data that contains all of the commans and command aliases,
+ * we should use this to search for duplicate command aliases.
+ * @return {integer} The count of command aliases that match the input command alias.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const countDuplicateCommandAliases = function(inputData, inputMetaData) {
+  let functionName = countDuplicateCommandAliases.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = 0;
+  if (inputData && inputMetaData) {
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+loop1:
+    for (let i = 0; i < inputMetaData.length; i++) {
+      // BEGIN i-th loop:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
+      let currentCommand = inputMetaData[i];
+      // currentCommand is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
+      let aliasList = currentCommand[wr1.cAliases];
+      // aliasList is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.caliasListIs + aliasList);
+      let arrayOfAliases = aliasList.split(bas.cComa);
+loop2:
+      for (let j = 0; j < arrayOfAliases.length; j++) {
+        // BEGIN j-th loop:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
+        let currentAlias = arrayOfAliases[j];
+        // currentAlias is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
+        if (currentAlias === inputData) {
+          returnData = returnData + 1;
+        }
+        // duplicateAliasCount is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cduplicateAliasCountIs + returnData);
+        // END j-th loop:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
+      } // End-for (let j = 0; j < arrayOfAliases.length; j++)
+      // END i-th loop:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
+    } // End-for (let i = 0; i < inputMetaData.length; i++)
+  } // End-if (inputData)
+  if (returnData > 1) {
+    // duplicateAliasCount is:
+    let duplicateAliasCountMessage = msg.cduplicateAliasCountIs + returnData;
+    if (colorizeLogsEnabled === true) {
+      duplicateAliasCountMessage = chalk.rgb(0,0,0)(duplicateAliasCountMessage);
+      duplicateAliasCountMessage = chalk.bgRgb(255,0,0)(duplicateAliasCountMessage);
+    }
+    console.log(duplicateAliasCountMessage);
+    // duplicate command alias is:
+    let duplicateAliasCommandMessage = msg.cduplicateCommandAliasIs + inputData;
+    if (colorizeLogsEnabled === true) {
+      duplicateAliasCommandMessage = chalk.rgb(0,0,0)(duplicateAliasCommandMessage);
+      duplicateAliasCommandMessage = chalk.bgRgb(255,0,0)(duplicateAliasCommandMessage);
+    }
+    console.log(duplicateAliasCommandMessage);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+// ******************************************************
+// The following functions are more domain specific
+// ******************************************************
+
+/**
+ * @function getDataCatagoryFromDataContextName
+ * @description Gets the data catagory from the context name, E.g. Input: Page_ProjectList, data catagory is 'Page'.
+ * @param {string} inputData The data context name, which should also contain the data catagory seperated by underscore.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The data catagory, such as Page or Test.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const getDataCatagoryFromDataContextName = function(inputData, inputMetaData) {
+  let functionName = getDataCatagoryFromDataContextName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let dataCatagory = inputData.split(bas.cUnderscore);
+    returnData = dataCatagory[0];
+    // Data Catagory should be:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cDataCatagoryShouldBe + dataCatagory[0]);
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getDataCatagoryDetailNameFromDataContextName
+ * @description Gets the data catagory detail name from the context name, E.G. Input: Page_ProjectList, data catagory is 'ProjectList'.
+ * @param {string} inputData The data context name, which should also contain the
+ * data catagory and data catagory detail name seperated by an underscore.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The data catagory detail name, such as ProjectDetails or ProjectList.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const getDataCatagoryDetailNameFromDataContextName = function(inputData, inputMetaData) {
+  let functionName = getDataCatagoryDetailNameFromDataContextName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let dataCatagoryDetailName = inputData.split(bas.cUnderscore);
+    returnData = dataCatagoryDetailName[1];
+    // Data Catagory Detail Name should be:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cDataCatagoryDetailNameShouldBe + dataCatagoryDetailName[1]);
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getKeywordNameFromDataContextName
+ * @description Gets the keyword name from the context name, E.g. Input: Keywords_ProjectDetails_DeleteEntireProject, keyword is: 'DeleteEntireProject'.
+ * @param {string} inputData The data context name, which should also contain the
+ * data catagory and data catagory detail name and keyword name seperated by an underscore.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The keyword name, such as DeleteEntireProject or EditProjectInfoClick.
+ * @author Seth Hollingsead
+ * @date 2022/01/24
+ */
+export const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
+  let functionName = getKeywordNameFromDataContextName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let dataCatagoryKeywordName = inputData.split(bas.cUnderscore);
+    returnData = dataCatagoryKeywordName[2];
+    // Keyword Name should be:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cKeywordNameShouldBe + dataCatagoryKeywordName[2]);
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function removeXnumberOfFoldersFromEndOfPath
+ * @description
+ * @param  {[type]} inputData                  [description]
+ * @param  {[type]} inputMetData               [description]
+ * @return {[type]}              [description]
+ */
+export cosnt removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
 
 };
 
