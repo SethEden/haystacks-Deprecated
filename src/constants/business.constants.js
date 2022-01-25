@@ -66,6 +66,62 @@ let cswapForwardSlashToBackSlash = wr1.cswap + sys.cForwardSlash + bas.cTo + sys
 let cswapBackSlashToForwardSlash = wr1.cswap + sys.cBackSlash + bas.cTo + sys.cForwardSlash; // swapBackSlashToForwardSlash
 let cswapDoubleForwardSlashToSingleForwardSlash = wr1.cswap + wr1.cDouble + sys.cForwardSlash + bas.cTo + wr1.cSingle + sys.cForwardSlash; // swapDoubleForwardSlashToSingleForwardSlash
 let cswapDoubleBackSlashToSingleBackSlash = wr1.cswap + wr1.cDouble + sys.cBackSlash + bas.cTo + wr1.cSingle + sys.cBackSlash; // swapDoubleBackSlashToSingleBackSlash
+let cgetUserNameFromEmail = wr1.cget + wr1.cUser + wr1.cName + wr1.cFrom + wr1.cEmail; // getUserNameFromEmail
+let creplaceSpacesWithPlus = wr1.creplace + wr1.cSpaces + wr1.cWith + wr1.cPlus; // replaceSpacesWithPlus
+let creplaceColonWithUnderscore = wr1.creplace + wr1.cColon + wr1.cWith + wr1.cUnderscore; // replaceColonWithUnderscore
+let ccleanCarriageReturnFromString = wr1.cclean + wr1.cCarriage + wr1.cReturn + wr1.cFrom + wr1.cString; // cleanCarriageReturnFromString
+let cconvertStringToLowerCase = wr1.cconvert + wr1.cString + wr1.cTo + wr1.cLower + wr1.cCase; // convertStringToLowerCase
+let cconvertStringToUpperCase = wr1.cconvert + wr1.cString + wr1.cTo + wr1.cUpper + wr1.cCase; // convertStringToUpperCase
+let cgetFileNameFromPath = wr1.cget + wr1.cFile + wr1.cName + wr1.cFrom + wr1.cPath; // getFileNameFromPath
+let cgetFileExtension = wr1.cget + wr1.cFile + wr1.cExtension; // getFileExtension
+let cremoveDotFromFileExtension = wr1.cremove + wr1.cDot + wr1.cFrom + wr1.cFile + wr1.cExtension; // removeDotFromFileExtension
+let cremoveFileExtensionFromFileName = wr1.cremove + wr1.cFile + wr1.cExtension + wr1.cFrom + wr1.cFileName; // removeFileExtensionFromFileName
+let cgetValueFromAssignmentOperationString = wr1.cget + wr1.cValue + wr1.cFrom + wr1.cAssignment + wr1.cOperation + wr1.cString; // getValueFromAssignmentOperationString
+let caggregateNumericalDifferenceBetweenTwoStrings = wr1.caggregate + wr1.cNumerical + wr1.cDifference + wr1.cBetween + wr1.cTwo + wr1.cStrings; // aggregateNumericalDifferenceBetweenTwoStrings
+let ccountCamelCaseWords = wr1.ccount + wr1.cCamel + wr1.cCase + wr1.cWords; // countCamelCaseWords
+let cdoesStringContainAcronym = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cAcronym; // doesStringContainAcronym
+let ccountDelimiterInString = wr1.ccount + wr1.cDelimiter + wr1.cIn + wr1.cString; // countDelimiterInString
+let cdetermineWordDelimiter = wr1.cdetermine + wr1.cWord + wr1.cDelimiter; // determineWordDelimiter
+let cgetWordCountInString = wr1.cget + wr1.cWord + wr1.cCount + wr1.cIn + wr1.cString; // getWordCountInString
+let cdoesStringContainUpperCaseCharacter = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cUpper + wr1.cCase + wr1.cCharacter; // doesStringContainUpperCaseCharacter
+let cdoesStringContainLowerCaseCharacter = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cLower + wr1.cCase + wr1.cCharacter; // doesStringContainLowerCaseCharacter
+let cisFirstCharacterLowerCase = wr1.cis + wr1.cFirst + wr1.cCharacter + wr1.cLower + wr1.cCase; // isFirstCharacterLowerCase
+let cisFirstCharacterUpperCase = wr1.cis + wr1.cFirst + wr1.cCharacter + wr1.cUpper + wr1.cCase; // isFirstCharacterUpperCase
+let cisStringList = wr1.cis + wr1.cString + wr1.cList; // isStringList
+let cisStringCamelCase = wr1.cis + wr1.cString + wr1.cCamel + wr1.cCase; // isStringCamelCase
+let cmapWordToCamelCaseWord = wr1.cmap + wr1.cWord + wr1.cTo + wr1.cCamel + wr1.cCase + wr1.cWord; // mapWordToCamelCaseWord
+let csimplifyAndConsolidateString = wr1.csimplify + wr1.cAnd + wr1.cConsolidate + wr1.cString; // simplifyAndConsolidateString
+let ccompareSimplifiedAndConsolidatedStrings = wr1.ccompare + wr1.cSimplified + wr1.cAnd + wr1.cConsolidated + wr1.cStrings; // compareSimplifiedAndConsolidatedStrings
+let cascertainMatchingFilenames = wr1.cascertain + wr1.cMatching + wr1.cFilenames; // ascertainMatchingFilenames
+let cvalidateConstantsDataValidation = wr1.cvalidate + wr1.cConstants + wr1.cData + wr1.cValidation; // validateConstantsDataValidation
+let cdetermineConstantsContextQualifiedPrefix = wr1.cdeterine + wr1.cConstants + wr1.cContext + wr1.Qualified + wr1.cPrefix; // determineConstantsContextQualifiedPrefix
+let cdetermineSuggestedConstantsValidationLineOfCode = wr1.cdetermine + wr1.cSuggested + wr1.cConstants + wr1.cValidation + wr1.cLine + wr1.cOf + wr1.cCode; // determineSuggestedConstantsValidationLineOfCode
+let cvalidateConstantsDataValidationLineItemName = wr1.cvalidate + wr1.cConstants + wr1.cData + wr1.cVaidation + wr1.cLine + wr1.cItem + wr1.cName; // validateConstantsDataValidationLineItemName
+let cdoesConstantExist = wr1.cdoes + wr1.cConstant + wr1.cExist; // doesConstantExist
+let cgetConstantType = wr1.cget + wr1.cConstant + wr1.cType; // getConstantType
+let cgetConstantActualValue = wr1.cget + wr1.cConstant + wr1.cActual + wr1.cValue; // getConstantActualValue
+let cgetConstantName = wr1.cget + wr1.cConstant + wr1.cName; // getConstantName
+let cfindConstantName = wr1.cfind + wr1.cConstant + wr1.cName; // findConstantName
+let cisConstantTypeValid = wr1.cis + wr1.cConstant + wr1.cType + wr1.cValid; // isConstantTypeValid
+let cconvertConstantTypeToConstantPrefix = wr1.cconvert + wr1.cConstant + wr1.cType + wr1.cTo + wr1.cConstant + wr1.cPrefix; // convertConstantTypeToConstantPrefix
+let cconstantsOptimizedFulfillmentSystem = wr1.cconstants + wr1.cOptimized + wr1.cFulfillment + wr1.cSystem; // constantsOptimizedFulfillmentSystem
+let cconstantsFulfillmentSystem = wr1.ccosntants + wr1.cFullfillment + wr1.cSystem; // constantsFulfillmentSystem
+let cvalidateConstantsDataValues = wr1.cvalidate + wr1.cConstants + wr1.cData + wr1.cValues; // validateConstantsDataValues
+let cisValidCommandNameString = wr1.cis + wr1.cValid + wr1.cCommand + wr1.cName + wr1.cString; // isValidCommandNameString
+let cisConstantValid = wr1.cis + wr1.cConstant + wr1.cValid; // isConstantValid
+let ccountDuplicateCommandAliases = wr1.ccount + wr1.cDuplicate + wr1.cCommand + wr1.cAliases; // countDuplicateCommandAliases
+let cgetDataCatagoryFromDataContextName = wr1.cget + wr1.cData + wr1.cCatagory + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getDataCatagoryFromDataContextName
+let cgetDataCatagoryDetailNameFromDataContextName = wr1.cget + wr1.cData + wr1.cCatagory + wr1.cDetail + wr1.cName + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getDataCatagoryDetailNameFromDataContextName
+let cgetKeywordNameFromDataContextName = wr1.cget + wr1.cKeyword + wr1.cName + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getKeywordNameFromDataContextName
+let cremoveXnumberOfFoldersFromEndOfPath = wr1.cremove + bas.cX + wr1.cnumber + wr1.cOf + wr1.cFolders + wr1.cFrom + wr1.cEnd + wr1.cOf + wr1.cPath; // removeXnumberOfFoldersFromEndOfPath
+let cgetFirstTopLevelFolderFromPath = wr1.cget + wr1.cFirst + wr1.cTop + wr1.cLevel + wr1.cFolder + wr1.cFrom + wr1.cPath; // getFirstTopLevelFolderFromPath
+let cloadDataFile = wr1.cload + wr1.cData + wr1.cFile; // loadDataFile
+let csupportedFileFormatsAre = wr1.csupported + wr1.cFile + wr1.cFormats + wr1.cAre; // supportedFileFormatsAre
+let cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
+let cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue
+let cisOdd = wr1.cis + wr1.cOdd; // isOdd
+let cisEven = wr1.cis + wr1.cEven; // isEven
+let ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput
 
 // ********************************
 // StringParsingUtiities rules in order
@@ -126,6 +182,62 @@ module.exports = {
   [bas.cc + cswapBackSlashToForwardSlash]: cswapBackSlashToForwardSlash,
   [bas.cc + cswapDoubleForwardSlashToSingleForwardSlash]: cswapDoubleForwardSlashToSingleForwardSlash,
   [bas.cc + cswapDoubleBackSlashToSingleBackSlash]: cswapDoubleBackSlashToSingleBackSlash,
+  [bas.cc + cgetUserNameFromEmail]: cgetUserNameFromEmail, // getUserNameFromEmail
+  [bas.cc + creplaceSpacesWithPlus]: creplaceSpacesWithPlus, // replaceSpacesWithPlus
+  [bas.cc + creplaceColonWithUnderscore]: creplaceColonWithUnderscore, // replaceColonWithUnderscore
+  [bas.cc + ccleanCarriageReturnFromString]: ccleanCarriageReturnFromString, // cleanCarriageReturnFromString
+  [bas.cc + cconvertStringToLowerCase]: cconvertStringToLowerCase, // convertStringToLowerCase
+  [bas.cc + cconvertStringToUpperCase]: cconvertStringToUpperCase, // convertStringToUpperCase
+  [bas.cc + cgetFileNameFromPath]: cgetFileNameFromPath, // getFileNameFromPath
+  [bas.cc + cgetFileExtension]: cgetFileExtension, // getFileExtension
+  [bas.cc + cremoveDotFromFileExtension]: cremoveDotFromFileExtension, // removeDotFromFileExtension
+  [bas.cc + cremoveFileExtensionFromFileName]: cremoveFileExtensionFromFileName, // removeFileExtensionFromFileName
+  [bas.cc + cgetValueFromAssignmentOperationString]: cgetValueFromAssignmentOperationString, // getValueFromAssignmentOperationString
+  [bas.cc + caggregateNumericalDifferenceBetweenTwoStrings]: caggregateNumericalDifferenceBetweenTwoStrings, // aggregateNumericalDifferenceBetweenTwoStrings
+  [bas.cc + ccountCamelCaseWords]: ccountCamelCaseWords, // countCamelCaseWords
+  [bas.cc + cdoesStringContainAcronym]: cdoesStringContainAcronym, // doesStringContainAcronym
+  [bas.cc + ccountDelimiterInString]: ccountDelimiterInString, // countDelimiterInString
+  [bas.cc + cdetermineWordDelimiter]: cdetermineWordDelimiter, // determineWordDelimiter
+  [bas.cc + cgetWordCountInString]: cgetWordCountInString, // getWordCountInString
+  [bas.cc + cdoesStringContainUpperCaseCharacter]: cdoesStringContainUpperCaseCharacter, // doesStringContainUpperCaseCharacter
+  [bas.cc + cdoesStringContainLowerCaseCharacter]: cdoesStringContainLowerCaseCharacter, // doesStringContainLowerCaseCharacter
+  [bas.cc + cisFirstCharacterLowerCase]: cisFirstCharacterLowerCase, // isFirstCharacterLowerCase
+  [bas.cc + cisFirstCharacterUpperCase]: cisFirstCharacterUpperCase, // isFirstCharacterUpperCase
+  [bas.cc + cisStringList]: cisStringList, // isStringList
+  [bas.cc + cisStringCamelCase]: cisStringCamelCase, // isStringCamelCase
+  [bas.cc + cmapWordToCamelCaseWord]: cmapWordToCamelCaseWord, // mapWordToCamelCaseWord
+  [bas.cc + csimplifyAndConsolidateString]: csimplifyAndConsolidateString, // simplifyAndConsolidateString
+  [bas.cc + ccompareSimplifiedAndConsolidatedStrings]: ccompareSimplifiedAndConsolidatedStrings, // compareSimplifiedAndConsolidatedStrings
+  [bas.cc + cascertainMatchingFilenames]: cascertainMatchingFilenames, // ascertainMatchingFilenames
+  [bas.cc + cvalidateConstantsDataValidation]: cvalidateConstantsDataValidation, // validateConstantsDataValidation
+  [bas.cc + cdetermineConstantsContextQualifiedPrefix]: cdetermineConstantsContextQualifiedPrefix, // determineConstantsContextQualifiedPrefix
+  [bas.cc + cdetermineSuggestedConstantsValidationLineOfCode]: cdetermineSuggestedConstantsValidationLineOfCode, // determineSuggestedConstantsValidationLineOfCode
+  [bas.cc + cvalidateConstantsDataValidationLineItemName]: cvalidateConstantsDataValidationLineItemName, // validateConstantsDataValidationLineItemName
+  [bas.cc + cdoesConstantExist]: cdoesConstantExist, // doesConstantExist
+  [bas.cc + cgetConstantType]: cgetConstantType, // getConstantType
+  [bas.cc + cgetConstantActualValue]: cgetConstantActualValue, // getConstantActualValue
+  [bas.cc + cgetConstantName]: cgetConstantName, // getConstantName
+  [bas.cc + cfindConstantName]: cfindConstantName, // findConstantName
+  [bas.cc + cisConstantTypeValid]: cisConstantTypeValid, // isConstantTypeValid
+  [bas.cc + cconvertConstantTypeToConstantPrefix]: cconvertConstantTypeToConstantPrefix, // convertConstantTypeToConstantPrefix
+  [bas.cc + cconstantsOptimizedFulfillmentSystem]: cconstantsOptimizedFulfillmentSystem, // constantsOptimizedFulfillmentSystem
+  [bas.cc + cconstantsFulfillmentSystem]: cconstantsFulfillmentSystem, // constantsFulfillmentSystem
+  [bas.cc + cvalidateConstantsDataValues]: cvalidateConstantsDataValues, // validateConstantsDataValues
+  [bas.cc + cisValidCommandNameString]: cisValidCommandNameString, // isValidCommandNameString
+  [bas.cc + cisConstantValid]: cisConstantValid, // isConstantValid
+  [bas.cc + ccountDuplicateCommandAliases]: ccountDuplicateCommandAliases, // countDuplicateCommandAliases
+  [bas.cc + cgetDataCatagoryFromDataContextName]: cgetDataCatagoryFromDataContextName, // getDataCatagoryFromDataContextName
+  [bas.cc + cgetDataCatagoryDetailNameFromDataContextName]: cgetDataCatagoryDetailNameFromDataContextName, // getDataCatagoryDetailNameFromDataContextName
+  [bas.cc + cgetKeywordNameFromDataContextName]: cgetKeywordNameFromDataContextName, // getKeywordNameFromDataContextName
+  [bas.cc + cremoveXnumberOfFoldersFromEndOfPath]: cremoveXnumberOfFoldersFromEndOfPath, // removeXnumberOfFoldersFromEndOfPath
+  [bas.cc + cgetFirstTopLevelFolderFromPath]: cgetFirstTopLevelFolderFromPath, // getFirstTopLevelFolderFromPath
+  [bas.cc + cloadDataFile]: cloadDataFile, // loadDataFile
+  [bas.cc + csupportedFileFormatsAre]: csupportedFileFormatsAre, // supportedFileFormatsAre
+  [bas.cc + cgetAttributeName]: cgetAttributeName, // getAttributeName
+  [bas.cc + cgetAttributeValue]: cgetAttributeValue, // getAttributeValue
+  [bas.cc + cisOdd]: cisOdd, // isOdd
+  [bas.cc + cisEven]: cisEven, // isEven
+  [bas.cc + ccleanCommandInput]: ccleanCommandInput, // cleanCommandInput
 
   // ********************************
   // StringParsingUtilities rules in order

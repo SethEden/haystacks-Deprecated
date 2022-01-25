@@ -193,6 +193,8 @@ let cspacesCountIs = wr2.cspaces + wr2.cCount + wr2.cIs; // cspacesCountIs
 let cperiodCountIs = wr2.cperiod + wr2.cCount + wr2.cIs; // cperiodCountIs
 let cdashCountIs = wr2.cdash + wr2.cCount + wr2.cIs; // cdashCountIs
 let cunderscoreCountIs = wr2.cunderscore + wr2.cCount + wr2.cIs; // cunderscoreCountIs
+let cplusCountIs = wr2.cplus + wr2.cCount + wr2.cIs; // plusCountIs
+let cpercentCountIs = wr2.cpercent + wr2.cCount + wr2.cIs; // percentCountIs
 let cstringDeltaValueIs = wr2.cstring + wr2.cDelta + wr2.cValue + wr2.cIs; // cstringDeltaValueIs
 let cFilenamesMatch = wr2.cFilenames + wr2.cMatch; // cFilenamesMatch
 let cFilenamesDoNotMatch = wr2.cFilenames + bas.cDo + wr2.cNot + wr2.cMatch; // cFilenamesDoNotMatch
@@ -268,6 +270,7 @@ let cAttemptingToLoadJsonData = wr2.cAttempting + wr2.cTo + wr2.cLoad + wr2.cJso
 let cLoadedDataIs = wr2.cLoaded + wr2.cData + wr2.cIs; // cLoadedDataIs
 let cattributeArrayIs = wr2.cattribute + wr2.cArray + wr2.cIs; // cattributeArrayIs
 let cattributeArray0Is = wr2.cattribute + wr2.cArray + wr2.c0 + wr2.cIs; // cattributeArray0Is
+let cattributeArray1Is = wr2.cattribute + wr2.cArray + wr2.c1 + wr2.cIs; // attributeArray1Is
 let carrayIs = wr2.carray + wr2.cIs; // carrayIs
 let cvalueIs = wr2.cvalue + wr2.cIs; // cvalueIs
 let cmyFunctionIs = wr2.cmy + wr2.cFunction + wr2.cIs; // cmyFunctionIs
@@ -598,6 +601,7 @@ let carrayValidationDataIs = wr2.carray + wr2.cValidation + wr2.cData + wr2.cIs;
 let cfilesListLimitIs = wr2.cfiles + wr2.cList + wr2.cLimit + wr2.cIs; // filesListLimitIs
 let cenableLimitIs = wr2.cenable + wr2.cLimit + wr2.cIs; // enableLimitIs
 let cfilesLimitIs = wr2.cfiles + wr2.cLimit + wr2.cIs; // filesLimitIs
+let cinputDataRightBeforeProcessingIs = cinputData + wr2.cRight + wr2.cBefore + wr2.cProcessing + wr2.cIs; // inputDataRightBeforeProcessingIs
 
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 let cDetermineWordDelimiterMessage1 = wr2.cDetermine + wr2.cWord + wr2.cDelimiter + wr2.cMessage + wr2.c1; // DetermineWordDelimiterMessage1
@@ -899,6 +903,8 @@ module.exports = {
   [bas.cc + cperiodCountIs]: cperiodCountIs, // cperiodCountIs
   [bas.cc + cdashCountIs]: cdashCountIs, // cdashCountIs
   [bas.cc + cunderscoreCountIs]: cunderscoreCountIs, // cunderscoreCountIs
+  [bas.cc + cplusCountIs]: cplusCountIs, // plusCountIs
+  [bas.cc + cpercentCountIs]: cpercentCountIs, // percentCountIs
   [bas.cc + cstringDeltaValueIs]: cstringDeltaValueIs, // cstringDeltaValueIs
   [bas.cc + cFilenamesMatch]: cFilenamesMatch, // cFilenamesMatch
   [bas.cc + cFilenamesDoNotMatch]: cFilenamesDoNotMatch, // cFilenamesDoNotMatch
@@ -974,6 +980,7 @@ module.exports = {
   [bas.cc + cLoadedDataIs]: cLoadedDataIs, // cLoadedDataIs
   [bas.cc + cattributeArrayIs]: cattributeArrayIs, // cattributeArrayIs
   [bas.cc + cattributeArray0Is]: cattributeArray0Is, // cattributeArray0Is
+  [bas.cc + cattributeArray1Is]: cattributeArray1Is, // attributeArray1Is
   [bas.cc + carrayIs]: carrayIs, // carrayIs
   [bas.cc + cvalueIs]: cvalueIs, // cvalueIs
   [bas.cc + cmyFunctionIs]: cmyFunctionIs, // cmyFunctionIs
@@ -1305,6 +1312,7 @@ module.exports = {
   [bas.cc + cfilesListLimitIs]: cfilesListLimitIs, // filesListLimitIs
   [bas.cc + cenableLimitIs]: cenableLimitIs, // enableLimitIs
   [bas.cc + cfilesLimitIs]: cfilesLimitIs, // filesLimitIs
+  [bas.cc + cinputDataRightBeforeProcessingIs]: cinputDataRightBeforeProcessingIs, // inputDataRightBeforeProcessingIs
 
   // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
   [bas.cc + cDetermineWordDelimiterMessage1]: cDetermineWordDelimiterMessage1, // DetermineWordDelimiterMessage1
