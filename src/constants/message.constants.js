@@ -174,6 +174,7 @@ let cAttemptingToLoadJsonData = wr1.cAttempting + bas.cSpace + bas.cto + bas.cSp
 let cLoadedDataIs = wr1.cLoaded + bas.cSpace + wr1.cdata + sys.cSpaceIsColonSpace; // Loaded data is:
 let cattributeArrayIs = wr1.cattribute + wr1.cArray + sys.cSpaceIsColonSpace; // attributeArray is:
 let cattributeArray0Is = wr1.cattribute + wr1.cArray + bas.cOpenBracket + num.c0 + bas.cCloseBracket + sys.cSpaceIsColonSpace; // attributeArray[0] is:
+let cattributeArray1Is = wr1.cattribute + wr1.cArray + bas.cOpenBracket + num.c1 + bas.cCloseBracket + sys.cSpaceIsColonSpace; // attributeArray[1] is:
 let carrayIs = wr1.carray + sys.cSpaceIsColonSpace; // array is:
 let cvalueIs = wr1.cvalue + sys.cSpaceIsColonSpace; // value is:
 let cmyFunctionIs = bas.cmy + wr1.cFunction + sys.cSpaceIsColonSpace; // myFunction is:
@@ -789,6 +790,7 @@ module.exports = {
   [bas.cc + con.cLoadedDataIs]: cLoadedDataIs, // Loaded data is:
   [bas.cc + con.cattributeArrayIs]: cattributeArrayIs, // attributeArray is:
   [bas.cc + con.cattributeArray0Is]: cattributeArray0Is, // attributeArray[0] is:
+  [bas.cc + con.cattributeArray1Is]: cattributeArray1Is, // attributeArray[1] is:
   [bas.cc + con.carrayIs]: carrayIs, // array is:
   [bas.cc + con.cvalueIs]: cvalueIs, // value is:
   [bas.cc + con.cmyFunctionIs]: cmyFunctionIs, // myFunction is:

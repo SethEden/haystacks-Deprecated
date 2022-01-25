@@ -270,6 +270,7 @@ let cAttemptingToLoadJsonData = wr2.cAttempting + wr2.cTo + wr2.cLoad + wr2.cJso
 let cLoadedDataIs = wr2.cLoaded + wr2.cData + wr2.cIs; // cLoadedDataIs
 let cattributeArrayIs = wr2.cattribute + wr2.cArray + wr2.cIs; // cattributeArrayIs
 let cattributeArray0Is = wr2.cattribute + wr2.cArray + wr2.c0 + wr2.cIs; // cattributeArray0Is
+let cattributeArray1Is = wr2.cattribute + wr2.cArray + wr2.c1 + wr2.cIs; // attributeArray1Is
 let carrayIs = wr2.carray + wr2.cIs; // carrayIs
 let cvalueIs = wr2.cvalue + wr2.cIs; // cvalueIs
 let cmyFunctionIs = wr2.cmy + wr2.cFunction + wr2.cIs; // cmyFunctionIs
@@ -979,6 +980,7 @@ module.exports = {
   [bas.cc + cLoadedDataIs]: cLoadedDataIs, // cLoadedDataIs
   [bas.cc + cattributeArrayIs]: cattributeArrayIs, // cattributeArrayIs
   [bas.cc + cattributeArray0Is]: cattributeArray0Is, // cattributeArray0Is
+  [bas.cc + cattributeArray1Is]: cattributeArray1Is, // attributeArray1Is
   [bas.cc + carrayIs]: carrayIs, // carrayIs
   [bas.cc + cvalueIs]: cvalueIs, // cvalueIs
   [bas.cc + cmyFunctionIs]: cmyFunctionIs, // cmyFunctionIs

@@ -241,7 +241,7 @@ export const replaceSpacesWithPlus = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/ /g, bas.cPlus);
-    returnData = aryParse.replaceCharacterWithCharacter(inputData, [/ /g, bas.cPlus]);
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/ /g, bas.cPlus]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -265,7 +265,7 @@ export const replaceColonWithUnderscore = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/:/g, bas.cUnderscore);
-    returnData = aryParse.replaceCharacterWithCharacter(inputData, [/:/g, bas.cUnderscore]);
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/:/g, bas.cUnderscore]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -289,7 +289,7 @@ export const cleanCarriageReturnFromString = function(inputData, inputMetaData) 
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/\s+/g, bas.cSpace);
-    returnData = aryParse.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]).trim();
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]).trim();
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -542,7 +542,7 @@ export const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData,
  * @NOTE Might not work so well with numbers as part of the string, they are not treated as capital letters.
  * We might need to do some refactoring of this function if
  * mixed numbers and camel case strings ever becomes a requirement as input to this function.
- * @NOTE Based on the implementation for the business rule/function aryParse.convertCamelCaseStringToArray.
+ * @NOTE Based on the implementation for the business rule/function arrayParsing.convertCamelCaseStringToArray.
  */
 export const countCamelCaseWords = function(inputData, inputMetaData) {
   let functionName = countCamelCaseWords.name;
@@ -1704,7 +1704,7 @@ export const isValidCommandNameString = function(inputData, inputMetaData) {
     // It could actually be a single word, but of course we want to make sure it's more than 3 characters long.
     // Less than that, shouldn't really be considered a valid word, but could be appropriate as a command alias/abreviation.
     if (inputData.length > 3) {
-      let camelCaseArray = aryParse.convertCamelCaseStringToArray(inputData, '');
+      let camelCaseArray = arrayParsing.convertCamelCaseStringToArray(inputData, '');
       if (camelCaseArray.length === 1) {
         if (isFirstCharacterLowerCase(inputData, '') === true) { returnData = true; }
       } else if (camelCaseArray.length > 1) {
@@ -1897,13 +1897,310 @@ export const getKeywordNameFromDataContextName = function(inputData, inputMetaDa
 
 /**
  * @function removeXnumberOfFoldersFromEndOfPath
- * @description
- * @param  {[type]} inputData                  [description]
- * @param  {[type]} inputMetData               [description]
- * @return {[type]}              [description]
+ * @description Removes X number of folders from the end of a path and returns the newly modified path.
+ * @param {string} inputData The path that should have the number of folders removed.
+ * @param {integer} inputMetData The number of paths that should be removed from the input path.
+ * @return {string} The modified string with the folders removed from the input path.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
  */
-export cosnt removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
+export const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
+  let functionName = removeXnumberOfFoldersFromEndOfPath.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData && math.isNumeric(inputMetaData) === true) {
+    let pathArray;
+    let pathAsForwardSlash;
+    if (inputData.includes(bas.cForwardSlash) === true) {
+      pathArray = inputData.split(bas.cForwardSlash);
+      pathAsForwardSlash = true;
+    } else if (inputData.includes(bas.cBackSlash) === true) {
+      pathArray = inputData.split(bas.cBackSlash);
+      pathAsForwardSlash = false;
+    } else {
+      pathAsForwardSlash = false;
+      returnData = false;
+    }
+    if (returnData !== false) {
+      // pathArray is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpathArrayIs + JSON.stringify(pathArray));
+      for (let i = 0; i <= pathArray.length - inputMetaData - 1; i++) {
+        // current path element is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentPathElementIs + pathArray[i]);
+        if (i === 0) {
+          returnData = pathArray[i];
+        } else {
+          if (pathAsForwardSlash === true) {
+            returnData = returnData + bas.cForwardSlash + pathArray[i];
+          } else if (pathAsForwardSlash === false) {
+            returnData = returnData + bas.cBackSlash + pathArray[i];
+          } else {
+            returnData = false;
+            break;
+          }
+        } // End-else-clause if (i === 0)
+      } // End-for(let i = 0; i <= pathArray.length - inputMetaData - 1; i++)
+      // We still need a trailing slash
+      if (pathAsForwardSlash === true) {
+        returnData = returnData + bas.cForwardSlash;
+      } else if (pathAsForwardSlash === false) {
+        returnData = returnData + bas.cBackSlash;
+      } else {
+        returnData = false;
+      }
+    } // End-if (returnData !== false)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
 
+/**
+ * @function getFirstTopLevelFolderFromPath
+ * @description Takes a path and  returns the folder at the farthest right of that path.
+ * @param {string} inputData The path that should be evaluated.
+ * @param {string} inputMetaData Not used fore this business rule.
+ * @return {string} The folder at the far-right of the input path.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
+  let functionName = getFirstTopLevelFolderFromPath.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let pathArray;
+    if (inputData.includes(bas.cForwardSlash) === true) {
+      pathArray = inputData.split(bas.cForwardSlash);
+    } else if (inputData.includes(bas.cBackSlash) === true) {
+      pathArray = inputData.split(bas.cBackSlash);
+    } else {
+      returnData = false;
+    }
+    if (returnData !== false) {
+      // pathArray is:
+      loggers.consoleLog(namespace + functionName, msg.cpathArrayIs + JSON.stringify(pathArray));
+      returnData = pathArray[pathArray.length - 2];
+    } // End-if (returnData !== false)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function loadDataFile
+ * @description Loads data from a specified file and stores it in the specified data hive path.
+ * @param {string} inputData The full path and file name for the file that should be loaded into memory.
+ * @param {string} inputMetaData The data hive path where the data should be stored once it is loaded.
+ * @return {boolean} A True or False value to indicate if the data file was loaded successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const loadDataFile = function(inputData, inputMetaData) {
+  let functionName = loadDataFile.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (!inputData) {
+    // WARNING: No data to load, please specify a valid path & filename!
+    loggers.consoleLog(namespacePrefix + functionName, msg.cLoadDataFileMessage1 + msg.cloadDataFileMessage2);
+    returnData = false;
+  } else { // Else-clause if (!inputData)
+    let loadedData = {};
+    if (inputData.incudes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
+      // Attempting to load XML data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadXmlData);
+      loadedData = fileBroker.getXmlData(inputData);
+    } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
+      // Attempting to load CSV data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadCsvData);
+      loadedData = fileBroker.getCsvData(inputData);
+    } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
+      // Attempting to load JSON data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadJsonData);
+      loadedData = fileBroker.getJsonData(inputData);
+    } else {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    }
+    // Loaded data is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataIs + JSON.stringify(loadedData));
+    if (loadedData !== null && loadedData) {
+      returnData = true;
+      dataBroker.storeData(inputMetaData, loadedData);
+    }
+  } // End-else-clause if (!inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function supportedFileFormatsAre
+ * @description Returns a list of supported file formats.
+ * @param {string} inputData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A coma seperated ist of supported file formats. IE a list of file extensions.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const supportedFileFormatsAre = function(inputData, inputMetaData) {
+  let functionName = supportedFileFormatsAre.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = gen.cXML + bas.cComa + bas.cSpace + gen.cCSV + bas.cComa + bas.cSpace + gen.cJSON;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getAttributeName
+ * @description Takes a string representation of a JSON attribute and gets the name (left hand assignment key).
+ * @param {string} inputData Teh string representation of the JSON attribute that should be parsed.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The name of the attribute.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const getAttributeName = function(inputData, inputMetaData) {
+  let functionName = getAttributeName.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    let attributeArray = inputData.split(bas.cColon);
+    // attributeArray is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + JSON.stringify(attributeArray));
+    // attributeArray[0] is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray0Is + attributeArray[0]);
+    returnData = arrayParsing.replaceCharacterWithCharacter(attributeArray[0], [/"/g, '']);
+    returnData = returnData.trim();
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getAttributeValue
+ * @description Takes a string representation of a JSON attribute and gets the value (Right hand assignment value).
+ * @param {string} inputData The string representation of the JSON attribute that should be parsed.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The value of the attribute.
+ * @author Seth Hollingsead
+ * @date 2022/01/10
+ */
+export const getAttributeValue = function(inputData, inputMetaData) {
+  let functionName = getAttributeValue.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    let attributeArray = inputData.split(bas.cColon);
+    // attributeArray is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + attributeArray);
+    // attributeArray[0] is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray1Is + attributeArray[1]);
+    returnData = arrayParsing.replaceCharacterWithCharacter(attributeArray[1], [/"/g, '']);
+    returnData = returnData.trim();
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isOdd
+ * @description Determines if the input value is an odd number or not an odd number.
+ * Acts as a wrapper for calling the math operations function of the same name,
+ * but this business rule processing the same from a string input.
+ * @param {string} inputData The value that should be evaluated to determien if it is odd or not odd.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the value passed in is an odd value or not an odd value.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
+ */
+export const isOdd = function(inputData, inputMetaData) {
+  let functionName = isOdd.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (math.isNumeric(inputData) === true) {
+      returnData = mathOps.isOdd(parseInt(inputData), 0);
+    } // End-if (math.isNumeric(inputData) === true)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isEven
+ * @description Determiens if the input value is an even number or not an even number.
+ * Acts as a wrapper for calling the math operations function of the same name,
+ * but this business rule processing the same from a string input.
+ * @param {string} inputData The value that should be evaluated to determine if it is even or not even.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the value passed in is an even value or not an even value.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
+ * @NOTE This fucntion isn't actually needed, as we can just invert our logic for calling isOdd,
+ * but I provided it here anyways for completeness.
+ */
+export const isEven = function(inputData, inputMetaData) {
+  let functionName = isEven.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (math.isNumeric(inputData) === true) {
+      returnData = mathOps.isEven(parseInt(inputData), 0);
+    } // End-if (math.isNumeric(inputData) === true)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function cleanCommandInput
+ * @description Removes any "--" from the command to make it a valid command.
+ * @param {string} inputData The string that should have the "--" removed from it.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The same as the input, but with the "--" removed.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const cleanCommandInput = function(inputData, inputMetaData) {
+  let functionName = cleanCommandInput.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    returnData = inputData;
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/--/g, '']);
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\[/g, '']);
+    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\]/g, '']);
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 // ******************************************************
