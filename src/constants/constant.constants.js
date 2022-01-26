@@ -602,6 +602,7 @@ let cfilesListLimitIs = wr2.cfiles + wr2.cList + wr2.cLimit + wr2.cIs; // filesL
 let cenableLimitIs = wr2.cenable + wr2.cLimit + wr2.cIs; // enableLimitIs
 let cfilesLimitIs = wr2.cfiles + wr2.cLimit + wr2.cIs; // filesLimitIs
 let cinputDataRightBeforeProcessingIs = cinputData + wr2.cRight + wr2.cBefore + wr2.cProcessing + wr2.cIs; // inputDataRightBeforeProcessingIs
+let cnumberIs = wr2.cnumber + wr2.cIs; // numberIs
 
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 let cDetermineWordDelimiterMessage1 = wr2.cDetermine + wr2.cWord + wr2.cDelimiter + wr2.cMessage + wr2.c1; // DetermineWordDelimiterMessage1
@@ -1313,6 +1314,7 @@ module.exports = {
   [bas.cc + cenableLimitIs]: cenableLimitIs, // enableLimitIs
   [bas.cc + cfilesLimitIs]: cfilesLimitIs, // filesLimitIs
   [bas.cc + cinputDataRightBeforeProcessingIs]: cinputDataRightBeforeProcessingIs, // inputDataRightBeforeProcessingIs
+  [bas.cc + cnumberIs]: cnumberIs, // numberIs
 
   // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
   [bas.cc + cDetermineWordDelimiterMessage1]: cDetermineWordDelimiterMessage1, // DetermineWordDelimiterMessage1

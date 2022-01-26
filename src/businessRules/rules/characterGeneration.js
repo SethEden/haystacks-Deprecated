@@ -300,8 +300,174 @@ export const randomlyGenerateNumberInRange = function(inputData, inputMetaData) 
   loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData && inputMetaData) {
-    
+    let minimum = parseInt(inputData);
+    let maximum = parseInt(inputMetaData[0]);
+    let addOne = stringToBoolean(inputMetaData[1]);
+    let addMinimum = stringToBoolean(inputMetaData[2]);
+    if (addOne === true) {
+      if (addMinimum === true) {
+        returnData = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+      } else {
+        returnData = Math.floor(MAth.random() * (maximum - minimum + 1));
+      }
+    } else {
+      if (addMinimum === true) {
+        returnData = Math.floor(Math.random() * (maximum - minimum)) + minimum;
+      } else {
+        returnData = Math.floor(Math.random() * (maximum - minimum));
+      }
+    }
   } // End-if (inputData && inputMetaData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData.toString();
+};
+
+/**
+ * @function randomlyGenerateBooleanValue
+ * @description Randomly generates a boolean value {@code TRUE} or {@code FALSE}.
+ * @param {string} inputData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} A boolean value that is
+ * either {@code TRUE} or {@code FALSE} as a random 50-50 chance of one or the other.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
+  let functionName = randomlyGenerateBooleanValue.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  returnData = Math.random() >= 0.5;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function randomlyGenerateMixedCaseAlphabeticCharacter
+ * @description Randomly generates either an upper case or
+ * lower case random english alphabetic letter from a-z or A-Z.
+ * @param {string} inputData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A randomly generated english alphabetic letter from a-z or A-Z.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMetaData) {
+  let functionName = randomlyGenerateMixedCaseAlphabeticCharacter.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  returnData = randomlyGenerateSpecialCharacter(gen.cUpperCaseEnglishAlphabet + gen.cLowerCaseEnglishAlphabet);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function randomlyGenerateLowerCaseLetter
+ * @description Randomly generates a lower case english alphabetic letter from a-z.
+ * @param {string} inputData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A ranomly generated english alphabetic letter from a-z.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
+  let functionName = randomlyGenerateLowerCaseLetter.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  returnData = randomlyGenerateSpecialCharacter(gen.cLowerCaseEnglishAlphabet);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function randomlyGenerateUpperCaseLetter
+ * @description Randomly generates an upper case alphabetic letter from A-Z.
+ * @param {string} inputData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A randomly generated alphabetic letter from A-Z.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
+  let functionName = randomlyGenerateUpperCaseLetter.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  returnData = randomlyGenerateSpecialCharacter(gen.cUpperCaseEnglishAlphabet);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function convertNumberToUpperCaseLetter
+ * @description Converts a number from 1-26 into an upper case letter of the english alphabet A-Z.
+ * @param {sring} inputData A string that contaisn a number in the range of 1-26 that
+ * should be converted to an upper case letter of the english alphabet.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A letter of the alphabet where 1-26 is converted in a letter A-Z.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
+  let functionName = convertNumberToUpperCaseLetter.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let number = parseInt(inputData);
+    number--;
+    // number is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
+    if (number > 25 || number < 0) {
+      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+    } else {
+      returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toUpperCase();
+    }
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function convertNumberToLowerCaseLetter
+ * @description Converts a number from 1-26 into a lower case letter of the english alphabet a-z.
+ * @param {string} inputData A string that contains a number in the range of 1-26 that
+ * should be converted in a ower case letter of the english alphabet.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} A letter of the alphabet where 1-26 is converted to a letter a-z.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ */
+export const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
+  let functionName = convertNumberToLowerCaseLetter.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  let returnData = '';
+  if (inputData) {
+    let number = parseInt(inputData);
+    number--;
+    // number is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
+    if (number > 25 || number < 0) {
+      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+    } else {
+      returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toLowerCase();
+    }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

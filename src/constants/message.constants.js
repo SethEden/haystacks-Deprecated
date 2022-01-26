@@ -507,6 +507,7 @@ let cfilesListLimitIs = wr1.cfiles + wr1.cList + wr1.cLimit + sys.cSpaceIsColonS
 let cenableLimitIs = wr1.cenable + wr1.cLimit + sys.cSpaceIsColonSpace; // enableLimit is:
 let cfilesLimitIs = wr1.cfiles + wr1.cLimit + sys.cSpaceIsColonSpace; // filesLimit is:
 let cinputDataRightBeforeProcessingIs = cinputData + wr1.cRight + wr1.cBefore + wr1.cProcessing + sys.cSpaceIsColonSpace; // inputData right before processing is:
+let cnumberIs = wr1.cnumber + sys.cSpaceIsColonSpace; // number is:
 
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 let cDetermineWordDelimiterMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // WARNING: Mixed string.
@@ -1123,6 +1124,7 @@ module.exports = {
   [bas.cc + con.cenableLimitIs]: cenableLimitIs, // enableLimit is:
   [bas.cc + con.cfilesLimitIs]: cfilesLimitIs, // filesLimit is:
   [bas.cc + con.cinputDataRightBeforeProcessingIs]: cinputDataRightBeforeProcessingIs, // inputData right before processing is:
+  [bas.cc + con.cnumberIs]: cnumberIs, // number is:
 
   // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
   [bas.cc + con.cDetermineWordDelimiterMessage1]: cDetermineWordDelimiterMessage1, // WARNING: Mixed string.
