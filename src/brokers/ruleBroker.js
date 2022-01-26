@@ -39,7 +39,7 @@ function bootStrapBusinessRules() {
 /**
  * @function addClientRules
  * @description Merges client defined business rules with the system defined business rules.
- * @param {array<object>} clientRules The cient rules that should be merged with the system rules.
+ * @param {array<object>} clientRules The client rules that should be merged with the system rules.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
@@ -55,8 +55,10 @@ function addClientRules(clientRules) {
  * @function processRules
  * @description Parse the given input Object/String/Integer/Data/Function through a set of business rules,
  * (Some rules do not support chaining); where the rules are defined in the input rules array.
- * @param {string|integer|boolean|object|function} inputData The primary input data that should be processed by the business rule.
- * @param {string|integer|boolean|object|function} inputMetaData Additional meta-data that should be used when processing the business rule.
+ * @param {string|integer|boolean|object|function} inputData The primary input data that
+ * should be processed by the business rule.
+ * @param {string|integer|boolean|object|function} inputMetaData Additional meta-data that
+ * should be used when processing the business rule.
  * @param {array<string>} rulesToExecute The name(s) of the rule(s) that should be executed for modding the input data.
  * @return {string|integer|boolean|object|function|} A modified data Object/String/Integer/Boolean/Function
  * where the data has been modified based on the input data, input meta-data, and business rule that was executed.

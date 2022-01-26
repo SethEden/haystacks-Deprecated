@@ -38,6 +38,11 @@ export const initRulesLibrary = function() {
 
     // Business Rules
     // ***********************************************
+    // arrayParsing rules in order
+    // ***********************************************
+    ['replaceCharacterWithCharacter']: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
+
+    // ***********************************************
     // stringParsing rules in order
     // ***********************************************
     ['parseSystemRootPath']: (inputData, inputMetaData) => stringParsing.parseSystemRootPath(inputData, inputMetaData),
@@ -53,11 +58,6 @@ export const initRulesLibrary = function() {
     ['swapBackSlashToForwardSlash']: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
     ['swapDoubleForwardSlashToSingleForwardSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
     ['swapDoubleBackSlashToSingleBackSlash']: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
-
-    // ***********************************************
-    // arrayParsing rules in order
-    // ***********************************************
-    ['replaceCharacterWithCharacter']: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
   };
   console.log(`END ${namespacePrefix}${functionName} function`);
 };

@@ -16,7 +16,7 @@ var namespacePrefix = `businessRules.rules.${baseFileName}.`;
  * @function replaceCharacterWithCharacter
  * @description Replaces all of the specified character in the inputData with another specified character.
  * @param {string} inputData A string that may or may not contain the specified
- * characters that should be converted to another specified character.
+ * character(s) that should be converted to another specified character.
  * @param {array<string,string} inputMetaData An array of data that contains 2 additional string parameters:
  * inputMetaData[0] === character2Find - The character to be searched and replaced from the input string.
  * inputMetaData[1] === character2Replace - The character that should be used to replace
@@ -38,7 +38,7 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
   } else {
     returnData = inputData.replace(character2Find, character2Replace);
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  console.log(`returnData is: ${returnData}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
