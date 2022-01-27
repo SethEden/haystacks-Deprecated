@@ -17,7 +17,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import loggers from '../../executrix/loggers';
+let loggers = require()'../../executrix/loggers');
 import { stringToBoolean } from './stringParsingUtilities';
 let bas = require('../../constants/basic.constants');
 let gen = require('../../constants/generic.constants');
@@ -28,6 +28,7 @@ let biz = require('../../constants/business.constants');
 let msg = require('../../constants/message.constants');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
+// businessRules.rules.characterGeneration
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
