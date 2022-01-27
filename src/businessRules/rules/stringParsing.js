@@ -78,7 +78,7 @@ export const parseSystemRootPath = function(inputData, inputMetaData) {
  * If it's an array of strings, or collection object, it will get returned as the same as the input, no change.
  * @param {string} inputData The string that should be converted to some value.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {object|string|boolean|integer} Returns a value of whatever type the string should be converted to as appropriate.
+ * @return {object|string|boolean|integer|float} Returns a value of whatever type the string should be converted to as appropriate.
  * @author Seth Hollingsead
  * @date 2021/11/10
  */
@@ -106,7 +106,7 @@ export const stringToDataType = function(inputData, inputMetaData) {
       default: // We don't know what kind of object this is, better just return it the way it is.
         returnData = inputData;
         break;
-    }
+    } // End-switch (dataType)
   } // End-if (inputData)
   console.log(`returnData is: ${JSON.stringify(returnData)}`);
   console.log(`END ${namespacePrefix}${functionName} function`);
