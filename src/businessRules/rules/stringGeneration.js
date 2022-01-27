@@ -956,10 +956,279 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
     loggers.consoleLog(namespacePrefix + functionName, msg.cdomainNameIs + domainName);
 
     // ONLY do suffix and prefix if our failure modes do not exclude both.
-    
+    if (failureMode >= 1 && failureMode <= 7) {
+      // Remaining number of characters that we must provide to the e-mail must be divided by 2, for the prefix and suffix.
+      if (numberOfCharactersToGenerate % 2 === 0) {
+        // We have a number that is divisible by 2, so just divide it and
+        // that will be the number of characters we use for both the prefix and suffix.
+        numberOfPrefixcharacters = numberOfCharactersToGenerate / 2;
+        numberOfSuffixCharacters = numberOfPrefixcharacters;
+      } else if (numberOfCharactersToGenerate % 2 === 1) {
+        numberOfPrefixcharacters = numberOfCharac / 2;
+        numberOfSuffixCharacters = numberOfPrefixcharacters - 1;
+      }
+    } else if (failureMode === 8 || failureMode === 10 || failureMode === 11 || failureMode === 14 || failureMode === 17 || failureMode === 21 || failureMode === 22) {
+      // Excluding the Prefix
+      numberOfSuffixCharacters = numberOfCharactersToGenerate; // Suffix get the remainder!
+      numberOfPrefixcharacters = 0;
+    } else if (failureMode === 9 || failureMode === 12 || failureMode === 13 || failureMode === 15 || failureMode === 18 || failureMode === 23 || failureMode === 24) {
+      // Excluding the Suffix
+      numberOfPrefixcharacters = numberOfCharactersToGenerate; // Prefix gets the remainder!
+      numberOfSuffixCharacters = 0;
+    }
+    // numberOfPrefixCharacters is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfPrefixCharactersIs + numberOfPrefixcharacters);
+    // numberOfSuffixCharacters is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSuffixCharactersIs + numberOfSuffixCharacters);
+
+    if (numberOfPrefixCharacters > 0) {
+      if (generateSpecialCharacters === false) {
+        prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixCharacters.toString(), '');
+      } else {
+        if (!!allowableSpecialCharacters && allowableSpecialCharacters !== undefined) {
+          prefix = geenrateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfPrefixcharacters.toString(), allowableSpecialCharacters);
+        } else {
+          prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixcharacters.toString(), '');
+        }
+      }
+    } // End-if (numberOfPrefixCharacters > 0)
+    // prefix is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cprefixIs + prefix);
+
+    if (numberOfSuffixCharacters > 0) {
+      if (generateSpecialCharacters === false) {
+        suffix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfSuffixCharacters.toString(), '');
+      } else {
+        if (!!allowableSpecialCharacters && allowableSpecialCharacters !== undefined) {
+          suffix = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfSuffixCharacters.toString(), allowableSpecialCharacters);
+        } else {
+          suffix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfSuffixCharacters.toString(), '');
+        }
+      }
+    } // End-if (numberOfSuffixCharacters > 0)
+    // suffix is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.csuffixIs + suffix);
   } // End-if (numberOfCharactersToGenerate >= 6)
 
+  switch (failureMode) {
+    case 1: // Without the @ symbol.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbol);
+      returnData = prefix + suffix + bas.cDot + domainName;
+      break;
+    case 2: // Without the . symbol.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDotSymbol);
+      returnData = prefix + bas.cAt + suffix + domainName;
+      break;
+    case 3: // Without bot the @ and . symbols
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtAndDotSymbols);
+      returnData = prefix + suffix + domainName;
+      break;
+    case 4: // Without the domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDomainName);
+      eturnData = prefix + bas.cAt + suffix + bas.cDot;
+      break;
+    case 5: // Without the @ and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolAndDomainName);
+      returnData = prefix + suffix + bas.cDot + domainName;
+      break;
+    case 6: // Without the . and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDotAndDomainName);
+      returnData = prefix + bas.cAt + suffix;
+      break;
+    case 7: // Without the @, . and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolDotAndDomainName);
+      returnData = prefix + suffix;
+      break;
+    case 8: // Without the prefix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutThePrefix);
+      returnData = bas.cAt + suffix + bas.cDot + domainName;
+      break;
+    case 9: // Without the suffix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheSuffix);
+      returnData = prefix + bas.cAt + bas.cDot + domainName;
+      break;
+    case 10: // Without the @ and prefix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolAndPrefix);
+      returnData = suffix + bas.cDot + domainName;
+      break;
+    case 11: // Without the . and prefix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDotAndPrefix);
+      returnData = bas.cAt + suffix + domainName;
+      break;
+    case 12: // Without the @ and suffix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolAndSuffix);
+      returnData = prefix + bas.cDot + domainName;
+      break;
+    case 13: // Without the . and suffix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDotAndSuffix);
+      returnData = prefix + bas.cAt + domainName;
+      break;
+    case 14: // Without the @, . and prefix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolDotAndPrefix);
+      returnData = suffix + domainName;
+      break;
+    case 15: // Without the @, . and suffix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolDotAndSuffix);
+      returnData = prefix + domainName;
+      break;
+    case 16: // Without the @, ., prefix, and suffix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolDotPrefixAndSuffix);
+      returnData = domainName;
+      break;
+    case 17: // Without the prefix and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutThePrefixAndDomainName);
+      returnData = bas.cAt + suffix + bas.cDot;
+      break;
+    case 18: // Without the suffix and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheSuffixAndDomainName);
+      returnData = prefix + bas.cAt + bas.cDot;
+      break;
+    case 19: // Without the prefix and  suffix.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutThePrefixAndSuffix);
+      returnData = bas.cAt + bas.cDot + domainName;
+      break;
+    case 20: // Without the prefix, suffix and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutThePrefixSuffixAndDomainName);
+      returnData = bas.cAt + bas.cDot;
+      break;
+    case 21: // Without the @, prefix and  domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolPrefixAndDomainName);
+      returnData = suffix + bas.cDot;
+      break;
+    case 22: // Without the ., prefix and  domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDotPrefixAndDomainName);
+      returnData = bas.cAt + suffix;
+      break;
+    case 23: // Without the @, suffix and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolSuffixAndDomainName);
+      returnData = prefix + bas.cDot;
+      break;
+    case 24: // Without the ., suffix and domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDotSuffixAndDomainName);
+      returnData = prefix + bas.cAt + bas.cDot;
+      break;
+    case 25: // Without the @, prefix, suffix and  domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolPrefixSuffixAndDomainName);
+      returnData = bas.cDot;
+      break;
+    case 26: // Without the ., prefix, suffix and  domain name.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithutTheDotPrefixSuffixAndDomainName);
+      returnData = bas.cAt;
+      break;
+    case 27: // Without the prefix, suffix and @.
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutThePrefixSuffixAndAtSymbol);
+      returnData = bas.cDot + domainName;
+      break;
+    case 28: // Without the prefix, suffix and ..
+      loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutThePrefixSuffixAndDot);
+      returnData = bas.cAt + domainName;
+      break;
+  } // End-switch (failureMode)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function generateRandomBrightColor
+ * @description Generates a randomset of RGB values in the bright color spectrum range.
+ * Originally I thought to generate just a bright color, but dividing the spectrum straight in half resulted in mostly drab colors.
+ * So I adjusted this function to use the inputs to provide a narrow range of bright values that can be generated.
+ * This makes the function nearly identical to the same function that generates random dark colors.
+ * Really the only difference is the default values. So this function is refactored to call a generic random color generator business rule.
+ * @param {string|integer} inputData The number in either numeric or string format that represents the minimum range that should be used to generate the random color.
+ * @param {string|integer} inputMetaData The number in either numeric or string format that represents the maximum range that should be used to generate the random color.
+ * @return {array<integer,integer,integer>} An array of RGB values in the bright color spectrum range.
+ * @author Seth Hollingsead
+ * @date 2022/01/27
+ */
+export const generateRandomBrightColor = function(inputData, inputMetaData) {
+  let functionName = generateRandomBrightColor.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = [255,255,255];
+  let minimumColorRange = 127;
+  let maximumColorRange = 255;
+  let parsedColorRangeArray = [];
+  if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
+    // Try to parse them as numbers for the range.
+    parsedColorRangeArray = arrayParsing.parseColorRangeInputs(inputData, inputMetaData);
+    minimumColorRange = parsedColorRangeArray[0];
+    maximumColorRange = parsedColorRangeArray[1];
+  } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
+  returnData = generateRandomColor(minimumColorRange, maximumColorRange);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function generateRandomDarkColor
+ * @description Generates a random set of RGB values in the dark color spectrum range.
+ * Originally I thought to generate just a dark coor, but dividing the spectrum straight in half resulted in mostly drab colors.
+ * So I adjusted this function to use the inputs to provide a narrow range of dark values that can be generated.
+ * This makes the function nearly identical to the same function that generates random bright colors.
+ * Really the only difference is the default values. So this function is refactored to call a generic random coor generator business rule.
+ * @param {string|integer} inputData The number in either numeric or string format that represents the minimum range that should be used to generate the random color.
+ * @param {string|integer} inputMetaDate The number in either numeric or string format that represents the maximum range that should be used to generate the random color.
+ * @return {array<integer,integer,integer>} An array of RGB values in the dark color spectrum range.
+ * @author Seth Hollingsead
+ * @date 2022/01/27
+ */
+export const generateRandomDarkColor = function(inputData, inputMetaDate) {
+  let functionName = generateRandomDarkColor.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = [0,0,0];
+  let minimumColorRange = 0;
+  let maximumColorRange = 127;
+  let parsedColorRangeArray = [];
+  if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
+    // Try to parse them as numbers for the range.
+    parsedColorRangeArray = arrayParsing.parseColorRangeInputs(inputData, inputMetaData);
+    minimumColorRange = parsedColorRangeArray[0];
+    maximumColorRnage = parsedColorRangeArray[1];
+  } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
+  returnData = generateRandomColor(minimumColorRange, maximumColorRange);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function generateRandomColor
+ * @description Generates a random set of RGB values in the given color range.
+ * @param {string|integer} inputData The number in either numeric or string format that represents the minimum range that should be used to generate the random color.
+ * @param {string|integer} inputMetaData The number in either numeric or string format that represents the maximum range that should be used to generate the random coor.
+ * @return {array<integer,integer,integer>} An array of RGB values that will be used for a color value.
+ * @author Seth Hollingsead
+ * @date 2022/01/27
+ */
+export const generateRandomColor = function(inputData, inputMetaData) {
+  let functionName = generateRandomColor.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = [0,0,0];
+  let minimumColorRange = 0;
+  let maxim;umCoorRange = 255;
+  let parsedColorRangeArray = [];
+  if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
+    // Try to parse them as numbers for the range.
+    parsedColorRangeArray = arrayParsing.parseColorRangeInputs(inputData, inputMetaData);
+    minimumColorRange = parsedColorRangeArray[0];
+    maximumColorRange = parsedColorRangeArray[1];
+  } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
+  // minimumColorRange is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cminimumColorRangeIs + minimumColorRange);
+  // maximumColorRange is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cmaximumColorRangeIs + maximumColorRange);
+  returnData[0] = characterGeneration.randomlyGenerateNumberInRange(minimumColorRange.toString(), [maximumColorRange.toString(), gen.ctrue, gen.ctrue]); // Red
+  returnData[1] = characterGeneration.randomlyGenerateNumberInRange(minimumColorRange.toString(), [maximumColorRange.toString(), gen.ctrue, gen.ctrue]); // Green
+  returnData[2] = characterGeneration.randomlyGenerateNumberInRange(minimumColorRange.toString(), [maximumColorRange.toString(), gen.ctrue, gen.ctrue]); // Blue
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
