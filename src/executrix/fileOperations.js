@@ -38,6 +38,74 @@ let baseFileName = path.basename(module.filename, path.extname(module.filename))
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
+ * @function getXmlData
+ * @description Loads the specified file and parses it into JSON objects, all strings.
+ * @param {string} pathAndFilename The path and file name of the XML file that should be loaded and parsed into JSON objects.
+ * @return {object} A parsed JSON object contianing all of the data, meta-data, objects,
+ * values and attributes that were stored  in the specified XML file.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ */
+function getXmlData(pathAndFilename) {
+  let functionName = getXmlData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // pathAndFilename is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpathAndFilenameIs + pathAndFilename);
+  let returnData;
+  pathAndFilename = path.resolve(pathAndFilename);
+  let data = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8 });
+  let xml;
+  xml2js.parseString(data,
+  function(err, result) {
+    if (err) {
+      // ERROR:
+      returnData = console.log(sys.cERROR_Colon + err);
+      loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+      return returnData;
+    }
+    xml = result;
+  });
+  returnData = xml;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getCsvData
+ * @description loads the specified file and parses it into JSON objects.
+ * @NOTE This function only does the loading and preliminary parsing.
+ * Some clients might need their own parsing business rules so this might need to be refactored according to business needs.
+ * We want to keep everything as modular as possible to allow for this future proofing flexibility.
+ * @param {string} pathAndFilename The path and file name of the CSV file that should be loaded and parsed into JSON objects.
+ * @return {object} The JSON object as it was loaded from the file with minimal to no additional processing.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ */
+function getCsvData(pathAndFilename) {
+  let functionName = getCsvData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // file and path to load from is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfileAndPathToLoadFromIs + pathAndFilename);
+  pathAndFilename = path.resolve(pathAndFilename);
+  let data = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8 });
+  let parsedData = Papa.parse(data, {
+    delimiter: ',',
+    newline: '/n',
+    header: true,
+    skipEmptyLines: true,
+    encoding: gen.cUTF8
+  });
+  // DONE loading data from:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cDoneLoadingDataFrom + pathAndFilename);
+  // Loaded data is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataIs + JSON.stringify(parsedData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return parsedData;
+};
+
+/**
  * @function getJsonData
  * @description Loads the specified file and parses it into a JSON object(s).
  * @param {string} pathAndFilename The path and file name of the JSON file that
@@ -60,6 +128,35 @@ function getJsonData(pathAndFilename) {
   // console.log(`loaded data is: ${JSON.stringify(parsedData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return parsedData;
+};
+
+/**
+ * @function writeJsonData
+ * @description Writes out JSON data to the specified file and path location, it will automatically over-write any existing file.
+ * @param {string} pathAndFilename The path and file name for the file that should have data written to it.
+ * @param {object} dataToWrite The data that should be written to the specified file.
+ * @return {boolean} True or False to indicate if the file was written out successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ */
+function writeJsonData(pathAndFilename, dataToWrite) {
+  let functionName = writeJsonData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // file and path to write data to is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfileAndPathToWriteDataToIs + pathAndFilename);
+  // data to write is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteIs + JSON.stringify(dataToWrite));
+  let outputSuccess = false;
+  try {
+    fs.writeFileSync(pathAndFilename, JSON.stringify(dataToWrite, null, 2));
+    outputSuccess = true;
+  } catch (err) {
+    // ERROR:
+    console.error(sys.cERROR_Colon + err);
+  }
+  // Data was written to the file;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cDataWasWrittenToTheFile, outputSuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
 /**
@@ -194,6 +291,134 @@ function readDirectorySynchronously(directory) {
 };
 
 /**
+ * @function copyAllFilesAndFoldersFromFolderToFolder
+ * @description Copies all of the files and folders recursively from the source folder to the destination folder.
+ * @param {string} sourceFolder The full source path where files and folders should be copied from.
+ * @param {string} destinationFolder The full destination path where files and folders should be copied.
+ * @return {boolean} a True or False value to indicate if the full copy process is successful or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ * @NOTE: This is mainly used by the build system to execute a copy process for the
+ * non-code files from the surce folder to the bin folder.
+ */
+function copyAllFilesAndFoldersFromFolderToFolder(sourceFolder, destinationFolder) {
+  let functionName = copyAllFilesAndFoldersFromFolderToFolder.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // sourceFolder is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csourceFolderIs + sourceFolder);
+  // destinationFolder is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationFolderIs + destinationFolder);
+  let copySuccess = false;
+  let rotPath = cleanRootPath();
+  sourceFolder = rootPath + sourceFolder;
+  sourceFolder = path.resolve(sourceFolder);
+  destinationFolder = rootPath + destinationFolder;
+  destinationFolder = path.resolve(destinationFolder);
+  // sourceFolder is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csourceFolderIs + sourceFolder);
+  // destinationFolder is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationFolderIs + destinationFolder);
+  copySuccess = copyFolderRecursiveSync(surceFolder, destinationFolder);
+  // copySuccess is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccopySuccessIs + copySuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return copySuccess;
+};
+
+/**
+ * @function buildReleasePackage
+ * @description Add all the files from the sourceFolder into a zip file and
+ * give a name to the file for the current date-time and release version, savng to the destination folder.
+ * @param {string} sourceFolder The folder that should be packaged up for the release zip file.
+ * @param {string} destinationFolder The folder where teh zip file release package should be saved.
+ * @return {boolean} A True or False value to indicate if the release package process is successful or not.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ */
+function buildReleasePackage(sourceFolder, destinationFolder) {
+  let functionName = buildReleasePackage.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // sourceFolder is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csourceFolderIs + sourceFolder);
+  // destinationFolder is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationFolderIs + destinationFolder);
+  let packageSuccess = false;
+  let releaseFiles = [];
+  let releasedArchiveFiles = [];
+  let fileNameBusinessRules = {};
+  let cleanFilePathsBusinessRules = {};
+  fileNameBusinessRules[0] = biz.cgetFileNameFromPath;
+  fileNameBusinessRules[1] = biz.cremoveFileExtensionFromFileName;
+  cleanFilePathsBusienssRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
+  cleanFilePathsBusinessRules[1] = biz.cswapDoubleBackSlashToSingleBackSlash;
+  cleanFilePathsBusienssRules[2] = biz.cswapForwardSlashToBackSlash;
+  let rootPath = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationCleanedRootPath);
+  let currentVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
+  let applicationName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+  let currentVersionReleased = false;
+  let releaseDateTimeStamp;
+  let originalSource, originalDestination;
+  let zip = new AdmZip();
+  // current version is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentVersionIs + currentVersion);
+  originalSource = bas.cDot + sourceFolder;
+  originalDestination = destinationFolder;
+  sourceFolder = rootPath + sourceFolder;
+  sourceFolder = path.resolve(sourceFolder);
+  destinationFolder = rootPath + destinationFolder;
+  destinationFolder = path.resolve(destinationFolder);
+  releaseFiles = readDirectoryContents(sourceFolder);
+  releasedArchiveFiles = readDirectoryContents(destinationFolder);
+  // released archive files list is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.creleasedArchiveFilesListIs + JSON.stringify(releasedArchiveFiles));
+  // Check if the current version number has  already been released as a zip file in the Release Folder.
+  // If it has not been released, then we can build the zip file with the current release number and date-time stamp.
+  for (let i = 0; i <= releasedArchiveFiles.length - 1; i++) {
+    // file is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cfileIs + releasedArchiveFiles[i]);
+    let pathAndFileName = releasedArchiveFiles[i];
+    let fileName = ruleBroker.processRules(pathAndFileName, '', fileNameBusinessRules);
+    // fileName is:
+    loggers.consoleLog(namespacePrefix + functionNam, msg.cfileNameIs + fileName);
+    if (fileName.includes(currentVersion) === true) {
+      currentVersionReleased = true;
+    }
+  } // End-for (let i = 0; i <= releasedArchiveFiles.length - 1; i++)
+  if (currentVersionReleased === false) {
+    // release files list is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
+    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, sys.cDateTimeStamp));
+    // release date-time stamp is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
+    let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;
+    // release fileName is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFileNameIs + releaseFileName);
+    let fullReleasePath = path.resolve(destinationFolder + bas.cForwardSlash + releaseFileName + gen.cDotzip);
+    try {
+      zip.addLocalFolder(sourceFolder, originalSource);
+      zip.writeZip(fulReleasePath);
+      // Done writing the zip file:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWritingTheZipFile + fullReleasePath);
+      // Set the return packageSuccess flag to True
+      loggers.consoleLog(namespacePrefix + functionName, msg.cSetTheReturnPackageSucessFlagToTrue);
+      packageSuccess = true;
+    } catch (err) {
+      // ERROR: Zip package release failed:
+      console.log(msg.cErrorZipPackageReleaseFailed);
+      console.error(err.stack);
+      process.exit(1);
+    }
+  } else {
+    // current version already released
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentVersionAlreadyReleased);
+  }
+  // packageSuccess is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpackageSuccessIs + packageSuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return packageSuccess;
+};
+
+/**
  * @function cleanRootPath
  * @description Takes the application root path and cleans it to give a real root path,
  * or top-level folder path for the application.
@@ -209,12 +434,130 @@ function cleanRootPath() {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let rootPath;
-
-  loggers.consoleLog(namespacePrefix + functionName, msg.crootPathIs + rootPath);
+  rootPath = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationRootPath);
+  cleanRootPathRules = [];
+  cleanRootPathRules[0] = biz.cremoveXnumberOfFoldersFromEndOfpath;
+  // RootPath before processing is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cRootPathBeforeProcessingIs + rootPath);
+  rootPath = ruleBroker.processRules(rootPath, 3, cleanRootPathRules);
+  // RotPath after processing is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cRootPathAfterProcessingIs + rootPath);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`rootPath is: ${rootPath}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
+};
+
+/**
+ * @function copyFileSync
+ * @description Reads the files from the source and copies them to the target.
+ * @param {string} source The soruce file that should be copied (read and then re-written to the destination).
+ * @param {string} target The target file that shoudl be saved to.
+ * @return {boolean} A True or False to indicate if the copy operation was successful or not.
+ * @author Simon Zyx
+ * @date 2014/09/25
+ * {@link https://stackoverflow.com/questions/13786160/copy-folder-recursively-in-node-js}
+ * @NOTE: This code is not actually coping the files, it is reading them and re-writing them to the target.
+ * However, it should suffice for our needs. Meta-data in this case is not all that critical
+ * since the original file is more important, and this is really just about the deployment of a build-release.
+ */
+function copyFileSync(source, target) {
+  let functionName = copyFileSync.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // source is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cSourceIs + source);
+  // target is:
+  loggers.consoleLog(namespacePrefix + functionName , msg.ctargetIs + target);
+  let successfullCopy = false;
+  let targetFile = target;
+
+  // If target is a directory a new file with the same name will be created.
+  if (fs.existsSync(target)) {
+    if (fs.lstatSync(target).isDirectory()) {
+      targetFile = path.join(target, path.basename(source));
+    }
+  } // End-if (fs.existsSync(target))
+  try {
+    if (source.includes(bas.cDot + gen.cenv) === false) {
+      fs.wrieFileSync(targetFile, fs.readFileSync(source));
+      successfullCopy = true;
+    } else {
+      // console.log('Detected the .env file, and avoided it!');
+    }
+  } catch (err) {
+    // ERROR: Could not copy file:
+    console.log(msg.cErrorCouldNotCopyFile + source);
+    successfullCopy = false;
+  }
+  // successfullCopy is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csuccessfullCopyIs + successfullCopy);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return successfullCopy;
+};
+
+/**
+ * @function copyFolderRecursiveSync
+ * @description Copies afolder and all of its files and sub-folders and sub-files recursively.
+ * @param {string} source The source path where all files and folders should be copied from.
+ * @param {string} target The target path where all the files and folders should be copied to.
+ * @return {boolean} A True or False value to indicate fi the copy operation was a success or not.
+ * @author Simon Zyx
+ * @date 2014/09/25
+ * {@link https://stackoverflow.com/questions/13786160/copy-folder-recursively-in-node-js}
+ * @NOTE: This code is not actually coping the files, it is reading them and re-writing them to the target.
+ * However, it should suffice for our needs. Meta-data in this case is not all that critical
+ * since the original file is more important, and this is really just about the deployment of a build-release.
+ */
+function copyFolderRecursiveSync(source, target) {
+  let functionName = copyFolderRecursiveSync.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // source is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cSourceIs + source);
+  // target is:
+  loggers.consoleLog(namespacePrefix + functionName , msg.ctargetIs + target);
+  let successfullCopy = false;
+  let files = [];
+
+  // Check if folder needs to be created or integrated
+  let targetFolder = path.join(target, path.basename(soruce));
+  if (!fs.existsSync(targetFolder)) {
+    try {
+      fs.mkdirSync(targetFolder);
+      // NOTE: Just because we complete the above code doesn't mean the entie copy process was a success.
+      // But atleast we haven't errored out, so it wasn't a failure YET.
+    } catch (err) {
+      // ERROR: Could not create folder:
+      console.log(msg.cErrorCouldNotCreateFolder + targetFolder);
+      // ERROR:
+      console.log(msg.cERROR_Colon + err);
+      successfullCopy = false;
+    }
+  } // End-if (!fs.existsSync(targetFolder))
+
+  // Copy
+  try {
+    if (fs.lstatSync(source).isDirectory()) {
+      files = fs.readdirSync(source);
+      files.forEach(function(file) {
+        let currentSource = path.join(source, file);
+        if (fs.lstatSync(currentSource).isDirectory()) {
+          successfullCopy = copyFolderRecursiveSync(currentSource + targetFolder);
+        } else {
+          successfullCopy = copyFileSync(currentSource + targetFolder);
+        }
+      });
+    } // End-if (fs.lstatSync(source).isDirectory())
+  } catch (err) {
+    // ERROR: Could not copy folder contents:
+    console.log(msg.cErrorCouldNotCopyFolderContents + targetFolder);
+    // ERROR:
+    console.log(msg.cERROR_Colon + err);
+    successfullCopy = false;
+  }
+  // successfullCopy Is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csuccessfullCopyIs + successfullCopy);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return successfullCopy;
 };
 
 /**

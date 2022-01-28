@@ -640,14 +640,143 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIs + pageName);
   // data to Merge is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
-
-
-
+  let dataToMergeElementCount = getDataElementCount(dataToMerge, '', '');
+  // dataToMergeElementCount is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeElementCountIs + dataToMergeElementCount);
+  if (dataToMergeEElementCount === 1) {
+    // dataToMergeElementCoutn is 1
+    loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeElementCountIs1);
+    // check if the pageName is not an empty string
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccheckIfThePageNameIsNotAnEmptyString);
+    if (pageName !== '') {
+      // pageName is not an empty string
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIsNotAnEmptyString);
+      // Check if the dataCatagory is an emptys string or not
+      loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfTheDataCatagoryIsAnEmptyStringOrNot);
+      if (dataCatagory !== '') {
+        // dataCatagory is not an empty string!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIsNotAnEmptyString);
+        Object.assign(targetData[dataCatagory][pageName], dataToMerge);
+      } else {
+        // dataCatagory IS an empty sring!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIsAnEmptyString);
+        // data to Merge is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
+        // targetData content is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataContentIs + JSON.stringify(targetData));
+        Object.assign(targetData[pageName], dataToMerge);
+        // after attempt to merge, results are:
+        loggers.consoleLog(namespacePrefix + functionName, msg.caferAttemptToMergeResultsAre);
+        // Merged data is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cMergedDataIs + JSON.stringify(dataToMerge));
+        // targetData content is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataContentIs + JSON.stringify(targetData));
+      }
+    } else {
+        // pageName is an empty string
+        loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIsAnEmptyString);
+        if (targetData[dataCatagory] === undefined) {
+          targetData[dataCatagory] = {}; // Make sure to create a landing place for it, before we attempt to dump the data over there.
+        }
+        // Otherwise it will just throw an error.
+        Object.assign(targetData[dataCatagory], dataToMerge);
+    }
+  } else {
+    // Caught the special case that we are merging a flat list.
+    loggers.consoleLog(namespacePrefix + functionName, msg.cCaughtTheSpecialCaseThatWeAreMergingFlatList);
+    // targetData content is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataContentIs + JSON.stringify(targetData));
+    for (let key in dataToMerge) {
+      // inside the for-loop
+      loggers.consoleLog(namespacePrefix + functionName, msg.cinsideTheForLoop);
+      // key is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ckeyIs + key);
+      // pageName is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIs + pageName);
+      targetData[pageName][key] = dataToMerge[key];
+    } // End-for (let key in dataToMerge)
+  }
   // target data is modified in the input pass-by-reference variable content is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIsModifiedInTheInputPassByReferenceVariableContentIs +
     JSON.stringify(targetData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return tempData;
+};
+
+/**
+ * @function getDataElement
+ * @description Gets the named value from the data object then cleans it from any carriage return characters.
+ * @param {object} dataObject The data object with all data.
+ * @param {string} pageName The name of the page where the data should be found.
+ * @param {string} elementName The name of the data element that should be found for the given page.
+ * @return {string} The data element with all carriage return characters removed from it.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ */
+function getDataElement(dataObject, pageName, elementName) {
+  let functionName = getDataElement.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // dataObject value is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataObjectValueIs + JSON.stringify(dataObject));
+  // pageName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIs + pageName);
+  // elementName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.celementNameIs + elementName);
+  let returnData = dataObject[pageName][elementName];
+  let rules = [];
+  rules[0] = biz.ccleanCarriageReturnFromString;
+  // execute business rules:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
+  returnData = ruleBroker.processRules(returnData, '', rules);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getDataElementCount
+ * @description Gets the count of the number of elements that match a given patern,
+ * if an empty string is passed in for the pattern then the count of the collection is returned with no pattern matching.
+ * @param {object} dataObject The data map with all data.
+ * @param {string} pageName The name of the page were the data shoudl be found.
+ * @param {string} elementNamePattern A string containing a pattern that should be matched in the object collection,
+ * to establish a count of elements that match this pattern.
+ * @return {integer} A count of either the number of data elements in the object collection,
+ * or a count for the number of data elements that match a pattern that is passed in.
+ * @author Seth Hollingsead
+ * @date 2022/01/28
+ */
+function getDataElementCount(dataObject, pageName, elementNamePattern) {
+  let functionName = getDataElementCount.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // dataObject is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataObjectIs + JSON.stringify(dataObject));
+  // pageName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIs + pageName);
+  // elementNamePattern is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.celementNamePatternIs + elementNamePattern);
+  let elementCollection;
+  let elementCount = 0;
+  if (pageName === '') {
+    elementCollection = dataObject;
+  } else {
+    elementCollection = dataObject[pageName];
+  }
+  if (!elementNamePattern || elementNamePattern === '') {
+    elementCount = Object.keys(elementCollection).length;
+  } else {
+    for (let key in elementCollection) {
+      if (elementCollection.hasOwnProperty(key)) {
+        if (key.includes(elementNamePattern)) {
+          elementCount++;
+        }
+      } // End-if (elementCollection.hasOwnProperty(key))
+    } // End-for (let key in elementCollection)
+  }
+  // elementCount is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.celementCountIs + elementCount);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return elementCount;
 };
 
 module.exports = {
