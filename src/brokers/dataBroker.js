@@ -780,11 +780,14 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
 };
 
 module.exports = {
+  [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
   [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
     appConfigFilesToLoad, frameworkConfigFilesToLoad
   ),
-  [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
+  [fnc.cloadAllCsvData]: (filesToLoad, contextName) => loadAllCsvData(filesToLoad, contextName),
+  [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
+  [fnc.cprocessCsvData]: (data, contextName),
   [fnc.csetupDataStorage]: () => setupDataStorage(),
   [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
   [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),
