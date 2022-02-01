@@ -31,6 +31,7 @@ let path = require('path');
 let math = require('mathjs');
 let chalk = require('chalk');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
+// businessRules.rules.arrayParsing
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**

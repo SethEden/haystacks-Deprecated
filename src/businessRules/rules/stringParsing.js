@@ -29,6 +29,7 @@ let loggers = require('../../executrix/loggers');
 let arrayParsing = require('./arrayParsing');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
+// businessRules.rules.stringParsing
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
