@@ -581,7 +581,7 @@ function extractDataFromPapaParseObject(data, contextName) {
     if (contextName === sys.cColorData) {
       let colorName = '';
       for (let key in data[wr1.cdata][i]) {
-        validDataAdded  true;
+        validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
         if (key === sys.cCoorName) {
           coorName = data[wr1.cdata][i][key];
@@ -787,7 +787,7 @@ module.exports = {
   [fnc.cloadAllCsvData]: (filesToLoad, contextName) => loadAllCsvData(filesToLoad, contextName),
   [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
-  [fnc.cprocessCsvData]: (data, contextName),
+  [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
   [fnc.csetupDataStorage]: () => setupDataStorage(),
   [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
   [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),

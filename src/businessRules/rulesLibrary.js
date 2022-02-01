@@ -83,6 +83,56 @@ let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cparseColorRangeInputs]: (inputData, inputMetaData) => arrayParsing.parseColorRangeInputs(inputData, inputMetaData),
 
      // ***********************************************
+     // characterGeneration rules in order
+     // ***********************************************
+     [biz.crandomlyGenerateMixedCaseLetterOrSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateMixedCaseLetterOrSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateUpperCaseLetterOrSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateUpperCaseLetterOrSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateLowerCaseLetterOrSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateLowerCaseLetterOrSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateMixedCaseAlphaNumericCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateMixedCaseAlphaNumericCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateUpperCaseAlphaNumericCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateUpperCaseAlphaNumericCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateLowerCaseAlphaNumericCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateLowerCaseAlphaNumericCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateNumericCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateNumericCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateSpecialCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateSpecialCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateNumberInRange]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateNumberInRange(inputData, inputMetaData),
+     [biz.crandomlyGenerateBooleanValue]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateBooleanValue(inputData, inputMetaData),
+     [biz.crandomlyGenerateMixedCaseAlphabeticCharacter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateMixedCaseAlphabeticCharacter(inputData, inputMetaData),
+     [biz.crandomlyGenerateLowerCaseLetter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateLowerCaseLetter(inputData, inputMetaData),
+     [biz.crandomlyGenerateUpperCaseLetter]: (inputData, inputMetaData) => characterGeneration.randomlyGenerateUpperCaseLetter(inputData, inputMetaData),
+     [biz.cconvertNumberToUpperCaseLetter]: (inputData, inputMetaData) => characterGeneration.convertNumberToUpperCaseLetter(inputData, inputMetaData),
+     [biz.cconvertNumberToLowerCaseLetter]: (inputData, inputMetaData) => characterGeneration.convertNumberToLowerCaseLetter(inputData, inputMetaData),
+
+     // ***********************************************
+     // mathOperations rules in order
+     // ***********************************************
+     [biz.chex2rgbConversion]: (inputData, inputMetaData) => mathOperations.hex2rgbConversion(inputData, inputMetaData),
+
+     // ***********************************************
+     // stringGeneration rules in order
+     // ***********************************************
+     [biz.cgenerateRandomMixedCaseTextByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomMixedCaseTextByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomUpperCaseTextByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomUpperCaseTextByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomLowerCaseTextByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomLowerCaseTextByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomMixedCaseTextWithSpecialCharactersByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomMixedCaseTextWithSpecialCharactersByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomUpperCaseTextWithSpecialCharactersByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomUpperCaseTextWithSpecialCharactersByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomLowerCaseTextWithSpecialCharactersByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomLowerCaseTextWithSpecialCharactersByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomMixedCaseAlphaNumericCodeByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomMixedCaseAlphaNumericCodeByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomUpperCaseAlphaNumericCodeByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomUpperCaseAlphaNumericCodeByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomLowerCaseAlphaNumericCodeByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomLowerCaseAlphaNumericCodeByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomNumericCodeByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomNumericCodeByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength(inputData, inputMetaData),
+     [biz.cgenerateRandomSpecialCharacterCodeByLength]: (inputData, inputMetaData) => stringGeneration.generateRandomSpecialCharacterCodeByLength(inputData, inputMetaData),
+     [biz.cgenerateValidEmail]: (inputData, inputMetaData) => stringGeneration.generateValidEmail(inputData, inputMetaData),
+     [biz.cgenerateInvalidEmail]: (inputData, inputMetaData) => stringGeneration.generateInvalidEmail(inputData, inputMetaData),
+     [biz.cgenerateRandomBrightColor]: (inputData, inputMetaData) => stringGeneration.generateRandomBrightColor(inputData, inputMetaData),
+     [biz.cgenerateRandomDarkColor]: (inputData, inputMetaDate) => stringGeneration.generateRandomDarkColor(inputData, inputMetaData),
+     [biz.cgenerateRandomColor]: (inputData, inputMetaData) => stringGeneration.generateRandomColor(inputData, inputMetaData),
+
+     // ***********************************************
      // stringParsing rules in order
      // ***********************************************
      [biz.csingleQuoteSwapAfterEquals]: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),

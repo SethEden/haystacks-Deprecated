@@ -3,6 +3,7 @@
  * @module business.constants
  * @description Contains many re-usable business rules constants.
  * @requires module:basic.constants
+ * @requires module:generic.constants
  * @requires module:phonic.constants
  * @requires module:numeric.constants
  * @requires module:word1.constants
@@ -13,6 +14,7 @@
  */
 
 let bas = require('./basic.constants');
+let gen = require('./generic.constants');
 let phn = require('./phonic.constants');
 let num = require('./numeric.constants');
 let wr1 = require('./word1.constants');
@@ -22,9 +24,9 @@ let sys = require('./system.constants');
 let cecho = wr1.cecho; // echo
 let cEcho = wr1.cEcho; // Echo
 
-// *********************************
+// ***********************************************
 // ArrayParsing rules in order
-// *********************************
+// ***********************************************
 let creplaceCharacterWithCharacter = wr1.creplace + wr1.cCharacter + wr1.cWith + wr1.cCharacter; // replaceCharacterWithCharacter
 let cconvertCamelCaseStringToArray = wr1.cconvert + wr1.cCamel + wr1.cCase + wr1.cString + wr1.cTo + wr1.cArray; // convertCamelCaseStringToArray
 let cgetWordsArrayFromString = wr1.cget + wr1.cWords + wr1.cArray + wr1.cFrom + wr1.cString; // getWordsArrayFromString
@@ -58,9 +60,63 @@ let cgetFileAndPathListForPath = wr1.cget + wr1.cFile + wr1.cAnd + wr1.cPath + w
 let cparseColorRangeInputs = wr1.cparse + wr1.cColor + wr1.cRange + wr1.cInputs; // parseColorRangeInputs
 let cdoesArrayContainValue = wr1.cdoes + wr1.cArray + wr1.cContain + wr1.cValue; // doesArrayContainValue
 
-// ********************************
+// ***********************************************
+// characterGeneration rules in order
+// ***********************************************
+let crandomlyGenerateMixedCaseLetterOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cMixed + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateMixedCaseLetterOrSpecialCharacter
+let crandomlyGenerateUpperCaseLetterOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cUpper + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateUpperCaseLetterOrSpecialCharacter
+let crandomlyGenerateLowerCaseLetterOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cLower + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateLowerCaseLetterOrSpecialCharacter
+let crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cEither + wr1.cMixed + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cNumber + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
+let crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cEither + wr1.cUpper + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cNumber + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter
+let crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cEither + wr1.cLower + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cNumber + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter
+let crandomlyGenerateMixedCaseAlphaNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateMixedCaseAlphaNumericCharacter
+let crandomlyGenerateUpperCaseAlphaNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateUpperCaseAlphaNumericCharacter
+let crandomlyGenerateLowerCaseAlphaNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cLower + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateLowerCaseAlphaNumericCharacter
+let crandomlyGenerateNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateNumericCharacter
+let crandomlyGenerateSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateSpecialCharacter
+let crandomlyGenerateNumberInRange = wr1.crandomly + wr1.cGenerate + wr1.cNumber + wr1.cIn + wr1.cRange; // randomlyGenerateNumberInRange
+let crandomlyGenerateBooleanValue = wr1.crandomly + wr1.cGenerate + wr1.cBoolean + wr1.cValue; // randomlyGenerateBooleanValue
+let crandomlyGenerateMixedCaseAlphabeticCharacter = wr1.crandomly + wr1.cGenerate + wr1.cMixed + wr1.cCase + wr1.cAlphabetic + wr1.cCharacter; // randomlyGenerateMixedCaseAlphabeticCharacter
+let crandomlyGenerateLowerCaseLetter = wr1.crandomly + wr1.cGenerate + wr1.cLower + wr1.cCase + wr1.cLetter; // randomlyGenerateLowerCaseLetter
+let crandomlyGenerateUpperCaseLetter = wr1.crandomly + wr1.cGenerate + wr1.cUpper + wr1.cCase + wr1.cLetter; // randomlyGenerateUpperCaseLetter
+let cconvertNumberToUpperCaseLetter = wr1.cconvert + wr1.cNumber + wr1.cTo + wr1.cUpper + wr1.cCase + wr1.cLetter; // convertNumberToUpperCaseLetter
+let cconvertNumberToLowerCaseLetter = wr1.cconvert + wr1.cNumber + wr1.cTo + wr1.cLower + wr1.cCase + wr1.cLetter; // convertNumberToLowerCaseLetter
+
+// ***********************************************
+// mathOperations rules in order
+// ***********************************************
+let chex2rgbConversion = gen.chex + num.c2 + gen.crgb + wr1.cConversion; // hex2rgbConversion
+
+// ***********************************************
+// stringGeneration rules in order
+// ***********************************************
+let cgenerateRandomMixedCaseTextByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cText + wr1.cBy + wr1.cLength; // generateRandomMixedCaseTextByLength
+let cgenerateRandomUpperCaseTextByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cText + wr1.cBy + wr1.cLength; // generateRandomUpperCaseTextByLength
+let cgenerateRandomLowerCaseTextByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cText + wr1.cBy + wr1.cLength; // generateRandomLowerCaseTextByLength
+let cgenerateRandomMixedCaseTextWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cText + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomMixedCaseTextWithSpecialCharactersByLength
+let cgenerateRandomUpperCaseTextWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cText + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomUpperCaseTextWithSpecialCharactersByLength
+let cgenerateRandomLowerCaseTextWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cText + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomLowerCaseTextWithSpecialCharactersByLength
+let cgenerateRandomMixedCaseAlphaNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomMixedCaseAlphaNumericCodeByLength
+let cgenerateRandomUpperCaseAlphaNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomUpperCaseAlphaNumericCodeByLength
+let cgenerateRandomLowerCaseAlphaNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomLowerCaseAlphaNumericCodeByLength
+let cgenerateRandomNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomNumericCodeByLength
+let cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength
+let cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength
+let cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.ccase + wr1.cAlpha + wr1.cNuemric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
+let cgenerateRandomSpecialCharacterCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cSpecial + wr1.cCharacter + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomSpecialCharacterCodeByLength
+let cgenerateValidEmail = wr1.cgenerate + wr1.cValid + wr1.cEmail; // generateValidEmail
+let cgenerateInvalidEmail = wr1.cgenerate + wr1.cInvalid + wr1.cEmail; // generateInvalidEmail
+let cgenerateValidEmailWithSpecificSuffixAndDomainName = wr1.cgenerate + wr1.cValid + wr1.cEmail + wr1.cWith + wr1.cSpecific + wr1.cSuffix + wr1.cAnd + wr1.cDomain + wr1.cName; // generateValidEmailWithSpecificSuffixAndDomainName
+let cgenerateRandomValidEmail = wr1.cgenerate + wr1.cRandom + wr1.cValid + wr1.cEmail; // generateRandomValidEmail
+let cgenerateInvalidEmailWithSpecificSuffixAndDomainName = wr1.cgenerate + wr1.cInvalid + wr1.cEmail + wr1.cWith + wr1.cSpecific + wr1.cSuffix + wr1.cAnd + wr1.cDomain + wr1.cName; // generateInvalidEmailWithSpecificSuffixAndDomainName
+let cgenerateRandomInvalidEmail = wr1.cgenerate + wr1.cRandom + wr1.cInvalid + wr1.cEmail; // generateRandomInvalidEmail
+let cgenerateRandomBrightColor = wr1.cgenerate + wr1.cRandom + wr1.cBright + wr1.cColor; // generateRandomBrightColor
+let cgenerateRandomDarkColor = wr1.cgenerate + wr1.cRandom + wr1.cDark + wr1.cColor; // generateRandomDarkColor
+let cgenerateRandomColor = wr1.cgenerate + wr1.cRandom + wr1.cColor; // generateRandomColor
+
+// ***********************************************
 // StringParsing rules in order
-// ********************************
+// ***********************************************
 let csingleQuoteSwapAfterEquals = wr1.csingle + wr1.cQuote + wr1.cSwap + wr1.cAfter + wr1.cEquals; // singleQuoteSwapAfterEquals
 let cswapForwardSlashToBackSlash = wr1.cswap + sys.cForwardSlash + bas.cTo + sys.cBackSlash; // swapForwadSlashToBackSlash
 let cswapBackSlashToForwardSlash = wr1.cswap + sys.cBackSlash + bas.cTo + sys.cForwardSlash; // swapBackSlashToForwardSlash
@@ -123,9 +179,9 @@ let cisOdd = wr1.cis + wr1.cOdd; // isOdd
 let cisEven = wr1.cis + wr1.cEven; // isEven
 let ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput
 
-// ********************************
+// ***********************************************
 // StringParsingUtiities rules in order
-// ********************************
+// ***********************************************
 let cparseSystemRootPath = wr1.cparse + wr1.cSystem + wr1.cRoot + wr1.cPath; // parseSystemRootPath
 let cstringToDataType = wr1.cstring + wr1.cTo + wr1.cData + wr1.cType; // stringToDataType
 let cstringToBoolean = wr1.cstring + wr1.cTo + wr1.cBoolean; // stringToBoolean
@@ -138,9 +194,9 @@ let creplaceDoublePercentWithMessage = wr1.creplace + wr1.cDouble + wr1.cPercent
 let cutilitiesReplaceCharacterWithCharacter = wr1.cutilities + wr1.cReplace + wr1.cCharacter + wr1.cWith + wr1.cCharacter; // utilitiesReplaceCharacterWithCharacter
 
 module.exports = {
-  // *********************************
+  // ***********************************************
   // ArrayParsing rules in order
-  // *********************************
+  // ***********************************************
   [bas.cc + creplaceCharacterWithCharacter]: creplaceCharacterWithCharacter,
   [bas.cc + cconvertCamelCaseStringToArray]: cconvertCamelCaseStringToArray, // convertCamelCaseStringToArray
   [bas.cc + cgetWordsArrayFromString]: cgetWordsArrayFromString, // getWordsArrayFromString
@@ -174,9 +230,63 @@ module.exports = {
   [bas.cc + cparseColorRangeInputs]: cparseColorRangeInputs, // parseColorRangeInputs
   [bas.cc + cdoesArrayContainValue]: cdoesArrayContainValue, // doesArrayContainValue
 
-  // ********************************
+  // ***********************************************
+  // characterGeneration rules in order
+  // ***********************************************
+  [bas.cc + crandomlyGenerateMixedCaseLetterOrSpecialCharacter]: crandomlyGenerateMixedCaseLetterOrSpecialCharacter, // randomlyGenerateMixedCaseLetterOrSpecialCharacter
+  [bas.cc + crandomlyGenerateUpperCaseLetterOrSpecialCharacter]: crandomlyGenerateUpperCaseLetterOrSpecialCharacter, // randomlyGenerateUpperCaseLetterOrSpecialCharacter
+  [bas.cc + crandomlyGenerateLowerCaseLetterOrSpecialCharacter]: crandomlyGenerateLowerCaseLetterOrSpecialCharacter, // randomlyGenerateLowerCaseLetterOrSpecialCharacter
+  [bas.cc + crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter]: crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter, // randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
+  [bas.cc + crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter]: crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter, // randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter
+  [bas.cc + crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter]: crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter, // randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter
+  [bas.cc + crandomlyGenerateMixedCaseAlphaNumericCharacter]: crandomlyGenerateMixedCaseAlphaNumericCharacter, // randomlyGenerateMixedCaseAlphaNumericCharacter
+  [bas.cc + crandomlyGenerateUpperCaseAlphaNumericCharacter]: crandomlyGenerateUpperCaseAlphaNumericCharacter, // randomlyGenerateUpperCaseAlphaNumericCharacter
+  [bas.cc + crandomlyGenerateLowerCaseAlphaNumericCharacter]: crandomlyGenerateLowerCaseAlphaNumericCharacter, // randomlyGenerateLowerCaseAlphaNumericCharacter
+  [bas.cc + crandomlyGenerateNumericCharacter]: crandomlyGenerateNumericCharacter, // randomlyGenerateNumericCharacter
+  [bas.cc + crandomlyGenerateSpecialCharacter]: crandomlyGenerateSpecialCharacter, // randomlyGenerateSpecialCharacter
+  [bas.cc + crandomlyGenerateNumberInRange]: crandomlyGenerateNumberInRange, // randomlyGenerateNumberInRange
+  [bas.cc + crandomlyGenerateBooleanValue]: crandomlyGenerateBooleanValue, // randomlyGenerateBooleanValue
+  [bas.cc + crandomlyGenerateMixedCaseAlphabeticCharacter]: crandomlyGenerateMixedCaseAlphabeticCharacter, // randomlyGenerateMixedCaseAlphabeticCharacter
+  [bas.cc + crandomlyGenerateLowerCaseLetter]: crandomlyGenerateLowerCaseLetter, // randomlyGenerateLowerCaseLetter
+  [bas.cc + crandomlyGenerateUpperCaseLetter]: crandomlyGenerateUpperCaseLetter, // randomlyGenerateUpperCaseLetter
+  [bas.cc + cconvertNumberToUpperCaseLetter]: cconvertNumberToUpperCaseLetter, // convertNumberToUpperCaseLetter
+  [bas.cc + cconvertNumberToLowerCaseLetter]: cconvertNumberToLowerCaseLetter, // convertNumberToLowerCaseLetter
+
+  // ***********************************************
+  // mathOperations rules in order
+  // ***********************************************
+  [bas.cc + chex2rgbConversion]: chex2rgbConversion, // hex2rgbConversion
+
+  // ***********************************************
+  // stringGeneration rules in order
+  // ***********************************************
+  [bas.cc + cgenerateRandomMixedCaseTextByLength]: cgenerateRandomMixedCaseTextByLength, // generateRandomMixedCaseTextByLength
+  [bas.cc + cgenerateRandomUpperCaseTextByLength]: cgenerateRandomUpperCaseTextByLength, // generateRandomUpperCaseTextByLength
+  [bas.cc + cgenerateRandomLowerCaseTextByLength]: cgenerateRandomLowerCaseTextByLength, // generateRandomLowerCaseTextByLength
+  [bas.cc + cgenerateRandomMixedCaseTextWithSpecialCharactersByLength]: cgenerateRandomMixedCaseTextWithSpecialCharactersByLength, // generateRandomMixedCaseTextWithSpecialCharactersByLength
+  [bas.cc + cgenerateRandomUpperCaseTextWithSpecialCharactersByLength]: cgenerateRandomUpperCaseTextWithSpecialCharactersByLength, // generateRandomUpperCaseTextWithSpecialCharactersByLength
+  [bas.cc + cgenerateRandomLowerCaseTextWithSpecialCharactersByLength]: cgenerateRandomLowerCaseTextWithSpecialCharactersByLength, // generateRandomLowerCaseTextWithSpecialCharactersByLength
+  [bas.cc + cgenerateRandomMixedCaseAlphaNumericCodeByLength]: cgenerateRandomMixedCaseAlphaNumericCodeByLength, // generateRandomMixedCaseAlphaNumericCodeByLength
+  [bas.cc + cgenerateRandomUpperCaseAlphaNumericCodeByLength]: cgenerateRandomUpperCaseAlphaNumericCodeByLength, // generateRandomUpperCaseAlphaNumericCodeByLength
+  [bas.cc + cgenerateRandomLowerCaseAlphaNumericCodeByLength]: cgenerateRandomLowerCaseAlphaNumericCodeByLength, // generateRandomLowerCaseAlphaNumericCodeByLength
+  [bas.cc + cgenerateRandomNumericCodeByLength]: cgenerateRandomNumericCodeByLength, // generateRandomNumericCodeByLength
+  [bas.cc + cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength]: cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength, // generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength
+  [bas.cc + cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength]: cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength, // generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength
+  [bas.cc + cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength]: cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength, // generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
+  [bas.cc + cgenerateRandomSpecialCharacterCodeByLength]: cgenerateRandomSpecialCharacterCodeByLength, // generateRandomSpecialCharacterCodeByLength
+  [bas.cc + cgenerateValidEmail]: cgenerateValidEmail, // generateValidEmail
+  [bas.cc + cgenerateInvalidEmail]: cgenerateInvalidEmail, // generateInvalidEmail
+  [bas.cc + cgenerateValidEmailWithSpecificSuffixAndDomainName]: cgenerateValidEmailWithSpecificSuffixAndDomainName, // generateValidEmailWithSpecificSuffixAndDomainName
+  [bas.cc + cgenerateRandomValidEmail]: cgenerateRandomValidEmail, // generateRandomValidEmail
+  [bas.cc + cgenerateInvalidEmailWithSpecificSuffixAndDomainName]: cgenerateInvalidEmailWithSpecificSuffixAndDomainName, // generateInvalidEmailWithSpecificSuffixAndDomainName
+  [bas.cc + cgenerateRandomInvalidEmail]: cgenerateRandomInvalidEmail, // generateRandomInvalidEmail
+  [bas.cc + cgenerateRandomBrightColor]: cgenerateRandomBrightColor, // generateRandomBrightColor
+  [bas.cc + cgenerateRandomDarkColor]: cgenerateRandomDarkColor, // generateRandomDarkColor
+  [bas.cc + cgenerateRandomColor]: cgenerateRandomColor, // generateRandomColor
+
+  // ***********************************************
   // StringParsing rules in order
-  // ********************************
+  // ***********************************************
   [bas.cc + csingleQuoteSwapAfterEquals]: csingleQuoteSwapAfterEquals,
   [bas.cc + cswapForwardSlashToBackSlash]: cswapForwardSlashToBackSlash,
   [bas.cc + cswapBackSlashToForwardSlash]: cswapBackSlashToForwardSlash,
@@ -239,9 +349,9 @@ module.exports = {
   [bas.cc + cisEven]: cisEven, // isEven
   [bas.cc + ccleanCommandInput]: ccleanCommandInput, // cleanCommandInput
 
-  // ********************************
+  // ***********************************************
   // StringParsingUtilities rules in order
-  // ********************************
+  // ***********************************************
   [bas.cc + cparseSystemRootPath]: cparseSystemRootPath,
   [bas.cc + cstringToDataType]: cstringToDataType, // stringToDataType
   [bas.cc + cstringToBoolean]: cstringToBoolean, // stringToBoolean

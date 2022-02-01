@@ -21,7 +21,7 @@ let cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug +
 let cloadAllCsvData = wr1.cload + phn.cAll + gen.cCsv + wr1.cData; // loadAllCsvData
 let cloadAllXmlData = wr1.cload + phn.cAll + gen.cXml + wr1.cData; // LoadAllXmlData
 let cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
-let cprocessCsvData = wr1.cprocess + gen.cCsv = wr1.cData; // processCsvData
+let cprocessCsvData = wr1.cprocess + gen.cCsv + wr1.cData; // processCsvData
 let csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setupDataStorage
 let cstoreData = wr1.cstore + wr1.cData; // storeData
 let cgetData = wr1.cget + wr1.cData; // getData

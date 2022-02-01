@@ -161,8 +161,8 @@ export const generateRandomMixedCaseTextWithSpecialCharactersByLength = function
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomUpperCaseTextWithSpecialCharatersByLength = function(inputData, inputMetaData) {
-  let functionName = generateRandomUpperCaseTextWithSpecialCharatersByLength.name;
+export const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+  let functionName = generateRandomUpperCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
