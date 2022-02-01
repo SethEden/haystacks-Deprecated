@@ -122,7 +122,8 @@ export const stringToDataType = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2021/11/10
  * @NOTE We cannot pass in a 1 or 0 to this function and expect it to evaluate as a True or False because:
- * We have another function that is passing strings into the function, and also part of that check to look for data-types is a check to see if a string is a number.
+ * We have another function that is passing strings into the function,
+ * and also part of that check to look for data-types is a check to see if a string is a number.
  * If we cause this function to evaluate a 0 or 1 to a Boolean, then the integer function would never get a chance to evaluate.
  */
 export const stringToBoolean = function(inputData, inputMetaData) {
@@ -194,9 +195,9 @@ export const determineObjectDataType = function(inputData, inputMetaData) {
  * @function isBoolean
  * @description Determines if the input string is a boolean type of value,
  * "true", "True", "TRUE", "t", "T", "y", "Y", "yes", "Yes", "YES", "on", "On", "ON" or
- * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO"
+ * "false", "False", "FALSE", "f", "F", "n", "N", "no", "No", "NO".
  * @param {string} inputData The string that should be checked if it is a Boolean style value or not,
- * could be some form of "true" or "false".
+ * it could be some form of "true" or "false".
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of True or False to indicate if the input string is a Boolean or not.
  * @author Seth Hollingsead
@@ -263,7 +264,7 @@ export const isInteger = function(inputData, inputMetaData) {
 /**
  * @function isFloat
  * @description Determines if the input string is a floating point type of value or not.
- * @param {string} inputData The string that should be checked if it is an integer style value or not.
+ * @param {string} inputData The string that should be checked if it is a floating point number style value or not.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of true or false to indicate if the input string is a floating point number or not.
  * @author Seth Hollingsead
