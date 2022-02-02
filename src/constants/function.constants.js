@@ -90,6 +90,24 @@ let cprompt = wr1.cprompt; // prompt
 let cgetNowMoment = wr1.cget + wr1.cNow + wr1.cMoment; // getNowMoment
 let ccomputeDeltaTime = wr1.ccompute + gen.cDelta + wr1.cTime; // computeDeltaTime
 
+// queue
+let cinitQueue = phn.cinit + wr1.cQueue; // initQueue
+let cdequeue = bas.cde + wr1.cqueue; // dequeue
+let cenqueue = bas.cen + wr1.cqueue; // enqueue
+let cisEmpty = wr1.cis + wr1.cEmpty; // isEmpty
+let cqueueFront = wr1.cqueue + wr1.cFront; // queueFront
+let cqueueSize = wr1.cqueue + wr1.cSize; // queueSize
+
+// stack
+let cinitStack = phn.cinit + wr1.cStack; // initStack
+let cclearStack = wr1.cclear + wr1.cStack; // clearStack
+let cpush = wr1.cpush; // push
+let cpop = wr1.cpop; // pop
+let cisEmpty = wr1.cis + wr1.cEmpty; // isEmpty
+let clength = wr1.clength; // length
+let ccontains = wr1.ccontains; // contains
+let cprint = wr1.cprint; // print
+
 // main
 let cinitFramework = gen.cinit + wr1.cFramework; // initFramework
 
@@ -168,6 +186,24 @@ module.exports = {
   // timers
   [bas.cc + cgetNowMoment]: cgetNowMoment, // getNowMoment
   [bas.cc + ccomputeDeltaTime]: ccomputeDeltaTime, // computeDeltaTime
+
+  // queue
+  [bas.cc + cinitQueue]: cinitQueue, // initQueue
+  [bas.cc + cdequeue]: cdequeue, // dequeue
+  [bas.cc + cenqueue]: cenqueue, // enqueue
+  [bas.cc + cisEmpty]: cisEmpty, // isEmpty
+  [bas.cc + cqueueFront]: cqueueFront, // queueFront
+  [bas.cc + cqueueSize]: cqueueSize, // queueSize
+
+  // stack
+  [bas.cc + cinitStack]: cinitStack, // initStack
+  [bas.cc + cclearStack]: cclearStack, // clearStack
+  [bas.cc + cpush]: cpush, // push
+  [bas.cc + cpop]: cpop, // pop
+  [bas.cc + cisEmpty]: cisEmpty, // isEmpty
+  [bas.cc + clength]: clength, // length
+  [bas.cc + ccontains]: ccontains, // contains
+  [bas.cc + cprint]: cprint, // print
 
   // main
   [bas.cc + cinitFramework]: cinitFramework // initFramework
