@@ -35,6 +35,13 @@ let cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 // rulesLibrary
 let cinitRulesLibrary = gen.cinit + wr1.cRules + wr1.cLibrary; // initRulesLibrary
 
+// chiefCommander
+let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands
+let cloadCommandAliasesFromPath = wr1.cload + wr1.cCommand + wr1.cAliases + wr1.cFrom + wr1.cPath; // loadCommandAliasesFromPath
+let cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
+let cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
+let cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
+
 // chiefConfiguration
 let csetupConfiguration = wr1.csetup + wr1.cConfiguration; // setupConfiguration
 
@@ -92,8 +99,8 @@ let ccomputeDeltaTime = wr1.ccompute + gen.cDelta + wr1.cTime; // computeDeltaTi
 
 // queue
 let cinitQueue = phn.cinit + wr1.cQueue; // initQueue
-let cdequeue = bas.cde + wr1.cqueue; // dequeue
-let cenqueue = bas.cen + wr1.cqueue; // enqueue
+let cdequeue = wr1.cdequeue; // dequeue
+let cenqueue = wr1.cenqueue; // enqueue
 let cisEmpty = wr1.cis + wr1.cEmpty; // isEmpty
 let cqueueFront = wr1.cqueue + wr1.cFront; // queueFront
 let cqueueSize = wr1.cqueue + wr1.cSize; // queueSize
@@ -131,6 +138,13 @@ module.exports = {
 
   // rulesLibrary
   [bas.cc + cinitRulesLibrary]: cinitRulesLibrary, // initRulesLibrary
+
+  // chiefCommander
+  [bas.cc + cbootStrapCommands]: cbootStrapCommands, // bootStrapCommands
+  [bas.cc + cloadCommandAliasesFromPath]: cloadCommandAliasesFromPath, // loadCommandAliasesFromPath
+  [bas.cc + cenqueueCommand]: cenqueueCommand, // enqueueCommand
+  [bas.cc + cisCommandQueueEmpty]: cisCommandQueueEmpty, // isCommandQueueEmpty
+  [bas.cc + cprocessCommandQueue]: cprocessCommandQueue, // processCommandQueue
 
   // chiefConfiguration
   [bas.cc + csetupConfiguration]: csetupConfiguration, // setupConfiguration

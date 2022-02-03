@@ -1577,6 +1577,10 @@ let ccommands = ccommand + bas.cs; // commands
 let cCommands = cCommand + bas.cs; // Commands
 let cqueue = bas.cqu + bas.ceu + bas.ce; // queue
 let cQueue = bas.cQu + bas.ceu + bas.ce; // Queue
+let cenqueue = bas.cen + cqueue; // enqueue
+let cEnqueue = bas.cEn + cqueue; // Enqueue
+let cdequeue = bas.cde + cqueue; // dequeue
+let cDequeue = bas.cDe + cqueue; // Dequeue
 let cblob = bas.cb + phn.clob; // blob
 let cBlob = bas.cB + phn.clob; // Blob
 let cframe = bas.cf + phn.crame; // frame
@@ -4110,6 +4114,10 @@ module.exports = {
   [bas.cc + cCommands]: cCommands, // Commands
   [bas.cc + cqueue]: cqueue, // queue
   [bas.cc + cQueue]: cQueue, // Queue
+  [bas.cc + cenqueue]: cenqueue, // enqueue
+  [bas.cc + cEnqueue]: cEnqueue, // Enqueue
+  [bas.cc + cdequeue]: cdequeue, // dequeue
+  [bas.cc + cDequeue]: cDequeue, // Dequeue
   [bas.cc + cblob]: cblob, // blob
   [bas.cc + cBlob]: cBlob, // Blob
   [bas.cc + cframe]: cframe, // frame
