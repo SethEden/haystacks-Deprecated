@@ -465,6 +465,7 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
  console.log(`END ${namespacePrefix}${functionName} function`);
  return returnData;
 };
+
 // ******************************************************
 // Internal functions
 // ******************************************************
