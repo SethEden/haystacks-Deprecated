@@ -117,7 +117,7 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
     // At some point we might need these separate designations, like for the colorizer logic, but for now,
     // until there is a business need I will keep them unified.
     // Everything to the right all falls under the designation of "debugSettings"
-    // so that as teh base for the namespace tree should work perfectly.
+    // so that as the base for the namespace tree should work perfectly.
     let parsedDebugSettingsNamespace = returnValue.split('.');
     returnValue = parsedDebugSettingsNamespace[1];
   }
