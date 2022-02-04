@@ -79,6 +79,7 @@ function initFrameworkSchema(configData) {
   let appConfigPath = configData[cfg.cappConfigPath];
   let frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
+  // TODO: Implement the rest of the functionality from the initFrameworkSchema from the NodeJS-App repo HERE!
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

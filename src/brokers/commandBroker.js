@@ -411,7 +411,7 @@ function executeCommand(commandString) {
     // stack.print(cfg.cCommandNamesPerformanceTrackingStack);
     // stack.print(cfg.cCommandPerformanceTrackingStack);
   } // End-if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false)
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

@@ -16,7 +16,7 @@ let gen = require('./generic.constants');
 let wr1 = require('./word1.constants');
 
 // commandBroker
-let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands
+// let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands // Duplicate definition in the chiefCommander
 let caddClientCommands = wr1.cadd + wr1.cClient + wr1.cCommands; // addClientCommands
 let cgetValidCommand = wr1.cget + wr1.cValid + wr1.cCommand; // getValidCommand
 let cgetCommandArgs = wr1.cget + wr1.cCommand + gen.cArgs; // getCommandArgs
@@ -39,6 +39,9 @@ let cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRule
 let caddClientRules = wr1.cadd + wr1.cClient + wr1.cRules; // addClientRules
 let cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 
+// workflowBroker
+let cgetWorkflow = wr1.cget + wr1.cWorkflow; // getWorkflow
+
 // rulesLibrary
 let cinitRulesLibrary = gen.cinit + wr1.cRules + wr1.cLibrary; // initRulesLibrary
 
@@ -55,6 +58,9 @@ let csetupConfiguration = wr1.csetup + wr1.cConfiguration; // setupConfiguration
 // chiefData
 let csearchForUniversalDebugConfigSetting = wr1.csearch + wr1.cFor + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // searchForUniversalDebugConfigSetting
 let csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
+
+// chiefWorkflow
+let cloadCommandWorkflowsFromPath = wr1.cload + wr1.cCommand + wr1.cWorkflows + wr1.cFrom + wr1.cPath; // loadCommandWorkflowsFromPath
 
 // warden
 let cprocessRootPath = wr1.cprocess + wr1.cRoot + wr1.cPath; // processRootPath
@@ -94,6 +100,14 @@ let ccopyFileSync = wr1.ccopy + wr1.cFile + wr1.cSync; // copyFileSync
 let ccopyFolderRecursiveSync = wr1.ccopy + wr1.cFolder + wr1.cRecursive + wr1.cSync; // copyFolderRecursiveSync
 let cappendMessageToFile = wr1.cappend + wr1.cMessage + bas.cTo + wr1.cFile; // appendMessageToFile
 
+// lexical
+let cparseBusinessRuleArgument = wr1.cparse + wr1.cBusiness + wr1.cRule + wr1.cArgument; // parseBusinessRuleArgument
+let canalyzeArgument = wr1.canalyze + wr1.cArgument; // analyzeArgument
+let canalyzeForRegularExpression = wr1.canalyze + wr1.cFor + wr1.cRegular + wr1.cExpression; // analyzeForRegularExpression
+let cparseArgumentAsRegularExpression = wr1.cparse + wr1.cArgument + wr1.cAs + wr1.cRegular + wr1.cExpression; // parseArgumentAsRegularExpression
+let cparseArgumentAsArray = wr1.cparse + wr1.cArgument + wr1.cAs + wr1.cArray; // parseArgumentAsArray
+let cremoveStringLiteralTagsFromArray = wr1.cremove + wr1.cString + wr1.cLiteral + wr1.cTags + wr1.cFrom + wr1.cArray; // removeStringLiteralTagsFromArray
+
 // loggers
 let cconsoleLog = wr1.cconsole + gen.cLog; // consoleLog
 
@@ -117,7 +131,7 @@ let cinitStack = phn.cinit + wr1.cStack; // initStack
 let cclearStack = wr1.cclear + wr1.cStack; // clearStack
 let cpush = wr1.cpush; // push
 let cpop = wr1.cpop; // pop
-let cisEmpty = wr1.cis + wr1.cEmpty; // isEmpty
+// let cisEmpty = wr1.cis + wr1.cEmpty; // isEmpty // Duplicate definition in the chiefCommander
 let clength = wr1.clength; // length
 let ccontains = wr1.ccontains; // contains
 let cprint = wr1.cprint; // print
@@ -127,7 +141,7 @@ let cinitFramework = gen.cinit + wr1.cFramework; // initFramework
 
 module.exports = {
   // commandBroker
-  [bas.cc + cbootStrapCommands]: cbootStrapCommands, // bootStrapCommands
+  // [bas.cc + cbootStrapCommands]: cbootStrapCommands, // bootStrapCommands // Duplicate definition in the chiefCommander
   [bas.cc + caddClientCommands]: caddClientCommands, // addClientCommands
   [bas.cc + cgetValidCommand]: cgetValidCommand, // getValidCommand
   [bas.cc + cgetCommandArgs]: cgetCommandArgs, // getCommandArgs
@@ -150,6 +164,9 @@ module.exports = {
   [bas.cc + caddClientRules]: caddClientRules, // addClientRules
   [bas.cc + cprocessRules]: cprocessRules, // processRules
 
+  // workflowBroker
+  [bas.cc + cgetWorkflow]: cgetWorkflow, // getWorkflow
+
   // rulesLibrary
   [bas.cc + cinitRulesLibrary]: cinitRulesLibrary, // initRulesLibrary
 
@@ -166,6 +183,9 @@ module.exports = {
   // chiefData
   [bas.cc + csearchForUniversalDebugConfigSetting]: csearchForUniversalDebugConfigSetting, // searchForUniversalDebugConfigSetting
   [bas.cc + csetupAllJsonConfigData]: csetupAllJsonConfigData, // setupAllJsonConfigData
+
+  // chiefWorkflow
+  [bas.cc + cloadCommandWorkflowsFromPath]: cloadCommandWorkflowsFromPath, // loadCommandWorkflowsFromPath
 
   // warden
   [bas.cc + cprocessRootPath]: cprocessRootPath, // processRootPath
@@ -205,6 +225,14 @@ module.exports = {
   [bas.cc + ccopyFolderRecursiveSync]: ccopyFolderRecursiveSync, // copyFolderRecursiveSync
   [bas.cc + cappendMessageToFile]: cappendMessageToFile, // appendMessageToFile
 
+  // lexical
+  [bas.cc + cparseBusinessRuleArgument]: cparseBusinessRuleArgument, // parseBusinessRuleArgument
+  [bas.cc + canalyzeArgument]: canalyzeArgument, // analyzeArgument
+  [bas.cc + canalyzeForRegularExpression]: canalyzeForRegularExpression, // analyzeForRegularExpression
+  [bas.cc + cparseArgumentAsRegularExpression]: cparseArgumentAsRegularExpression, // parseArgumentAsRegularExpression
+  [bas.cc + cparseArgumentAsArray]: cparseArgumentAsArray, // parseArgumentAsArray
+  [bas.cc + cremoveStringLiteralTagsFromArray]: cremoveStringLiteralTagsFromArray, // removeStringLiteralTagsFromArray
+
   // loggers
   [bas.cc + cconsoleLog]: cconsoleLog, // consoleLog
 
@@ -228,7 +256,7 @@ module.exports = {
   [bas.cc + cclearStack]: cclearStack, // clearStack
   [bas.cc + cpush]: cpush, // push
   [bas.cc + cpop]: cpop, // pop
-  [bas.cc + cisEmpty]: cisEmpty, // isEmpty
+  // [bas.cc + cisEmpty]: cisEmpty, // isEmpty // Duplicate definition in the chiefCommander
   [bas.cc + clength]: clength, // length
   [bas.cc + ccontains]: ccontains, // contains
   [bas.cc + cprint]: cprint, // print

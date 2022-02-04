@@ -232,3 +232,100 @@ function parseArgumentAsRegularExpression(argumentValue) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
+
+/**
+ * @function parseArgumentAsArray
+ * @description Parses the argument as an array and return the array.
+ * @param {string} argumentValue A string that contains an array, we will use the secondary command delimiter to split the array.
+ * @return {array<string>} An array of strings.
+ * @author Seth Hollingsead
+ * @date 2022/02/04
+ */
+function parseArgumentAsArray(argumentValue) {
+  let functionName = parseArgumentAsArray.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // argumentValue is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueIs + JSON.stringify(argumentValue));
+  let returnData;
+  let isArray = false;
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
+  let argsArrayContainsCharacterRule = [];
+  let removeBracketsFromArgsArrayRule = [];
+  argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
+  removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
+  let argsArrayContainsOpenBracket = false;
+  let argsArrayContainsCloseBracket = false;
+  if (Array.isArray(argumentValue) === true) {
+    argsArrayContainsOpenBracket = ruleBroker.processRules(bas.cOpenBracket, argumentValue, argsArrayContainsCharacterRule);
+    argsArrayContainsCloseBracket = ruleBroker.processRules(bas.cCloseBracket, argumentValue, argsArrayContainsCharacterRule);
+    isArray = true;
+  } else {
+    argsArrayContainsOpenBracket = argumentValue.includes(bas.cOpenBracket);
+    argsArrayContainsCloseBracket = argumentValue.includes(bas.cCloseBracket);
+    isArray = false;
+  }
+
+  if (isArray === false) {
+    if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
+      // argumentValue contains the delimiter, lets split it!
+      loggers.consoleLog(namespacePrefix + functionName, msg.carguemntValueContainsTheDelimiterLetsSplitIt);
+      argumentValue = argumentValue.split(secondaryCommandArgsDelimiter);
+    } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
+  } // End-if (isArray === false)
+  if (argsArrayContainsOpenBracket === true) {
+    argumentValue = ruleBroker.processRules(bas.cOpenBracket, argumentValue, removeBracketsFromArgsArrayRule);
+    // argumentValue after attempting to remove a open bracket from all array elements is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueAfterAttemptingToRemoveOpenBracketFromAllArrayElementsIs + JSON.stringify(argumentValue));
+  } // End-if (argsArrayContainsOpenBracket === true)
+  if (argsArrayContainsCloseBracket === true) {
+    argumentValue = ruleBroker.processRules(bas.cCloseBracket, argumentValue, removeBracketsFromArgsArrayRule);
+    // argumentValue after attempting to remove a close bracket from all array elements is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueAfterAttemptingToRemoveCloseBracketFromAllArayElementsIs + JSON.stringify(argumentValue));
+  } // End-if (argsArrayContainsCloseBracket === true)
+  // secondaryCommandArgsDelimiter is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandArgsDelimiterIs + secondaryCommandArgsDelimiter);
+  if (isArray === true) {
+    if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
+      // argumentValue contains the delimiter, lets split it!
+      loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
+      returnData = argumentValue.split(secondaryCommandArgsDelimiter);
+    } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
+  } else {
+    returnData = argumentValue;
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function removeStringLiteralTagsFromArray
+ * @description Removes all string literal tags from all the argument array elements passed as input to the function.
+ * @param {array<string>} argumentArray The argument array that should have the string iteral tags removed.
+ * The string iteral tag is the tilde character.
+ * @return {array<string>} The same as the input, but just with the string literal tags removed from all array elements.
+ * @author Seth Hollingsead
+ * @date 2022/02/04
+ */
+function removeStringLiteralTagsFromArray(argumentArray) {
+  let functionName = removeStringLiteralTagsFromArray.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // argumentArray is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cargumentArrayIs + JSON.stringify(argumentArray));
+  let returnData;
+  let removeCharacterRule = [];
+  removeCharacterRule[0] = biz.cremoveCharacterFromArray;
+  returnData = ruleBroker.processRules(bas.cTilde, argumentArray, removeCharacterRule);
+  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+module.exports = {
+  [fnc.cparseBusinessRuleArgument]: (argumentValue, index, consolidatedArgumentMode) => parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMode),
+  [fnc.canalyzeArgument]: (argumentValue) => analyzeArgument(argumentValue),
+  [fnc.canalyzeForRegularExpression]: (argumentValue) => analyzeForRegularExpression(argumentValue),
+  [fnc.cparseArgumentAsRegularExpression]: (argumentValue) => parseArgumentAsRegularExpression(argumentValue),
+  [fnc.cparseArgumentAsArray]: (argumentValue) => parseArgumentAsArray(argumentValue),
+  [fnc.cremoveStringLiteralTagsFromArray]: (argumentArray) => removeStringLiteralTagsFromArray(argumentArray)
+};
