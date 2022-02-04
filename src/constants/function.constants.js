@@ -15,6 +15,13 @@ let phn = require('./phonic.constants');
 let gen = require('./generic.constants');
 let wr1 = require('./word1.constants');
 
+// commandBroker
+let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands
+let caddClientCommands = wr1.cadd + wr1.cClient + wr1.cCommands; // addClientCommands
+let cgetValidCommand = wr1.cget + wr1.cValid + wr1.cCommand; // getValidCommand
+let cgetCommandArgs = wr1.cget + wr1.cCommand + gen.cArgs; // getCommandArgs
+let cexecuteCommand = wr1.cexecute + wr1.cCommand; // executeCommand
+
 // dataBroker
 let cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath
 let cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // findUniversalDebugConfigSetting
@@ -119,6 +126,13 @@ let cprint = wr1.cprint; // print
 let cinitFramework = gen.cinit + wr1.cFramework; // initFramework
 
 module.exports = {
+  // commandBroker
+  [bas.cc + cbootStrapCommands]: cbootStrapCommands, // bootStrapCommands
+  [bas.cc + caddClientCommands]: caddClientCommands, // addClientCommands
+  [bas.cc + cgetValidCommand]: cgetValidCommand, // getValidCommand
+  [bas.cc + cgetCommandArgs]: cgetCommandArgs, // getCommandArgs
+  [bas.cc + cexecuteCommand]: cexecuteCommand, // executeCommand
+
   // dataBroker
   [bas.cc + cscanDataPath]: cscanDataPath, // scanDataPath
   [bas.cc + cfindUniversalDebugConfigSetting]: cfindUniversalDebugConfigSetting, // findUniversalDebugConfigSetting

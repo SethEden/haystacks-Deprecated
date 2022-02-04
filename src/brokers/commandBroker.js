@@ -28,7 +28,7 @@ let configurator = require('../executrix/configurator');
 let lexical = require('../executrix/lexical');
 let commandsLibrary = require('../commandsBlob/commandsLibrary');
 let stack = require('../structures/stack');
-let tmers = require('../executrix/timers');
+let timers = require('../executrix/timers');
 let loggers = require('../executrix/loggers');
 let bas = require('../constants/basic.constants');
 let gen = require('../constants/generic.constants');
@@ -414,4 +414,12 @@ function executeCommand(commandString) {
   loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+module.exports = {
+  [fnc.cbootStrapCommands]: () => bootStrapCommands(),
+  [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
+  [fnc.cgetValidCommand]: (commandString, commandDelimiter) => getValidCommand(commandString, commandDelimiter),
+  [fnc.cgetCommandArgs]: (commandString, commandDelimiter) => getCommandArgs(commandString, commandDelimiter),
+  [fnc.cexecuteCommand]: (commandString) => executeCommand(commandString)
 };
