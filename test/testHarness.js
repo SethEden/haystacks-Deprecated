@@ -23,6 +23,7 @@ import haystacks from '../src/main.js';
 let apc = require('./constants/application.constants');
 let apcon = require('./constants/application.constant.constants');
 let apmsg = require('./constants/application.message.constants');
+let dotenv = require('dotenv').config();
 let path = require('path');
 global.appRot = path.resolve(process.cwd());
 let bas = haystacks.bas;
@@ -52,7 +53,8 @@ function bootstrapApplication() {
   let appConfig = {
     applicationName: apc.chaystacks,
     rootPath: rootPath,
-    appConfigReferencePath: apc.cclientConfigurationPath
+    appConfigReferencePath: apc.cclientConfigurationPath,
+    metaDataPath: apc.cmetaDataPath
   };
   haystacks.initFramework(appConfig);
   // console.log(`END ${namespacePrefix}${functionName} function`);

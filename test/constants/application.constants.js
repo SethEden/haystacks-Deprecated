@@ -17,7 +17,10 @@ let wr1 = haystacks.wr1;
 
 // "//test//resources//configuration//"
 let cclientConfigurationPath = bas.cDoubleForwardSlash + wr1.ctest + bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash;
+// /resources/metaData.json
+let cmetaDataPath = bas.cForwardSlash + wr1.cresources + bas.cForwardSlash + cfg.cmetaDatadotJson;
 
 module.exports = {
-  [bas.cc + apcon.cclientConfigurationPath]: cclientConfigurationPath // "//test//resources//configuration//"
+  [bas.cc + apcon.cclientConfigurationPath]: cclientConfigurationPath, // "//test//resources//configuration//"
+  [bas.cc + apcon.cmetaDataPath]: cmetaDataPath // /resources/metaData.json
 };

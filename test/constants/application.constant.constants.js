@@ -14,6 +14,7 @@ let bas = haystacks.bas;
 let wr2 = haystacks.wr2;
 
 let capplicationMessage = wr2.capplication + wr2.cMessage; // applicationMessage
+let cmetaDataPath = wr2.cmeta + wr2.cData + wr1.cPath; // /resources/metaData.json
 
 let cclientConfigurationPath = wr2.cclient + wr2.cConfiguration + wr2.cPath;
 let capplicationMessage01 = capplicationMessage + wr2.c0 + wr2.c1; // applicationMessage01
@@ -23,6 +24,7 @@ let capplicationMessage04 = capplicationMessage + wr2.c0 + wr2.c4; // applicatio
 let capplicationMessage05 = capplicationMessage + wr2.c0 + wr2.c5; // applicationMessage01
 
 module.exports = {
+  [bas.cc + cmetaDataPath]: cmetaDataPath, // metaDataPath
   [bas.cc + cclientConfigurationPath]: cclientConfigurationPath, // clientConfigurationPath
   [bas.cc + capplicationMessage01]: capplicationMessage01, // applicationMessage01
   [bas.cc + capplicationMessage02]: capplicationMessage02, // applicationMessage01
