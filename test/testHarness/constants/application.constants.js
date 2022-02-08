@@ -27,13 +27,24 @@ let cApplicationName = 'testHarness';
 // "/test/testHarness/"
 let cAppPath = bas.cForwardSlash + wr1.ctest + bas.cForwardSlash + cApplicationName + bas.cForwardSlash;
 
-// testHarness/resources/
+// resources/
 let cResourcesCommonPath = wr1.cresources + bas.cForwardSlash;
+// commands/
+let cCommandsCommonPath = wr1.ccommands + bas.cForwardSlash;
+// configuration/
+let cConfigurationCommonPath = wr1.cconfiguration + bas.cForwardSlash;
+// workflows/
+let cWorkflowsCommonPath = wr1.cworkflows + bas.cForwardSlash;
+// release/
+let cReleasePath = wr1.crelease + bas.cForwardSlash;
+// /test/testHarness/resources/
+let cFullResourcesPath = cAppPath + cResourcesCommonPath;
 
-let cDevelopResourcesPath = bas.cForwardSlash + wr1.csrc + bas.cForwardSlash + cResourcesCommonPath; // '/src/test/resources';
-let cProductionResourcesPath = bas.cForwardSlash + wr1.cbin + bas.cForwardSlash + cResourcesCommonPath; // '/bin/test/resources';
 
-let cDevelopRootPath =
+// let cDevelopResourcesPath = bas.cForwardSlash + wr1.csrc + bas.cForwardSlash + cResourcesCommonPath; // '/src/test/resources';
+// let cProductionResourcesPath = bas.cForwardSlash + wr1.cbin + bas.cForwardSlash + cResourcesCommonPath; // '/bin/test/resources';
+//
+// let cDevelopRootPath =
 
 module.exports = {
   [bas.cc + apcon.cclientConfigurationPath]: cclientConfigurationPath, // "//test//resources//configuration//"

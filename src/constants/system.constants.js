@@ -299,7 +299,6 @@ let cctrl_y = phn.cctrl + bas.cPlus + bas.cy; // ctrl+y
 let cctrl_z = phn.cctrl + bas.cPlus + bas.cz; // ctrl+z
 
 // System Terms
-let cframeworkResourcesConfigurationPath = bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash; // //resources//configuration//
 let csystemConfigFileName = wr1.cframework + bas.cDot + wr1.csystem + gen.cDotjson; // framework.system.json
 let capplicationConfigFileName = wr1.capplication + bas.cDot + wr1.csystem + gen.cDotjson; // application.system.json
 let cappConfigPath = gen.capp + wr1.cConfig + wr1.cPath; // appConfigPath
@@ -372,6 +371,9 @@ let cshape_constants_js = wr1.cshape + bas.cDot + wr1.cconstants + bas.cDot + ba
 let csystem_constants_js = wr1.csystem + bas.cDot + wr1.cconstants + bas.cDot + bas.cjs; // system.constants.js
 let cunit_constants_js = wr1.cunit + bas.cDot + wr1.cconstants + bas.cDot + bas.cjs; // unit.constants.js
 let cword_constants_js = wr1.cword + bas.cDot + wr1.cconstants + bas.cDot + bas.cjs; // word.constants.js
+
+// System Paths
+let cframeworkResourcesConfigurationPath = bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash; // //resources//configuration//
 
 module.exports = {
   // Miscelaneious
@@ -652,7 +654,6 @@ module.exports = {
   [bas.cc + con.cctrl_z]: cctrl_z, // ctrl+z
 
   // System Terms
-  [bas.cc + con.cframeworkResourcesConfigurationPath]: cframeworkResourcesConfigurationPath, // //resources//configuration//
   [bas.cc + con.csystemConfigFileName]: csystemConfigFileName, // framework.system.json
   [bas.cc + con.capplicationConfigFileName]: capplicationConfigFileName, // application.system.json
   [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
@@ -724,4 +725,7 @@ module.exports = {
   [bas.cc + con.csystem_constants_js]: csystem_constants_js, // system.constants.js
   [bas.cc + con.cunit_constants_js]: cunit_constants_js, // unit.constants.js
   [bas.cc + con.cword_constants_js]: cword_constants_js, // word.constants.js
+
+  // System Paths
+  [bas.cc + con.cframeworkResourcesConfigurationPath]: cframeworkResourcesConfigurationPath, // //resources//configuration//
 };
