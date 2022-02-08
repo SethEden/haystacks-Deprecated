@@ -19,7 +19,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from '../src/main.js';
+import haystacks from '../../src/main.js';
 let apc = require('./constants/application.constants');
 let apcon = require('./constants/application.constant.constants');
 let apmsg = require('./constants/application.message.constants');

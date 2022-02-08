@@ -9,12 +9,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from '../../src/main.js';
+import haystacks from '../../../src/main.js';
 let bas = haystacks.bas;
 let wr2 = haystacks.wr2;
 
 let capplicationMessage = wr2.capplication + wr2.cMessage; // applicationMessage
-let cmetaDataPath = wr2.cmeta + wr2.cData + wr1.cPath; // /resources/metaData.json
+let cmetaDataPath = wr2.cmeta + wr2.cData + wr2.cPath; // /resources/metaData.json
 
 let cclientConfigurationPath = wr2.cclient + wr2.cConfiguration + wr2.cPath;
 let capplicationMessage01 = capplicationMessage + wr2.c0 + wr2.c1; // applicationMessage01

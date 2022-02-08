@@ -9,7 +9,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from '../../src/main.js';
+import haystacks from '../../../src/main.js';
 let apcon = require('./application.constant.constants');
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;

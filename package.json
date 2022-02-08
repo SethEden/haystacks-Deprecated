@@ -4,7 +4,7 @@
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
   "scripts": {
-    "test": "babel-node ./test/testHarness.js",
+    "test": "babel-node ./test/testHarness/testHarness.js",
     "start": "babel-node ./src/main.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
