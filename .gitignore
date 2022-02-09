@@ -4,6 +4,9 @@ node_modules/*
 documentation/*
 */bin/*
 bin/*
+*.env
+*.Env
+*.ENV
 *.log
 *.Log
 *.LOG
