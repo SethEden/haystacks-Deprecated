@@ -56,7 +56,9 @@ function bootstrapApplication() {
     appConfigReferencePath: apc.cFullConfigurationPath,
     metaDataPath: apc.cmetaDataPath,
     clientCommandAliasesPath: apc.cFullCommandsPath,
-    clientWorkflowsPath: apc.cFullWorkflowsPath
+    clientWorkflowsPath: apc.cFullWorkflowsPath,
+    clientBusinessRules: clientRules.initClientRulesLibrary(),
+    clientCommands: clientCommands.initClientCommandsLibrary()
   };
   haystacks.initFramework(appConfig);
   // console.log(`END ${namespacePrefix}${functionName} function`);

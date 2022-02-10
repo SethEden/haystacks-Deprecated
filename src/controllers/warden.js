@@ -12,6 +12,7 @@
  * @requires module:word1.constants
  * @requires module:ruleBroker
  * @requires module:chiefConfiguration
+ * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -28,6 +29,7 @@ let sys = require('../constants/system.constants');
 let wr1 = require('../constants/word1.constants');
 let ruleBroker = require('../brokers/ruleBroker');
 let chiefConfiguration = require('./chiefConfiguration');
+let configurator = require('../executrix/configurator');
 let loggers = require('../executrix/loggers');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
@@ -79,8 +81,75 @@ function initFrameworkSchema(configData) {
   let appConfigPath = configData[cfg.cappConfigPath];
   let frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
-  // TODO: Implement the rest of the functionality from the initFrameworkSchema from the NodeJS-App repo HERE!
+
+  // let appConfig = {
+  //   applicationName: apc.cApplicationName,
+  //   rootPath: rootPath,
+  //   appConfigReferencePath: apc.cFullConfigurationPath,
+  //   metaDataPath: apc.cmetaDataPath,
+  //   clientCommandAliasesPath: apc.cFullCommandsPath,
+  //   clientWorkflowsPath: apc.cFullWorkflowsPath,
+  //   clientBusinessRules: clientRules.initClientRulesLibrary(),
+  //   clientCommands: clientCommands()
+  // };
+  
+
+
   // console.log(`END ${namespacePrefix}${functionName} function`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function mergeClientBusienssRules
+ * @description Merges the map of client defined busienss rule names and client defined business rule function calls
+ * with the existing D-data structure that should already have all of the system defined business rule.
+ * @param {object} cientBusinessRules A map of client defined business rule names and client defined business rule function calls.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/09
+ */
+function mergeClientBusinessRules(cientBusinessRules) {
+  let functionName = mergeClientBusinessRules.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  ruleBroker.addClientRules(clientBusinessRules);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function mergeCientCommands
+ * @description Merges the map of client defined command names and client defined command function calls
+ * with the existing D-data structure that should already have all of the system defined commands.
+ * @param {object} clientCommands A map of client defined command names and client defined command function calls.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/09
+ */
+function mergeClientCommands(clientCommands) {
+  let functionName = mergeClientCommands.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  ruleBroker.addClientCommands(clientCommands);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function loadCommandAliases
+ * @description Loads and merges both the system defined command aliases XML file & the cient defined command aliases XML file.
+ * @param {string} systemCommandsAliasesPath The path from the application root to the system defined commands aliases XML file.
+ * @param {sring} clientCommandsAliasesPath The path from the application root to the client defined commands aliases XML file.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/09
+ */
+function loadCommandAliases(systemCommandsAliasesPath, clientCommandsAliasesPath) {
+  let functionName = loadCommandAliases.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // systemCommandsAliasesPath is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csystemCommandsAliasesPathIs + systemCommandsAliasesPath);
+  // clientCommandsAliasesPath is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cclientCommandsAliasesPathIs + clientCommandsAliasesPath);
+
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
