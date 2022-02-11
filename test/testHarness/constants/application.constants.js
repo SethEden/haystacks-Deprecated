@@ -11,7 +11,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let haystacks = require('../../../src/main.js');
+let haystacks = require('haystacks');
 let apcon = require('./application.constant.constants');
 let bas = haystacks.bas;
 let cfg = haystacks.cfg;

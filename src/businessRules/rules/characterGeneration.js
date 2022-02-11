@@ -282,7 +282,7 @@ export const randomlyGenerateSpecialCharacter = function(inputData, inputMetaDat
 };
 
 /**
- * @function randomlyGenerateNumberInRange2
+ * @function randomlyGenerateNumberInRange
  * @description Randomly generates a number between the start-range and end-range.
  * @param {string} inputData A string that contains the number with the minimum value.
  * @param {array<string|integer,boolean,boolean>} inputMetaData An array with multiple input parameters:

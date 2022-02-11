@@ -1,0 +1,9 @@
+{
+  "debugFiles|debugSetting.commandsBlob.commands.nominal": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.echoCommand": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.exit": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.version": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.about": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.name": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.clearScreen": true
+}

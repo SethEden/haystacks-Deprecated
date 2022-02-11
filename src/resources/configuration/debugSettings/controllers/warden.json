@@ -1,4 +1,7 @@
 {
   "debugFiles|debugSetting.controllers.warden": false,
-  "debugFunctions|debugSetting.controllers.warden.initFrameworkSchema": false
+  "debugFunctions|debugSetting.controllers.warden.initFrameworkSchema": false,
+  "debugFunctions|debugSetting.controllers.warden.mergeClientBusinessRules": false,
+  "debugFunctions|debugSetting.controllers.warden.mergeClientCommands": false,
+  "debugFunctions|debugSetting.controllers.warden.loadCommandAliases": false
 }

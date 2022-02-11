@@ -1,0 +1,11 @@
+{
+  "debugFiles|debugSetting.structures.stack": false,
+  "debugFunctions|debugSetting.structures.stack.initStack": false,
+  "debugFunctions|debugSetting.structures.stack.clearStack": false,
+  "debugFunctions|debugSetting.structures.stack.push": false,
+  "debugFunctions|debugSetting.structures.stack.pop": false,
+  "debugFunctions|debugSetting.structures.stack.isEmpty": false,
+  "debugFunctions|debugSetting.structures.stack.length": false,
+  "debugFunctions|debugSetting.structures.stack.contains": false,
+  "debugFunctions|debugSetting.structures.stack.print": false
+}

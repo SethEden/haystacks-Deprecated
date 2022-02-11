@@ -19,13 +19,13 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from '../../src/main.js';
+let haystacks = require('haystacks');
 let clientCommands = require('./commands/clientCommandsLibrary');
 let apc = require('./constants/application.constants');
 let app_msg = require('./constants/application.message.constants');
-let dotenv = require('dotenv').config();
 let path = require('path');
 global.appRot = path.resolve(process.cwd());
+// const {bas, cfg, } = haystacks
 let bas = haystacks.bas;
 let cfg = haystacks.cfg;
 let gen = haystacks.gen;
@@ -52,7 +52,7 @@ function bootstrapApplication() {
   const {crootPath, cappConfigReferencePath} = cfg;
   let appConfig = {
     applicationName: apc.cApplicationName,
-    rootPath: rootPath,
+    clientRootPath: rootPath,
     appConfigReferencePath: apc.cFullConfigurationPath,
     metaDataPath: apc.cmetaDataPath,
     clientCommandAliasesPath: apc.cFullCommandsPath,
@@ -96,8 +96,8 @@ async function application() {
         haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage05);
         break;
       }
-    }
-  }
+    } // End-while (programRunning === true)
+  } // End-if (argumnentDrivenInterface === false)
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
 };
 

@@ -1,0 +1,8 @@
+{
+  "debugFiles|debugSetting.controllers.chiefCommander": false,
+  "debugFunctions|debugSetting.controllers.chiefCommander.bootStrapCommands": false,
+  "debugFunctions|debugSetting.controllers.chiefCommander.loadCommandAliasesFromPath": false,
+  "debugFunctions|debugSetting.controllers.chiefCommander.enqueueCommand": false,
+  "debugFunctions|debugSetting.controllers.chiefCommander.isCommandQueueEmpty": false,
+  "debugFunctions|debugSetting.controllers.chiefCommander.processCommandQueue": false
+}
