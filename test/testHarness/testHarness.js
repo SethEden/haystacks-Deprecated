@@ -6,6 +6,10 @@
  * @description This is the main init for the testHarness application.
  * It contains just enough of the main program loop and/or basic argument parsing to effectively test the framework.
  * @requires module:haystacks.main
+ * @requires module:clientRules
+ * @requires module:clientCommands
+ * @requires module:application.constants
+ * @requires module:application.message.constants
  * @requires module:haystacks.constants.basic
  * @requires module:haystacks.constants.configuration
  * @requires module:haystacks.constants.message
@@ -19,11 +23,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let haystacks = require('haystacks');
-let clientCommands = require('./commands/clientCommandsLibrary');
-let apc = require('./constants/application.constants');
-let app_msg = require('./constants/application.message.constants');
-let path = require('path');
+import haystacks from 'haystacks';
+import {clientRules} from './businessRules/clientRulesLibrary';
+import clientCommands from './commands/clientCommandsLibrary';
+import * as apc from './constants/application.constants';
+import * as app_msg from './constants/application.message.constants';
+import path from 'path';
 global.appRot = path.resolve(process.cwd());
 // const {bas, cfg, } = haystacks
 let bas = haystacks.bas;
@@ -35,7 +40,7 @@ let wr1 = haystacks.wr1;
 let phn = haystacks.phn;
 let rootPath = '';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = baseFileName + bas.cDot;
+// let namespacePrefix = baseFileName + bas.cDot;
 
 /**
  * @function bootstrapApplication
@@ -46,7 +51,7 @@ let namespacePrefix = baseFileName + bas.cDot;
  */
 function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = path.resolve(process.cwd());
   const {capplicationName} = sys;
   const {crootPath, cappConfigReferencePath} = cfg;
@@ -61,7 +66,7 @@ function bootstrapApplication() {
     clientCommands: clientCommands.initClientCommandsLibrary()
   };
   haystacks.initFramework(appConfig);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**
@@ -102,7 +107,9 @@ async function application() {
 };
 
 // Launch the Test Harness application!!
+console.log('programmRunning = false');
 let programRunning = false;
-bootstrapApplication();
+// bootstrapApplication();
+console.log('programRunning = true');
 programRunning = true;
-application();
+// application();

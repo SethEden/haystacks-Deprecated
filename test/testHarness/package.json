@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A test harness application to test the haystacks framework.",
   "main": "./testHarness.js",
+  "type": "module",
   "scripts": {
     "start": "babel-node ./testHarness.js",
     "vers": "standard-version -m \"chore(release) version %s \"",

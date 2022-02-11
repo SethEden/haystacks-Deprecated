@@ -11,8 +11,8 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let haystacks = require('haystacks');
-let apcon = require('./application.constant.constants');
+import haystacks from 'haystacks';
+import * as app_con from './application.constant.constants';
 let bas = haystacks.bas;
 let cfg = haystacks.cfg;
 let wr1 = haystacks.wr1;
@@ -31,16 +31,16 @@ let cFullWorkflowsPath = cFullResourcesPath + cWorkflowsCommonPath; // /test/tes
 let cmetaDataPath = cFullResourcesPath + cfg.cmetaDatadotJson; // /resources/metaData.json
 
 module.exports = {
-  [bas.cc + apcon.cApplicationName]: cApplicationName, // testHarness
-  [bas.cc + apcon.cAppPath]: cAppPath, // "/test/testHarness/"
-  [bas.cc + apcon.cResourcesCommonPath]: cResourcesCommonPath, // resources/
-  [bas.cc + apcon.cCommandsCommonPath]: cCommandsCommonPath, // commands/
-  [bas.cc + apcon.cConfigurationCommonPath]: cConfigurationCommonPath, // configuration/
-  [bas.cc + apcon.cWorkflowsCommonPath]: cWorkflowsCommonPath, // workflows/
-  [bas.cc + apcon.cReleasePath]: cReleasePath, // release/
-  [bas.cc + apcon.cFullResourcesPath]: cFullResourcesPath, // /test/testHarness/resources/
-  [bas.cc + apcon.cFullCommandsPath]: cFullCommandsPath, // /test/testHarness/resources/commands/
-  [bas.cc + apcon.cFullConfigurationPath]: cFullConfigurationPath, // /test/testHarness/resources/configuration/
-  [bas.cc + apcon.cFullWorkflowsPath]: cFullWorkflowsPath, // /test/testHarness/resources/workflows/
-  [bas.cc + apcon.cmetaDataPath]: cmetaDataPath, // /resources/metaData.json
+  [bas.cc + app_con.cApplicationName]: cApplicationName, // testHarness
+  [bas.cc + app_con.cAppPath]: cAppPath, // "/test/testHarness/"
+  [bas.cc + app_con.cResourcesCommonPath]: cResourcesCommonPath, // resources/
+  [bas.cc + app_con.cCommandsCommonPath]: cCommandsCommonPath, // commands/
+  [bas.cc + app_con.cConfigurationCommonPath]: cConfigurationCommonPath, // configuration/
+  [bas.cc + app_con.cWorkflowsCommonPath]: cWorkflowsCommonPath, // workflows/
+  [bas.cc + app_con.cReleasePath]: cReleasePath, // release/
+  [bas.cc + app_con.cFullResourcesPath]: cFullResourcesPath, // /test/testHarness/resources/
+  [bas.cc + app_con.cFullCommandsPath]: cFullCommandsPath, // /test/testHarness/resources/commands/
+  [bas.cc + app_con.cFullConfigurationPath]: cFullConfigurationPath, // /test/testHarness/resources/configuration/
+  [bas.cc + app_con.cFullWorkflowsPath]: cFullWorkflowsPath, // /test/testHarness/resources/workflows/
+  [bas.cc + app_con.cmetaDataPath]: cmetaDataPath, // /resources/metaData.json
 };

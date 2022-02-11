@@ -15,16 +15,16 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let haystacks = require('../../../../src/main.js');
+import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 let sys = haystacks.sys;
-let app_biz = require('../../constants/application.business.constants');
-let apc = require('../../constants/application.constants');
-let path = require('path');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+import app_biz from '../../constants/application.business.constants';
+import apc from '../../constants/application.constants';
+import path from 'path';
+const baseFileName = path.basename(module.filename, path.extname(module.filename));
 // testHarness.businessRules.clientRules.clientStringParsing.
-let namespacePrefix = apc.ctestHarness + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEcho

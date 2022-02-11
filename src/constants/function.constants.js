@@ -45,6 +45,9 @@ let cgetWorkflow = wr1.cget + wr1.cWorkflow; // getWorkflow
 // rulesLibrary
 let cinitRulesLibrary = gen.cinit + wr1.cRules + wr1.cLibrary; // initRulesLibrary
 
+// commandsLibrary
+let cinitCommandsLibrary = gen.cinit + wr1.cCommands + wr1.cLibrary; // initCommandsLibrary
+
 // chiefCommander
 let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands
 let cloadCommandAliasesFromPath = wr1.cload + wr1.cCommand + wr1.cAliases + wr1.cFrom + wr1.cPath; // loadCommandAliasesFromPath
@@ -169,6 +172,9 @@ module.exports = {
 
   // rulesLibrary
   [bas.cc + cinitRulesLibrary]: cinitRulesLibrary, // initRulesLibrary
+
+  // commandsLibrary
+  [bas.cc + cinitCommandsLibrary]: cinitCommandsLibrary, // initCommandsLibrary
 
   // chiefCommander
   [bas.cc + cbootStrapCommands]: cbootStrapCommands, // bootStrapCommands

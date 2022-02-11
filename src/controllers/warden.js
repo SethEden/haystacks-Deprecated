@@ -50,8 +50,8 @@ let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  */
 function processRootPath(configData) {
   let functionName = processRootPath.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`configData is: ${JSON.stringify(configData)}`);
   let rules = {};
   rules[0] = biz.cparseSystemRootPath;
   ruleBroker.bootStrapBusinessRules();
@@ -59,8 +59,8 @@ function processRootPath(configData) {
   let pathToProcess = configData[cfg.crootPath];
   let resolvedPath = ruleBroker.processRules(pathToProcess, applicationName, rules);
   let rootPath = path.resolve(resolvedPath);
-  // console.log(`rootPath is: ${rootPath}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`rootPath is: ${rootPath}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
 };
 
@@ -92,7 +92,7 @@ function initFrameworkSchema(configData) {
   //   clientBusinessRules: clientRules.initClientRulesLibrary(),
   //   clientCommands: clientCommands()
   // };
-  
+
 
 
   // console.log(`END ${namespacePrefix}${functionName} function`);

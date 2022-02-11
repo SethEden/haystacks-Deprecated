@@ -40,7 +40,7 @@ let namespacePrefix = wr1.ccommands + wr1.cBlob + bas.cDot + baseFileName + bas.
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling trying to debug commands or business rules that do not appear to exist.
  */
-export const initCommandsLibrary = function() {
+function initCommandsLibrary() {
   let functionName = initCommandsLibrary.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   D[wr1.cCommands] = {};
@@ -62,4 +62,8 @@ export const initCommandsLibrary = function() {
 
   };
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+module.exports = {
+  [fnc.cinitCommandsLibrary]: () => initCommandsLibrary()
 };

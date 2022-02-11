@@ -3,13 +3,15 @@
  * @module clientCommandsLibrary
  * @description Contains all of the client defined commands as a map between function names and function calls.
  * @requires module:application.command.constants
+ * @requires module:application.function.constants
  * @author Seth Hollingsead
  * @date 2022/02/07
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let clientCommands = require('./clientCommands/clientCommands');
-let app_cmd = require('../constants/application.command.constants');
+import * as clientCommands from './clientCommands/clientCommands';
+import app_cmd from '../constants/application.command.constants';
+import app_fnc from '../constants/application.function.constants';
 
 /**
  * @function initClientCommandsLibrary
@@ -22,7 +24,7 @@ let app_cmd = require('../constants/application.command.constants');
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
-export const initClientCommandsLibrary = function() {
+function initClientCommandsLibrary() {
   return {
     // Client commands
     // ***********************************************
@@ -30,4 +32,13 @@ export const initClientCommandsLibrary = function() {
     // ***********************************************
     [app_cmd.ccustomEchoCommand]: (inputData, inputMetaData) => clientCommands.customEchoCommand(inputData, inputMetaData)
   };
+};
+
+// module.exports = {
+//   [app_fnc.cinitClientCommandsLibrary]: () => initCommandsLibrary()
+// };
+
+export default {
+  // [app_fnc.cinitClientCommandsLibrary]: () => initCommandsLibrary()
+  initClientCommandsLibrary
 };

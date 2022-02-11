@@ -9,7 +9,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from '../../../src/main.js';
+import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr2 = haystacks.wr2;
 

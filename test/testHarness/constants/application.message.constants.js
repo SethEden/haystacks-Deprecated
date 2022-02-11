@@ -2,6 +2,7 @@
  * @file application.message.constants.js
  * @module application.message.constants
  * @description Contains many re-usable application message constants.
+ * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.word.constants
  * @author Seth Hollingsead
@@ -9,8 +10,8 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from '../../../src/main.js';
-let apcon = require('./application.constant.constants');
+import haystacks from 'haystacks';
+import * as app_con from './application.constant.constants';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 
@@ -26,12 +27,12 @@ let capplicationMessage05 = wr1.cExiting + bas.cSpace + wr1.cTEST + bas.cSpace +
 
 module.exports = {
   // Client String Parsing
-  [bas.cc + apcon.cclientStringParsingDotCustomEcho]: cclientStringParsingDotCustomEcho, // clientStringParsing.customEcho
+  [bas.cc + app_con.cclientStringParsingDotCustomEcho]: cclientStringParsingDotCustomEcho, // clientStringParsing.customEcho
 
   // Application Test Harness
-  [bas.cc + apcon.capplicationMessage01]: capplicationMessage01, // BEGIN main program loop
-  [bas.cc + apcon.capplicationMessage02]: capplicationMessage02, // BEGIN command parser
-  [bas.cc + apcon.capplicationMessage03]: capplicationMessage03, // END command parser
-  [bas.cc + apcon.capplicationMessage04]: capplicationMessage04, // END main program loop
-  [bas.cc + apcon.capplicationMessage05]: capplicationMessage05 // Exiting TEST HARNESS APPLICATION
+  [bas.cc + app_con.capplicationMessage01]: capplicationMessage01, // BEGIN main program loop
+  [bas.cc + app_con.capplicationMessage02]: capplicationMessage02, // BEGIN command parser
+  [bas.cc + app_con.capplicationMessage03]: capplicationMessage03, // END command parser
+  [bas.cc + app_con.capplicationMessage04]: capplicationMessage04, // END main program loop
+  [bas.cc + app_con.capplicationMessage05]: capplicationMessage05 // Exiting TEST HARNESS APPLICATION
 };

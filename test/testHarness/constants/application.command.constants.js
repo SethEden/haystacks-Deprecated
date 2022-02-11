@@ -11,7 +11,7 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let haystacks = require('../../../src/main.js');
+import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 

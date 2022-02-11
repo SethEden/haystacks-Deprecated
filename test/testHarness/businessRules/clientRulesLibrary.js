@@ -4,13 +4,15 @@
  * @description Contains all of the client defined business rules as a map between function names and function calls.
  * @requires module:clientStringParsing
  * @requires module:application.business.constants
+ * @requires module:application.function.constants
  * @author Seth Hollingsead
  * @date 2022/02/08
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let clientStringParsing = require('./rules/clientStringParsing');
-let app_biz from '../constants/application.business.constants';
+import * as clientStringParsing from './rules/clientStringParsing';
+import app_biz from '../constants/application.business.constants';
+import app_fnc from '../constants/application.function.constants';
 
 /**
  * @function initClientRulesLibrary
@@ -23,7 +25,7 @@ let app_biz from '../constants/application.business.constants';
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
-export const initClientRulesLibrary = function() {
+export initClientRulesLibrary = function() {
   return {
     [app_biz.cclientEcho]: (inputData, inputMetaData) => (inputData, inputMetaData),
 
@@ -34,3 +36,12 @@ export const initClientRulesLibrary = function() {
     [app_biz.ccustomEcho]: (inputData, inputMetaData) => clientStringParsing.customEcho(inputData, inputMetaData)
   };
 };
+
+// module.exports = {
+//   [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
+// };
+
+// export default {
+//   // [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
+//   initClientRulesLibrary
+// };
