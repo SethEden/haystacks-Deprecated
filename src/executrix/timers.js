@@ -14,12 +14,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants.js');
-let fnc = require('../constants/function.constants.js');
-let msg = require('../constants/message.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let path = require('path');
-let moment = require('moment');
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import path from 'path';
+import moment from 'moment';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 

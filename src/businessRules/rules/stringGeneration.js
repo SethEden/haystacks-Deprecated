@@ -18,18 +18,18 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let loggers = require('../../executrix/loggers.js');
-let { stringToBoolean } = require('./stringParsingUtilities.js');
-let arrayParsing = require('./arrayParsing.js');
-let characterGeneration = require('./characterGeneration.js');
-let bas = require('./basic.constants.js');
-let gen = require('./generic.constants.js');
-let num = require('./numeric.constants.js');
-let wr1 = require('./word1.constants.js');
-let sys = require('./system.constants.js');
-let biz = require('./business.constants.js');
-let msg = require('./message.constants.js');
-let path = require('path');
+import loggers from '../../executrix/loggers.js';
+import { stringToBoolean } from './stringParsingUtilities.js';
+import arrayParsing from './arrayParsing.js';
+import characterGeneration from './characterGeneration.js';
+import * as bas from './basic.constants.js';
+import * as gen from './generic.constants.js';
+import * as num from './numeric.constants.js';
+import * as wr1 from './word1.constants.js';
+import * as sys from './system.constants.js';
+import * as biz from './business.constants.js';
+import * as msg from './message.constants.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // businessRules.rules.stringGeneration
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;

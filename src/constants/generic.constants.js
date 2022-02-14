@@ -12,10 +12,10 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./basic.constants.js');
-let con = require('./constant.constants.js');
-let phn = require('./phonic.constants.js');
-let num = require('./numeric.constants.js');
+import * as bas from './basic.constants.js';
+import * as con from './constant.constants.js';
+import * as phn from './phonic.constants.js';
+import * as num from './numeric.constants.js';
 
 let cDotDot = bas.cDot + bas.cDot; // ..
 let cDotDotForwardSlash = cDotDot + bas.cForwardSlash; // ../

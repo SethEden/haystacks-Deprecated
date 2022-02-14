@@ -20,21 +20,21 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants.js');
-let biz = require('../constants/business.constants.js');
-let cfg = require('../constants/configuration.constants.js');
-let fnc = require('../constants/function.constants.js');
-let sys = require('../constants/system.constants.js');
-let wr1 = require('../constants/word1.constants.js');
+import * as bas from '../constants/basic.constants.js';
+import * as biz from '../constants/business.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
 // var ruleBroker = require('../brokers/ruleBroker');
 // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
 // We will need to refactor the business rules to accept a callback function that does the logging.
 // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-let stringParsingUtilities = require('../businessRules/rules/stringParsingUtilities');
-let configurator = require('./configurator');
-let fileOperations = require('./fileOperations');
-let D = require('../structures/data');
-let path = require('path');
+import stringParsingUtilities from '../businessRules/rules/stringParsingUtilities';
+import configurator from './configurator';
+import fileOperations from './fileOperations';
+import D from '../structures/data';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 

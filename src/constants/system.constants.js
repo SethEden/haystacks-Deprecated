@@ -14,12 +14,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./basic.constants.js');
-let con = require('./constant.constants.js');
-let gen = require('./generic.constants.js');
-let num = require('./numeric.constants.js');
-let phn = require('./phonic.constants.js');
-let wr1 = require('./word1.constants.js');
+import * as bas from './basic.constants.js';
+import * as con from './constant.constants.js';
+import * as gen from './generic.constants.js';
+import * as num from './numeric.constants.js';
+import * as phn from './phonic.constants.js';
+import * as wr1 from './word1.constants.js';
 
 // Miscelaneious
 let cENV = bas.cEN + bas.cV; // ENV

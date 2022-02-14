@@ -13,9 +13,9 @@
  * Also so we don't have to redefine all the words in this file.
  */
 
-let bas = require('./basic.constants.js');
-let phn = require('./phonic.constants.js');
-let wr2 = require('./word2.constants.js');
+import * as bas from './basic.constants.js';
+import * as phn from './phonic.constants.js';
+import * as wr2 from './word2.constants.js';
 
 // Redefined words, used below in this file, redefined so we don't have circular dependencies
 let cDot = bas.cDo + bas.ct; // Dot

@@ -14,14 +14,14 @@
  * @date 2021/10/26
  */
 
-let bas = require('../constants/basic.constants.js');
-let fnc = require('../constants/function.constants.js');
-let gen = require('../constants/generic.constants.js');
-let msg = require('../constants/message.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let loggers = require('./loggers.js');
-let fs = require('fs');
-let path = require('path');
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import loggers from './loggers.js';
+import fs from 'fs';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 let term = 13; // carriage return

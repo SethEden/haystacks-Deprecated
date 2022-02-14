@@ -11,14 +11,14 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
-let loggers = require('../../executrix/loggers.js');
-let bas = require('./basic.constants.js');
-let wr1 = require('./word1.constants.js');
-let sys = require('./system.constants.js');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
+import loggers from '../../executrix/loggers.js';
+import * as bas from './basic.constants.js';
+import * as wr1 from './word1.constants.js';
+import * as sys from './system.constants.js';
+import path from 'path';
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // businessRules.rules.mathOperations.
-var namespacePrefix = wr1.cbusiness + wr1.cRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+let namespacePrefix = wr1.cbusiness + wr1.cRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function hex2rgbConversion

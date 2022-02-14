@@ -31,33 +31,33 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('../../executrix/configurator.js');
-let lexical = require('../../executrix/lexical.js');
-let fileOperations = require('../../executrix/fileOperations.js');
-let dataBroker = require('../../brokers/dataBroker.js');
-let commandBroker = require('../../brokers/commandBroker.js');
-let ruleBroker = require('../../brokers/ruleBroker.js');
-let workflowBroker = require('../../brokers/workflowBroker.js');
-let queue = require('../../structures/queue.js');
-let stack = require('../../structures/stack.js');
-let timers = require('../../executrix/timers.js');
-let loggers = require('../../executrix/loggers.js');
-let bas = require('../../constants/basic.constants.js');
-let gen = require('../../constants/generic.constants.js');
-let wr1 = require('../../constants/word1.constants.js');
-let sys = require('../../constants/system.constants.js');
-let cmd = require('../../constants/command.constants.js');
-let biz = require('../../constants/business.constants.js');
-let cfg = require('../../constants/configuration.constants.js');
-let msg = require('../../constants/message.constants.js');
-let D = require('../../structures/data.js');
-let prompt = require('prompt-sync')();
-let figlet = require('figlet');
-let path = require('path');
-let math = require('mathjs');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
+import configurator from '../../executrix/configurator.js';
+import lexical from '../../executrix/lexical.js';
+import fileOperations from '../../executrix/fileOperations.js';
+import dataBroker from '../../brokers/dataBroker.js';
+import commandBroker from '../../brokers/commandBroker.js';
+import ruleBroker from '../../brokers/ruleBroker.js';
+import workflowBroker from '../../brokers/workflowBroker.js';
+import queue from '../../structures/queue.js';
+import stack from '../../structures/stack.js';
+import timers from '../../executrix/timers.js';
+import loggers from '../../executrix/loggers.js';
+import * as bas from '../../constants/basic.constants.js';
+import * as gen from '../../constants/generic.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as cmd from '../../constants/command.constants.js';
+import * as biz from '../../constants/business.constants.js';
+import * as cfg from '../../constants/configuration.constants.js';
+import * as msg from '../../constants/message.constants.js';
+import D from '../../structures/data.js';
+import prompt from 'prompt-sync'();
+import figlet from 'figlet';
+import path from 'path';
+import math from 'mathjs';
+let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // commandsBlob.commands.nominal.
-var namespacePrefix = wr1.ccommands + wrd.cBlob + bas.cDot + wr1.ccommands + bas.cDot + baseFileName + bas.cDot;
+let namespacePrefix = wr1.ccommands + wrd.cBlob + bas.cDot + wr1.ccommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function echoCommand

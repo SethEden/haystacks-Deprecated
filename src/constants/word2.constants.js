@@ -10,8 +10,8 @@
  * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
  */
 
-let bas = require('./basic.constants.js');
-let phn = require('./phonic.constants.js');
+import * as bas from './basic.constants.js';
+import * as phn from './phonic.constants.js';
 
 // *************************************************************
 // BEGIN Redefinition of numeric constants, needed here to remove circular dependent constant definitions.

@@ -14,13 +14,13 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let loggers = require('../executrix/loggers.js');
-let bas = require('../constants/basic.constants.js');
-let msg = require('../constants/message.constants.js');
-let sys = require('../constants/system.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let D = require('./data.js');
-let path = require('path');
+import loggers from '../executrix/loggers.js';
+import * as bas from '../constants/basic.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import D from './data.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // structures.queue.
 let namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;

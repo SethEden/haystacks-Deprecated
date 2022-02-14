@@ -20,15 +20,15 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants.js');
-let fnc = require('../constants/function.constants.js');
-let gen = require('../constants/generic.constants.js');
-let msg = require('../constants/message.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let loggers = require('../executrix/loggers.js');
-let D = require('../structures/data.js');
-let fs = require('fs');
-let path = require('path');
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import loggers from '../executrix/loggers.js';
+import D from '../structures/data.js';
+import fs from 'fs';
+import path from 'path';
 let filesCollection = [];
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
 let enableFilesListLimit = false;

@@ -18,18 +18,18 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../../constants/basic.constants.js');
-let msg = require('../../constants/message.constants.js');
-let sys = require('../../constants/system.constants.js');
-let wr1 = require('../../constants/word1.constants.js');
-let stringParsing = require('./stringParsing.js');
-let stringParsingUtilities = require('./stringParsingUtilities.js');
-let configurator = require('../../executrix/configurator.js');
-let loggers = require('../../executrix/loggers.js');
-const _ = require('lodash');
-let path = require('path');
-let math = require('mathjs');
-let chalk = require('chalk');
+import * as bas from '../../constants/basic.constants.js';
+import * as msg from '../../constants/message.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import stringParsing from './stringParsing.js';
+import stringParsingUtilities from './stringParsingUtilities.js';
+import configurator from '../../executrix/configurator.js';
+import loggers from '../../executrix/loggers.js';
+import _ from 'lodash';
+import path from 'path';
+import math from 'mathjs';
+import chalk from 'chalk';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // businessRules.rules.arrayParsing
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;

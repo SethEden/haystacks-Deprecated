@@ -20,14 +20,14 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../../constants/basic.constants.js');
-let gen = require('../../constants/generic.constants.js');
-let msg = require('../../constants/message.constants.js');
-let sys = require('../../constants/system.constants.js');
-let wr1 = require('../../constants/word1.constants.js');
-let loggers = require('../../executrix/loggers.js');
-let arrayParsing = require('./arrayParsing.js');
-let path = require('path');
+import * as bas from '../../constants/basic.constants.js';
+import * as gen from '../../constants/generic.constants.js';
+import * as msg from '../../constants/message.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import loggers from '../../executrix/loggers.js';
+import arrayParsing from './arrayParsing.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // businessRules.rules.stringParsing
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;

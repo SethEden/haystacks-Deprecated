@@ -17,16 +17,16 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('./configurator.js');
-let loggers = require('./loggers.js');
-let bas = require('../constants/basic.constants.js');
-let gen = require('../constants/generic.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let sys = require('../constants/system.constants.js');
-let biz = require('../constants/business.constants.js');
-let cfg = require('../constants/configuration.constants.js');
-let msg = require('../constants/message.constants.js');
-let path = require('path');
+import configurator from './configurator.js';
+import loggers from './loggers.js';
+import * as bas from '../constants/basic.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as biz from '../constants/business.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as msg from '../constants/message.constants.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // executrix.lexical.
 let namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;

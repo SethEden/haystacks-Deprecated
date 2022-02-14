@@ -16,15 +16,15 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('../executrix/configurator.js');
-let ruleBroker = require('./ruleBroker.js');
-let bas = require('../constants/basic.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let clr = require('../constants/color.constants.js');
-let sys = require('../constants/system.constants.js');
-let cfg = require('../constants/configuration.constants.js');
-let D = require('../structures/data.js');
-let chalk = require('chalk');
+import configurator from '../executrix/configurator.js';
+import ruleBroker from './ruleBroker.js';
+import * as bas from '../constants/basic.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import * as clr from '../constants/color.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import D from '../structures/data.js';
+import chalk from 'chalk';
 
 /**
  * @function colorizeMessage

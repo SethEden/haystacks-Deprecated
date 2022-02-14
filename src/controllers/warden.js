@@ -20,18 +20,18 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants.js');
-let biz = require('../constants/business.constants.js');
-let cfg = require('../constants/configuration.constants.js');
-let fnc = require('../constants/function.constants.js');
-let msg = require('../constants/message.constants.js');
-let sys = require('../constants/system.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let ruleBroker = require('../brokers/ruleBroker.js');
-let chiefConfiguration = require('./chiefConfiguration.js');
-let configurator = require('../executrix/configurator.js');
-let loggers = require('../executrix/loggers.js');
-let path = require('path');
+import * as bas from '../constants/basic.constants.js';
+import * as biz from '../constants/business.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import ruleBroker from '../brokers/ruleBroker.js';
+import chiefConfiguration from './chiefConfiguration.js';
+import configurator from '../executrix/configurator.js';
+import loggers from '../executrix/loggers.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 

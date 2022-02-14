@@ -16,15 +16,15 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let nominalCommands = require('./commands/nominal.js');
-let integrationTests = require('./commands/integrationTests.js');
-let loggers = require('../executrix/loggers.js');
-let bas = require('../constants/basic.constants.js');
-let wr1 = require('../constants/word1.constants.js');
-let sys = require('../constants/system.constants.js');
-let msg = require('../constants/message.constants.js');
-let D = require('../structures/data.js');
-let path = require('path');
+import nominalCommands from './commands/nominal.js';
+import integrationTests from './commands/integrationTests.js';
+import loggers from '../executrix/loggers.js';
+import * as bas from '../constants/basic.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as msg from '../constants/message.constants.js';
+import D from '../structures/data.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // commandsBlob.commandsLibrary.
 let namespacePrefix = wr1.ccommands + wr1.cBlob + bas.cDot + baseFileName + bas.cDot;

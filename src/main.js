@@ -28,26 +28,26 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./constants/basic.constants.js');
-let biz = require('./constants/business.constants.js');
-let cfg = require('./constants/configuration.constants.js');
-let con = require('./constants/constant.constants.js');
-let ctr = require('./constants/country.constants.js');
-let fnc = require('./constants/function.constants.js');
-let gen = require('./constants/generic.constants.js');
-let lng = require('./constants/language.constants.js');
-let msg = require('./constants/message.constants.js');
-let num = require('./constants/numeric.constants.js');
-let phn = require('./constants/phonic.constants.js');
-let sys = require('./constants/system.constants.js');
-let unt = require('./constants/unit.constants.js');
-let wr1 = require('./constants/word1.constants.js');
-let wr2 = require('./constants/word2.constants.js');
-let warden = require('./controllers/warden.js');
-let loggers = require('./executrix/loggers.js');
-let prompt = require('./executrix/prompt.js');
-let D = require('./structures/data.js');
-let path = require('path');
+import * as bas from './constants/basic.constants.js';
+import * as biz from './constants/business.constants.js';
+import * as cfg from './constants/configuration.constants.js';
+import * as con from './constants/constant.constants.js';
+import * as ctr from './constants/country.constants.js';
+import * as fnc from './constants/function.constants.js';
+import * as gen from './constants/generic.constants.js';
+import * as lng from './constants/language.constants.js';
+import * as msg from './constants/message.constants.js';
+import * as num from './constants/numeric.constants.js';
+import * as phn from './constants/phonic.constants.js';
+import * as sys from './constants/system.constants.js';
+import * as unt from './constants/unit.constants.js';
+import * as wr1 from './constants/word1.constants.js';
+import * as wr2 from './constants/word2.constants.js';
+import warden from './controllers/warden.js';
+import loggers from './executrix/loggers.js';
+import prompt from './executrix/prompt.js';
+import D from './structures/data.js';
+import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = baseFileName + bas.cDot;
 
