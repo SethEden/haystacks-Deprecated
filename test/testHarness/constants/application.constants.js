@@ -12,7 +12,7 @@
  */
 
 import haystacks from 'haystacks';
-import * as app_con from './application.constant.constants';
+import * as app_con from './application.constant.constants.js';
 let bas = haystacks.bas;
 let cfg = haystacks.cfg;
 let wr1 = haystacks.wr1;
@@ -30,7 +30,7 @@ let cFullConfigurationPath = cFullResourcesPath + cConfigurationCommonPath; // /
 let cFullWorkflowsPath = cFullResourcesPath + cWorkflowsCommonPath; // /test/testHarness/resources/workflows/
 let cmetaDataPath = cFullResourcesPath + cfg.cmetaDatadotJson; // /resources/metaData.json
 
-module.exports = {
+export default {
   [bas.cc + app_con.cApplicationName]: cApplicationName, // testHarness
   [bas.cc + app_con.cAppPath]: cAppPath, // "/test/testHarness/"
   [bas.cc + app_con.cResourcesCommonPath]: cResourcesCommonPath, // resources/

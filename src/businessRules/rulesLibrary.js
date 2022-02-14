@@ -16,14 +16,14 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let fnc = require('../constants/function.constants');
-let sys = require('../constants/system.constants');
-let arrayParsing = require('./rules/arrayParsing');
-let stringParsing = require('./rules/stringParsing');
-let stringParsingUtilities = require('./rules/stringParsingUtilities');
-let D = require('../structures/data');
+let bas = require('../constants/basic.constants.js');
+let biz = require('../constants/business.constants.js');
+let fnc = require('../constants/function.constants.js');
+let sys = require('../constants/system.constants.js');
+let arrayParsing = require('./rules/arrayParsing.js');
+let stringParsing = require('./rules/stringParsing.js');
+let stringParsingUtilities = require('./rules/stringParsingUtilities.js');
+let D = require('../structures/data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;

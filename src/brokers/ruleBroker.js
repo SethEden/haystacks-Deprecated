@@ -13,13 +13,13 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let fnc = require('../constants/function.constants');
-let msg = require('../constants/message.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
-let rules = require('../businessRules/rulesLibrary');
-let D = require('../structures/data');
+let bas = require('../constants/basic.constants.js');
+let fnc = require('../constants/function.constants.js');
+let msg = require('../constants/message.constants.js');
+let sys = require('../constants/system.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let rules = require('../businessRules/rulesLibrary.js');
+let D = require('../structures/data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;

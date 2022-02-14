@@ -24,7 +24,7 @@ let cclientEcho = wr1.cclient + wr1.cEcho; // clientEcho
 // ********************************
 let ccustomEcho = wr1.ccustom + wr1.cEcho; // customEcho
 
-module.exports = {
+export default {
   [bas.cc + cclientEcho]: cclientEcho, // clientEcho
   [bas.cc + ccustomEcho]: ccustomEcho // customEcho
 };

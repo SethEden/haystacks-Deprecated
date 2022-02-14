@@ -24,21 +24,21 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('../executrix/configurator');
-let lexical = require('../executrix/lexical');
-let commandsLibrary = require('../commandsBlob/commandsLibrary');
-let stack = require('../structures/stack');
-let timers = require('../executrix/timers');
-let loggers = require('../executrix/loggers');
-let bas = require('../constants/basic.constants');
-let gen = require('../constants/generic.constants');
-let num = require('../constants/numeric.constants');
-let wr1 = require('../constants/word1.constants');
-let sys = require('../constants/system.constants');
-let biz = require('../constants/business.constants');
-let cfg = require('../constants/configuration.constants');
-let msg = require('../constants/message.constants');
-let D = require('../structures/data');
+let configurator = require('../executrix/configurator.js');
+let lexical = require('../executrix/lexical.js');
+let commandsLibrary = require('../commandsBlob/commandsLibrary.js');
+let stack = require('../structures/stack.js');
+let timers = require('../executrix/timers.js');
+let loggers = require('../executrix/loggers.js');
+let bas = require('../constants/basic.constants.js');
+let gen = require('../constants/generic.constants.js');
+let num = require('../constants/numeric.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let sys = require('../constants/system.constants.js');
+let biz = require('../constants/business.constants.js');
+let cfg = require('../constants/configuration.constants.js');
+let msg = require('../constants/message.constants.js');
+let D = require('../structures/data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // brokers.commandBroker.

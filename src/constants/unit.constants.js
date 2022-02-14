@@ -10,8 +10,8 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./basic.constants');
-let phn = require('./phonic.constants');
+let bas = require('./basic.constants.js');
+let phn = require('./phonic.constants.js');
 
 // Units of Measure
 let cFemto = bas.cFe + bas.cmt + bas.co; // Femto

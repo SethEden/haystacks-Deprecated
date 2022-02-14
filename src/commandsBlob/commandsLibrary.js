@@ -16,14 +16,14 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let nominalCommands = require('./commands/nominal');
-let integrationTests = require('./commands/integrationTests');
-let loggers = require('../executrix/loggers');
-let bas = require('../constants/basic.constants');
-let wr1 = require('../constants/word1.constants');
-let sys = require('../constants/system.constants');
-let msg = require('../constants/message.constants');
-let D = require('../structures/data');
+let nominalCommands = require('./commands/nominal.js');
+let integrationTests = require('./commands/integrationTests.js');
+let loggers = require('../executrix/loggers.js');
+let bas = require('../constants/basic.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let sys = require('../constants/system.constants.js');
+let msg = require('../constants/message.constants.js');
+let D = require('../structures/data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // commandsBlob.commandsLibrary.

@@ -11,10 +11,10 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./basic.constants');
-let gen = require('./generic.constants');
-let wr1 = require('./word1.constants');
-let sys = require('./system.constants');
+let bas = require('./basic.constants.js');
+let gen = require('./generic.constants.js');
+let wr1 = require('./word1.constants.js');
+let sys = require('./system.constants.js');
 
 // Configuration Settings
 let crootPath = wr1.croot + wr1.cPath; // rootPath

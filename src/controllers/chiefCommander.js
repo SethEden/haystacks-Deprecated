@@ -18,15 +18,15 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let chiefData = require('../controllers/chiefData');
-let commandBroker = require('../brokers/commandBroker');
-let queue = require('../structures/queue');
-let loggers = require('../executrix/loggers');
-let bas = require('../constants/basic.constants');
-let wr1 = require('../constants/word1.constants');
-let sys = require('../constants/system.constants');
-let msg = require('../constants/message.constants');
-let D = require('../structures/data');
+let chiefData = require('../controllers/chiefData.js');
+let commandBroker = require('../brokers/commandBroker.js');
+let queue = require('../structures/queue.js');
+let loggers = require('../executrix/loggers.js');
+let bas = require('../constants/basic.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let sys = require('../constants/system.constants.js');
+let msg = require('../constants/message.constants.js');
+let D = require('../structures/data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // controllers.chiefCommander.

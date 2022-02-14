@@ -15,12 +15,12 @@
  * Because having these functions in the chiefConfiguration can cause a circular dependency.
  */
 
-let bas = require('../constants/basic.constants');
-let cfg = require('../constants/configuration.constants');
-let fnc = require('../constants/function.constants');
-let wr1 = require('../constants/word1.constants');
-let timers = require('./timers');
-let D = require('../structures/data');
+let bas = require('../constants/basic.constants.js');
+let cfg = require('../constants/configuration.constants.js');
+let fnc = require('../constants/function.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let timers = require('./timers.js');
+let D = require('../structures/data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;

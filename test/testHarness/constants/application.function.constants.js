@@ -19,7 +19,7 @@ let cinitClientRulesLibrary = gen.cinit + wr1.cClinet + wr1.cRules + wr1.cLibrar
 // commandsLibrary
 let cinitClientCommandsLibrary = gen.cinit + wr1.cClient + wr1.cCommands + wr1.cLibrary; // initClientCommandsLibrary
 
-module.exports = {
+export default {
   // rulesLibrary
   [bas.cc + cinitClientRulesLibrary]: cinitClientRulesLibrary, // initClientRulesLibrary
 

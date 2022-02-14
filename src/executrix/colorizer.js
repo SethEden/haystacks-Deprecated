@@ -9,22 +9,22 @@
  * @requires module:color.constants
  * @requires module:system.constants
  * @requires module:configuration.constants
- * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @author Seth Hollingsead
  * @date 2021/10/15
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('../executrix/configurator');
-let ruleBroker = require('./ruleBroker');
-let bas = require('../constants/basic.constants');
-let wr1 = require('../constants/word1.constants');
-let clr = require('../constants/color.constants');
-let sys = require('../constants/system.constants');
-let cfg = require('../constants/configuration.constants');
+let configurator = require('../executrix/configurator.js');
+let ruleBroker = require('./ruleBroker.js');
+let bas = require('../constants/basic.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let clr = require('../constants/color.constants.js');
+let sys = require('../constants/system.constants.js');
+let cfg = require('../constants/configuration.constants.js');
+let D = require('../structures/data.js');
 let chalk = require('chalk');
-let D = require('../structures/data');
 
 /**
  * @function colorizeMessage

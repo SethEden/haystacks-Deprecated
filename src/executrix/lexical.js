@@ -17,15 +17,15 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('./configurator');
-let loggers = require('./loggers');
-let bas = require('../constants/basic.constants');
-let gen = require('../constants/generic.constants');
-let wr1 = require('../constants/word1.constants');
-let sys = require('../constants/system.constants');
-let biz = require('../constants/business.constants');
-let cfg = require('../constants/configuration.constants');
-let msg = require('../constants/message.constants');
+let configurator = require('./configurator.js');
+let loggers = require('./loggers.js');
+let bas = require('../constants/basic.constants.js');
+let gen = require('../constants/generic.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let sys = require('../constants/system.constants.js');
+let biz = require('../constants/business.constants.js');
+let cfg = require('../constants/configuration.constants.js');
+let msg = require('../constants/message.constants.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // executrix.lexical.

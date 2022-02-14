@@ -17,14 +17,14 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let ruleBroker = require('../brokers/ruleBroker');
-let loggers = require('../executrix/loggers');
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let msg = require('../constants/message.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
-let D = require('./data');
+let ruleBroker = require('../brokers/ruleBroker.js');
+let loggers = require('../executrix/loggers.js');
+let bas = require('../constants/basic.constants.js');
+let biz = require('../constants/business.constants.js');
+let msg = require('../constants/message.constants.js');
+let sys = require('../constants/system.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let D = require('./data.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // structures.stack.

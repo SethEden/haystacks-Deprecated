@@ -18,17 +18,17 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let loggers = require('../../executrix/loggers');
-import { stringToBoolean } from './stringParsingUtilities';
-let arrayParsing = require('./arrayParsing');
-let characterGeneration = require('./characterGeneration');
-let bas = require('./basic.constants');
-let gen = require('./generic.constants');
-let num = require('./numeric.constants');
-let wr1 = require('./word1.constants');
-let sys = require('./system.constants');
-let biz = require('./business.constants');
-let msg = require('./message.constants');
+let loggers = require('../../executrix/loggers.js');
+let { stringToBoolean } = require('./stringParsingUtilities.js');
+let arrayParsing = require('./arrayParsing.js');
+let characterGeneration = require('./characterGeneration.js');
+let bas = require('./basic.constants.js');
+let gen = require('./generic.constants.js');
+let num = require('./numeric.constants.js');
+let wr1 = require('./word1.constants.js');
+let sys = require('./system.constants.js');
+let biz = require('./business.constants.js');
+let msg = require('./message.constants.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 // businessRules.rules.stringGeneration

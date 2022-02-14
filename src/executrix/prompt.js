@@ -14,12 +14,12 @@
  * @date 2021/10/26
  */
 
-let bas = require('../constants/basic.constants');
-let fnc = require('../constants/function.constants');
-let gen = require('../constants/generic.constants');
-let msg = require('../constants/message.constants');
-let wr1 = require('../constants/word1.constants');
-let loggers = require('./loggers');
+let bas = require('../constants/basic.constants.js');
+let fnc = require('../constants/function.constants.js');
+let gen = require('../constants/generic.constants.js');
+let msg = require('../constants/message.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let loggers = require('./loggers.js');
 let fs = require('fs');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));

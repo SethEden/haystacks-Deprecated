@@ -24,10 +24,10 @@
  */
 
 import haystacks from 'haystacks';
-import {clientRules} from './businessRules/clientRulesLibrary';
-import clientCommands from './commands/clientCommandsLibrary';
-import * as apc from './constants/application.constants';
-import * as app_msg from './constants/application.message.constants';
+import {initClientRulesLibrary as clientRules} from './businessRules/clientRulesLibrary.js';
+import {initClientCommandsLibrary as clientCommands} from './commands/clientCommandsLibrary.js';
+import * as apc from './constants/application.constants.js';
+import * as app_msg from './constants/application.message.constants.js';
 import path from 'path';
 global.appRot = path.resolve(process.cwd());
 // const {bas, cfg, } = haystacks

@@ -10,9 +10,9 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import * as clientStringParsing from './rules/clientStringParsing';
-import app_biz from '../constants/application.business.constants';
-import app_fnc from '../constants/application.function.constants';
+import * as clientStringParsing from './clientRules/clientStringParsing.js';
+import app_biz from '../constants/application.business.constants.js';
+import app_fnc from '../constants/application.function.constants.js';
 
 /**
  * @function initClientRulesLibrary
@@ -25,7 +25,7 @@ import app_fnc from '../constants/application.function.constants';
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
-export initClientRulesLibrary = function() {
+const initClientRulesLibrary = function() {
   return {
     [app_biz.cclientEcho]: (inputData, inputMetaData) => (inputData, inputMetaData),
 
@@ -41,7 +41,7 @@ export initClientRulesLibrary = function() {
 //   [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
 // };
 
-// export default {
-//   // [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
-//   initClientRulesLibrary
-// };
+export default {
+  [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
+  // initClientRulesLibrary
+};

@@ -11,7 +11,7 @@
  */
 
 import haystacks from 'haystacks';
-import * as app_con from './application.constant.constants';
+import * as app_con from './application.constant.constants.js';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 
@@ -25,7 +25,7 @@ let capplicationMessage03 = wr1.cEND + bas.cSpace + wr1.ccommand + bas.cSpace + 
 let capplicationMessage04 = wr1.cEND + bas.cSpace + wr1.cmain + bas.cSpace + wr1.cprogram + bas.cSpace + wr1.cloop; // END main program loop
 let capplicationMessage05 = wr1.cExiting + bas.cSpace + wr1.cTEST + bas.cSpace + wr1.cHARNESS + bas.cSpace + wr1.cAPPLICATION; // Exiting TEST HARNESS APPLICATION
 
-module.exports = {
+export default {
   // Client String Parsing
   [bas.cc + app_con.cclientStringParsingDotCustomEcho]: cclientStringParsingDotCustomEcho, // clientStringParsing.customEcho
 

@@ -20,17 +20,17 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let cfg = require('../constants/configuration.constants');
-let fnc = require('../constants/function.constants');
-let msg = require('../constants/message.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
-let ruleBroker = require('../brokers/ruleBroker');
-let chiefConfiguration = require('./chiefConfiguration');
-let configurator = require('../executrix/configurator');
-let loggers = require('../executrix/loggers');
+let bas = require('../constants/basic.constants.js');
+let biz = require('../constants/business.constants.js');
+let cfg = require('../constants/configuration.constants.js');
+let fnc = require('../constants/function.constants.js');
+let msg = require('../constants/message.constants.js');
+let sys = require('../constants/system.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let ruleBroker = require('../brokers/ruleBroker.js');
+let chiefConfiguration = require('./chiefConfiguration.js');
+let configurator = require('../executrix/configurator.js');
+let loggers = require('../executrix/loggers.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;

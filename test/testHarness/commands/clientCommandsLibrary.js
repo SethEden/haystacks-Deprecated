@@ -9,9 +9,9 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import * as clientCommands from './clientCommands/clientCommands';
-import app_cmd from '../constants/application.command.constants';
-import app_fnc from '../constants/application.function.constants';
+import * as clientCommands from './clientCommands/clientCommands.js';
+import app_cmd from '../constants/application.command.constants.js';
+import app_fnc from '../constants/application.function.constants.js';
 
 /**
  * @function initClientCommandsLibrary
@@ -24,7 +24,7 @@ import app_fnc from '../constants/application.function.constants';
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
-function initClientCommandsLibrary() {
+const initClientCommandsLibrary = function() {
   return {
     // Client commands
     // ***********************************************
@@ -39,6 +39,6 @@ function initClientCommandsLibrary() {
 // };
 
 export default {
-  // [app_fnc.cinitClientCommandsLibrary]: () => initCommandsLibrary()
-  initClientCommandsLibrary
+  [app_fnc.cinitClientCommandsLibrary]: () => initCommandsLibrary()
+  // initClientCommandsLibrary
 };

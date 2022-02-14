@@ -11,10 +11,10 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./basic.constants');
-let ctr = require('./country.constants');
-let phn = require('./phonic.constants');
-let wr1 = require('./word1.constants');
+let bas = require('./basic.constants.js');
+let ctr = require('./country.constants.js');
+let phn = require('./phonic.constants.js');
+let wr1 = require('./word1.constants.js');
 
 // Languages
 let cChinese = phn.cChi + bas.cn + phn.cese; // Chinese

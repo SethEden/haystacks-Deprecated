@@ -11,10 +11,10 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
-import loggers from '../../executrix/loggers';
-let bas = require('./basic.constants');
-let wr1 = require('./word1.constants');
-let sys = require('./system.constants');
+let loggers = require('../../executrix/loggers.js');
+let bas = require('./basic.constants.js');
+let wr1 = require('./word1.constants.js');
+let sys = require('./system.constants.js');
 var path = require('path');
 var baseFileName = path.basename(module.filename, path.extname(module.filename));
 // businessRules.rules.mathOperations.

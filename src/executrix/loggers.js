@@ -20,12 +20,12 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let cfg = require('../constants/configuration.constants');
-let fnc = require('../constants/function.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
+let bas = require('../constants/basic.constants.js');
+let biz = require('../constants/business.constants.js');
+let cfg = require('../constants/configuration.constants.js');
+let fnc = require('../constants/function.constants.js');
+let sys = require('../constants/system.constants.js');
+let wr1 = require('../constants/word1.constants.js');
 // var ruleBroker = require('../brokers/ruleBroker');
 // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
 // We will need to refactor the business rules to accept a callback function that does the logging.

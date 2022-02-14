@@ -11,10 +11,10 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../../constants/basic.constants');
-let biz = require('../../constants/business.constants');
-let wr1 = require('../../constants/word1.constants');
-let sys = require('../../constants/system.constants');
+let bas = require('../../constants/basic.constants.js');
+let biz = require('../../constants/business.constants.js');
+let wr1 = require('../../constants/word1.constants.js');
+let sys = require('../../constants/system.constants.js');
 
 // Generic Commands constants
 

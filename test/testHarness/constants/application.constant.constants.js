@@ -38,7 +38,7 @@ let capplicationMessage03 = capplicationMessage + wr2.c0 + wr2.c3; // applicatio
 let capplicationMessage04 = capplicationMessage + wr2.c0 + wr2.c4; // applicationMessage01
 let capplicationMessage05 = capplicationMessage + wr2.c0 + wr2.c5; // applicationMessage01
 
-module.exports = {
+export default {
   // Application Constants
   [bas.cc + cApplicationName]: cApplicationName, // ApplicationName
   [bas.cc + cAppPath]: cAppPath, // AppPath

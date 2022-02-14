@@ -20,13 +20,13 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let fnc = require('../constants/function.constants');
-let gen = require('../constants/generic.constants');
-let msg = require('../constants/message.constants');
-let wr1 = require('../constants/word1.constants');
-let loggers = require('../executrix/loggers');
-let D = require('../structures/data');
+let bas = require('../constants/basic.constants.js');
+let fnc = require('../constants/function.constants.js');
+let gen = require('../constants/generic.constants.js');
+let msg = require('../constants/message.constants.js');
+let wr1 = require('../constants/word1.constants.js');
+let loggers = require('../executrix/loggers.js');
+let D = require('../structures/data.js');
 let fs = require('fs');
 let path = require('path');
 let filesCollection = [];

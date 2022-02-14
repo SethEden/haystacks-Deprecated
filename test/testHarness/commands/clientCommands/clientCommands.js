@@ -26,7 +26,7 @@ let wr1 = haystacks.wr1;
 let sys = haystacks.sys;
 let biz = haystacks.biz;
 let msg = haystacks.msg;
-import * as apc from '../../constants/application.constants';
+import * as apc from '../../constants/application.constants.js';
 import path from 'path';
 import chalk from 'chalk';
 const baseFileName = path.basename(module.filename, path.extname(module.filename));

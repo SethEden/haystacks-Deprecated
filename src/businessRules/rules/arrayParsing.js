@@ -18,14 +18,14 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../../constants/basic.constants');
-let msg = require('../../constants/message.constants');
-let sys = require('../../constants/system.constants');
-let wr1 = require('../../constants/word1.constants');
-let stringParsing = require('./stringParsing');
-let stringParsingUtilities = require('./stringParsingUtilities');
-let configurator = require('../../executrix/configurator');
-let loggers = require('../../executrix/loggers');
+let bas = require('../../constants/basic.constants.js');
+let msg = require('../../constants/message.constants.js');
+let sys = require('../../constants/system.constants.js');
+let wr1 = require('../../constants/word1.constants.js');
+let stringParsing = require('./stringParsing.js');
+let stringParsingUtilities = require('./stringParsingUtilities.js');
+let configurator = require('../../executrix/configurator.js');
+let loggers = require('../../executrix/loggers.js');
 const _ = require('lodash');
 let path = require('path');
 let math = require('mathjs');

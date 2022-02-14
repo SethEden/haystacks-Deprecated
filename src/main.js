@@ -21,32 +21,33 @@
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
+ * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/14
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./constants/basic.constants');
-let biz = require('./constants/business.constants');
-let cfg = require('./constants/configuration.constants');
-let con = require('./constants/constant.constants');
-let ctr = require('./constants/country.constants');
-let fnc = require('./constants/function.constants');
-let gen = require('./constants/generic.constants');
-let lng = require('./constants/language.constants');
-let msg = require('./constants/message.constants');
-let num = require('./constants/numeric.constants');
-let phn = require('./constants/phonic.constants');
-let sys = require('./constants/system.constants');
-let unt = require('./constants/unit.constants');
-let wr1 = require('./constants/word1.constants');
-let wr2 = require('./constants/word2.constants');
-let warden = require('./controllers/warden');
-let loggers = require('./executrix/loggers');
-let prompt = require('./executrix/prompt');
+let bas = require('./constants/basic.constants.js');
+let biz = require('./constants/business.constants.js');
+let cfg = require('./constants/configuration.constants.js');
+let con = require('./constants/constant.constants.js');
+let ctr = require('./constants/country.constants.js');
+let fnc = require('./constants/function.constants.js');
+let gen = require('./constants/generic.constants.js');
+let lng = require('./constants/language.constants.js');
+let msg = require('./constants/message.constants.js');
+let num = require('./constants/numeric.constants.js');
+let phn = require('./constants/phonic.constants.js');
+let sys = require('./constants/system.constants.js');
+let unt = require('./constants/unit.constants.js');
+let wr1 = require('./constants/word1.constants.js');
+let wr2 = require('./constants/word2.constants.js');
+let warden = require('./controllers/warden.js');
+let loggers = require('./executrix/loggers.js');
+let prompt = require('./executrix/prompt.js');
+let D = require('./structures/data.js');
 let path = require('path');
-let D = require('./structures/data');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = baseFileName + bas.cDot;
 
@@ -68,7 +69,7 @@ function initFramework(clientConfiguration) {
 
  let frameworkRootPath = path.resolve(process.cwd());
 
- let frameworkRootPath = warden.processRootPath(clientConfiguration);
+ frameworkRootPath = warden.processRootPath(clientConfiguration);
  clientConfiguration[cfg.cframeworkRootPath] = frameworkRootPath;
  clientConfiguration[cfg.cappConfigPath] = frameworkRootPath + clientConfiguration[cfg.cappConfigReferencePath];
  clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;

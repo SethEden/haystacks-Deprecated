@@ -3,6 +3,7 @@
   "version": "0.0.6",
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
+  "type": "module",
   "scripts": {
     "test": "babel-node ./test/testHarness/testHarness.js",
     "start": "babel-node ./src/main.js",

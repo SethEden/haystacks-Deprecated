@@ -19,8 +19,8 @@ import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 let sys = haystacks.sys;
-import app_biz from '../../constants/application.business.constants';
-import apc from '../../constants/application.constants';
+import app_biz from '../../constants/application.business.constants.js';
+import apc from '../../constants/application.constants.js';
 import path from 'path';
 const baseFileName = path.basename(module.filename, path.extname(module.filename));
 // testHarness.businessRules.clientRules.clientStringParsing.

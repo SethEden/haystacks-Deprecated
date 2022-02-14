@@ -20,6 +20,6 @@ let wr1 = haystacks.wr1;
 // ********************************
 let ccustomEchoCommand = wr1.ccustom + wr1.cEcho + wr1.cCommand; // customEchoCommand
 
-module.exports = {
+export default {
   [bas.cc + ccustomEchoCommand]: ccustomEchoCommand // customEchoCommand
 };

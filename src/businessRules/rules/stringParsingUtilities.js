@@ -16,11 +16,11 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../../constants/basic.constants');
-let gen = require('../../constants/generic.constants');
-let msg = require('../../constants/message.constants');
-let sys = require('../../constants/system.constants');
-let wr1 = require('../../constants/word1.constants');
+let bas = require('../../constants/basic.constants.js');
+let gen = require('../../constants/generic.constants.js');
+let msg = require('../../constants/message.constants.js');
+let sys = require('../../constants/system.constants.js');
+let wr1 = require('../../constants/word1.constants.js');
 let path = require('path');
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;

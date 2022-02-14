@@ -13,11 +13,11 @@
  * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
  */
 
-let bas = require('./basic.constants');
-let phn = require('./phonic.constants');
-let num = require('./numeric.constants');
-let gen = require('./generic.constants');
-let unt = require('./unit.constants');
+let bas = require('./basic.constants.js');
+let phn = require('./phonic.constants.js');
+let num = require('./numeric.constants.js');
+let gen = require('./generic.constants.js');
+let unt = require('./unit.constants.js');
 
 // Miscelaneious Words
 let c1a1d = 'a' + 'd'; // ad // 'ca' & 'cd' is some how a reserved word.

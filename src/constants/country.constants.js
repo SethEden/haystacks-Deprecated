@@ -13,13 +13,13 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('./basic.constants');
-let con = require('./constant.constants');
-let phn = require('./phonic.constants');
-let num = require('./numeric.constants');
-let gen = require('./generic.constants');
-let unt = require('./unit.constants');
-let wr1 = require('./word1.constants');
+let bas = require('./basic.constants.js');
+let con = require('./constant.constants.js');
+let phn = require('./phonic.constants.js');
+let num = require('./numeric.constants.js');
+let gen = require('./generic.constants.js');
+let unt = require('./unit.constants.js');
+let wr1 = require('./word1.constants.js');
 
 // Countries
 let cAfghanistan = bas.cAf + bas.cgh + bas.can + phn.cistan; // Afghanistan
