@@ -14,8 +14,6 @@ import * as clientStringParsing from './clientRules/clientStringParsing.js';
 import * as app_biz from '../constants/application.business.constants.js';
 import * as app_fnc from '../constants/application.function.constants.js';
 
-console.log('app_fnc is: ' + JSON.stringify(app_fnc));
-
 /**
  * @function initClientRulesLibrary
  * @description Initializes an object map of client busienss rules and client function calls and returns them.
@@ -39,11 +37,6 @@ const initClientRulesLibrary = function() {
   };
 };
 
-// module.exports = {
-//   [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
-// };
-
 export default {
   [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
-  // initClientRulesLibrary
 };

@@ -33,23 +33,3 @@ export const cPolish = bas.cPo + bas.cl + phn.cish; // Polish
 export const cPortuguese = wr1.cPort + bas.cug + bas.cu + phn.cese; // Portuguese
 export const cRussian = bas.cRu + bas.css + phn.cian; // Russian
 export const cSpanish = bas.cSp + bas.can + phn.cish; // Spanish
-
-// export default {
-//   // Languages
-//   [bas.cc + cChinese]: cChinese, // Chinese
-//   [bas.cc + cChineseSimplified]: cChineseSimplified, // ChineseSimplified
-//   [bas.cc + cChineseTraditional]: cChineseTraditional, // ChineseTraditional
-//   [bas.cc + cCzech]: cCzech, // Czech
-//   [bas.cc + cEnglish]: cEnglish, // English
-//   [bas.cc + cFrench]: cFrench, // French
-//   // cGerman = bas.cGe + bas.cr + cman; // German // Defined above in the countries section
-//   [bas.cc + cHungarian]: cHungarian, // Hungarian
-//   [bas.cc + cItalian]: cItalian, // Italian
-//   [bas.cc + cJapanese]: cJapanese, // Japanese
-//   [bas.cc + cKorean]: cKorean, // Korean
-//   [bas.cc + cMiscellaneous]: cMiscellaneous, // Miscellaneous
-//   [bas.cc + cPolish]: cPolish, // Polish
-//   [bas.cc + cPortuguese]: cPortuguese, // Portuguese
-//   [bas.cc + cRussian]: cRussian, // Russian
-//   [bas.cc + cSpanish]: cSpanish, // Spanish
-// };

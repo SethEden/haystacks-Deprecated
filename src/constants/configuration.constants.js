@@ -39,28 +39,3 @@ export const cconsoleLogEnabled = wr1.cconsole + wr1.cLog + wr1.cEnabled; // con
 export const cLogFileEnabled = wr1.cLog + wr1.cFile + wr1.cEnabled; // LogFileEnabled
 export const cIncludeDateTimeStampInLogFiles = wr1.cInclude + wr1.cDate + wr1.cTime + wr1.cStamp + bas.cIn + gen.cLog + wr1.cFiles; // IncludeDateTimeStampInLogFiles
 export const cEnableColorizedConsoleLogs = wr1.cEnable + wr1.cColorized + wr1.cConsole + wr1.cLogs; // EnableColorizedConsoleLogs
-
-// export default {
-//   [bas.cc + crootPath]: crootPath, // rootPath
-//   [bas.cc + cRootPath]: cRootPath, // RootPath
-//   [bas.cc + cappRootPath]: cappRootPath, // appRootPath
-//   [bas.cc + cappConfigPath]: cappConfigPath, // appConfigPath
-//   [bas.cc + cframeworkConfigPath]: cframeworkConfigPath, // frameworkConfigPath
-//   [bas.cc + cappConfigFiles]: cappConfigFiles, // appConfigFiles
-//   [bas.cc + cframeworkConfigFiles]: cframeworkConfigFiles, // frameworkConfigFiles
-//   [bas.cc + cappConfigReferencePath]: cappConfigReferencePath, // appConfigReferencePath
-//   [bas.cc + cdebugSetting]: cdebugSetting, // debugSetting
-//   [bas.cc + cdebugSettings]: cdebugSettings, // debugSettings
-//   [bas.cc + cdebugFunctions]: cdebugFunctions, // debugFunctions
-//   [bas.cc + cdebugFiles]: cdebugFiles, // debugFiles
-//   [bas.cc + cincludeDateTimeStampInLogFiles]: cincludeDateTimeStampInLogFiles,
-//   [bas.cc + cLogFilePathAndName]: cLogFilePathAndName, // LogFilePathAndName
-//   [bas.cc + cDataLogFilePathAndName]: cDataLogFilePathAndName, // DataLogFilePathAndName
-//   [bas.cc + cExecutionJournalFilePathAndName]: cExecutionJournalFilePathAndName, // ExecutionJournalFilePathAndName
-//   [bas.cc + cResultsLogFilePathAndName]: cResultsLogFilePathAndName, // ResultsLogFilePathAndName
-//   [bas.cc + cTestDataPath]: cTestDataPath, // TestDataPath
-//   [bas.cc + cconsoleLogEnabled]: cconsoleLogEnabled, // consoleLogEnabled
-//   [bas.cc + cLogFileEnabled]: cLogFileEnabled, // LogFileEnabled
-//   [bas.cc + cIncludeDateTimeStampInLogFiles]: cIncludeDateTimeStampInLogFiles, // IncludeDateTimeStampInLogFiles
-//   [bas.cc + cEnableColorizedConsoleLogs]: cEnableColorizedConsoleLogs // EnableColorizedConsoleLogs
-// };

@@ -34,11 +34,6 @@ const initClientCommandsLibrary = function() {
   };
 };
 
-// module.exports = {
-//   [app_fnc.cinitClientCommandsLibrary]: () => initClientCommandsLibrary()
-// };
-
 export default {
   [app_fnc.cinitClientCommandsLibrary]: () => initClientCommandsLibrary()
-  // initClientCommandsLibrary
 };
