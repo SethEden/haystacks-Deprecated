@@ -25,7 +25,7 @@ let cechoCommand = biz.cecho + wr1.cCommand; // echoCommand
 let cEchoCommand = biz.cEcho + wr1.cCommand; // EchoCommand
 let cclearScreen = wr1.cclear + wr1.cScreen; // clearScreen
 
-module.exports = {
+export default {
   // Generic Commands constants
 
   // ***********************************************

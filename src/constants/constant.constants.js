@@ -735,7 +735,7 @@ let cdebugSettingsEnabledLogic10 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + w
 let cdebugSettingsEnabledLogic11 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c1 + wr2.c1; // debugSettingsEnabledLogic11
 let cdebugSettingsEnabledLogic12 = wr2.cdebug + wr2.cSettings + wr2.cEnabled + wr2.cLogic + wr2.c1 + wr2.c2; // debugSettingsEnabledLogic12
 
-module.exports = {
+export default {
   [bas.cc + cDot]: cDot, // Dot
   [bas.cc + cCotedlvoire]: cCotedlvoire, // Cotedlvoire
   [bas.cc + cCaboVerde]: cCaboVerde, // CaboVerde

@@ -779,7 +779,7 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
   return elementCount;
 };
 
-module.exports = {
+export default {
   [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
   [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
     appConfigFilesToLoad, frameworkConfigFilesToLoad

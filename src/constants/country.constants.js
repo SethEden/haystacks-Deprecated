@@ -222,7 +222,7 @@ let cYemen = bas.cYe + phn.cmen; // Yemen
 let cZambia = bas.cZa + phn.cmbia; // Zambia
 let cZimbabwe = bas.cZi + bas.cmb + bas.cab + bas.cwe; // Zimbabwe
 
-module.exports = {
+export default {
   // Countries
   [bas.cc + cAfghanistan]: cAfghanistan, // Afghanistan
   [bas.cc + cAlbania]: cAlbania, // Albania

@@ -94,7 +94,7 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   return loadedAndMergedDataAllFiles;
 };
 
-module.exports = {
+export default {
   [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName, contextName) => searchForUniversalDebugConfigSetting(
     appConfigPathName, frameworkConfigPathName, contextName
   ),

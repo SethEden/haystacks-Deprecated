@@ -98,7 +98,7 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
   return returnData;
 };
 
-module.exports = {
+export default {
   [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
   [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
   [fnc.cprocessRules]: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)

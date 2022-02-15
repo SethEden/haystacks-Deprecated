@@ -72,6 +72,6 @@ function prompt(ask) {
   return input;
 };
 
-module.exports = {
+export default {
   [fnc.cprompt]: (ask) => prompt(ask)
 };

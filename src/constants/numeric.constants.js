@@ -256,7 +256,7 @@ let cBillionth = cBillion + bas.cth; // Billionth
 let ctrillionth = ctrillion + bas.cth; // trillionth
 let cTrillionth = cTrillion + bas.cth; // Trillionth
 
-module.exports = {
+export default {
   // Numbers
   [bas.cc + c0]: c0, // 0
   [bas.cc + c1]: c1, // 1

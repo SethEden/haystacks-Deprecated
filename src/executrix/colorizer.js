@@ -593,7 +593,7 @@ function removeFontStyles(message) {
   return returnMessage;
 };
 
-module.exports = {
+export default {
   [fnc.ccolorizeMessage]: (message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
     colorizeMessage(message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
   [fnc.caggregateStyleSetting]: (settingValue1, settingValue2, processAsFontSetting) => aggregateStyleSetting(settingValue1, settingValue2, processAsFontSetting),

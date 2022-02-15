@@ -1735,7 +1735,7 @@ let cHas = bas.cHa + bas.cs; // Has
 let cread = phn.crea + bas.cd; // read
 let cRead = phn.cRea + bas.cd; // Read
 let creads = cread + bas.cs; // reads
-let cReads = cReads + bas.cs; // Reads
+let cReads = cRead + bas.cs; // Reads
 let creading = cread + phn.cing; // reading
 let cReading = cRead + phn.cing; // Reading
 let cready = phn.crea + bas.cdy; // ready
@@ -2552,7 +2552,7 @@ let cWinter = bas.cWi + bas.cnt + bas.cer; // Winter
 let cDream = bas.cDr + phn.ceam; // Dream
 let cYale = bas.cYa + bas.cle; // Yale
 
-module.exports = {
+export default {
   // Miscelaneious Words
   [bas.cc + num.c1 + bas.ca + num.c1 + bas.cd]: c1a1d, // ad // 'ca' & 'cd' is some how a reserved word.
   [bas.cc + c3d]: c3d, // 3d

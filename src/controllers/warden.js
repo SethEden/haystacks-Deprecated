@@ -153,7 +153,7 @@ function loadCommandAliases(systemCommandsAliasesPath, clientCommandsAliasesPath
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
-module.exports = {
+export default {
   [fnc.cprocessRootPath]: (configData) => processRootPath(configData),
   [fnc.cinitFrameworkSchema]: (configData) => initFrameworkSchema(configData)
 };

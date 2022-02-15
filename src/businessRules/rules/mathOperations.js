@@ -66,3 +66,7 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
+
+export default {
+  hex2rgbConversion
+};

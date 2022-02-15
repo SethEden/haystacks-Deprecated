@@ -103,7 +103,7 @@ function consoleLog(theNamespacePrefix, theFunctionName, message) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-module.exports = {
+export default {
   [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
   [fnc.cconsoleLog]: (theNamespacePrefix, theFunctionName, message) => consoleLog(theNamespacePrefix, theFunctionName, message),
   [fnc.cprompt]: (ask) => prompt.prompt(ask),

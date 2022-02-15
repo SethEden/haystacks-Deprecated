@@ -133,7 +133,7 @@ function processCommandQueue() {
   return returnData;
 };
 
-module.exports = {
+export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
   [fnc.cloadCommandAliasesFromPath]: (commandAliasesFilePathConfigurationName) => loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),

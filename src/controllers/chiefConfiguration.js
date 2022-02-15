@@ -169,7 +169,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-module.exports = {
+export default {
   [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
     appConfigPath, frameworkConfigPath
   )

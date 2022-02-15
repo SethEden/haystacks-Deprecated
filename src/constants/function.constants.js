@@ -142,7 +142,7 @@ let cprint = wr1.cprint; // print
 // main
 let cinitFramework = gen.cinit + wr1.cFramework; // initFramework
 
-module.exports = {
+export default {
   // commandBroker
   // [bas.cc + cbootStrapCommands]: cbootStrapCommands, // bootStrapCommands // Duplicate definition in the chiefCommander
   [bas.cc + caddClientCommands]: caddClientCommands, // addClientCommands

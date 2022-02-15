@@ -64,6 +64,6 @@ function initCommandsLibrary() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
-module.exports = {
+export default {
   [fnc.cinitCommandsLibrary]: () => initCommandsLibrary()
 };

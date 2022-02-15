@@ -245,7 +245,7 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   return returnValue;
 };
 
-module.exports = {
+export default {
   [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>
     setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
   [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),

@@ -233,7 +233,7 @@ function print(stackNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
-module.exports = {
+export default {
 [fnc.cinitStack]: (stackNameSpace) => initStack(stackNameSpace),
 [fnc.cclearStack]: (stackNameSpace) => clearStack(stackNameSpace),
 [fnc.cpush]: (stackNameSpace, value) => push(stackNameSpace, value),

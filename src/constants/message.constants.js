@@ -638,7 +638,7 @@ let cprintMessageToFile03 = 'cprintMessageToFile03';
 // EXAMPLE:
 // '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'
 
-module.exports = {
+export default {
   // Logging Constants
   [bas.cc + con.cBEGIN_Function]: cBEGIN_Function, // BEGIN %% Function
   [bas.cc + con.cEND_Function]: cEND_Function, // END %% Function

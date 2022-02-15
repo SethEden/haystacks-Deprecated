@@ -1106,7 +1106,7 @@ let cbet = bas.cbe + bas.ct; // bet
 let csal = bas.csa + bas.cl; // sal
 let cSal = bas.cSa + bas.cl; // Sal
 
-module.exports = {
+export default {
   // Reusable Grammer
   [bas.cc + chree]: chree, // hree
   [bas.cc + cour]: cour, // our

@@ -214,6 +214,6 @@ let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
    // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-module.exports = {
+export default {
   [fnc.cinitRulesLibrary]: () => initRulesLibrary()
 };

@@ -43,7 +43,7 @@ let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + ba
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
+const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
   let functionName = singleQuoteSwapAfterEquals.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -86,7 +86,7 @@ export const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
+const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   let functionName = swapForwardSlashToBackSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -117,7 +117,7 @@ export const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
+const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   let functionName = swapBackSlashToForwardSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -148,7 +148,7 @@ export const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMetaData) {
+const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMetaData) {
   let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -179,7 +179,7 @@ export const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, in
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) {
+const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) {
   let functionName = swapDoubleBackSlashToSingleBackSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -209,7 +209,7 @@ export const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMet
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const getUserNameFromEmail = function(inputData, inputMetaData) {
+const getUserNameFromEmail = function(inputData, inputMetaData) {
   let functionName = getUserNameFromEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -234,7 +234,7 @@ export const getUserNameFromEmail = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const replaceSpacesWithPlus = function(inputData, inputMetaData) {
+const replaceSpacesWithPlus = function(inputData, inputMetaData) {
   let functionName = replaceSpacesWithPlus.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -258,7 +258,7 @@ export const replaceSpacesWithPlus = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const replaceColonWithUnderscore = function(inputData, inputMetaData) {
+const replaceColonWithUnderscore = function(inputData, inputMetaData) {
   let functionName = replaceColonWithUnderscore.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -282,7 +282,7 @@ export const replaceColonWithUnderscore = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
+const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
   let functionName = cleanCarriageReturnFromString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -306,7 +306,7 @@ export const cleanCarriageReturnFromString = function(inputData, inputMetaData) 
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const convertStringToLowerCase = function(inputData, inputMetaData) {
+const convertStringToLowerCase = function(inputData, inputMetaData) {
   let functionName = convertStringToLowerCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -329,7 +329,7 @@ export const convertStringToLowerCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const convertStringToUpperCase = function(inputData, inputMetaData) {
+const convertStringToUpperCase = function(inputData, inputMetaData) {
   let functionName = convertStringToUpperCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -352,7 +352,7 @@ export const convertStringToUpperCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const getFileNameFromPath = function(inputData, inputMetaData) {
+const getFileNameFromPath = function(inputData, inputMetaData) {
   let functionName = getFileNameFromPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -385,7 +385,7 @@ export const getFileNameFromPath = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const getFileExtension = function(inputData, inputMetaData) {
+const getFileExtension = function(inputData, inputMetaData) {
   let functionName = getFileExtension.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -409,7 +409,7 @@ export const getFileExtension = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const removeDotFromFileExtension = function(inputData, inputMetaData) {
+const removeDotFromFileExtension = function(inputData, inputMetaData) {
   let functionName = removeDotFromFileExtension.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -433,7 +433,7 @@ export const removeDotFromFileExtension = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const removeFileExtensionFromFileName = function(inputData, inputMetaData) {
+const removeFileExtensionFromFileName = function(inputData, inputMetaData) {
   let functionName = removeFileExtensionFromFileName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -456,7 +456,7 @@ export const removeFileExtensionFromFileName = function(inputData, inputMetaData
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const getValueFromAssignmentOperationString = function(inputData, inputMetaData) {
+const getValueFromAssignmentOperationString = function(inputData, inputMetaData) {
   let functionName = getValueFromAssignmentOperationString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -482,7 +482,7 @@ export const getValueFromAssignmentOperationString = function(inputData, inputMe
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputMetaData) {
+const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputMetaData) {
   let functionName = aggregateNumericalDifferenceBetweenTwoStrings.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -545,7 +545,7 @@ export const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData,
  * mixed numbers and camel case strings ever becomes a requirement as input to this function.
  * @NOTE Based on the implementation for the business rule/function arrayParsing.convertCamelCaseStringToArray.
  */
-export const countCamelCaseWords = function(inputData, inputMetaData) {
+const countCamelCaseWords = function(inputData, inputMetaData) {
   let functionName = countCamelCaseWords.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -573,7 +573,7 @@ export const countCamelCaseWords = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const doesStringContainAcronym = function(inputData, inputMetaData) {
+const doesStringContainAcronym = function(inputData, inputMetaData) {
   let functionName = doesStringContainAcronym.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -611,7 +611,7 @@ export const doesStringContainAcronym = function(inputData, inputMetaData) {
  * @date 2022/01/23
  * @NOTE: https://stackoverflow.com/questions/35849174/count-spaces-in-a-string
  */
-export const countDelimiterInString = function(inputData, inputMetaData) {
+const countDelimiterInString = function(inputData, inputMetaData) {
   let functionName = countDelimiterInString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -634,7 +634,7 @@ export const countDelimiterInString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const determineWordDelimiter = function(inputData, inputMetaData) {
+const determineWordDelimiter = function(inputData, inputMetaData) {
   let functionName = determineWordDelimiter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -711,7 +711,7 @@ export const determineWordDelimiter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const getWordCountInString = function(inputData, inputMetaData) {
+const getWordCountInString = function(inputData, inputMetaData) {
   let functionName = getWordCountInString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -744,7 +744,7 @@ export const getWordCountInString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const doesStringContainUpperCaseCharacter = function(inputData, inputMetaData) {
+const doesStringContainUpperCaseCharacter = function(inputData, inputMetaData) {
   let functionName = doesStringContainUpperCaseCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -773,7 +773,7 @@ export const doesStringContainUpperCaseCharacter = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const doesStringContainLowerCaseCharacter = function(inputData, inputMetaData) {
+const doesStringContainLowerCaseCharacter = function(inputData, inputMetaData) {
   let functionName = doesStringContainLowerCaseCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -801,7 +801,7 @@ export const doesStringContainLowerCaseCharacter = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const isFirstCharacterLowerCase = function(inputData, inputMetaData) {
+const isFirstCharacterLowerCase = function(inputData, inputMetaData) {
   let functionName = isFirstCharacterLowerCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -824,7 +824,7 @@ export const isFirstCharacterLowerCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
+const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
   let functionName = isFirstCharacterUpperCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -848,7 +848,7 @@ export const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const isStringList = function(inputData, inputMetaData) {
+const isStringList = function(inputData, inputMetaData) {
   let functionName = isStringList.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -886,7 +886,7 @@ export const isStringList = function(inputData, inputMetaData) {
  * covidMedicalCase
  * aBc
  */
-export const isStringCamelCase = function(inputData, inputMetaData) {
+const isStringCamelCase = function(inputData, inputMetaData) {
   let functionName = isStringCamelCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -937,7 +937,7 @@ export const isStringCamelCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
+const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
   let functionName = mapWordToCamelCaseWord.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -966,7 +966,7 @@ export const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
  * As you can see tehre are stil some numbers coming through.
  * Might need to revisit this one when time allows, and if there is ever a business need again.
  */
-export const simplifyAndConsolidateString = function(inputData, inputMetaData) {
+const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   let functionName = simplifyAndConsolidateString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -989,7 +989,7 @@ export const simplifyAndConsolidateString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaData) {
+const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaData) {
   let functionName = compareSimplifiedAndConsolidatedStrings.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1012,7 +1012,7 @@ export const compareSimplifiedAndConsolidatedStrings = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const ascertainMatchingFilenames = function(inputData, inputMetaData) {
+const ascertainMatchingFilenames = function(inputData, inputMetaData) {
   let functionName = ascertainMatchingFilenames.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1044,7 +1044,7 @@ export const ascertainMatchingFilenames = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-export const validateConstantsDataValidation = function(inputData, inputMetaData) {
+const validateConstantsDataValidation = function(inputData, inputMetaData) {
   let functionName = validateConstantsDataValidation.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1120,7 +1120,7 @@ export const validateConstantsDataValidation = function(inputData, inputMetaData
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaData) {
+const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaData) {
   let functionName = determineConstantsContextQualifiedPrefix.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1152,7 +1152,7 @@ export const determineConstantsContextQualifiedPrefix = function(inputData, inpu
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const determineSuggestedConstantsValidationLineOfCode = function(inputData, inputMetaData) {
+const determineSuggestedConstantsValidationLineOfCode = function(inputData, inputMetaData) {
   let functionName = determineSuggestedConstantsValidationLineOfCode.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1196,7 +1196,7 @@ export const determineSuggestedConstantsValidationLineOfCode = function(inputDat
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const validateConstantsDataValidationLineItemName = function(inputData, inputMetaData) {
+const validateConstantsDataValidationLineItemName = function(inputData, inputMetaData) {
   let functionName = validateConstantsDataValidationLineItemName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1228,7 +1228,7 @@ export const validateConstantsDataValidationLineItemName = function(inputData, i
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const doesConstantExist = function(inputData, inputMetaData) {
+const doesConstantExist = function(inputData, inputMetaData) {
   let functionName = doesConstantExist.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1282,7 +1282,7 @@ loop2:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const getConstantType = function(inputData, inputMetaData) {
+const getConstantType = function(inputData, inputMetaData) {
   let functionName = getConstantType.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1340,7 +1340,7 @@ loop2:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const getConstantActualValue = function(inputData, inputMetaData) {
+const getConstantActualValue = function(inputData, inputMetaData) {
   let functionName = getConstantActualValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1411,7 +1411,7 @@ loop3:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const getConstantName = function(inputData, inputMetaData) {
+const getConstantName = function(inputData, inputMetaData) {
   let functionName = getConstantName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1461,7 +1461,7 @@ loop2:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const findConstantName = function(inputData, inutMetaData) {
+const findConstantName = function(inputData, inutMetaData) {
   let functionName = findConstantName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1487,7 +1487,7 @@ export const findConstantName = function(inputData, inutMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const isConstantTypeValid = function(inputData, inputMetaData) {
+const isConstantTypeValid = function(inputData, inputMetaData) {
   let functionName = isConstantTypeValid.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1516,7 +1516,7 @@ export const isConstantTypeValid = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const convertConstantTypeToConstantPrefix = function(inputData, inputMetaData) {
+const convertConstantTypeToConstantPrefix = function(inputData, inputMetaData) {
   let functionName = convertConstantTypeToConstantPrefix.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1545,7 +1545,7 @@ export const convertConstantTypeToConstantPrefix = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
+const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
   let functionName = constantsOptimizedFulfillmentSystem.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1578,7 +1578,7 @@ export const constantsOptimizedFulfillmentSystem = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const constantsFulfillmentSystem = function(inputData, inputMetaData) {
+const constantsFulfillmentSystem = function(inputData, inputMetaData) {
   let functionName = constantsFulfillmentSystem.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1625,7 +1625,7 @@ export const constantsFulfillmentSystem = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const validateConstantsDataValues = function(inputData, inputMetaData) {
+const validateConstantsDataValues = function(inputData, inputMetaData) {
   let functionName = validateConstantsDataValues.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1694,7 +1694,7 @@ export const validateConstantsDataValues = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const isValidCommandNameString = function(inputData, inputMetaData) {
+const isValidCommandNameString = function(inputData, inputMetaData) {
   let functionName = isValidCommandNameString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1727,7 +1727,7 @@ export const isValidCommandNameString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const isConstantValid = function(inputData, inputMetaData) {
+const isConstantValid = function(inputData, inputMetaData) {
   let functionName = isConstantValid.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1753,7 +1753,7 @@ export const isConstantValid = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const countDuplicateCommandAliases = function(inputData, inputMetaData) {
+const countDuplicateCommandAliases = function(inputData, inputMetaData) {
   let functionName = countDuplicateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1825,7 +1825,7 @@ loop2:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const getDataCatagoryFromDataContextName = function(inputData, inputMetaData) {
+const getDataCatagoryFromDataContextName = function(inputData, inputMetaData) {
   let functionName = getDataCatagoryFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1852,7 +1852,7 @@ export const getDataCatagoryFromDataContextName = function(inputData, inputMetaD
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const getDataCatagoryDetailNameFromDataContextName = function(inputData, inputMetaData) {
+const getDataCatagoryDetailNameFromDataContextName = function(inputData, inputMetaData) {
   let functionName = getDataCatagoryDetailNameFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1879,7 +1879,7 @@ export const getDataCatagoryDetailNameFromDataContextName = function(inputData, 
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-export const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
+const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
   let functionName = getKeywordNameFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1905,7 +1905,7 @@ export const getKeywordNameFromDataContextName = function(inputData, inputMetaDa
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-export const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
+const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
   let functionName = removeXnumberOfFoldersFromEndOfPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1967,7 +1967,7 @@ export const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetD
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-export const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
+const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
   let functionName = getFirstTopLevelFolderFromPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2002,7 +2002,7 @@ export const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData)
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-export const loadDataFile = function(inputData, inputMetaData) {
+const loadDataFile = function(inputData, inputMetaData) {
   let functionName = loadDataFile.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2051,7 +2051,7 @@ export const loadDataFile = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-export const supportedFileFormatsAre = function(inputData, inputMetaData) {
+const supportedFileFormatsAre = function(inputData, inputMetaData) {
   let functionName = supportedFileFormatsAre.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2071,7 +2071,7 @@ export const supportedFileFormatsAre = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-export const getAttributeName = function(inputData, inputMetaData) {
+const getAttributeName = function(inputData, inputMetaData) {
   let functionName = getAttributeName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2100,7 +2100,7 @@ export const getAttributeName = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/10
  */
-export const getAttributeValue = function(inputData, inputMetaData) {
+const getAttributeValue = function(inputData, inputMetaData) {
   let functionName = getAttributeValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2132,7 +2132,7 @@ export const getAttributeValue = function(inputData, inputMetaData) {
  * @date 2022/01/25
  * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
  */
-export const isOdd = function(inputData, inputMetaData) {
+const isOdd = function(inputData, inputMetaData) {
   let functionName = isOdd.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2162,7 +2162,7 @@ export const isOdd = function(inputData, inputMetaData) {
  * @NOTE This fucntion isn't actually needed, as we can just invert our logic for calling isOdd,
  * but I provided it here anyways for completeness.
  */
-export const isEven = function(inputData, inputMetaData) {
+const isEven = function(inputData, inputMetaData) {
   let functionName = isEven.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2187,7 +2187,7 @@ export const isEven = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-export const cleanCommandInput = function(inputData, inputMetaData) {
+const cleanCommandInput = function(inputData, inputMetaData) {
   let functionName = cleanCommandInput.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -2233,4 +2233,68 @@ const replaceCharacterAtIndexOfString = function(originalString, index, replacem
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
+};
+
+export default {
+  singleQuoteSwapAfterEquals,
+  swapForwardSlashToBackSlash,
+  swapBackSlashToForwardSlash,
+  swapDoubleForwardSlashToSingleForwardSlash,
+  swapDoubleBackSlashToSingleBackSlash,
+  getUserNameFromEmail,
+  replaceSpacesWithPlus,
+  replaceColonWithUnderscore,
+  cleanCarriageReturnFromString,
+  convertStringToLowerCase,
+  convertStringToUpperCase,
+  getFileNameFromPath,
+  getFileExtension,
+  removeDotFromFileExtension,
+  removeFileExtensionFromFileName,
+  getValueFromAssignmentOperationString,
+  aggregateNumericalDifferenceBetweenTwoStrings,
+  countCamelCaseWords,
+  doesStringContainAcronym,
+  countDelimiterInString,
+  determineWordDelimiter,
+  getWordCountInString,
+  doesStringContainUpperCaseCharacter,
+  doesStringContainLowerCaseCharacter,
+  isFirstCharacterLowerCase,
+  isFirstCharacterUpperCase,
+  isStringList,
+  isStringCamelCase,
+  mapWordToCamelCaseWord,
+  simplifyAndConsolidateString,
+  compareSimplifiedAndConsolidatedStrings,
+  ascertainMatchingFilenames,
+  validateConstantsDataValidation,
+  determineConstantsContextQualifiedPrefix,
+  determineSuggestedConstantsValidationLineOfCode,
+  validateConstantsDataValidationLineItemName,
+  doesConstantExist,
+  getConstantType,
+  getConstantActualValue,
+  getConstantName,
+  findConstantName,
+  isConstantTypeValid,
+  convertConstantTypeToConstantPrefix,
+  constantsOptimizedFulfillmentSystem,
+  constantsFulfillmentSystem,
+  validateConstantsDataValues,
+  isValidCommandNameString,
+  isConstantValid,
+  countDuplicateCommandAliases,
+  getDataCatagoryFromDataContextName,
+  getDataCatagoryDetailNameFromDataContextName,
+  getKeywordNameFromDataContextName,
+  removeXnumberOfFoldersFromEndOfPath,
+  getFirstTopLevelFolderFromPath,
+  loadDataFile,
+  supportedFileFormatsAre,
+  getAttributeName,
+  getAttributeValue,
+  isOdd,
+  isEven,
+  cleanCommandInput
 };

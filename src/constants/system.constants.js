@@ -375,7 +375,7 @@ let cword_constants_js = wr1.cword + bas.cDot + wr1.cconstants + bas.cDot + bas.
 // System Paths
 let cframeworkResourcesConfigurationPath = bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash; // //resources//configuration//
 
-module.exports = {
+export default {
   // Miscelaneious
   [bas.cc + cENV]: cENV, // ENV
   [bas.cc + cLOG]: cLOG, // LOG

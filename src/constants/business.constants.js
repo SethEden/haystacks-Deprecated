@@ -193,7 +193,7 @@ let cisString = wr1.cis + wr1.cString; // isString
 let creplaceDoublePercentWithMessage = wr1.creplace + wr1.cDouble + wr1.cPercent + wr1.cWith + wr1.cMessage; // replaceDoublePercentWithMessage
 let cutilitiesReplaceCharacterWithCharacter = wr1.cutilities + wr1.cReplace + wr1.cCharacter + wr1.cWith + wr1.cCharacter; // utilitiesReplaceCharacterWithCharacter
 
-module.exports = {
+export default {
   // ***********************************************
   // ArrayParsing rules in order
   // ***********************************************

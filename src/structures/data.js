@@ -12,6 +12,6 @@
 import * as wr1 from '../constants/word1.constants.js';
 let data = {};
 
-module.exports = {
+export default {
   [wr1.cdata]: data
 };

@@ -30,10 +30,11 @@ import * as wr1 from '../constants/word1.constants.js';
 // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
 // We will need to refactor the business rules to accept a callback function that does the logging.
 // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-import stringParsingUtilities from '../businessRules/rules/stringParsingUtilities';
-import configurator from './configurator';
-import fileOperations from './fileOperations';
-import D from '../structures/data';
+// import * as stringParsingUtilities from '../businessRules/rules/stringParsingUtilities';
+import ruleBroker from '../brokers/ruleBroker.js';
+import configurator from './configurator.js';
+import fileOperations from './fileOperations.js';
+import D from '../structures/data.js';
 import path from 'path';
 let baseFileName = path.basename(module.filename, path.extname(module.filename));
 let namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
@@ -238,7 +239,8 @@ function parseClassPath(logFile, classPath, message) {
       // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
       // We will need to refactor the business rules to accept a callback function that does the logging.
       // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-      message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
+      // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
+      message = ruleBroker.processRules(message, myNameSpace, rules);
     }
     // console.log('setting the returnData to the message: ' + message);
     returnData = message;
@@ -299,6 +301,6 @@ function printMessageToFile(file, message) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-module.exports = {
+export default {
   [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
 };

@@ -597,7 +597,7 @@ function appendMessageToFile(file, message) {
   return appendSuccess;
 };
 
-module.exports = {
+export default {
   [fnc.cgetJsonData]: (pathAndFilename) => getJsonData(pathAndFilename),
   [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
   [fnc.cscanDirectoryContents]: (directory, enableLimit, filesLimit) => scanDirectoryContents(directory, enableLimit, filesLimit),

@@ -61,6 +61,6 @@ function getWorkflow(workflowName) {
   return workflowValue;
 };
 
-module.exports = {
+export default {
   [fnc.cgetWorkflow]: (workflowName) => getWorkflow(workflowName)
 };

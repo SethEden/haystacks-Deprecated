@@ -416,7 +416,7 @@ function executeCommand(commandString) {
   return returnData;
 };
 
-module.exports = {
+export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
   [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
   [fnc.cgetValidCommand]: (commandString, commandDelimiter) => getValidCommand(commandString, commandDelimiter),

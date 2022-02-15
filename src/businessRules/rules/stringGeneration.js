@@ -47,7 +47,7 @@ let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + ba
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomMixedCaseTextByLength = function(inputData, inputMetaData) {
+const generateRandomMixedCaseTextByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -76,7 +76,7 @@ export const generateRandomMixedCaseTextByLength = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomUpperCaseTextByLength = function(inputData, inputMetaData) {
+const generateRandomUpperCaseTextByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -105,7 +105,7 @@ export const generateRandomUpperCaseTextByLength = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomLowerCaseTextByLength = function(inputData, inputMetaData) {
+const generateRandomLowerCaseTextByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -134,7 +134,7 @@ export const generateRandomLowerCaseTextByLength = function(inputData, inputMeta
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomMixedCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+const generateRandomMixedCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -161,7 +161,7 @@ export const generateRandomMixedCaseTextWithSpecialCharactersByLength = function
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -191,7 +191,7 @@ export const generateRandomUpperCaseTextWithSpecialCharactersByLength = function
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomLowerCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+const generateRandomLowerCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -220,7 +220,7 @@ export const generateRandomLowerCaseTextWithSpecialCharactersByLength = function
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
+const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -249,7 +249,7 @@ export const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputDat
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
+const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -278,7 +278,7 @@ export const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputDat
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomLowerCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
+const generateRandomLowerCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -305,7 +305,7 @@ export const generateRandomLowerCaseAlphaNumericCodeByLength = function(inputDat
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomNumericCodeByLength = function(inputData, inputMetaData) {
+const generateRandomNumericCodeByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -335,7 +335,7 @@ export const generateRandomNumericCodeByLength = function(inputData, inputMetaDa
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -365,7 +365,7 @@ export const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLengt
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -395,7 +395,7 @@ export const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLengt
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -423,7 +423,7 @@ export const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLengt
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMetaData) {
+const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomSpecialCharacterCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -459,7 +459,7 @@ export const generateRandomSpecialCharacterCodeByLength = function(inputData, in
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateValidEmail = function(inputData, inputMetaData) {
+const generateValidEmail = function(inputData, inputMetaData) {
   let functionName = generateValidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -519,7 +519,7 @@ export const generateValidEmail = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-export const generateInvalidEmail = function(inputData, inputMetaData) {
+const generateInvalidEmail = function(inputData, inputMetaData) {
   let functionName = generateInvalidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1142,7 +1142,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-export const generateRandomBrightColor = function(inputData, inputMetaData) {
+const generateRandomBrightColor = function(inputData, inputMetaData) {
   let functionName = generateRandomBrightColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1176,7 +1176,7 @@ export const generateRandomBrightColor = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-export const generateRandomDarkColor = function(inputData, inputMetaDate) {
+const generateRandomDarkColor = function(inputData, inputMetaDate) {
   let functionName = generateRandomDarkColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1206,7 +1206,7 @@ export const generateRandomDarkColor = function(inputData, inputMetaDate) {
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-export const generateRandomColor = function(inputData, inputMetaData) {
+const generateRandomColor = function(inputData, inputMetaData) {
   let functionName = generateRandomColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1231,4 +1231,26 @@ export const generateRandomColor = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+export default {
+  generateRandomMixedCaseTextByLength,
+  generateRandomUpperCaseTextByLength,
+  generateRandomLowerCaseTextByLength,
+  generateRandomMixedCaseTextWithSpecialCharactersByLength,
+  generateRandomUpperCaseTextWithSpecialCharactersByLength,
+  generateRandomLowerCaseTextWithSpecialCharactersByLength,
+  generateRandomMixedCaseAlphaNumericCodeByLength,
+  generateRandomUpperCaseAlphaNumericCodeByLength,
+  generateRandomLowerCaseAlphaNumericCodeByLength,
+  generateRandomNumericCodeByLength,
+  generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength,
+  generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength,
+  generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength,
+  generateRandomSpecialCharacterCodeByLength,
+  generateValidEmail,
+  generateInvalidEmail,
+  generateRandomBrightColor,
+  generateRandomDarkColor,
+  generateRandomColor
 };

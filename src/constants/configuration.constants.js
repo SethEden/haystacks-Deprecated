@@ -40,7 +40,7 @@ let cLogFileEnabled = wr1.cLog + wr1.cFile + wr1.cEnabled; // LogFileEnabled
 let cIncludeDateTimeStampInLogFiles = wr1.cInclude + wr1.cDate + wr1.cTime + wr1.cStamp + bas.cIn + gen.cLog + wr1.cFiles; // IncludeDateTimeStampInLogFiles
 let cEnableColorizedConsoleLogs = wr1.cEnable + wr1.cColorized + wr1.cConsole + wr1.cLogs; // EnableColorizedConsoleLogs
 
-module.exports = {
+export default {
   [bas.cc + crootPath]: crootPath, // rootPath
   [bas.cc + cRootPath]: cRootPath, // RootPath
   [bas.cc + cappRootPath]: cappRootPath, // appRootPath

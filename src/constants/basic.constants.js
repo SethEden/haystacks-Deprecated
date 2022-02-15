@@ -107,7 +107,7 @@ let cX = 'X'; // X
 let cY = 'Y'; // Y
 let cZ = 'Z'; // Z
 
-module.exports = {
+export default {
   // Special Characters
   ['cSpace']: cSpace,
   ['cUnderscore']: cUnderscore, // _

@@ -261,7 +261,7 @@ let cBIN = bas.cBI + bas.cN; // BIN
 let cinit = phn.cini + bas.ct; // init
 let cInit = phn.cIni + bas.ct; // Init
 
-module.exports = {
+export default {
   [bas.cc + con.cDot + con.cDot]: cDotDot, // ..
   [bas.cc + con.cDot + con.cDot + con.cForwardSlash]: cDotDotForwardSlash, // ../
 

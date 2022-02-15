@@ -56,6 +56,6 @@ function loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName) 
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
-module.exports = {
+export default {
   [fnc.cloadCommandWorkflowsFromPath]: (commandWorkflowFilePathConfigurationName) => loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName)
 };

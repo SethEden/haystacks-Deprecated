@@ -321,7 +321,7 @@ function removeStringLiteralTagsFromArray(argumentArray) {
   return returnData;
 };
 
-module.exports = {
+export default {
   [fnc.cparseBusinessRuleArgument]: (argumentValue, index, consolidatedArgumentMode) => parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMode),
   [fnc.canalyzeArgument]: (argumentValue) => analyzeArgument(argumentValue),
   [fnc.canalyzeForRegularExpression]: (argumentValue) => analyzeForRegularExpression(argumentValue),

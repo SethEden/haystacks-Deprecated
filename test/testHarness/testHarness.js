@@ -24,8 +24,8 @@
  */
 
 import haystacks from 'haystacks';
-import {initClientRulesLibrary as clientRules} from './businessRules/clientRulesLibrary.js';
-import {initClientCommandsLibrary as clientCommands} from './commands/clientCommandsLibrary.js';
+import clientRules from './businessRules/clientRulesLibrary.js';
+import clientCommands from './commands/clientCommandsLibrary.js';
 import * as apc from './constants/application.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
 import path from 'path';

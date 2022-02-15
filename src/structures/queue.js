@@ -145,7 +145,7 @@ function queueSize(queueNameSpace) {
   return returnData;
 };
 
-module.exports = {
+export default {
   [fnc.cinitQueue]: (queueNameSpace) => initQueue(queueNameSpace),
   [fnc.cdequeue]: (queueNameSpace) => dequeue(queueNameSpace),
   [fnc.cenqueue]: (queueNameSpace, value) => enqueue(queueNameSpace, value),

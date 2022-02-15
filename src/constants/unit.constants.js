@@ -62,7 +62,7 @@ let cFemtoSeconds = cFemto + cSeconds; // FemtoSeconds
 // Celcius to Ferinheight
 // Liters to Gallons
 
-module.exports = {
+export default {
   // Units of Measure
   [bas.cc + cFemto]: cFemto, // Femto
   [bas.cc + cPico]: cPico, // Pico

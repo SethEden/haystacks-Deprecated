@@ -34,7 +34,7 @@ let cPortuguese = wr1.cPort + bas.cug + bas.cu + phn.cese; // Portuguese
 let cRussian = bas.cRu + bas.css + phn.cian; // Russian
 let cSpanish = bas.cSp + bas.can + phn.cish; // Spanish
 
-module.exports = {
+export default {
   // Languages
   [bas.cc + cChinese]: cChinese, // Chinese
   [bas.cc + cChineseSimplified]: cChineseSimplified, // ChineseSimplified

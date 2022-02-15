@@ -20,7 +20,7 @@ import * as msg from '../constants/message.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import path from 'path';
 import moment from 'moment';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -72,7 +72,7 @@ function computeDeltaTime(startTime, endTime) {
   return deltaTimeResult;
 };
 
-module.exports = {
+export default {
   [fnc.cgetNowMoment]: (formatting) => getNowMoment(formatting),
   [fnc.ccomputeDeltaTime]: (startTime, endTime) => computeDeltaTime(startTime, endTime)
 };
