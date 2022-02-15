@@ -26,8 +26,10 @@ import * as wr1 from '../constants/word1.constants.js';
 import dataBroker from '../brokers/dataBroker.js';
 import configurator from '../executrix/configurator.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// controllers.chiefData.
+const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function searchForUniversalDebugConfigSetting

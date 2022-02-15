@@ -32,8 +32,10 @@ import chiefConfiguration from './chiefConfiguration.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// controllers.warden.
+const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**
  * @function processRootPath
@@ -42,25 +44,25 @@ let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * It returns the path to the currently executing file, or the file that was executed first.
  * which is: C:/Calculator2/Application/Calculator2/
  * But what we really need for the root path is just C:/Calculator2/
- * @param {object} configData All of the configuration data that should be parsed as part of the setup process.
+ * @param {string} inputPath The path for the entry point to the framework, ie: main.js
  * @return {string} the true root path of the application.
  * @author Seth Hollingsead
  * @date 2021/10/12
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
-function processRootPath(configData) {
+function processRootPath(inputPath) {
   let functionName = processRootPath.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configData is: ${JSON.stringify(configData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputPath is: ${inputPath}`);
   let rules = {};
   rules[0] = biz.cparseSystemRootPath;
   ruleBroker.bootStrapBusinessRules();
-  let applicationName = configData[sys.capplicationName];
-  let pathToProcess = configData[cfg.crootPath];
-  let resolvedPath = ruleBroker.processRules(pathToProcess, applicationName, rules);
+  // let applicationName = configData[sys.capplicationName];
+  // let pathToProcess = configData[cfg.crootPath];
+  let resolvedPath = ruleBroker.processRules(inputPath, sys.cframeworkName, rules);
   let rootPath = path.resolve(resolvedPath);
-  console.log(`rootPath is: ${rootPath}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`rootPath is: ${rootPath}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
 };
 
@@ -154,6 +156,6 @@ function loadCommandAliases(systemCommandsAliasesPath, clientCommandsAliasesPath
 };
 
 export default {
-  [fnc.cprocessRootPath]: (configData) => processRootPath(configData),
+  [fnc.cprocessRootPath]: (inputPath) => processRootPath(inputPath),
   [fnc.cinitFrameworkSchema]: (configData) => initFrameworkSchema(configData)
 };

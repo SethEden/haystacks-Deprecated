@@ -40,6 +40,7 @@ let wr1 = haystacks.wr1;
 let phn = haystacks.phn;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// testHarness.
 let namespacePrefix = baseFileName + bas.cDot;
 
 /**
@@ -53,8 +54,7 @@ function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = path.resolve(process.cwd());
-  const {capplicationName} = sys;
-  const {crootPath, cappConfigReferencePath} = cfg;
+  const {cAppPath, cappConfigReferencePath} = apc;
   let appConfig = {
     applicationName: apc.cApplicationName,
     clientRootPath: rootPath,

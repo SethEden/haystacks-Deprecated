@@ -25,9 +25,10 @@ import * as sys from '../constants/system.constants.js';
 import * as msg from '../constants/message.constants.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefWorkflow.
-let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function loadCommandWorkflowsFromPath

@@ -40,9 +40,10 @@ import * as cfg from '../constants/configuration.constants.js';
 import * as msg from '../constants/message.constants.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.commandBroker.
-let namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands

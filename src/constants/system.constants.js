@@ -189,6 +189,8 @@ export const cbusinessRule = wr1.cbusiness + wr1.cRule; // businessRule
 export const cBusinessRule = wr1.cBusiness + wr1.cRule; // BusinessRule
 export const cbusinessRules = wr1.cbusiness + wr1.cRules; // businessRules
 export const cBusinessRules = wr1.cBusiness + wr1.cRules; // BusinessRules
+export const ccommandsBlob = wr1.ccommands + wr1.cBlob; // commandsBlob
+export const cCommandsBlob = wr1.cCommands + wr1.cBlob; // CommandsBlob
 export const crulesLibrary = wr1.crules + wr1.cLibrary; // rulesLibrary
 export const cframework = wr1.cframe + wr1.cwork; // framework
 export const cFramework = wr1.cFrame + wr1.cwork; // Framework
@@ -373,4 +375,7 @@ export const cunit_constants_js = wr1.cunit + bas.cDot + wr1.cconstants + bas.cD
 export const cword_constants_js = wr1.cword + bas.cDot + wr1.cconstants + bas.cDot + bas.cjs; // word.constants.js
 
 // System Paths
+export const cframeworkName = wr1.chay + wr1.cstacks; // haystacks
+export const cFrameworkDevelopRootPath = wr1.csrc + bas.cDoubleForwardSlash; // src//
+export const cFrameworkProductionRootPath = wr1.cbin + bas.cDoubleForwardSlash; // bin//
 export const cframeworkResourcesConfigurationPath = bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash; // //resources//configuration//

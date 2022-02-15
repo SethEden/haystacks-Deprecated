@@ -20,8 +20,10 @@ import * as msg from '../constants/message.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import path from 'path';
 import moment from 'moment';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.timers.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getNowMoment

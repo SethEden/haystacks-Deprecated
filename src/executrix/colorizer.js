@@ -25,6 +25,11 @@ import * as sys from '../constants/system.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import D from '../structures/data.js';
 import chalk from 'chalk';
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.colorizer.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function colorizeMessage

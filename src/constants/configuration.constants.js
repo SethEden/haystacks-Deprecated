@@ -20,6 +20,8 @@ import * as sys from './system.constants.js';
 export const crootPath = wr1.croot + wr1.cPath; // rootPath
 export const cRootPath = wr1.cRoot + wr1.cPath; // RootPath
 export const cappRootPath = gen.capp + wr1.cRoot + wr1.cPath; // appRootPath
+export const cclientRootPath = wr1.cclient + wr1.cRoot + wr1.cPath; // clientRootPath
+export const cframeworkRootPath = wr1.cframework + wr1.cRoot + wr1.cPath; // frameworkRootPath
 export const cappConfigPath = gen.capp + wr1.cConfig + wr1.cPath; // appConfigPath
 export const cframeworkConfigPath = wr1.cframework + wr1.cConfig + wr1.cPath; // frameworkConfigPath
 export const cappConfigFiles = gen.capp + wr1.cConfig + wr1.cFiles; // appConfigFiles

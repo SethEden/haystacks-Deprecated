@@ -21,8 +21,10 @@ import * as wr1 from '../constants/word1.constants.js';
 import rules from '../businessRules/rulesLibrary.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-let namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// brokers.ruleBroker.
+const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapBusinessRules

@@ -23,9 +23,10 @@ import * as sys from '../constants/system.constants.js';
 import * as msg from '../constants/message.constants.js';
 import D from '../structures/data.js';
 import path from 'path';
-var baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// executrix.workflowBroker.
-var namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// brokers.workflowBroker.
+const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getWorkflow

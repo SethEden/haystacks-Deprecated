@@ -25,8 +25,10 @@ import stringParsing from './rules/stringParsing.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// businessRules.rulesLibrary.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initRulesLibrary

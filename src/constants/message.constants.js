@@ -34,6 +34,9 @@ export const cinputMetaDataIs = wr1.cinput + wr1.cMetaData + sys.cSpaceIsColonSp
 export const creturnDataIs = wr1.creturn + wr1.cData + sys.cSpaceIsColonSpace; // return Data is:
 
 // System Messages
+// // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
+export const cApplicationWarningMessage1a = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + gen.cDotEnv + bas.cSpace + wr1.cFile + bas.cSpace + wr1.cfound + bas.cExclamation + bas.cSpace; // WARNING: No .End File found!
+export const cApplicationWarningMessage1b = wr1.cGoing + bas.cSpace + bas.cto + bas.cSpace + wr1.cdefault + bas.cSpace + bas.cto + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cDEVELOPMENT + bas.cSpace + wr1.cENVIRONMENT + bas.cExclamation; // Going to default to the DEVELOPMENT ENVIRONMENT!
 export const cCharacterGenerationMessage1 = wr1.ctype + bas.cTo + wr1.cGenerate + sys.cSpaceIsColonSpace; // typeToGenerate is:
 export const cCharacterGenerationMessage2 = sys.cGenerateA + bas.cSpace + wr1.cnumber + bas.cDot; // Generate a number.
 export const cCharacterGenerationMessage3 = sys.cGenerateA + bas.cSpace + wr1.crandom + bas.cSpace + wr1.cupper + bas.cSpace + wr1.ccase + bas.cSpace + bas.cor + bas.cSpace + wr1.clower + bas.cSpace + wr1.ccase + bas.cSpace + wr1.cletter + bas.cDot; // Generate a random upper case or lower case letter.

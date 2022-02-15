@@ -30,9 +30,10 @@ import * as sys from './system.constants.js';
 import * as biz from './business.constants.js';
 import * as msg from './message.constants.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.stringGeneration
-let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// businessRules.rules.stringGeneration.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function generateRandomMixedCaseTextByLength

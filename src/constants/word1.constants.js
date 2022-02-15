@@ -1213,6 +1213,8 @@ export const ctracking = ctrack + phn.cing; // tracking
 export const cTracking = cTrack + phn.cing; // Tracking
 export const cstack = bas.cst + phn.cack; // stack
 export const cStack = bas.cSt + phn.cack; // Stack
+export const cstacks = cstack + bas.cs; // stacks
+export const cStacks = cStack + bas.cs; // Stacks
 export const cstandard = bas.cst + cand + phn.card; // standard
 export const cStandard = bas.cSt + cand + phn.card; // Standard
 export const cdeviation = phn.cdev + bas.cia + phn.ction; // deviation
@@ -2141,6 +2143,8 @@ export const cmathematician = cmath + bas.ce + cmat + bas.cic + phn.cian; // mat
 export const cMathematician = cMath + bas.ce + cmat + bas.cic + phn.cian; // Mathematician
 export const cmathematicians = cmathematician + bas.cs; // mathematicians
 export const cMathematicians = cMathematician + bas.cs; // Mathematicians
+export const chay = bas.cha + bas.cy; // hay
+export const cHay = bas.cHa + bas.cy; // Hay
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

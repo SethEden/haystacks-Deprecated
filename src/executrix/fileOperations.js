@@ -29,13 +29,15 @@ import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 import fs from 'fs';
 import path from 'path';
-let filesCollection = [];
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.fileOperations.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
+let filesCollection = [];
 let enableFilesListLimit = false;
 let filesListLimit = -1;
 let hitFileLimit = false;
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getXmlData

@@ -28,9 +28,10 @@ import * as sys from '../constants/system.constants.js';
 import * as msg from '../constants/message.constants.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefCommander.
-let namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
