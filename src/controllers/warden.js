@@ -32,7 +32,7 @@ import chiefConfiguration from './chiefConfiguration.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**

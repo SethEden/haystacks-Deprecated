@@ -55,7 +55,7 @@ import prompt from 'prompt-sync'();
 import figlet from 'figlet';
 import path from 'path';
 import math from 'mathjs';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.nominal.
 let namespacePrefix = wr1.ccommands + wrd.cBlob + bas.cDot + wr1.ccommands + bas.cDot + baseFileName + bas.cDot;
 

@@ -30,7 +30,7 @@ import _ from 'lodash';
 import path from 'path';
 import * as math from 'mathjs';
 import chalk from 'chalk';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 

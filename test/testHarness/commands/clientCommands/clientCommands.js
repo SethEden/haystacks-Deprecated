@@ -29,7 +29,7 @@ let msg = haystacks.msg;
 import * as apc from '../../constants/application.constants.js';
 import path from 'path';
 import chalk from 'chalk';
-const baseFileName = path.basename(module.filename, path.extname(module.filename));
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.commands.clientCommands.clientCommands.
 const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
 
@@ -42,7 +42,7 @@ const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot +
  * @author Seth Hollingsead
  * @date 2022/02/08
  */
-export const customEchoCommand = function(inputData, inputMetaData) {
+const customEchoCommand = function(inputData, inputMetaData) {
   let functionName = customEchoCommand.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log('inputData is: ' + inputData);
@@ -52,4 +52,8 @@ export const customEchoCommand = function(inputData, inputMetaData) {
   console.log('returnData is: ' + returnData);
   console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
+};
+
+export default {
+  customEchoCommand
 };

@@ -48,7 +48,7 @@ import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
 import D from './structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = baseFileName + bas.cDot;
 
 /**
@@ -72,7 +72,7 @@ function initFramework(clientConfiguration) {
  frameworkRootPath = warden.processRootPath(clientConfiguration);
  clientConfiguration[cfg.cframeworkRootPath] = frameworkRootPath;
  clientConfiguration[cfg.cappConfigPath] = frameworkRootPath + clientConfiguration[cfg.cappConfigReferencePath];
- clientConfiguration[cfg.cframeworkConfigPath] = __dirname + sys.cframeworkResourcesConfigurationPath;
+ clientConfiguration[cfg.cframeworkConfigPath] = path.dirname(import.meta.url) + sys.cframeworkResourcesConfigurationPath;
 
 
 

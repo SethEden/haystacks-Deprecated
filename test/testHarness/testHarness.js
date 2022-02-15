@@ -39,8 +39,8 @@ let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 let phn = haystacks.phn;
 let rootPath = '';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-// let namespacePrefix = baseFileName + bas.cDot;
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+let namespacePrefix = baseFileName + bas.cDot;
 
 /**
  * @function bootstrapApplication
@@ -109,7 +109,7 @@ async function application() {
 // Launch the Test Harness application!!
 console.log('programmRunning = false');
 let programRunning = false;
-// bootstrapApplication();
+bootstrapApplication();
 console.log('programRunning = true');
 programRunning = true;
-// application();
+application();

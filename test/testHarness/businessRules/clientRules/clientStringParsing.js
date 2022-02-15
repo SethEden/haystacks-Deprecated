@@ -19,10 +19,10 @@ import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 let sys = haystacks.sys;
-import app_biz from '../../constants/application.business.constants.js';
-import apc from '../../constants/application.constants.js';
+import * as app_biz from '../../constants/application.business.constants.js';
+import * as apc from '../../constants/application.constants.js';
 import path from 'path';
-const baseFileName = path.basename(module.filename, path.extname(module.filename));
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.businessRules.clientRules.clientStringParsing.
 const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
 
@@ -35,7 +35,7 @@ const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.cbusiness + wr1.cRules
  * @author Seth Hollingsead
  * @date 2022/02/08
  */
-export const customEcho = function(inputData, inputMetaData) {
+const customEcho = function(inputData, inputMetaData) {
   let functionName = customEcho.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log('inputData is: ' + inputData);
@@ -45,4 +45,8 @@ export const customEcho = function(inputData, inputMetaData) {
   returnData = inputData + app_msg.cclientStringParsingDotCustomEcho;
   console.log('returnData is: ' + returnData);
   console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+export default {
+  customEcho
 };

@@ -10,8 +10,8 @@
  */
 
 import * as clientCommands from './clientCommands/clientCommands.js';
-import app_cmd from '../constants/application.command.constants.js';
-import app_fnc from '../constants/application.function.constants.js';
+import * as app_cmd from '../constants/application.command.constants.js';
+import * as app_fnc from '../constants/application.function.constants.js';
 
 /**
  * @function initClientCommandsLibrary
@@ -35,10 +35,10 @@ const initClientCommandsLibrary = function() {
 };
 
 // module.exports = {
-//   [app_fnc.cinitClientCommandsLibrary]: () => initCommandsLibrary()
+//   [app_fnc.cinitClientCommandsLibrary]: () => initClientCommandsLibrary()
 // };
 
 export default {
-  [app_fnc.cinitClientCommandsLibrary]: () => initCommandsLibrary()
+  [app_fnc.cinitClientCommandsLibrary]: () => initClientCommandsLibrary()
   // initClientCommandsLibrary
 };

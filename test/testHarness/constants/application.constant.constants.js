@@ -14,52 +14,52 @@ let bas = haystacks.bas;
 let wr2 = haystacks.wr2;
 
 // Application Constants
-let cApplicationName = wr2.cApplication + wr2.cName; // ApplicationName
-let cAppPath = wr2.cApp + wr2.cPath; // AppPath
-let cResourcesCommonPath = wr2.cResources + wr2.cCommon + wr2.cPath; // ResourcesCommonPath
-let cCommandsCommonPath = wr2.cCommands + wr2.cCommon + wr2.cPath; // CommandsCommonPath
-let cConfigurationCommonPath = wr2.cConfiguration + wr2.cCommon + wr2.cPath; // ConfigurationCommonPath
-let cWorkflowsCommonPath = wr2.cWorkflows + wr2.cCommon + wr2.cPath; // WorkflowsCommonPath
-let cReleasePath = wr2.cRelease + wr2.cPath; // ReleasePath
-let cFullResourcesPath = wr2.cFull + wr2.cResources + wr2.cPath; // FullResourcesPath
-let cFullCommandsPath = wr2.cFull + wr2.cCommands + wr2.cPath; // FullCommandsPath
-let cFullConfigurationPath = wr2.cFull + wr2.cConfiguration + wr2.cPath; // FullConfigurationPath
-let cFullWorkflowsPath = wr2.cFull + wr2.cWorkflows + wr2.cPath; // fullWorkflowsPath
-let cmetaDataPath = wr2.cmetaData + wr2.cPath; // metaDataPath
+export const cApplicationName = wr2.cApplication + wr2.cName; // ApplicationName
+export const cAppPath = wr2.cApp + wr2.cPath; // AppPath
+export const cResourcesCommonPath = wr2.cResources + wr2.cCommon + wr2.cPath; // ResourcesCommonPath
+export const cCommandsCommonPath = wr2.cCommands + wr2.cCommon + wr2.cPath; // CommandsCommonPath
+export const cConfigurationCommonPath = wr2.cConfiguration + wr2.cCommon + wr2.cPath; // ConfigurationCommonPath
+export const cWorkflowsCommonPath = wr2.cWorkflows + wr2.cCommon + wr2.cPath; // WorkflowsCommonPath
+export const cReleasePath = wr2.cRelease + wr2.cPath; // ReleasePath
+export const cFullResourcesPath = wr2.cFull + wr2.cResources + wr2.cPath; // FullResourcesPath
+export const cFullCommandsPath = wr2.cFull + wr2.cCommands + wr2.cPath; // FullCommandsPath
+export const cFullConfigurationPath = wr2.cFull + wr2.cConfiguration + wr2.cPath; // FullConfigurationPath
+export const cFullWorkflowsPath = wr2.cFull + wr2.cWorkflows + wr2.cPath; // fullWorkflowsPath
+export const cmetaDataPath = wr2.cmetaData + wr2.cPath; // metaDataPath
 
 // clientStringParsing
-let cclientStringParsingDotCustomEcho = wr2.cclient + wr2.cString + wr2.cParsing + wr2.cDot + wr2.cCustom + wr2.cEcho; // clientStringParsingDotCustomEcho
+export const cclientStringParsingDotCustomEcho = wr2.cclient + wr2.cString + wr2.cParsing + wr2.cDot + wr2.cCustom + wr2.cEcho; // clientStringParsingDotCustomEcho
 
 // Application Message Constants
-let capplicationMessage = wr2.capplication + wr2.cMessage; // applicationMessage
-let capplicationMessage01 = capplicationMessage + wr2.c0 + wr2.c1; // applicationMessage01
-let capplicationMessage02 = capplicationMessage + wr2.c0 + wr2.c2; // applicationMessage01
-let capplicationMessage03 = capplicationMessage + wr2.c0 + wr2.c3; // applicationMessage01
-let capplicationMessage04 = capplicationMessage + wr2.c0 + wr2.c4; // applicationMessage01
-let capplicationMessage05 = capplicationMessage + wr2.c0 + wr2.c5; // applicationMessage01
+export const capplicationMessage = wr2.capplication + wr2.cMessage; // applicationMessage
+export const capplicationMessage01 = capplicationMessage + wr2.c0 + wr2.c1; // applicationMessage01
+export const capplicationMessage02 = capplicationMessage + wr2.c0 + wr2.c2; // applicationMessage01
+export const capplicationMessage03 = capplicationMessage + wr2.c0 + wr2.c3; // applicationMessage01
+export const capplicationMessage04 = capplicationMessage + wr2.c0 + wr2.c4; // applicationMessage01
+export const capplicationMessage05 = capplicationMessage + wr2.c0 + wr2.c5; // applicationMessage01
 
-export default {
-  // Application Constants
-  [bas.cc + cApplicationName]: cApplicationName, // ApplicationName
-  [bas.cc + cAppPath]: cAppPath, // AppPath
-  [bas.cc + cResourcesCommonPath]: cResourcesCommonPath, // ResourcesCommonPath
-  [bas.cc + cCommandsCommonPath]: cCommandsCommonPath, // CommandsCommonPath
-  [bas.cc + cConfigurationCommonPath]: cConfigurationCommonPath, // ConfigurationCommonPath
-  [bas.cc + cWorkflowsCommonPath]: cWorkflowsCommonPath, // WorkflowsCommonPath
-  [bas.cc + cReleasePath]: cReleasePath, // ReleasePath
-  [bas.cc + cFullResourcesPath]: cFullResourcesPath, // FullResourcesPath
-  [bas.cc + cFullCommandsPath]: cFullCommandsPath, // FullCommandsPath
-  [bas.cc + cFullConfigurationPath]: cFullConfigurationPath, // FullConfigurationPath
-  [bas.cc + cFullWorkflowsPath]: cFullWorkflowsPath, // fullWorkflowsPath
-  [bas.cc + cmetaDataPath]: cmetaDataPath, // metaDataPath
-
-  // clientStringParsing
-  [bas.cc + cclientStringParsingDotCustomEcho]: cclientStringParsingDotCustomEcho, // clientStringParsingDotCustomEcho
-
-  // Application Message Constants
-  [bas.cc + capplicationMessage01]: capplicationMessage01, // applicationMessage01
-  [bas.cc + capplicationMessage02]: capplicationMessage02, // applicationMessage01
-  [bas.cc + capplicationMessage03]: capplicationMessage03, // applicationMessage01
-  [bas.cc + capplicationMessage04]: capplicationMessage04, // applicationMessage01
-  [bas.cc + capplicationMessage05]: capplicationMessage05, // applicationMessage01
-};
+// export default {
+//   // Application Constants
+//   [bas.cc + cApplicationName]: cApplicationName, // ApplicationName
+//   [bas.cc + cAppPath]: cAppPath, // AppPath
+//   [bas.cc + cResourcesCommonPath]: cResourcesCommonPath, // ResourcesCommonPath
+//   [bas.cc + cCommandsCommonPath]: cCommandsCommonPath, // CommandsCommonPath
+//   [bas.cc + cConfigurationCommonPath]: cConfigurationCommonPath, // ConfigurationCommonPath
+//   [bas.cc + cWorkflowsCommonPath]: cWorkflowsCommonPath, // WorkflowsCommonPath
+//   [bas.cc + cReleasePath]: cReleasePath, // ReleasePath
+//   [bas.cc + cFullResourcesPath]: cFullResourcesPath, // FullResourcesPath
+//   [bas.cc + cFullCommandsPath]: cFullCommandsPath, // FullCommandsPath
+//   [bas.cc + cFullConfigurationPath]: cFullConfigurationPath, // FullConfigurationPath
+//   [bas.cc + cFullWorkflowsPath]: cFullWorkflowsPath, // fullWorkflowsPath
+//   [bas.cc + cmetaDataPath]: cmetaDataPath, // metaDataPath
+//
+//   // clientStringParsing
+//   [bas.cc + cclientStringParsingDotCustomEcho]: cclientStringParsingDotCustomEcho, // clientStringParsingDotCustomEcho
+//
+//   // Application Message Constants
+//   [bas.cc + capplicationMessage01]: capplicationMessage01, // applicationMessage01
+//   [bas.cc + capplicationMessage02]: capplicationMessage02, // applicationMessage01
+//   [bas.cc + capplicationMessage03]: capplicationMessage03, // applicationMessage01
+//   [bas.cc + capplicationMessage04]: capplicationMessage04, // applicationMessage01
+//   [bas.cc + capplicationMessage05]: capplicationMessage05, // applicationMessage01
+// };

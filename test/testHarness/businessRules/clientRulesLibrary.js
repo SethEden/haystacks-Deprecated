@@ -11,8 +11,10 @@
  */
 
 import * as clientStringParsing from './clientRules/clientStringParsing.js';
-import app_biz from '../constants/application.business.constants.js';
-import app_fnc from '../constants/application.function.constants.js';
+import * as app_biz from '../constants/application.business.constants.js';
+import * as app_fnc from '../constants/application.function.constants.js';
+
+console.log('app_fnc is: ' + JSON.stringify(app_fnc));
 
 /**
  * @function initClientRulesLibrary

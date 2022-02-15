@@ -22,7 +22,7 @@ import * as wr1 from '../constants/word1.constants.js';
 import timers from './timers.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**

@@ -27,7 +27,7 @@ import * as sys from '../../constants/system.constants.js';
 import * as biz from '../../constants/business.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.characterGeneration
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 

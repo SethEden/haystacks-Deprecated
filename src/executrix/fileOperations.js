@@ -34,7 +34,7 @@ const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platfor
 let enableFilesListLimit = false;
 let filesListLimit = -1;
 let hitFileLimit = false;
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**

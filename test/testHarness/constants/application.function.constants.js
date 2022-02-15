@@ -14,15 +14,15 @@ let gen = haystacks.gen;
 let wr1 = haystacks.wr1;
 
 // rulesLibrary
-let cinitClientRulesLibrary = gen.cinit + wr1.cClinet + wr1.cRules + wr1.cLibrary; // initClientRulesLibrary
+export const cinitClientRulesLibrary = gen.cinit + wr1.cClient + wr1.cRules + wr1.cLibrary; // initClientRulesLibrary
 
 // commandsLibrary
-let cinitClientCommandsLibrary = gen.cinit + wr1.cClient + wr1.cCommands + wr1.cLibrary; // initClientCommandsLibrary
+export const cinitClientCommandsLibrary = gen.cinit + wr1.cClient + wr1.cCommands + wr1.cLibrary; // initClientCommandsLibrary
 
-export default {
-  // rulesLibrary
-  [bas.cc + cinitClientRulesLibrary]: cinitClientRulesLibrary, // initClientRulesLibrary
-
-  // commandsLibrary
-  [bas.cc + cinitClientCommandsLibrary]: cinitClientCommandsLibrary // initClientCommandsLibrary
-};
+// export default {
+//   // rulesLibrary
+//   [bas.cc + cinitClientRulesLibrary]: cinitClientRulesLibrary, // initClientRulesLibrary
+//
+//   // commandsLibrary
+//   [bas.cc + cinitClientCommandsLibrary]: cinitClientCommandsLibrary // initClientCommandsLibrary
+// };

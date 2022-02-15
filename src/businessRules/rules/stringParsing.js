@@ -28,7 +28,7 @@ import * as wr1 from '../../constants/word1.constants.js';
 import loggers from '../../executrix/loggers.js';
 import arrayParsing from './arrayParsing.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing
 let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 

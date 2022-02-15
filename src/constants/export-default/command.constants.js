@@ -21,17 +21,17 @@ import * as sys from '../../constants/system.constants.js';
 // ***********************************************
 // Nominal commands in order
 // ***********************************************
-export const cechoCommand = biz.cecho + wr1.cCommand; // echoCommand
-export const cEchoCommand = biz.cEcho + wr1.cCommand; // EchoCommand
-export const cclearScreen = wr1.cclear + wr1.cScreen; // clearScreen
+let cechoCommand = biz.cecho + wr1.cCommand; // echoCommand
+let cEchoCommand = biz.cEcho + wr1.cCommand; // EchoCommand
+let cclearScreen = wr1.cclear + wr1.cScreen; // clearScreen
 
-// export default {
-//   // Generic Commands constants
-//
-//   // ***********************************************
-//   // Nominal commands in order
-//   // ***********************************************
-//   [bas.cc + cechoCommand]: cechoCommand, // echoCommand
-//   [bas.cc + cEchoCommand]: cEchoCommand, // EchoCommand
-//   [bas.cc + cclearScreen]: cclearScreen, // clearScreen
-// };
+export default {
+  // Generic Commands constants
+
+  // ***********************************************
+  // Nominal commands in order
+  // ***********************************************
+  [bas.cc + cechoCommand]: cechoCommand, // echoCommand
+  [bas.cc + cEchoCommand]: cEchoCommand, // EchoCommand
+  [bas.cc + cclearScreen]: cclearScreen, // clearScreen
+};

@@ -22,7 +22,7 @@ import * as wr1 from '../constants/word1.constants.js';
 import loggers from './loggers.js';
 import fs from 'fs';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 let term = 13; // carriage return
 

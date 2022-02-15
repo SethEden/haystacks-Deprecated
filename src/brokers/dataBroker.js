@@ -34,7 +34,7 @@ import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 let namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**

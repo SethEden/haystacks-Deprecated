@@ -17,14 +17,14 @@ let num = haystacks.num;
 let wr1 = haystacks.wr1;
 
 // Client Busienss Rules
-let cclientEcho = wr1.cclient + wr1.cEcho; // clientEcho
+export const cclientEcho = wr1.cclient + wr1.cEcho; // clientEcho
 
 // ********************************
 // ClientStringParsing rules in order
 // ********************************
-let ccustomEcho = wr1.ccustom + wr1.cEcho; // customEcho
+export const ccustomEcho = wr1.ccustom + wr1.cEcho; // customEcho
 
-export default {
-  [bas.cc + cclientEcho]: cclientEcho, // clientEcho
-  [bas.cc + ccustomEcho]: ccustomEcho // customEcho
-};
+// export default {
+//   [bas.cc + cclientEcho]: cclientEcho, // clientEcho
+//   [bas.cc + ccustomEcho]: ccustomEcho // customEcho
+// };

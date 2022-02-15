@@ -26,7 +26,7 @@ import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import D from './data.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // structures.stack.
 let namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;
 

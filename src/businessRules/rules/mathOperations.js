@@ -16,7 +16,7 @@ import * as bas from './basic.constants.js';
 import * as wr1 from './word1.constants.js';
 import * as sys from './system.constants.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.mathOperations.
 let namespacePrefix = wr1.cbusiness + wr1.cRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 

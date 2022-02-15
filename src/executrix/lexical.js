@@ -27,7 +27,7 @@ import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as msg from '../constants/message.constants.js';
 import path from 'path';
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
+let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.lexical.
 let namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
