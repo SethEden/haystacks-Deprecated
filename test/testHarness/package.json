@@ -2,10 +2,10 @@
   "name": "testHarness",
   "version": "0.0.1",
   "description": "A test harness application to test the haystacks framework.",
-  "main": "./testHarness.js",
+  "main": "./src/testHarness.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node ./testHarness.js",
+    "start": "babel-node ./src/testHarness.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
   },

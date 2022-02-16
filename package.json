@@ -5,7 +5,7 @@
   "main": "./src/main.js",
   "type": "module",
   "scripts": {
-    "test": "babel-node ./test/testHarness/testHarness.js",
+    "test": "babel-node ./test/testHarness/src/testHarness.js",
     "start": "babel-node ./src/main.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
