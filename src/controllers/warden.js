@@ -86,34 +86,33 @@ function initFrameworkSchema(configData) {
   const frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
 
-  let applicationMetaDataPathAndFilename = path.resolve(configData[cfg.cclientRootPath] + configData[cfg.cclientMetaDataPath]);
-  let frameworkMetaDataPathAndFilename = path.resolve(configData[cfg.cframeworkResourcesPath] + bas.cDoubleForwardSlash + sys.cmetaDatadotJson);
-
-  console.log('applicationMetaDataPathAndFilename is: ' + applicationMetaDataPathAndFilename);
-  console.log('frameworkMetaDataPathAndFilename is: ' + frameworkMetaDataPathAndFilename);
+  let applicationMetaDataPathAndFilename = configData[cfg.cclientMetaDataPath];
+  let frameworkMetaDataPathAndFilename = configData[cfg.cframeworkFullMetaDataPath];
+  // console.log('applicationMetaDataPathAndFilename is: ' + applicationMetaDataPathAndFilename);
+  // console.log('frameworkMetaDataPathAndFilename is: ' + frameworkMetaDataPathAndFilename);
 
   let applicationMetaData = fileOperations.getJsonData(applicationMetaDataPathAndFilename);
   let frameworkMetaData = fileOperations.getJsonData(frameworkMetaDataPathAndFilename);
-
-  console.log('applicationMetaData is: ' + JSON.stringify(applicationMetaData));
-  console.log('frameworkMetaData is: ' + JSON.stringify(frameworkMetaData));
+  // console.log('applicationMetaData is: ' + JSON.stringify(applicationMetaData));
+  // console.log('frameworkMetaData is: ' + JSON.stringify(frameworkMetaData));
 
   // let appConfig =
   // {
-//     "applicationName": "testHarness",
 //     "clientRootPath": "C:\\haystacks",
-//     "appConfigResourcesPath": "C:\\haystacks/test/testHarness/resources/",
-//     "appConfigReferencePath": "C:\\haystacks/test/testHarness/resources/configuration/",
-//     "clientMetaDataPath": "/test/testHarness/resources/metaData.json",
-//     "clientCommandAliasesPath": "/test/testHarness/resources/commands/",
-//     "clientWorkflowsPath": "/test/testHarness/resources/workflows/",
+//     "appConfigResourcesPath": "C:\\haystacks/test/testHarness/src/resources/",
+//     "appConfigReferencePath": "C:\\haystacks/test/testHarness/src/resources/configuration/",
+//     "clientMetaDataPath": "C:\\haystacks\\test\\testHarness\\src\\resources\\metaData.json",
+//     "clientCommandAliasesPath": "C:\\haystacks/test/testHarness/src/resources/commands/",
+//     "clientWorkflowsPath": "C:\\haystacks/test/testHarness/src/resources/workflows/",
 //     "clientBusinessRules": {},
 //     "clientCommands": {},
 //     "frameworkRootPath": "C:\\haystacks//src//",
-//     "appConfigPath": "C:\\haystacks/test/testHarness/resources/configuration/",
+//     "appConfigPath": "C:\\haystacks/test/testHarness/src/resources/configuration/",
 //     "frameworkResourcesPath": "C:\\haystacks//src//resources//",
-//     "frameworkFullMetaDataPath": "C:\\haystacks//src//resources////metaData.json",
-//     "frameworkConfigPath": "C:\\haystacks//src//resources//configuration//"
+//     "frameworkFullMetaDataPath": "C:\\haystacks\\src\\resources\\metaData.json",
+//     "frameworkConfigPath": "C:\\haystacks//src//resources//configuration//",
+//     "frameworkCommandAliasesPath": "C:\\haystacks//src//resources//commands//",
+//     "frameworkWorkflowsPath": "C:\\haystacks//src//resources//workflows//"
 // }
 
 

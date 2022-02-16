@@ -76,6 +76,8 @@ function initFramework(clientConfiguration) {
  // let frameworkRootPath = path.resolve(process.cwd());
  // let frameworkRootPath = path.resolve(path.dirname(import.meta.url));
  let frameworkRootPath = url.fileURLToPath(path.dirname(import.meta.url));
+ let frameworkCommandAliasesPath = '';
+ let frameworkWorkflowsPath = '';
  frameworkRootPath = warden.processRootPath(frameworkRootPath) + bas.cDoubleForwardSlash;
  if (NODE_ENV === wr1.cdevelopment) {
    frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
@@ -86,11 +88,17 @@ function initFramework(clientConfiguration) {
    console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
    frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
  }
+ frameworkCommandAliasesPath = frameworkRootPath + sys.cframeworkResourcesCommandAliasesPath;
+ frameworkWorkflowsPath = frameworkRootPath + sys.cframeworkResourcesWorkflowsPath;
+
  clientConfiguration[cfg.cframeworkRootPath] = frameworkRootPath;
  clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cappConfigReferencePath];
  clientConfiguration[cfg.cframeworkResourcesPath] = frameworkRootPath + sys.cframeworkResourcesPath;
- clientConfiguration[cfg.cframeworkFullMetaDataPath] = clientConfiguration[cfg.cframeworkResourcesPath] + bas.cDoubleForwardSlash + sys.cmetaDatadotJson;
+ clientConfiguration[cfg.cclientMetaDataPath] = path.resolve(clientConfiguration[cfg.cclientRootPath] + clientConfiguration[cfg.cclientMetaDataPath]);
+ clientConfiguration[cfg.cframeworkFullMetaDataPath] = path.resolve(clientConfiguration[cfg.cframeworkResourcesPath] + sys.cmetaDatadotJson);
  clientConfiguration[cfg.cframeworkConfigPath] = frameworkRootPath + sys.cframeworkResourcesConfigurationPath;
+ clientConfiguration[cfg.cframeworkCommandAliasesPath] = frameworkCommandAliasesPath;
+ clientConfiguration[cfg.cframeworkWorkflowsPath] = frameworkWorkflowsPath;
 
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
