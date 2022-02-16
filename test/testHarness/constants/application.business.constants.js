@@ -23,8 +23,3 @@ export const cclientEcho = wr1.cclient + wr1.cEcho; // clientEcho
 // ClientStringParsing rules in order
 // ********************************
 export const ccustomEcho = wr1.ccustom + wr1.cEcho; // customEcho
-
-// export default {
-//   [bas.cc + cclientEcho]: cclientEcho, // clientEcho
-//   [bas.cc + ccustomEcho]: ccustomEcho // customEcho
-// };

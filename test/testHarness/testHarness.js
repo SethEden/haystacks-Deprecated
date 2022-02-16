@@ -54,12 +54,12 @@ function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = path.resolve(process.cwd());
-  const {cAppPath, cappConfigReferencePath} = apc;
   let appConfig = {
     applicationName: apc.cApplicationName,
     clientRootPath: rootPath,
-    appConfigReferencePath: apc.cFullConfigurationPath,
-    metaDataPath: apc.cmetaDataPath,
+    appConfigResourcesPath: rootPath + apc.cFullResourcesPath,
+    appConfigReferencePath: rootPath + apc.cFullConfigurationPath,
+    clientMetaDataPath: apc.cmetaDataPath,
     clientCommandAliasesPath: apc.cFullCommandsPath,
     clientWorkflowsPath: apc.cFullWorkflowsPath,
     clientBusinessRules: clientRules.initClientRulesLibrary(),

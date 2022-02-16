@@ -19,7 +19,3 @@ let wr1 = haystacks.wr1;
 // Client Commands in order
 // ********************************
 export const ccustomEchoCommand = wr1.ccustom + wr1.cEcho + wr1.cCommand; // customEchoCommand
-
-// export default {
-//   [bas.cc + ccustomEchoCommand]: ccustomEchoCommand // customEchoCommand
-// };

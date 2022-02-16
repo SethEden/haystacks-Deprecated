@@ -376,6 +376,8 @@ export const cword_constants_js = wr1.cword + bas.cDot + wr1.cconstants + bas.cD
 
 // System Paths
 export const cframeworkName = wr1.chay + wr1.cstacks; // haystacks
+export const cmetaDatadotJson = wr1.cmeta + wr1.cData + bas.cDot + gen.cjson; // metaData.json
 export const cFrameworkDevelopRootPath = wr1.csrc + bas.cDoubleForwardSlash; // src//
 export const cFrameworkProductionRootPath = wr1.cbin + bas.cDoubleForwardSlash; // bin//
-export const cframeworkResourcesConfigurationPath = bas.cDoubleForwardSlash + wr1.cresources + bas.cDoubleForwardSlash + wr1.cconfiguration + bas.cDoubleForwardSlash; // //resources//configuration//
+export const cframeworkResourcesPath = wr1.cresources + bas.cDoubleForwardSlash; // //resources//
+export const cframeworkResourcesConfigurationPath = cframeworkResourcesPath + wr1.cconfiguration + bas.cDoubleForwardSlash; // //resources//configuration//

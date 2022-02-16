@@ -13,6 +13,7 @@
  * @requires module:ruleBroker
  * @requires module:chiefConfiguration
  * @requires module:configurator
+ * @requires module:fileOperations
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -30,6 +31,7 @@ import * as wr1 from '../constants/word1.constants.js';
 import ruleBroker from '../brokers/ruleBroker.js';
 import chiefConfiguration from './chiefConfiguration.js';
 import configurator from '../executrix/configurator.js';
+import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
 import path from 'path';
 
@@ -76,24 +78,43 @@ function processRootPath(inputPath) {
  */
 function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`configData is: ${JSON.stringify(configData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + configData);
-  let appConfigPath = configData[cfg.cappConfigPath];
-  let frameworkConfigPath = configData[cfg.cframeworkConfigPath];
+  const appConfigPath = configData[cfg.cappConfigPath];
+  const frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
 
-  // let appConfig = {
-  //   applicationName: apc.cApplicationName,
-  //   rootPath: rootPath,
-  //   appConfigReferencePath: apc.cFullConfigurationPath,
-  //   metaDataPath: apc.cmetaDataPath,
-  //   clientCommandAliasesPath: apc.cFullCommandsPath,
-  //   clientWorkflowsPath: apc.cFullWorkflowsPath,
-  //   clientBusinessRules: clientRules.initClientRulesLibrary(),
-  //   clientCommands: clientCommands()
-  // };
+  let applicationMetaDataPathAndFilename = path.resolve(configData[cfg.cclientRootPath] + configData[cfg.cclientMetaDataPath]);
+  let frameworkMetaDataPathAndFilename = path.resolve(configData[cfg.cframeworkResourcesPath] + bas.cDoubleForwardSlash + sys.cmetaDatadotJson);
+
+  console.log('applicationMetaDataPathAndFilename is: ' + applicationMetaDataPathAndFilename);
+  console.log('frameworkMetaDataPathAndFilename is: ' + frameworkMetaDataPathAndFilename);
+
+  let applicationMetaData = fileOperations.getJsonData(applicationMetaDataPathAndFilename);
+  let frameworkMetaData = fileOperations.getJsonData(frameworkMetaDataPathAndFilename);
+
+  console.log('applicationMetaData is: ' + JSON.stringify(applicationMetaData));
+  console.log('frameworkMetaData is: ' + JSON.stringify(frameworkMetaData));
+
+  // let appConfig =
+  // {
+//     "applicationName": "testHarness",
+//     "clientRootPath": "C:\\haystacks",
+//     "appConfigResourcesPath": "C:\\haystacks/test/testHarness/resources/",
+//     "appConfigReferencePath": "C:\\haystacks/test/testHarness/resources/configuration/",
+//     "clientMetaDataPath": "/test/testHarness/resources/metaData.json",
+//     "clientCommandAliasesPath": "/test/testHarness/resources/commands/",
+//     "clientWorkflowsPath": "/test/testHarness/resources/workflows/",
+//     "clientBusinessRules": {},
+//     "clientCommands": {},
+//     "frameworkRootPath": "C:\\haystacks//src//",
+//     "appConfigPath": "C:\\haystacks/test/testHarness/resources/configuration/",
+//     "frameworkResourcesPath": "C:\\haystacks//src//resources//",
+//     "frameworkFullMetaDataPath": "C:\\haystacks//src//resources////metaData.json",
+//     "frameworkConfigPath": "C:\\haystacks//src//resources//configuration//"
+// }
 
 
 

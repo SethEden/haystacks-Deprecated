@@ -18,11 +18,3 @@ export const cinitClientRulesLibrary = gen.cinit + wr1.cClient + wr1.cRules + wr
 
 // commandsLibrary
 export const cinitClientCommandsLibrary = gen.cinit + wr1.cClient + wr1.cCommands + wr1.cLibrary; // initClientCommandsLibrary
-
-// export default {
-//   // rulesLibrary
-//   [bas.cc + cinitClientRulesLibrary]: cinitClientRulesLibrary, // initClientRulesLibrary
-//
-//   // commandsLibrary
-//   [bas.cc + cinitClientCommandsLibrary]: cinitClientCommandsLibrary // initClientCommandsLibrary
-// };

@@ -37,29 +37,3 @@ export const capplicationMessage02 = capplicationMessage + wr2.c0 + wr2.c2; // a
 export const capplicationMessage03 = capplicationMessage + wr2.c0 + wr2.c3; // applicationMessage01
 export const capplicationMessage04 = capplicationMessage + wr2.c0 + wr2.c4; // applicationMessage01
 export const capplicationMessage05 = capplicationMessage + wr2.c0 + wr2.c5; // applicationMessage01
-
-// export default {
-//   // Application Constants
-//   [bas.cc + cApplicationName]: cApplicationName, // ApplicationName
-//   [bas.cc + cAppPath]: cAppPath, // AppPath
-//   [bas.cc + cResourcesCommonPath]: cResourcesCommonPath, // ResourcesCommonPath
-//   [bas.cc + cCommandsCommonPath]: cCommandsCommonPath, // CommandsCommonPath
-//   [bas.cc + cConfigurationCommonPath]: cConfigurationCommonPath, // ConfigurationCommonPath
-//   [bas.cc + cWorkflowsCommonPath]: cWorkflowsCommonPath, // WorkflowsCommonPath
-//   [bas.cc + cReleasePath]: cReleasePath, // ReleasePath
-//   [bas.cc + cFullResourcesPath]: cFullResourcesPath, // FullResourcesPath
-//   [bas.cc + cFullCommandsPath]: cFullCommandsPath, // FullCommandsPath
-//   [bas.cc + cFullConfigurationPath]: cFullConfigurationPath, // FullConfigurationPath
-//   [bas.cc + cFullWorkflowsPath]: cFullWorkflowsPath, // fullWorkflowsPath
-//   [bas.cc + cmetaDataPath]: cmetaDataPath, // metaDataPath
-//
-//   // clientStringParsing
-//   [bas.cc + cclientStringParsingDotCustomEcho]: cclientStringParsingDotCustomEcho, // clientStringParsingDotCustomEcho
-//
-//   // Application Message Constants
-//   [bas.cc + capplicationMessage01]: capplicationMessage01, // applicationMessage01
-//   [bas.cc + capplicationMessage02]: capplicationMessage02, // applicationMessage01
-//   [bas.cc + capplicationMessage03]: capplicationMessage03, // applicationMessage01
-//   [bas.cc + capplicationMessage04]: capplicationMessage04, // applicationMessage01
-//   [bas.cc + capplicationMessage05]: capplicationMessage05, // applicationMessage01
-// };

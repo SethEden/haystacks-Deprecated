@@ -86,13 +86,11 @@ function initFramework(clientConfiguration) {
    console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
    frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
  }
- console.log('frameworkRootPath is: ' + frameworkRootPath);
-
  clientConfiguration[cfg.cframeworkRootPath] = frameworkRootPath;
- clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cclientRootPath] + clientConfiguration[cfg.cappConfigReferencePath];
+ clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cappConfigReferencePath];
+ clientConfiguration[cfg.cframeworkResourcesPath] = frameworkRootPath + sys.cframeworkResourcesPath;
+ clientConfiguration[cfg.cframeworkFullMetaDataPath] = clientConfiguration[cfg.cframeworkResourcesPath] + bas.cDoubleForwardSlash + sys.cmetaDatadotJson;
  clientConfiguration[cfg.cframeworkConfigPath] = frameworkRootPath + sys.cframeworkResourcesConfigurationPath;
-
- console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
 
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
