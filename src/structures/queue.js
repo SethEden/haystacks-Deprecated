@@ -5,8 +5,10 @@
  * using the specified name-space on the D-data structure.
  * @requires module:loggers
  * @requires module:basic.constants
- * @requires module:word.constants
+ * @requires module:function.constants
  * @requires module:message.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -16,6 +18,7 @@
 
 import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
@@ -24,7 +27,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // structures.queue.
-const namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wr1.cstructures + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initQueue

@@ -27,6 +27,7 @@ import haystacks from 'haystacks';
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
 import * as apc from './constants/application.constants.js';
+import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
 import path from 'path';
 global.appRot = path.resolve(process.cwd());
@@ -61,9 +62,11 @@ function bootstrapApplication() {
     clientMetaDataPath: apc.cmetaDataPath,
     clientCommandAliasesPath: rootPath + apc.cFullCommandsPath,
     clientWorkflowsPath: rootPath + apc.cFullWorkflowsPath,
-    clientBusinessRules: clientRules.initClientRulesLibrary(),
-    clientCommands: clientCommands.initClientCommandsLibrary()
+    clientBusinessRules: {},
+    clientCommands: {}
   };
+  appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
+  appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
   console.log(`END ${namespacePrefix}${functionName} function`);
 };

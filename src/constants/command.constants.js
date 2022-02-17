@@ -11,10 +11,10 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import * as bas from '../../constants/basic.constants.js';
-import * as biz from '../../constants/business.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
-import * as sys from '../../constants/system.constants.js';
+import * as bas from './basic.constants.js';
+import * as biz from './business.constants.js';
+import * as wr1 from './word1.constants.js';
+import * as sys from './system.constants.js';
 
 // Generic Commands constants
 

@@ -5,6 +5,7 @@
  * @requires module:configurator
  * @requires module:loggers
  * @requires module:basic.constants
+ * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:word1.constants
  * @requires module:system.constants
@@ -20,6 +21,7 @@
 import configurator from './configurator.js';
 import loggers from './loggers.js';
 import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import * as sys from '../constants/system.constants.js';
@@ -30,7 +32,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.lexical.
-const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function parseBusinessRuleArgument

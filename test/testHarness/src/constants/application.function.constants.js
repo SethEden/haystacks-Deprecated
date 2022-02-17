@@ -9,9 +9,9 @@
  */
 
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let gen = haystacks.gen;
-let wr1 = haystacks.wr1;
+const bas = haystacks.bas;
+const gen = haystacks.gen;
+const wr1 = haystacks.wr1;
 
 // rulesLibrary
 export const cinitClientRulesLibrary = gen.cinit + wr1.cClient + wr1.cRules + wr1.cLibrary; // initClientRulesLibrary

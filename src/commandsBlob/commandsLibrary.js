@@ -6,6 +6,8 @@
  * @requires module:integrationTests
  * @requires module:loggers
  * @requires module:basic.constants
+ * @requires module:command.constants
+ * @requires module:function.constants
  * @requires module:word.constants
  * @requires module:system.constants
  * @requires module:message.constants
@@ -17,12 +19,14 @@
  */
 
 import nominalCommands from './commands/nominal.js';
-import integrationTests from './commands/integrationTests.js';
+// import integrationTests from './commands/integrationTests.js';
 import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
-import * as sys from '../constants/system.constants.js';
+import * as cmd from '../constants/command.constants.js';
+import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
 import D from '../structures/data.js';
 import path from 'path';
 
@@ -50,7 +54,7 @@ function initCommandsLibrary() {
     // ***********************************************
     // Nominal commands in order
     // ***********************************************
-    [cmd.cechoCommand]: (inputData, inputMetaData) => nominalCommands.echoCommand(inputData, inputMetaData)
+    [cmd.cechoCommand]: (inputData, inputMetaData) => nominalCommands.echoCommand(inputData, inputMetaData),
     [wr1.cexit]: (inputData, inputMetData) => nominalCommands.exit(inputData, inputMetData),
     [wr1.cversion]: (inputData, inputMetaData) => nominalCommands.version(inputData, inputMetaData),
     [wr1.cabout]: (inputData, inputMetaData) => nominalCommands.about(inputData, inputMetaData),

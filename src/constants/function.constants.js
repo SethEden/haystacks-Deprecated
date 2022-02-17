@@ -17,7 +17,7 @@ import * as wr1 from './word1.constants.js';
 
 // commandBroker
 // let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands // Duplicate definition in the chiefCommander
-export const caddClientCommands = wr1.cadd + wr1.cClient + wr1.cCommands; // addClientCommands
+export const caddClientCommands = wr1.c_add + wr1.cClient + wr1.cCommands; // addClientCommands
 export const cgetValidCommand = wr1.cget + wr1.cValid + wr1.cCommand; // getValidCommand
 export const cgetCommandArgs = wr1.cget + wr1.cCommand + gen.cArgs; // getCommandArgs
 export const cexecuteCommand = wr1.cexecute + wr1.cCommand; // executeCommand
@@ -36,7 +36,7 @@ export const cclearData = wr1.cclear + wr1.cData; // clearData
 
 // ruleBroker
 export const cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
-export const caddClientRules = wr1.cadd + wr1.cClient + wr1.cRules; // addClientRules
+export const caddClientRules = wr1.c_add + wr1.cClient + wr1.cRules; // addClientRules
 export const cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 
 // workflowBroker

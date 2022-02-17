@@ -23,6 +23,7 @@ import commandBroker from '../brokers/commandBroker.js';
 import queue from '../structures/queue.js';
 import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as msg from '../constants/message.constants.js';
@@ -31,7 +32,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefCommander.
-const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
@@ -43,7 +44,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 function bootStrapCommands() {
   let functionName = bootStrapCommands.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  commandBroker.bootSrapCommands();
+  commandBroker.bootStrapCommands();
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

@@ -51,14 +51,15 @@ import * as biz from '../../constants/business.constants.js';
 import * as cfg from '../../constants/configuration.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import D from '../../structures/data.js';
-import prompt from 'prompt-sync'();
+// import prompt from 'prompt-sync';
 import figlet from 'figlet';
 import path from 'path';
-import math from 'mathjs';
+import * as math from 'mathjs';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.nominal.
 const namespacePrefix = wr1.ccommandsBlob + bas.cDot + wr1.ccommands + bas.cDot + baseFileName + bas.cDot;
+// prompt();
 
 /**
  * @function echoCommand
@@ -70,7 +71,7 @@ const namespacePrefix = wr1.ccommandsBlob + bas.cDot + wr1.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/02/04
  */
-export const echoCommand = function(inputData, inputMetaData) {
+const echoCommand = function(inputData, inputMetaData) {
   let functionName = echoCommand.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -98,7 +99,7 @@ export const echoCommand = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/04
  */
-export const exit = function(inputData, inputMetaData) {
+const exit = function(inputData, inputMetaData) {
   let functionName = exit.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -119,7 +120,7 @@ export const exit = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/04
  */
-export const version = function(inputData, inputMetaData) {
+const version = function(inputData, inputMetaData) {
   let functionName = version.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -141,7 +142,7 @@ export const version = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/04
  */
-export const about = function(inputData, inputMetaData) {
+const about = function(inputData, inputMetaData) {
   let functionName = about.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -167,7 +168,7 @@ export const about = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/04
  */
-export const name = function(inputData, inputMetaData) {
+const name = function(inputData, inputMetaData) {
   let functionName = name.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -199,7 +200,7 @@ export const name = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/04
  */
-export const clearScreen = function(inputData, inputMetaData) {
+const clearScreen = function(inputData, inputMetaData) {
   let functionName = clearScreen.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -211,4 +212,13 @@ export const clearScreen = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+export default {
+  echoCommand,
+  exit,
+  version,
+  about,
+  name,
+  clearScreen
 };

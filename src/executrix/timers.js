@@ -74,7 +74,55 @@ function computeDeltaTime(startTime, endTime) {
   return deltaTimeResult;
 };
 
+/**
+ * @function reformatDeltaTime
+ * @description Converts a time interval into a different kind of format.
+ * @param {integer} deltaTime A time interval measured in milliseconds.
+ * @param {string} format The formatting template that should be used to format the time interval.
+ * @return {string} A time interval formatted according to the input format template string.
+ * @author Seth Hollingsead
+ * @date 2022/02/16
+ */
+function reformatDeltaTime(deltaTime, format) {
+  let functionName = reformatDeltaTime.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // deltaTime is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdeltaTimeIs + deltaTime);
+  // format is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cformatIs + format);
+  let returnDeltaTime = '';
+  returnDeltaTime = moment.duration(deltaTime).format(format);
+  // returnDeltaTime is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDeltaTimeIs + returnDeltaTime);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnDeltaTime;
+};
+
+/**
+ * @function sleep
+ * @description Causes the JavaScript code to wait for a period of time defined by the input.
+ * @param {integer} sleepTime The number of milliseconds that the system should sleep for.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/16
+ * @reference {@link https://www.sitepoint.com/delay-sleep-pause-wait/}
+ */
+function sleep(sleepTime) {
+  let functionName = sleep.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // sleepTime is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csleepTimeIs + sleepTime);
+  const date = moment();
+  let currentDate = null;
+  do {
+    currentDate = moment();
+  } while (currentDate - date < sleepTime);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
 export default {
   [fnc.cgetNowMoment]: (formatting) => getNowMoment(formatting),
-  [fnc.ccomputeDeltaTime]: (startTime, endTime) => computeDeltaTime(startTime, endTime)
+  [fnc.ccomputeDeltaTime]: (startTime, endTime) => computeDeltaTime(startTime, endTime),
+  [fnc.creformatDeltaTime]: (deltaTime, format) => reformatDeltaTime(deltaTime, format),
+  [fnc.csleep]: (sleepTime) => sleep(sleepTime)
 };

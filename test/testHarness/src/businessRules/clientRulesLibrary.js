@@ -26,6 +26,7 @@ import * as app_fnc from '../constants/application.function.constants.js';
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
 const initClientRulesLibrary = function() {
+  // console.log('BEGIN clientRulesLibrary.initClientRulesLibrary function');
   return {
     [app_biz.cclientEcho]: (inputData, inputMetaData) => (inputData, inputMetaData),
 

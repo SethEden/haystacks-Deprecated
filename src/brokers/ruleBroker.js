@@ -54,13 +54,12 @@ function bootStrapBusinessRules() {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   Object.assign(D[sys.cbusinessRules], clientRules);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 

@@ -10,6 +10,7 @@
  * @requires module:timers
  * @requires module:loggers
  * @requires module:basic.constants
+ * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:numeric.constants
  * @requires module:word1.constants
@@ -31,6 +32,7 @@ import stack from '../structures/stack.js';
 import timers from '../executrix/timers.js';
 import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as num from '../constants/numeric.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
@@ -43,7 +45,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.commandBroker.
-const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
@@ -59,7 +61,7 @@ const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 function bootStrapCommands() {
   let functionName = bootStrapCommands.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  commands.initCommandsLibrary();
+  commandsLibrary.initCommandsLibrary();
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -164,12 +166,12 @@ loop2:
         } else {
           // WARNING: The specified command:
           // does not exist, please try again!
-          console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace num.c1);
+          console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace + num.c1);
         }
       } else {
         // WARNING: The specified command:
         // does not exist, please try again!
-        console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace num.c2);
+        console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace + num.c2);
       }
     } // End-else
   } else {

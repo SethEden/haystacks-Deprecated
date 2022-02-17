@@ -30,10 +30,12 @@ const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 /**
  * @function setConfigurationSetting
  * @description Sets a configuration setting on the configuration data structure stored on the D-data structure.
- * @param {array<string>} configurationNamespace The path in the configuration JSON object
+ * @param {string} configurationNamespace The path in the configuration JSON object
  * where the configuration setting should be set.
+ * Ex: businessRules.rules.stringParsing.countCamelCaseWords
  * @param {string} configurationName The key of the configuration setting.
  * @param {string|integer|boolean|double} configurationValue The value of the configuration setting.
+ * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/13
  * @NOTE Cannot use the loggers here, because of a circular dependency.
@@ -54,7 +56,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
 /**
  * @function getConfigurationSetting
  * @description Gets a configuration value based on the configuration name.
- * @param {array<string>} configurationNamespace The path in the configuration JSON object
+ * @param {string} configurationNamespace The path in the configuration JSON object
  * where the configuration setting should be found.
  * @param {string} configurationName The key of the configuration setting.
  * @return {string|integer|boolean|double} The value of whatever was stored in the D[configuration].
