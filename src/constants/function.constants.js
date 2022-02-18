@@ -17,7 +17,7 @@ import * as wr1 from './word1.constants.js';
 
 // commandBroker
 // let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands // Duplicate definition in the chiefCommander
-export const caddClientCommands = wr1.c_add + wr1.cClient + wr1.cCommands; // addClientCommands
+// export const caddClientCommands = wr1.c_add + wr1.cClient + wr1.cCommands; // addClientCommands
 export const cgetValidCommand = wr1.cget + wr1.cValid + wr1.cCommand; // getValidCommand
 export const cgetCommandArgs = wr1.cget + wr1.cCommand + gen.cArgs; // getCommandArgs
 export const cexecuteCommand = wr1.cexecute + wr1.cCommand; // executeCommand
@@ -50,6 +50,7 @@ export const cinitCommandsLibrary = gen.cinit + wr1.cCommands + wr1.cLibrary; //
 
 // chiefCommander
 export const cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands
+export const caddClientCommands = wr1.c_add + wr1.cClient + wr1.cCommands; // addClientCommands
 export const cloadCommandAliasesFromPath = wr1.cload + wr1.cCommand + wr1.cAliases + wr1.cFrom + wr1.cPath; // loadCommandAliasesFromPath
 export const cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
 export const cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
@@ -60,6 +61,10 @@ export const csetupConfiguration = wr1.csetup + wr1.cConfiguration; // setupConf
 
 // chiefData
 export const csearchForUniversalDebugConfigSetting = wr1.csearch + wr1.cFor + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // searchForUniversalDebugConfigSetting
+export const cgetAndProcessCsvData = wr1.cget + wr1.cAnd + wr1.cProcess + gen.cCsv + wr1.cData; // getAndProcessCsvData
+export const cgetAndProcessXmlData = wr1.cget + wr1.cAnd + wr1.cProcess + gen.cXml + wr1.cData; // getAndProcessXmlData
+export const csetupAllCsvData = wr1.csetup + wr1.cAll + gen.cCsv + wr1.cData; // setupAllCsvData
+export const csetupAllXmlData = wr1.csetup + wr1.cAll + gen.cXml + wr1.cData; // setupAllXmlData
 export const csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
 
 // chiefWorkflow
@@ -68,6 +73,17 @@ export const cloadCommandWorkflowsFromPath = wr1.cload + wr1.cCommand + wr1.cWor
 // warden
 export const cprocessRootPath = wr1.cprocess + wr1.cRoot + wr1.cPath; // processRootPath
 export const cinitFrameworkSchema = gen.cinit + wr1.cFramework + wr1.cSchema; // initFrameworkSchema
+export const cmergeClientBusienssRules = wr1.cmerge + wr1.cClient + wr1.cBusiness + wr1.cRules; // mergeClientBusinessRules
+export const cmergeClientCommands = wr1.cmerge + wr1.cClient + wr1.cCommands; // mergeClientCommands
+export const cloadCommandAliases = wr1.cload + wr1.cCommand + wr1.cAliases; // loadCommandAliases
+export const cexecuteBusinessRule = wr1.cexecute + wr1.cBusiness + wr1.cRule; // executeBusinessRule
+// export const cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
+// export const cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
+// export const cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
+// export const csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
+// export const cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
+// export const cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
+// export const csleep = wr1.csleep; // sleep
 
 // colorizer
 export const ccolorizeMessage = wr1.ccolorize + wr1.cMessage; // colorizeMessage
@@ -120,6 +136,8 @@ export const cprompt = wr1.cprompt; // prompt
 // timers
 export const cgetNowMoment = wr1.cget + wr1.cNow + wr1.cMoment; // getNowMoment
 export const ccomputeDeltaTime = wr1.ccompute + gen.cDelta + wr1.cTime; // computeDeltaTime
+export const creformatDeltaTime = wr1.creformat + gen.cDelta + wr1.cTime; // reformatDeltaTime
+export const csleep = wr1.csleep; // sleep
 
 // queue
 export const cinitQueue = phn.cinit + wr1.cQueue; // initQueue
@@ -141,3 +159,5 @@ export const cprint = wr1.cprint; // print
 
 // main
 export const cinitFramework = gen.cinit + wr1.cFramework; // initFramework
+// export const cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
+// export const cprompt = wr1.cprompt; // prompt

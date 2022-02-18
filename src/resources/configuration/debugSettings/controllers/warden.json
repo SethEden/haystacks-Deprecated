@@ -1,7 +1,15 @@
 {
-  "debugFiles|debugSetting.controllers.warden": false,
+  "debugFiles|debugSetting.controllers.warden": true,
   "debugFunctions|debugSetting.controllers.warden.initFrameworkSchema": false,
   "debugFunctions|debugSetting.controllers.warden.mergeClientBusinessRules": false,
   "debugFunctions|debugSetting.controllers.warden.mergeClientCommands": false,
-  "debugFunctions|debugSetting.controllers.warden.loadCommandAliases": false
+  "debugFunctions|debugSetting.controllers.warden.loadCommandAliases": false,
+  "debugFunctions|debugSetting.controllers.warden.loadCommandWokflows": false,
+  "debugFunctions|debugSetting.controllers.warden.executeBusinessRule": false,
+  "debugFunctions|debugSetting.controllers.warden.enqueueCommand": false,
+  "debugFunctions|debugSetting.controllers.warden.isCommandQueueEmpty": false,
+  "debugFunctions|debugSetting.controllers.warden.processCommandQueue": false,
+  "debugFunctions|debugSetting.controllers.warden.setConfigurationSetting": false,
+  "debugFunctions|debugSetting.controllers.warden.getConfigurationSetting": false,
+  "debugFunctions|debugSetting.controllers.warden.sleep": false
 }

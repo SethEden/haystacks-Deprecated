@@ -2,6 +2,7 @@
   "debugFiles|debugSetting.executrix.fileOperations": true,
   "debugFunctions|debugSetting.executrix.fileOperations.getXmlData": true,
   "debugFunctions|debugSetting.executrix.fileOperations.getCsvData": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.getJsonData": true,
   "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData": true,
   "debugFunctions|debugSetting.executrix.fileOperations.scanDirectoryContents": true,
   "debugFunctions|debugSetting.executrix.fileOperations.copyAllFilesAndFoldersFromFolderToFolder": true,

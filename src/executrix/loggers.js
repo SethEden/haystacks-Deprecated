@@ -187,7 +187,6 @@ function validMessage(outputMessage, originalMessage) {
     // that doesn't have a class-path designation.
     returnData = true;
   }
-
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -242,7 +241,7 @@ function parseClassPath(logFile, classPath, message) {
       // We will need to refactor the business rules to accept a callback function that does the logging.
       // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
       // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
-      message = ruleBroker.processRules(message, myNameSpace, rules);
+      message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
     }
     // console.log('setting the returnData to the message: ' + message);
     returnData = message;

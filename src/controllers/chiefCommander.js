@@ -49,6 +49,21 @@ function bootStrapCommands() {
 };
 
 /**
+ * @function addClientCommands
+ * @description This is a wrapper function for calling the commandBroker.addClientCommands.
+ * @param {object} clientCommands A map of client defined command names and client defined command function calls.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/17
+ */
+function addClientCommands(clientCommands) {
+  let functionName = addClientCommands.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  commandBroker.addClientCommands(clientCommands);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
  * @function loadCommandAliasesFromPath
  * @description Loads the command aliases XML file that is specified by the input.
  * The data is automatically saved on the D-data structure.
@@ -137,8 +152,9 @@ function processCommandQueue() {
 
 export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
+  [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
   [fnc.cloadCommandAliasesFromPath]: (commandAliasesFilePathConfigurationName) => loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
-  [fnc.cprocessCommandQueue]: () => processCommandQueue(),
+  [fnc.cprocessCommandQueue]: () => processCommandQueue()
 };

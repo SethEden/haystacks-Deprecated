@@ -1,6 +1,7 @@
 {
-  "debugFiles|debugSetting.controllers.chiefCommander": false,
+  "debugFiles|debugSetting.controllers.chiefCommander": true,
   "debugFunctions|debugSetting.controllers.chiefCommander.bootStrapCommands": false,
+  "debugFunctions|debugSetting.controllers.chiefCommander.addClientCommands": false,
   "debugFunctions|debugSetting.controllers.chiefCommander.loadCommandAliasesFromPath": false,
   "debugFunctions|debugSetting.controllers.chiefCommander.enqueueCommand": false,
   "debugFunctions|debugSetting.controllers.chiefCommander.isCommandQueueEmpty": false,

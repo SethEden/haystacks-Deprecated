@@ -92,12 +92,12 @@ function initFrameworkSchema(configData) {
 
   let applicationMetaDataPathAndFilename = configData[cfg.cclientMetaDataPath];
   let frameworkMetaDataPathAndFilename = configData[cfg.cframeworkFullMetaDataPath];
-  loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataPathAndFilenameIs);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataPathAndFilenameIs);
+  loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataPathAndFilenameIs + applicationMetaDataPathAndFilename);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataPathAndFilenameIs + frameworkMetaDataPathAndFilename);
   let applicationMetaData = fileOperations.getJsonData(applicationMetaDataPathAndFilename);
   let frameworkMetaData = fileOperations.getJsonData(frameworkMetaDataPathAndFilename);
-  loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataIs);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataIs);
+  loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataIs + JSON.stringify(applicationMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataIs + JSON.stringify(frameworkMetaData));
 
   configurator.setConfigurationSetting(wr1.csystem, cfg.cclientRootPath, configData[cfg.cclientRootPath]);
   configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigResourcesPath, configData[cfg.cappConfigResourcesPath]);
@@ -160,7 +160,7 @@ function initFrameworkSchema(configData) {
 function mergeClientBusinessRules(clientBusinessRules) {
   let functionName = mergeClientBusinessRules.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  // console.log(`clientBusinessRules is: ${JSON.stringify(clientBusinessRules)}`);
   ruleBroker.addClientRules(clientBusinessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -177,8 +177,8 @@ function mergeClientBusinessRules(clientBusinessRules) {
 function mergeClientCommands(clientCommands) {
   let functionName = mergeClientCommands.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
-  commandBroker.addClientCommands(clientCommands);
+  // console.log(`clientCommands is: ${JSON.stringify(clientCommands)}`);
+  chiefCommander.addClientCommands(clientCommands);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -196,7 +196,7 @@ function loadCommandAliases(commandAliasesPathConfigName) {
   let functionName = loadCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandAliasesPathConfigName is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesPathConfigNameIs + commandAliasesPath);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesPathConfigNameIs + commandAliasesPathConfigName);
   let resolvedSystemCommandsAliasesPath;
   let resolvedClientCommandsAliasesPath;
   let resolvedCustomCommandsAliasesPath;
@@ -445,5 +445,5 @@ export default {
   [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) => setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
   [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
   [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
-
+  [fnc.csleep]: (sleepTime) => sleep(sleepTime)
 };

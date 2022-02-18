@@ -29,6 +29,7 @@ import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 import fs from 'fs';
 import path from 'path';
+import xml2js from 'xml2js';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.fileOperations.
@@ -38,6 +39,12 @@ let filesCollection = [];
 let enableFilesListLimit = false;
 let filesListLimit = -1;
 let hitFileLimit = false;
+xml2js.Parser({
+  parseNumbers: true,
+  parseBooleans: true,
+  explicitArray: false,
+  mergeAttrs: true
+});
 
 /**
  * @function getXmlData
@@ -600,9 +607,16 @@ function appendMessageToFile(file, message) {
 };
 
 export default {
+  [fnc.cgetXmlData]: (pathAndFilename) => getXmlData(pathAndFilename),
+  [fnc.cgetCsvData]: (pathAndFilename) => getCsvData(pathAndFilename),
   [fnc.cgetJsonData]: (pathAndFilename) => getJsonData(pathAndFilename),
+  [fnc.cwriteJsonData]: (pathAndFilename, dataToWrite) => writeJsonData(pathAndFilename, dataToWrite),
   [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
   [fnc.cscanDirectoryContents]: (directory, enableLimit, filesLimit) => scanDirectoryContents(directory, enableLimit, filesLimit),
   [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
+  [fnc.ccopyAllFilesAndFoldersFromFolderToFolder]: (sourceFolder, destinationFolder) => copyAllFilesAndFoldersFromFolderToFolder(sourceFolder, destinationFolder),
+  [fnc.cbuildReleasePackage]: (sourceFolder, destinatinoFolder) => buildReleasePackage(sourceFolder, destinationFolder),
+  [fnc.ccopyFileSync]: (source, target) => copyFileSync(source, target),
+  [fnc.ccopyFolderRecursiveSync]: (source, target) => copyFolderRecursiveSync(source, target),
   [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)
 };

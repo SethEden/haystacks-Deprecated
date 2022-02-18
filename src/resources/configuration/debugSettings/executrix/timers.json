@@ -1,4 +1,6 @@
 {
   "debugFiles|debugSetting.executrix.timers": false,
-  "debugFunctions|debugSetting.executrix.timers.computeDeltaTime": false
+  "debugFunctions|debugSetting.executrix.timers.computeDeltaTime": false,
+  "debugFunctions|debugSetting.executrix.timers.reformatDeltaTime": false,
+  "debugFunctions|debugSetting.executrix.timers.sleep": false
 }

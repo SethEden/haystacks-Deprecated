@@ -2,7 +2,7 @@
  * @file dataBroker.js
  * @module dataBroker
  * @description Contains all of the lower level data processing functions,
- * and also acts as an interface for calling the fileBroker.
+ * and also acts as an interface for calling the fileOperations.
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.contants
@@ -242,7 +242,7 @@ function loadAllXmlData(filesToLoad, contextName) {
       contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', fileNameRules);
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-      let dataFile = fileBroker.getXmlData(fileToLoad);
+      let dataFile = fileOperations.getXmlData(fileToLoad);
       // loaded file data is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedFileDataIs + JSON.stringify(dataFile));
       // BEGIN PROCESSING ADDITIONAL DATA

@@ -237,12 +237,12 @@ function print(stackNameSpace) {
 };
 
 export default {
-[fnc.cinitStack]: (stackNameSpace) => initStack(stackNameSpace),
-[fnc.cclearStack]: (stackNameSpace) => clearStack(stackNameSpace),
-[fnc.cpush]: (stackNameSpace, value) => push(stackNameSpace, value),
-[fnc.cpop]: (stackNameSpace) => pop(stackNameSpace),
-[fnc.cisEmpty]: (stackNamespace) => isEmpty(stackNameSpace),
-[fnc.clength]: (stackNameSpace) => length(stackNameSpace),
-[fnc.ccontains]: (stackNameSpace, value) => contains(stackNameSpace, value),
-[fnc.cprint]: (stackNameSpace) => print(stackNameSpace)
+  [fnc.cinitStack]: (stackNameSpace) => initStack(stackNameSpace),
+  [fnc.cclearStack]: (stackNameSpace) => clearStack(stackNameSpace),
+  [fnc.cpush]: (stackNameSpace, value) => push(stackNameSpace, value),
+  [fnc.cpop]: (stackNameSpace) => pop(stackNameSpace),
+  [fnc.cisEmpty]: (stackNamespace) => isEmpty(stackNameSpace),
+  [fnc.clength]: (stackNameSpace) => length(stackNameSpace),
+  [fnc.ccontains]: (stackNameSpace, value) => contains(stackNameSpace, value),
+  [fnc.cprint]: (stackNameSpace) => print(stackNameSpace)
 };

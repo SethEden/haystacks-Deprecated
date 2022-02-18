@@ -1,0 +1,4 @@
+{
+  "debugFiles|debugSetting.brokers.workflowBroker": true,
+  "debugFunctions|debugSetting.brokers.workflowBroker.getWorkflow": true
+}

@@ -365,7 +365,7 @@ const getFileNameFromPath = function(inputData, inputMetaData) {
       inputData = swapDoubleForwardSlashToSingleForwardSlash(inputData, '');
     }
     if (inputData.includes(bas.cForwardSlash)) {
-      inputData = swapForwadSlashToBackSlash(inputData, '');
+      inputData = swapForwardSlashToBackSlash(inputData, '');
     }
     // inputData right before processing is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataRightBeforeProcessingIs + inputData);
