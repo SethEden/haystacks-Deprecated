@@ -36,6 +36,7 @@ import * as app_msg from './constants/application.message.constants.js';
 import haystacks from 'haystacks';
 // const {bas, cfg, } = haystacks
 let bas = haystacks.bas;
+let cmd = haystacks.cmd;
 let cfg = haystacks.cfg;
 let gen = haystacks.gen;
 let msg = haystacks.msg;
@@ -87,10 +88,30 @@ function bootstrapApplication() {
 async function application() {
   let functionName = application.name;
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
-  let argumnentDrivenInterface = false;
+  let argumentDrivenInterface = false;
   let commandInput;
   let commandResult;
-  if (argumnentDrivenInterface === false) {
+
+  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, cfg.cArgumentDrivenInterface);
+  // argumentDrivenInterface is:
+  haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
+  haystacks.enqueueCommand(cmd.cStartupWorkflow);
+
+  // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,
+  // arguments can still be passed in and they will be executed first, after the startup workflow is complete.
+  //
+  // We need to strip off any preceeding "--" before we try to process it as an actual command.
+  // Also need to make sure that the command to execute actually contains the "--" or "/" or "\" or "-".
+  let commandToExecute = '';
+  // Make sure we execute any and all commands so the command queue is empty before
+  // we process the command args and add more commands to the command queue.
+  // Really this is about getting out the application name, version and about message.
+  while (haystacks.isCommandQueueEmpty() === false) {
+    commandResult = haystacks.processCommandQueue();
+  }
+
+
+  if (argumentDrivenInterface === false) {
     // BEGIN main program loop
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage01);
 

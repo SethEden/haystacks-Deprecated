@@ -4,6 +4,7 @@
  * @description Contains many re-usable application message constants.
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
+ * @requires module:haystacks.system.constants
  * @requires module:haystacks.word1.constants
  * @author Seth Hollingsead
  * @date 2021/12/30
@@ -13,12 +14,15 @@
 // External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
+let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 
 // Client String Parsing
 export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1.cParsing + bas.cDot + wr1.cCustom + wr1.cEcho; // clientStringParsing.customEcho
 
 // Application Test Harness
+export const cargumentDrivenInterfaceIs = wr1.cargument + wr1.cDriven + wr1.cInterface + sys.cSpaceIsColonSpace; // argumentDrivenInterface is:
+
 export const capplicationMessage01 = wr1.cBEGIN + bas.cSpace + wr1.cmain + bas.cSpace + wr1.cprogram + bas.cSpace + wr1.cloop; // BEGIN main program loop
 export const capplicationMessage02 = wr1.cBEGIN + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cparser; // BEGIN command parser
 export const capplicationMessage03 = wr1.cEND + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cparser; // END command parser

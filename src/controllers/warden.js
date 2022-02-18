@@ -206,7 +206,7 @@ function mergeClientCommands(clientCommands) {
 /**
  * @function loadCommandAliases
  * @description Loads and merges both the system defined command aliases XML file and
- * the cient defined command aliases XML file, or an optional user defined command aliases path.
+ * the client defined command aliases XML file, or an optional user defined command aliases path.
  * @param {string} commandAliasesPath The configuration name of the configuration setting where
  * the path to the commands aliases XML file is stored, that should be loaded (OPTIONAL).
  * @return {void}
@@ -278,7 +278,7 @@ function loadCommandWorkflows(workflowPathConfigName) {
 /**
  * @function executeBusinessRule
  * @description A wrapper to call a business rule from the application level code.
- * @param {string} businessRule The name fo the business rule that should execute.
+ * @param {string} businessRule The name of the business rule that should execute.
  * @param {string} ruleInput The input to the rule that is being called.
  * @param {string} ruleMetaData Additional data to input to the rule.
  * @return {string} The value that is returned from the rule is also returned.
@@ -349,7 +349,7 @@ function isCommandQueueEmpty() {
  * @description This is just a wrapper for the chiefCommander.processCommandQueue function,
  * which will ultimately call chiefCommander.processCommand to process an individual command.
  * This is because a command could actually invoke a command workflow that might enqueue a bunch of commands
- * to the command queue.All of them must be executed in sequence as part of the main application loop.
+ * to the command queue. All of them must be executed in sequence as part of the main application loop.
  * @return {boolean} A True or False value to indicate if the command loop should termiante when it's done.
  * @author Seth Hollingsead
  * @date 2022/02/16

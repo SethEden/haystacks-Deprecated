@@ -25,3 +25,8 @@ import * as wr1 from './word1.constants.js';
 export const cechoCommand = biz.cecho + wr1.cCommand; // echoCommand
 export const cEchoCommand = biz.cEcho + wr1.cCommand; // EchoCommand
 export const cclearScreen = wr1.cclear + wr1.cScreen; // clearScreen
+
+// ********************************
+// System defined workflows
+// ********************************
+export const cStartupWorkflow = wr1.cWorkflow + bas.cSpace + wr1.cstartup; // Workflow startup

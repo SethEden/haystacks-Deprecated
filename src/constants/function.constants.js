@@ -161,5 +161,16 @@ export const cprint = wr1.cprint; // print
 
 // main
 export const cinitFramework = gen.cinit + wr1.cFramework; // initFramework
+// export const cmergeClientBusinessRules = wr1.cmerge + wr1.cClient + wr1.cBusiness + wr1.cRules; // mergeClientBusinessRules
+// export const cmergeClientCommands = wr1.cmerge + wr1.cClient + wr1.cCommands; // mergeClientCommands
+// export const cloadCommandAliases = wr1.cload + wr1.cCommand + wr1.cAliases; // loadCommandAliases
+// export const cloadCommandWorkflows = wr1.cload + wr1.cCommand + wr1.cWorkflows; // loadCommandWorkflows
+// export const cexecuteBusinessRule = wr1.cexecute + wr1.cBusiness + wr1.cRule; // executeBusinessRule
+// export const cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
+// export const cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
+// export const cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
+// export const csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
+// export const cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
 // export const cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
+// export const csleep = wr1.csleep; // sleep
 // export const cprompt = wr1.cprompt; // prompt
