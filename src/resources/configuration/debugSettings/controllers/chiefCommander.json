@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.controllers.chiefCommander": true,
+  "debugFiles|debugSetting.controllers.chiefCommander": false,
   "debugFunctions|debugSetting.controllers.chiefCommander.bootStrapCommands": false,
   "debugFunctions|debugSetting.controllers.chiefCommander.addClientCommands": false,
   "debugFunctions|debugSetting.controllers.chiefCommander.loadCommandAliasesFromPath": false,

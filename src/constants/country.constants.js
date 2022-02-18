@@ -3,9 +3,9 @@
  * @module country.constants
  * @description Contains many re-usable country constants.
  * @requires module:basic.constants
- * @requires module:phonic.constants
- * @requires module:numeric.constants
  * @requires module:generic.constants
+ * @requires module:numeric.constants
+ * @requires module:phonic.constants
  * @requires module:unit.constants
  * @requires module:word1.constants
  * @author Seth Hollingsead
@@ -13,11 +13,11 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
-import * as con from './constant.constants.js';
-import * as phn from './phonic.constants.js';
-import * as num from './numeric.constants.js';
 import * as gen from './generic.constants.js';
+import * as num from './numeric.constants.js';
+import * as phn from './phonic.constants.js';
 import * as unt from './unit.constants.js';
 import * as wr1 from './word1.constants.js';
 

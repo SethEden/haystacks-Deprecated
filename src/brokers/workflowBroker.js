@@ -4,12 +4,13 @@
  * @description Holds all fo the low level functions that manage the workflows,
  * system defined workflows, client defined workflows,
  * setting the workflow data and getting the workflow data.
- * @requires module:loggers
+ *
  * @requires module:basic.constants
  * @requires module:function.constants
- * @requires module:word1.constants
- * @requires module:system.constants
  * @requires module:message.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -17,13 +18,15 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import loggers from '../executrix/loggers.js';
+// Internal imports
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
-import * as sys from '../constants/system.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

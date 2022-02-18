@@ -2,33 +2,36 @@
  * @file stringGeneration.js
  * @module stringGeneration
  * @description Contains all business rules for randomly generating strings of all kinds.
- * @requires module:loggers
- * @requires module:stringParsingUtilities
+ * @requires module:arrayParsing
  * @requires module:characterGeneration
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
- * @requires module:generic.constants
- * @requires module:numeric.constants
- * @requires module:word1.constants
- * @requires module:system.constants
  * @requires module:business.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/01/25
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import loggers from '../../executrix/loggers.js';
-import { stringToBoolean } from './stringParsingUtilities.js';
+// Internal imports
 import arrayParsing from './arrayParsing.js';
 import characterGeneration from './characterGeneration.js';
-import * as bas from './basic.constants.js';
-import * as gen from './generic.constants.js';
-import * as num from './numeric.constants.js';
-import * as wr1 from './word1.constants.js';
-import * as sys from './system.constants.js';
-import * as biz from './business.constants.js';
-import * as msg from './message.constants.js';
+import stringParsingUtilities from './stringParsingUtilities.js';
+import * as bas from '../../constants/basic.constants.js';
+import * as biz from '../../constants/business.constants.js';
+import * as gen from '../../constants/generic.constants.js';
+import * as msg from '../../constants/message.constants.js';
+import * as num from '../../constants/numeric.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import loggers from '../../executrix/loggers.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -52,7 +55,7 @@ const generateRandomMixedCaseTextByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -81,7 +84,7 @@ const generateRandomUpperCaseTextByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -110,7 +113,7 @@ const generateRandomLowerCaseTextByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -139,7 +142,7 @@ const generateRandomMixedCaseTextWithSpecialCharactersByLength = function(inputD
   let functionName = generateRandomMixedCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -166,7 +169,7 @@ const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputD
   let functionName = generateRandomUpperCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -196,7 +199,7 @@ const generateRandomLowerCaseTextWithSpecialCharactersByLength = function(inputD
   let functionName = generateRandomLowerCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -225,7 +228,7 @@ const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputData, inpu
   let functionName = generateRandomMixedCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -254,7 +257,7 @@ const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputData, inpu
   let functionName = generateRandomUpperCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -283,7 +286,7 @@ const generateRandomLowerCaseAlphaNumericCodeByLength = function(inputData, inpu
   let functionName = generateRandomLowerCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -310,7 +313,7 @@ const generateRandomNumericCodeByLength = function(inputData, inputMetaData) {
   let functionName = generateRandomNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -340,7 +343,7 @@ const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
   let functionName = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -370,7 +373,7 @@ const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
   let functionName = generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -400,7 +403,7 @@ const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
   let functionName = generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -428,7 +431,7 @@ const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMeta
   let functionName = generateRandomSpecialCharacterCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
@@ -464,17 +467,17 @@ const generateValidEmail = function(inputData, inputMetaData) {
   let functionName = generateValidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   let allowableSpecialCharacters;
   let generateSpecialCharacters;
   let specifiedSuffixAndDomain;
   if (!!inputMetaData && inputMetaData !== 'undefined' && inputMetaData !== '') {
     if (inputMetaData.length === 3) {
-      generateSpecialCharacters = stringToBoolean(inputMetaData[0], '');
+      generateSpecialCharacters = stringParsingUtilities.stringToBoolean(inputMetaData[0], '');
       allowableSpecialCharacters = inputMetaData[1];
       specifiedSuffixAndDomain = inputMetaData[2];
-      // NOTE: The above function stringToBoolean will default to False if the input is an empty or undefined string.
+      // NOTE: The above function stringParsingUtilities.stringToBoolean will default to False if the input is an empty or undefined string.
       // We want to flip it back to True but ony if some special characters are passed in.
       if (generateSpecialCharacters === false && allowableSpecialCharacters !== '') {
         generateSpecialCharacters = true;
@@ -482,9 +485,9 @@ const generateValidEmail = function(inputData, inputMetaData) {
       returnData = generateValidEmailWithSpecificSuffixAndDomainName(inputData, generateSpecialCharacters,
         allowableSpecialCharacters, specifiedSuffixAndDomain);
     } else if (inputMetaData.length <= 2) {
-      generateSpecialCharacters = stringToBoolean(inputMetaData[0], '');
+      generateSpecialCharacters = stringParsingUtilities.stringToBoolean(inputMetaData[0], '');
       allowableSpecialCharacters = inputMetaData[1];
-      // NOTE: The above function stringToBoolean will default to False if the input is an empty or undefined string.
+      // NOTE: The above function stringParsingUtilities.stringToBoolean will default to False if the input is an empty or undefined string.
       // We want to flip it back to True but only if some special characters are passed in.
       if (generateSpecialCharacters === false && allowableSpecialCharacters !== '') {
         generateSpecialCharacters = true;
@@ -524,17 +527,17 @@ const generateInvalidEmail = function(inputData, inputMetaData) {
   let functionName = generateInvalidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   let allowableSpecialCharacters;
   let generateSpecialCharacters;
   let specifiedSuffixAndDomain;
   if (!!inputMetaData && inputMetaData !== 'undefined' && inputMetaData !== '') {
     if (inputMetaData.length === 3) {
-      generateSpecialCharacters = stringToBoolean(inputMetaData[0], '');
+      generateSpecialCharacters = stringParsingUtilities.stringToBoolean(inputMetaData[0], '');
       allowableSpecialCharacters = inputMetaData[1];
       specifiedSuffixAndDomain = inputMetaData[2];
-      // @NOTE The above function stringToBoolean will default to False if the input is an empty or undefined string.
+      // @NOTE The above function stringParsingUtilities.stringToBoolean will default to False if the input is an empty or undefined string.
       // We want to flip it back to True but ony if some special characters are passed in.
       if (generateSpecialCahracters === false && allowableSpecialCharacters !== '') {
         generateSpecialCharacters = true;
@@ -542,9 +545,9 @@ const generateInvalidEmail = function(inputData, inputMetaData) {
       returnData = generateInvalidEmailWithSpecificSufficAndDomainName(inputData, generateSpecialCharacters,
         allowableSpecialCharacters, specifiedSuffixAndDomain);
     } else if (inputMetaData.length <= 2) {
-      generateSpecialCharacters = stringToBoolean(inputMetaData[0], '');
+      generateSpecialCharacters = stringParsingUtilities.stringToBoolean(inputMetaData[0], '');
       allowableSpecialCharacters = inputMetaData[1];
-      // @NOTE The above function stringToBoolean will default to False if the input is an empty or undefined string.
+      // @NOTE The above function stringParsingUtilities.stringToBoolean will default to False if the input is an empty or undefined string.
       // We want to flip it back to True but ony if some special characters are passed in.
       if (generateSpecialCharacters === false && allowableSpecialCharacters !== '') {
         generateSpecialCharacters = true;
@@ -1147,7 +1150,7 @@ const generateRandomBrightColor = function(inputData, inputMetaData) {
   let functionName = generateRandomBrightColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [255,255,255];
   let minimumColorRange = 127;
   let maximumColorRange = 255;
@@ -1181,7 +1184,7 @@ const generateRandomDarkColor = function(inputData, inputMetaDate) {
   let functionName = generateRandomDarkColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [0,0,0];
   let minimumColorRange = 0;
   let maximumColorRange = 127;
@@ -1211,7 +1214,7 @@ const generateRandomColor = function(inputData, inputMetaData) {
   let functionName = generateRandomColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [0,0,0];
   let minimumColorRange = 0;
   let maxim;umCoorRange = 255;

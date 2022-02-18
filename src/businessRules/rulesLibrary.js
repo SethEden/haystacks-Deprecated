@@ -2,13 +2,16 @@
  * @file rulesLibrary.js
  * @module rulesLibrary
  * @description Contains all of the system defined busness rules as a map between function names and function calls.
+ * @requires module:arrayParsing
+ * @requires module:characterGeneration
+ * @requires module:mathOperations
+ * @requires module:stringGeneration
+ * @requires module:stringParsing
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:function.constants
  * @requires module:system.constants
- * @requires module:arrayParsing
- * @requires module:stringParsing
- * @requires module:stringParsingUtilities
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -16,14 +19,19 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import arrayParsing from './rules/arrayParsing.js';
+import characterGeneration from './rules/characterGeneration.js';
+import mathOperations from './rules/mathOperations.js';
+import stringGeneration from './rules/stringGeneration.js';
+import stringParsing from './rules/stringParsing.js';
+import stringParsingUtilities from './rules/stringParsingUtilities.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as sys from '../constants/system.constants.js';
-import arrayParsing from './rules/arrayParsing.js';
-import stringParsing from './rules/stringParsing.js';
-import stringParsingUtilities from './rules/stringParsingUtilities.js';
 import D from '../structures/data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

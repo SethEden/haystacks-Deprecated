@@ -2,19 +2,22 @@
  * @file mathOperations
  * @module mathOperations
  * @description Contains all of the business rule functions for ding math operations and conversions.
- * @requires module:loggers
- * @requires module:word1.constants
+ * @requires module:basic.constants
  * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/01/27
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import * as bas from '../../constants/basic.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
 import loggers from '../../executrix/loggers.js';
-import * as bas from './basic.constants.js';
-import * as wr1 from './word1.constants.js';
-import * as sys from './system.constants.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -35,7 +38,7 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData) {
     // A few different ways to implement this business rule, see link above.

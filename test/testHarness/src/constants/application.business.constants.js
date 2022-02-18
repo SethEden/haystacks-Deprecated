@@ -11,6 +11,7 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
+// External imports
 import haystacks from 'haystacks';
 let gen = haystacks.gen;
 let num = haystacks.num;

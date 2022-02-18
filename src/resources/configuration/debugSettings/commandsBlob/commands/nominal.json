@@ -1,9 +1,9 @@
 {
-  "debugFiles|debugSetting.commandsBlob.commands.nominal": true,
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.echoCommand": true,
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.exit": true,
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.version": true,
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.about": true,
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.name": true,
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.clearScreen": true
+  "debugFiles|debugSetting.commandsBlob.commands.nominal": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.echoCommand": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.exit": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.version": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.about": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.name": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.clearScreen": false
 }

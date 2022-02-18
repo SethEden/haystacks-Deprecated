@@ -3,25 +3,28 @@
  * @module clientStringParsing
  * @description Contains all client defined business rules for parsing strings, values, arrays,
  * values of all kinds, with various operations.
+ * @requires module:application.business.constants
+ * @requires module:application.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.word1.constants
  * @requires module:haystacks.system.constants
- * @requires module:application.business.constants
- * @requires module:application.message.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/08
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let wr1 = haystacks.wr1;
-let sys = haystacks.sys;
+// Internal imports
 import * as app_biz from '../../constants/application.business.constants.js';
 import * as apc from '../../constants/application.constants.js';
+// External imports
+import haystacks from 'haystacks';
+let bas = haystacks.bas;
+let sys = haystacks.sys;
+let wr1 = haystacks.wr1;
 import path from 'path';
+
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.businessRules.clientRules.clientStringParsing.
 const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;

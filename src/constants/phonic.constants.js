@@ -9,6 +9,7 @@
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
 
 // Reusable Grammer

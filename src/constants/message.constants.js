@@ -3,10 +3,9 @@
  * @module message-constants
  * @description Contains many re-usable message constants.
  * @requires module:basic.constants
- * @requires module:constant.constants
- * @requires module:phonic.constants
- * @requires module:numeric.constants
  * @requires module:generic.constants
+ * @requires module:numeric.constants
+ * @requires module:phonic.constants
  * @requires module:system.constants
  * @requires module:word1.constants
  * @author Seth Hollingsead
@@ -14,11 +13,11 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
-import * as con from './constant.constants.js';
-import * as phn from './phonic.constants.js';
-import * as num from './numeric.constants.js';
 import * as gen from './generic.constants.js';
+import * as num from './numeric.constants.js';
+import * as phn from './phonic.constants.js';
 import * as sys from './system.constants.js';
 import * as wr1 from './word1.constants.js';
 
@@ -105,6 +104,7 @@ export const cpercentCountIs = wr1.cpercent + wr1.cCount + sys.cSpaceIsColonSpac
 export const cstringDeltaValueIs = wr1.cstring + gen.cDelta + bas.cSpace + wr1.cvalue + sys.cSpaceIsColonSpace; // stringDelta value is:
 export const cFilenamesMatch = wr1.cFilenames + bas.cSpace + wr1.cmatch; // Filenames match
 export const cFilenamesDoNotMatch = wr1.cFilenames + bas.cSpace + bas.cdo + bas.cSpace + gen.cnot + bas.cSpace + wr1.cmatch; // Filenames do not match
+export const cconstantsLineIs = wr1.cconstants + wr1.cLine + sys.cSpaceIsColonSpace; // constants line is:
 export const cArrayElementsMatch = wr1.cArray + bas.cSpace + wr1.celements + bas.cSpace + wr1.cmatch; // Array elements match
 export const cArrayElementsDoNotMatch = wr1.cArray + bas.cSpace + wr1.celements + bas.cSpace + bas.cdo + bas.cSpace + gen.cnot + bas.cSpace + wr1.cmatch; // Array elements do not match
 export const clineArray2Is = wr1.cline + wr1.cArray + bas.cOpenBracket + num.c2 + bas.cCloseBracket + sys.cSpaceIsColonSpace; // lineArray[2] is:
@@ -326,6 +326,9 @@ export const cCommandRunTimeIs = wr1.cCommand + bas.cSpace + wr1.crun + bas.cDas
 export const ccommandAliasesFilePathConfigurationNameIs = wr1.ccommand + wr1.cAliases + wr1.cFile + wr1.cPath + wr1.cConfiguration + wr1.cName + sys.cSpaceIsColonSpace; // commandAliasesFilePathConfigurationName is:
 export const ccommandIs = wr1.ccommand + sys.cSpaceIsColonSpace; // command is:
 export const ccommandToExecuteIs = wr1.ccommand + bas.cTo + wr1.cExecute + sys.cSpaceIsColonSpace; // commandToExecute is:
+export const ccommandArgsIs = wr1.ccommand + gen.cArgs + sys.cSpaceIsColonSpace; // commandArgs is:
+export const celseClauseLookingForCommandAliases = wr1.celse + bas.cDash + wr1.cclause + bas.cSpace + wr1.clooking + bas.cSpace + wr1.cfor + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.caliases + bas.cDot; // else-clause looking for command aliases.
+export const callCommandAliasesIs = wr1.call + wr1.cCommand + wr1.cAliases + sys.cSpaceIsColonSpace; // allCommandAliases is:
 export const ccontextNameIs = wr1.ccontext + wr1.cName + sys.cSpaceIsColonSpace; // contextName is:
 export const callXmlDataIs = wr1.call + gen.cXml + wr1.cData + sys.cSpaceIsColonSpace; // allXmlData is:
 export const cdataPathConfigurationNameIs = wr1.cdata + wr1.cPath + wr1.cConfiguration + wr1.cName + sys.cSpaceIsColonSpace; // dataPathConfigurationName is:
@@ -339,8 +342,19 @@ export const cexecuteBusinessRules = wr1.cexecute + bas.cSpace + wr1.cbusiness +
 export const cdataFileIs = wr1.cdata + wr1.cFile + sys.cSpaceIsColonSpace; // dataFile is:
 export const cmergedDataIs = wr1.cmerged + wr1.cData + sys.cSpaceIsColonSpace; // mergedData is:
 export const cdebugConfigurationSettingValueIs = wr1.cdebug + wr1.cConfiguration + wr1.cSetting + wr1.cValue + sys.cSpaceIsColonSpace; // debugConfigurationSettingValue is:
+export const cclientRootPathIs = wr1.cclient + wr1.cRoot + wr1.cPath + sys.cSpaceIsColonSpace; // clientRootPath is:
+export const cappConfigResourcesPathIs = phn.capp + wr1.cConfig + wr1.cResources + wr1.cPath + sys.cSpaceIsColonSpace; // appConfigResourcesPath is:
+export const cappConfigReferencePathIs = phn.capp + wr1.cConfig + wr1.cReference + wr1.cPath + sys.cSpaceIsColonSpace; // appConfigReferencePath is:
+export const cclientMetaDataPathIs = wr1.cclient + wr1.cMetaData + wr1.cPath + sys.cSpaceIsColonSpace; // clientMetaDataPath is:
+export const cclientCommandAliasesPathIs = wr1.cclient + wr1.cCommand + wr1.cAliases + wr1.cPath + sys.cSpaceIsColonSpace; // clientCommandAliasesPath is:
+export const cclientWorkflowsPathIs = wr1.cclient + wr1.cWorkflows + wr1.cPath + sys.cSpaceIsColonSpace; // clientWorkflowsPath is:
+export const cframeworkRootPathIs = wr1.cframework + wr1.cRoot + wr1.cPath + sys.cSpaceIsColonSpace; // frameworkRootPath is:
 export const cappConfigPathIs = phn.capp + wr1.cConfig + wr1.cPath + sys.cSpaceIsColonSpace; // appConfigPath is:
+export const cframeworkResourcesPathIs = wr1.cframework + wr1.cResources + wr1.cPath + sys.cSpaceIsColonSpace; // frameworkResourcesPath is:
+export const cframeworkFullMetaDataPathIs = wr1.cframework + wr1.cFull + wr1.cMetaData + wr1.cPath + sys.cSpaceIsColonSpace; // frameworkFullMetaDataPath is:
 export const cframeworkConfigPathIs = wr1.cframework + wr1.cConfig + wr1.cPath + sys.cSpaceIsColonSpace; // frameworkConfigPath is:
+export const cframeworkCommandAliasesPathIs = wr1.cframework + wr1.cCommand + wr1.cAliases + wr1.cPath + sys.cSpaceIsColonSpace; // frameworkCommandAliasesPath is:
+export const cframeworkWorkflowsPathIs = wr1.cframework + wr1.cWorkflows + wr1.cPath + sys.cSpaceIsColonSpace; // frameworkWorkflowsPath is:
 export const cALL_DATA_IS = wr1.cALL + bas.cSpace + wr1.cDATA + bas.cSpace + wr1.cIS + bas.cColon + bas.cSpace; // ALL DATA is:
 export const cAllLoadedDataIs = wr1.cAll + bas.cSpace + wr1.cloaded + bas.cSpace + wr1.cdata + sys.cSpaceIsColonSpace; // All loaded data is:
 export const cconfigDataIs = wr1.cconfig + wr1.cData + sys.cSpaceIsColonSpace; // configData is:

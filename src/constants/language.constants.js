@@ -11,6 +11,7 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
 import * as ctr from './country.constants.js';
 import * as phn from './phonic.constants.js';

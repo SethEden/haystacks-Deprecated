@@ -4,13 +4,13 @@
  * @description Implements the various functions of a stack data structure,
  * using the specified namespace on the D-data structure.
  * @requires module:ruleBroker
- * @requires module:loggers
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
+ * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -18,15 +18,17 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import ruleBroker from '../brokers/ruleBroker.js';
-import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
+import loggers from '../executrix/loggers.js';
 import D from './data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

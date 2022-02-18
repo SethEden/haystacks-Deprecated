@@ -3,9 +3,9 @@
  * @module word1.constants
  * @description Contains many re-usable word constants.
  * @requires module:basic.constants
- * @requires module:phonic.constants
- * @requires module:numeric.constants
  * @requires module:generic.constants
+ * @requires module:numeric.constants
+ * @requires module:phonic.constants
  * @requires module:unit.constants
  * @author Seth Hollingsead
  * @date 2020/07/16
@@ -13,10 +13,11 @@
  * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
-import * as phn from './phonic.constants.js';
-import * as num from './numeric.constants.js';
 import * as gen from './generic.constants.js';
+import * as num from './numeric.constants.js';
+import * as phn from './phonic.constants.js';
 import * as unt from './unit.constants.js';
 
 // Miscelaneious Words

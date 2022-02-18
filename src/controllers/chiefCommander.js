@@ -3,31 +3,35 @@
  * @module chiefCommander
  * @description Holds all of the functions that manage the command queue, and allows commands to be enqueued and dequeued from the command queue.
  * Also executes the command queue ultimately by making calls to the commandBroker to execute individual commands.
- * @requires module:chiefData
  * @requires module:commandBroker
- * @requires module:queue
- * @requires module:loggers
+ *
  * @requires module:basic.constants
- * @requires module:word1.constants
- * @requires module:system.constants
+ * @requires module:function.constants
  * @requires module:message.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:chiefData
+ * @requires module:loggers
  * @requires module:data
+ * @requires module:queue
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/01
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import chiefData from '../controllers/chiefData.js';
+// Internal imports
 import commandBroker from '../brokers/commandBroker.js';
-import queue from '../structures/queue.js';
-import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
-import * as sys from '../constants/system.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import chiefData from '../controllers/chiefData.js';
+import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
+import queue from '../structures/queue.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

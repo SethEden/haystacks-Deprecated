@@ -6,6 +6,7 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:word1.constants
+ * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -15,12 +16,14 @@
  * Because having these functions in the chiefConfiguration can cause a circular dependency.
  */
 
+// Internal imports
 import * as bas from '../constants/basic.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import timers from './timers.js';
 import D from '../structures/data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

@@ -9,18 +9,19 @@
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:arrayParsing
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/12/28
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from '../../constants/basic.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

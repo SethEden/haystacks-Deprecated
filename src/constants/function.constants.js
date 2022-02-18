@@ -2,17 +2,19 @@
  * @file function.constants.js
  * @module function.constants
  * @description Contains all re-usable function name constants, organized by file.
- * @requires module:phonic.constants
+ * @requires module:basic.constants
  * @requires module:generic.constants
+ * @requires module:phonic.constants
  * @requires module:word1.constants
  * @author Seth Hollingsead
  * @date 2021/12/28
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
-import * as phn from './phonic.constants.js';
 import * as gen from './generic.constants.js';
+import * as phn from './phonic.constants.js';
 import * as wr1 from './word1.constants.js';
 
 // commandBroker

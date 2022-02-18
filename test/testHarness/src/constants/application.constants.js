@@ -2,17 +2,18 @@
  * @file application.constants.js
  * @module application.constants
  * @description Contains many re-usable application constants.
- * @requires module.application.constant.constants
+ * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.configuration.constants
- * @requires module:haystacks.word.constants
+ * @requires module:haystacks.system.constants
+ * @requires module:haystacks.word1.constants
  * @author Seth Hollingsead
  * @date 2021/12/27
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// External imports
 import haystacks from 'haystacks';
-import * as app_con from './application.constant.constants.js';
 let bas = haystacks.bas;
 let cfg = haystacks.cfg;
 let sys = haystacks.sys;

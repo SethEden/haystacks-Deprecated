@@ -4,14 +4,14 @@
  * @description Contains many re-usable application message constants.
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
- * @requires module:haystacks.word.constants
+ * @requires module:haystacks.word1.constants
  * @author Seth Hollingsead
  * @date 2021/12/30
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// External imports
 import haystacks from 'haystacks';
-import * as app_con from './application.constant.constants.js';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 

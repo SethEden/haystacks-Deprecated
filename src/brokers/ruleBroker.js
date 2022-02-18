@@ -2,10 +2,12 @@
  * @file ruleBroker.js
  * @module ruleBroker
  * @description Contains all the functions necessary to manage the business rules system.
+ * @requires module:rulesLibrary
  * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:rulesLibrary
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -13,13 +15,15 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import rules from '../businessRules/rulesLibrary.js';
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
-import rules from '../businessRules/rulesLibrary.js';
 import D from '../structures/data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -58,9 +62,9 @@ function bootStrapBusinessRules() {
  */
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   Object.assign(D[sys.cbusinessRules], clientRules);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**

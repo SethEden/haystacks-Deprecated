@@ -4,21 +4,22 @@
  * @description Contains many re-usable business rules constants.
  * @requires module:basic.constants
  * @requires module:generic.constants
- * @requires module:phonic.constants
  * @requires module:numeric.constants
- * @requires module:word1.constants
+ * @requires module:phonic.constants
  * @requires module:system.constants
+ * @requires module:word1.constants
  * @author Seth Hollingsead
  * @date 2021/10/29
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
 import * as gen from './generic.constants.js';
-import * as phn from './phonic.constants.js';
 import * as num from './numeric.constants.js';
-import * as wr1 from './word1.constants.js';
+import * as phn from './phonic.constants.js';
 import * as sys from './system.constants.js';
+import * as wr1 from './word1.constants.js';
 
 // Business Rules
 export const cecho = wr1.cecho; // echo

@@ -14,12 +14,14 @@
  * @date 2021/10/26
  */
 
+// Internal imports
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import loggers from './loggers.js';
+// External imports
 import fs from 'fs';
 import path from 'path';
 

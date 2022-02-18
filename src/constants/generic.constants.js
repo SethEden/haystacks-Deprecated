@@ -5,17 +5,17 @@
  * Also included are other generic constants like string numbers like "one", "two", "three".
  * Also included are spellings of Greek letters, military codes/standards, units of measurement, units of time, etc...
  * @requires module:basic.constants
- * @requires module:phonic.constants
  * @requires module:numeric.constants
+ * @requires module:phonic.constants
  * @author Seth Hollingsead
  * @date 2020/06/04
  * @copyright Copyright © 2020-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
-import * as con from './constant.constants.js';
-import * as phn from './phonic.constants.js';
 import * as num from './numeric.constants.js';
+import * as phn from './phonic.constants.js';
 
 export const cDotDot = bas.cDot + bas.cDot; // ..
 export const cDotDotForwardSlash = cDotDot + bas.cForwardSlash; // ../

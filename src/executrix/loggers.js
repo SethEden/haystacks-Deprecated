@@ -5,6 +5,7 @@
  * and logging to a system-specified log file.
  * Additional logic is in place to allow the configuration file to define which
  * modules/files & functions should participate in logging operations.
+ * @requires module:ruleBroker
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
@@ -20,21 +21,18 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import ruleBroker from '../brokers/ruleBroker.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
-// var ruleBroker = require('../brokers/ruleBroker');
-// NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
-// We will need to refactor the business rules to accept a callback function that does the logging.
-// Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-// import * as stringParsingUtilities from '../businessRules/rules/stringParsingUtilities';
-import ruleBroker from '../brokers/ruleBroker.js';
 import configurator from './configurator.js';
 import fileOperations from './fileOperations.js';
 import D from '../structures/data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

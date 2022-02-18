@@ -2,32 +2,35 @@
  * @file lexical.js
  * @module lexical
  * @descriptionContains all functions used for parsing command arguments and/or business rule arguments.
- * @requires module:configurator
- * @requires module:loggers
+ *
  * @requires module:basic.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:word1.constants
- * @requires module:system.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
+ * @requires module:function.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:configurator
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/03
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import configurator from './configurator.js';
-import loggers from './loggers.js';
+// Internal imports
 import * as bas from '../constants/basic.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
-import * as sys from '../constants/system.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import configurator from './configurator.js';
+import loggers from './loggers.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

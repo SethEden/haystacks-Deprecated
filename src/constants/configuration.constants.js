@@ -4,17 +4,18 @@
  * @description Contains all re-usable configuration constants.
  * @requires module:basic.constants
  * @requires module:generic.constants
- * @requires module:word1.constants
  * @requires module:system.constants
+ * @requires module:word1.constants
  * @author Seth Hollingsead
  * @date 2021/11/09
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
 import * as gen from './generic.constants.js';
-import * as wr1 from './word1.constants.js';
 import * as sys from './system.constants.js';
+import * as wr1 from './word1.constants.js';
 
 // Configuration Settings
 export const crootPath = wr1.croot + wr1.cPath; // rootPath
@@ -25,6 +26,8 @@ export const cframeworkRootPath = wr1.cframework + wr1.cRoot + wr1.cPath; // fra
 export const cappConfigResourcesPath = gen.capp + wr1.cConfig + wr1.cResources + wr1.cPath; // appConfigResourcesPath
 export const cframeworkResourcesPath = wr1.cframework + wr1.cResources + wr1.cPath; // frameworkResourcesPath
 export const cclientMetaDataPath = wr1.cclient + wr1.cMetaData + wr1.cPath; // clientMetaDataPath
+export const cclientCommandAliasesPath = wr1.cclient + wr1.cCommand + wr1.cAliases + wr1.cPath; // clientCommandAliasesPath
+export const cclientWorkflowsPath = wr1.cclient + wr1.cWorkflows + wr1.cPath; // clientWorkflowsPath
 export const cframeworkFullMetaDataPath = wr1.cframework + wr1.cFull + wr1.cMetaData + wr1.cPath; // frameworkFullMetaDataPath
 export const cappConfigPath = gen.capp + wr1.cConfig + wr1.cPath; // appConfigPath
 export const cframeworkConfigPath = wr1.cframework + wr1.cConfig + wr1.cPath; // frameworkConfigPath

@@ -7,19 +7,21 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:word1.constants
- * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://www.npmjs.com/package/moment|moment}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/19
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
-import path from 'path';
+// External imports
 import moment from 'moment';
+import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.timers.

@@ -10,6 +10,7 @@
  * @NOTE: We have a second word constants file, to avoid circular dependent constants definitions.
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
 import * as phn from './phonic.constants.js';
 

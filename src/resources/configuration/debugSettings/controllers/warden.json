@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.controllers.warden": true,
+  "debugFiles|debugSetting.controllers.warden": false,
   "debugFunctions|debugSetting.controllers.warden.initFrameworkSchema": false,
   "debugFunctions|debugSetting.controllers.warden.mergeClientBusinessRules": false,
   "debugFunctions|debugSetting.controllers.warden.mergeClientCommands": false,

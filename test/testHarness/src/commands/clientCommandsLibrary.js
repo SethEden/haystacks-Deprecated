@@ -2,6 +2,7 @@
  * @file clientCommandsLibrary.js
  * @module clientCommandsLibrary
  * @description Contains all of the client defined commands as a map between function names and function calls.
+ * @requires module:clientCommands
  * @requires module:application.command.constants
  * @requires module:application.function.constants
  * @author Seth Hollingsead
@@ -9,6 +10,7 @@
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as clientCommands from './clientCommands/clientCommands.js';
 import * as app_cmd from '../constants/application.command.constants.js';
 import * as app_fnc from '../constants/application.function.constants.js';

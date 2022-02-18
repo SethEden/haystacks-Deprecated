@@ -3,6 +3,7 @@
  * @module chiefConfiguration
  * @description Contains all the functions to manage the configuration system,
  * such as oading, setup, parsing & processing.
+ * @requires module:ruleBroker
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
@@ -10,7 +11,6 @@
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:ruleBroker
  * @requires module:chiefData
  * @requires module:configurator
  * @requires module:loggers
@@ -21,6 +21,8 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import ruleBroker from '../brokers/ruleBroker.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
@@ -28,11 +30,11 @@ import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
-import ruleBroker from '../brokers/ruleBroker.js';
 import chiefData from './chiefData.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

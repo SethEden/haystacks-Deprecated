@@ -2,59 +2,62 @@
  * @file nominal.js
  * @module nominal
  * @description Contains all of the nominal system commands.
- * @requires module:configurator
- * @requires module:lexical
- * @requires module:fileOperations
- * @requires module:dataBroker
  * @requires module:commandBroker
+ * @requires module:dataBroker
  * @requires module:ruleBroker
  * @requires module:workflowBroker
+ *
+ * @requires module:basic.constants
+ * @requires module:business.constants
+ * @requires module:command.constants
+ * @requires module:configuration.constants
+ * @requires module:generic.constants
+ * @requires module:message.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:configurator
+ * @requires module:fileOperations
+ * @requires module:lexical
+ * @requires module:loggers
+ * @requires module:timers
+ * @requires module:data
  * @requires module:queue
  * @requires module:stack
- * @requires module:timers
- * @requires module:loggers
- * @requires module:basic.constants
- * @requires module:generic.constants
- * @requires module:word1.constants
- * @requires module:system.constants
- * @requires module:command.constants
- * @requires module:business.constants
- * @requires module:configuration.constants
- * @requires module:message.constants
- * @requires module:data
  * @requires {@link https://www.npmjs.com/package/prompt-sync|prompt-sync}
  * @requires {@link https://www.npmjs.com/package/figlet|figlet}
- * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://mathjs.org/index.html|math}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/04
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import configurator from '../../executrix/configurator.js';
-import lexical from '../../executrix/lexical.js';
-import fileOperations from '../../executrix/fileOperations.js';
-import dataBroker from '../../brokers/dataBroker.js';
+// Internal imports
 import commandBroker from '../../brokers/commandBroker.js';
+import dataBroker from '../../brokers/dataBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
 import workflowBroker from '../../brokers/workflowBroker.js';
+import * as bas from '../../constants/basic.constants.js';
+import * as biz from '../../constants/business.constants.js';
+import * as cmd from '../../constants/command.constants.js';
+import * as cfg from '../../constants/configuration.constants.js';
+import * as gen from '../../constants/generic.constants.js';
+import * as msg from '../../constants/message.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import configurator from '../../executrix/configurator.js';
+import fileOperations from '../../executrix/fileOperations.js';
+import lexical from '../../executrix/lexical.js';
+import loggers from '../../executrix/loggers.js';
+import timers from '../../executrix/timers.js';
+import D from '../../structures/data.js';
 import queue from '../../structures/queue.js';
 import stack from '../../structures/stack.js';
-import timers from '../../executrix/timers.js';
-import loggers from '../../executrix/loggers.js';
-import * as bas from '../../constants/basic.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as cmd from '../../constants/command.constants.js';
-import * as biz from '../../constants/business.constants.js';
-import * as cfg from '../../constants/configuration.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import D from '../../structures/data.js';
+// External imports
 // import prompt from 'prompt-sync';
 import figlet from 'figlet';
-import path from 'path';
 import * as math from 'mathjs';
+import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.nominal.
@@ -75,7 +78,7 @@ const echoCommand = function(inputData, inputMetaData) {
   let functionName = echoCommand.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   if (inputData) {
     inputData.shift();
@@ -103,7 +106,7 @@ const exit = function(inputData, inputMetaData) {
   let functionName = exit.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -124,7 +127,7 @@ const version = function(inputData, inputMetaData) {
   let functionName = version.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   console.log(configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber));
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -146,7 +149,7 @@ const about = function(inputData, inputMetaData) {
   let functionName = about.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   console.log(configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription));
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -172,7 +175,7 @@ const name = function(inputData, inputMetaData) {
   let functionName = name.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   let applicationName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
   let figletFont = '';
@@ -204,7 +207,7 @@ const clearScreen = function(inputData, inputMetaData) {
   let functionName = clearScreen.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   // console.clear(); // This will clear the screen, but not the cache, you can still scroll up and see the previous commands.
   // process.stdout.write('\u001B[2J\u-001B[0;0f'); // Same as above.

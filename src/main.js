@@ -7,7 +7,6 @@
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
- * @requires module:constant.constants
  * @requires module:country.constants
  * @requires module:function.constants
  * @requires module:generic.constants
@@ -18,20 +17,23 @@
  * @requires module:system.constants
  * @requires module:unit.constants
  * @requires module:word1.constants
+ * @requires module:word2.constants
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/url|url}
+ * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/14
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './constants/basic.constants.js';
 import * as biz from './constants/business.constants.js';
 import * as cfg from './constants/configuration.constants.js';
-import * as con from './constants/constant.constants.js';
 import * as ctr from './constants/country.constants.js';
 import * as fnc from './constants/function.constants.js';
 import * as gen from './constants/generic.constants.js';
@@ -47,14 +49,15 @@ import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
 import D from './structures/data.js';
-import path from 'path';
+// External imports
 import url from 'url';
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // main.
 const namespacePrefix = baseFileName + bas.cDot;
+dotenv.config();
 const {NODE_ENV} = process.env;
 
 /**
@@ -68,8 +71,8 @@ const {NODE_ENV} = process.env;
 */
 function initFramework(clientConfiguration) {
  let functionName = initFramework.name;
- console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+ // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
  loggers.consoleLog(namespacePrefix + functionName, msg.cclientConfigurationIs + clientConfiguration);
 
@@ -134,7 +137,6 @@ export default {
   [gen.cbas]: bas,
   [gen.cbiz]: biz,
   [gen.ccfg]: cfg,
-  [gen.ccon]: con,
   [gen.cctr]: ctr,
   [gen.cfnc]: fnc,
   [gen.cgen]: gen,

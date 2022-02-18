@@ -9,7 +9,9 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as wr1 from '../constants/word1.constants.js';
+
 let data = {};
 
 export default {

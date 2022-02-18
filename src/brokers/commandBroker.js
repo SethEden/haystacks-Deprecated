@@ -3,44 +3,46 @@
  * @module commandBroker
  * @description Executes commands by calling the appropriate command-function from the commandLibrary,
  * which will actually be stored functions on the D-Data structure.
- * @requires module:configurator
- * @requires module:lexical
  * @requires module:commandsLibrary
- * @requires module:stack
- * @requires module:timers
- * @requires module:loggers
  * @requires module:basic.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:numeric.constants
- * @requires module:word1.constants
- * @requires module:system.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
+ * @requires module:function.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:configurator
+ * @requires module:lexical
+ * @requires module:loggers
+ * @requires module:timers
  * @requires module:data
+ * @requires module:stack
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/02
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
-import configurator from '../executrix/configurator.js';
-import lexical from '../executrix/lexical.js';
+// Internal imports
 import commandsLibrary from '../commandsBlob/commandsLibrary.js';
-import stack from '../structures/stack.js';
-import timers from '../executrix/timers.js';
-import loggers from '../executrix/loggers.js';
 import * as bas from '../constants/basic.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as num from '../constants/numeric.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
-import * as sys from '../constants/system.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as num from '../constants/numeric.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import configurator from '../executrix/configurator.js';
+import lexical from '../executrix/lexical.js';
+import loggers from '../executrix/loggers.js';
+import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
+import stack from '../structures/stack.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -113,18 +115,21 @@ function getValidCommand(commandString, commandDelimiter) {
   } else {
     commandToExecute = commandString;
   }
-  loggers.consoleLog(namespacePrefix + functionName, 'commandString is: ' + commandString);
-  loggers.consoleLog(namespacePrefix + functionName, 'commandToExecute is: ' + commandToExecute);
+  // commandString is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
+  // commandToExecute is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   if (commandString) {
     if (D[wr1.cCommands][commandToExecute] !== undefined) {
       foundValidCommand = true;
       returnData = cmmandToExecute;
     } else { // else-clause if (D[wr1.cCommands][commandToExecute] !== undefined)
-      loggers.consoleLog(namespacePrefix + functionName, 'else-clause looking for command aliases');
+      // else-clause looking for command aliases.
+      loggers.consoleLog(namespacePrefix + functionName, msg.celseClauseLookingForCommandAliases);
       // NOTE: It could be that the user entered a command alias, so we will need to search through all of the command aliases,
       // to see if we can find a match, then get the actual command that should be executed.
       let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommand];
-      loggers.consoleLog(namespacePrefix + functionName, 'allCommandAliases is: ' + JSON.stringify(allCommandAliases));
+      loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesIs + JSON.stringify(allCommandAliases));
 loop1:
       for (let i = 0; i < allCmmandAliases.length; i++) {
         // Iterate through all of the command aliases and see if we can find a
@@ -361,9 +366,11 @@ function executeCommand(commandString) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   let returnData = false;
   let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter));
-  loggers.consoleLog(namespacePrefix + functionName, 'commandToExecute is: ' + commandToExecute);
+  // commandToExecute is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter));
-  loggers.consoleLog(namespacePrefix + functionName, 'commandArgs is: ' + commandArgs);
+  // commandArgs is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandArgsIs + commandArgs);
   let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableCommandPerformanceMetrics);
   let commandStartTime = '';
   let commandEndTime = '';

@@ -14,12 +14,14 @@
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
+ * @requires {@link https://www.npmjs.com/package/xml2js|xml2js}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
@@ -27,9 +29,10 @@ import * as msg from '../constants/message.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
+// External imports
 import fs from 'fs';
-import path from 'path';
 import xml2js from 'xml2js';
+import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.fileOperations.

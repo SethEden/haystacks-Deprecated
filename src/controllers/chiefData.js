@@ -3,13 +3,13 @@
  * @module chiefData
  * @description Contains all the functions to manage the loading and processing of data,
  * such as XML files, CSV files or JSON files. Additional file type processing should be added in this module.
+ * @requires module:dataBroker
  * @requires module:basic.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:dataBroker
  * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -18,15 +18,17 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import dataBroker from '../brokers/dataBroker.js';
 import * as bas from '../constants/basic.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
-import dataBroker from '../brokers/dataBroker.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));

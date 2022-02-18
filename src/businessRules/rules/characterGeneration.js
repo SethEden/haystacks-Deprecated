@@ -2,30 +2,32 @@
  * @file characterGeneration.js
  * @module characterGeneration
  * @description Contains all business rules for randomly generating characters of all kinds.
- * @requires module:loggers
- * @requires module:stringParsing
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
- * @requires module:generic.constants
- * @requires module:numeric.constants
- * @requires module:word1.constants
- * @requires module:system.constants
  * @requires module:business.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/01/25
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-import loggers from '../../executrix/loggers.js';
-import { stringToBoolean } from './stringParsingUtilities.js';
+// Internal imports
+import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as num from '../../constants/numeric.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
-import * as sys from '../../constants/system.constants.js';
 import * as biz from '../../constants/business.constants.js';
+import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
+import * as num from '../../constants/numeric.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import loggers from '../../executrix/loggers.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -47,7 +49,7 @@ const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, in
   let functionName = randomlyGenerateMixedCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(inputData + gen.cUpperCaseEnglishAlphabet + gen.cLowerCaseEnglishAlphabet);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -70,7 +72,7 @@ const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, in
   let functionName = randomlyGenerateUpperCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(inputData + gen.cUpperCaseEnglishAlphabet);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -93,7 +95,7 @@ const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, in
   let functionName = randomlyGenerateLowerCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(inputData + gen.cLowerCaseEnglishAlphabet);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -116,7 +118,7 @@ const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function
   let functionName = randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(inputData + gen.cUpperCaseEnglishAlphabet + gen.cLowerCaseEnglishAlphabet + gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -139,7 +141,7 @@ const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function
   let functionName = randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(inputData + gen.cUpperCaseEnglishAlphabet + gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -162,7 +164,7 @@ const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function
   let functionName = randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(inputData + gen.cLowerCaseEnglishAlphabet + gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -183,7 +185,7 @@ const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, input
   let functionName = randomlyGenerateMixedCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cUpperCaseEnglishAlphabet + gen.cLowerCaseEnglishAlphabet + gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -204,7 +206,7 @@ const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, input
   let functionName = randomlyGenerateUpperCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cUpperCaseEnglishAlphabet + gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -225,7 +227,7 @@ const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, input
   let functionName = randomlyGenerateLowerCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cLowerCaseEnglishAlphabet + gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -246,7 +248,7 @@ const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
   let functionName = randomlyGenerateNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cAllNumbers);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -267,7 +269,7 @@ const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
   let functionName = randomlyGenerateSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   // NOTE Canot have a "." as part of a variable name in a {set}
   let cTrue = gen.cTrue;
@@ -299,13 +301,13 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
   let functionName = randomlyGenerateNumberInRange.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData && inputMetaData) {
     let minimum = parseInt(inputData);
     let maximum = parseInt(inputMetaData[0]);
-    let addOne = stringToBoolean(inputMetaData[1]);
-    let addMinimum = stringToBoolean(inputMetaData[2]);
+    let addOne = stringParsingUtilities.stringToBoolean(inputMetaData[1]);
+    let addMinimum = stringParsingUtilities.stringToBoolean(inputMetaData[2]);
     if (addOne === true) {
       if (addMinimum === true) {
         returnData = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
@@ -339,7 +341,7 @@ const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
   let functionName = randomlyGenerateBooleanValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = Math.random() >= 0.5;
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -361,7 +363,7 @@ const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMe
   let functionName = randomlyGenerateMixedCaseAlphabeticCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cUpperCaseEnglishAlphabet + gen.cLowerCaseEnglishAlphabet);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -382,7 +384,7 @@ const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cLowerCaseEnglishAlphabet);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -403,7 +405,7 @@ const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   returnData = randomlyGenerateSpecialCharacter(gen.cUpperCaseEnglishAlphabet);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -425,7 +427,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
   let functionName = convertNumberToUpperCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
     let number = parseInt(inputData);
@@ -457,7 +459,7 @@ const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
   let functionName = convertNumberToLowerCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
     let number = parseInt(inputData);

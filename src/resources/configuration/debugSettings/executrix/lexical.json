@@ -1,9 +1,9 @@
 {
-  "debugFiles|debugSetting.executrix.lexical": true,
-  "debugFunctions|debugSetting.executrix.lexical.parseBusinessRuleArgument": true,
-  "debugFunctions|debugSetting.executrix.lexical.analyzeArgument": true,
-  "debugFunctions|debugSetting.executrix.lexical.analyzeForRegularExpression": true,
-  "debugFunctions|debugSetting.executrix.lexical.parseArgumentAsRegularExpression": true,
-  "debugFunctions|debugSetting.executrix.lexical.parseArgumentAsArray": true,
-  "debugFunctions|debugSetting.executrix.lexical.removeStringLiteralTagsFromArray": true
+  "debugFiles|debugSetting.executrix.lexical": false,
+  "debugFunctions|debugSetting.executrix.lexical.parseBusinessRuleArgument": false,
+  "debugFunctions|debugSetting.executrix.lexical.analyzeArgument": false,
+  "debugFunctions|debugSetting.executrix.lexical.analyzeForRegularExpression": false,
+  "debugFunctions|debugSetting.executrix.lexical.parseArgumentAsRegularExpression": false,
+  "debugFunctions|debugSetting.executrix.lexical.parseArgumentAsArray": false,
+  "debugFunctions|debugSetting.executrix.lexical.removeStringLiteralTagsFromArray": false
 }

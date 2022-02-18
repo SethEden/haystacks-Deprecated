@@ -4,7 +4,6 @@
  * @description Contains system defined acronyms, many of them derived from the basic.constants.
  * The constants contained in this file are system words, phrases, codes and paths.
  * @requires module:basic.constants
- * @requires module:constant.constants
  * @requires module:generic.constants
  * @requires module:numeric.constants
  * @requires module:phonic.constants
@@ -14,8 +13,8 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
 import * as bas from './basic.constants.js';
-import * as con from './constant.constants.js';
 import * as gen from './generic.constants.js';
 import * as num from './numeric.constants.js';
 import * as phn from './phonic.constants.js';

@@ -3,6 +3,8 @@
  * @module warden
  * @description Contains all the functions to manage the entire application framework at the highest level.
  * Also provides an interface to easily manage all the framework features & various functionality from a single entry point.
+ * @requires module:dataBroker
+ * @requires module:ruleBroker
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
@@ -10,10 +12,9 @@
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:dataBroker
- * @requires module:ruleBroker
  * @requires module:chiefCommander
  * @requires module:chiefConfiguration
+ * @requires module:chiefWorkflow
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
@@ -23,6 +24,9 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// Internal imports
+import dataBroker from '../brokers/dataBroker.js';
+import ruleBroker from '../brokers/ruleBroker.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
@@ -30,13 +34,13 @@ import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
-import dataBroker from '../brokers/dataBroker.js';
-import ruleBroker from '../brokers/ruleBroker.js';
 import chiefCommander from './chiefCommander.js';
 import chiefConfiguration from './chiefConfiguration.js';
+import chiefWorkflow from './chiefWorkflow.js';
 import configurator from '../executrix/configurator.js';
 import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
+// External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -85,10 +89,13 @@ function initFrameworkSchema(configData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configData is: ${JSON.stringify(configData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + configData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + JSON.stringify(configData));
   const appConfigPath = configData[cfg.cappConfigPath];
   const frameworkConfigPath = configData[cfg.cframeworkConfigPath];
   chiefConfiguration.setupConfiguration(appConfigPath, frameworkConfigPath);
+  // re-declare the input now that the configuration is setup.
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + JSON.stringify(configData));
 
   let applicationMetaDataPathAndFilename = configData[cfg.cclientMetaDataPath];
   let frameworkMetaDataPathAndFilename = configData[cfg.cframeworkFullMetaDataPath];
@@ -109,9 +116,23 @@ function initFrameworkSchema(configData) {
   configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigPath, configData[cfg.cappConfigPath]);
   configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkResourcesPath, configData[cfg.cframeworkResourcesPath]);
   configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkFullMetaDataPath, configData[cfg.cframeworkFullMetaDataPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigpath]);
+  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigPath]);
   configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkCommandAliasesPath, configData[cfg.cframeworkCommandAliasesPath]);
   configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkWorkflowsPath, configData[cfg.cframeworkWorkflowsPath]);
+
+  loggers.consoleLog(namespacePrefix + functionName, msg.cclientRootPathIs + configData[cfg.cclientRootPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigResourcesPathIs + configData[cfg.cappConfigResourcesPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigReferencePathIs + configData[cfg.cappConfigReferencePath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cclientMetaDataPathIs + configData[cfg.cclientMetaDataPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cclientCommandAliasesPathIs + configData[cfg.cclientCommandAliasesPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cclientWorkflowsPathIs + configData[cfg.cclientWorkflowsPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkRootPathIs + configData[cfg.cframeworkRootPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigPathIs + configData[cfg.cappConfigPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkResourcesPathIs + configData[cfg.cframeworkResourcesPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkFullMetaDataPathIs + configData[cfg.cframeworkFullMetaDataPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + configData[cfg.cframeworkConfigPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkCommandAliasesPathIs + configData[cfg.cframeworkCommandAliasesPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
 
   configurator.setConfigurationSetting(wr1.csystem, cfg.cApplicationName, applicationMetaData[wr1.cName]);
   configurator.setConfigurationSetting(wr1.csystem, cfg.cApplicationVersionNumber, applicationMetaData[wr1.cVersion]);

@@ -1,4 +1,4 @@
 {
-  "debugFiles|debugSetting.businessRules.rules.mathOperations": true,
-  "debugFunctions|debugSetting.businessRules.rules.mathOperations.hex2rgbConversion": true
+  "debugFiles|debugSetting.businessRules.rules.mathOperations": false,
+  "debugFunctions|debugSetting.businessRules.rules.mathOperations.hex2rgbConversion": false
 }

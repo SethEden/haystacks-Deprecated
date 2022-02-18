@@ -2,13 +2,15 @@
  * @file application.constant.constants.js
  * @module application.constant.constants
  * @description Contains many re-usable application constant constants.
+ * @requires module:haystacks
  * @requires module:haystacks.basic.constants
- * @requires module:haystacks.word.constants
+ * @requires module:haystacks.word2.constants
  * @author Seth Hollingsead
  * @date 2021/12/30
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
+// External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr2 = haystacks.wr2;
