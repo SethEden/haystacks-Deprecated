@@ -93,9 +93,12 @@ async function application() {
   let commandResult;
 
   argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, cfg.cArgumentDrivenInterface);
+  if (argumentDrivenInterface === undefined) {
+    argumentDrivenInterface = false;
+  }
   // argumentDrivenInterface is:
-  haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
-  haystacks.enqueueCommand(cmd.cStartupWorkflow);
+  // haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
+  haystacks.enqueueCommand(wr1.cname);
 
   // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,
   // arguments can still be passed in and they will be executed first, after the startup workflow is complete.
@@ -110,17 +113,36 @@ async function application() {
     commandResult = haystacks.processCommandQueue();
   }
 
+  // NOW process the command args and add them to the command queue for execution.
+  if (!process.argv && process.argv.length > 0) {
+    if (process.argv[2].includes(bas.cDash) === true ||
+    process.argv[2].includes(bas.cForwardSlash) === true ||
+    process.argv[2].includes(bas.cBackSlash) === true) {
+      commandToExecute = warden.executeBusinessRule(biz.caggregateCommandArguments, process.argv, '');
+    }
+    if (commandToExecute !== '') {
+      warden.enqueueCommand(commandToExecute);
+    }
+    while (haystacks.isCommandQueueEmpty() === false) {
+      commandResult = haystacks.processCommandQueue();
+    }
+  } // End-if (!process.argv && process.argv.length > 0)
 
+  // NOW the application can continue with the interactive interface fi the flag was set to false.
   if (argumentDrivenInterface === false) {
     // BEGIN main program loop
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage01);
 
-    // BEGIN cmmand parser
+    // BEGIN command parser
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage02);
 
     while(programRunning === true) {
-      commandInput = haystacks.prompt(bas.cGreaterThan);
-      if (commandInput.toUpperCase() === wr1.cEXIT) {
+      if (haystacks.isCommandQueueEmpty() === true) {
+        commandInput = haystacks.prompt(bas.cGreaterThan);
+        haystacks.enqueueCommand(commandInput);
+      }
+      commandResult = haystacks.processCommandQueue();
+      if (commandResult === false) {
         // END command parser
         haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage03);
         programRunning = false;

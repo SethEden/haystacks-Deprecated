@@ -68,7 +68,7 @@ function processRootPath(inputPath) {
   rules[0] = biz.cparseSystemRootPath;
   ruleBroker.bootStrapBusinessRules();
   chiefCommander.bootStrapCommands();
-  let resolvedPath = ruleBroker.processRules(inputPath, sys.cframeworkName, rules);
+  let resolvedPath = ruleBroker.processRules(inputPath, sys.cActualFrameworkName, rules);
   dataBroker.setupDataStorage();
   let rootPath = path.resolve(resolvedPath);
   // console.log(`rootPath is: ${rootPath}`);
@@ -134,16 +134,16 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkCommandAliasesPathIs + configData[cfg.cframeworkCommandAliasesPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
 
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cApplicationName, applicationMetaData[wr1.cName]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cApplicationVersionNumber, applicationMetaData[wr1.cVersion]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cApplicationDescription, applicationMetaData[wr1.cDescription]);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationName, applicationMetaData[wr1.cName]);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber, applicationMetaData[wr1.cVersion]);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationDescription, applicationMetaData[wr1.cDescription]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationNameIs + applicationMetaData[wr1.cName]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationVersionNumberIs + applicationMetaData[wr1.cVersion]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationDescriptionIs + applicationMetaData[wr1.cDescription]);
 
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cFrameworkName, frameworkMetaData[wr1.cName]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cFrameworkVersionNumber, frameworkMetaData[wr1.cVersion]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cFrameworkDescription, frameworkMetaData[wr1.cDescription]);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkName, frameworkMetaData[wr1.cName]);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber, frameworkMetaData[wr1.cVersion]);
+  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkDescription, frameworkMetaData[wr1.cDescription]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkNameIs + frameworkMetaData[wr1.cName]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wr1.cVersion]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wr1.cDescription]);

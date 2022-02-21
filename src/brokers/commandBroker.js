@@ -105,7 +105,7 @@ function getValidCommand(commandString, commandDelimiter) {
   let foundSomeCommandArgs = false;
   let commandToExecute, commandArgs;
   let commandArgsDelimiter = commandDelimiter;
-  if (commandDelmiter === null || commandDelimiter !== commandDelimiter || commandDelimiter === undefined) {
+  if (commandDelimiter === null || commandDelimiter !== commandDelimiter || commandDelimiter === undefined) {
     commandArgsDelimiter = bas.cSpace;
   }
   if (commandString && commandString.includes(commandArgsDelimiter) === true) {
@@ -122,19 +122,21 @@ function getValidCommand(commandString, commandDelimiter) {
   if (commandString) {
     if (D[wr1.cCommands][commandToExecute] !== undefined) {
       foundValidCommand = true;
-      returnData = cmmandToExecute;
+      returnData = commandToExecute;
     } else { // else-clause if (D[wr1.cCommands][commandToExecute] !== undefined)
       // else-clause looking for command aliases.
       loggers.consoleLog(namespacePrefix + functionName, msg.celseClauseLookingForCommandAliases);
       // NOTE: It could be that the user entered a command alias, so we will need to search through all of the command aliases,
       // to see if we can find a match, then get the actual command that should be executed.
       let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommand];
+      // allCommandAliases is:
       loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesIs + JSON.stringify(allCommandAliases));
 loop1:
-      for (let i = 0; i < allCmmandAliases.length; i++) {
+      for (let i = 0; i < allCommandAliases.length; i++) {
         // Iterate through all of the command aliases and see if we can find a
         // command alias that matches the command the user is trying to execute.
-        let currentCommand = allCommandAliases[i];
+        let currentCommand = allCommandAliases[i][bas.cDollar];
+        loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
         let aliasList = currentCommand[wr1.cAliases];
         let arrayOfAliases = aliasList.split(bas.cComa);
 loop2:
@@ -185,7 +187,7 @@ loop2:
     // does not exist, please try again!
     console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -332,14 +334,14 @@ function getCommandArgs(commandString, commandDelimiter) {
       // Doing a straight split of the commandString:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoingStraightSplitCommandString + commandString);
       returnData = commandString.split(commandArgsDelimiter);
-      loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + JSON.stringify(returnData));
+      loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
     }
   } // End-if (commandString.includes(commandArgsDelimiter) === true)
   if (stringLiteralCommandDelimiterAdded === true) {
     // This means we need to remove some bas.cTilde from one or more of the command args.
     lexical.removeStringLiteralTagsFromArray(returnData);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

@@ -142,7 +142,7 @@ export const creformatDeltaTime = wr1.creformat + gen.cDelta + wr1.cTime; // ref
 export const csleep = wr1.csleep; // sleep
 
 // queue
-export const cinitQueue = phn.cinit + wr1.cQueue; // initQueue
+export const cinitQueue = gen.cinit + wr1.cQueue; // initQueue
 export const cdequeue = wr1.cdequeue; // dequeue
 export const cenqueue = wr1.cenqueue; // enqueue
 export const cisEmpty = wr1.cis + wr1.cEmpty; // isEmpty
@@ -150,7 +150,7 @@ export const cqueueFront = wr1.cqueue + wr1.cFront; // queueFront
 export const cqueueSize = wr1.cqueue + wr1.cSize; // queueSize
 
 // stack
-export const cinitStack = phn.cinit + wr1.cStack; // initStack
+export const cinitStack = gen.cinit + wr1.cStack; // initStack
 export const cclearStack = wr1.cclear + wr1.cStack; // clearStack
 export const cpush = wr1.cpush; // push
 export const cpop = wr1.cpop; // pop

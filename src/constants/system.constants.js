@@ -376,7 +376,10 @@ export const cunit_constants_js = wr1.cunit + bas.cDot + wr1.cconstants + bas.cD
 export const cword_constants_js = wr1.cword + bas.cDot + wr1.cconstants + bas.cDot + bas.cjs; // word.constants.js
 
 // System Paths
-export const cframeworkName = wr1.chay + wr1.cstacks; // haystacks
+export const cActualFrameworkName = wr1.chay + wr1.cstacks; // haystacks
+export const cFrameworkName = wr1.cFramework + wr1.cName; // FrameworkName
+export const cFrameworkVersionNumber = wr1.cFramework + wr1.cVersion + wr1.cNumber; // FrameworkVersionNumber
+export const cFrameworkDescription = wr1.cFramework + wr1.cDescription; // FrameworkDescription
 export const cmetaDatadotJson = wr1.cmeta + wr1.cData + bas.cDot + gen.cjson; // metaData.json
 export const cFrameworkDevelopRootPath = wr1.csrc + bas.cDoubleForwardSlash; // src//
 export const cFrameworkProductionRootPath = wr1.cbin + bas.cDoubleForwardSlash; // bin//
