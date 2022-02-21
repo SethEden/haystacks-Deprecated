@@ -2,13 +2,16 @@
  * @file rulesLibrary.js
  * @module rulesLibrary
  * @description Contains all of the system defined busness rules as a map between function names and function calls.
+ * @requires module:arrayParsing
+ * @requires module:characterGeneration
+ * @requires module:mathOperations
+ * @requires module:stringGeneration
+ * @requires module:stringParsing
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:function.constants
  * @requires module:system.constants
- * @requires module:arrayParsing
- * @requires module:stringParsing
- * @requires module:stringParsingUtilities
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -16,17 +19,24 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let fnc = require('../constants/function.constants');
-let sys = require('../constants/system.constants');
-let arrayParsing = require('./rules/arrayParsing');
-let stringParsing = require('./rules/stringParsing');
-let stringParsingUtilities = require('./rules/stringParsingUtilities');
-let D = require('../structures/data');
-let path = require('path');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
+// Internal imports
+import arrayParsing from './rules/arrayParsing.js';
+import characterGeneration from './rules/characterGeneration.js';
+import mathOperations from './rules/mathOperations.js';
+import stringGeneration from './rules/stringGeneration.js';
+import stringParsing from './rules/stringParsing.js';
+import stringParsingUtilities from './rules/stringParsingUtilities.js';
+import * as bas from '../constants/basic.constants.js';
+import * as biz from '../constants/business.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as sys from '../constants/system.constants.js';
+import D from '../structures/data.js';
+// External imports
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// businessRules.rulesLibrary.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initRulesLibrary
@@ -214,6 +224,6 @@ let namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
    // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-module.exports = {
+export default {
   [fnc.cinitRulesLibrary]: () => initRulesLibrary()
 };

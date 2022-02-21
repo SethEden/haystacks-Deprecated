@@ -2,37 +2,41 @@
  * @file arrayParsing.js
  * @module arrayParsing
  * @description Contains all system defined business rules for parsing arrays with various operations.
+ * @requires module:stringParsing
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:stringParsing
- * @requires module:stringParsingUtilities
+ * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/lodash|lodash}
- * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/28
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../../constants/basic.constants');
-let msg = require('../../constants/message.constants');
-let sys = require('../../constants/system.constants');
-let wr1 = require('../../constants/word1.constants');
-let stringParsing = require('./stringParsing');
-let stringParsingUtilities = require('./stringParsingUtilities');
-let configurator = require('../../executrix/configurator');
-let loggers = require('../../executrix/loggers');
-const _ = require('lodash');
-let path = require('path');
-let math = require('mathjs');
-let chalk = require('chalk');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-// businessRules.rules.arrayParsing
-let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+// Internal imports
+import stringParsing from './stringParsing.js';
+import stringParsingUtilities from './stringParsingUtilities.js';
+import * as bas from '../../constants/basic.constants.js';
+import * as msg from '../../constants/message.constants.js';
+import * as sys from '../../constants/system.constants.js';
+import * as wr1 from '../../constants/word1.constants.js';
+import configurator from '../../executrix/configurator.js';
+import loggers from '../../executrix/loggers.js';
+// External imports
+import _ from 'lodash';
+import * as math from 'mathjs';
+import chalk from 'chalk';
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// businessRules.rules.arrayParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function replaceCharacterWithCharacter
@@ -47,14 +51,14 @@ let namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + ba
  * @author Seth Hollingsead
  * @date 2021/10/28
  */
-export const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
+const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
   let functionName = replaceCharacterWithCharacter.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   if (!inputData && !inputMetaData) {
     returnData = false;
@@ -80,11 +84,11 @@ export const replaceCharacterWithCharacter = function(inputData, inputMetaData) 
  * We might need to do some refactoring of this function if
  * mixed numbers and camel case strings ever becomes a requirement as input to this function.
  */
-export const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
+const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
   let functionName = convertCamelCaseStringToArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   let caps = [];
   for (let i = 1; i < inputData.length; i++) {
@@ -117,11 +121,11 @@ export const convertCamelCaseStringToArray = function(inputData, inputMetaData) 
  * @author Seth Hollingsead
  * @date 2022/01/18
  */
-export const getWordsArrayFromString = function(inputData, inputMetaData) {
+const getWordsArrayFromString = function(inputData, inputMetaData) {
   let functionName = getWordsArrayFromString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
     let wordCount = stringParsing.getWordCountInString(inputData, '');
@@ -161,11 +165,11 @@ export const getWordsArrayFromString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
+const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
   let functionName = recombineStringArrayWithSpaces.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
     returnData = inputData[1];
@@ -187,11 +191,11 @@ export const recombineStringArrayWithSpaces = function(inputData, inputMetaData)
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
+const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   let functionName = convertArrayToCamelCaseString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
     returnData = inputData.map((key, index) => stringParsing.mapWordToCamelCaseWord(key, index));
@@ -210,11 +214,11 @@ export const convertArrayToCamelCaseString = function(inputData, inputMetaData) 
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMetaData) {
+const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMetaData) {
   let functionName = doesArrayContainLowerCaseConsolidatedString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData && inputMetaData) {
     // I'm not sure if value1 & value2 below should be referanced to inputData & inputMetaData?
@@ -239,11 +243,11 @@ export const doesArrayContainLowerCaseConsolidatedString = function(inputData, i
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const doesArrayContainCharacter = function(inputData, inputMetaData) {
+const doesArrayContainCharacter = function(inputData, inputMetaData) {
   let functionName = doesArrayContainCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData && inputMetaData) {
     for (let i = 0; i < inputMetaData.length; i++) {
@@ -269,11 +273,11 @@ export const doesArrayContainCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const removeCharacterFromArray = function(inputData, inputMetaData) {
+const removeCharacterFromArray = function(inputData, inputMetaData) {
   let functionName = removeCharacterFromArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData && inputMetaData) {
     for (let i = 0; i < inputMetaData.length; i++) {
@@ -298,11 +302,11 @@ export const removeCharacterFromArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const ascertainMatchingElements = function(inputData, inputMetaData) {
+const ascertainMatchingElements = function(inputData, inputMetaData) {
   let functionName = ascertainMatchingElements.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) {
@@ -329,11 +333,11 @@ export const ascertainMatchingElements = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const doesArrayContainFilename = function(inputData, inputMetaData) {
+const doesArrayContainFilename = function(inputData, inputMetaData) {
   let functionName = doesArrayContainFilename.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   // NOTE: This call doesn't actually work, it may have orked at one time, but it doesn't work now.
   // And I'm not going to spend the time trying to figure out why,
@@ -364,11 +368,11 @@ export const doesArrayContainFilename = function(inputData, inputMetaData) {
  * @date 2022/01/19
  * @NOTE https://stackoverflow.com/questions/6521245/finding-longest-string-in-array
  */
-export const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
+const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
   let functionName = getLengthOfLongestStringInArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = 0;
   if (inputData) {
     returnData = Math.max(...(inputData.map(el => el.length)));
@@ -389,11 +393,11 @@ export const getLengthOfLongestStringInArray = function(inputData, inputMetaData
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-export const searchForPatternsInStringArray = function(inputData, inputMetaData) {
+const searchForPatternsInStringArray = function(inputData, inputMetaData) {
   let functionName = searchForPatternsInStringArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData && inputData.length > 0) {
     returnData = []; // Reset it to an empty array, the input data has something n it so we should be able to process it.
@@ -484,11 +488,11 @@ export const searchForPatternsInStringArray = function(inputData, inputMetaData)
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-export const validatePatternsThatNeedImplementation = function(inputData, inputMetaData) {
+const validatePatternsThatNeedImplementation = function(inputData, inputMetaData) {
   let functionName = validatePatternsThatNeedImplementation.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
     let passMessage = '';
@@ -542,11 +546,11 @@ export const validatePatternsThatNeedImplementation = function(inputData, inputM
  * @date 2022/01/20
  * @NOTE: https://en.wikipedia.org/wiki/Lehmer_code
  */
-export const solveLehmerCode = function(inputData, inputMetaData) {
+const solveLehmerCode = function(inputData, inputMetaData) {
   let functionName = solveLehmerCode.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     // [["Wondr","Wundr","Wndr","Wonder"],["Wman","Wmn","Womn","Woman"],["Amzing","Amzng","Amazing"]]
@@ -589,11 +593,11 @@ export const solveLehmerCode = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-export const recursiveArrayExpansion = function(inputData, inputMetaData) {
+const recursiveArrayExpansion = function(inputData, inputMetaData) {
   let functionName = recursiveArrayExpansion.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [];
   if (inputData && inputMetaData && isArray(inputData) === true && isArray(inputMetaData) === true && inputData.length > 0 && inputMetaData.length > 0) {
     // Setup & parse the inputData & inputMetaData into a format we can use to actually do recursive array expansion.
@@ -695,11 +699,11 @@ export const recursiveArrayExpansion = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-export const getLehmerCodeValue = function(inputData, inputMetaData) {
+const getLehmerCodeValue = function(inputData, inputMetaData) {
   let functionName = getLehmerCodeValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = '';
   if (inputData) {
     let lengthOfInputData = inputData.length;
@@ -734,11 +738,11 @@ export const getLehmerCodeValue = function(inputData, inputMetaData) {
  * @date 2022/01/20
  * @NOTE: https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
  */
-export const arraysAreEqual = function(inputData, inputMetaData) {
+const arraysAreEqual = function(inputData, inputMetaData) {
   let functionName = arraysAreEqual.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) { returnData = true; }
@@ -759,11 +763,11 @@ export const arraysAreEqual = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-export const storeData = function(inputData, inputMetaData) {
+const storeData = function(inputData, inputMetaData) {
   let functionName = arraysAreEqual.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData && inputMetaData) {
     dataBroker.storeData(inputData, inputMetaData);
@@ -783,11 +787,11 @@ export const storeData = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-export const getStoredData = function(inputData, inputMetData) {
+const getStoredData = function(inputData, inputMetData) {
   let functionName = getStoredData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData) {
     returnData = dataBroker.getDate(inputData);
@@ -806,11 +810,11 @@ export const getStoredData = function(inputData, inputMetData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const isObjectEmpty = function(inputData, inputMetaData) {
+const isObjectEmpty = function(inputData, inputMetaData) {
   let functionName = isObjectEmpty.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   if (inputData) {
     for (let key in inputData) {
@@ -837,11 +841,11 @@ export const isObjectEmpty = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const isArrayEmpty = function(inputData, inputMetaData) {
+const isArrayEmpty = function(inputData, inputMetaData) {
   let functionName = isArrayEmpty.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = true;
   if (inputData) {
     returnData = !Object.keys(inputData).length;
@@ -860,11 +864,11 @@ export const isArrayEmpty = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const isObject = function(inputData, inputMetaData) {
+const isObject = function(inputData, inputMetaData) {
   let functionName = isObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
     if (typeof inputData === 'object') {
@@ -886,11 +890,11 @@ export const isObject = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const isArray = function(inputData, inputMetaData) {
+const isArray = function(inputData, inputMetaData) {
   let functionName = isArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
     returnData = Array.isArray(inputData);
@@ -910,11 +914,11 @@ export const isArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const isArrayOrObject = function(inputData, inputMetaData) {
+const isArrayOrObject = function(inputData, inputMetaData) {
   let functionName = isArrayOrObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
     if (isObject(inputData, '') === true || isArray(inputData, '') === true) {
@@ -936,11 +940,11 @@ export const isArrayOrObject = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const isNonZeroLengthArray = function(inputData, inputMetData) {
+const isNonZeroLengthArray = function(inputData, inputMetData) {
   let functionName = isNonZeroLengthArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
     if (isArray(inputData, '') === true && inputData.length >= 1) {
@@ -963,11 +967,11 @@ export const isNonZeroLengthArray = function(inputData, inputMetData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const arrayDeepClone = function(inputData, inputMetaData) {
+const arrayDeepClone = function(inputData, inputMetaData) {
   let functionName = arrayDeepClone.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData && isArray(inputData, '') === true && isArrayEmpty(inputData, '') === false) {
     returnData = JSON.parse(JSON.stringify(inputData));
@@ -988,11 +992,11 @@ export const arrayDeepClone = function(inputData, inputMetaData) {
  * @date 2022/01/21
  * @reference: {@link https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript}
  */
-export const replaceCharacterAtIndex = function(inputData, inputMetaData) {
+const replaceCharacterAtIndex = function(inputData, inputMetaData) {
   let functionName = replaceCharacterAtIndex.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + JSON.stringify(inputMetaData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData) {
     let indexOfReplacement;
@@ -1020,11 +1024,11 @@ export const replaceCharacterAtIndex = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const generateCommandAliases = function(inputData, inputMetaData) {
+const generateCommandAliases = function(inputData, inputMetaData) {
   let functionName = generateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
     // {"wonder":"wondr,wundr,wndr","Woman":"wman,wmn,womn","Amazing":"amzing,amzng"}
@@ -1109,11 +1113,11 @@ export const generateCommandAliases = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const aggregateCommandArguments = function(inputData, inputMetaData) {
+const aggregateCommandArguments = function(inputData, inputMetaData) {
   let functionName = aggregateCommandArguments.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
     if (inputData.length > 3) {
@@ -1150,11 +1154,11 @@ export const aggregateCommandArguments = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const getFileAndPathListForPath = function(inputData, inputMetaData) {
+const getFileAndPathListForPath = function(inputData, inputMetaData) {
   let functionName = getFileAndPathListForPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
     if (inputMetaData) {
@@ -1186,11 +1190,11 @@ export const getFileAndPathListForPath = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-export const parseColorRangeInputs = function(inputData, inputMetaData) {
+const parseColorRangeInputs = function(inputData, inputMetaData) {
   let functionName = parseColorRangeInputs.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cInputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = [0,0,0];
   let minimuColorRange = 0;
   let tempMinimumColorRange = 0;
@@ -1274,4 +1278,38 @@ function doesArrayContainValue(array, value, myFunction) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+export default {
+  replaceCharacterWithCharacter,
+  convertCamelCaseStringToArray,
+  getWordsArrayFromString,
+  recombineStringArrayWithSpaces,
+  convertArrayToCamelCaseString,
+  doesArrayContainLowerCaseConsolidatedString,
+  doesArrayContainCharacter,
+  removeCharacterFromArray,
+  ascertainMatchingElements,
+  doesArrayContainFilename,
+  getLengthOfLongestStringInArray,
+  searchForPatternsInStringArray,
+  validatePatternsThatNeedImplementation,
+  solveLehmerCode,
+  recursiveArrayExpansion,
+  getLehmerCodeValue,
+  arraysAreEqual,
+  storeData,
+  getStoredData,
+  isObjectEmpty,
+  isArrayEmpty,
+  isObject,
+  isArray,
+  isArrayOrObject,
+  isNonZeroLengthArray,
+  arrayDeepClone,
+  replaceCharacterAtIndex,
+  generateCommandAliases,
+  aggregateCommandArguments,
+  getFileAndPathListForPath,
+  parseColorRangeInputs
 };

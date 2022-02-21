@@ -6,6 +6,7 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:word1.constants
+ * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -15,23 +16,29 @@
  * Because having these functions in the chiefConfiguration can cause a circular dependency.
  */
 
-let bas = require('../constants/basic.constants');
-let cfg = require('../constants/configuration.constants');
-let fnc = require('../constants/function.constants');
-let wr1 = require('../constants/word1.constants');
-let timers = require('./timers');
-let D = require('../structures/data');
-let path = require('path');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+// Internal imports
+import * as bas from '../constants/basic.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import timers from './timers.js';
+import D from '../structures/data.js';
+// External imports
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.configurator.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function setConfigurationSetting
  * @description Sets a configuration setting on the configuration data structure stored on the D-data structure.
- * @param {array<string>} configurationNamespace The path in the configuration JSON object
+ * @param {string} configurationNamespace The path in the configuration JSON object
  * where the configuration setting should be set.
+ * Ex: businessRules.rules.stringParsing.countCamelCaseWords
  * @param {string} configurationName The key of the configuration setting.
  * @param {string|integer|boolean|double} configurationValue The value of the configuration setting.
+ * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/13
  * @NOTE Cannot use the loggers here, because of a circular dependency.
@@ -52,7 +59,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
 /**
  * @function getConfigurationSetting
  * @description Gets a configuration value based on the configuration name.
- * @param {array<string>} configurationNamespace The path in the configuration JSON object
+ * @param {string} configurationNamespace The path in the configuration JSON object
  * where the configuration setting should be found.
  * @param {string} configurationName The key of the configuration setting.
  * @return {string|integer|boolean|double} The value of whatever was stored in the D[configuration].
@@ -245,7 +252,7 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   return returnValue;
 };
 
-module.exports = {
+export default {
   [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>
     setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
   [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),

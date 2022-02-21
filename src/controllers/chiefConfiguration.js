@@ -3,6 +3,7 @@
  * @module chiefConfiguration
  * @description Contains all the functions to manage the configuration system,
  * such as oading, setup, parsing & processing.
+ * @requires module:ruleBroker
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.constants
@@ -10,7 +11,6 @@
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:ruleBroker
  * @requires module:chiefData
  * @requires module:configurator
  * @requires module:loggers
@@ -21,21 +21,25 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let cfg = require('../constants/configuration.constants');
-let fnc = require('../constants/function.constants');
-let msg = require('../constants/message.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
-let ruleBroker = require('../brokers/ruleBroker');
-let chiefData = require('./chiefData');
-let configurator = require('../executrix/configurator');
-let loggers = require('../executrix/loggers');
-let D = require('../structures/data');
-let path = require('path');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
+// Internal imports
+import ruleBroker from '../brokers/ruleBroker.js';
+import * as bas from '../constants/basic.constants.js';
+import * as biz from '../constants/business.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import chiefData from './chiefData.js';
+import configurator from '../executrix/configurator.js';
+import loggers from '../executrix/loggers.js';
+import D from '../structures/data.js';
+// External imports
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// controllers.chiefConfiguration.
+const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
 
 /**
  * @function setupConfiguration
@@ -169,7 +173,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-module.exports = {
+export default {
   [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
     appConfigPath, frameworkConfigPath
   )

@@ -1,4 +1,13 @@
 {
-  "debugFiles|debugSetting.executrix.fileOperations": true,
-  "debugFunctions|debugSetting.executrix.fileOperations.cleanRootPath": true
+  "debugFiles|debugSetting.executrix.fileOperations": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.getXmlData": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.getCsvData": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.getJsonData": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.scanDirectoryContents": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.copyAllFilesAndFoldersFromFolderToFolder": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.buildReleasePackage": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.cleanRootPath": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.copyFileSync": false,
+  "debugFunctions|debugSetting.executrix.fileOperations.copyFolderRecursiveSync": false
 }

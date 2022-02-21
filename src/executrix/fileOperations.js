@@ -14,28 +14,40 @@
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
+ * @requires {@link https://www.npmjs.com/package/xml2js|xml2js}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let fnc = require('../constants/function.constants');
-let gen = require('../constants/generic.constants');
-let msg = require('../constants/message.constants');
-let wr1 = require('../constants/word1.constants');
-let loggers = require('../executrix/loggers');
-let D = require('../structures/data');
-let fs = require('fs');
-let path = require('path');
-let filesCollection = [];
+// Internal imports
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import loggers from '../executrix/loggers.js';
+import D from '../structures/data.js';
+// External imports
+import fs from 'fs';
+import xml2js from 'xml2js';
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.fileOperations.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
+let filesCollection = [];
 let enableFilesListLimit = false;
 let filesListLimit = -1;
 let hitFileLimit = false;
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+xml2js.Parser({
+  parseNumbers: true,
+  parseBooleans: true,
+  explicitArray: false,
+  mergeAttrs: true
+});
 
 /**
  * @function getXmlData
@@ -597,10 +609,17 @@ function appendMessageToFile(file, message) {
   return appendSuccess;
 };
 
-module.exports = {
+export default {
+  [fnc.cgetXmlData]: (pathAndFilename) => getXmlData(pathAndFilename),
+  [fnc.cgetCsvData]: (pathAndFilename) => getCsvData(pathAndFilename),
   [fnc.cgetJsonData]: (pathAndFilename) => getJsonData(pathAndFilename),
+  [fnc.cwriteJsonData]: (pathAndFilename, dataToWrite) => writeJsonData(pathAndFilename, dataToWrite),
   [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
   [fnc.cscanDirectoryContents]: (directory, enableLimit, filesLimit) => scanDirectoryContents(directory, enableLimit, filesLimit),
   [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
+  [fnc.ccopyAllFilesAndFoldersFromFolderToFolder]: (sourceFolder, destinationFolder) => copyAllFilesAndFoldersFromFolderToFolder(sourceFolder, destinationFolder),
+  [fnc.cbuildReleasePackage]: (sourceFolder, destinatinoFolder) => buildReleasePackage(sourceFolder, destinationFolder),
+  [fnc.ccopyFileSync]: (source, target) => copyFileSync(source, target),
+  [fnc.ccopyFolderRecursiveSync]: (source, target) => copyFolderRecursiveSync(source, target),
   [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)
 };

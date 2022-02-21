@@ -1,0 +1,21 @@
+{
+  "debugFiles|debugSetting.businessRules.rules.characterGeneration": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateMixedCaseLetterOrSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateUpperCaseLetterOrSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateLowerCaseLetterOrSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateMixedCaseAlphaNumericCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateUpperCaseAlphaNumericCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateLowerCaseAlphaNumericCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateNumericCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateSpecialCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateNumberInRange": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateBooleanValue": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateMixedCaseAlphabeticCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateLowerCaseLetter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.randomlyGenerateUpperCaseLetter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.convertNumberToUpperCaseLetter": false,
+  "debugFunctions|debugSetting.businessRules.rules.characterGeneration.convertNumberToLowerCaseLetter": false
+}

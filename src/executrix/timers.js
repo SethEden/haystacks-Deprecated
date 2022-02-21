@@ -7,21 +7,25 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:word1.constants
- * @requires {@link https://www.npmjs.com/package/path|path}
  * @requires {@link https://www.npmjs.com/package/moment|moment}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/19
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let fnc = require('../constants/function.constants');
-let msg = require('../constants/message.constants');
-let wr1 = require('../constants/word1.constants');
-let path = require('path');
-let moment = require('moment');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+// Internal imports
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+// External imports
+import moment from 'moment';
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.timers.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getNowMoment
@@ -72,7 +76,55 @@ function computeDeltaTime(startTime, endTime) {
   return deltaTimeResult;
 };
 
-module.exports = {
+/**
+ * @function reformatDeltaTime
+ * @description Converts a time interval into a different kind of format.
+ * @param {integer} deltaTime A time interval measured in milliseconds.
+ * @param {string} format The formatting template that should be used to format the time interval.
+ * @return {string} A time interval formatted according to the input format template string.
+ * @author Seth Hollingsead
+ * @date 2022/02/16
+ */
+function reformatDeltaTime(deltaTime, format) {
+  let functionName = reformatDeltaTime.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // deltaTime is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdeltaTimeIs + deltaTime);
+  // format is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cformatIs + format);
+  let returnDeltaTime = '';
+  returnDeltaTime = moment.duration(deltaTime).format(format);
+  // returnDeltaTime is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDeltaTimeIs + returnDeltaTime);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnDeltaTime;
+};
+
+/**
+ * @function sleep
+ * @description Causes the JavaScript code to wait for a period of time defined by the input.
+ * @param {integer} sleepTime The number of milliseconds that the system should sleep for.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/16
+ * @reference {@link https://www.sitepoint.com/delay-sleep-pause-wait/}
+ */
+function sleep(sleepTime) {
+  let functionName = sleep.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // sleepTime is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csleepTimeIs + sleepTime);
+  const date = moment();
+  let currentDate = null;
+  do {
+    currentDate = moment();
+  } while (currentDate - date < sleepTime);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+export default {
   [fnc.cgetNowMoment]: (formatting) => getNowMoment(formatting),
-  [fnc.ccomputeDeltaTime]: (startTime, endTime) => computeDeltaTime(startTime, endTime)
+  [fnc.ccomputeDeltaTime]: (startTime, endTime) => computeDeltaTime(startTime, endTime),
+  [fnc.creformatDeltaTime]: (deltaTime, format) => reformatDeltaTime(deltaTime, format),
+  [fnc.csleep]: (sleepTime) => sleep(sleepTime)
 };

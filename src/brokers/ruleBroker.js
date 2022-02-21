@@ -2,10 +2,12 @@
  * @file ruleBroker.js
  * @module ruleBroker
  * @description Contains all the functions necessary to manage the business rules system.
+ * @requires module:rulesLibrary
  * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:rulesLibrary
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -13,16 +15,20 @@
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let fnc = require('../constants/function.constants');
-let msg = require('../constants/message.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
-let rules = require('../businessRules/rulesLibrary');
-let D = require('../structures/data');
-let path = require('path');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+// Internal imports
+import rules from '../businessRules/rulesLibrary.js';
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import D from '../structures/data.js';
+// External imports
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// brokers.ruleBroker.
+const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapBusinessRules
@@ -52,13 +58,12 @@ function bootStrapBusinessRules() {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
+ * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function addClientRules(clientRules) {
   let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   Object.assign(D[sys.cbusinessRules], clientRules);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
@@ -98,7 +103,7 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
   return returnData;
 };
 
-module.exports = {
+export default {
   [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
   [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
   [fnc.cprocessRules]: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)

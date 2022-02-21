@@ -1,0 +1,9 @@
+{
+  "debugFiles|debugSetting.structures.queue": false,
+  "debugFunctions|debugSetting.structures.queue.initQueue": false,
+  "debugFunctions|debugSetting.structures.queue.dequeue": false,
+  "debugFunctions|debugSetting.structures.queue.enqueue": false,
+  "debugFunctions|debugSetting.structures.queue.isEmpty": false,
+  "debugFunctions|debugSetting.structures.queue.queueFront": false,
+  "debugFunctions|debugSetting.structures.queue.queueSize": false
+}

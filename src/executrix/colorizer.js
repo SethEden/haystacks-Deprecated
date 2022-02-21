@@ -2,29 +2,37 @@
  * @file colorizer.js
  * @module colorizer
  * @description Contains all of the functions needed to manage, aprse and control font styles and font colors.
- * @requires module:configurator
  * @requires module:ruleBroker
  * @requires module:basic.constants
- * @requires module:word1.constants
  * @requires module:color.constants
- * @requires module:system.constants
  * @requires module:configuration.constants
- * @requires {@link https://www.npmjs.com/package/chalk|chalk}
+ * @requires module:system.constants
+ * @requires module:word1.constants
+ * @requires module:configurator
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/chalk|chalk}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let configurator = require('../executrix/configurator');
-let ruleBroker = require('./ruleBroker');
-let bas = require('../constants/basic.constants');
-let wr1 = require('../constants/word1.constants');
-let clr = require('../constants/color.constants');
-let sys = require('../constants/system.constants');
-let cfg = require('../constants/configuration.constants');
-let chalk = require('chalk');
-let D = require('../structures/data');
+// Internal imports
+import ruleBroker from './ruleBroker.js';
+import * as bas from '../constants/basic.constants.js';
+import * as clr from '../constants/color.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import configurator from '../executrix/configurator.js';
+import D from '../structures/data.js';
+// External imports
+import chalk from 'chalk';
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.colorizer.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function colorizeMessage
@@ -593,7 +601,7 @@ function removeFontStyles(message) {
   return returnMessage;
 };
 
-module.exports = {
+export default {
   [fnc.ccolorizeMessage]: (message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
     colorizeMessage(message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
   [fnc.caggregateStyleSetting]: (settingValue1, settingValue2, processAsFontSetting) => aggregateStyleSetting(settingValue1, settingValue2, processAsFontSetting),

@@ -1,4 +1,8 @@
 {
   "debugFiles|debugSetting.controllers.chiefData": false,
+  "debugFunctions|debugSetting.controllers.chiefData.getAndProcessCsvData": false,
+  "debugFunctions|debugSetting.controllers.chiefData.getAndProcessXmlData": false,
+  "debugFunctions|debugSetting.controllers.chiefData.setupAllCsvData": false,
+  "debugFunctions|debugSetting.controllers.chiefData.setupAllXmlData": false,
   "debugFunctions|debugSetting.controllers.chiefData.setupAllJsonConfigData": false
 }

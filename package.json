@@ -3,8 +3,9 @@
   "version": "0.0.6",
   "description": "A framework to build any number or any kind of native application or automation solution.",
   "main": "./src/main.js",
+  "type": "module",
   "scripts": {
-    "test": "babel-node ./test/testHarness.js",
+    "test": "babel-node ./test/testHarness/src/testHarness.js",
     "start": "babel-node ./src/main.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
@@ -21,10 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "2.4.2",
+    "dotenv": "^16.0.0",
+    "figlet": "^1.5.2",
     "haystacks": "^0.0.1",
     "lodash": "4.17.21",
     "mathjs": "10.1.0",
-    "moment": "2.29.1"
+    "moment": "2.29.1",
+    "papaparse": "5.3.1",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",

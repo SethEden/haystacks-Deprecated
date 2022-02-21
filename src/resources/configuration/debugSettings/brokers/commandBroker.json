@@ -1,0 +1,8 @@
+{
+  "debugFiles|debugSetting.brokers.commandBroker": false,
+  "debugFunctions|debugSetting.brokers.commandBroker.bootStrapCommands": false,
+  "debugFunctions|debugSetting.brokers.commandBroker.addClientCommands": false,
+  "debugFunctions|debugSetting.brokers.commandBroker.getValidCommand": false,
+  "debugFunctions|debugSetting.brokers.commandBroker.getCommandArgs": false,
+  "debugFunctions|debugSetting.brokers.commandBroker.executeCommand": false
+}

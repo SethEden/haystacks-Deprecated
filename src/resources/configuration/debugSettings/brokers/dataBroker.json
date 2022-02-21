@@ -1,6 +1,19 @@
 {
-  "debugFiles|debugSetting.brokers.dataBroker": true,
-  "debugFunctions|debugSetting.brokers.dataBroker.scanDataPath": true,
-  "debugFunctions|debugSetting.brokers.dataBroker.loadAllJsonData": true,
-  "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile": true
+  "debugFiles|debugSetting.brokers.dataBroker": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.scanDataPath": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.loadAllCsvData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.loadAllXmlData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.loadAllJsonData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.processCsvData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.setupDataStorage": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.storeData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.getData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.clearData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.getDataCatagoryFromContextName": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.getDataCatagoryDetailNameFromContextName": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.extractDataFromPapaParseObject": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.mergeData": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.getDataElement": false,
+  "debugFunctions|debugSetting.brokers.dataBroker.getDataElementCount": false
 }

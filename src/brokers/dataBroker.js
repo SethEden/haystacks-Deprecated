@@ -2,7 +2,8 @@
  * @file dataBroker.js
  * @module dataBroker
  * @description Contains all of the lower level data processing functions,
- * and also acts as an interface for calling the fileBroker.
+ * and also acts as an interface for calling the fileOperations.
+ * @requires module:ruleBroker
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:configuration.contants
@@ -11,31 +12,36 @@
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
- * @requires module:ruleBroker
+ * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
+ * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
-let bas = require('../constants/basic.constants');
-let biz = require('../constants/business.constants');
-let cfg = require('../constants/configuration.constants');
-let fnc = require('../constants/function.constants');
-let gen = require('../constants/generic.constants');
-let msg = require('../constants/message.constants');
-let sys = require('../constants/system.constants');
-let wr1 = require('../constants/word1.constants');
-let ruleBroker = require('./ruleBroker');
-let configurator = require('../executrix/configurator');
-let fileOperations = require('../executrix/fileOperations');
-let loggers = require('../executrix/loggers');
-let D = require('../structures/data');
-let path = require('path');
-let baseFileName = path.basename(module.filename, path.extname(module.filename));
-let namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+// Internal imports
+import ruleBroker from './ruleBroker.js';
+import * as bas from '../constants/basic.constants.js';
+import * as biz from '../constants/business.constants.js';
+import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import configurator from '../executrix/configurator.js';
+import fileOperations from '../executrix/fileOperations.js';
+import loggers from '../executrix/loggers.js';
+import D from '../structures/data.js';
+// External imports
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// brokers.dataBroker.
+const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function scanDataPath
@@ -240,7 +246,7 @@ function loadAllXmlData(filesToLoad, contextName) {
       contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', fileNameRules);
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-      let dataFile = fileBroker.getXmlData(fileToLoad);
+      let dataFile = fileOperations.getXmlData(fileToLoad);
       // loaded file data is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedFileDataIs + JSON.stringify(dataFile));
       // BEGIN PROCESSING ADDITIONAL DATA
@@ -779,7 +785,7 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
   return elementCount;
 };
 
-module.exports = {
+export default {
   [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
   [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
     appConfigFilesToLoad, frameworkConfigFilesToLoad

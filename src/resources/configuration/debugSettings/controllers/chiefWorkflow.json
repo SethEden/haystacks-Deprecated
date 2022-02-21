@@ -1,0 +1,4 @@
+{
+  "debugFiles|debugSetting.controllers.chiefWorkflow": false,
+  "debugFunctions|debugSetting.controllers.chiefWorkflow.loadCommandWorkflowsFromPath": false
+}
