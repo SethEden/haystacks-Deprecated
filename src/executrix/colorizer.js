@@ -6,6 +6,7 @@
  * @requires module:basic.constants
  * @requires module:color.constants
  * @requires module:configuration.constants
+ * @requires module:function.constants
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:configurator
@@ -18,10 +19,11 @@
  */
 
 // Internal imports
-import ruleBroker from './ruleBroker.js';
+import ruleBroker from '../brokers/ruleBroker.js';
 import * as bas from '../constants/basic.constants.js';
 import * as clr from '../constants/color.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
+import * as fnc from '../constants/function.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import configurator from '../executrix/configurator.js';
@@ -52,12 +54,12 @@ const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @author Seth Hollingsead
  * @date 2022/01/28
  */
-function colorizeMessage(message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) {
+function colorizeMessage(message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) {
   let functionName = colorizeMessage.name;
   console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   console.log(`message is: ${message}`);
   console.log(`className is: ${className}`);
-  console.log(`functionName is: ${functionName}`);
+  console.log(`callerFunctionName is: ${callerFunctionName}`);
   console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   console.log(`debugFunctionsSetting is: ${debugFunctionsSetting}`);
   console.log(`flatMessageLog is: ${flatMessageLog}`);
@@ -78,7 +80,7 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
   let debugFilesModuleFontBackgroundColorSetting = wr1.cDefault;
   let debugFilesFunctionFontBackgroundColorSetting = wr1.cDefault;
   let debugFilesMessageFontBackgroundColorSetting = wr1.cDefault;
-  let debugFilesDataFontBackgroundColorSettign = wr1.cDefault;
+  let debugFilesDataFontBackgroundColorSetting = wr1.cDefault;
 
   let debugFunctionsModuleFontStyleSetting = wr1.cDefault;
   let debugFunctionsFunctionFontStyleSetting = wr1.cDefault;
@@ -91,7 +93,6 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
   let debugFunctionsModuleFontBackgroundColorSetting = wr1.cDefault;
   let debugFunctionsFunctionFontBackgroundColorSetting = wr1.cDefault;
   let debugFunctionsMessageFontBackgroundColorSetting = wr1.cDefault;
-  let debugFunctionsMessageFontBackgroundColorSetting = wr1.cDefault;
   let debugFunctionsDataFontBackgroundColorSetting = wr1.cDefault;
 
   // We need a 3rd set of variables because we wil need to aggregate these settings together to determine which ones are in effect.
@@ -102,8 +103,8 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
   // Because some of those settings like the colros and the font styles might have multiple sub-settings.
   // The color setting will of course have R,G,B; And the style setting might have Bold|Underline, so we will of curse have to parse those out.
   let aggregateModuleFontStyleUnderline = false;
-  let aggregateModuleFontStyleBols = false;
-  let aggegateFunctionFontStyleUnderline = false;
+  let aggregateModuleFontStyleBold = false;
+  let aggregateFunctionFontStyleUnderline = false;
   let aggregateFunctionFontStyleBold = false;
   let aggregateMessageFontStyleUnderline = false;
   let aggregateMessageFontStyleBold = false;
@@ -116,61 +117,61 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
   let aggregateModuleFontBackgroundColorSetting = {};
   let aggregateFunctionFontBackgroundColorSetting = {};
   let aggregateMessageFontBackgroundColorSetting = {};
-  let aggregateDataFontBackgroundColorSettign = {};
+  let aggregateDataFontBackgroundColorSetting = {};
   let aggregateUnderlineBoldArray = [];
-  let messageBokenDown = [];
+  let messageBrokenDown = [];
   let rules = [];
   rules[0] = sys.creplaceDoublePercentWithmessage;
 
   debugFilesModuleFontStyleSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cModuleFontStyle);
-  // console.log('debugFilesModuleFontStyleSetting is: ' + debugFilesModuleFontStyleSetting);
-  debuFilesFunctionFontStyleSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cFucntionFontStyle);
-  // console.log('debugFilesFunctionFontStyleSetting is: ' + debugFilesFunctionFontStyleSetting);
+  console.log('debugFilesModuleFontStyleSetting is: ' + debugFilesModuleFontStyleSetting);
+  debugFilesFunctionFontStyleSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cFucntionFontStyle);
+  console.log('debugFilesFunctionFontStyleSetting is: ' + debugFilesFunctionFontStyleSetting);
   debugFilesMessageFontStyleSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cMessageFontStyle);
-  // console.log('debugFilesMessageFontStyleSetting is: ' + debugFilesMessageFontStyleSetting);
-  dbugFilesDataFontStyleSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cDataFontStyle);
-  // console.log('debugFilesDataFontStyleSetting is: ' + debugFilesDataFontStyleSetting);
+  console.log('debugFilesMessageFontStyleSetting is: ' + debugFilesMessageFontStyleSetting);
+  debugFilesDataFontStyleSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cDataFontStyle);
+  console.log('debugFilesDataFontStyleSetting is: ' + debugFilesDataFontStyleSetting);
   debugFilesModuleFontColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cModuleFontColor);
-  // console.log('debugFilesModuleFontColorSetting is: ' + debuFilesModuleFontColorSetting);
+  console.log('debugFilesModuleFontColorSetting is: ' + debugFilesModuleFontColorSetting);
   debugFilesFunctionFontColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cFunctionFontColor);
-  // console.log('debugFilesFunctionFontColorSetting is: ' + debugFilesFunctionFontColorSetting);
-  debuFilesMessageFontColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cMessageFontColor);
-  // console.log('debugFilesMessageFontColorSetting is: ' + debugFilesMessageFontColorSetting);
+  console.log('debugFilesFunctionFontColorSetting is: ' + debugFilesFunctionFontColorSetting);
+  debugFilesMessageFontColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cMessageFontColor);
+  console.log('debugFilesMessageFontColorSetting is: ' + debugFilesMessageFontColorSetting);
   debugFilesDataFontColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cDataFontColor);
-  // console.log('debugFilesDataFontColorSetting is: ' + debugFilesDataFontColorSetting);
+  console.log('debugFilesDataFontColorSetting is: ' + debugFilesDataFontColorSetting);
   debugFilesModuleFontBackgroundColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cModuleFontBackgroundColor);
-  // console.log('debugFilesModuleFontBackgroundColorSetting is: ' + debugFilesModuleFontBackgroundColorSetting);
+  console.log('debugFilesModuleFontBackgroundColorSetting is: ' + debugFilesModuleFontBackgroundColorSetting);
   debugFilesFunctionFontBackgroundColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cFunctionFontBackgroundColor);
-  // console.log('debugFilesFunctionFontBackgroundColorSetting is: ' + debugFilesFunctionFontBackgroundCoorSetting);
-  dbugFilesMessageFontBackgroundColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cMessageFontBackgroundColor);
-  // console.log('debugFilesMessageFontBackgroundColorSetting is: ' + debugFilesMessageFontBackgroundColorSetting);
+  console.log('debugFilesFunctionFontBackgroundColorSetting is: ' + debugFilesFunctionFontBackgroundColorSetting);
+  debugFilesMessageFontBackgroundColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cMessageFontBackgroundColor);
+  console.log('debugFilesMessageFontBackgroundColorSetting is: ' + debugFilesMessageFontBackgroundColorSetting);
   debugFilesDataFontBackgroundColorSetting = configurator.getConfigurationSetting(className, bas.cAt + sys.cDataFontBackgroundColor);
-  // console.log('debugFilesDataFontBackgroundColorSetting is: ' + debugFilesDataFontBackgroundColorSetting);
+  console.log('debugFilesDataFontBackgroundColorSetting is: ' + debugFilesDataFontBackgroundColorSetting);
 
-  debugFunctionsModuleFontStyleSetting = configurator.getConfigurationSetting(className, functionName, bas.cAt + sys.cModuleFontStyle);
-  // console.log('debugFunctionsModuleFontStyleSetting is: ' + debugFunctionsModuleFontStyleSetting);
-  debugFunctionsFunctionFontStyleSetting = configurator.getConfigurationSetting(className, functionName, bas.cAt + sys.cFunctionFontStyle);
-  // console.log('debugFunctionsFunctionFontStyleSetting is: ' + debugFunctionsFunctionFontStyleSetting);
-  debugFunctionsMessageFontStyleSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cMessageFontStyle);
-  // console.log('debugFunctionsMessageFontStyleSetting is: ' + debugFunctionsMessageFontStyleSetting);
-  debugFunctionsDataFontStyleSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cDataFontStyle);
-  // console.log('debugFunctionsDataFontStyleSetting is: ' + debugFunctionsDataFontStyleSetting);
-  debugFunctionsModuleFontColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cModuleFontColor);
-  // console.log('debugFunctionsModuleFontCoorSetting is: ' + debugFunctionsModuleFontColorSetting);
-  debugFunctionsFunctionFontColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cFunctionFontColor);
-  // console.log('debugFunctionsFunctionFontColorSetting is: ' + debugFunctionsFunctionFontColorSetting);
-  debugFunctionsMessageFontColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cMessageFontColor);
-  // console.log('debugFunctionsMessageFontColorSetting is: ' + debugFunctionsMessageFontColorSetting);
-  debugFunctionsDataFontColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cDataFontColor);
-  // console.log('debugFunctionsDataFontColorSetting is: ' + debugFunctionsDataFontColorSetting);
-  debugfunctionsModuleFontBackgroundColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cModuleFontBackgroundColor);
-  // console.log('debugFunctionsModuleFontBackgroundColorSetting is: ' + debugFunctionsModuleFontBackgroundColorSetting);
-  debugFunctionsFunctionFontBackgroundColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cFunctionFontBackgroundColor);
-  // console.log('debugFunctionsFunctionFontBackgroundColorSetting is: ' + debugFunctionsFunctionFontBackgroundColorSetting);
-  debugFunctionsMessageFontBackgroundColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cMessageFontBackgroundColor);
-  // console.log('debugFunctionsMessageFontBackgroundColorSetting is: ' + debugFunctionsMessageFontBackgroundColorSetting);
-  debugFunctionsDataFontBackgroundColorSetting = configurator.getConfigurationSetting(className, functionName + bas.cAt + sys.cDataFontBackgroundColor);
-  // console.log('debugFunctionsDataFontBackgroundColorSetting is: ' + debugFunctionsDataFontBackgroundColorSetting);
+  debugFunctionsModuleFontStyleSetting = configurator.getConfigurationSetting(className, callerFunctionName, bas.cAt + sys.cModuleFontStyle);
+  console.log('debugFunctionsModuleFontStyleSetting is: ' + debugFunctionsModuleFontStyleSetting);
+  debugFunctionsFunctionFontStyleSetting = configurator.getConfigurationSetting(className, callerFunctionName, bas.cAt + sys.cFunctionFontStyle);
+  console.log('debugFunctionsFunctionFontStyleSetting is: ' + debugFunctionsFunctionFontStyleSetting);
+  debugFunctionsMessageFontStyleSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cMessageFontStyle);
+  console.log('debugFunctionsMessageFontStyleSetting is: ' + debugFunctionsMessageFontStyleSetting);
+  debugFunctionsDataFontStyleSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cDataFontStyle);
+  console.log('debugFunctionsDataFontStyleSetting is: ' + debugFunctionsDataFontStyleSetting);
+  debugFunctionsModuleFontColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cModuleFontColor);
+  console.log('debugFunctionsModuleFontCoorSetting is: ' + debugFunctionsModuleFontColorSetting);
+  debugFunctionsFunctionFontColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cFunctionFontColor);
+  console.log('debugFunctionsFunctionFontColorSetting is: ' + debugFunctionsFunctionFontColorSetting);
+  debugFunctionsMessageFontColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cMessageFontColor);
+  console.log('debugFunctionsMessageFontColorSetting is: ' + debugFunctionsMessageFontColorSetting);
+  debugFunctionsDataFontColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cDataFontColor);
+  console.log('debugFunctionsDataFontColorSetting is: ' + debugFunctionsDataFontColorSetting);
+  debugFunctionsModuleFontBackgroundColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cModuleFontBackgroundColor);
+  console.log('debugFunctionsModuleFontBackgroundColorSetting is: ' + debugFunctionsModuleFontBackgroundColorSetting);
+  debugFunctionsFunctionFontBackgroundColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cFunctionFontBackgroundColor);
+  console.log('debugFunctionsFunctionFontBackgroundColorSetting is: ' + debugFunctionsFunctionFontBackgroundColorSetting);
+  debugFunctionsMessageFontBackgroundColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cMessageFontBackgroundColor);
+  console.log('debugFunctionsMessageFontBackgroundColorSetting is: ' + debugFunctionsMessageFontBackgroundColorSetting);
+  debugFunctionsDataFontBackgroundColorSetting = configurator.getConfigurationSetting(className, callerFunctionName + bas.cAt + sys.cDataFontBackgroundColor);
+  console.log('debugFunctionsDataFontBackgroundColorSetting is: ' + debugFunctionsDataFontBackgroundColorSetting);
 
   aggregateUnderlineBoldArray = aggregateStyleSetting(debugFilesModuleFontStyleSetting, debugFunctionsModuleFontStyleSetting, true);
   aggregateModuleFontStyleUnderline = aggregateUnderlineBoldArray[0];
@@ -178,6 +179,7 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
   aggregateUnderlineBoldArray = [];
 
   aggregateUnderlineBoldArray = aggregateStyleSetting(debugFilesFunctionFontStyleSetting, debugFunctionsFunctionFontStyleSetting, true);
+  aggregateFunctionFontStyleUnderline
   aggregateFunctionFontStyleUnderline = aggregateUnderlineBoldArray[0];
   aggregateFunctionFontStyleBold = aggregateUnderlineBoldArray[1];
   aggregateUnderlineBoldArray = [];
@@ -192,13 +194,13 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
   aggregateDataFontStyleBold = aggregateUnderlineBoldArray[1];
   aggregateUnderlineBoldArray = [];
 
-  aggregateModuleFontCoorSetting = aggregateStyleSetting(debugFilesModuleFontCoorSetting, debugFunctionsModuleFontColorSetting, false);
-  aggregateFunctionFontCoorSetting = aggregateStyleSetting(debugFilesFunctionFontColorSetting, debugFunctionsFunctionFontCoorSetting, false);
+  aggregateModuleFontColorSetting = aggregateStyleSetting(debugFilesModuleFontColorSetting, debugFunctionsModuleFontColorSetting, false);
+  aggregateFunctionFontColorSetting = aggregateStyleSetting(debugFilesFunctionFontColorSetting, debugFunctionsFunctionFontColorSetting, false);
   aggregateMessageFontColorSetting = aggregateStyleSetting(debugFilesMessageFontColorSetting, debugFunctionsMessageFontColorSetting, false);
-  aggregateDataFontCoorSetting = aggregateStyleSetting(debugFilesDataFontColorSetting, debugFunctionsDataFontColorSetting, false);
+  aggregateDataFontColorSetting = aggregateStyleSetting(debugFilesDataFontColorSetting, debugFunctionsDataFontColorSetting, false);
   aggregateModuleFontBackgroundColorSetting = aggregateStyleSetting(debugFilesModuleFontBackgroundColorSetting, debugFunctionsModuleFontBackgroundColorSetting, false);
   aggregateFunctionFontBackgroundColorSetting = aggregateStyleSetting(debugFilesFunctionFontBackgroundColorSetting, debugFunctionsFunctionFontBackgroundColorSetting, false);
-  aggregateMessageFontBackgroundCoorSetting = aggregateStyleSetting(debugFilesMessageFontBackgroundColorSetting, debugFunctionsMessageFontBackgroundCoorSetting, false);
+  aggregateMessageFontBackgroundColorSetting = aggregateStyleSetting(debugFilesMessageFontBackgroundColorSetting, debugFunctionsMessageFontBackgroundColorSetting, false);
   aggregateDataFontBackgroundColorSetting = aggregateStyleSetting(debugFilesDataFontBackgroundColorSetting, debugFunctionsDataFontBackgroundColorSetting, false);
 
   if (message.includes(bas.cColon) === true) {
@@ -222,9 +224,9 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
     className = setUnderlineFontStyleOnMessageComponentAccordingToSetting(className, aggregateModuleFontStyleUnderline);
     className = setBoldFontStyleOnMessageComponentAccordingToSetting(className, aggregateModuleFontStyleBold);
     // console.log('Done processing underline & bold settings: className is: ' + className);
-    functionName = setUnderlineFontStyleOnMessageComponentAccordingToSetting(functionName, aggregateFunctionFontStyleUnderline);
-    functionName = setBoldFontStyleOnMessageComponentAccordingToSetting(functionName, aggregateFunctionFontStyleBold);
-    // console.log('Done processing underline & bold settings: functionName is: ' + functionName);
+    callerFunctionName = setUnderlineFontStyleOnMessageComponentAccordingToSetting(callerFunctionName, aggregateFunctionFontStyleUnderline);
+    callerFunctionName = setBoldFontStyleOnMessageComponentAccordingToSetting(callerFunctionName, aggregateFunctionFontStyleBold);
+    // console.log('Done processing underline & bold settings: callerFunctionName is: ' + callerFunctionName);
 
     if (messageContent.includes(bas.cDoublePercent) === true) {
       messageContent = setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageContent, aggregateMessageFontStyleUnderline);
@@ -233,7 +235,7 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
       messageContentSuffix = setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageContentSuffix, aggregateMessageFontStyleUnderline);
       messageContentSuffix = setBoldFontStyleOnMessageComponentAccordingToSetting(messageContentSuffix, aggregateMessageFontStyleBold);
 
-      messageContentPrefix = setFontForegroundColorOnMessageComponentAccordingToSetting(messageContentPrefix, aggregateMessageFontCoorSetting);
+      messageContentPrefix = setFontForegroundColorOnMessageComponentAccordingToSetting(messageContentPrefix, aggregateMessageFontColorSetting);
       messageContentSuffix = setFontForegroundColorOnMessageComponentAccordingToSetting(messageContentSuffix, aggregateMessageFontColorSetting);
 
       messageContentPrefix = setFontBackgroundColorOnMessageComponentAccordingToSetting(messageContentPrefix, aggregateMessageFontBackgroundColorSetting);
@@ -256,13 +258,13 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
     }
     className = setFontForegroundColorOnMessageComponentAccordingToSetting(className, aggregateModuleFontColorSetting);
     // console.log('Done processing foreground color settings: className is: ' + className);
-    functionName = setFontForegroundColorOnMessageComponentAccordingToSetting(functionName, aggregateFunctionFontColorSetting);
-    // console.log('Done processing foreground coor settings: functionName is: ' + functionName);
+    callerFunctionName = setFontForegroundColorOnMessageComponentAccordingToSetting(callerFunctionName, aggregateFunctionFontColorSetting);
+    // console.log('Done processing foreground coor settings: callerFunctionName is: ' + callerFunctionName);
 
     className = setFontBackgroundColorOnMessageComponentAccordingToSetting(className, aggregateModuleFontBackgroundColorSetting);
     // console.log('Done processing background color settings: className is: ' + className);
-    functionName = setFontBackgroundColorOnMessageComponentAccordingToSetting(functionName, aggregateFunctionFontBackgroundColorSetting);
-    // console.log('Done processing background color settings: functionName is: ' + functionName);
+    callerFunctionName = setFontBackgroundColorOnMessageComponentAccordingToSetting(callerFunctionName, aggregateFunctionFontBackgroundColorSetting);
+    // console.log('Done processing background color settings: callerFunctionName is: ' + callerFunctionName);
 
     if (processingMessageData === true) {
       messageData = setFontForegroundColorOnMessageComponentAccordingToSetting(messageData, aggregateDataFontColorSetting);
@@ -270,7 +272,7 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
     }
 
     if (messageContent.includes(bas.cDoublePercent) === true) {
-      colorizedMessage = messageContentPrefix + bas.cSpace + className + bas.cDot + functionName + bas.cSpace + messageContentSuffix;
+      colorizedMessage = messageContentPrefix + bas.cSpace + className + bas.cDot + callerFunctionName + bas.cSpace + messageContentSuffix;
     } else if (messageData !== undefined) {
       colorizedMessage = messageContent + bas.cColon + messageData;
     } else {
@@ -288,8 +290,8 @@ function colorizeMessage(message, className, functionName, debugFilesSetting, de
       // console.log('Done formatting all of the messageData: ' + messageData);
     }
     messageContent = setFontForegroundColorOnMessageComponentAccordingToSetting(messageContent, aggregateMessageFontColorSetting);
-    messageContent = setFontBackgroundColorOnMessageComponentAccordingToSetting(functionName, aggregateMessageFontBackgroundColorSetting);
-    colorizedMessage = messageContent + bas.cColon + messageData);
+    messageContent = setFontBackgroundColorOnMessageComponentAccordingToSetting(callerFunctionName, aggregateMessageFontBackgroundColorSetting);
+    colorizedMessage = messageContent + bas.cColon + messageData;
   } else { // Just return the message as we got it and make sure it gets out!
     colorizedMessage = message; // Don't apply any colorizing to the default. We are not likely to hit this case anyway!!
   }
@@ -408,9 +410,9 @@ function getColorStyleSettingFromSetting(settingValue) {
   if (settingValue !== undefined) {
     if (settingValue.includes(bas.cComa) === true) {
       aggregateColorArray = settingValue.split(bas.cComa);
-      colorStyle[clr.cRed]: aggregateColorArray[0];
-      colorStyle[clr.cGreen]: aggregateColorArray[1];
-      colorStyle[clr.cBlue]: aggregateColorArray[2];
+      colorStyle[clr.cRed] = aggregateColorArray[0];
+      colorStyle[clr.cGreen] = aggregateColorArray[1];
+      colorStyle[clr.cBlue] = aggregateColorArray[2];
     } else if (settingValue === wr1.cDefault) {
       colorStyle = false; // Do not apply any color settings of any kind!
     } else { // It must be a named color.
@@ -602,8 +604,8 @@ function removeFontStyles(message) {
 };
 
 export default {
-  [fnc.ccolorizeMessage]: (message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
-    colorizeMessage(message, className, functionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
+  [fnc.ccolorizeMessage]: (message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
+    colorizeMessage(message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
   [fnc.caggregateStyleSetting]: (settingValue1, settingValue2, processAsFontSetting) => aggregateStyleSetting(settingValue1, settingValue2, processAsFontSetting),
   [fnc.cgetFontStyleSettingsFromSetting]: (settingValue) => getFontStyleSettingsFromSetting(settingValue),
   [fnc.cgetColorStyleSettingFromSetting]: (settingValue) => getColorStyleSettingFromSetting(settingValue),

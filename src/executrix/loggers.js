@@ -12,6 +12,7 @@
  * @requires module:function.constants
  * @requires module:system.constants
  * @requires module:word1.constants
+ * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:data
@@ -29,6 +30,7 @@ import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
+import colorizer from './colorizer.js';
 import configurator from './configurator.js';
 import fileOperations from './fileOperations.js';
 import D from '../structures/data.js';
@@ -203,10 +205,10 @@ function validMessage(outputMessage, originalMessage) {
  */
 function parseClassPath(logFile, classPath, message) {
   let functionName = parseClassPath.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`logFile is: ${logFile}`);
-  // console.log(`classPath is: ${classPath}`);
-  // console.log(`message is: ${message}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`logFile is: ${logFile}`);
+  console.log(`classPath is: ${classPath}`);
+  console.log(`message is: ${message}`);
   let configurationName = '';
   let configurationNamespace = '';
   let debugFunctionsSetting = false;
@@ -217,44 +219,46 @@ function parseClassPath(logFile, classPath, message) {
   rules[0] = biz.creplaceDoublePercentWithMessage;
 
   configurationName = configurator.processConfigurationNameRules(classPath);
-  // console.log(`configurationName is: ${configurationName}`);
+  console.log(`configurationName is: ${configurationName}`);
   configurationNamespace = configurator.processConfigurationNamespaceRules(classPath);
-  // console.log(`configurationNamespace is: ${configurationNamespace}`);
+  console.log(`configurationNamespace is: ${configurationNamespace}`);
   // printMessageToFile(logFile, `Getting configuration setting value for: debugFunctions|${className}.${classFunctionName}`);
-  // console.log(`Getting configuration setting value for: ${configurationNamespace}.${configurationName}`);
+  console.log(`Getting configuration setting value for: ${configurationNamespace}.${configurationName}`);
   debugFunctionsSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, configurationName);
   // printMessageToFile(logFile, `debugFunctionsSetting is: ${debugFunctionsSetting}`);
-  // console.log(`debugFunctionsSetting is: ${debugFunctionsSetting}`);
+  console.log(`debugFunctionsSetting is: ${debugFunctionsSetting}`);
   debugFilesSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, '');
   // printMessageToFile(logFile, `debugFilesSetting is: ${debugFilesSetting}`);
-  // console.log(`debugFilesSetting is: ${debugFilesSetting}`);
+  console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
     // TODO: Implement the colorizing of the message here.
-    if (message.includes(bas.cDoublePercent)) {
-      let myNameSpace = configurationNamespace + bas.cDot + configurationName;
-      // console.log('message is: ' + message);
-      // console.log('myNameSpace is: ' + myNameSpace);
-      // console.log('rules is: ' + JSON.stringify(rules));
-      // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
-      // We will need to refactor the business rules to accept a callback function that does the logging.
-      // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-      // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
-      message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
-    }
-    // console.log('setting the returnData to the message: ' + message);
+    message = colorizer.colorizeMessage(message, configurationNamespace, configurationName, debugFilesSetting, debugFunctionsSetting, false);
+    // if (message.includes(bas.cDoublePercent)) {
+    //   let myNameSpace = configurationNamespace + bas.cDot + configurationName;
+    //   // console.log('message is: ' + message);
+    //   // console.log('myNameSpace is: ' + myNameSpace);
+    //   // console.log('rules is: ' + JSON.stringify(rules));
+    //   // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
+    //   // We will need to refactor the business rules to accept a callback function that does the logging.
+    //   // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
+    //   // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
+    //   message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
+    // }
+    console.log('setting the returnData to the message: ' + message);
     returnData = message;
   } else if ((debugFunctionsSetting === undefined && debugFilesSetting === undefined) ||
   (debugFunctionsSetting === undefined && debugFilesSetting === false) ||
   (debugFunctionsSetting === false && debugFilesSetting === undefined) ||
   (debugFunctionsSetting === false && debugFilesSetting === false)) {
-    // console.log('Something is undefined && false or some combination of both, return false');
+    console.log('Something is undefined && false or some combination of both, return false');
     returnData = false;
   } else {
     // TODO: Implement the colorizing of the message here.
+    message = colorizer.colorizeMessage(message, className, functionName, undefined, undefined, true);
     returnData = message;
   }
-  // console.log(`returnData is: ${returnData}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`returnData is: ${returnData}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
