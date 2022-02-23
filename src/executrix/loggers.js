@@ -11,6 +11,8 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:system.constants
+ * @requires module:generic.constants
+ * @requires module:message.constants
  * @requires module:word1.constants
  * @requires module:colorizer
  * @requires module:configurator
@@ -28,6 +30,8 @@ import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import colorizer from './colorizer.js';
@@ -64,13 +68,14 @@ function consoleLog(classPath, message) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       // console.log(`classPath is: ${classPath}`);
       // console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting(wr1.csystem, sys.capplicationCleanedRootPath);
+      let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
       if (logFile !== undefined) {
         logFile = logFile + bas.cDoubleForwardSlash + wr1.cLogs;
         // console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         // console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFilePathAndName);
+        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+        logFile = path.resolve(logFile);
         // console.log(`logFile after adding the log filename: ${logFile}`);
       }
 
@@ -142,7 +147,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
     }
     if (messageIsValid === true && loggingToFileAndConsole === true) {
       printMessageToFile(logFile, outputMessage);
-      // console.log('DONE printing the message to the logFile');
+      console.log('DONE printing the message to the logFile');
     }
   } else if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugTestExhaustive) === true) {
     // console.log('else-block the debugTestExhaustive setting is true!');
@@ -153,7 +158,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
     console.log(outputMessage);
     if (loggingToFileAndConsole === true) {
       printMessageToFile(logFile, outputMessage);
-      // console.log('done printing the message to the log file.');
+      console.log('done printing the message to the log file.');
     }
   }
   // console.log('Past all of the if-else-if-else blocks of code.');
@@ -274,22 +279,22 @@ function parseClassPath(logFile, classPath, message) {
  */
 function printMessageToFile(file, message) {
   let functionName = printMessageToFile.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`file is: ${file}`);
-  // console.log(`message is: ${message}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`file is: ${file}`);
+  console.log(`message is: ${message}`);
   let dateTimeStamp = '';
   if (!file.includes('undefined')) { // NOTE: This usage of the string undefined, must be hard-coded here.
     // '!file.includes(undefined)'
     console.log(msg.cprintMessageToFile01);
     if (configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled) === true) {
-      // console.log('LogFileEnabled = true');
+      console.log('LogFileEnabled = true');
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
       if (configurator.getConfigurationSetting(wr1.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
         dateTimeStamp = timers.getNowMoment(gen.cYYYYMMDD_HHmmssSSS);
-        // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
+        console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
       fileOperations.appendMessageToFile(file, message);
@@ -301,7 +306,7 @@ function printMessageToFile(file, message) {
     // 'ERROR: Log File includes undefined.'
     console.log(msg.cprintMessageToFile03);
   }
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 export default {

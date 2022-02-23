@@ -9,6 +9,7 @@
  * @requires module:business.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
@@ -19,6 +20,7 @@
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
+ * @requires module:timers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -32,6 +34,7 @@ import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
@@ -42,6 +45,7 @@ import chiefWorkflow from './chiefWorkflow.js';
 import configurator from '../executrix/configurator.js';
 import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
+import timers from '../executrix/timers.js';
 // External imports
 import path from 'path';
 
@@ -155,13 +159,14 @@ function initFrameworkSchema(configData) {
 
   // TODO: Add constants data valadation loading process here, based on a configuration setting for enabling constants validation.
 
-  let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.cLogFileEnabled);
+  let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cCaptureSessionDateTimeStampLogFileName);
-    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cLogFileEnabled));
+    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
     loggers.consoleLog(namespacePrefix + functionName, msg.csessionDateTimeStampIs + sessionDateTimeStamp);
     let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wr1.cVersion] + bas.cUnderscore + applicationMetaData[wr1.cName] + gen.cDotLog;
     loggers.consoleLog(namespacePrefix + functionName, msg.clogFileNameIs + logFileName);
+    configurator.setConfigurationSetting(wr1.csystem, cfg.clogFileName, logFileName);
   }
 
   mergeClientBusinessRules(configData[sys.cclientBusinessRules]);

@@ -776,6 +776,8 @@ export const cbedded = cbed + phn.cded; // bedded
 export const cBedded = cBed + phn.cded; // Bedded
 export const cbedding = cbed + bas.cd + phn.cing; // bedding
 export const cBedding = cBed + bas.cd + phn.cing; // Bedding
+export const cwe = bas.cwe; // we
+export const cWe = bas.cWe; // We
 export const cweb = bas.cwe + bas.cb; // web
 export const cWeb = bas.cWe + bas.cb; // Web
 export const cwebs = cweb + bas.cs; // webs
@@ -2146,6 +2148,12 @@ export const cmathematicians = cmathematician + bas.cs; // mathematicians
 export const cMathematicians = cMathematician + bas.cs; // Mathematicians
 export const chay = bas.cha + bas.cy; // hay
 export const cHay = bas.cHa + bas.cy; // Hay
+export const ccap = phn.ccap; // cap
+export const cCap = phn.cCap; // Cap
+export const ccapture = ccap + phn.cture; // capture
+export const cCapture = cCap + phn.cture; // Capture
+export const csession = phn.cses + phn.csion; // session
+export const cSession = phn.cSes + phn.csion; // Session
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

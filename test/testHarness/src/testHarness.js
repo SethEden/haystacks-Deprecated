@@ -29,6 +29,7 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
+import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
@@ -61,7 +62,8 @@ global.appRot = path.resolve(process.cwd());
 function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  rootPath = path.resolve(process.cwd());
+  // rootPath = path.resolve(process.cwd());
+  rootPath = path.resolve(import.meta.url);
   let appConfig = {
     clientRootPath: rootPath,
     appConfigResourcesPath: rootPath + apc.cFullResourcesPath,
@@ -92,7 +94,7 @@ async function application() {
   let commandInput;
   let commandResult;
 
-  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, cfg.cArgumentDrivenInterface);
+  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cargumentDrivenInterface);
   if (argumentDrivenInterface === undefined) {
     argumentDrivenInterface = false;
   }

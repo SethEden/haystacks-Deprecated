@@ -1106,6 +1106,10 @@ export const ctty = bas.ctt + bas.cy; // tty
 export const cbet = bas.cbe + bas.ct; // bet
 export const csal = bas.csa + bas.cl; // sal
 export const cSal = bas.cSa + bas.cl; // Sal
+export const ccap = bas.cca + bas.cp; // cap
+export const cCap = bas.cCa + bas.cp; // Cap
+export const cses = bas.cse + bas.cs; // ses
+export const cSes = bas.cSe + bas.cs; // Ses
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

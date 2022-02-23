@@ -401,7 +401,7 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   if (currentVersionReleased === false) {
     // release files list is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, sys.cDateTimeStamp));
+    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;
