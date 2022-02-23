@@ -183,7 +183,9 @@ function loadAllCsvData(filesToLoad, contextName) {
     if (fileExtension === gen.ccsv || fileExtension === gen.cCsv || fileExtension === gen.cCSV) {
       // execute business rules:
       loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusienssRulesColon + JSON.stringify(rules));
-      contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', rules);
+      // This next line is commented out because it was resulting in colors_colors, which didn't make any sense.
+      // contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', rules);
+
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
       let dataFile = fileOperations.getCsvData(fileToLoad);
@@ -374,9 +376,9 @@ function processCsvData(data, contextName) {
   if (contextName.includes(wr1.cWorkflow)) {
     // Processing a workflow
     Object.assign(D[wr1.cWorkflow], parsedData[contextName]);
-  } else if (contextName.includes(wr1.cColors)) {
-    D[wr1.cColors] = {};
-    Object.assign(D[wr1.cColors], parsedData);
+  } else if (contextName.includes(wr1.ccolors)) {
+    D[wr1.ccolors] = {};
+    Object.assign(D[wr1.ccolors], parsedData);
   } else {
     // Processing all other kinds of files.
     if (typeof D[dataCatagory] !== 'undefined' && D[dataCatagory]) {
@@ -575,9 +577,11 @@ function extractDataFromPapaParseObject(data, contextName) {
   let cleanKeysRules = {};
   let tempData = {};
   let validDataAdded = false;
-  if (contextName = sys.cConfigruation_Colors) {
+  if (contextName = wr1.ccolors) {
     contextName = sys.cColorData;
   }
+  // contextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   tempData[contextName] = {};
   cleanKeysRules[0] = biz.ccleanCarriageReturnFromString;
   let highLevelDataCount = Object.keys(data[wr1.cdata]).length;
@@ -589,15 +593,15 @@ function extractDataFromPapaParseObject(data, contextName) {
       for (let key in data[wr1.cdata][i]) {
         validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
-        if (key === sys.cCoorName) {
-          coorName = data[wr1.cdata][i][key];
+        if (key === sys.cColorName) {
+          colorName = data[wr1.cdata][i][key];
         }
         lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
       } // End-for (let key in data[wr1.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][colorName] = {};
         if (i === 0) {
-          tempDatap[contextNaem][coorName] = lowLevelTempData;
+          tempData[contextName][colorName] = lowLevelTempData;
         } else {
           Object.assign(tempData[contextName][colorName], lowLevelTempData);
         }
@@ -609,7 +613,7 @@ function extractDataFromPapaParseObject(data, contextName) {
         lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
       } // End-for (let key in data[wr1.cdata][i])
       if (validDataAdded === true) {
-        tempData[contextNaem][i] = {};
+        tempData[contextName][i] = {};
         if (i === 0) {
           tempData[contextName][i] = lowLevelTempData;
         } else {
@@ -619,7 +623,7 @@ function extractDataFromPapaParseObject(data, contextName) {
     } // End-else
   } // End-for (let i = 0; i <= highLevelDataCount; i++)
   // tempData is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + tempData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + JSON.stringify(tempData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return tempData;
 };
@@ -649,7 +653,7 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
   let dataToMergeElementCount = getDataElementCount(dataToMerge, '', '');
   // dataToMergeElementCount is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeElementCountIs + dataToMergeElementCount);
-  if (dataToMergeEElementCount === 1) {
+  if (dataToMergeElementCount === 1) {
     // dataToMergeElementCoutn is 1
     loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeElementCountIs1);
     // check if the pageName is not an empty string
@@ -706,7 +710,7 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIsModifiedInTheInputPassByReferenceVariableContentIs +
     JSON.stringify(targetData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return tempData;
+  return targetData;
 };
 
 /**

@@ -496,7 +496,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
   let returnData = '';
   if (inputData) {
     let passMessage = '';
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
     for (let i = 0; i < inputData.length; i++) {
       let currentString = inputData[i];

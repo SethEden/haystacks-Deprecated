@@ -1057,7 +1057,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     const liner = new lineByLine(inputData);
     let line;
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
 
     while (line = liner.next()) {
       // constants line is:
@@ -1637,7 +1637,7 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
   let returnData = true;
   let passMessage = '';
   if (inputData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
     for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++) {
       passMessage = '';
       let validationLineItem = D[sys.cConstantsValidationData][inputData][i];
@@ -1764,7 +1764,7 @@ const countDuplicateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = 0;
   if (inputData && inputMetaData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
 loop1:
     for (let i = 0; i < inputMetaData.length; i++) {
       // BEGIN i-th loop:

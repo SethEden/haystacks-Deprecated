@@ -400,6 +400,7 @@ export const cexecuteBusinessRulesColon = wr1.cexecute + bas.cSpace + wr1.cbusin
 export const cdataPathAfterBusinessRulesProcessingIs = wr1.cdata + wr1.cPath + bas.cSpace + wr1.cafter + bas.cSpace + wr1.cbusiness + bas.cSpace + wr1.crules + bas.cSpace + wr1.cprocessing + sys.cSpaceIsColonSpace; // dataPath after business rules processing is:
 export const cFileToLoadIs = wr1.cFile + bas.cSpace + bas.cto + bas.cSpace + wr1.cload + sys.cSpaceIsColonSpace; // File to load is:
 export const cfileExtensionIs = wr1.cfile + wr1.cExtension + sys.cSpaceIsColonSpace; // fileExtension is:
+export const cexecuteBusienssRulesColon = wr1.cexecute + wr1.cBusiness + wr1.cRules + bas.cColon + bas.cSpace; // executeBusinessRules:
 export const cloadedFileDataIs = wr1.cloaded + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cdata + sys.cSpaceIsColonSpace; // loaded file data is:
 export const cBEGIN_PROCESSING_ADDITIONAL_DATA = wr1.cBEGIN + bas.cSpace + wr1.cPROCESSING + bas.cSpace + wr1.cADDITIONAL + bas.cSpace + wr1.cDATA; // BEGIN PROCESSING ADDITIONAL DATA
 export const cDONE_PROCESSING_ADDITIONAL_DATA = wr1.cDONE + bas.cSpace + wr1.cPROCESSING + bas.cSpace + wr1.cADDITIONAL + bas.cSpace + wr1.cDATA; // DONE PROCESSING ADDITIONAL DATA

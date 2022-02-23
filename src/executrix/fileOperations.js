@@ -14,6 +14,7 @@
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
+ * @requires {@link https://www.npmjs.com/package/papaparse|papaparse}
  * @requires {@link https://www.npmjs.com/package/xml2js|xml2js}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -31,6 +32,7 @@ import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
 import fs from 'fs';
+import papa from 'papaparse';
 import xml2js from 'xml2js';
 import path from 'path';
 
@@ -102,7 +104,7 @@ function getCsvData(pathAndFilename) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileAndPathToLoadFromIs + pathAndFilename);
   pathAndFilename = path.resolve(pathAndFilename);
   let data = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8 });
-  let parsedData = Papa.parse(data, {
+  let parsedData = papa.parse(data, {
     delimiter: ',',
     newline: '/n',
     header: true,

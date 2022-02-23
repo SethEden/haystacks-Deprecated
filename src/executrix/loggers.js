@@ -205,10 +205,10 @@ function validMessage(outputMessage, originalMessage) {
  */
 function parseClassPath(logFile, classPath, message) {
   let functionName = parseClassPath.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`logFile is: ${logFile}`);
-  console.log(`classPath is: ${classPath}`);
-  console.log(`message is: ${message}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`logFile is: ${logFile}`);
+  // console.log(`classPath is: ${classPath}`);
+  // console.log(`message is: ${message}`);
   let configurationName = '';
   let configurationNamespace = '';
   let debugFunctionsSetting = false;
@@ -219,17 +219,17 @@ function parseClassPath(logFile, classPath, message) {
   rules[0] = biz.creplaceDoublePercentWithMessage;
 
   configurationName = configurator.processConfigurationNameRules(classPath);
-  console.log(`configurationName is: ${configurationName}`);
+  // console.log(`configurationName is: ${configurationName}`);
   configurationNamespace = configurator.processConfigurationNamespaceRules(classPath);
-  console.log(`configurationNamespace is: ${configurationNamespace}`);
+  // console.log(`configurationNamespace is: ${configurationNamespace}`);
   // printMessageToFile(logFile, `Getting configuration setting value for: debugFunctions|${className}.${classFunctionName}`);
-  console.log(`Getting configuration setting value for: ${configurationNamespace}.${configurationName}`);
+  // console.log(`Getting configuration setting value for: ${configurationNamespace}.${configurationName}`);
   debugFunctionsSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, configurationName);
   // printMessageToFile(logFile, `debugFunctionsSetting is: ${debugFunctionsSetting}`);
-  console.log(`debugFunctionsSetting is: ${debugFunctionsSetting}`);
+  // console.log(`debugFunctionsSetting is: ${debugFunctionsSetting}`);
   debugFilesSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, '');
   // printMessageToFile(logFile, `debugFilesSetting is: ${debugFilesSetting}`);
-  console.log(`debugFilesSetting is: ${debugFilesSetting}`);
+  // console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
     // TODO: Implement the colorizing of the message here.
     message = colorizer.colorizeMessage(message, configurationNamespace, configurationName, debugFilesSetting, debugFunctionsSetting, false);
@@ -244,21 +244,21 @@ function parseClassPath(logFile, classPath, message) {
     //   // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
     //   message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
     // }
-    console.log('setting the returnData to the message: ' + message);
+    // console.log('setting the returnData to the message: ' + message);
     returnData = message;
   } else if ((debugFunctionsSetting === undefined && debugFilesSetting === undefined) ||
   (debugFunctionsSetting === undefined && debugFilesSetting === false) ||
   (debugFunctionsSetting === false && debugFilesSetting === undefined) ||
   (debugFunctionsSetting === false && debugFilesSetting === false)) {
-    console.log('Something is undefined && false or some combination of both, return false');
+    // console.log('Something is undefined && false or some combination of both, return false');
     returnData = false;
   } else {
     // TODO: Implement the colorizing of the message here.
     message = colorizer.colorizeMessage(message, className, functionName, undefined, undefined, true);
     returnData = message;
   }
-  console.log(`returnData is: ${returnData}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 

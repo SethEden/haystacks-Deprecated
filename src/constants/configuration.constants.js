@@ -49,4 +49,4 @@ export const cTestDataPath = wr1.cTest + wr1.cData + wr1.cPath; // TestDataPath
 export const cconsoleLogEnabled = wr1.cconsole + wr1.cLog + wr1.cEnabled; // consoleLogEnabled
 export const cLogFileEnabled = wr1.cLog + wr1.cFile + wr1.cEnabled; // LogFileEnabled
 export const cIncludeDateTimeStampInLogFiles = wr1.cInclude + wr1.cDate + wr1.cTime + wr1.cStamp + bas.cIn + gen.cLog + wr1.cFiles; // IncludeDateTimeStampInLogFiles
-export const cEnableColorizedConsoleLogs = wr1.cEnable + wr1.cColorized + wr1.cConsole + wr1.cLogs; // EnableColorizedConsoleLogs
+export const cenableColorizedConsoleLogs = wr1.cenable + wr1.cColorized + wr1.cConsole + wr1.cLogs; // EnableColorizedConsoleLogs

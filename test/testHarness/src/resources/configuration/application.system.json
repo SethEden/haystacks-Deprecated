@@ -5,5 +5,6 @@
   "system.argumentDrivenInterface": false,
   "system.debugSettings": true,
   "system.consoleLogEnabled": true,
+  "system.enableColorizedConsoleLogs": false,
   "system.AppSetting": "TrunkMonkey"
 }

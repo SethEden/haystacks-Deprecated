@@ -12,7 +12,7 @@
   "debugFiles|debugSetting.testHarness@FunctionFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.testHarness@MessageFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.testHarness@DataFontBackgroundColor": "255,255,255",
-  "debugFunctions|debugSetting.testHarness.application": true,
+  "debugFunctions|debugSetting.testHarness.application": false,
   "debugFunctions|debugSetting.testHarness.application@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.testHarness.application@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.testHarness.application@MessageFontStyle": "Default",

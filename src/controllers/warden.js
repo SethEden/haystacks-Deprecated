@@ -14,6 +14,7 @@
  * @requires module:word1.constants
  * @requires module:chiefCommander
  * @requires module:chiefConfiguration
+ * @requires module:chiefData
  * @requires module:chiefWorkflow
  * @requires module:configurator
  * @requires module:fileOperations
@@ -36,6 +37,7 @@ import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import chiefCommander from './chiefCommander.js';
 import chiefConfiguration from './chiefConfiguration.js';
+import chiefData from './chiefData.js';
 import chiefWorkflow from './chiefWorkflow.js';
 import configurator from '../executrix/configurator.js';
 import fileOperations from '../executrix/fileOperations.js';
@@ -133,6 +135,9 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + configData[cfg.cframeworkConfigPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkCommandAliasesPathIs + configData[cfg.cframeworkCommandAliasesPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
+
+  // Make sure the color data gets loaded as well! File: colors.csv (This is used by  the colorizer to colorize the fonts for the console output)
+  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wr1.ccolors);
 
   configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationName, applicationMetaData[wr1.cName]);
   configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber, applicationMetaData[wr1.cVersion]);

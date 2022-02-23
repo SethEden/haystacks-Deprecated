@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.main": true,
+  "debugFiles|debugSetting.main": false,
   "debugFiles|debugSetting.main@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.main@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.main@MessageFontStyle": "Underline",
