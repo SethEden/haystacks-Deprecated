@@ -6,6 +6,7 @@
   "system.debugSettings": true,
   "system.consoleLogEnabled": true,
   "system.logFileEnabled": true,
+  "system.includeDateTimeStampInLogFiles": true,
   "system.enableColorizedConsoleLogs": false,
   "system.AppSetting": "TrunkMonkey"
 }

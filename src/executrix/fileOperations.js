@@ -591,6 +591,7 @@ function appendMessageToFile(file, message) {
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);
   let appendSuccess = false;
+  let fd;
   if (file && message) {
     try {
       // console.log('open the file sync');

@@ -17,6 +17,7 @@
  * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
+ * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -37,6 +38,7 @@ import * as wr1 from '../constants/word1.constants.js';
 import colorizer from './colorizer.js';
 import configurator from './configurator.js';
 import fileOperations from './fileOperations.js';
+import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
 import path from 'path';
@@ -70,7 +72,7 @@ function consoleLog(classPath, message) {
       // console.log(`message is: ${message}`);
       let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
       if (logFile !== undefined) {
-        logFile = logFile + bas.cDoubleForwardSlash + wr1.cLogs;
+        logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
         // console.log(`Logfile before path.resolve is: ${logFile}`);
         logFile = path.resolve(logFile);
         // console.log(`Logfile after path.resolve is: ${logFile}`);
@@ -147,7 +149,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
     }
     if (messageIsValid === true && loggingToFileAndConsole === true) {
       printMessageToFile(logFile, outputMessage);
-      console.log('DONE printing the message to the logFile');
+      // console.log('DONE printing the message to the logFile');
     }
   } else if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugTestExhaustive) === true) {
     // console.log('else-block the debugTestExhaustive setting is true!');
@@ -158,7 +160,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
     console.log(outputMessage);
     if (loggingToFileAndConsole === true) {
       printMessageToFile(logFile, outputMessage);
-      console.log('done printing the message to the log file.');
+      // console.log('done printing the message to the log file.');
     }
   }
   // console.log('Past all of the if-else-if-else blocks of code.');
@@ -279,22 +281,22 @@ function parseClassPath(logFile, classPath, message) {
  */
 function printMessageToFile(file, message) {
   let functionName = printMessageToFile.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`file is: ${file}`);
-  console.log(`message is: ${message}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`file is: ${file}`);
+  // console.log(`message is: ${message}`);
   let dateTimeStamp = '';
   if (!file.includes('undefined')) { // NOTE: This usage of the string undefined, must be hard-coded here.
     // '!file.includes(undefined)'
-    console.log(msg.cprintMessageToFile01);
+    // console.log(msg.cprintMessageToFile01);
     if (configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled) === true) {
-      console.log('LogFileEnabled = true');
+      // console.log('LogFileEnabled = true');
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
       if (configurator.getConfigurationSetting(wr1.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
-        dateTimeStamp = timers.getNowMoment(gen.cYYYYMMDD_HHmmssSSS);
-        console.log(`dateTimeStamp is: ${dateTimeStamp}`);
+        dateTimeStamp = timers.getNowMoment(gen.cYYYY_MM_DD_HH_mm_ss_SSS);
+        // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
       fileOperations.appendMessageToFile(file, message);
@@ -304,9 +306,9 @@ function printMessageToFile(file, message) {
     }
   } else {
     // 'ERROR: Log File includes undefined.'
-    console.log(msg.cprintMessageToFile03);
+    // console.log(msg.cprintMessageToFile03);
   }
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 export default {
