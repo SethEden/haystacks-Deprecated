@@ -783,6 +783,7 @@ export const cresulting = cresult + phn.cing; // resulting
 export const cResulting = cResult + phn.cing; // Resulting
 export const cwork = bas.cwo + bas.crk; // work
 export const cWork = bas.cWo + bas.crk; // Work
+export const cWORK = bas.cWO + bas.cRK; // WORK
 export const cflow = bas.cfl + bas.cow; // flow
 export const cFlow = bas.cFl + bas.cow; // Flow
 export const cworkflow = cwork + cflow; // workflow
@@ -1588,6 +1589,7 @@ export const cblob = bas.cb + phn.clob; // blob
 export const cBlob = bas.cB + phn.clob; // Blob
 export const cframe = bas.cf + phn.crame; // frame
 export const cFrame = bas.cF + phn.crame; // Frame
+export const cFRAME = bas.cF + phn.cRAME; // FRAME
 export const calias = bas.cal + phn.cias; // alias
 export const cAlias = bas.cAl + phn.cias; // Alias
 export const caliases = calias + bas.ces; // aliases
@@ -2573,6 +2575,8 @@ export const ccapture = ccap + phn.cture; // capture
 export const cCapture = cCap + phn.cture; // Capture
 export const csession = phn.cses + phn.csion; // session
 export const cSession = phn.cSes + phn.csion; // Session
+export const cclause = phn.ccla + cuse; // clause
+export const cClause = phn.cCla + cuse; // Clause
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

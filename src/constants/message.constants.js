@@ -540,6 +540,10 @@ export const cFrameworkVersionNumberIs = wr1.cFramework + wr1.cVersion + wr1.cNu
 export const cFrameworkDescriptionIs = wr1.cFramework + wr1.cDescription + sys.cSpaceIsColonSpace; // FrameworkDescription is:
 export const csessionDateTimeStampIs = wr1.csession + wr1.cDate + wr1.cTime + wr1.cStamp + sys.cSpaceIsColonSpace; // sessionDateTimeStamp is:
 export const clogFileNameIs = wr1.clog + wr1.cFileName + sys.cSpaceIsColonSpace; // logFileName is:
+export const cprimaryCommandDelimiterIs = wr1.cprimary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // primaryCommandDelimiter is:
+export const csecondaryCommandDelimiterIs = wr1.csecondary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // secondaryCommandDelimiter is:
+export const ctertiaryCommandDelimiterIs = wr1.ctertiary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // tertiaryCommandDelimiter is:
+export const ccommandSequencerCommandToEnqueueIs = wr1.ccommand + wr1.cSequencer + bas.cSpace + wr1.cCommand + bas.cSpace + bas.cTo + bas.cSpace + wr1.cEnqueue + sys.cSpaceIsColonSpace; // commandSequencer Command To Enqueue is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

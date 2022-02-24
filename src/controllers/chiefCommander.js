@@ -88,8 +88,8 @@ function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName) {
     D[sys.cCommandsAliases] = {};
     D[sys.cCommandsAliases] = allCommandAliasesData[sys.cCommandsAliases];
   } else {
-    for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wr1.cCommand].length; i++) {
-      D[sys.cCommandsAliases][wr1.cCommand].push(allCommandAliasesData[sys.cCommandsAliases][wr1.cCommand][i]);
+    for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands].length; i++) {
+      D[sys.cCommandsAliases][wr1.cCommands].push(allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands][i]);
     } // End-for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wr1.cCommand].length; i++)
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

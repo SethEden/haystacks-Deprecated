@@ -54,8 +54,8 @@ function loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName) 
     D[sys.cCommandWorkflows] = {};
     D[sys.cCommandWorkflows] = allCommandWorkflowsData[sys.cCommandWorkflows];
   } else {
-    for (let i = 0; i < allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflow].length; i++) {
-      D[sys.cCommandWorkflows][wr1.cWorkflow].push(allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflow][i]);
+    for (let i = 0; i < allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows].length; i++) {
+      D[sys.cCommandWorkflows][wr1.cWorkflows].push(allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows][i]);
     }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

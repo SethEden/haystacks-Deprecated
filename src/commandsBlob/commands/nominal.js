@@ -6,7 +6,6 @@
  * @requires module:dataBroker
  * @requires module:ruleBroker
  * @requires module:workflowBroker
- *
  * @requires module:basic.constants
  * @requires module:business.constants
  * @requires module:command.constants
@@ -41,6 +40,7 @@ import * as bas from '../../constants/basic.constants.js';
 import * as biz from '../../constants/business.constants.js';
 import * as cmd from '../../constants/command.constants.js';
 import * as cfg from '../../constants/configuration.constants.js';
+import * as fnc from '../../constants/function.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
@@ -118,6 +118,7 @@ const exit = function(inputData, inputMetaData) {
  * @description Dispalys the current version number for the current application.
  * @param {array<boolean|string|integer>} inputData Not used for this command.
  * inputData[0] = 'version'
+ * inputData[1] === 'application|framework' (optional)
  * @param {string} inputMetaData Not used for this command.
  * @return {boolean} True to indicate that the application should not exit.
  * @author Seth Hollingsead
@@ -129,7 +130,21 @@ const version = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  console.log(configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber));
+  let configVersion = '';
+  let appContext = '';
+  if (inputData.length === 2) {
+    appContext = inputData[1];
+    if (appContext.toUpperCase() === wr1.cAPPLICATION) {
+      configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
+    } else if (appContext.toUpperCase() === wr1.cFRAMEWORK) {
+      configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber);
+    } else {
+      configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
+    }
+  } else {
+    configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
+  }
+  console.log(configVersion);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -140,6 +155,7 @@ const version = function(inputData, inputMetaData) {
  * @description Displays the message about the current application.
  * @param {array<boolean|string|integer} inputData Not used for this command.
  * inputData[0] === 'about'
+ * inputData[1] === 'application|framework' (optional)
  * @param {string} inputMetaData Not used for this command.
  * @return {boolean} True to indicate that the application should not exit.
  * @author Seth Hollingsead
@@ -151,7 +167,21 @@ const about = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  console.log(configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription));
+  let configDescription = '';
+  let appContext = '';
+  if (inputData.length === 2) {
+    appContext = inputData[1];
+    if (appContext.toUpperCase() === wr1.cAPPLICATION) {
+      configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription);
+    } else if (appContext.toUpperCase() === wr1.cFRAMEWORK) {
+      configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cFrameworkDescription);
+    } else {
+      configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription);
+    }
+  } else {
+    configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription);
+  }
+  console.log(configDescription);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -165,7 +195,8 @@ const about = function(inputData, inputMetaData) {
  * on what the user entered, but the functino converts and filters out for a boolean
  * True or False value internally to the function.
  * inputData[0] === 'name'
- * inputData[1] === 'true|false' (optional)
+ * inputData[1] === 'application|framework' (optional)
+ * inputData[2] === 'true|false' (optional)
  * @param {string} inputMetaData Not used for this command.
  * @return {boolean} True to indicate that the application should not exit.
  * @author Seth Hollingsead
@@ -177,17 +208,35 @@ const name = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let applicationName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+  let reportedName = '';
   let figletFont = '';
+  let appContext = '';
   let useFancyFont = false;
   let rules = [];
   rules[0] = biz.cstringToDataType;
-  useFancyFont = ruleBroker.processRules(inputData[1], '', rules);
-  if (useFancyFont === true) {
-    figletFont = configurator.getConfigurationSetting(wr1.csystem, cfg.cFigletFont);
-    console.log(figlet.textSync(applicationName, {font: figletFont, horizontalLayout: sys.cfull}));
+  if (inputData.length === 2) {
+    appContext = inputData[1];
+  }
+  if (inputData.length === 3) {
+    appContext = inputData[1];
+    useFancyFont = ruleBroker.processRules(inputData[2], '', rules);
+  }
+  if (appContext !== '') {
+    if (appContext.toUpperCase() === wr1.cAPPLICATION) {
+      reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+    } else if (appContext.toUpperCase() === wr1.cFRAMEWORK) {
+      reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cFrameworkName);
+    } else {
+      reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+    }
   } else {
-    console.log(applicationName);
+    reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+  }
+  if (useFancyFont === true) {
+    figletFont = configurator.getConfigurationSetting(wr1.csystem, cfg.cfigletFont);
+    console.log(figlet.textSync(reportedName, {font: figletFont, horizontalLayout: sys.cfull}));
+  } else {
+    console.log(reportedName);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -217,11 +266,119 @@ const clearScreen = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function help
+ * @description Displays all the information about all of the commands in the system,
+ * including both system defined commands and client defined commands.
+ * @param {array<boolean|string|integer>} inputData Not used for this command.
+ * inputData[0] = 'help'
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+const help = function(inputData, inputMetaData) {
+  let functionName = help.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  let returnData = true;
+  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandsAliases][wr1.cCommands], [wr1.cName, wr1.cDescription]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function workflowHelp
+ * @description Displays all the information about all the workflows in the system,
+ * including both system defined workflows & client defined workflows.
+ * @param {array<boolean|string|integer>} inputData Not used for this command.
+ * inputData[0] = 'workflowHelp'
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+const workflowHelp = function(inputData, inputMetaData) {
+  let functionName = workflowHelp.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  let returnData = true;
+  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wr1.cWorkflows], [wr1.cName]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function commandSequencer
+ * @description Takes an arguments array where the second array object would contain a list of
+ * commands that should be enqueued to the command queue.
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the case the user has entered a list of commands that should be enqueued to the command queue.
+ * inputData[0] === 'commandSequencer'
+ * inputData[1] === command string 1
+ * inputData[2] === command string 2
+ * inputData[n] === command string n
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+const commandSequencer = function(inputData, inputMetaData) {
+  let functionName = commandSequencer.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  for (let i = 1; i < inputData.length; i++) {
+    let commandString = inputData[i];
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cprimaryCommandDelimiterIs + primaryCommandDelimiter);
+    if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
+      primaryCommandDelimiter = bas.cSpace;
+    }
+    console.log('cfg.csecondaryCommandDelimiter resolves as: ' + cfg.csecondaryCommandDelimiter);
+    console.log('cfg.ctertiaryCommandDelimiter resolves as: ' + cfg.ctertiaryCommandDelimiter);
+    let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+    loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+    loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
+    // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
+    const regEx1 = new RegExp(secondaryCommandArgsDelimiter, 'g');
+    commandString = commandString.replace(regEx1, primaryCommandDelimiter);
+    console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
+    if (commandString.includes(tertiaryCommandDelimiter)) {
+      const regEx2 = new RegExp(tertiaryCommandDelimiter, 'g');
+      commandString = commandString.replace(regEx2, secondaryCommandArgsDelimiter);
+      console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
+    }
+    let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
+    let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
+    // We need to recompose the command arguments for the current command using the sys.cPrimaryCommandDelimiter.
+    if (currentCommand !== false) {
+      for (let j = 1; j < commandArgs.length; j++) {
+        currentCommand = currentCommand + primaryCommandDelimiter + commandArgs[j];
+      } // End-for (let j = 1; j < commandArgs.length; j++)
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandSequencerCommandToEnqueueIs + currentCommand);
+      queue.enqueue(sys.cCommandQueue, currentCommand);
+    } else { // End-if (currentCommand !== false)
+      // WARNING: nominal.commandSequencer: The specified command was not found, please enter a valid command and try again.
+      console.log(msg.ccommandSequencerMessage1 + msg.ccommandSequencerMessage2);
+    }
+  } // End-for (let i = 1; i < inputData.length; i++)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   echoCommand,
   exit,
   version,
   about,
   name,
-  clearScreen
+  clearScreen,
+  help,
+  workflowHelp,
+  commandSequencer
 };

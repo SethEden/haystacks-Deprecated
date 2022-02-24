@@ -128,14 +128,14 @@ function getValidCommand(commandString, commandDelimiter) {
       loggers.consoleLog(namespacePrefix + functionName, msg.celseClauseLookingForCommandAliases);
       // NOTE: It could be that the user entered a command alias, so we will need to search through all of the command aliases,
       // to see if we can find a match, then get the actual command that should be executed.
-      let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommand];
+      let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommands];
       // allCommandAliases is:
       loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesIs + JSON.stringify(allCommandAliases));
 loop1:
-      for (let i = 0; i < allCommandAliases.length; i++) {
+      for (const [key, value] of Object.entries(allCommandAliases)) {
         // Iterate through all of the command aliases and see if we can find a
         // command alias that matches the command the user is trying to execute.
-        let currentCommand = allCommandAliases[i][bas.cDollar];
+        let currentCommand = value
         loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
         let aliasList = currentCommand[wr1.cAliases];
         let arrayOfAliases = aliasList.split(bas.cComa);

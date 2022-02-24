@@ -346,7 +346,9 @@ export const cmand = bas.cma + bas.cnd; // mand
 export const cMAND = bas.cMA + bas.cND; // MAND
 export const clob = bas.clo + bas.cb; // lob
 export const cram = bas.cra + bas.cm; // ram
+export const cRAM = bas.cRA + bas.cM; // RAM
 export const crame = cram + bas.ce; // rame
+export const cRAME = cRAM + bas.cE; // RAME
 export const cias = bas.cia + bas.cs; // ias
 export const cbout = bas.cbo + bas.cut; // bout Bout time we added this one! LOL
 export const cseq = bas.cse + bas.cq; // seq
@@ -1110,6 +1112,8 @@ export const ccap = bas.cca + bas.cp; // cap
 export const cCap = bas.cCa + bas.cp; // Cap
 export const cses = bas.cse + bas.cs; // ses
 export const cSes = bas.cSe + bas.cs; // Ses
+export const ccla = bas.ccl + bas.ca; // cla
+export const cCla = bas.cCl + bas.ca; // Cla
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

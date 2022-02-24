@@ -229,7 +229,7 @@ function loadAllXmlData(filesToLoad, contextName) {
   fileExtensionRules[0] = biz.cgetFileExtension;
   fileExtensionRules[1] = biz.cremoveDotFromFileExtension;
   for (let i = 0; i < filesToLoad.length; i++) {
-    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
     let fileToLoad = filesToLoad[i];
     // execute busienss rules:
     loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(filePathRules));
@@ -266,10 +266,10 @@ function loadAllXmlData(filesToLoad, contextName) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cMERGED_dataIs + JSON.stringify(multiMergedData));
       dataFile = {};
     } // End-if (fileExtension === gen.cxml || fileExtension === gen.cXml || fileExtension === gen.cXML)
-    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
   } // End-for (let i = 0; i < filesToLoad.length; i++)
   parsedDataFile = {}; // Clear it, so we can re-assign it to the merged locator data or whatever kind of data it is from all files.
-  parsedDataFile = multiMergedData;
+  parsedDataFile = processXmlData(multiMergedData, contextName);
   // parsedDataFile contents are:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileContentsAre + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -396,6 +396,49 @@ function processCsvData(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cD_finalMergeIs + JSON.stringify(D));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedData;
+};
+
+/**
+ * @function processXmlData
+ * @description Does some final processing on JSON data loaded from an XML file,
+ * converting the data into a usable format and executes any additional data processing rules.
+ * @param {object} data A JSON object that contains all of the data loaded from a XML file.
+ * @param {string} contextName The name that should be used when adding the objects to the D data structure for data-sharing.
+ * @return {object} A parsed and cleaned up JSON object where all of the XML data is collated and organized and cleaned up ready for use.
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+function processXmlData(data, contextName) {
+  let functionName = processXmlData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // input data is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
+  // contextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
+  let dataCatagory = getDataCatagoryFromContextName(contextName);
+  // dataCatagory is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
+  let parsedDataFile = {};
+  if (dataCatagory === sys.cCommandsAliases) {
+    parsedDataFile[sys.cCommandsAliases] = {};
+    parsedDataFile[sys.cCommandsAliases][wr1.cCommands] = {};
+    for (let i = 0; i < data[sys.cCommandsAliases][wr1.cCommand].length; i++) {
+      let command = data[sys.cCommandsAliases][wr1.cCommand][i][bas.cDollar];
+      parsedDataFile[sys.cCommandsAliases][wr1.cCommands][command.Name] = command;
+    } // End-for (let i = 0; i < data[sys.cCommandAliases][wr1.cCommand].length; i++)
+  } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
+    parsedDataFile[sys.cCommandWorkflows] = {};
+    parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows] = {};
+    for (let j = 0; j < data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++) {
+      let workflow = data[sys.cCommandWorkflows][wr1.cWorkflow][j][bas.cDollar];
+      parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows][workflow.Name] = workflow;
+    } // End-for (let j = 0; j < data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++)
+  } // End-else-if (dataCatagory === sys.cCommandWorkflows)
+
+  // parsedDataFile is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return parsedDataFile;
 };
 
 /**
@@ -577,7 +620,7 @@ function extractDataFromPapaParseObject(data, contextName) {
   let cleanKeysRules = {};
   let tempData = {};
   let validDataAdded = false;
-  if (contextName = wr1.ccolors) {
+  if (contextName === wr1.ccolors) {
     contextName = sys.cColorData;
   }
   // contextName is:
@@ -633,8 +676,8 @@ function extractDataFromPapaParseObject(data, contextName) {
  * @description Merge data with the D data structure for the specified data catagory and optional name.
  * @param {object} targetData The target data object where the dataToMerge should be merged with.
  * @param {string} dataCatagory Command or Script to indicate what catagory the test data should be used as.
- * @param {string} pageName (Optional) The name of the page where the data should be merged  under. Pass as empty string if nothing.
- * @param {object} dataToMerge Teh data to be merged.
+ * @param {string} pageName (Optional) The name of the page where the data should be merged under. Pass as empty string if nothing.
+ * @param {object} dataToMerge The data to be merged.
  * @return {object} A merged set of data combining all of the original data plus all of the additional data from the dataToMerge data set.
  * @author Seth Hollingsead
  * @date 2022/01/27

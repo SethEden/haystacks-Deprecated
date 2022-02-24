@@ -131,6 +131,7 @@ export const cremoveStringLiteralTagsFromArray = wr1.cremove + wr1.cString + wr1
 
 // loggers
 export const cconsoleLog = wr1.cconsole + gen.cLog; // consoleLog
+export const cconsoleTableLog = wr1.cconsole + wr1.cTable + gen.cLog; // consoleTableLog
 
 // prompt
 export const cprompt = wr1.cprompt; // prompt

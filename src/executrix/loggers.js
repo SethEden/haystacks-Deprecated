@@ -113,6 +113,26 @@ function consoleLog(classPath, message) {
 };
 
 /**
+ * @function consoleTableLog
+ * @description Prints out a table with the data provided in the input tableDataArray.
+ * @param {string} classPath The class path for the caller of this function file.function or class.method.
+ * @param {array<object>} tableData An array of objects that should be printed to the console as if it was data.
+ * @param {array<string>} columnNames An array of column names that should be used when outputting the table.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+function consoleTableLog(classPath, tableData, columnNames) {
+  let functionName = consoleTableLog.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`classPath is: ${classPath}`);
+  // console.log(`tableData is: ${JSON.stringify(tableData)}`);
+  // console.log(`columnNames is: ${JSON.stringify(columnNames)}`);
+  console.table(tableData, columnNames);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+/**
  * @function consoleLogProcess
  * @description A function that will print a message to a log file and the console, or just the console.
  * The output depends on if there was a txt/log file specified or not.
@@ -312,5 +332,6 @@ function printMessageToFile(file, message) {
 };
 
 export default {
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
+  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
+  [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames)
 };

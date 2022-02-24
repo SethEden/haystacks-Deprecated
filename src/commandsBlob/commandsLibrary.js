@@ -61,7 +61,10 @@ function initCommandsLibrary() {
     [wr1.cversion]: (inputData, inputMetaData) => nominalCommands.version(inputData, inputMetaData),
     [wr1.cabout]: (inputData, inputMetaData) => nominalCommands.about(inputData, inputMetaData),
     [wr1.cname]: (inputData, inputMetaData) => nominalCommands.name(inputData, inputMetaData),
-    [cmd.cclearScreen]: (inputData, inputMetaData) => nominalCommands.clearScreen(inputData, inputMetaData)
+    [cmd.cclearScreen]: (inputData, inputMetaData) => nominalCommands.clearScreen(inputData, inputMetaData),
+    [wr1.chelp]: (inputData, inputMetaData) => nominalCommands.help(inputData, inputMetaData),
+    [cmd.cworkflowHelp]: (inputData, inputMetaData) => nominalCommands.workflowHelp(inputData, inputMetaData),
+    [cmd.ccommandSequencer]: (inputData, inputMetaData) => nominalCommands.commandSequencer(inputData, inputMetaData)
 
     // ***********************************************
     // Integration Test commands in order
