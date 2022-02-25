@@ -1,4 +1,4 @@
 {
-  "debugFiles|debugSetting.controllers.chiefConfiguration": false,
+  "debugFiles|debugSetting.controllers.chiefConfiguration": true,
   "debugFunctions|debugSetting.controllers.chiefConfiguration.setupConfiguration": false
 }

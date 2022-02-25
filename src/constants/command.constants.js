@@ -32,6 +32,7 @@ export const cprintDataHiveAttributes = cprintDataHive + wr1.cAttributes; // pri
 export const cclearDataStorage = wr1.cclear + wr1.cData + wr1.cStorage; // clearDataStorage
 export const cbusinessRule = wr1.cbusiness + wr1.cRule; // businessRule
 export const ccommandGenerator = wr1.ccommand + wr1.cGenerator; // commandGenerator
+export const ccommandAliasGenerator = wr1.ccommand + wr1.cAlias + wr1.cGenerator; // commandAliasGenerator
 
 // ********************************
 // System defined workflows

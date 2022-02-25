@@ -68,8 +68,8 @@ const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  */
 function processRootPath(inputPath) {
   let functionName = processRootPath.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`inputPath is: ${inputPath}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`inputPath is: ${inputPath}`);
   let rules = {};
   rules[0] = biz.cparseSystemRootPath;
   ruleBroker.bootStrapBusinessRules();
@@ -77,8 +77,8 @@ function processRootPath(inputPath) {
   let resolvedPath = ruleBroker.processRules(inputPath, sys.cActualFrameworkName, rules);
   dataBroker.setupDataStorage();
   let rootPath = path.resolve(resolvedPath);
-  // console.log(`rootPath is: ${rootPath}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`rootPath is: ${rootPath}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
 };
 
@@ -92,8 +92,8 @@ function processRootPath(inputPath) {
  */
 function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`configData is: ${JSON.stringify(configData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + JSON.stringify(configData));
   const appConfigPath = configData[cfg.cappConfigPath];
@@ -175,7 +175,7 @@ function initFrameworkSchema(configData) {
   loadCommandWorkflows(''); // Same as above.
   // We can pass in a name of a configuration setting that has a path to load plugin data this way.
 
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
