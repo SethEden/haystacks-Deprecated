@@ -5,8 +5,10 @@
  * reformatting time stamps and tracking time durations.
  * @requires module:basic.constants
  * @requires module:function.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:word1.constants
+ * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/moment|moment}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -17,8 +19,10 @@
 // Internal imports
 import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
+import loggers from './loggers.js';
 // External imports
 import moment from 'moment';
 import path from 'path';

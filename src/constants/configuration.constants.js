@@ -58,3 +58,12 @@ export const cenableColorizedConsoleLogs = wr1.cenable + wr1.cColorized + wr1.cC
 export const cprimaryCommandDelimiter = wr1.cprimary + wr1.cCommand + wr1.cDelimiter; // primaryCommandDelimiter
 export const csecondaryCommandDelimiter = wr1.csecondary + wr1.cCommand + wr1.cDelimiter; // secondaryCommandDelimiter
 export const ctertiaryCommandDelimiter = wr1.ctertiary + wr1.cCommand + wr1.cDelimiter; // tertiaryCommandDelimiter
+export const cenableBusinessRuleOutput = wr1.cenable + wr1.cBusiness + wr1.cRule + wr1.cOutput; // enableBusinessRuleOutput
+export const cenableBusinessRulePerformanceMetrics = wr1.cenable + wr1.cBusiness + wr1.cRule + wr1.cPerformance + wr1.cMetrics; // cenableBusinessRulePerformanceMetrics
+
+// Test Time Tracking
+export const cBeginDateTimeStamp = wr1.cBegin + sys.cDateTimeStamp; // BeginDateTimeStamp
+export const cEndDateTimeStamp = wr1.cEnd + sys.cDateTimeStamp; // EndDateTimeStamp
+
+export const cBusinessRulePerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRulePerformanceTrackingStack
+export const cBusinessRulesNamesPerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRuleNamesPerformanceTrackingStack

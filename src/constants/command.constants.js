@@ -27,6 +27,11 @@ export const cEchoCommand = biz.cEcho + wr1.cCommand; // EchoCommand
 export const cclearScreen = wr1.cclear + wr1.cScreen; // clearScreen
 export const cworkflowHelp = wr1.cworkflow + wr1.cHelp; // workflowHelp
 export const ccommandSequencer = wr1.ccommand + wr1.cSequencer; // commandSequencer
+export const cprintDataHive = wr1.cprint + wr1.cData + wr1.cHive; // printDataHive
+export const cprintDataHiveAttributes = cprintDataHive + wr1.cAttributes; // printDataHiveAttributes
+export const cclearDataStorage = wr1.cclear + wr1.cData + wr1.cStorage; // clearDataStorage
+export const cbusinessRule = wr1.cbusiness + wr1.cRule; // businessRule
+export const ccommandGenerator = wr1.ccommand + wr1.cGenerator; // commandGenerator
 
 // ********************************
 // System defined workflows

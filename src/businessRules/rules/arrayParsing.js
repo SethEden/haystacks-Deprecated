@@ -251,8 +251,8 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData && inputMetaData) {
     for (let i = 0; i < inputMetaData.length; i++) {
-      let arrayEleemnt = inputMetaData[i];
-      if (arayElement.includes(inputData) === true) {
+      let arrayElement = inputMetaData[i];
+      if (arrayElement.includes(inputData) === true) {
         returnData = true;
         break;
       }

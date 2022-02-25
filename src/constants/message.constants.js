@@ -547,6 +547,8 @@ export const ccommandSequencerCommandToEnqueueIs = wr1.ccommand + wr1.cSequencer
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;
+// WARNING: Some rules do not exist:
+export const cProcessRulesWarningSomeRulesDoNotExist = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cSome + bas.cSpace + wr1.crules + bas.cSpace + wr1.cdo + bas.cSpace + gen.cnot + bas.cSpace + wr1.cexist + bas.cColon + bas.cSpace;
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 export const cDetermineWordDelimiterMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // WARNING: Mixed string.
 export const cDetermineWordDelimiterMessage2 = wr1.cCannot + bas.cSpace + wr1.cdetermine + bas.cSpace + wr1.cwhat + bas.cSpace + wr1.cdelimiter + bas.cSpace + wr1.cshould + bas.cSpace; // Cannot determine what delimiter should

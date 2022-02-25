@@ -39,6 +39,8 @@ export const cclearData = wr1.cclear + wr1.cData; // clearData
 // ruleBroker
 export const cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
 export const caddClientRules = wr1.c_add + wr1.cClient + wr1.cRules; // addClientRules
+export const cdoesRuleExist = wr1.cdoes + wr1.cRule + wr1.cExist; // doesRuleExist
+export const cdoAllRulesExist = wr1.cdo + wr1.cAll + wr1.cRules + wr1.cExist; // doAllRulesExist
 export const cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 
 // workflowBroker

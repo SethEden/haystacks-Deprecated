@@ -337,20 +337,18 @@ const commandSequencer = function(inputData, inputMetaData) {
     if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
       primaryCommandDelimiter = bas.cSpace;
     }
-    console.log('cfg.csecondaryCommandDelimiter resolves as: ' + cfg.csecondaryCommandDelimiter);
-    console.log('cfg.ctertiaryCommandDelimiter resolves as: ' + cfg.ctertiaryCommandDelimiter);
     let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
     let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
     // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
-    const regEx1 = new RegExp(secondaryCommandArgsDelimiter, 'g');
+    const regEx1 = new RegExp(secondaryCommandArgsDelimiter, bas.cg);
     commandString = commandString.replace(regEx1, primaryCommandDelimiter);
-    console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
+    // console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
     if (commandString.includes(tertiaryCommandDelimiter)) {
-      const regEx2 = new RegExp(tertiaryCommandDelimiter, 'g');
+      const regEx2 = new RegExp(tertiaryCommandDelimiter, bas.cg);
       commandString = commandString.replace(regEx2, secondaryCommandArgsDelimiter);
-      console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
+      // console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
     }
     let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
     let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
@@ -371,6 +369,406 @@ const commandSequencer = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function workflow
+ * @description Takes an arguments array where the second array object would contain a workflow name.
+ * We will lookup the named workflow in the D-data structure and send that workflow to a cal to the command sequencer.
+ * Which will in-turn convert the list of commands in that workflow into commands that are enqueued to the command queue.
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the case the user has entered a workflow name, that we should use to look up the workflow in the D-data structure.
+ * inputData[0] === 'workflow'
+ * inputData[1] === workflowName
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/2/24
+ */
+const workflow = function(inputData, inputMetaData) {
+  let functionName = workflow.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let workflowName = inputData[1];
+  let workflowValue = workflowBroker.getWorkflow(workflowName);
+  if (workflowValue !== false) {
+    queue.enqueue(sys.cCommandQueue, workflowValue);
+  } else {
+    // WARNING: nominal.workflow: The specified workflow:
+    // was not found in either the system defined workflows, or client defined workflows.
+    // Please enter a valid workflow name and try again.
+    console.log(msg.cworkflowMessage1 + workflowName + bas.cComa + msg.cworkflowMessage2 + msg.cworkflowMessage3);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function printDataHive
+ * @description Prints out all the data contents of a particular data hive in the D-data structure.
+ * If no hive is specified then the entire D-data structure will be printed.
+ * @param {array<boolean|string|integer} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the case the user has entered a dat hive name at the top level of the D-data structure.
+ * Examples: Configuration, Workflows, Colors, cCommandAliases, etc...
+ * inputData[0] === 'printDataHive'
+ * inputData[1] === dataHiveName
+ * @NOTE This function is now going to support printing specific child data-hives.
+ * Example: ConstantsValidationData.ColorConstantsValidation
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+const printDataHive = function(inputData, inputMetaData) {
+  let functionName = printDataHive.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData && inputData[1].includes(bas.cDot) === true) {
+    let dataHivePathArray = inputData[1].split(bas.cDot);
+    let leafDataHiveElement = D;
+    // dataHivePathArray is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cdataHivePathArrayIs + JSON.stringify(dataHivePathArray));
+    // This for-loop should let us drill down in the D-Data structure followign the path that was provided.
+    // This assumes the namespace style path provided is a valid heirarchy in the D-Data Structure.
+    for (let i = 0; i < dataHivePathArray.length; i++) {
+      // BEGIN i-th iteration:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIteration + i);
+      leafDataHiveElement = leafDataHiveElement[dataHivePathArray[i]];
+      // contents of leafDataHiveElement is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccontentsOfLeafDataHiveElementIs + JSON.stringify(leafDataHiveElement));
+      // END i-th iteration:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
+    }
+    console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
+  } else {
+    if (D[inputData[1]] !== undefined) {
+      // contents are:
+      console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
+    } else {
+      // contents of D are:
+      console.log(msg.ccontentsOfDare + JSON.stringify(D));
+    }
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function printDataHiveAttributes
+ * @description Prints out all of the attributes for a given specified data-set from the D-data structure.
+ * @param {array<boolean|string|integer} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the case the user has entered a data hive or leaf data structure in the heirarchy and
+ * a name of an attribute where all values should be printed.
+ * Examples ConstantsValidationData.ColorConstantsValidation.Actual
+ * inputData[0] === 'printDataHiveAttributes'
+ * inputData[1] === ConstantsValidationData.ColorConstantsValidation.Actual
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+const printDataHiveAttributes = function(inputData, inputMetaData) {
+  let functionName = printDataHiveAttributes.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData && inputData.length > 1) {
+    if (inputData[1].includes(bas.cDot) === true) {
+      let dataHivePathArray = inputData[1].split(bas.cDot);
+      let leafDataHiveElement = D;
+      // dataHivePathArray is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cdataHivePathArrayIs + JSON.stringify(dataHivePathArray));
+      // This for-loop should let us drill down in the D-Data structue following the path that was provided.
+      // This assumes the namespace style path provided is a valid heirarchy in the D-Data Structure.
+      // Make sure we don't try to grab the very last term of the namespace. See note below.
+      for (let i = 0; i < dataHivePathArray.length - 1; i++) {
+        // BEGIN i-th iteration:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIteration + i);
+        leafDataHiveElement = leafDataHiveElement[dataHivePathArray[i]];
+        // contents of leafDataHiveElement is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.ccontentsOfLeafDataHiveElementIs + JSON.stringify(leafDataHiveElement));
+        // END i-th iteration:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
+      } // End-for (let i = 0; i < dataHivePathArray.length - 1; i++)
+      loggers.consoleLog(namespacePrefix + functionName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
+      let attributeName = dataHivePathArray[dataHivePathArray.length - 1];
+      if (leafDataHiveElement && leafDataHiveElement.length > 0) {
+        let leafDataHiveElementKeys1 = Object.keys(leafDataHiveElement);
+        for (let j = 0; j < leafDataHiveElement.length; j++) {
+          let dataEntry = leafDataHiveElement[j];
+          if (dataEntry) {
+            if (attributeName.toLowerCase() === wr1.centity) {
+              // entity is:
+              console.log(msg.centryIs + JSON.stringify(dataEntry));
+            } else {
+              if (dataEntry[attributeName]) {
+                // attributeValue is:
+                console.log(msg.cattributeValueIs + dataEntry[attributeName]);
+              } // End-if (dataEntry[attributeName])
+            }
+          } // End-if (dataEntry)
+        } // End-for (let j = 0; j < leafDataHiveElement.length; j++)
+      } else {
+        let leafDataHiveElementKeys2 = Object.keys(leafDataHiveElement);
+        leafDataHiveElementKeys2.forEach((key2) => {
+          if (attributeName.toLowerCase() === wr1.ckey) {
+            // key2 is:
+            console.log(msg.ckey2Is + key2);
+          } else if (attributeName.toLowerCase() === wr1.centity) {
+            // entity is:
+            console.log(msg.centityIs + JSON.stringify(leafDataHiveElement[key2]));
+          } else {
+            let dataEntry2 = leafDataHiveElement[key2];
+            if (dataEntry2) {
+              // attributeValue is:
+              console.log(msg.cattributeValueIs + dataEntry2[attributeName]);
+            } // End-if (dataEntry2)
+          }
+        });
+      }
+    } else { // End-if (inputData[1].includes(bas.cDot) === true)
+      // This is the case that the user has probably just specified a single data hive
+      // that might not have specific attribute names such as the configuration data.
+      console.log(msg.cprintDataHiveAttributesMessage1 + msg.cprintDataHiveAttributesMessage2);
+    }
+  } else { // End-if (inputData && inputData.length > 1)
+    console.log(msg.cprintDataHiveAttributesMessage3);
+  } // End-else condition if (inputData && inputData.length > 1)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function clearDataStorage
+ * @description Completely wipes out all the data stored in the DataStorage data hive of the D data structure.
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the case the user has entered a data storage name to clear.
+ * If none is provided, the all data storage will be cleared!
+ * inputData[0] === 'clearDataStorage'
+ * inputData[1] === myDataStorage
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+const clearDataStorage = function(inputData, inputMetaData) {
+  let functionName = clearDataStorage.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData[1] !== undefined) {
+    dataBroker.clearData(inputData[1]);
+  } else {
+    dataBroker.clearData('');
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function businessRule
+ * @description Executes a user specified business rule with some input.
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the case the user has entered a busienss rule name and perhpas some rule inputs.
+ * inputData[0] === 'businessRule'
+ * inputData[1] === rule 1 (including arguments with secondary delimiter)
+ * inputData[2] === rule 2 (including arguments with secondary delimiter)
+ * inputData[n] === rule n (including arguments with secondary delimiter)
+ * @NOTE There are 2 ways this system can work, the user can either call each rule with it's own inputs,
+ * or the user can leverage the rule system itself to pass the outputs from rule 1 as inputs to rule 2, etc...
+ * This command will only always take the arguments for the first business rule as inputs and let the business rules system
+ * pass the outputs as inputs as discussed above.
+ * It is assumed if the user wanted to execute a sequence of business rules each with their own inputs,
+ * then the user should use the command sequencer in combination with this function
+ * to call a series of busienss rules each with their own inputs.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+const businessRule = function(inputData, inputMetaData) {
+  let functionName = businessRule.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+  let rules = [];
+  let ruleInputData, ruleInputMetaData;
+  let ruleOutput = '';
+  let addedARule = false;
+  let businessRuleOutput = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRuleOutput);
+  let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
+  let businessRuleStartTime = '';
+  let businessRuleEndTime = '';
+  let businessRuleDeltaTime = '';
+  let argsArrayContainsCharacterRule = [];
+  let removeBracketsFromArgsArrayRule = [];
+  argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
+  removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
+
+  // First go through each rule that should be executed and determine if
+  // there are any inputs that need to be passed into the business rule.
+  for (let i = 1; i < inputData.length; i++) {
+    // Begin the i-th iteration fo the inputData array. i is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIterationOfInputDataArray + i);
+    let currentRuleArg = inputData[i]; // Check to see if this rule has inputs separate from the rule name.
+    // currentRule is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentRuleIs + JSON.stringify(currentRuleArg));
+    let ruleArgs = [];
+    if (i === 1) {
+      rules = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
+    } else if (i === 2 && inputData.length <= 4) {
+      ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
+    } else if (i === 2 && inputData.length > 4) {
+      ruleInputData = lexical.parseBusinessRuleArgument(inputData, i, true);
+    } else if (i === 3 && inputData.length <= 4) {
+      ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
+    } else if (i === 3 && inputData.length > 4) {
+      // In this case all of the arguments will have been combined into a single array and added to the ruleInputData.
+      ruleInputMetaData = '';
+    }
+  } // End-for (let i = 1; i < inputData.length; i++)
+  // rules is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.crulesIs + JSON.stringify(rules));
+  // ruleInputData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cruleInputDataIs + ruleInputData);
+  // ruleInputMetaData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cruleInputMetaData + JSON.stringify(ruleInputMetaData));
+  if (businessRuleMetricsEnabled === true) {
+    // Here we will capture the start time of the business rule we are about to execute.
+    // After executing we will capture the end time and then
+    // compare the difference to determine how many milliseconds it took to run the business rule.
+    businessRuleStartTime = timers.getNowMoment(gen.cYYYYMMDD_HHmmss_SSS);
+    // Business Rule Start time is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleStartTimeIs + businessRuleStartTime);
+  } // End-if (businessRuleMetricsEnabled === true)
+  ruleOutput = ruleBroker.processRules(ruleInputData, ruleInputMetaData, rules);
+  if (businessRuleMetricsEnabled === true) {
+    let performanceTrackingObject = {};
+    businessRuleEndTime = timers.getNowMoment(gen.cYYYYMMDD_HHmmss_SSS);
+    // BusinessRule End time is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleEndTimeIs + businessRuleEndTime);
+    // Now compute the delta time so we know how long it took to run that busienss rule.
+    businessRuleDeltaTime = timers.computeDeltaTime(businessRuleStartTime, businessRuleEndTime);
+    // BusinessRule run-time is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleRunTimeIs + businessRuleDeltaTime);
+    // Check to make sure the business rule performance trackign stack exists or does not exist.
+    if (D[cfg.cBusinessRulePerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.cBusinessRulePerformanceTrackingStack);
+    }
+    if (D[cfg.cBusinessRuleNamesPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.cBusinessRuleNamesPerformanceTrackingStack);
+    }
+    performanceTrackingObject = {Name: rules[0], RunTime: businessRuleDeltaTime};
+    if (stack.contains(cfg.cBusinessRuleNamesPerformanceTrackingStack, rules[0]) === false) {
+      stack.push(cfg.cBusinessRuleNamesPerformanceTrackingStack, rules[0]);
+    }
+    stack.push(cfg.cBusinessRulePerformanceTrackingStack, performanceTrackingObject);
+    // stack.print(cfg.cBusinessRulePerformanceTrackingStack);
+    // stack.print(cfg.cBusinessRuleNamesPerformanceTrackingStack);
+  } // End-if (businessRuleMetricsEnabled === true)
+  if (businessRuleOutput === true) {
+    // Rule output is:
+    console.log(msg.cRuleOutputIs + JSON.stringify(ruleOutput));
+  }
+  businessRuleStartTime = '';
+  businessRuleEndTime = '';
+  businessRuleDeltaTime = '';
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function commandGenerator
+ * @description Takes a set of input parameters such as a command and the number of times it should be executed.
+ * Then this command will enqueue that command that number of times to the command queue.
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
+ * depending on what the user entered. But the function filters all of that internally and
+ * extracts the command that should be executed and the number of times it should be executed.
+ * inputData[0] === 'commandGenerator'
+ * inputData[1] === command string
+ * inputData[2] === number of times to enqueue the above command string
+ * @param {string} inputMetaData Not sued for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+const commandGenerator = function(inputData, inputMetaData) {
+  let functionName = commandGenerator.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let replaceCharacterWithCharacterRule = [];
+  replaceCharacterWithCharacterRule[0] = biz.creplaceCharacterWithCharacter;
+  let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter);
+  if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
+    primaryCommandDelimiter = bas.cSpace;
+  }
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+  let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cTertiaryCommandDelimiter);
+  let commandString = inputData[1];
+  // NOTE: the str.replace only replaces the first instance of a string value, not all values.
+  // but we might have another issue in the sense that if the string begins and ends with "[" & "]" respectively,
+  // we might not want to replace those characters.
+  // Because it might be that the command should take responsibility or that in such a special case,
+  // i.e. treating the whole block as a single array and doing it's own split operation.
+  // commandString = commandString.replace(secondaryCommandArgsDelimiter, primaryCommandDelimiter);
+  // commandString = commandString.replace(tertiaryCommandDelimiter, secondaryCommandArgsDelimiter);
+  // commandString before attempted delimiter swap is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringBeforeAttemptedDelimiterSwapIs + commandString);
+  // replaceCharacterWithCharacterRule is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.creplaceCharacterWithCharacterRuleIs + JSON.stringify(replaceCharacterWithCharacterRule));
+  let secondaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + secondaryCommandArgsDelimiter, bas.cg);
+  commandString = ruleBroker.processRules(commandString, [secondaryCommandDelimiterRegEx, primaryCommandDelimiter], replaceCharacterWithCharacterRule);
+  // After attempting to replace the secondaryCommandArgsDelimiter with the primaryCommandDelimiter commandString is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage1 + commandString);
+  let tertiaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + tertiaryCommandDelimiter, bas.cg);
+  commandString = ruleBroker.processRules(commandString, [tertiaryCommandDelimiterRegEx, secondaryCommandArgsDelimiter], replaceCharacterWithCharacterRule);
+  // After attempting to replace the teriaryCommandDelimiter with the secondaryCommandArgsDelimiter commandString is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage2 + commandString);
+  let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
+  let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
+  if (currentCommand !== false) {
+    if (isNaN(inputData[2]) === false) { // Make sure the user passed in a number for the second argument.
+      let numberOfCommands = parseInt(inputData[2]);
+      if (numberOfCommands > 0) {
+        for (let i = 0; i < numberOfCommands; i++) {
+          queue.enqueue(sys.cCommandQueue, commandString);
+        }
+      } else {
+        // WARNING: nominal.commandGenerator: Must enter a number greater than 0, number entered:
+        console.log(mg.ccommandGeneratorMessage3 + numberOfCommands);
+      }
+    } else {
+      // WARNING: nominal.commandGenerator: Number entered for the number of commands to generate is not a number:
+      console.log(msg.ccommandGeneratorMessage4 + inputData[2]);
+    }
+  } else {
+    // WARNING: nominal.commandGenerator: The specified command:
+    // was not found, please enter a valid command and try again.
+    console.log(msg.ccommandGeneratorMessage5 + commandString + msg.ccommandGeneratorMessage6);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   echoCommand,
   exit,
@@ -380,5 +778,11 @@ export default {
   clearScreen,
   help,
   workflowHelp,
-  commandSequencer
+  commandSequencer,
+  workflow,
+  printDataHive,
+  printDataHiveAttributes,
+  clearDataStorage,
+  businessRule,
+  commandGenerator
 };

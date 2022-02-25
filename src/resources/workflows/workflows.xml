@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><CommandWorkflows>
   <Workflow Name="startup" Value="commandSequencer name,application,true version about"/>
+  <Workflow Name="details" Value="commandSequencer name,application version about"/>
+  <Workflow Name="applicationDetails" Value="commandSequencer name,application version about"/>
+  <Workflow Name="frameworkDetails" Value="commandSequencer name,framework,true version,framework about,framework"/>
 </CommandWorkflows>

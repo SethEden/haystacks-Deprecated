@@ -134,7 +134,7 @@ async function application() {
   }
   // argumentDrivenInterface is:
   // haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
-  haystacks.enqueueCommand(wr1.cname);
+  haystacks.enqueueCommand(cmd.cStartupWorkflow);
 
   // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,
   // arguments can still be passed in and they will be executed first, after the startup workflow is complete.

@@ -12,5 +12,7 @@
   "system.primaryCommandDelimiter": null,
   "system.secondaryCommandDelimiter": ",",
   "system.tertiaryCommandDelimiter": "|",
+  "system.enableBusinessRuleOutput": true,
+  "system.enableBusinessRulePerformanceMetrics": true,
   "system.AppSetting": "TrunkMonkey"
 }
