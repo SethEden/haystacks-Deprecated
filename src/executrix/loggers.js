@@ -241,7 +241,7 @@ function parseClassPath(logFile, classPath, message) {
   let debugFunctionsSetting = false;
   let debugFilesSetting = false;
   let classPathArray = {};
-  let rules = {};
+  let rules = [];
   let returnData = '';
   rules[0] = biz.creplaceDoublePercentWithMessage;
 

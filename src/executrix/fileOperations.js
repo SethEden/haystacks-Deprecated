@@ -359,8 +359,8 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   let packageSuccess = false;
   let releaseFiles = [];
   let releasedArchiveFiles = [];
-  let fileNameBusinessRules = {};
-  let cleanFilePathsBusinessRules = {};
+  let fileNameBusinessRules = [];
+  let cleanFilePathsBusinessRules = [];
   fileNameBusinessRules[0] = biz.cgetFileNameFromPath;
   fileNameBusinessRules[1] = biz.cremoveFileExtensionFromFileName;
   cleanFilePathsBusienssRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;

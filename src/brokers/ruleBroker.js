@@ -77,16 +77,16 @@ function addClientRules(clientRules) {
  */
 function doesRuleExist(ruleName) {
   let functionName = doesRuleExist.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`ruleName is: ${ruleName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`ruleName is: ${ruleName}`);
   let returnData = false;
   if (ruleName) {
     if (D[sys.cbusinessRules][ruleName]) {
       returnData = true;
     }
   } // End-if (ruleName)
-  console.log(`returnData is: ${returnData}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -103,8 +103,8 @@ function doesRuleExist(ruleName) {
  */
 function doAllRulesExist(ruleArray) {
   let functionName = doAllRulesExist.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`ruleArray is: ${JSON.stringify(ruleArray)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`ruleArray is: ${JSON.stringify(ruleArray)}`);
   let returnData = false;
   let tempValidationResult = true;
   if (ruleArray && ruleArray.length > 0) {
@@ -117,8 +117,8 @@ function doAllRulesExist(ruleArray) {
       returnData = true;
     }
   } // End-if (ruleArray && ruleArray.length > 0)
-  console.log(`returnData is: ${returnData}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 

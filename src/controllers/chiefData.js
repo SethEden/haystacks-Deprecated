@@ -50,10 +50,10 @@ const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  */
 function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfigPathName, contextName) {
   let functionName = searchForUniversalDebugConfigSetting.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`appConfigPathName is: ${appConfigPathName}`);
-  console.log(`frameworkConfigPathName is: ${frameworkConfigPathName}`);
-  console.log(`contextName is: ${contextName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`appConfigPathName is: ${appConfigPathName}`);
+  // console.log(`frameworkConfigPathName is: ${frameworkConfigPathName}`);
+  // console.log(`contextName is: ${contextName}`);
   let universalDebugConfigSetting = false;
   let appConfigDataPath = configurator.getConfigurationSetting(wr1.csystem, appConfigPathName);
   let frameworkConfigDataPath = configurator.getConfigurationSetting(wr1.csystem, frameworkConfigPathName);
@@ -67,8 +67,8 @@ function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfig
     appConfigFilesToLoad, frameworkConfigFilesToLoad
   );
   configurator.setConfigurationSetting(wr1.csystem, cfg.cdebugSettings, universalDebugConfigSetting);
-  console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return universalDebugConfigSetting;
 };
 
@@ -193,9 +193,9 @@ function setupAllXmlData(dataPathConfigurationName, contextName) {
  */
 function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   let functionName = setupAllJsonConfigData.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
-  console.log(`contextName is: ${contextName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
+  // console.log(`contextName is: ${contextName}`);
   let loadedAndMergedDataAllFiles = {};
   let filesToLoad = [];
   if (dataPathConfigurationName === sys.cappConfigPath) {
@@ -204,8 +204,8 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
     filesToLoad = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkConfigFiles);
   }
   loadedAndMergedDataAllFiles = dataBroker.loadAllJsonData(filesToLoad, contextName);
-  console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return loadedAndMergedDataAllFiles;
 };
 

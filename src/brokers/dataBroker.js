@@ -59,7 +59,7 @@ function scanDataPath(dataPath) {
   // console.log(`dataPath is: ${dataPath}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + dataPath);
-  let rules = {};
+  let rules = [];
   let filesFound = [];
   rules[0] = biz.cswapBackSlashToForwardSlash;
   // console.log(`execute business rules: ${JSON.stringify(rules)}`);
@@ -163,8 +163,8 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesToLoadIs + JSON.stringify(filesToLoad));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = {};
-  let fileExtensionRules = {};
+  let rules = [];
+  let fileExtensionRules = [];
   let parsedDataFile;
   rules[1] = biz.cgetFileNameFromPath;
   rules[2] = biz.cremoveFileExtensionFromFileName;
@@ -220,9 +220,9 @@ function loadAllXmlData(filesToLoad, contextName) {
   let j = 0;
   let multiMergedData = {};
   let parsedDataFile = {};
-  let fileNameRules = {};
-  let fileExtensionRules = {};
-  let filePathRules = {};
+  let fileNameRules = [];
+  let fileExtensionRules = [];
+  let filePathRules = [];
   fileNameRules[0] = biz.cgetFileNameFromPath;
   fileNameRules[1] = biz.cremoveFileExtensionFromFileName;
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
@@ -455,7 +455,7 @@ function preprocessJsonFile(fileToLoad) {
   // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToLoadIs + JSON.stringify(fileToLoad));
-  let filePathRules = {};
+  let filePathRules = [];
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   // console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRules + JSON.stringify(filePathRules));
@@ -564,7 +564,7 @@ function getDataCatagoryFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = {};
+  let rules = [];
   let dataCatagory = '';
   rules[0] = biz.cgetDataCatagoryFromDataContextName;
   // execute business rules:
@@ -589,7 +589,7 @@ function getDataCatagoryDetailNameFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = {};
+  let rules = [];
   let dataCatagoryDetailName = '';
   rules[0] = biz.cgetDataCatagoryDetailNameFromDataContextName;
   // execute busienss rules:
@@ -617,7 +617,7 @@ function extractDataFromPapaParseObject(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let cleanKeysRules = {};
+  let cleanKeysRules = [];
   let tempData = {};
   let validDataAdded = false;
   if (contextName === wr1.ccolors) {
