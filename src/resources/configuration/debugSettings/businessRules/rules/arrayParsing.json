@@ -12,7 +12,7 @@
   "debugFiles|debugSetting.businessRules.rules.arrayParsing@FunctionFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.businessRules.rules.arrayParsing@MessageFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.businessRules.rules.arrayParsing@DataFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.replaceCharacterWithCharacter": false,
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.replaceCharacterWithCharacter": true,
   "debugFunctions|debugSetting.businessRules.rules.arrayParsing.replaceCharacterWithCharacter@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.businessRules.rules.arrayParsing.replaceCharacterWithCharacter@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.businessRules.rules.arrayParsing.replaceCharacterWithCharacter@MessageFontStyle": "Default",

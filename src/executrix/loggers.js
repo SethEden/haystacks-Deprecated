@@ -64,7 +64,7 @@ const namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  */
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
-  if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
+  if (Object.keys(D).length !== 0 && message !== undefined) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
     let consoleLogEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
@@ -109,7 +109,10 @@ function consoleLog(classPath, message) {
       }
       // console.log(`END ${namespacePrefix}${functionName} function`);
     } // end-if (consoleLogEnabled === true)
-  } // end-if (Object.keys(D).length != 0)
+  } else if (message === undefined) { // end-if (Object.keys(D).length !== 0 && message !== undefined)
+    console.log(msg.cWarningMessageIsUndefined);
+    console.log(msg.cclassPathIs + classPath);
+  }
 };
 
 /**

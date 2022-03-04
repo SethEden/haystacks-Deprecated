@@ -634,12 +634,22 @@ const businessRule = function(inputData, inputMetaData) {
     } else if (i === 2 && inputData.length <= 4) {
       ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
     } else if (i === 2 && inputData.length > 4) {
-      ruleInputData = lexical.parseBusinessRuleArgument(inputData, i, true);
+      ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
     } else if (i === 3 && inputData.length <= 4) {
       ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
     } else if (i === 3 && inputData.length > 4) {
+      console.log('parsing i = 3 & inputData.length > 4');
       // In this case all of the arguments will have been combined into a single array and added to the ruleInputData.
-      ruleInputMetaData = '';
+      ruleInputMetaData = [];
+      // Save the last two elements as an array to the input data.
+      let tempFinalArg = lexical.parseBusinessRuleArgument(inputData.pop(), i, false);
+      console.log('tempFinalArg is: ' + JSON.stringify(tempFinalArg));
+      let nextToFinalArg = lexical.parseBusinessRuleArgument(inputData.pop(), i, false);
+      console.log('nextToFinalArg is: ' + nextToFinalArg);
+      // ruleInputMetaData.push(nextToFinalArg);
+      ruleInputMetaData[0] = nextToFinalArg;
+      ruleInputMetaData[1] = tempFinalArg;
+      // ruleInputMetaData.push(tempFinalArg);
     }
   } // End-for (let i = 1; i < inputData.length; i++)
   // rules is:
@@ -732,7 +742,7 @@ const commandGenerator = function(inputData, inputMetaData) {
       if (i === 1) {
         commandString = inputData[1];
       } else {
-        commandString = commandString + primaryCommandDelimiter + inputData[i].trim();
+        commandString = commandString + bas.cBackTickQuote + inputData[i].trim() + bas.cBackTickQuote;
       }
     } // End-for (let i = 1; i < inputData.length - 2; i++)
   }

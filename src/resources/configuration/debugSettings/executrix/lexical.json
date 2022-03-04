@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.executrix.lexical": false,
+  "debugFiles|debugSetting.executrix.lexical": true,
   "debugFiles|debugSetting.executrix.lexical@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.executrix.lexical@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.executrix.lexical@MessageFontStyle": "Underline",

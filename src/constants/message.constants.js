@@ -185,7 +185,7 @@ export const carrayInputObjectIsNotAnArray = wr1.carray + bas.cSpace + wr1.cinpu
 export const cTheValueWasFoundInTheArray = wr1.cThe + bas.cSpace + wr1.cvalue + bas.cSpace + wr1.cwas + bas.cSpace + wr1.cfound + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.carray + bas.cDot; // The value was found in the array.
 export const cTheValueWasNotFoundInTheArray = wr1.cThe + bas.cSpace + wr1.cvalue + bas.cSpace + wr1.cwas + bas.cSpace + gen.cNOT + bas.cSpace + wr1.cfound + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.carray + bas.cDot; // The value was NOT found in the array.
 export const coriginalStringIs = wr1.coriginal + wr1.cString + sys.cSpaceIsColonSpace; // originalString is:
-export const cindexIs = wr1.cindex + bas.cSpace + sys.cSpaceIsColonSpace; // index is:
+export const cindexIs = wr1.cindex + sys.cSpaceIsColonSpace; // index is:
 export const creplacementIs = wr1.creplacement + sys.cSpaceIsColonSpace; // replacement is:
 export const cDEPLOY_APPLICATION = wr1.cDEPLOY + bas.cUnderscore + wr1.cAPPLICATION; // DEPLOY APPLICATION
 export const cRELEASE_APPLICATION = wr1.cRELEASE + bas.cUnderscore + wr1.cAPPLICATION; // RELEASE APPLICATION
@@ -544,6 +544,11 @@ export const cprimaryCommandDelimiterIs = wr1.cprimary + wr1.cCommand + wr1.cDel
 export const csecondaryCommandDelimiterIs = wr1.csecondary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // secondaryCommandDelimiter is:
 export const ctertiaryCommandDelimiterIs = wr1.ctertiary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // tertiaryCommandDelimiter is:
 export const ccommandSequencerCommandToEnqueueIs = wr1.ccommand + wr1.cSequencer + bas.cSpace + wr1.cCommand + bas.cSpace + bas.cTo + bas.cSpace + wr1.cEnqueue + sys.cSpaceIsColonSpace; // commandSequencer Command To Enqueue is:
+export const cWarningMessageIsUndefined = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cmessage + bas.cSpace + wr1.cis + bas.cSpace + wr1.cundefined; // WARNING: message is undefined
+export const cclassPathIs = wr1.cclass + wr1.cPath + sys.cSpaceIsColonSpace; // classPath is:
+export const cargsArrayContainsRegEx1Is = gen.cargs + wr1.cArray + wr1.cContains + wr1.cRegEx + num.c1 + sys.cSpaceIsColonSpace; // argsArrayContainsRegEx1 is:
+export const cargsArrayContainsRegEx2Is = gen.cargs + wr1.cArray + wr1.cContains + wr1.cRegEx + num.c2 + sys.cSpaceIsColonSpace; // argsArrayContainsRegEx2 is:
+export const cargsArrayContainsColonIs = gen.cargs + wr1.cArray + wr1.cContains + wr1.cColon + sys.cSpaceIsColonSpace; // argsArrayContainsColon is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

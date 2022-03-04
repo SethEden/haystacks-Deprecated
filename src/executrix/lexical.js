@@ -65,14 +65,14 @@ function parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMod
   let returnData;
 
   if (index === 1) {
-    // Pushing the argumentValue tot he returnData as an array element
+    // Pushing the argumentValue to the returnData as an array element
     loggers.consoleLog(namespacePrefix + functionName, msg.cPushingArgumentValueToReturnDataAsArrayElement);
     returnData = [];
     returnData.push(argumentValue);
   } else if (index === 2 && consolidatedArgumentMode === false) {
     // Calling analyzeArgument for index = 2, consolidatedArgumentMode = false
-    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsoidatedArgumentModeFalse);
-    returnData=  analyzeArgument(argumentValue);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeFalse);
+    returnData = analyzeArgument(argumentValue);
   } else if (index === 2 && consolidatedArgumentMode === true) {
     // Calling analyzeArgument for index = 2, consolidatedArgumentMode = true
     loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue);
@@ -97,7 +97,7 @@ function parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMod
     // WARNING: lexical.parseBusinessRuleArgument: invalid combination of inputs to the lexical.parseBusinessRuleArgument function! Pleae adjust inputs and try again.
     console.log(msg.cparseBusinessRuleArgumentMessage1 + msg.cparseBusinessRuleArgumentMessage2);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -168,7 +168,7 @@ function analyzeArgument(argumentValue) {
       returnData = argumentValue;
     }
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -189,13 +189,16 @@ function analyzeForRegularExpression(argumentValue) {
   let returnData = false;
   let argsArrayContainsCharacterRule = [];
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
-  let argsArrayContainsRegEx1 = ruleBroker.processRules(wr1.cregEx, argumentValue, argsArrayContainsCharacterRule);
-  let argsArrayContainsRegEx2 = ruleBroker.processRules(wr1.cRegEx, argumentValue, argsArrayContainsCharacterRule);
-  let argsArrayContainsColon = ruleBroker.processRules(bas.cColon, argumentValue, argsArrayContainsCharacterRule);
+  let argsArrayContainsRegEx1 = ruleBroker.processRules(wr1.cregEx, [argumentValue], argsArrayContainsCharacterRule);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsRegEx1Is + argsArrayContainsRegEx1);
+  let argsArrayContainsRegEx2 = ruleBroker.processRules(wr1.cRegEx, [argumentValue], argsArrayContainsCharacterRule);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsRegEx2Is + argsArrayContainsRegEx2);
+  let argsArrayContainsColon = ruleBroker.processRules(bas.cColon, [argumentValue], argsArrayContainsCharacterRule);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsColonIs + argsArrayContainsColon);
   if ((argsArrayContainsRegEx1 === true || argsArrayContainsRegEx2 === true) && argsArrayContainsColon === true) {
     returnData = true;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -213,7 +216,7 @@ function parseArgumentAsRegularExpression(argumentValue) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // argumentValue is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueIs + JSON.stringify(argumentValue));
-  let returnData;
+  let returnData = [];
   let regExValue, regExFlags;
   let regExArray = argumentValue.split(bas.cColon);
   for (let k = 0; k < regExArray.length; k++) {
@@ -234,8 +237,8 @@ function parseArgumentAsRegularExpression(argumentValue) {
     }
   } // End-for (let k = 0; k < regExArray.length; k++)
   let regularExpression = new RegExp(regExValue, regExFlags);
-  returnData.push(regularExpression);
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  returnData = regularExpression;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -300,7 +303,7 @@ function parseArgumentAsArray(argumentValue) {
   } else {
     returnData = argumentValue;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -323,7 +326,7 @@ function removeStringLiteralTagsFromArray(argumentArray) {
   let removeCharacterRule = [];
   removeCharacterRule[0] = biz.cremoveCharacterFromArray;
   returnData = ruleBroker.processRules(bas.cTilde, argumentArray, removeCharacterRule);
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
