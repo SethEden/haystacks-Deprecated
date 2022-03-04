@@ -75,7 +75,7 @@ function parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMod
     returnData=  analyzeArgument(argumentValue);
   } else if (index === 2 && consolidatedArgumentMode === true) {
     // Calling analyzeArgument for index = 2, consolidatedArgumentMode = true
-    oggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue);
     if (argumentValue.length > 0) {
       returnData = [];
       // argumentValue.length > 0

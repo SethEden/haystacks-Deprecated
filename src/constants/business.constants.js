@@ -87,6 +87,8 @@ export const cconvertNumberToLowerCaseLetter = wr1.cconvert + wr1.cNumber + wr1.
 // mathOperations rules in order
 // ***********************************************
 export const chex2rgbConversion = gen.chex + num.c2 + gen.crgb + wr1.cConversion; // hex2rgbConversion
+export const cisOdd = wr1.cis + wr1.cOdd; // isOdd
+export const cisEven = wr1.cis + wr1.cEven; // isEven
 
 // ***********************************************
 // stringGeneration rules in order
@@ -176,8 +178,6 @@ export const cloadDataFile = wr1.cload + wr1.cData + wr1.cFile; // loadDataFile
 export const csupportedFileFormatsAre = wr1.csupported + wr1.cFile + wr1.cFormats + wr1.cAre; // supportedFileFormatsAre
 export const cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
 export const cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue
-export const cisOdd = wr1.cis + wr1.cOdd; // isOdd
-export const cisEven = wr1.cis + wr1.cEven; // isEven
 export const ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput
 
 // ***********************************************

@@ -3,9 +3,11 @@
  * @module mathOperations
  * @description Contains all of the business rule functions for ding math operations and conversions.
  * @requires module:basic.constants
+ * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:loggers
+ * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/01/27
@@ -14,10 +16,12 @@
 
 // Internal imports
 import * as bas from '../../constants/basic.constants.js';
+import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
+import * as math from 'mathjs';
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -71,6 +75,74 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function isOdd
+ * @description Determines if the input value is an odd number or not an odd number.
+ * Acts as a wrapper for calling the math operations function of the same name,
+ * but this business rule processing the same from a string input.
+ * @param {string} inputData The value that should be evaluated to determien if it is odd or not odd.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the value passed in is an odd value or not an odd value.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
+ */
+const isOdd = function(inputData, inputMetaData) {
+  let functionName = isOdd.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (math.isNumeric(inputData) === true) {
+      let inputValue = parseInt(inputData);
+      let result = inputValue % 2;
+      if (result === 1) {
+        returnData = true;
+      }
+    } // End-if (math.isNumeric(inputData) === true)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function isEven
+ * @description Determiens if the input value is an even number or not an even number.
+ * Acts as a wrapper for calling the math operations function of the same name,
+ * but this business rule processing the same from a string input.
+ * @param {string} inputData The value that should be evaluated to determine if it is even or not even.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the value passed in is an even value or not an even value.
+ * @author Seth Hollingsead
+ * @date 2022/01/25
+ * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
+ * @NOTE This fucntion isn't actually needed, as we can just invert our logic for calling isOdd,
+ * but I provided it here anyways for completeness.
+ */
+const isEven = function(inputData, inputMetaData) {
+  let functionName = isEven.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (inputData) {
+    if (math.isNumeric(inputData) === true) {
+      let inputValue = parseInt(inputData);
+      let result = inputValue % 2;
+      if (result === 0) {
+        returnData = true;
+      }
+    } // End-if (math.isNumeric(inputData) === true)
+  } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
-  hex2rgbConversion
+  hex2rgbConversion,
+  isOdd,
+  isEven
 };

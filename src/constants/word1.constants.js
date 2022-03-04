@@ -2159,6 +2159,12 @@ export const csession = phn.cses + phn.csion; // session
 export const cSession = phn.cSes + phn.csion; // Session
 export const cclause = phn.ccla + cuse; // clause
 export const cClause = phn.cCla + cuse; // Clause
+export const cliteral = clit + phn.ceral; // literal
+export const cLiteral = cLit + phn.ceral; // Literal
+export const cliterals = cliteral + bas.cs; // literals
+export const cLiterals = cLiteral + bas.cs; // Literals
+export const cliterally = cliteral + bas.cly; // literally
+export const cLiterally = cLiteral + bas.cly; // Literally
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

@@ -66,4 +66,4 @@ export const cBeginDateTimeStamp = wr1.cBegin + sys.cDateTimeStamp; // BeginDate
 export const cEndDateTimeStamp = wr1.cEnd + sys.cDateTimeStamp; // EndDateTimeStamp
 
 export const cBusinessRulePerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRulePerformanceTrackingStack
-export const cBusinessRulesNamesPerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRuleNamesPerformanceTrackingStack
+export const cBusinessRuleNamesPerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRuleNamesPerformanceTrackingStack

@@ -3,6 +3,7 @@
  * @module commandBroker
  * @description Executes commands by calling the appropriate command-function from the commandLibrary,
  * which will actually be stored functions on the D-Data structure.
+ * @requires module:ruleBroker
  * @requires module:commandsLibrary
  * @requires module:basic.constants
  * @requires module:business.constants
@@ -26,6 +27,7 @@
  */
 
 // Internal imports
+import ruleBroker from './ruleBroker.js';
 import commandsLibrary from '../commandsBlob/commandsLibrary.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
@@ -244,18 +246,18 @@ function getCommandArgs(commandString, commandDelimiter) {
         if (numberOfSingleQuotes >= 2 && ruleBroker.processRules(numberOfSingleQuotes, '', isOddRule) === false) {
           // numberOfSingleQuotes is >= 2 & the numberOfSingleQuotes is EVEN! YAY!
           loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSingleQuotesInEven);
-          let indexOfSingleDelimiter;
+          let indexOfStringDelimiter;
           for (let i = 0; i < numberOfSingleQuotes; i++) {
             // Iterate over each one and if they are even or odd we will change how we replace ach single quote character as described above.
             if (i === 0) {
               // Get the index of the first string delimiter.
-              indexOfSringDelimter = commandString.indexOf(bas.cBackTickQuote, 0);
+              indexOfStringDelimiter = commandString.indexOf(bas.cBackTickQuote, 0);
               // First index is:
               loggers.consoleLog(namespacePrefix + functionName, msg.cFirstIndexIs + indexOfStringDelimiter);
               // commandString.replace(bas.cBackTickQuote, bas.cBackTickQuote + bas.cTilde);
               // Rather than use the above, we will make a business rule o replace at index, the above replaces all isntances and we don't want that!
-              commandString = ruleBroker.processRules(commandString, [indexOfStrngDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
-              stringLieralCommandDelimiterAdded = true;
+              commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
+              stringLiteralCommandDelimiterAdded = true;
               // commandString after taggng the first string delimiter:
               loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingTheFirstStringDelimiter + commandString);
             } else {
@@ -270,7 +272,7 @@ function getCommandArgs(commandString, commandDelimiter) {
                 // odd index
                 loggers.consoleLog(namespacePrefix + functionName, msg.coddIndex);
                 commandString = ruleBroker.processRules(commandString, [indexOfStringDelimier, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
-                strngLiteralCommandDelimiterAdded = true;
+                stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an odd string delimiter:
                 loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStrngAfterTaggingAnOddStringDelimiter + commandString);
               } else {
@@ -278,9 +280,9 @@ function getCommandArgs(commandString, commandDelimiter) {
                 // even index
                 loggers.consoleLog(namespacePrefix + functionName, msg.cevenIndex);
                 commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
-                stringLiteralCommandDelmiterAdded = true;
+                stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an even string delimiter:
-                loggers.consoleLog(namespacePrefix + functionName, smg.ccommandStringAfterTaggingAnEvenStringDelimiter + commandString);
+                loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnEvenStringDelimiter + commandString);
               }
             }
           } // End-for (let i = 0; i < numberOfSingleQuotes; i++)

@@ -8,6 +8,7 @@
  * @requires module:business.constants
  * @requires module:function.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:loggers
@@ -24,6 +25,7 @@ import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as num from '../constants/numeric.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
@@ -52,7 +54,7 @@ function initStack(stackNameSpace) {
   } else {
     // WARNING: Stack:
     // ALREADY exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cAlreadyExists);
+    console.log(num.c1 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cAlreadyExists);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -74,7 +76,7 @@ function clearStack(stackNameSpace) {
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c2 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -93,12 +95,12 @@ function push(stackNameSpace, value) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cstackNameSpaceIs + stackNameSpace);
   loggers.consoleLog(namespacePrefix + functionName, msg.cvalueIs + JSON.stringify(value));
-  if (D[stackNameSpace] === undefined) {
+  if (D[stackNameSpace] !== undefined) {
     D[stackNameSpace].push(value);
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c3 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -128,7 +130,7 @@ function pop(stackNameSpace) {
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c4 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -155,7 +157,7 @@ function isEmpty(stackNamespace) {
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c5 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -180,7 +182,7 @@ function length(stackNameSpace) {
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c6 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -208,7 +210,7 @@ function contains(stackNameSpace, value) {
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c7 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -233,7 +235,7 @@ function print(stackNameSpace) {
   } else {
     // WARNING: Stack:
     // does not exists!
-    console.log(msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
+    console.log(num.c8 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

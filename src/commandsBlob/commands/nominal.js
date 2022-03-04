@@ -714,6 +714,8 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
+  let foundLegitNumber = false;
+  let legitNumberIndex = -1;
   let replaceCharacterWithCharacterRule = [];
   replaceCharacterWithCharacterRule[0] = biz.creplaceCharacterWithCharacter;
   let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter);
@@ -722,7 +724,19 @@ const commandGenerator = function(inputData, inputMetaData) {
   }
   let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
   let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cTertiaryCommandDelimiter);
-  let commandString = inputData[1];
+  let commandString = '';
+  if (inputData.length === 3) {
+    commandString = inputData[1];
+  } else if (inputData.length >= 4) {
+    for (let i = 1; i < inputData.length - 1; i++) {
+      if (i === 1) {
+        commandString = inputData[1];
+      } else {
+        commandString = commandString + primaryCommandDelimiter + inputData[i].trim();
+      }
+    } // End-for (let i = 1; i < inputData.length - 2; i++)
+  }
+
   // NOTE: the str.replace only replaces the first instance of a string value, not all values.
   // but we might have another issue in the sense that if the string begins and ends with "[" & "]" respectively,
   // we might not want to replace those characters.
@@ -744,9 +758,20 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage2 + commandString);
   let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
   let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + currentCommand);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandArgsIs + JSON.stringify(commandArgs));
   if (currentCommand !== false) {
-    if (isNaN(inputData[2]) === false) { // Make sure the user passed in a number for the second argument.
-      let numberOfCommands = parseInt(inputData[2]);
+    if (inputData.length >= 3) {
+      for (let j = 2; j <= inputData.length - 1; j++) {
+        if (isNaN(inputData[j].trim()) === false) {
+          foundLegitNumber = true;
+          legitNumberIndex = j;
+          break;
+        }
+      } // End-for (let i = 2; i <= inputData.length - 1; i++)
+    } // End-if (inputData.length >= 3)
+    if (isNaN(inputData[legitNumberIndex]) === false) { // Make sure the user passed in a number for the second argument.
+      let numberOfCommands = parseInt(inputData[legitNumberIndex]);
       if (numberOfCommands > 0) {
         for (let i = 0; i < numberOfCommands; i++) {
           queue.enqueue(sys.cCommandQueue, commandString);
@@ -882,6 +907,86 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
     // Pass the data object to a business rule to do the above task.
     let commandAliases = ruleBroker.processRules(commandAliasDataStructure, '', generateCommandAliasesRule);
   } // End-if (validCommandInput === true)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function businessRulesMetrics
+ * @description A command to compute business rule metrics for each of the
+ * business rules that were called in a sequence of call(s) or workflow(s).
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/03/03
+ */
+export const businessRulesMetrics = function(inputData, inputMetaData) {
+  let functionName = businessRulesMetrics.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let busienssRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
+  if (businessRuleMetricsEnabled === true) {
+    let businessRuleCounter = 0;
+    let busienssRulePerformanceSum = 0;
+    let businessRulePerformanceStdSum = 0;
+    let average = 0;
+    let standardDev = 0;
+    // Here we iterate over all of the business rules that were added to the sys.cBusinessRulePerformanceTrackingStack.
+    for (let i = 0; i < stack.length(cfg.cBusinessRulesNamesPerformanceTrackingStack); i++) {
+      businessRuleCounter = 0; // Reset it to zero, because we are beginning again with another busienss rule name.
+      businessRulePerformanceSum = 0;
+      businessRulePerformanceStdSum = 0;
+      average = 0;
+      standardDev = 0;
+      // Here we will not iterate over all of the contents of all of the busienss rule performance numbers and
+      // do the necessary math for each business rule according to the parent loop.
+      let currentBusinessRuleName = D[cfg.cBusinessRuleNamesPerformanceTrackingStack][i];
+      for (let j = 0; j < stack.length(cfg.cBusinessRulePerformanceTrackingStack); j++) {
+        if (D[cfg.cBusinessRulePerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName) {
+          businessRuleCounter = businessRuleCounter + 1;
+          // businessRuleCounter is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRuleCounterIs + businessRuleCounter);
+          businessRulePerformanceSum = businessRulePerformanceSum + D[cfg.cBusinessRulePerformanceTrackingStack][j][sys.cRunTime];
+          // businessRulePerformanceSum is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulePerformanceSumIs + businessRulePerformanceSum);
+        } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName)
+      } // End-for (let j = 0; j < stack.length(cfg.cBusinessRulePerformanceTrackingStack); j++)
+      // DONE! businessRulePerformanceSum is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cDoneBusinessRulePerformanceSumIs + businessRulePerformanceSum);
+      average = businessRulePerformanceSum / businessRuleCounter;
+      // average is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.caverageIs + average);
+      // Now go back through them all so we can compute the standard deviation.
+      for (let k = 0; k < stack.length(cfg.cBusinessRulePerformanceTrackingStack); k++) {
+        if (D[cfg.cBusinessRulePerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName) {
+          businessRulePerformanceStdSum = businessRulePerformanceStdSum + math.pow((D[cfg.cBusinessRulePerformanceTrackingStack][k][sys.cRunTime] - average), 2);
+          // businessRulePerformanceStdSum is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulePerformanceStdSumIs + businessRulePerformanceStdSum);
+        } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName)
+      } // End-for (let k = 0; k < stack.length(cfg.cBusinessRulePerformanceTrackingStack); k++)
+      // DONE! businessRulePerformanceStdSum is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cDoneBusinessRulePerformanceStdSumIs + businessRulePerformanceStdSum);
+      standardDev = math.sqrt(businessRulePerformanceStdSum / busienssRuleCounter);
+      // standardDev is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cstandardDevIs + standardDev);
+      if (D[cfg.cBusinessRulesPerformanceAnalysisStack] === undefined) {
+        stack.initStack(cfg.cBusinessRulesPerformanceAnalysisStack);
+      }
+      stack.push(cfg.cBusinessRulesPerformanceAnalysisStack, {Name: currentBusinessRuleName, Average: average, StandardDeviation: standardDev});
+    } // End-for (let i = 0; i < stack.length(cfg.cBusinessRulesNamesPerformanceTrackingStack); i++)
+    loggers.consoleTableLog('', D[cfg.cBusinessRulesPerformanceAnalysisStack], [wr1.cName, wr1.cAverage, sys.cStandardDeviation]);
+    stack.clearStack(cfg.cBusinessRulesPerformanceAnalysisStack);
+    // We need to have a flag that will enable the user to determine if the data should be cleared after the analysis is complete.
+    // It might be that the user wants to do somethign else with this data in memory after it's done.
+    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true) {
+      stack.clearStack(cfg.cBusinessRulePerformanceTrackingStack);
+      stack.clearStack(cfg.cBusinessRuleNamesPerformanceTrackingStack);
+    }
+  } // End-if (businessRuleMetricsEnabled === true)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

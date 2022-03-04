@@ -966,6 +966,7 @@ export const cdigo = bas.cd + cigo; // digo
 export const cndigo = bas.cn + cdigo; // ndigo
 export const cald = bas.cal + bas.cd; // ald
 export const crald = bas.cr + cald; // rald
+export const ceral = bas.cer + bas.cal; // eral
 export const cerald = bas.ce + crald; // erald
 export const cmerald = bas.cm + cerald; // merald
 export const cender = bas.cen + cder; // ender

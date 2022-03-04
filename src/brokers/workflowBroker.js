@@ -50,6 +50,7 @@ function getWorkflow(workflowName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowNameIs + workflowName);
   let workflowValue = false;
   let arrayOfWorkflows = D[sys.cCommandWorkflows][wr1.cWorkflows];
+  // Code to print all the workflows for debugging.
   // console.log('arrayOfWorkflows is: ' + JSON.stringify(arrayOfWorkflows));
   // for (let i = 0; i < arrayOfWorkflows.length; i++) {
   //   let currentWorkflow = arrayOfWorkflows[i];
