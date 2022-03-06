@@ -245,7 +245,7 @@ function getCommandArgs(commandString, commandDelimiter) {
         loggers.consoleLog(namespacePrefix + functionName, msg.cgetCommandArgsMessage1 + sys.cgetCommandArgsMessage2);
         if (numberOfSingleQuotes >= 2 && ruleBroker.processRules(numberOfSingleQuotes, '', isOddRule) === false) {
           // numberOfSingleQuotes is >= 2 & the numberOfSingleQuotes is EVEN! YAY!
-          loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSingleQuotesInEven);
+          loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSingleQuotesIsEven);
           let indexOfStringDelimiter;
           for (let i = 0; i < numberOfSingleQuotes; i++) {
             // Iterate over each one and if they are even or odd we will change how we replace ach single quote character as described above.
@@ -274,7 +274,7 @@ function getCommandArgs(commandString, commandDelimiter) {
                 commandString = ruleBroker.processRules(commandString, [indexOfStringDelimier, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
                 stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an odd string delimiter:
-                loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStrngAfterTaggingAnOddStringDelimiter + commandString);
+                loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnOddStringDelimiter + commandString);
               } else {
                 // We are on the even index 2, 4, 6, etc...
                 // even index

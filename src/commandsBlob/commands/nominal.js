@@ -598,6 +598,9 @@ const clearDataStorage = function(inputData, inputMetaData) {
  * @return {boolean} True to indicate that the application should not exit.
  * @author Seth Hollingsead
  * @date 2022/02/24
+ * @NOTE When executing the business rule: replaceCharacterWithCharacter with a regular expression such as: regEx:[+]:flags:g
+ * Consider the following link that describes how the regEx & flags are parsed by the lexical.
+ * {@link https://stackoverflow.com/questions/874709/converting-user-input-string-to-regular-expression}
  */
 const businessRule = function(inputData, inputMetaData) {
   let functionName = businessRule.name;
@@ -630,27 +633,24 @@ const businessRule = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentRuleIs + JSON.stringify(currentRuleArg));
     let ruleArgs = [];
     if (i === 1) {
-      rules = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
-    } else if (i === 2 && inputData.length <= 4) {
-      ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
-    } else if (i === 2 && inputData.length > 4) {
-      ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
+      rules = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+    } else if (i === 2) {
+      ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
     } else if (i === 3 && inputData.length <= 4) {
-      ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i, false);
+      ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
     } else if (i === 3 && inputData.length > 4) {
-      console.log('parsing i = 3 & inputData.length > 4');
-      // In this case all of the arguments will have been combined into a single array and added to the ruleInputData.
+      // // In this case all of the arguments will have been combined into a single array and added to the ruleInputData.
       ruleInputMetaData = [];
-      // Save the last two elements as an array to the input data.
-      let tempFinalArg = lexical.parseBusinessRuleArgument(inputData.pop(), i, false);
-      console.log('tempFinalArg is: ' + JSON.stringify(tempFinalArg));
-      let nextToFinalArg = lexical.parseBusinessRuleArgument(inputData.pop(), i, false);
-      console.log('nextToFinalArg is: ' + nextToFinalArg);
-      // ruleInputMetaData.push(nextToFinalArg);
-      ruleInputMetaData[0] = nextToFinalArg;
-      ruleInputMetaData[1] = tempFinalArg;
-      // ruleInputMetaData.push(tempFinalArg);
-    }
+      for (let j = 3; j <= inputData.length - 1; j++) {
+        let currentRuleArrayArg = inputData[j];
+        let tempArg = lexical.parseBusinessRuleArgument(currentRuleArrayArg, j);
+        // console.log('tempArg is: ' + tempArg);
+        if (tempArg) {
+          ruleInputMetaData.push(tempArg);
+        }
+      } // End-for (let j = inputData.length - 1; j > 2; j--)
+      break;
+    } // End-Else-if (i === 3 && inputData.length > 4)
   } // End-for (let i = 1; i < inputData.length; i++)
   // rules is:
   loggers.consoleLog(namespacePrefix + functionName, msg.crulesIs + JSON.stringify(rules));

@@ -6,6 +6,7 @@
  * @requires module:stringParsingUtilities
  * @requires module:basic.constants
  * @requires module:configuration.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
@@ -25,6 +26,7 @@ import stringParsing from './stringParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
 import * as cfg from '../../constants/configuration.constants.js';
+import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';

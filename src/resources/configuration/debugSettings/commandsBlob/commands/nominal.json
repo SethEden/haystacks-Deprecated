@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.commandsBlob.commands.nominal": true,
+  "debugFiles|debugSetting.commandsBlob.commands.nominal": false,
   "debugFiles|debugSetting.commandsBlob.commands.nominal@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.commandsBlob.commands.nominal@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.commandsBlob.commands.nominal@MessageFontStyle": "Underline",
@@ -194,7 +194,7 @@
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRule@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRule@MessageFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRule@DataFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandGenerator": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandGenerator": false,
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandGenerator@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandGenerator@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandGenerator@MessageFontStyle": "Default",

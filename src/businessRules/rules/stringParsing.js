@@ -501,7 +501,7 @@ const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputM
     loggers.consoleLog(namespacePrefix + functionName, msg.cstring2Is + string2);
 
     // Build some arrays of variations on string 2, we will use these for doing the comparisons.
-    let variation0 = array(string2.length + 1).fill(0).map((v, i) => i);
+    let variation0 = Array(string2.length + 1).fill(0).map((v, i) => i);
     let variation1 = Array(string2.length + 1).fill(0);
     loggers.consoleLog(namespacePrefix + functionName, msg.cvariation0ValueIs + variation0);
     loggers.consoleLog(namespacePrefix + functionName, msg.cvariation1ValueIs + variation1);

@@ -373,9 +373,9 @@ const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
  */
 const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData) {
   let functionName = utilitiesReplaceCharacterWithCharacter.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
+  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData;
   let character2Find = inputMetaData[0];
   let character2Replace = inputMetaData[1];
@@ -385,12 +385,12 @@ const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData
     // console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
     returnData = false;
   } else {
-    console.log(`character2Find is: ${JSON.stringify(character2Find)}`);
-    console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
-    returnData = inputData.replace(character2Find, character2Replace);
+    // console.log(`character2Find is: ${JSON.stringify(character2Find)}`);
+    // console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
+    returnData = inputData.replaceAll(character2Find, character2Replace);
   }
-  console.log(`returnData is: ${JSON.stringify(returnData)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 

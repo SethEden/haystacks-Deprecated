@@ -43,25 +43,18 @@ const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @description Parses a single business rule argument and returns it after cleaning it up or
  * doing required operations on it to convert it to valid input for a command as necessary.
  * @param {string|array<string|integer|boolean|object>} argumentValue The value of the argument, could be an array or a string.
- * @param {integer} index The index of the argument (1, 2, 3).
- * @param {boolean} consolidatedArgumentMode A True or False to ndicate if the argument should be parsed in consolidated mode or not.
- * If we are in consolidated mode then all of the arguments will have been passed into the argumentValue input parameter.
- * If we are not in consolidated mode then the contents of argumentValue is specific to the argument index that was passed in.
- * This is necessary, because there are cases where we would want to combine all arguments from 2-n into a single array,
- * which will ultimately be passed as input to the business rule.
+ * @param {integer} index The index of the argument (1, 2, 3, 4).
  * @return {string|array<string|integer|boolean|object>} The value of the argument as it shold be passed into the business rule call.
  * @author Seth Hollingsead
  * @date 2022/02/03
  */
-function parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMode) {
+function parseBusinessRuleArgument(argumentValue, index) {
   let functionName = parseBusinessRuleArgument.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // argumentValue is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueIs + JSON.stringify(argumentValue));
-  // ndex is:
+  // index is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cindexIs + index);
-  // consolidatedArgumentMode is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cconsolidatedArgumentModeIs + consolidatedArgumentMode);
   let returnData;
 
   if (index === 1) {
@@ -69,33 +62,33 @@ function parseBusinessRuleArgument(argumentValue, index, consolidatedArgumentMod
     loggers.consoleLog(namespacePrefix + functionName, msg.cPushingArgumentValueToReturnDataAsArrayElement);
     returnData = [];
     returnData.push(argumentValue);
-  } else if (index === 2 && consolidatedArgumentMode === false) {
-    // Calling analyzeArgument for index = 2, consolidatedArgumentMode = false
-    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeFalse);
-    returnData = analyzeArgument(argumentValue);
-  } else if (index === 2 && consolidatedArgumentMode === true) {
-    // Calling analyzeArgument for index = 2, consolidatedArgumentMode = true
-    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue);
-    if (argumentValue.length > 0) {
-      returnData = [];
-      // argumentValue.length > 0
-      loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueLengthGreaterThanZero);
-      for (let i = 1; i < argumentValue.length; i++) {
-        // Combine all arguments into a single array on the returnData
-        returnData.push(argumentValue[i]);
-      } // End-for (let i = 1; i < argumentValue.length; i++)
-    } else {
-      // Return the argumentValue the same as it was passed in.
-      loggers.consoleLog(namespacePrefix + functionName, msg.cReturnArgumentValueSameAsItWasPassedIn);
-      returnData = argumentValue;
-    }
-  } else if (index === 3 && consolidatedArgumentMode === false) {
-    // Calling analyzeArgument for index = 3, consolidatedArgumentMode = false
-    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex3ConsolidatedArgumentModeFalse);
-    returnData = analyzeArgument(argumentValue);
   } else {
-    // WARNING: lexical.parseBusinessRuleArgument: invalid combination of inputs to the lexical.parseBusinessRuleArgument function! Pleae adjust inputs and try again.
-    console.log(msg.cparseBusinessRuleArgumentMessage1 + msg.cparseBusinessRuleArgumentMessage2);
+    // Calling analyzeArgument for index = 2, consolidatedArgumentMode = false
+    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndexIs + index);
+    returnData = analyzeArgument(argumentValue);
+  // } else if (index === 2 && consolidatedArgumentMode === true) {
+  //   // Calling analyzeArgument for index = 2, consolidatedArgumentMode = true
+  //   loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue);
+  //   if (argumentValue.length > 0) {
+  //     returnData = [];
+  //     // argumentValue.length > 0
+  //     loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueLengthGreaterThanZero);
+  //     for (let i = 1; i < argumentValue.length; i++) {
+  //       // Combine all arguments into a single array on the returnData
+  //       returnData.push(argumentValue[i]);
+  //     } // End-for (let i = 1; i < argumentValue.length; i++)
+  //   } else {
+  //     // Return the argumentValue the same as it was passed in.
+  //     loggers.consoleLog(namespacePrefix + functionName, msg.cReturnArgumentValueSameAsItWasPassedIn);
+  //     returnData = argumentValue;
+  //   }
+  // } else if (index === 3 && consolidatedArgumentMode === false) {
+  //   // Calling analyzeArgument for index = 3, consolidatedArgumentMode = false
+  //   loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex3ConsolidatedArgumentModeFalse);
+  //   returnData = analyzeArgument(argumentValue);
+  // } else {
+  //   // WARNING: lexical.parseBusinessRuleArgument: invalid combination of inputs to the lexical.parseBusinessRuleArgument function! Pleae adjust inputs and try again.
+  //   console.log(msg.cparseBusinessRuleArgumentMessage1 + msg.cparseBusinessRuleArgumentMessage2);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -236,7 +229,14 @@ function parseArgumentAsRegularExpression(argumentValue) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cregExFlagsIs + regExFlags);
     }
   } // End-for (let k = 0; k < regExArray.length; k++)
-  let regularExpression = new RegExp(regExValue, regExFlags);
+  let regularExpression;
+  if (regExValue !== undefined && regExFlags === undefined) {
+    regularExpression = new RegExp(regExValue);
+  } else if (regExValue !== undefined && regExFlags !== undefined) {
+    regularExpression = new RegExp(regExValue, regExFlags);
+  } else {
+    regularExpression = new RegExp(regExValue);
+  }
   returnData = regularExpression;
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
