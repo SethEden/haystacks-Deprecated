@@ -119,8 +119,10 @@ function analyzeArgument(argumentValue) {
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
   removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
 
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
-  if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+  let tertiaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+  if (argumentValue.includes(secondaryCommandArgsDelimiter) === true ||
+  argumentValue.includes(tertiaryCommandArgsDelimiter) === true) {
     // Check if there are brackets or no brackets.
     loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereAreBracketsOrNoBrackets);
     let argsArrayContainsOpenBracket = ruleBroker.processRules(bas.cOpenBracket, argumentValue, argsArrayContainsCharacterRule);
@@ -143,7 +145,7 @@ function analyzeArgument(argumentValue) {
       // There are Brackets, so treat the argument as an array.
       // Brackets ARE found!
       loggers.consoleLog(namespacePrefix + functionName, msg.cBracketsAreFound);
-      returnData = parseArgumentAsArray(arguemntValue);
+      returnData = parseArgumentAsArray(argumentValue);
     }
   } else { // The argumentValue does not contain a secondaryCommandArgsDelimiter
     // NO secondary command argument delimiters.
@@ -258,7 +260,7 @@ function parseArgumentAsArray(argumentValue) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueIs + JSON.stringify(argumentValue));
   let returnData;
   let isArray = false;
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
   let argsArrayContainsCharacterRule = [];
   let removeBracketsFromArgsArrayRule = [];
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
@@ -278,7 +280,7 @@ function parseArgumentAsArray(argumentValue) {
   if (isArray === false) {
     if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
       // argumentValue contains the delimiter, lets split it!
-      loggers.consoleLog(namespacePrefix + functionName, msg.carguemntValueContainsTheDelimiterLetsSplitIt);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
       argumentValue = argumentValue.split(secondaryCommandArgsDelimiter);
     } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
   } // End-if (isArray === false)

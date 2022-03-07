@@ -733,7 +733,7 @@ const commandGenerator = function(inputData, inputMetaData) {
     primaryCommandDelimiter = bas.cSpace;
   }
   let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
-  let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cTertiaryCommandDelimiter);
+  let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
   let commandString = '';
   if (inputData.length === 3) {
     commandString = inputData[1];
@@ -758,12 +758,14 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringBeforeAttemptedDelimiterSwapIs + commandString);
   // replaceCharacterWithCharacterRule is:
   loggers.consoleLog(namespacePrefix + functionName, msg.creplaceCharacterWithCharacterRuleIs + JSON.stringify(replaceCharacterWithCharacterRule));
-  let secondaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + secondaryCommandArgsDelimiter, bas.cg);
-  commandString = ruleBroker.processRules(commandString, [secondaryCommandDelimiterRegEx, primaryCommandDelimiter], replaceCharacterWithCharacterRule);
+  // let secondaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + secondaryCommandArgsDelimiter, bas.cg);
+  let secondaryCommandDelimiterRegEx = new RegExp(`[${secondaryCommandArgsDelimiter}]`, bas.cg);
+  commandString = ruleBroker.processRules(commandString, [secondaryCommandArgsDelimiter, primaryCommandDelimiter], replaceCharacterWithCharacterRule);
   // After attempting to replace the secondaryCommandArgsDelimiter with the primaryCommandDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage1 + commandString);
-  let tertiaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + tertiaryCommandDelimiter, bas.cg);
-  commandString = ruleBroker.processRules(commandString, [tertiaryCommandDelimiterRegEx, secondaryCommandArgsDelimiter], replaceCharacterWithCharacterRule);
+  // let tertiaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + tertiaryCommandDelimiter, bas.cg);
+  let tertiaryCommandDelimiterRegEx = new RegExp(`[${tertiaryCommandDelimiter}]`, bas.cg);
+  commandString = ruleBroker.processRules(commandString, [tertiaryCommandDelimiter, secondaryCommandArgsDelimiter], replaceCharacterWithCharacterRule);
   // After attempting to replace the teriaryCommandDelimiter with the secondaryCommandArgsDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage2 + commandString);
   let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);

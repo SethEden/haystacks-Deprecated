@@ -203,6 +203,7 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   let returnData;
   if (inputData) {
     returnData = inputData.map((key, index) => stringParsing.mapWordToCamelCaseWord(key, index));
+    returnData = returnData.join('');
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
