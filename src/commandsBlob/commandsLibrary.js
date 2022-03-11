@@ -72,7 +72,10 @@ function initCommandsLibrary() {
     [cmd.cbusinessRule]: (inputData, inputMetaData) => nominalCommands.businessRule(inputData, inputMetaData),
     [cmd.ccommandGenerator]: (inputData, inputMetaData) => nominalCommands.commandGenerator(inputData, inputMetaData),
     [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData),
-    [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData)
+    [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData),
+    [cmd.ccommandMetrics]: (inputData, inputMetaData) => nominalCommands.commandMetrics(inputData, inputMetaData),
+    [cmd.csaveConfiguration]: (inputData, inputMetaData) => nominalCommands.saveConfiguration(inputData, inputMetaData),
+    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData)
 
     // ***********************************************
     // Integration Test commands in order

@@ -428,6 +428,10 @@ const printDataHive = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
+  let logFilePathAndName = '';
+  logFilePathAndName = loggers.getLogFileNameAndPath();
+  // logFilePathAndName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.clogFilePathAndNameIs + logFilePathAndName);
   if (inputData && inputData[1].includes(bas.cDot) === true) {
     let dataHivePathArray = inputData[1].split(bas.cDot);
     let leafDataHiveElement = D;
@@ -445,13 +449,17 @@ const printDataHive = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
     }
     console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
+    loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
   } else {
     if (D[inputData[1]] !== undefined) {
       // contents are:
       console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
+      loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
     } else {
       // contents of D are:
       console.log(msg.ccontentsOfDare + JSON.stringify(D));
+      loggers.printMessageToFile(logFilePathAndName, msg.ccontentsOfDare + JSON.stringify(D));
+      // loggers.consoleLog(namespacePrefix + functionName, msg.ccontentsOfDare + JSON.stringify(D));
     }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -677,17 +685,17 @@ const businessRule = function(inputData, inputMetaData) {
     // BusinessRule run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleRunTimeIs + businessRuleDeltaTime);
     // Check to make sure the business rule performance trackign stack exists or does not exist.
-    if (D[cfg.cBusinessRulePerformanceTrackingStack] === undefined) {
-      stack.initStack(cfg.cBusinessRulePerformanceTrackingStack);
+    if (D[cfg.cbusinessRulesPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.cbusinessRulesPerformanceTrackingStack);
     }
-    if (D[cfg.cBusinessRuleNamesPerformanceTrackingStack] === undefined) {
-      stack.initStack(cfg.cBusinessRuleNamesPerformanceTrackingStack);
+    if (D[cfg.cbusinessRulesNamesPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.cbusinessRulesNamesPerformanceTrackingStack);
     }
     performanceTrackingObject = {Name: rules[0], RunTime: businessRuleDeltaTime};
-    if (stack.contains(cfg.cBusinessRuleNamesPerformanceTrackingStack, rules[0]) === false) {
-      stack.push(cfg.cBusinessRuleNamesPerformanceTrackingStack, rules[0]);
+    if (stack.contains(cfg.cbusinessRulesNamesPerformanceTrackingStack, rules[0]) === false) {
+      stack.push(cfg.cbusinessRulesNamesPerformanceTrackingStack, rules[0]);
     }
-    stack.push(cfg.cBusinessRulePerformanceTrackingStack, performanceTrackingObject);
+    stack.push(cfg.cbusinessRulesPerformanceTrackingStack, performanceTrackingObject);
     // stack.print(cfg.cBusinessRulePerformanceTrackingStack);
     // stack.print(cfg.cBusinessRuleNamesPerformanceTrackingStack);
   } // End-if (businessRuleMetricsEnabled === true)
@@ -942,9 +950,8 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
   let returnData = true;
   let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
   if (businessRuleMetricsEnabled === true) {
-    console.log('businessRulesMetricsEnabled === true');
     let businessRuleCounter = 0;
-    let busienssRulePerformanceSum = 0;
+    let businessRulePerformanceSum = 0;
     let businessRulePerformanceStdSum = 0;
     let average = 0;
     let standardDev = 0;
@@ -983,7 +990,7 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
       } // End-for (let k = 0; k < stack.length(cfg.cBusinessRulePerformanceTrackingStack); k++)
       // DONE! businessRulePerformanceStdSum is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoneBusinessRulePerformanceStdSumIs + businessRulePerformanceStdSum);
-      standardDev = math.sqrt(businessRulePerformanceStdSum / busienssRuleCounter);
+      standardDev = math.sqrt(businessRulePerformanceStdSum / businessRuleCounter);
       // standardDev is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cstandardDevIs + standardDev);
       if (D[cfg.cbusinessRulesPerformanceAnalysisStack] === undefined) {
@@ -999,9 +1006,150 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
       stack.clearStack(cfg.cbusinessRulesPerformanceTrackingStack);
       stack.clearStack(cfg.cbusinessRulesNamesPerformanceTrackingStack);
     }
-  } else {
-    console.log('businessRulesMetricsEnabled === false');
   } // End-if (businessRuleMetricsEnabled === true)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function commandMetrics
+ * @description A command to compute command metrics for each of the commands that were called in a sequence of call(s) or workfow(s).
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ */
+const commandMetrics = function(inputData, inputMetaData) {
+  let functionName = commandMetrics.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableCommandPerformanceMetrics);
+  if (commandMetricsEnabled === true) {
+    let commandCounter = 0;
+    let commandPerformanceSum = 0;
+    let commandPerformanceStdSum = 0;
+    let average = 0;
+    let standardDev = 0;
+    // Here we iterate over all of the commands that were added to the cfg.ccommandsPerformanceTrackingStack.
+    for (let i = 0; i < stack.length(cfg.ccommandNamesPerformanceTrackingStack); i++) {
+      commandCounter - 0;
+      commandPerformanceSum = 0;
+      commandPerformanceStdSum = 0;
+      average = 0;
+      standardDev = 0;
+      // Here we will now iterate over all of the contents of all the command performance numbers and
+      // do the necessary math for each command according to the parent loop.
+      let currentCommandName = D[cfg.ccommandNamesPerformanceTrackingStack][i];
+      for (let j = 0; j < stack.length(cfg.ccommandsPerformanceTrackingStack); j++) {
+        if (D[cfg.ccommandsPerformanceTrackingStack][j][wr1.cName] === currentCommandName) {
+          commandCounter = commandCounter + 1;
+          // commandCounter is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.ccommandCounterIs + commandCounter);
+          commandPerformanceSum = commandPerformanceSum + D[cfg.ccommandsPerformanceTrackingStack][j][sys.cRunTime];
+          // commandPerformanceSum is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.ccommandPerformanceSumIs + commandPerformanceSum);
+        } // End-if (D[cfg.ccommandsPerformanceTrackingStack][j][wr1.cName] === currentCommandName)
+      } // End-for (let j = 0; j < stack.length(cfg.ccommandsPerformanceTrackingStack); j++)
+      // DONE! commandPerformanceSum is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cDoneCommandPerformanceSumIs + commandPerformanceSum);
+      average = commandPerformanceSum / commandCounter;
+      // average is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.caverageIs + average);
+      // Now go back through them allso we can compute the standard deviation.
+      for (let k = 0; k < stack.length(cfg.ccommandsPerformanceTrackingStack); k++) {
+        if (D[cfg.ccommandsPerformanceTrackingStack][k][wr1.cName] === currentCommandName) {
+          commandPerformanceStdSum = commandPerformanceStdSum + math.pow((D[cfg.ccommandsPerformanceTrackingStack][k][sys.cRunTime] - average), 2);
+          // commandPerformanceStdSum is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.ccommandPerformanceStdSumIs + commandPerformanceStdSum);
+        } // End-if (D[cfg.ccommandsPerformanceTrackingStack][k][wr1.cName] === currentCommandName)
+      } // End-for (let k = 0; k < stack.length(cfg.ccommandsPerformanceTrackingStack); k++)
+      // DONE! commandPerformanceStdSum is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cDoneCommandPerformanceStdSumIs + commandPerformanceStdSum);
+      standardDev = math.sqrt(commandPerformanceStdSum / commandCounter);
+      // standardDev is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cstandardDevIs + standardDev);
+      if (D[cfg.ccommandsPerformanceAnalysisStack] === undefined) {
+        stack.initStack(cfg.ccommandsPerformanceAnalysisStack);
+      }
+      stack.push(cfg.ccommandsPerformanceAnalysisStack, {Name: currentCommandName, Average: average, StandardDeviation: standardDev});
+    } // End-for (let i = 0; i < stack.length(cfg.ccommandNamesPerformanceTrackingStack); i++)
+    loggers.consoleTableLog('', D[cfg.ccommandsPerformanceAnalysisStack], [wr1.cName, wr1.cAverage, sys.cStandardDeviation]);
+    stack.clearStack(cfg.ccommandsPerformanceAnalysisStack);
+    // We need to have a flag that will enable the user to determine if the data should be cleared afer the analysis is complete.
+    // It might be that the user wants to do something else with this data in memory after it's done.
+    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true) {
+      stack.clearStack(cfg.ccommandsPerformanceTrackingStack);
+      stack.clearStack(cfg.ccommandNamesPerformanceTrackingStack);
+    }
+  } // End-if (commandMetricsEnabled === true)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function saveConfiguration
+ * @description Saves out all of the configuration data to a JSON file so custom user settings can be persisted between sessions.
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ */
+const saveConfiguration = function(inputData, inputMetaData) {
+  let functionName = saveConfiguration.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  dataBroker.writeJsonDataToFile(configurator.getConfigurationSetting(wr1.csystem, cfg.cappConfigPath) + wr1.cconfig + gen.cDotjson, JSON.stringify(D));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function convertColors
+ * @description Converts all of the color hexidecimal values into RGB color values.
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ * @reference {@Link: https://github.com/paularmstrong/normalizr/issues/15}
+ */
+export const convertColors = function(inputData, inputMetaData) {
+  let functionName = convertColors.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let colorConvertionRule = [];
+  colorConvertionRule[0] = biz.creplaceCharacterWithCharacter;
+  colorConvertionRule[1] = biz.chex2rgbConversion;
+
+  let colorKeys = Object.keys(D[sys.cColors][sys.cColorData]);
+  // colorKeys is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccolorKeysIs + JSON.stringify(colorKeys));
+  for (let i = 0; i < colorKeys.length; i++) {
+    let currentColorName = colorKeys[i];
+    // currentColorName is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorNameIs + currentColorName);
+    let currentColorObject = D[wr1.cColors][sys.cColorData][currentColorName];
+    // currentColorObject is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorObjectIs + JSON.stringify(currentColorObject));
+    let currentColorHexValue = currentCoorObject[sys.cHexValue];
+    // currentColorHexValue is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorHexValueIs + currentColorHexValue);
+    let ruleOutput = ruleBroker.processRules(currentColorHexValue, [bas.cHash, ''], colorConvertionRule);
+    // ruleOutput is:
+    loggers.console(namespacePrefix + functionName, msg.cruleOutputIs + ruleOutput);
+    console.log(currentColorName + bas.cComa + currentColorHexValue + bas.cComa + ruleOutput[0] + bas.cComa + ruleOutput[1] + bas.cComa + ruleOutput[2]);
+  } // End-for (let i = 0; i < colorKeys.length; i++)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -1024,5 +1172,8 @@ export default {
   businessRule,
   commandGenerator,
   commandAliasGenerator,
-  businessRulesMetrics
+  businessRulesMetrics,
+  commandMetrics,
+  saveConfiguration,
+  convertColors
 };

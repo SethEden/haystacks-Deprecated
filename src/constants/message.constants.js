@@ -507,7 +507,7 @@ export const centityIs = wr1.centity + sys.cSpaceIsColonSpace; // entity is:
 export const cqueueNameSpaceIs = wr1.cqueue + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // queueNameSpace Is:
 export const cstackNameSpaceIs = wr1.cstack + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // stackNameSpace Is:
 export const cWarningStackColon = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cStack + bas.cColon + bas.cSpace; // WARNING: Stack:
-export const cAlreadyExists = wr1.cALREADY + bas.cSpace + wr1.cexist + bas.cExclamation; // ALREADY exist!
+export const cAlreadyExists = bas.cSpace + wr1.cALREADY + bas.cSpace + wr1.cexist + bas.cExclamation; // ALREADY exist!
 export const cdoesNotExist = bas.cSpace + wr1.cdoes + bas.cSpace + gen.cnot + bas.cSpace + wr1.cexist + bas.cExclamation; // does not exist!
 export const cisEmpty = bas.cSpace + bas.cis + bas.cSpace + wr1.cempty + bas.cExclamation; // is empty!
 export const cContentsOfTheStackNamespace = wr1.cContents + bas.cSpace + bas.cof + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cstack + bas.cSpace + wr1.cname + wr1.cspace + bas.cColon + bas.cSpace; // Contents of the stack namespace:
@@ -547,6 +547,9 @@ export const cclassPathIs = wr1.cclass + wr1.cPath + sys.cSpaceIsColonSpace; // 
 export const cargsArrayContainsRegEx1Is = gen.cargs + wr1.cArray + wr1.cContains + wr1.cRegEx + num.c1 + sys.cSpaceIsColonSpace; // argsArrayContainsRegEx1 is:
 export const cargsArrayContainsRegEx2Is = gen.cargs + wr1.cArray + wr1.cContains + wr1.cRegEx + num.c2 + sys.cSpaceIsColonSpace; // argsArrayContainsRegEx2 is:
 export const cargsArrayContainsColonIs = gen.cargs + wr1.cArray + wr1.cContains + wr1.cColon + sys.cSpaceIsColonSpace; // argsArrayContainsColon is:
+export const cfileToSaveToIs = wr1.cfile + wr1.cTo + wr1.cSave + wr1.cTo + sys.cSpaceIsColonSpace; // fileToSaveTo is:
+export const cdataToWriteOutIs = wr1.cdata + wr1.cTo + wr1.cWrite + wr1.cOut + sys.cSpaceIsColonSpace; // dataToWriteOut is:
+export const clogFilePathAndNameIs = gen.clog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName + sys.cSpaceIsColonSpace; // logFilePathAndName is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

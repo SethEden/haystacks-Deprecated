@@ -469,6 +469,24 @@ function preprocessJsonFile(fileToLoad) {
 };
 
 /**
+ * @function writeJsonDataToFile
+ * @description This is a wrapper function for fileOperations.writeJsonData.
+ * @param {string} fileToSaveTo The full path to the file that should have the data written to it.
+ * @param {object} dataToWriteOut The JSON data that should be written out to the specified JSON file.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ */
+function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
+  let functionName = writeJsonDataToFile.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
+  fileOperations.writeJsonData(fileToSaveTo, path.resolve(dataToWriteOut));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
  * @function setupDataStorage
  * @description Does the initial setup of data storage on the D data structure.
  * @return {void} Nothing to return.
@@ -841,6 +859,7 @@ export default {
   [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
   [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
+  [fnc.cwriteJsonDataToFile]: (fileToSaveTo, dataToWriteOut) => writeJsonDataToFile(fileToSaveTo, dataToWriteOut),
   [fnc.csetupDataStorage]: () => setupDataStorage(),
   [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
   [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),

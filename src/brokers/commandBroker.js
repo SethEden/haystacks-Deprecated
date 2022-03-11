@@ -369,13 +369,13 @@ function executeCommand(commandString) {
   // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   let returnData = false;
-  let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter));
+  let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter));
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
-  let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter));
+  let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter));
   // commandArgs is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandArgsIs + commandArgs);
-  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableCommandPerformanceMetrics);
+  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableCommandPerformanceMetrics);
   let commandStartTime = '';
   let commandEndTime = '';
   let commandDeltaTime = '';
@@ -411,19 +411,19 @@ function executeCommand(commandString) {
     // Command run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandRunTimeIs + commandDeltaTime);
     // Check to make sure the command performance tracking stack exists or does not exist.
-    if (D[cfg.cCommandPerformanceTrackingStack] === undefined) {
-      stack.initStack(cfg.cCommandPerformanceTrackingStack);
+    if (D[cfg.ccommandsPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.ccommandsPerformanceTrackingStack);
     }
-    if (D[cfg.cCommandNamesPerformanceTrackingStack] === undefined) {
-      stack.initStack(cfg.cCommandNamesPerformanceTrackingStack);
+    if (D[cfg.ccommandNamesPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.ccommandNamesPerformanceTrackingStack);
     }
     performanceTrackingObject = {Name: commandToExecute, RunTime: commandDeltaTime};
-    if (stack.contains(cfg.cCommandNamesPerformanceTrackingStack, commandToExecute) === false) {
-      stack.push(cfg.cCommandNamesPerformanceTrackingStack, commandToExecute);
+    if (stack.contains(cfg.ccommandNamesPerformanceTrackingStack, commandToExecute) === false) {
+      stack.push(cfg.ccommandNamesPerformanceTrackingStack, commandToExecute);
     }
-    stack.push(cfg.cCommandPerformanceTrackingStack, performanceTrackingObject);
-    // stack.print(cfg.cCommandNamesPerformanceTrackingStack);
-    // stack.print(cfg.cCommandPerformanceTrackingStack);
+    stack.push(cfg.ccommandsPerformanceTrackingStack, performanceTrackingObject);
+    // stack.print(cfg.ccommandNamesPerformanceTrackingStack);
+    // stack.print(cfg.ccommandsPerformanceTrackingStack);
   } // End-if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

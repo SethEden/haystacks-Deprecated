@@ -61,6 +61,14 @@ export const ctertiaryCommandDelimiter = wr1.ctertiary + wr1.cCommand + wr1.cDel
 export const cenableBusinessRuleOutput = wr1.cenable + wr1.cBusiness + wr1.cRule + wr1.cOutput; // enableBusinessRuleOutput
 export const cenableBusinessRulePerformanceMetrics = wr1.cenable + wr1.cBusiness + wr1.cRule + wr1.cPerformance + wr1.cMetrics; // cenableBusinessRulePerformanceMetrics
 export const cbusinessRulesNamesPerformanceTrackingStack = wr1.cbusiness + wr1.cRules + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // businessRulesNamesPerformanceTrackingStack
+export const cbusinessRulesPerformanceTrackingStack = wr1.cbusiness + wr1.cRules + wr1.cPerformance + wr1.cTracking + wr1.cStack; // businessRulesPerformanceTrackingStack
+export const cbusinessRulesPerformanceAnalysisStack = wr1.cbusiness + wr1.cRules + wr1.cPerformance + wr1.cAnalysis + wr1.cStack; // businessRulesPerformanceAnalysisStack
+export const cenableCommandPerformanceMetrics = wr1.cenable + wr1.cCommand + wr1.cPerformance + wr1.cMetrics; // enableCommandPerformanceMetrics
+export const ccommandNamesPerformanceTrackingStack = wr1.ccommand + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // commandNamesPerformanceTrackingStack
+export const ccommandsPerformanceTrackingStack = wr1.ccommands + wr1.cPerformance + wr1.cTracking + wr1.cStack; // commandsPerformanceTrackingStack
+export const ccommandsPerformanceAnalysisStack = wr1.ccommands + wr1.cPerformance + wr1.cAnalysis + wr1.cStack; // commandsPerformanceAnalysisStack
+export const cclearBusinessRulesPerformanceDataAfterAnalysis = wr1.cclear + wr1.cBusiness + wr1.cRules + wr1.cPerformance + wr1.cData + wr1.cAfter + wr1.cAnalysis; // clearBusinessRulesPerformanceDataAfterAnalysis
+export const cclearCommandPerformanceDataAfterAnalysis = wr1.cclear + wr1.cCommand + wr1.cPerformance + wr1.cData + wr1.cAfter + wr1.cAnalysis; // clearCommandPerformanceDataAfterAnalysis
 
 // Test Time Tracking
 export const cBeginDateTimeStamp = wr1.cBegin + sys.cDateTimeStamp; // BeginDateTimeStamp

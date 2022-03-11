@@ -10,6 +10,7 @@
  * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:loggers
  * @requires module:data
@@ -27,6 +28,7 @@ import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
@@ -169,7 +171,7 @@ function writeJsonData(pathAndFilename, dataToWrite) {
     console.error(sys.cERROR_Colon + err);
   }
   // Data was written to the file;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cDataWasWrittenToTheFile, outputSuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cDataWasWrittenToTheFile + pathAndFilename);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

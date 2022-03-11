@@ -70,16 +70,17 @@ function consoleLog(classPath, message) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       // console.log(`classPath is: ${classPath}`);
       // console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
-      if (logFile !== undefined) {
-        logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
-        // console.log(`Logfile before path.resolve is: ${logFile}`);
-        logFile = path.resolve(logFile);
-        // console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
-        logFile = path.resolve(logFile);
-        // console.log(`logFile after adding the log filename: ${logFile}`);
-      }
+      // let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
+      // if (logFile !== undefined) {
+      //   logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
+      //   // console.log(`Logfile before path.resolve is: ${logFile}`);
+      //   logFile = path.resolve(logFile);
+      //   // console.log(`Logfile after path.resolve is: ${logFile}`);
+      //   logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+      //   logFile = path.resolve(logFile);
+      //   // console.log(`logFile after adding the log filename: ${logFile}`);
+      // }
+      let logFile = getLogFileNameAndPath();
 
       let debugFunctionSetting = false;
       let debugFileSetting = false;
@@ -291,6 +292,33 @@ function parseClassPath(logFile, classPath, message) {
 };
 
 /**
+ * @function getLogFileNameAndPath
+ * @description Determines, using configuration settings what the log file name and path should be.
+ * @return {string} The full path and file name for the log file.
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ */
+function getLogFileNameAndPath() {
+  let functionName = getLogFileNameAndPath.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  let returnData = '';
+  let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
+  if (logFile !== undefined) {
+    logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
+    // console.log(`Logfile before path.resolve is: ${logFile}`);
+    logFile = path.resolve(logFile);
+    // console.log(`Logfile after path.resolve is: ${logFile}`);
+    logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+    logFile = path.resolve(logFile);
+    // console.log(`logFile after adding the log filename: ${logFile}`);
+  }
+  returnData = logFile;
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
  * @function printMessageToFile
  * @description Prints a message to a log/text file.
  * @param {string} file The file path and file name where message data should be printed.
@@ -334,5 +362,7 @@ function printMessageToFile(file, message) {
 
 export default {
   [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
-  [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames)
+  [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames),
+  [fnc.cgetLogFileNameAndPath]: () => getLogFileNameAndPath(),
+  [fnc.cprintMessageToFile]: (file, message) => printMessageToFile(file, message)
 };

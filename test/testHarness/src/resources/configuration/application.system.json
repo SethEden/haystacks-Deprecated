@@ -14,5 +14,8 @@
   "system.tertiaryCommandDelimiter": "|",
   "system.enableBusinessRuleOutput": true,
   "system.enableBusinessRulePerformanceMetrics": true,
+  "system.enableCommandPerformanceMetrics": true,
+  "system:clearBusinessRulesPerformanceDataAfterAnalysis": true,
+  "system:clearCommandPerformanceDataAfterAnalysis": true,
   "system.AppSetting": "TrunkMonkey"
 }
