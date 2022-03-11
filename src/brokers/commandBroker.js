@@ -271,7 +271,7 @@ function getCommandArgs(commandString, commandDelimiter) {
                 // We are on the odd index, 1, 3, 5, etc...
                 // odd index
                 loggers.consoleLog(namespacePrefix + functionName, msg.coddIndex);
-                commandString = ruleBroker.processRules(commandString, [indexOfStringDelimier, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
+                commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
                 stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an odd string delimiter:
                 loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnOddStringDelimiter + commandString);

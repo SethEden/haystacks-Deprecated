@@ -312,7 +312,7 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
       if (addMinimum === true) {
         returnData = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
       } else {
-        returnData = Math.floor(MAth.random() * (maximum - minimum + 1));
+        returnData = Math.floor(Math.random() * (maximum - minimum + 1));
       }
     } else {
       if (addMinimum === true) {

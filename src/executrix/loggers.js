@@ -244,9 +244,7 @@ function parseClassPath(logFile, classPath, message) {
   let debugFunctionsSetting = false;
   let debugFilesSetting = false;
   let classPathArray = {};
-  let rules = [];
   let returnData = '';
-  rules[0] = biz.creplaceDoublePercentWithMessage;
 
   configurationName = configurator.processConfigurationNameRules(classPath);
   // console.log(`configurationName is: ${configurationName}`);

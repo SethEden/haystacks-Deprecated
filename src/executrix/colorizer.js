@@ -121,8 +121,6 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
   let aggregateDataFontBackgroundColorSetting = {};
   let aggregateUnderlineBoldArray = [];
   let messageBrokenDown = [];
-  let rules = [];
-  rules[0] = sys.creplaceDoublePercentWithmessage;
 
   // debugFunctionsSetting = configurator.getConfigurationSetting(cfg.cdebugSetting + bas.cDot + configurationNamespace, configurationName);
 

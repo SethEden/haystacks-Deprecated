@@ -1022,6 +1022,7 @@ export const civid = bas.ci + cvid; // ivid
 export const cake = bas.cak + bas.ce; // ake
 export const caze = bas.caz + bas.ce; // aze
 export const cany = bas.can + bas.cy; // any
+export const cAny = bas.cAn + bas.cy; // Any
 export const caize = bas.cai + bas.cze; // aize
 export const ctee = bas.cte + bas.ce; // tee
 export const carin = bas.car + bas.cin; // arin
@@ -1115,6 +1116,7 @@ export const cses = bas.cse + bas.cs; // ses
 export const cSes = bas.cSe + bas.cs; // Ses
 export const ccla = bas.ccl + bas.ca; // cla
 export const cCla = bas.cCl + bas.ca; // Cla
+export const cped = bas.cpe + bas.cd; // ped
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

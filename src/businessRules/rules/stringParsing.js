@@ -8,6 +8,7 @@
  * with values of all kinds, and various parsing operations.
  * Excluding functions that cannot use the loggers.
  * @requires module:arrayParsing
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
  * @requires module:generic.constants
  * @requires module:message.constants
@@ -23,6 +24,7 @@
 
 // Internal imports
 import arrayParsing from './arrayParsing.js';
+import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
@@ -965,11 +967,9 @@ const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
  * @return {string} A string that has been simplified and consolidated by converting to lower case, removign all digits, symbols and white space.
  * @author Seth Hollingsead
  * @date 2022/01/23
- * @NOTE I think this function is not completely working as expected, probably soemthing to do with that regular expression.
+ * @NOTE I think this function is not completely working as expected, probably something to do with that regular expression.
  * Input was: 11UpberDriver321CodeClearance0x#0000FF-akaBlue
- * Output was: 11upberdriver321codeclearance0x0000ffakablue
- * As you can see tehre are stil some numbers coming through.
- * Might need to revisit this one when time allows, and if there is ever a business need again.
+ * Output was: upberdrivercodeclearanceffakablue
  */
 const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   let functionName = simplifyAndConsolidateString.name;
@@ -978,7 +978,9 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
-    returnData = _.replace(inputData.toLowerCase(), /[\W]/g, '');
+    // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
+    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData.toLowerCase().trim(), [/[^\w\s]/g, '']);
+    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(returnData, [/[\0-9]/g, '']);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -1906,18 +1908,18 @@ const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
  * @function removeXnumberOfFoldersFromEndOfPath
  * @description Removes X number of folders from the end of a path and returns the newly modified path.
  * @param {string} inputData The path that should have the number of folders removed.
- * @param {integer} inputMetData The number of paths that should be removed from the input path.
+ * @param {integer} inputMetaData The number of paths that should be removed from the input path.
  * @return {string} The modified string with the folders removed from the input path.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
+const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
   let functionName = removeXnumberOfFoldersFromEndOfPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = '';
-  if (inputData && math.isNumeric(inputMetaData) === true) {
+  let returnData = inputData; // assign it to something so it shouldn't resolve as false, unless it gets set to false.
+  if (inputData && stringParsingUtilities.isInteger(inputMetaData) === true) {
     let pathArray;
     let pathAsForwardSlash;
     if (inputData.includes(bas.cForwardSlash) === true) {
@@ -1966,7 +1968,7 @@ const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
 
 /**
  * @function getFirstTopLevelFolderFromPath
- * @description Takes a path and  returns the folder at the farthest right of that path.
+ * @description Takes a path and returns the folder at the farthest right of that path.
  * @param {string} inputData The path that should be evaluated.
  * @param {string} inputMetaData Not used fore this business rule.
  * @return {string} The folder at the far-right of the input path.
@@ -1990,7 +1992,7 @@ const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
     }
     if (returnData !== false) {
       // pathArray is:
-      loggers.consoleLog(namespace + functionName, msg.cpathArrayIs + JSON.stringify(pathArray));
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpathArrayIs + JSON.stringify(pathArray));
       returnData = pathArray[pathArray.length - 2];
     } // End-if (returnData !== false)
   } // End-if (inputData)
