@@ -71,7 +71,8 @@ function initCommandsLibrary() {
     [cmd.cclearDataStorage]: (inputData, inputMetaData) => nominalCommands.clearDataStorage(inputData, inputMetaData),
     [cmd.cbusinessRule]: (inputData, inputMetaData) => nominalCommands.businessRule(inputData, inputMetaData),
     [cmd.ccommandGenerator]: (inputData, inputMetaData) => nominalCommands.commandGenerator(inputData, inputMetaData),
-    [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData)
+    [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData),
+    [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData)
 
     // ***********************************************
     // Integration Test commands in order

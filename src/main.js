@@ -72,6 +72,8 @@ const {NODE_ENV} = process.env;
 */
 function initFramework(clientConfiguration) {
  let functionName = initFramework.name;
+
+ console.log('cmd.cbusinessRulesMetrics resolves as: ' + cmd.cbusinessRulesMetrics)
  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
  // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);

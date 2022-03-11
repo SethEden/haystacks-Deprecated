@@ -33,6 +33,7 @@ export const cclearDataStorage = wr1.cclear + wr1.cData + wr1.cStorage; // clear
 export const cbusinessRule = wr1.cbusiness + wr1.cRule; // businessRule
 export const ccommandGenerator = wr1.ccommand + wr1.cGenerator; // commandGenerator
 export const ccommandAliasGenerator = wr1.ccommand + wr1.cAlias + wr1.cGenerator; // commandAliasGenerator
+export const cbusinessRulesMetrics = wr1.cbusiness + wr1.cRules + wr1.cMetrics; // businessRulesMetrics
 
 // ********************************
 // System defined workflows

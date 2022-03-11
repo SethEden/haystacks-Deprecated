@@ -934,21 +934,22 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/03/03
  */
-export const businessRulesMetrics = function(inputData, inputMetaData) {
+const businessRulesMetrics = function(inputData, inputMetaData) {
   let functionName = businessRulesMetrics.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let busienssRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
+  let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
   if (businessRuleMetricsEnabled === true) {
+    console.log('businessRulesMetricsEnabled === true');
     let businessRuleCounter = 0;
     let busienssRulePerformanceSum = 0;
     let businessRulePerformanceStdSum = 0;
     let average = 0;
     let standardDev = 0;
     // Here we iterate over all of the business rules that were added to the sys.cBusinessRulePerformanceTrackingStack.
-    for (let i = 0; i < stack.length(cfg.cBusinessRulesNamesPerformanceTrackingStack); i++) {
+    for (let i = 0; i < stack.length(cfg.cbusinessRulesNamesPerformanceTrackingStack); i++) {
       businessRuleCounter = 0; // Reset it to zero, because we are beginning again with another busienss rule name.
       businessRulePerformanceSum = 0;
       businessRulePerformanceStdSum = 0;
@@ -956,13 +957,13 @@ export const businessRulesMetrics = function(inputData, inputMetaData) {
       standardDev = 0;
       // Here we will not iterate over all of the contents of all of the busienss rule performance numbers and
       // do the necessary math for each business rule according to the parent loop.
-      let currentBusinessRuleName = D[cfg.cBusinessRuleNamesPerformanceTrackingStack][i];
-      for (let j = 0; j < stack.length(cfg.cBusinessRulePerformanceTrackingStack); j++) {
-        if (D[cfg.cBusinessRulePerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName) {
+      let currentBusinessRuleName = D[cfg.cbusinessRulesNamesPerformanceTrackingStack][i];
+      for (let j = 0; j < stack.length(cfg.cbusinessRulesPerformanceTrackingStack); j++) {
+        if (D[cfg.cbusinessRulesPerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName) {
           businessRuleCounter = businessRuleCounter + 1;
           // businessRuleCounter is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRuleCounterIs + businessRuleCounter);
-          businessRulePerformanceSum = businessRulePerformanceSum + D[cfg.cBusinessRulePerformanceTrackingStack][j][sys.cRunTime];
+          businessRulePerformanceSum = businessRulePerformanceSum + D[cfg.cbusinessRulesPerformanceTrackingStack][j][sys.cRunTime];
           // businessRulePerformanceSum is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulePerformanceSumIs + businessRulePerformanceSum);
         } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName)
@@ -973,9 +974,9 @@ export const businessRulesMetrics = function(inputData, inputMetaData) {
       // average is:
       loggers.consoleLog(namespacePrefix + functionName, msg.caverageIs + average);
       // Now go back through them all so we can compute the standard deviation.
-      for (let k = 0; k < stack.length(cfg.cBusinessRulePerformanceTrackingStack); k++) {
-        if (D[cfg.cBusinessRulePerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName) {
-          businessRulePerformanceStdSum = businessRulePerformanceStdSum + math.pow((D[cfg.cBusinessRulePerformanceTrackingStack][k][sys.cRunTime] - average), 2);
+      for (let k = 0; k < stack.length(cfg.cbusinessRulesPerformanceTrackingStack); k++) {
+        if (D[cfg.cbusinessRulesPerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName) {
+          businessRulePerformanceStdSum = businessRulePerformanceStdSum + math.pow((D[cfg.cbusinessRulesPerformanceTrackingStack][k][sys.cRunTime] - average), 2);
           // businessRulePerformanceStdSum is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulePerformanceStdSumIs + businessRulePerformanceStdSum);
         } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName)
@@ -985,19 +986,21 @@ export const businessRulesMetrics = function(inputData, inputMetaData) {
       standardDev = math.sqrt(businessRulePerformanceStdSum / busienssRuleCounter);
       // standardDev is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cstandardDevIs + standardDev);
-      if (D[cfg.cBusinessRulesPerformanceAnalysisStack] === undefined) {
-        stack.initStack(cfg.cBusinessRulesPerformanceAnalysisStack);
+      if (D[cfg.cbusinessRulesPerformanceAnalysisStack] === undefined) {
+        stack.initStack(cfg.cbusinessRulesPerformanceAnalysisStack);
       }
-      stack.push(cfg.cBusinessRulesPerformanceAnalysisStack, {Name: currentBusinessRuleName, Average: average, StandardDeviation: standardDev});
+      stack.push(cfg.cbusinessRulesPerformanceAnalysisStack, {Name: currentBusinessRuleName, Average: average, StandardDeviation: standardDev});
     } // End-for (let i = 0; i < stack.length(cfg.cBusinessRulesNamesPerformanceTrackingStack); i++)
-    loggers.consoleTableLog('', D[cfg.cBusinessRulesPerformanceAnalysisStack], [wr1.cName, wr1.cAverage, sys.cStandardDeviation]);
-    stack.clearStack(cfg.cBusinessRulesPerformanceAnalysisStack);
+    loggers.consoleTableLog('', D[cfg.cbusinessRulesPerformanceAnalysisStack], [wr1.cName, wr1.cAverage, sys.cStandardDeviation]);
+    stack.clearStack(cfg.cbusinessRulesPerformanceAnalysisStack);
     // We need to have a flag that will enable the user to determine if the data should be cleared after the analysis is complete.
     // It might be that the user wants to do somethign else with this data in memory after it's done.
     if (configurator.getConfigurationSetting(wr1.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true) {
-      stack.clearStack(cfg.cBusinessRulePerformanceTrackingStack);
-      stack.clearStack(cfg.cBusinessRuleNamesPerformanceTrackingStack);
+      stack.clearStack(cfg.cbusinessRulesPerformanceTrackingStack);
+      stack.clearStack(cfg.cbusinessRulesNamesPerformanceTrackingStack);
     }
+  } else {
+    console.log('businessRulesMetricsEnabled === false');
   } // End-if (businessRuleMetricsEnabled === true)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -1020,5 +1023,6 @@ export default {
   clearDataStorage,
   businessRule,
   commandGenerator,
-  commandAliasGenerator
+  commandAliasGenerator,
+  businessRulesMetrics
 };

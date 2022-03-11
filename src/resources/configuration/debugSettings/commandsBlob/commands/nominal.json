@@ -219,5 +219,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandAliasGenerator@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandAliasGenerator@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandAliasGenerator@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandAliasGenerator@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.commandAliasGenerator@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.businessRulesMetrics@DataFontBackgroundColor": "Black"
 }
