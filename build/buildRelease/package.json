@@ -1,0 +1,11 @@
+{
+  "name": "buildrelease",
+  "version": "0.0.1",
+  "description": "A build application that leverages the haystacks platform to self-build and self-deploy the haystacks npm package.",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Seth Hollingsead",
+  "license": "MIT"
+}
