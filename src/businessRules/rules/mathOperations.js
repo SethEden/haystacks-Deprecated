@@ -40,7 +40,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + 
  * @reference {@link: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb}
  */
 export const hex2rgbConversion = function(inputData, inputMetaData) {
-  let functionName = generateRandomMixedCaseTextByLength.name;
+  let functionName = hex2rgbConversion.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
@@ -69,7 +69,7 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
     let red = (bigInteger >> 16) & 255;
     let green = (bigInteger >> 8) & 255;
     let blue = bigInteger & 255;
-    returnData = [red, geen, blue];
+    returnData = [red, green, blue];
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

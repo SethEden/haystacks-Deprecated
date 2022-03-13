@@ -15,7 +15,8 @@
   "system.enableBusinessRuleOutput": true,
   "system.enableBusinessRulePerformanceMetrics": true,
   "system.enableCommandPerformanceMetrics": true,
-  "system:clearBusinessRulesPerformanceDataAfterAnalysis": true,
-  "system:clearCommandPerformanceDataAfterAnalysis": true,
+  "system.clearBusinessRulesPerformanceDataAfterAnalysis": true,
+  "system.clearCommandPerformanceDataAfterAnalysis": true,
+  "system.printDataHiveToLogFile": true,
   "system.AppSetting": "TrunkMonkey"
 }

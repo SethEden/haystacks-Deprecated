@@ -94,4 +94,7 @@
   <Workflow Name="generateInvalidEmailb" Value="cmdgen bizRul,generateInvalidEmail,100 10"/>
   <Workflow Name="stringGeneration" Value="cmdSeq wrkflo,generateRandomMixedCaseTextByLength wrkflo,generateRandomUpperCaseTextByLength wrkflo,generateRandomLowerCaseTextByLength wrkflo,generateRandomMixedCaseTextWithSpecialCharactersByLength wrkflo,generateRandomUpperCaseTextWithSpecialCharactersByLength wrkflo,generateRandomLowerCaseTextWithSpecialCharactersByLength wrkflo,generateRandomMixedCaseAlphaNumericCodeByLength wrkflo,generateRandomUpperCaseAlphaNumericCodeByLength wrkflo,generateRandomLowerCaseAlphaNumericCodeByLength wrkflo,generateRandomNumericCodeByLength wrkflo,generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength wrkflo,generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength wrkflo,generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength wrkflo,generateRandomSpecialCharacterCodeByLength wrkflo,generateValidEmaila wrkflo,generateInvalidEmaila wrkflo,generateValidEmailb wrkflo,generateInvalidEmailb"/>
   <Workflow Name="stringParsingCharacterAndStringGeneration" Value="cmdSeq wrkflo,stringParsing wrkflo,characterGeneration wrkflo,stringGeneration"/>
+  <Workflow Name="businessRulesMetrics" Value="cmdSeq brm"/>
+  <Workflow Name="commandMetrics" Value="cmdSeq cmdMet"/>
+  <Workflow Name="hex2rgbConversion" Value="cmdgen convertColors 1"/>
 </CommandWorkflows>

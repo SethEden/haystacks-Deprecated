@@ -46,6 +46,7 @@ import configurator from '../executrix/configurator.js';
 import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
 import timers from '../executrix/timers.js';
+import D from '../structures/data.js';
 // External imports
 import path from 'path';
 

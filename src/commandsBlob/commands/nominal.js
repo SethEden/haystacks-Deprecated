@@ -428,10 +428,13 @@ const printDataHive = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
+  let printDataHiveToLogFileConfigSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.cprintDataHiveToLogFile);
   let logFilePathAndName = '';
-  logFilePathAndName = loggers.getLogFileNameAndPath();
-  // logFilePathAndName is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.clogFilePathAndNameIs + logFilePathAndName);
+  // if (printDataHiveToLogFileConfigSetting === true) {
+    logFilePathAndName = loggers.getLogFileNameAndPath();
+    // logFilePathAndName is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.clogFilePathAndNameIs + logFilePathAndName);
+  // }
   if (inputData && inputData[1].includes(bas.cDot) === true) {
     let dataHivePathArray = inputData[1].split(bas.cDot);
     let leafDataHiveElement = D;
@@ -449,17 +452,22 @@ const printDataHive = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
     }
     console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
-    loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
+    if (printDataHiveToLogFileConfigSetting === true) {
+      loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
+    }
   } else {
     if (D[inputData[1]] !== undefined) {
       // contents are:
       console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
-      loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
+      if (printDataHiveToLogFileConfigSetting === true) {
+        loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
+      }
     } else {
       // contents of D are:
       console.log(msg.ccontentsOfDare + JSON.stringify(D));
-      loggers.printMessageToFile(logFilePathAndName, msg.ccontentsOfDare + JSON.stringify(D));
-      // loggers.consoleLog(namespacePrefix + functionName, msg.ccontentsOfDare + JSON.stringify(D));
+      if (printDataHiveToLogFileConfigSetting === true) {
+        loggers.printMessageToFile(logFilePathAndName, msg.ccontentsOfDare + JSON.stringify(D));
+      }
     }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -1128,26 +1136,26 @@ export const convertColors = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let colorConvertionRule = [];
-  colorConvertionRule[0] = biz.creplaceCharacterWithCharacter;
-  colorConvertionRule[1] = biz.chex2rgbConversion;
+  let colorConversionRule = [];
+  colorConversionRule[0] = biz.creplaceCharacterWithCharacter;
+  colorConversionRule[1] = biz.chex2rgbConversion;
 
-  let colorKeys = Object.keys(D[sys.cColors][sys.cColorData]);
+  let colorKeys = Object.keys(D[wr1.ccolors][sys.cColorData]);
   // colorKeys is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccolorKeysIs + JSON.stringify(colorKeys));
   for (let i = 0; i < colorKeys.length; i++) {
     let currentColorName = colorKeys[i];
     // currentColorName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorNameIs + currentColorName);
-    let currentColorObject = D[wr1.cColors][sys.cColorData][currentColorName];
+    let currentColorObject = D[wr1.ccolors][sys.cColorData][currentColorName];
     // currentColorObject is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorObjectIs + JSON.stringify(currentColorObject));
-    let currentColorHexValue = currentCoorObject[sys.cHexValue];
+    let currentColorHexValue = currentColorObject[sys.cHexValue];
     // currentColorHexValue is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorHexValueIs + currentColorHexValue);
-    let ruleOutput = ruleBroker.processRules(currentColorHexValue, [bas.cHash, ''], colorConvertionRule);
+    let ruleOutput = ruleBroker.processRules(currentColorHexValue, [bas.cHash, ''], colorConversionRule);
     // ruleOutput is:
-    loggers.console(namespacePrefix + functionName, msg.cruleOutputIs + ruleOutput);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cruleOutputIs + ruleOutput);
     console.log(currentColorName + bas.cComa + currentColorHexValue + bas.cComa + ruleOutput[0] + bas.cComa + ruleOutput[1] + bas.cComa + ruleOutput[2]);
   } // End-for (let i = 0; i < colorKeys.length; i++)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

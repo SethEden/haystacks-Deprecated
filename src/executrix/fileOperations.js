@@ -41,7 +41,7 @@ import path from 'path';
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.fileOperations.
 const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
-const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
+const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash', 'config.json'];
 let filesCollection = [];
 let enableFilesListLimit = false;
 let filesListLimit = -1;
