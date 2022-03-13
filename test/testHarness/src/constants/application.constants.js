@@ -20,14 +20,24 @@ let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 
 export const cApplicationName = wr1.ctest + wr1.cHarness; // testHarness
-export const cAppPath = bas.cForwardSlash + wr1.ctest + bas.cForwardSlash + cApplicationName + bas.cForwardSlash + wr1.csrc + bas.cForwardSlash; // "/test/testHarness/src/"
+export const cAppDevPath = bas.cForwardSlash + wr1.csrc + bas.cForwardSlash; // /src/
+export const cAppProdPath = bas.cForwardSlash + wr1.cbin + bas.cForwardSlash; // /bin/
 export const cResourcesCommonPath = wr1.cresources + bas.cForwardSlash; // resources/
 export const cCommandsCommonPath = wr1.ccommands + bas.cForwardSlash; // commands/
 export const cConfigurationCommonPath = wr1.cconfiguration + bas.cForwardSlash; // configuration/
 export const cWorkflowsCommonPath = wr1.cworkflows + bas.cForwardSlash; // workflows/
 export const cReleasePath = wr1.crelease + bas.cForwardSlash; // release/
-export const cFullResourcesPath = cAppPath + cResourcesCommonPath; // /test/testHarness/src/resources/
-export const cFullCommandsPath = cFullResourcesPath + cCommandsCommonPath; // /test/testHarness/src/resources/commands/
-export const cFullConfigurationPath = cFullResourcesPath + cConfigurationCommonPath; // /test/testHarness/src/resources/configuration/
-export const cFullWorkflowsPath = cFullResourcesPath + cWorkflowsCommonPath; // /test/testHarness/src/resources/workflows/
-export const cmetaDataPath = cFullResourcesPath + sys.cmetaDatadotJson; // /resources/metaData.json
+
+// Full Dev paths
+export const cFullDevResourcesPath = cAppDevPath + cResourcesCommonPath; // /test/testHarness/src/resources/
+export const cFullDevCommandsPath = cFullDevResourcesPath + cCommandsCommonPath; // /test/testHarness/src/resources/commands/
+export const cFullDevConfigurationPath = cFullDevResourcesPath + cConfigurationCommonPath; // /test/testHarness/src/resources/configuration/
+export const cFullDevWorkflowsPath = cFullDevResourcesPath + cWorkflowsCommonPath; // /test/testHarness/src/resources/workflows/
+export const cmetaDataDevPath = cFullDevResourcesPath + sys.cmetaDatadotJson; // test/testHarness/src/resources/metaData.json
+
+// Full Prod paths
+export const cFullProdResourcesPath = cAppProdPath + cResourcesCommonPath; // /test/testHarness/bin/resources/
+export const cFullProdCommandsPath = cFullProdResourcesPath + cCommandsCommonPath; // /test/testHarness/bin/resources/commands/
+export const cFullProdConfigurationPath = cFullProdResourcesPath + cConfigurationCommonPath; // /test/testHarness/bin/resources/configuration/
+export const cFullProdWorkflowsPath = cFullProdResourcesPath + cWorkflowsCommonPath; // /test/testHarness/bin/resources/workflows/
+export const cmetaDataProdPath = cFullProdResourcesPath + sys.cmetaDatadotJson; // test/testHarness/bin/resources/metaData.json

@@ -10,10 +10,12 @@
  * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
+ * @requires {@link https://www.npmjs.com/package/papaparse|papaparse}
  * @requires {@link https://www.npmjs.com/package/xml2js|xml2js}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -26,18 +28,20 @@ import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
+import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
 import fs from 'fs';
+import papa from 'papaparse';
 import xml2js from 'xml2js';
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.fileOperations.
 const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
-const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash'];
+const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash', 'config.json'];
 let filesCollection = [];
 let enableFilesListLimit = false;
 let filesListLimit = -1;
@@ -102,7 +106,7 @@ function getCsvData(pathAndFilename) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileAndPathToLoadFromIs + pathAndFilename);
   pathAndFilename = path.resolve(pathAndFilename);
   let data = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8 });
-  let parsedData = Papa.parse(data, {
+  let parsedData = papa.parse(data, {
     delimiter: ',',
     newline: '/n',
     header: true,
@@ -167,7 +171,7 @@ function writeJsonData(pathAndFilename, dataToWrite) {
     console.error(sys.cERROR_Colon + err);
   }
   // Data was written to the file;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cDataWasWrittenToTheFile, outputSuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cDataWasWrittenToTheFile + pathAndFilename);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -357,8 +361,8 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   let packageSuccess = false;
   let releaseFiles = [];
   let releasedArchiveFiles = [];
-  let fileNameBusinessRules = {};
-  let cleanFilePathsBusinessRules = {};
+  let fileNameBusinessRules = [];
+  let cleanFilePathsBusinessRules = [];
   fileNameBusinessRules[0] = biz.cgetFileNameFromPath;
   fileNameBusinessRules[1] = biz.cremoveFileExtensionFromFileName;
   cleanFilePathsBusienssRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
@@ -399,7 +403,7 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   if (currentVersionReleased === false) {
     // release files list is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, sys.cDateTimeStamp));
+    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;
@@ -589,6 +593,7 @@ function appendMessageToFile(file, message) {
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);
   let appendSuccess = false;
+  let fd;
   if (file && message) {
     try {
       // console.log('open the file sync');

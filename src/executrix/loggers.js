@@ -11,9 +11,13 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:system.constants
+ * @requires module:generic.constants
+ * @requires module:message.constants
  * @requires module:word1.constants
+ * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
+ * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -27,10 +31,14 @@ import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
 import * as wr1 from '../constants/word1.constants.js';
+import colorizer from './colorizer.js';
 import configurator from './configurator.js';
 import fileOperations from './fileOperations.js';
+import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
 import path from 'path';
@@ -56,21 +64,23 @@ const namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  */
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
-  if (Object.keys(D).length !== 0) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
+  if (Object.keys(D).length !== 0 && message !== undefined) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
     let consoleLogEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       // console.log(`classPath is: ${classPath}`);
       // console.log(`message is: ${message}`);
-      let logFile = configurator.getConfigurationSetting(wr1.csystem, sys.capplicationCleanedRootPath);
-      if (logFile !== undefined) {
-        logFile = logFile + bas.cDoubleForwardSlash + wr1.cLogs;
-        // console.log(`Logfile before path.resolve is: ${logFile}`);
-        logFile = path.resolve(logFile);
-        // console.log(`Logfile after path.resolve is: ${logFile}`);
-        logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFilePathAndName);
-        // console.log(`logFile after adding the log filename: ${logFile}`);
-      }
+      // let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
+      // if (logFile !== undefined) {
+      //   logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
+      //   // console.log(`Logfile before path.resolve is: ${logFile}`);
+      //   logFile = path.resolve(logFile);
+      //   // console.log(`Logfile after path.resolve is: ${logFile}`);
+      //   logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+      //   logFile = path.resolve(logFile);
+      //   // console.log(`logFile after adding the log filename: ${logFile}`);
+      // }
+      let logFile = getLogFileNameAndPath();
 
       let debugFunctionSetting = false;
       let debugFileSetting = false;
@@ -100,7 +110,30 @@ function consoleLog(classPath, message) {
       }
       // console.log(`END ${namespacePrefix}${functionName} function`);
     } // end-if (consoleLogEnabled === true)
-  } // end-if (Object.keys(D).length != 0)
+  } else if (message === undefined) { // end-if (Object.keys(D).length !== 0 && message !== undefined)
+    console.log(msg.cWarningMessageIsUndefined);
+    console.log(msg.cclassPathIs + classPath);
+  }
+};
+
+/**
+ * @function consoleTableLog
+ * @description Prints out a table with the data provided in the input tableDataArray.
+ * @param {string} classPath The class path for the caller of this function file.function or class.method.
+ * @param {array<object>} tableData An array of objects that should be printed to the console as if it was data.
+ * @param {array<string>} columnNames An array of column names that should be used when outputting the table.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+function consoleTableLog(classPath, tableData, columnNames) {
+  let functionName = consoleTableLog.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`classPath is: ${classPath}`);
+  // console.log(`tableData is: ${JSON.stringify(tableData)}`);
+  // console.log(`columnNames is: ${JSON.stringify(columnNames)}`);
+  console.table(tableData, columnNames);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**
@@ -212,9 +245,7 @@ function parseClassPath(logFile, classPath, message) {
   let debugFunctionsSetting = false;
   let debugFilesSetting = false;
   let classPathArray = {};
-  let rules = {};
   let returnData = '';
-  rules[0] = biz.creplaceDoublePercentWithMessage;
 
   configurationName = configurator.processConfigurationNameRules(classPath);
   // console.log(`configurationName is: ${configurationName}`);
@@ -230,17 +261,18 @@ function parseClassPath(logFile, classPath, message) {
   // console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
     // TODO: Implement the colorizing of the message here.
-    if (message.includes(bas.cDoublePercent)) {
-      let myNameSpace = configurationNamespace + bas.cDot + configurationName;
-      // console.log('message is: ' + message);
-      // console.log('myNameSpace is: ' + myNameSpace);
-      // console.log('rules is: ' + JSON.stringify(rules));
-      // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
-      // We will need to refactor the business rules to accept a callback function that does the logging.
-      // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
-      // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
-      message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
-    }
+    message = colorizer.colorizeMessage(message, configurationNamespace, configurationName, debugFilesSetting, debugFunctionsSetting, false);
+    // if (message.includes(bas.cDoublePercent)) {
+    //   let myNameSpace = configurationNamespace + bas.cDot + configurationName;
+    //   // console.log('message is: ' + message);
+    //   // console.log('myNameSpace is: ' + myNameSpace);
+    //   // console.log('rules is: ' + JSON.stringify(rules));
+    //   // NOTE: Calling this directly is an anti-pattern, but it is necessary at this time because of a circular dependency with loggers.
+    //   // We will need to refactor the business rules to accept a callback function that does the logging.
+    //   // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
+    //   // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
+    //   message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
+    // }
     // console.log('setting the returnData to the message: ' + message);
     returnData = message;
   } else if ((debugFunctionsSetting === undefined && debugFilesSetting === undefined) ||
@@ -251,8 +283,36 @@ function parseClassPath(logFile, classPath, message) {
     returnData = false;
   } else {
     // TODO: Implement the colorizing of the message here.
+    message = colorizer.colorizeMessage(message, className, functionName, undefined, undefined, true);
     returnData = message;
   }
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function getLogFileNameAndPath
+ * @description Determines, using configuration settings what the log file name and path should be.
+ * @return {string} The full path and file name for the log file.
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ */
+function getLogFileNameAndPath() {
+  let functionName = getLogFileNameAndPath.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  let returnData = '';
+  let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
+  if (logFile !== undefined) {
+    logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
+    // console.log(`Logfile before path.resolve is: ${logFile}`);
+    logFile = path.resolve(logFile);
+    // console.log(`Logfile after path.resolve is: ${logFile}`);
+    logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+    logFile = path.resolve(logFile);
+    // console.log(`logFile after adding the log filename: ${logFile}`);
+  }
+  returnData = logFile;
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -276,7 +336,7 @@ function printMessageToFile(file, message) {
   let dateTimeStamp = '';
   if (!file.includes('undefined')) { // NOTE: This usage of the string undefined, must be hard-coded here.
     // '!file.includes(undefined)'
-    console.log(msg.cprintMessageToFile01);
+    // console.log(msg.cprintMessageToFile01);
     if (configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
       if (message) {
@@ -284,7 +344,7 @@ function printMessageToFile(file, message) {
       }
       if (configurator.getConfigurationSetting(wr1.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
-        dateTimeStamp = timers.getNowMoment(gen.cYYYYMMDD_HHmmssSSS);
+        dateTimeStamp = timers.getNowMoment(gen.cYYYY_MM_DD_HH_mm_ss_SSS);
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
@@ -295,11 +355,14 @@ function printMessageToFile(file, message) {
     }
   } else {
     // 'ERROR: Log File includes undefined.'
-    console.log(msg.cprintMessageToFile03);
+    // console.log(msg.cprintMessageToFile03);
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 export default {
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
+  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
+  [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames),
+  [fnc.cgetLogFileNameAndPath]: () => getLogFileNameAndPath(),
+  [fnc.cprintMessageToFile]: (file, message) => printMessageToFile(file, message)
 };

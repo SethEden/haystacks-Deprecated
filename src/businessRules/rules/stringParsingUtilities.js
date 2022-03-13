@@ -351,7 +351,7 @@ const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = '';
   if (inputData) {
-    returnData = utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData);
+    returnData = utilitiesReplaceCharacterWithCharacter(inputData, [bas.cDoublePercent, inputMetaData]);
   }
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -387,7 +387,7 @@ const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData
   } else {
     // console.log(`character2Find is: ${JSON.stringify(character2Find)}`);
     // console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
-    returnData = inputData.replace(character2Find, character2Replace);
+    returnData = inputData.replaceAll(character2Find, character2Replace);
   }
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);

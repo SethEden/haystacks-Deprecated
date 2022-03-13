@@ -19,7 +19,8 @@
  * @requires module:haystacks.constants.phonic
  * @requires module:haystacks.constants.system
  * @requires module:haystacks.constants.word1
- *
+ * @requires {@link https://www.npmjs.com/package/url|url}
+ * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/07
@@ -29,6 +30,7 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
+import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
@@ -43,6 +45,8 @@ let msg = haystacks.msg;
 let phn = haystacks.phn;
 let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
+import url from 'url';
+import dotenv from 'dotenv';
 import path from 'path';
 
 let rootPath = '';
@@ -50,6 +54,8 @@ let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url))
 // testHarness.
 let namespacePrefix = baseFileName + bas.cDot;
 global.appRot = path.resolve(process.cwd());
+dotenv.config();
+const {NODE_ENV} = process.env;
 
 /**
  * @function bootstrapApplication
@@ -61,17 +67,47 @@ global.appRot = path.resolve(process.cwd());
 function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  rootPath = path.resolve(process.cwd());
-  let appConfig = {
-    clientRootPath: rootPath,
-    appConfigResourcesPath: rootPath + apc.cFullResourcesPath,
-    appConfigReferencePath: rootPath + apc.cFullConfigurationPath,
-    clientMetaDataPath: apc.cmetaDataPath,
-    clientCommandAliasesPath: rootPath + apc.cFullCommandsPath,
-    clientWorkflowsPath: rootPath + apc.cFullWorkflowsPath,
-    clientBusinessRules: {},
-    clientCommands: {}
-  };
+  rootPath = url.fileURLToPath(path.dirname(import.meta.url));
+  let rootPathArray = rootPath.split(bas.cBackSlash);
+  rootPathArray.pop(); // remove any bin or src folder from the path.
+  rootPath = rootPathArray.join(bas.cBackSlash);
+  let appConfig = {};
+  if (NODE_ENV === wr1.cdevelopment) {
+    appConfig = {
+      clientRootPath: rootPath,
+      appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
+      appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
+      clientMetaDataPath: apc.cmetaDataDevPath,
+      clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      clientBusinessRules: {},
+      clientCommands: {}
+    }
+  } else if (NODE_ENV === wr1.cproduction) {
+    appConfig = {
+      clientRootPath: rootPath,
+      appConfigResourcesPath: rootPath + apc.cFullProdResourcesPath,
+      appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
+      clientMetaDataPath: apc.cmetaDataProdPath,
+      clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
+      clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
+      clientBusinessRules: {},
+      clientCommands: {}
+    }
+  } else {
+    // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
+    console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
+    appConfig = {
+      clientRootPath: rootPath,
+      appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
+      appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
+      clientMetaDataPath: apc.cmetaDataDevPath,
+      clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      clientBusinessRules: {},
+      clientCommands: {}
+    }
+  }
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
@@ -92,13 +128,13 @@ async function application() {
   let commandInput;
   let commandResult;
 
-  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, cfg.cArgumentDrivenInterface);
+  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cargumentDrivenInterface);
   if (argumentDrivenInterface === undefined) {
     argumentDrivenInterface = false;
   }
   // argumentDrivenInterface is:
   // haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
-  haystacks.enqueueCommand(wr1.cname);
+  haystacks.enqueueCommand(cmd.cStartupWorkflow);
 
   // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,
   // arguments can still be passed in and they will be executed first, after the startup workflow is complete.

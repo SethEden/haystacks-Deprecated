@@ -5,6 +5,8 @@
  * @requires module:stringParsing
  * @requires module:stringParsingUtilities
  * @requires module:basic.constants
+ * @requires module:configuration.constants
+ * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
@@ -23,6 +25,8 @@
 import stringParsing from './stringParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
+import * as cfg from '../../constants/configuration.constants.js';
+import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
@@ -199,6 +203,7 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   let returnData;
   if (inputData) {
     returnData = inputData.map((key, index) => stringParsing.mapWordToCamelCaseWord(key, index));
+    returnData = returnData.join('');
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -251,8 +256,8 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData && inputMetaData) {
     for (let i = 0; i < inputMetaData.length; i++) {
-      let arrayEleemnt = inputMetaData[i];
-      if (arayElement.includes(inputData) === true) {
+      let arrayElement = inputMetaData[i];
+      if (arrayElement.includes(inputData) === true) {
         returnData = true;
         break;
       }
@@ -496,7 +501,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
   let returnData = '';
   if (inputData) {
     let passMessage = '';
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
     for (let i = 0; i < inputData.length; i++) {
       let currentString = inputData[i];
@@ -1004,7 +1009,7 @@ const replaceCharacterAtIndex = function(inputData, inputMetaData) {
     if (inputMetaData.length === 2) {
       indexOfReplacement = inputMetaData[0];
       stringToReplaceWith = inputMetaData[1];
-      let strngAray = inputData.split('');
+      let stringArray = inputData.split('');
       stringArray.splice(indexOfReplacement, 1, stringToReplaceWith);
       returnData = stringArray.join('');
     } // End-if (inputMetaData.length === 2)
@@ -1038,17 +1043,21 @@ const generateCommandAliases = function(inputData, inputMetaData) {
     // "Woman": "wman,wmn,womn",
     // "Amazing": "amzing,amzng"
     // }
-    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter);
-    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
-    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cTertiaryCommandDelimiter);
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cprimaryCommandDelimiterIs + primaryCommandDelimiter);
+    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+    loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+    loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
     let commandDelimiter = '';
-    let commandWordsKey1 = Object.keys(inputData);
+    let commandWordsKeys1 = Object.keys(inputData);
     let commandWordAliasesArray = [];
     let masterCommandWordAliasesArray = [commandWordsKeys1.length - 1];
     let masterArrayIndex = [commandWordsKeys1.length - 1];
     for (let i = 0; i < commandWordsKeys1.length; i++) {
       // commandWordsKeys1.forEach((key1) => {
       let key1 = commandWordsKeys1[i];
+      let commandWordAliases = inputData[key1];
       if (commandWordAliases.includes(primaryCommandDelimiter)) {
         commandDelimiter = primaryCommandDelimiter;
       } else if (commandWordAliases.includes(secondaryCommandDelimiter)) {

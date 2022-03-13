@@ -25,6 +25,18 @@ import * as wr1 from './word1.constants.js';
 export const cechoCommand = biz.cecho + wr1.cCommand; // echoCommand
 export const cEchoCommand = biz.cEcho + wr1.cCommand; // EchoCommand
 export const cclearScreen = wr1.cclear + wr1.cScreen; // clearScreen
+export const cworkflowHelp = wr1.cworkflow + wr1.cHelp; // workflowHelp
+export const ccommandSequencer = wr1.ccommand + wr1.cSequencer; // commandSequencer
+export const cprintDataHive = wr1.cprint + wr1.cData + wr1.cHive; // printDataHive
+export const cprintDataHiveAttributes = cprintDataHive + wr1.cAttributes; // printDataHiveAttributes
+export const cclearDataStorage = wr1.cclear + wr1.cData + wr1.cStorage; // clearDataStorage
+export const cbusinessRule = wr1.cbusiness + wr1.cRule; // businessRule
+export const ccommandGenerator = wr1.ccommand + wr1.cGenerator; // commandGenerator
+export const ccommandAliasGenerator = wr1.ccommand + wr1.cAlias + wr1.cGenerator; // commandAliasGenerator
+export const cbusinessRulesMetrics = wr1.cbusiness + wr1.cRules + wr1.cMetrics; // businessRulesMetrics
+export const ccommandMetrics = wr1.ccommand + wr1.cMetrics; // commandMetrics
+export const csaveConfiguration = wr1.csave + wr1.cConfiguration; // saveConfiguration
+export const cconvertColors = wr1.cconvert + wr1.cColors; // convertColors
 
 // ********************************
 // System defined workflows

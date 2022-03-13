@@ -118,6 +118,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // mathOperations rules in order
      // ***********************************************
      [biz.chex2rgbConversion]: (inputData, inputMetaData) => mathOperations.hex2rgbConversion(inputData, inputMetaData),
+     [biz.cisOdd]: (inputData, inputMetaData) => mathOperations.isOdd(inputData, inputMetaData),
+     [biz.cisEven]: (inputData, inputMetaData) => mathOperations.isEven(inputData, inputMetaData),
 
      // ***********************************************
      // stringGeneration rules in order
@@ -203,8 +205,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => stringParsing.supportedFileFormatsAre(inputData, inputMetaData),
      [biz.cgetAttributeName]: (inputData, inputMetaData) => stringParsing.getAttributeName(inputData, inputMetaData),
      [biz.cgetAttributeValue]: (inputData, inputMetaData) => stringParsing.getAttributeValue(inputData, inputMetaData),
-     [biz.cisOdd]: (inputData, inputMetaData) => stringParsing.isOdd(inputData, inputMetaData),
-     [biz.cisEven]: (inputData, inputMetaData) => stringParsing.isEven(inputData, inputMetaData),
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => stringParsing.cleanCommandInput(inputData, inputMetaData),
 
      // ***********************************************

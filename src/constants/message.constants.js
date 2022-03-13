@@ -185,7 +185,7 @@ export const carrayInputObjectIsNotAnArray = wr1.carray + bas.cSpace + wr1.cinpu
 export const cTheValueWasFoundInTheArray = wr1.cThe + bas.cSpace + wr1.cvalue + bas.cSpace + wr1.cwas + bas.cSpace + wr1.cfound + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.carray + bas.cDot; // The value was found in the array.
 export const cTheValueWasNotFoundInTheArray = wr1.cThe + bas.cSpace + wr1.cvalue + bas.cSpace + wr1.cwas + bas.cSpace + gen.cNOT + bas.cSpace + wr1.cfound + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.carray + bas.cDot; // The value was NOT found in the array.
 export const coriginalStringIs = wr1.coriginal + wr1.cString + sys.cSpaceIsColonSpace; // originalString is:
-export const cindexIs = wr1.cindex + bas.cSpace + sys.cSpaceIsColonSpace; // index is:
+export const cindexIs = wr1.cindex + sys.cSpaceIsColonSpace; // index is:
 export const creplacementIs = wr1.creplacement + sys.cSpaceIsColonSpace; // replacement is:
 export const cDEPLOY_APPLICATION = wr1.cDEPLOY + bas.cUnderscore + wr1.cAPPLICATION; // DEPLOY APPLICATION
 export const cRELEASE_APPLICATION = wr1.cRELEASE + bas.cUnderscore + wr1.cAPPLICATION; // RELEASE APPLICATION
@@ -400,6 +400,7 @@ export const cexecuteBusinessRulesColon = wr1.cexecute + bas.cSpace + wr1.cbusin
 export const cdataPathAfterBusinessRulesProcessingIs = wr1.cdata + wr1.cPath + bas.cSpace + wr1.cafter + bas.cSpace + wr1.cbusiness + bas.cSpace + wr1.crules + bas.cSpace + wr1.cprocessing + sys.cSpaceIsColonSpace; // dataPath after business rules processing is:
 export const cFileToLoadIs = wr1.cFile + bas.cSpace + bas.cto + bas.cSpace + wr1.cload + sys.cSpaceIsColonSpace; // File to load is:
 export const cfileExtensionIs = wr1.cfile + wr1.cExtension + sys.cSpaceIsColonSpace; // fileExtension is:
+export const cexecuteBusienssRulesColon = wr1.cexecute + wr1.cBusiness + wr1.cRules + bas.cColon + bas.cSpace; // executeBusinessRules:
 export const cloadedFileDataIs = wr1.cloaded + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cdata + sys.cSpaceIsColonSpace; // loaded file data is:
 export const cBEGIN_PROCESSING_ADDITIONAL_DATA = wr1.cBEGIN + bas.cSpace + wr1.cPROCESSING + bas.cSpace + wr1.cADDITIONAL + bas.cSpace + wr1.cDATA; // BEGIN PROCESSING ADDITIONAL DATA
 export const cDONE_PROCESSING_ADDITIONAL_DATA = wr1.cDONE + bas.cSpace + wr1.cPROCESSING + bas.cSpace + wr1.cADDITIONAL + bas.cSpace + wr1.cDATA; // DONE PROCESSING ADDITIONAL DATA
@@ -470,11 +471,9 @@ export const cErrorCouldNotCopyFolderContents = wr1.cERROR + bas.cColon + bas.cS
 export const cargumentValueIs = wr1.cargument + wr1.cValue + sys.cSpaceIsColonSpace; // argumentValue is:
 export const cconsolidatedArgumentModeIs = wr1.cconsolidated + wr1.cArgument + wr1.cMode + sys.cSpaceIsColonSpace; // consolidatedArgumentMode is:
 export const cPushingArgumentValueToReturnDataAsArrayElement = wr1.cPushing + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cargument + wr1.cValue + bas.cSpace + bas.cto + bas.cSpace + wr1.cthe + bas.cSpace + wr1.creturn + wr1.cData + bas.cSpace + bas.cas + bas.cSpace + bas.can + bas.cSpace + wr1.carray + bas.cSpace + wr1.celement; // Pushing the argumentValue to the returnData as an array element
-export const cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeFalse = wr1.cCalling + bas.cSpace + wr1.canalyze + wr1.cArgument + bas.cSpace + wr1.cfor + bas.cSpace + wr1.cindex + bas.cSpace + wr1.cEqual + bas.cSpace + num.c2 + bas.cComa + bas.cSpace + wr1.cconsolidated + wr1.cArgument + wr1.cMode + bas.cSpace + bas.cEqual + bas.cSpace + gen.cfalse; // Calling analyzeArgument for index = 2, consolidatedArgumentMode = false
-export const cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue = wr1.cCalling + bas.cSpace + wr1.canalyze + wr1.cArgument + bas.cSpace + wr1.cfor + bas.cSpace + wr1.cindex + bas.cSpace + bas.cEqual + bas.cSpace + num.c2 + bas.cComa + bas.cSpace + wr1.cconsolidated + wr1.cArgument + wr1.cMode + bas.cSpace + bas.cEqual + bas.cSpace + gen.ctrue; // Calling analyzeArgument for index = 2, consolidatedArgumentMode = true
 export const cargumentValueLengthGreaterThanZero = wr1.cargument + wr1.cValue + bas.cDot + wr1.cLength + bas.cSpace + bas.cGreaterThan + bas.cSpace + num.c0; // argumentValue.length > 0
+export const cCallingAnalyzeArgumentIndexIs = wr1.cCalling + wr1.cAnalyze + wr1.cArgument + wr1.cIndex + sys.cSpaceIsColonSpace; // Calling AnalyzeArgumentIndex is:
 export const cReturnArgumentValueSameAsItWasPassedIn = wr1.cReturn + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cargument + wr1.cValue + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csame + bas.cSpace + bas.cas + bas.cSpace + bas.cit + bas.cSpace + wr1.cwas + bas.cSpace + wr1.cpassed + bas.cSpace + bas.cin + bas.cDot; // Return the argumentValue the same as it was passed in.
-export const cCallingAnalyzeArgumentIndex3ConsolidatedArgumentModeFalse = wr1.cCalling + bas.cSpace + wr1.canalyze + wr1.cArgument + bas.cSpace + wr1.cfor + bas.cSpace + wr1.cindex + bas.cSpace + bas.cEqual + bas.cSpace + num.c3 + bas.cComa + bas.cSpace + wr1.cconsolidated + wr1.cArgument + wr1.cMode + bas.cSpace + bas.cEqual + bas.cSpace + gen.cfalse; // Calling analyzeArgument for index = 3, consolidatedArgumentMode = false
 export const cCheckIfThereAreBracketsOrNoBrackets = wr1.cCheck + bas.cSpace + bas.cif + bas.cSpace + wr1.cthere + bas.cSpace + wr1.care + bas.cSpace + wr1.cbrackets + bas.cSpace + bas.cor + bas.cSpace + bas.cno + bas.cSpace + wr1.cbrackets + bas.cDot; // Check if there are brackets or no brackets.
 export const cBracketsWereFound = wr1.cBrackets + bas.cSpace + wr1.cwere + bas.cSpace + wr1.cfound; // Brackets were found
 export const cCheckIfThereIsRegularExpressionOrNot = wr1.cCheck + bas.cSpace + bas.cif + bas.cSpace + wr1.cthere + bas.cSpace + bas.cis + bas.cSpace + bas.ca + bas.cSpace + wr1.cRegular + bas.cSpace + wr1.cExpression + bas.cSpace + bas.cor + bas.cSpace + gen.cnot + bas.cDot; // Check if there is a Regular Expression or not.
@@ -508,7 +507,7 @@ export const centityIs = wr1.centity + sys.cSpaceIsColonSpace; // entity is:
 export const cqueueNameSpaceIs = wr1.cqueue + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // queueNameSpace Is:
 export const cstackNameSpaceIs = wr1.cstack + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // stackNameSpace Is:
 export const cWarningStackColon = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cStack + bas.cColon + bas.cSpace; // WARNING: Stack:
-export const cAlreadyExists = wr1.cALREADY + bas.cSpace + wr1.cexist + bas.cExclamation; // ALREADY exist!
+export const cAlreadyExists = bas.cSpace + wr1.cALREADY + bas.cSpace + wr1.cexist + bas.cExclamation; // ALREADY exist!
 export const cdoesNotExist = bas.cSpace + wr1.cdoes + bas.cSpace + gen.cnot + bas.cSpace + wr1.cexist + bas.cExclamation; // does not exist!
 export const cisEmpty = bas.cSpace + bas.cis + bas.cSpace + wr1.cempty + bas.cExclamation; // is empty!
 export const cContentsOfTheStackNamespace = wr1.cContents + bas.cSpace + bas.cof + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cstack + bas.cSpace + wr1.cname + wr1.cspace + bas.cColon + bas.cSpace; // Contents of the stack namespace:
@@ -539,9 +538,23 @@ export const cFrameworkVersionNumberIs = wr1.cFramework + wr1.cVersion + wr1.cNu
 export const cFrameworkDescriptionIs = wr1.cFramework + wr1.cDescription + sys.cSpaceIsColonSpace; // FrameworkDescription is:
 export const csessionDateTimeStampIs = wr1.csession + wr1.cDate + wr1.cTime + wr1.cStamp + sys.cSpaceIsColonSpace; // sessionDateTimeStamp is:
 export const clogFileNameIs = wr1.clog + wr1.cFileName + sys.cSpaceIsColonSpace; // logFileName is:
+export const cprimaryCommandDelimiterIs = wr1.cprimary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // primaryCommandDelimiter is:
+export const csecondaryCommandDelimiterIs = wr1.csecondary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // secondaryCommandDelimiter is:
+export const ctertiaryCommandDelimiterIs = wr1.ctertiary + wr1.cCommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // tertiaryCommandDelimiter is:
+export const ccommandSequencerCommandToEnqueueIs = wr1.ccommand + wr1.cSequencer + bas.cSpace + wr1.cCommand + bas.cSpace + bas.cTo + bas.cSpace + wr1.cEnqueue + sys.cSpaceIsColonSpace; // commandSequencer Command To Enqueue is:
+export const cWarningMessageIsUndefined = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cmessage + bas.cSpace + wr1.cis + bas.cSpace + wr1.cundefined; // WARNING: message is undefined
+export const cclassPathIs = wr1.cclass + wr1.cPath + sys.cSpaceIsColonSpace; // classPath is:
+export const cargsArrayContainsRegEx1Is = gen.cargs + wr1.cArray + wr1.cContains + wr1.cRegEx + num.c1 + sys.cSpaceIsColonSpace; // argsArrayContainsRegEx1 is:
+export const cargsArrayContainsRegEx2Is = gen.cargs + wr1.cArray + wr1.cContains + wr1.cRegEx + num.c2 + sys.cSpaceIsColonSpace; // argsArrayContainsRegEx2 is:
+export const cargsArrayContainsColonIs = gen.cargs + wr1.cArray + wr1.cContains + wr1.cColon + sys.cSpaceIsColonSpace; // argsArrayContainsColon is:
+export const cfileToSaveToIs = wr1.cfile + wr1.cTo + wr1.cSave + wr1.cTo + sys.cSpaceIsColonSpace; // fileToSaveTo is:
+export const cdataToWriteOutIs = wr1.cdata + wr1.cTo + wr1.cWrite + wr1.cOut + sys.cSpaceIsColonSpace; // dataToWriteOut is:
+export const clogFilePathAndNameIs = gen.clog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName + sys.cSpaceIsColonSpace; // logFilePathAndName is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;
+// WARNING: Some rules do not exist:
+export const cProcessRulesWarningSomeRulesDoNotExist = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cSome + bas.cSpace + wr1.crules + bas.cSpace + wr1.cdo + bas.cSpace + gen.cnot + bas.cSpace + wr1.cexist + bas.cColon + bas.cSpace;
 // WARNING: Mixed string. Cannot determine what delimiter should be used to break up the string into words.
 export const cDetermineWordDelimiterMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // WARNING: Mixed string.
 export const cDetermineWordDelimiterMessage2 = wr1.cCannot + bas.cSpace + wr1.cdetermine + bas.cSpace + wr1.cwhat + bas.cSpace + wr1.cdelimiter + bas.cSpace + wr1.cshould + bas.cSpace; // Cannot determine what delimiter should

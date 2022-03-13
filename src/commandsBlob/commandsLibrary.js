@@ -61,7 +61,21 @@ function initCommandsLibrary() {
     [wr1.cversion]: (inputData, inputMetaData) => nominalCommands.version(inputData, inputMetaData),
     [wr1.cabout]: (inputData, inputMetaData) => nominalCommands.about(inputData, inputMetaData),
     [wr1.cname]: (inputData, inputMetaData) => nominalCommands.name(inputData, inputMetaData),
-    [cmd.cclearScreen]: (inputData, inputMetaData) => nominalCommands.clearScreen(inputData, inputMetaData)
+    [cmd.cclearScreen]: (inputData, inputMetaData) => nominalCommands.clearScreen(inputData, inputMetaData),
+    [wr1.chelp]: (inputData, inputMetaData) => nominalCommands.help(inputData, inputMetaData),
+    [cmd.cworkflowHelp]: (inputData, inputMetaData) => nominalCommands.workflowHelp(inputData, inputMetaData),
+    [cmd.ccommandSequencer]: (inputData, inputMetaData) => nominalCommands.commandSequencer(inputData, inputMetaData),
+    [wr1.cworkflow]: (inputData, inputMetaData) => nominalCommands.workflow(inputData, inputMetaData),
+    [cmd.cprintDataHive]: (inputData, inputMetaData) => nominalCommands.printDataHive(inputData, inputMetaData),
+    [cmd.cprintDataHiveAttributes]: (inputData, inputMetaData) => nominalCommands.printDataHiveAttributes(inputData,inputMetaData),
+    [cmd.cclearDataStorage]: (inputData, inputMetaData) => nominalCommands.clearDataStorage(inputData, inputMetaData),
+    [cmd.cbusinessRule]: (inputData, inputMetaData) => nominalCommands.businessRule(inputData, inputMetaData),
+    [cmd.ccommandGenerator]: (inputData, inputMetaData) => nominalCommands.commandGenerator(inputData, inputMetaData),
+    [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData),
+    [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData),
+    [cmd.ccommandMetrics]: (inputData, inputMetaData) => nominalCommands.commandMetrics(inputData, inputMetaData),
+    [cmd.csaveConfiguration]: (inputData, inputMetaData) => nominalCommands.saveConfiguration(inputData, inputMetaData),
+    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData)
 
     // ***********************************************
     // Integration Test commands in order

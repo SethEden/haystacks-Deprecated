@@ -3,6 +3,7 @@
  * @module commandBroker
  * @description Executes commands by calling the appropriate command-function from the commandLibrary,
  * which will actually be stored functions on the D-Data structure.
+ * @requires module:ruleBroker
  * @requires module:commandsLibrary
  * @requires module:basic.constants
  * @requires module:business.constants
@@ -26,6 +27,7 @@
  */
 
 // Internal imports
+import ruleBroker from './ruleBroker.js';
 import commandsLibrary from '../commandsBlob/commandsLibrary.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
@@ -128,14 +130,14 @@ function getValidCommand(commandString, commandDelimiter) {
       loggers.consoleLog(namespacePrefix + functionName, msg.celseClauseLookingForCommandAliases);
       // NOTE: It could be that the user entered a command alias, so we will need to search through all of the command aliases,
       // to see if we can find a match, then get the actual command that should be executed.
-      let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommand];
+      let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommands];
       // allCommandAliases is:
       loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesIs + JSON.stringify(allCommandAliases));
 loop1:
-      for (let i = 0; i < allCommandAliases.length; i++) {
+      for (const [key, value] of Object.entries(allCommandAliases)) {
         // Iterate through all of the command aliases and see if we can find a
         // command alias that matches the command the user is trying to execute.
-        let currentCommand = allCommandAliases[i][bas.cDollar];
+        let currentCommand = value
         loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
         let aliasList = currentCommand[wr1.cAliases];
         let arrayOfAliases = aliasList.split(bas.cComa);
@@ -243,19 +245,19 @@ function getCommandArgs(commandString, commandDelimiter) {
         loggers.consoleLog(namespacePrefix + functionName, msg.cgetCommandArgsMessage1 + sys.cgetCommandArgsMessage2);
         if (numberOfSingleQuotes >= 2 && ruleBroker.processRules(numberOfSingleQuotes, '', isOddRule) === false) {
           // numberOfSingleQuotes is >= 2 & the numberOfSingleQuotes is EVEN! YAY!
-          loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSingleQuotesInEven);
-          let indexOfSingleDelimiter;
+          loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSingleQuotesIsEven);
+          let indexOfStringDelimiter;
           for (let i = 0; i < numberOfSingleQuotes; i++) {
             // Iterate over each one and if they are even or odd we will change how we replace ach single quote character as described above.
             if (i === 0) {
               // Get the index of the first string delimiter.
-              indexOfSringDelimter = commandString.indexOf(bas.cBackTickQuote, 0);
+              indexOfStringDelimiter = commandString.indexOf(bas.cBackTickQuote, 0);
               // First index is:
               loggers.consoleLog(namespacePrefix + functionName, msg.cFirstIndexIs + indexOfStringDelimiter);
               // commandString.replace(bas.cBackTickQuote, bas.cBackTickQuote + bas.cTilde);
               // Rather than use the above, we will make a business rule o replace at index, the above replaces all isntances and we don't want that!
-              commandString = ruleBroker.processRules(commandString, [indexOfStrngDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
-              stringLieralCommandDelimiterAdded = true;
+              commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
+              stringLiteralCommandDelimiterAdded = true;
               // commandString after taggng the first string delimiter:
               loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingTheFirstStringDelimiter + commandString);
             } else {
@@ -269,18 +271,18 @@ function getCommandArgs(commandString, commandDelimiter) {
                 // We are on the odd index, 1, 3, 5, etc...
                 // odd index
                 loggers.consoleLog(namespacePrefix + functionName, msg.coddIndex);
-                commandString = ruleBroker.processRules(commandString, [indexOfStringDelimier, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
-                strngLiteralCommandDelimiterAdded = true;
+                commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
+                stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an odd string delimiter:
-                loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStrngAfterTaggingAnOddStringDelimiter + commandString);
+                loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnOddStringDelimiter + commandString);
               } else {
                 // We are on the even index 2, 4, 6, etc...
                 // even index
                 loggers.consoleLog(namespacePrefix + functionName, msg.cevenIndex);
                 commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
-                stringLiteralCommandDelmiterAdded = true;
+                stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an even string delimiter:
-                loggers.consoleLog(namespacePrefix + functionName, smg.ccommandStringAfterTaggingAnEvenStringDelimiter + commandString);
+                loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnEvenStringDelimiter + commandString);
               }
             }
           } // End-for (let i = 0; i < numberOfSingleQuotes; i++)
@@ -367,13 +369,13 @@ function executeCommand(commandString) {
   // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   let returnData = false;
-  let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter));
+  let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter));
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
-  let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter));
+  let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter));
   // commandArgs is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandArgsIs + commandArgs);
-  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableCommandPerformanceMetrics);
+  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableCommandPerformanceMetrics);
   let commandStartTime = '';
   let commandEndTime = '';
   let commandDeltaTime = '';
@@ -409,19 +411,19 @@ function executeCommand(commandString) {
     // Command run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandRunTimeIs + commandDeltaTime);
     // Check to make sure the command performance tracking stack exists or does not exist.
-    if (D[cfg.cCommandPerformanceTrackingStack] === undefined) {
-      stack.initStack(cfg.cCommandPerformanceTrackingStack);
+    if (D[cfg.ccommandsPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.ccommandsPerformanceTrackingStack);
     }
-    if (D[cfg.cCommandNamesPerformanceTrackingStack] === undefined) {
-      stack.initStack(cfg.cCommandNamesPerformanceTrackingStack);
+    if (D[cfg.ccommandNamesPerformanceTrackingStack] === undefined) {
+      stack.initStack(cfg.ccommandNamesPerformanceTrackingStack);
     }
     performanceTrackingObject = {Name: commandToExecute, RunTime: commandDeltaTime};
-    if (stack.contains(cfg.cCommandNamesPerformanceTrackingStack, commandToExecute) === false) {
-      stack.push(cfg.cCommandNamesPerformanceTrackingStack, commandToExecute);
+    if (stack.contains(cfg.ccommandNamesPerformanceTrackingStack, commandToExecute) === false) {
+      stack.push(cfg.ccommandNamesPerformanceTrackingStack, commandToExecute);
     }
-    stack.push(cfg.cCommandPerformanceTrackingStack, performanceTrackingObject);
-    // stack.print(cfg.cCommandNamesPerformanceTrackingStack);
-    // stack.print(cfg.cCommandPerformanceTrackingStack);
+    stack.push(cfg.ccommandsPerformanceTrackingStack, performanceTrackingObject);
+    // stack.print(cfg.ccommandNamesPerformanceTrackingStack);
+    // stack.print(cfg.ccommandsPerformanceTrackingStack);
   } // End-if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

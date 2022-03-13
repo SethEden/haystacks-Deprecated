@@ -49,18 +49,29 @@ function getWorkflow(workflowName) {
   // workflowName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowNameIs + workflowName);
   let workflowValue = false;
-  let arrayOfWorkflows = D[sys.cCommandWorkflows][wr1.cWorkflow];
-  for (let i = 0; i < arrayOfWorkflows.length; i++) {
-    let currentWorkflow = arrayOfWorkflows[i];
-    // currentWorkflow is:
+  let arrayOfWorkflows = D[sys.cCommandWorkflows][wr1.cWorkflows];
+  // Code to print all the workflows for debugging.
+  // console.log('arrayOfWorkflows is: ' + JSON.stringify(arrayOfWorkflows));
+  // for (let i = 0; i < arrayOfWorkflows.length; i++) {
+  //   let currentWorkflow = arrayOfWorkflows[i];
+  //   // currentWorkflow is:
+  //   loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentWorkflowIs + JSON.stringify(currentWorkflow));
+  //   if (currentWorkflow[wr1.cName] === workflowName) {
+  //     workflowValue = currentWorkflow[wr1.cValue];
+  //     // workflowValue is:
+  //     loggers.consoleLog(namespacePrefix + functionName, msg.cwokflowValueIs + JSON.stringify(workflowValue));
+  //     break;
+  //   } // End-if (currentWorkflow[wr1.cName] === workflowName)
+  // } // End-for (let i = 0; i < arrayOfWorkflows.length; i++)
+  if (arrayOfWorkflows[workflowName] !== undefined) {
+    let currentWorkflow = arrayOfWorkflows[workflowName];
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentWorkflowIs + JSON.stringify(currentWorkflow));
     if (currentWorkflow[wr1.cName] === workflowName) {
       workflowValue = currentWorkflow[wr1.cValue];
       // workflowValue is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cwokflowValueIs + JSON.stringify(workflowValue));
-      break;
-    } // End-if (currentWorkflow[wr1.cName] === workflowName)
-  } // End-for (let i = 0; i < arrayOfWorkflows.length; i++)
+    }
+  }
   // workflowValue is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowValueIs + workflowValue);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

@@ -21,11 +21,10 @@
   "author": "Seth Hollingsead <iceversaka@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "chalk": "2.4.2",
+    "chalk": "5.0.1",
     "dotenv": "^16.0.0",
     "figlet": "^1.5.2",
     "haystacks": "^0.0.1",
-    "lodash": "4.17.21",
     "mathjs": "10.1.0",
     "moment": "2.29.1",
     "papaparse": "5.3.1",
@@ -37,8 +36,6 @@
     "@babel/node": "7.15.8",
     "@babel/preset-env": "7.15.8",
     "jsdoc": "3.6.7",
-    "markdown-it": ">=12.3.2",
-    "marked": ">=4.0.10",
     "standard-version": "9.3.2"
   },
   "bugs": {

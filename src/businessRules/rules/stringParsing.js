@@ -8,12 +8,14 @@
  * with values of all kinds, and various parsing operations.
  * Excluding functions that cannot use the loggers.
  * @requires module:arrayParsing
+ * @requires module:stringParsingUtilities
  * @requires module:basic.constants
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:loggers
+ * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/27
@@ -22,6 +24,7 @@
 
 // Internal imports
 import arrayParsing from './arrayParsing.js';
+import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
@@ -29,6 +32,7 @@ import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
+import * as math from 'mathjs';
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -499,7 +503,7 @@ const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputM
     loggers.consoleLog(namespacePrefix + functionName, msg.cstring2Is + string2);
 
     // Build some arrays of variations on string 2, we will use these for doing the comparisons.
-    let variation0 = array(string2.length + 1).fill(0).map((v, i) => i);
+    let variation0 = Array(string2.length + 1).fill(0).map((v, i) => i);
     let variation1 = Array(string2.length + 1).fill(0);
     loggers.consoleLog(namespacePrefix + functionName, msg.cvariation0ValueIs + variation0);
     loggers.consoleLog(namespacePrefix + functionName, msg.cvariation1ValueIs + variation1);
@@ -963,11 +967,9 @@ const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
  * @return {string} A string that has been simplified and consolidated by converting to lower case, removign all digits, symbols and white space.
  * @author Seth Hollingsead
  * @date 2022/01/23
- * @NOTE I think this function is not completely working as expected, probably soemthing to do with that regular expression.
+ * @NOTE I think this function is not completely working as expected, probably something to do with that regular expression.
  * Input was: 11UpberDriver321CodeClearance0x#0000FF-akaBlue
- * Output was: 11upberdriver321codeclearance0x0000ffakablue
- * As you can see tehre are stil some numbers coming through.
- * Might need to revisit this one when time allows, and if there is ever a business need again.
+ * Output was: upberdrivercodeclearanceffakablue
  */
 const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   let functionName = simplifyAndConsolidateString.name;
@@ -976,7 +978,9 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
-    returnData = _.replace(inputData.toLowerCase(), /[\W]/g, '');
+    // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
+    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData.toLowerCase().trim(), [/[^\w\s]/g, '']);
+    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(returnData, [/[\0-9]/g, '']);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -1057,7 +1061,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     const liner = new lineByLine(inputData);
     let line;
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
 
     while (line = liner.next()) {
       // constants line is:
@@ -1637,7 +1641,7 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
   let returnData = true;
   let passMessage = '';
   if (inputData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
     for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++) {
       passMessage = '';
       let validationLineItem = D[sys.cConstantsValidationData][inputData][i];
@@ -1764,7 +1768,7 @@ const countDuplicateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = 0;
   if (inputData && inputMetaData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
 loop1:
     for (let i = 0; i < inputMetaData.length; i++) {
       // BEGIN i-th loop:
@@ -1904,18 +1908,18 @@ const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
  * @function removeXnumberOfFoldersFromEndOfPath
  * @description Removes X number of folders from the end of a path and returns the newly modified path.
  * @param {string} inputData The path that should have the number of folders removed.
- * @param {integer} inputMetData The number of paths that should be removed from the input path.
+ * @param {integer} inputMetaData The number of paths that should be removed from the input path.
  * @return {string} The modified string with the folders removed from the input path.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
+const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
   let functionName = removeXnumberOfFoldersFromEndOfPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = '';
-  if (inputData && math.isNumeric(inputMetaData) === true) {
+  let returnData = inputData; // assign it to something so it shouldn't resolve as false, unless it gets set to false.
+  if (inputData && stringParsingUtilities.isInteger(inputMetaData) === true) {
     let pathArray;
     let pathAsForwardSlash;
     if (inputData.includes(bas.cForwardSlash) === true) {
@@ -1964,7 +1968,7 @@ const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetData) {
 
 /**
  * @function getFirstTopLevelFolderFromPath
- * @description Takes a path and  returns the folder at the farthest right of that path.
+ * @description Takes a path and returns the folder at the farthest right of that path.
  * @param {string} inputData The path that should be evaluated.
  * @param {string} inputMetaData Not used fore this business rule.
  * @return {string} The folder at the far-right of the input path.
@@ -1988,7 +1992,7 @@ const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
     }
     if (returnData !== false) {
       // pathArray is:
-      loggers.consoleLog(namespace + functionName, msg.cpathArrayIs + JSON.stringify(pathArray));
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpathArrayIs + JSON.stringify(pathArray));
       returnData = pathArray[pathArray.length - 2];
     } // End-if (returnData !== false)
   } // End-if (inputData)
@@ -2125,64 +2129,6 @@ const getAttributeValue = function(inputData, inputMetaData) {
 };
 
 /**
- * @function isOdd
- * @description Determines if the input value is an odd number or not an odd number.
- * Acts as a wrapper for calling the math operations function of the same name,
- * but this business rule processing the same from a string input.
- * @param {string} inputData The value that should be evaluated to determien if it is odd or not odd.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {boolean} True or False to indicate if the value passed in is an odd value or not an odd value.
- * @author Seth Hollingsead
- * @date 2022/01/25
- * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
- */
-const isOdd = function(inputData, inputMetaData) {
-  let functionName = isOdd.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = false;
-  if (inputData) {
-    if (math.isNumeric(inputData) === true) {
-      returnData = mathOps.isOdd(parseInt(inputData), 0);
-    } // End-if (math.isNumeric(inputData) === true)
-  } // End-if (inputData)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
-/**
- * @function isEven
- * @description Determiens if the input value is an even number or not an even number.
- * Acts as a wrapper for calling the math operations function of the same name,
- * but this business rule processing the same from a string input.
- * @param {string} inputData The value that should be evaluated to determine if it is even or not even.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {boolean} True or False to indicate if the value passed in is an even value or not an even value.
- * @author Seth Hollingsead
- * @date 2022/01/25
- * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
- * @NOTE This fucntion isn't actually needed, as we can just invert our logic for calling isOdd,
- * but I provided it here anyways for completeness.
- */
-const isEven = function(inputData, inputMetaData) {
-  let functionName = isEven.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = false;
-  if (inputData) {
-    if (math.isNumeric(inputData) === true) {
-      returnData = mathOps.isEven(parseInt(inputData), 0);
-    } // End-if (math.isNumeric(inputData) === true)
-  } // End-if (inputData)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
-/**
  * @function cleanCommandInput
  * @description Removes any "--" from the command to make it a valid command.
  * @param {string} inputData The string that should have the "--" removed from it.
@@ -2298,7 +2244,6 @@ export default {
   supportedFileFormatsAre,
   getAttributeName,
   getAttributeValue,
-  isOdd,
-  isEven,
-  cleanCommandInput
+  cleanCommandInput,
+  replaceCharacterAtIndexOfString
 };

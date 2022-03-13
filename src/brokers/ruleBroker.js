@@ -68,6 +68,61 @@ function addClientRules(clientRules) {
 };
 
 /**
+ * @function doesRuleExist
+ * @description Determines if a specified named rule exists in the rules system or not.
+ * @param {string} ruleName The rule name that should be validated as existing in the runtime rules data structure.
+ * @return {boolean} A True or False value to indicate if the rule exists or does not exist.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+function doesRuleExist(ruleName) {
+  let functionName = doesRuleExist.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`ruleName is: ${ruleName}`);
+  let returnData = false;
+  if (ruleName) {
+    if (D[sys.cbusinessRules][ruleName]) {
+      returnData = true;
+    }
+  } // End-if (ruleName)
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
+ * @function doAllRulesExist
+ * @description Determines if all the rules in an array of rule names all
+ * exist in the runtime rules data structure or not.
+ * @param {array<string>} ruleArray The array of rule names that should be
+ * validated for existence in the runtime rules data structure.
+ * @return {boolean} A True or False value to indicate if all the rules in the
+ * input array exist or do not all exist.
+ * @author Seth Hollingsead
+ * @date 2022/02/24
+ */
+function doAllRulesExist(ruleArray) {
+  let functionName = doAllRulesExist.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`ruleArray is: ${JSON.stringify(ruleArray)}`);
+  let returnData = false;
+  let tempValidationResult = true;
+  if (ruleArray && ruleArray.length > 0) {
+    for (let i = 0; i < ruleArray.length; i++) {
+      if (doesRuleExist(ruleArray[i]) === false) {
+        tempValidationResult = false;
+      }
+    } // End-for (let i = 0; i < ruleArray.length; i++)
+    if (tempValidationResult === true) {
+      returnData = true;
+    }
+  } // End-if (ruleArray && ruleArray.length > 0)
+  // console.log(`returnData is: ${returnData}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
+};
+
+/**
  * @function processRules
  * @description Parse the given input Object/String/Integer/Data/Function through a set of business rules,
  * (Some rules do not support chaining); where the rules are defined in the input rules array.
@@ -87,7 +142,7 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   // console.log(`rulesToExecute is: ${JSON.stringify(rulesToExecute)}`);
   let returnData = inputData;
-  if (rulesToExecute) {
+  if (rulesToExecute && doAllRulesExist(rulesToExecute)) {
     for (let rule in rulesToExecute) {
       if (rulesToExecute.hasOwnProperty(rule)) {
         let key = rule;
@@ -95,9 +150,12 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
         let value = rulesToExecute[key];
         // console.log(`value is: ${value}`);
         returnData = D[sys.cbusinessRules][value](returnData, inputMetaData);
-      }
-    }
-  }
+      } // End-if (rulesToExecute.hasOwnProperty(rule))
+    } // End-for (let rule in rulesToExecute)
+  } else {
+    // WARNING: Some rules do not exist:
+    console.log(msg.cProcessRulesWarningSomeRulesDoNotExist + JSON.stringify(rulesToExecute));
+  } // End-if (rulesToExecute && doAllRulesExist(rulesToExecute))
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -106,5 +164,7 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
 export default {
   [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
   [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
+  [fnc.cdoesRuleExist]: (ruleName) => doesRuleExist(ruleName),
+  [fnc.cdoAllRulesExist]: (ruleArray) => doAllRulesExist(ruleArray),
   [fnc.cprocessRules]: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)
 };

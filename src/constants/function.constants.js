@@ -31,6 +31,7 @@ export const cloadAllCsvData = wr1.cload + phn.cAll + gen.cCsv + wr1.cData; // l
 export const cloadAllXmlData = wr1.cload + phn.cAll + gen.cXml + wr1.cData; // LoadAllXmlData
 export const cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
 export const cprocessCsvData = wr1.cprocess + gen.cCsv + wr1.cData; // processCsvData
+export const cwriteJsonDataToFile = wr1.cwrite + gen.cJson + wr1.cData + wr1.cTo + wr1.cFile; // writeJsonDataToFile
 export const csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setupDataStorage
 export const cstoreData = wr1.cstore + wr1.cData; // storeData
 export const cgetData = wr1.cget + wr1.cData; // getData
@@ -39,6 +40,8 @@ export const cclearData = wr1.cclear + wr1.cData; // clearData
 // ruleBroker
 export const cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
 export const caddClientRules = wr1.c_add + wr1.cClient + wr1.cRules; // addClientRules
+export const cdoesRuleExist = wr1.cdoes + wr1.cRule + wr1.cExist; // doesRuleExist
+export const cdoAllRulesExist = wr1.cdo + wr1.cAll + wr1.cRules + wr1.cExist; // doAllRulesExist
 export const cprocessRules = wr1.cprocess + wr1.cRules; // processRules
 
 // workflowBroker
@@ -131,6 +134,9 @@ export const cremoveStringLiteralTagsFromArray = wr1.cremove + wr1.cString + wr1
 
 // loggers
 export const cconsoleLog = wr1.cconsole + gen.cLog; // consoleLog
+export const cconsoleTableLog = wr1.cconsole + wr1.cTable + gen.cLog; // consoleTableLog
+export const cgetLogFileNameAndPath = wr1.cget + gen.cLog + wr1.cFileName + wr1.cAnd + wr1.cPath; // getLogFileNameAndPath
+export const cprintMessageToFile = wr1.cprint + wr1.cMessage + wr1.cTo + wr1.cFile; // printMessageToFile
 
 // prompt
 export const cprompt = wr1.cprompt; // prompt

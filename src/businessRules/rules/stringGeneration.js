@@ -497,7 +497,7 @@ const generateValidEmail = function(inputData, inputMetaData) {
       returnData = generateRandomValidEmail(inputData, bas.cFalse, wr1.cEmpty);
     }
   } else { // Else-clause if (!!inputMetaData && inputMetaData !== 'undefined' && inputMetaData !== '')
-    returnData = generateRAndomValidEmail(inputData, bas.cFalse, wr1.cEmpty);
+    returnData = generateRandomValidEmail(inputData, bas.cFalse, wr1.cEmpty);
   } // End-else-clause if (!!inputMetaData && inputMetaData !== 'undefined' && inputMetaData !== '')
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -539,10 +539,10 @@ const generateInvalidEmail = function(inputData, inputMetaData) {
       specifiedSuffixAndDomain = inputMetaData[2];
       // @NOTE The above function stringParsingUtilities.stringToBoolean will default to False if the input is an empty or undefined string.
       // We want to flip it back to True but ony if some special characters are passed in.
-      if (generateSpecialCahracters === false && allowableSpecialCharacters !== '') {
+      if (generateSpecialCharacters === false && allowableSpecialCharacters !== '') {
         generateSpecialCharacters = true;
       }
-      returnData = generateInvalidEmailWithSpecificSufficAndDomainName(inputData, generateSpecialCharacters,
+      returnData = generateInvalidEmailWithSpecificSuffixAndDomainName(inputData, generateSpecialCharacters,
         allowableSpecialCharacters, specifiedSuffixAndDomain);
     } else if (inputMetaData.length <= 2) {
       generateSpecialCharacters = stringParsingUtilities.stringToBoolean(inputMetaData[0], '');
@@ -592,7 +592,7 @@ const generateValidEmailWithSpecificSuffixAndDomainName = function(numberOfChara
   loggers.consoleLog(namespacePrefix + functionName, msg.cspecifiedSuffixAndDomainIs + specifiedSuffixAndDomain);
   let returnData = '';
   let prefix = '';
-  if ((numberOfCharactersToGenerate >= specifiedSuffixAndDomain.len + 2) && numberOfCharactersToGenerate >= 6 &&
+  if ((numberOfCharactersToGenerate >= specifiedSuffixAndDomain.length + 2) && numberOfCharactersToGenerate >= 6 &&
   specifiedSuffixAndDomain.includes(bas.cDot)) {
     // @NOTE we cannot have less then 6 characters, because an e-mail address cannot be shorter than a@b.cc which is 6 characters long.
     // We know we have to use an "@" symbol, and a "." symbol, the rest of the characters ust be generated....and the "." should have already been passed in.
@@ -662,7 +662,7 @@ const generateRandomValidEmail = function(numberOfCharactersToGenerate, generate
       // Randomly determine if we should generate a 2-character or 3-character domain name. We can do either one,
       // but we need to decide now so we can get it done and be fair.
       // (That is generate 2-character domains roughly equal to the times we generate a 3-character domain.)
-      if (charGen.randomlyGenerateBooleanValue('', '') === true) { // Stick with a 2-character domain name.
+      if (characterGeneration.randomlyGenerateBooleanValue('', '') === true) { // Stick with a 2-character domain name.
         if (generateSpecialCharacters === false) {
           domainName = generateRandomMixedCaseTextByLength(num.c2, '');
         } else {
@@ -707,7 +707,7 @@ const generateRandomValidEmail = function(numberOfCharactersToGenerate, generate
       suffix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfSuffixCharacters, '');
     } else {
       prefix = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfPrefixcharacters, allowableSpecialCharacters);
-      suffix = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfSuffixCharacters, allowableSpecia);
+      suffix = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfSuffixCharacters, allowableSpecialCharacters);
     }
     returnData = prefix + bas.cAt + suffix + bas.cDot + domainName;
   } else {
@@ -849,7 +849,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
   let prefix = '';
   let suffix = '';
   let domainName = '';
-  let numberOfPrefixcharacters = 0;
+  let numberOfPrefixCharacters = 0;
   let numberOfSuffixCharacters = 0;
   let numberOfDomainNameCharacters = 0;
   let failureMode = -1;
@@ -943,7 +943,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
           }
           numberOfCharactersToGenerate = numberOfDomainNameCharacters - 2;
         } else { // Do a 3-character domain name.
-          if (generateSpecialCahracters === false) {
+          if (generateSpecialCharacters === false) {
             domainName = generateRandomMixedCaseTextByLength(num.c3, '');
           } else {
             if (!!allowableSpecialCharacters && allowableSpecialCharacters !== undefined) {
@@ -965,23 +965,23 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
       if (numberOfCharactersToGenerate % 2 === 0) {
         // We have a number that is divisible by 2, so just divide it and
         // that will be the number of characters we use for both the prefix and suffix.
-        numberOfPrefixcharacters = numberOfCharactersToGenerate / 2;
-        numberOfSuffixCharacters = numberOfPrefixcharacters;
+        numberOfPrefixCharacters = numberOfCharactersToGenerate / 2;
+        numberOfSuffixCharacters = numberOfPrefixCharacters;
       } else if (numberOfCharactersToGenerate % 2 === 1) {
-        numberOfPrefixcharacters = numberOfCharac / 2;
-        numberOfSuffixCharacters = numberOfPrefixcharacters - 1;
+        numberOfPrefixCharacters = numberOfCharactersToGenerate / 2;
+        numberOfSuffixCharacters = numberOfPrefixCharacters - 1;
       }
     } else if (failureMode === 8 || failureMode === 10 || failureMode === 11 || failureMode === 14 || failureMode === 17 || failureMode === 21 || failureMode === 22) {
       // Excluding the Prefix
       numberOfSuffixCharacters = numberOfCharactersToGenerate; // Suffix get the remainder!
-      numberOfPrefixcharacters = 0;
+      numberOfPrefixCharacters = 0;
     } else if (failureMode === 9 || failureMode === 12 || failureMode === 13 || failureMode === 15 || failureMode === 18 || failureMode === 23 || failureMode === 24) {
       // Excluding the Suffix
-      numberOfPrefixcharacters = numberOfCharactersToGenerate; // Prefix gets the remainder!
+      numberOfPrefixCharacters = numberOfCharactersToGenerate; // Prefix gets the remainder!
       numberOfSuffixCharacters = 0;
     }
     // numberOfPrefixCharacters is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfPrefixCharactersIs + numberOfPrefixcharacters);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfPrefixCharactersIs + numberOfPrefixCharacters);
     // numberOfSuffixCharacters is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSuffixCharactersIs + numberOfSuffixCharacters);
 
@@ -990,9 +990,9 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
         prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixCharacters.toString(), '');
       } else {
         if (!!allowableSpecialCharacters && allowableSpecialCharacters !== undefined) {
-          prefix = geenrateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfPrefixcharacters.toString(), allowableSpecialCharacters);
+          prefix = geenrateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfPrefixCharacters.toString(), allowableSpecialCharacters);
         } else {
-          prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixcharacters.toString(), '');
+          prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixCharacters.toString(), '');
         }
       }
     } // End-if (numberOfPrefixCharacters > 0)
@@ -1029,7 +1029,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
       break;
     case 4: // Without the domain name.
       loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheDomainName);
-      eturnData = prefix + bas.cAt + suffix + bas.cDot;
+      returnData = prefix + bas.cAt + suffix + bas.cDot;
       break;
     case 5: // Without the @ and domain name.
       loggers.consoleLog(namespacePrefix + functionName, msg.cWithoutTheAtSymbolAndDomainName);

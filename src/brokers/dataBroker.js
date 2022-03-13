@@ -59,7 +59,7 @@ function scanDataPath(dataPath) {
   // console.log(`dataPath is: ${dataPath}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + dataPath);
-  let rules = {};
+  let rules = [];
   let filesFound = [];
   rules[0] = biz.cswapBackSlashToForwardSlash;
   // console.log(`execute business rules: ${JSON.stringify(rules)}`);
@@ -163,8 +163,8 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesToLoadIs + JSON.stringify(filesToLoad));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = {};
-  let fileExtensionRules = {};
+  let rules = [];
+  let fileExtensionRules = [];
   let parsedDataFile;
   rules[1] = biz.cgetFileNameFromPath;
   rules[2] = biz.cremoveFileExtensionFromFileName;
@@ -183,7 +183,9 @@ function loadAllCsvData(filesToLoad, contextName) {
     if (fileExtension === gen.ccsv || fileExtension === gen.cCsv || fileExtension === gen.cCSV) {
       // execute business rules:
       loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusienssRulesColon + JSON.stringify(rules));
-      contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', rules);
+      // This next line is commented out because it was resulting in colors_colors, which didn't make any sense.
+      // contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', rules);
+
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
       let dataFile = fileOperations.getCsvData(fileToLoad);
@@ -218,16 +220,16 @@ function loadAllXmlData(filesToLoad, contextName) {
   let j = 0;
   let multiMergedData = {};
   let parsedDataFile = {};
-  let fileNameRules = {};
-  let fileExtensionRules = {};
-  let filePathRules = {};
+  let fileNameRules = [];
+  let fileExtensionRules = [];
+  let filePathRules = [];
   fileNameRules[0] = biz.cgetFileNameFromPath;
   fileNameRules[1] = biz.cremoveFileExtensionFromFileName;
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   fileExtensionRules[0] = biz.cgetFileExtension;
   fileExtensionRules[1] = biz.cremoveDotFromFileExtension;
   for (let i = 0; i < filesToLoad.length; i++) {
-    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
     let fileToLoad = filesToLoad[i];
     // execute busienss rules:
     loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(filePathRules));
@@ -264,10 +266,10 @@ function loadAllXmlData(filesToLoad, contextName) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cMERGED_dataIs + JSON.stringify(multiMergedData));
       dataFile = {};
     } // End-if (fileExtension === gen.cxml || fileExtension === gen.cXml || fileExtension === gen.cXML)
-    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
   } // End-for (let i = 0; i < filesToLoad.length; i++)
   parsedDataFile = {}; // Clear it, so we can re-assign it to the merged locator data or whatever kind of data it is from all files.
-  parsedDataFile = multiMergedData;
+  parsedDataFile = processXmlData(multiMergedData, contextName);
   // parsedDataFile contents are:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileContentsAre + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -374,9 +376,9 @@ function processCsvData(data, contextName) {
   if (contextName.includes(wr1.cWorkflow)) {
     // Processing a workflow
     Object.assign(D[wr1.cWorkflow], parsedData[contextName]);
-  } else if (contextName.includes(wr1.cColors)) {
-    D[wr1.cColors] = {};
-    Object.assign(D[wr1.cColors], parsedData);
+  } else if (contextName.includes(wr1.ccolors)) {
+    D[wr1.ccolors] = {};
+    Object.assign(D[wr1.ccolors], parsedData);
   } else {
     // Processing all other kinds of files.
     if (typeof D[dataCatagory] !== 'undefined' && D[dataCatagory]) {
@@ -397,6 +399,49 @@ function processCsvData(data, contextName) {
 };
 
 /**
+ * @function processXmlData
+ * @description Does some final processing on JSON data loaded from an XML file,
+ * converting the data into a usable format and executes any additional data processing rules.
+ * @param {object} data A JSON object that contains all of the data loaded from a XML file.
+ * @param {string} contextName The name that should be used when adding the objects to the D data structure for data-sharing.
+ * @return {object} A parsed and cleaned up JSON object where all of the XML data is collated and organized and cleaned up ready for use.
+ * @author Seth Hollingsead
+ * @date 2022/02/22
+ */
+function processXmlData(data, contextName) {
+  let functionName = processXmlData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // input data is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
+  // contextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
+  let dataCatagory = getDataCatagoryFromContextName(contextName);
+  // dataCatagory is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
+  let parsedDataFile = {};
+  if (dataCatagory === sys.cCommandsAliases) {
+    parsedDataFile[sys.cCommandsAliases] = {};
+    parsedDataFile[sys.cCommandsAliases][wr1.cCommands] = {};
+    for (let i = 0; i < data[sys.cCommandsAliases][wr1.cCommand].length; i++) {
+      let command = data[sys.cCommandsAliases][wr1.cCommand][i][bas.cDollar];
+      parsedDataFile[sys.cCommandsAliases][wr1.cCommands][command.Name] = command;
+    } // End-for (let i = 0; i < data[sys.cCommandAliases][wr1.cCommand].length; i++)
+  } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
+    parsedDataFile[sys.cCommandWorkflows] = {};
+    parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows] = {};
+    for (let j = 0; j < data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++) {
+      let workflow = data[sys.cCommandWorkflows][wr1.cWorkflow][j][bas.cDollar];
+      parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows][workflow.Name] = workflow;
+    } // End-for (let j = 0; j < data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++)
+  } // End-else-if (dataCatagory === sys.cCommandWorkflows)
+
+  // parsedDataFile is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return parsedDataFile;
+};
+
+/**
  * @function preprocessJsonFile
  * @description Load al of the data from a single JSON data file.
  * @param {string} fileToLoad The fully qualified path to the file that should be loaded.
@@ -410,7 +455,7 @@ function preprocessJsonFile(fileToLoad) {
   // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToLoadIs + JSON.stringify(fileToLoad));
-  let filePathRules = {};
+  let filePathRules = [];
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   // console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRules + JSON.stringify(filePathRules));
@@ -421,6 +466,24 @@ function preprocessJsonFile(fileToLoad) {
   // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
+};
+
+/**
+ * @function writeJsonDataToFile
+ * @description This is a wrapper function for fileOperations.writeJsonData.
+ * @param {string} fileToSaveTo The full path to the file that should have the data written to it.
+ * @param {object} dataToWriteOut The JSON data that should be written out to the specified JSON file.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/11
+ */
+function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
+  let functionName = writeJsonDataToFile.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
+  fileOperations.writeJsonData(fileToSaveTo, path.resolve(dataToWriteOut));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
 /**
@@ -519,7 +582,7 @@ function getDataCatagoryFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = {};
+  let rules = [];
   let dataCatagory = '';
   rules[0] = biz.cgetDataCatagoryFromDataContextName;
   // execute business rules:
@@ -544,7 +607,7 @@ function getDataCatagoryDetailNameFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = {};
+  let rules = [];
   let dataCatagoryDetailName = '';
   rules[0] = biz.cgetDataCatagoryDetailNameFromDataContextName;
   // execute busienss rules:
@@ -572,12 +635,14 @@ function extractDataFromPapaParseObject(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let cleanKeysRules = {};
+  let cleanKeysRules = [];
   let tempData = {};
   let validDataAdded = false;
-  if (contextName = sys.cConfigruation_Colors) {
+  if (contextName === wr1.ccolors) {
     contextName = sys.cColorData;
   }
+  // contextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   tempData[contextName] = {};
   cleanKeysRules[0] = biz.ccleanCarriageReturnFromString;
   let highLevelDataCount = Object.keys(data[wr1.cdata]).length;
@@ -589,15 +654,15 @@ function extractDataFromPapaParseObject(data, contextName) {
       for (let key in data[wr1.cdata][i]) {
         validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
-        if (key === sys.cCoorName) {
-          coorName = data[wr1.cdata][i][key];
+        if (key === sys.cColorName) {
+          colorName = data[wr1.cdata][i][key];
         }
         lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
       } // End-for (let key in data[wr1.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][colorName] = {};
         if (i === 0) {
-          tempDatap[contextNaem][coorName] = lowLevelTempData;
+          tempData[contextName][colorName] = lowLevelTempData;
         } else {
           Object.assign(tempData[contextName][colorName], lowLevelTempData);
         }
@@ -609,7 +674,7 @@ function extractDataFromPapaParseObject(data, contextName) {
         lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
       } // End-for (let key in data[wr1.cdata][i])
       if (validDataAdded === true) {
-        tempData[contextNaem][i] = {};
+        tempData[contextName][i] = {};
         if (i === 0) {
           tempData[contextName][i] = lowLevelTempData;
         } else {
@@ -619,7 +684,7 @@ function extractDataFromPapaParseObject(data, contextName) {
     } // End-else
   } // End-for (let i = 0; i <= highLevelDataCount; i++)
   // tempData is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + tempData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + JSON.stringify(tempData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return tempData;
 };
@@ -629,8 +694,8 @@ function extractDataFromPapaParseObject(data, contextName) {
  * @description Merge data with the D data structure for the specified data catagory and optional name.
  * @param {object} targetData The target data object where the dataToMerge should be merged with.
  * @param {string} dataCatagory Command or Script to indicate what catagory the test data should be used as.
- * @param {string} pageName (Optional) The name of the page where the data should be merged  under. Pass as empty string if nothing.
- * @param {object} dataToMerge Teh data to be merged.
+ * @param {string} pageName (Optional) The name of the page where the data should be merged under. Pass as empty string if nothing.
+ * @param {object} dataToMerge The data to be merged.
  * @return {object} A merged set of data combining all of the original data plus all of the additional data from the dataToMerge data set.
  * @author Seth Hollingsead
  * @date 2022/01/27
@@ -649,7 +714,7 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
   let dataToMergeElementCount = getDataElementCount(dataToMerge, '', '');
   // dataToMergeElementCount is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeElementCountIs + dataToMergeElementCount);
-  if (dataToMergeEElementCount === 1) {
+  if (dataToMergeElementCount === 1) {
     // dataToMergeElementCoutn is 1
     loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeElementCountIs1);
     // check if the pageName is not an empty string
@@ -706,7 +771,7 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIsModifiedInTheInputPassByReferenceVariableContentIs +
     JSON.stringify(targetData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return tempData;
+  return targetData;
 };
 
 /**
@@ -794,6 +859,7 @@ export default {
   [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
   [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
+  [fnc.cwriteJsonDataToFile]: (fileToSaveTo, dataToWriteOut) => writeJsonDataToFile(fileToSaveTo, dataToWriteOut),
   [fnc.csetupDataStorage]: () => setupDataStorage(),
   [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
   [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),

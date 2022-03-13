@@ -87,6 +87,8 @@ export const cconvertNumberToLowerCaseLetter = wr1.cconvert + wr1.cNumber + wr1.
 // mathOperations rules in order
 // ***********************************************
 export const chex2rgbConversion = gen.chex + num.c2 + gen.crgb + wr1.cConversion; // hex2rgbConversion
+export const cisOdd = wr1.cis + wr1.cOdd; // isOdd
+export const cisEven = wr1.cis + wr1.cEven; // isEven
 
 // ***********************************************
 // stringGeneration rules in order
@@ -103,7 +105,7 @@ export const cgenerateRandomLowerCaseAlphaNumericCodeByLength = wr1.cgenerate + 
 export const cgenerateRandomNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomNumericCodeByLength
 export const cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength
 export const cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength
-export const cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.ccase + wr1.cAlpha + wr1.cNuemric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
+export const cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
 export const cgenerateRandomSpecialCharacterCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cSpecial + wr1.cCharacter + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomSpecialCharacterCodeByLength
 export const cgenerateValidEmail = wr1.cgenerate + wr1.cValid + wr1.cEmail; // generateValidEmail
 export const cgenerateInvalidEmail = wr1.cgenerate + wr1.cInvalid + wr1.cEmail; // generateInvalidEmail
@@ -134,7 +136,7 @@ export const cgetFileExtension = wr1.cget + wr1.cFile + wr1.cExtension; // getFi
 export const cremoveDotFromFileExtension = wr1.cremove + wr1.cDot + wr1.cFrom + wr1.cFile + wr1.cExtension; // removeDotFromFileExtension
 export const cremoveFileExtensionFromFileName = wr1.cremove + wr1.cFile + wr1.cExtension + wr1.cFrom + wr1.cFileName; // removeFileExtensionFromFileName
 export const cgetValueFromAssignmentOperationString = wr1.cget + wr1.cValue + wr1.cFrom + wr1.cAssignment + wr1.cOperation + wr1.cString; // getValueFromAssignmentOperationString
-export const caggregateNumericalDifferenceBetweenTwoStrings = wr1.caggregate + wr1.cNumerical + wr1.cDifference + wr1.cBetween + wr1.cTwo + wr1.cStrings; // aggregateNumericalDifferenceBetweenTwoStrings
+export const caggregateNumericalDifferenceBetweenTwoStrings = wr1.caggregate + wr1.cNumerical + wr1.cDifference + wr1.cBetween + num.cTwo + wr1.cStrings; // aggregateNumericalDifferenceBetweenTwoStrings
 export const ccountCamelCaseWords = wr1.ccount + wr1.cCamel + wr1.cCase + wr1.cWords; // countCamelCaseWords
 export const cdoesStringContainAcronym = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cAcronym; // doesStringContainAcronym
 export const ccountDelimiterInString = wr1.ccount + wr1.cDelimiter + wr1.cIn + wr1.cString; // countDelimiterInString
@@ -171,13 +173,11 @@ export const cgetDataCatagoryFromDataContextName = wr1.cget + wr1.cData + wr1.cC
 export const cgetDataCatagoryDetailNameFromDataContextName = wr1.cget + wr1.cData + wr1.cCatagory + wr1.cDetail + wr1.cName + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getDataCatagoryDetailNameFromDataContextName
 export const cgetKeywordNameFromDataContextName = wr1.cget + wr1.cKeyword + wr1.cName + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getKeywordNameFromDataContextName
 export const cremoveXnumberOfFoldersFromEndOfPath = wr1.cremove + bas.cX + wr1.cnumber + wr1.cOf + wr1.cFolders + wr1.cFrom + wr1.cEnd + wr1.cOf + wr1.cPath; // removeXnumberOfFoldersFromEndOfPath
-export const cgetFirstTopLevelFolderFromPath = wr1.cget + wr1.cFirst + wr1.cTop + wr1.cLevel + wr1.cFolder + wr1.cFrom + wr1.cPath; // getFirstTopLevelFolderFromPath
+export const cgetFirstTopLevelFolderFromPath = wr1.cget + num.cFirst + wr1.cTop + wr1.cLevel + wr1.cFolder + wr1.cFrom + wr1.cPath; // getFirstTopLevelFolderFromPath
 export const cloadDataFile = wr1.cload + wr1.cData + wr1.cFile; // loadDataFile
 export const csupportedFileFormatsAre = wr1.csupported + wr1.cFile + wr1.cFormats + wr1.cAre; // supportedFileFormatsAre
 export const cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
 export const cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue
-export const cisOdd = wr1.cis + wr1.cOdd; // isOdd
-export const cisEven = wr1.cis + wr1.cEven; // isEven
 export const ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput
 
 // ***********************************************

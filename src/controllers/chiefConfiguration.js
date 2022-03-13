@@ -58,7 +58,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigPathIs + appConfigPath);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + frameworkConfigPath);
-  let rules = {};
+  let rules = [];
   rules[0] = biz.cswapBackSlashToForwardSlash;
   appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
   // console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
@@ -75,7 +75,6 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wr1.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
-  // console.log('ALL DATA IS: ' + JSON.stringify(D));
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -97,8 +96,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log(`allConfigurationData is: ${JSON.stringify(allConfigurationData)}`);
   let highLevelSystemConfigurationContainer = {};
   let highLevelDebugConfigurationContainer = {};
-  let allSystemConfigurations = {};
-  let rules = {};
+  let rules = [];
   let configurationElement;
   let configurationSubElement;
   let fullyQualifiedName;
