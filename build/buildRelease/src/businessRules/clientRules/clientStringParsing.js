@@ -3,7 +3,7 @@
  * @module clientStringParsing
  * @description Contains all client defined business rules for parsing strings, values, arrays,
  * values of all kinds, with various operations.
- * @requires module:application.business.constants
+ * @requires module:application.busienss.constants
  * @requires module:application.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
@@ -11,7 +11,7 @@
  * @requires module:haystacks.system.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
- * @date 2022/02/08
+ * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -26,17 +26,17 @@ let wr1 = haystacks.wr1;
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// testHarness.businessRules.clientRules.clientStringParsing.
-const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
+// buildRelease.busienssRules.clientRules.clientStringParsing.
+const namespacePrefix = apc.buildRelease + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEcho
- * @description A quick buisness rule to validate that the new dynamic data storage technique for business rules.
+ * @description A quick business rule to validate that the new dynamic data storage technique for business rules.
  * @param {string} inputData The string input data.
  * @param {string} inputMetaData The string of input meta-data.
  * @return {string} An echo of the inputData with some hard-coded modifier.
  * @author Seth Hollingsead
- * @date 2022/02/08
+ * @date 2022/03/13
  */
 const customEcho = function(inputData, inputMetaData) {
   let functionName = customEcho.name;

@@ -4,8 +4,8 @@
  * @file testHarness.js
  * @module testHarness
  * @description This is the main init for the testHarness application.
- * It contains just enough of the main program loop and/or basic argument parsing to effectively test the framework.
- *
+ * It contains just enough of the main program loop and/or basic argument parsing to
+ * effectively test the framework.
  * @requires module:clientRules
  * @requires module:clientCommands
  * @requires module:application.constants
@@ -53,7 +53,7 @@ let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.
 let namespacePrefix = baseFileName + bas.cDot;
-global.appRot = path.resolve(process.cwd());
+global.appRoot = path.resolve(process.cwd());
 dotenv.config();
 const {NODE_ENV} = process.env;
 
@@ -82,7 +82,7 @@ function bootstrapApplication() {
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   } else if (NODE_ENV === wr1.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
@@ -93,7 +93,7 @@ function bootstrapApplication() {
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   } else {
     // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
     console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
@@ -106,7 +106,7 @@ function bootstrapApplication() {
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   }
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();

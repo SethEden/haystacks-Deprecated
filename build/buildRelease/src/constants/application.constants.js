@@ -8,8 +8,8 @@
  * @requires module:haystacks.system.constants
  * @requires module:haystacks.word1.constants
  * @author Seth Hollingsead
- * @date 2021/12/27
- * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
+ * @date 2022/03/13
+ * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
 // External imports
@@ -19,7 +19,7 @@ let cfg = haystacks.cfg;
 let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 
-export const cApplicationName = wr1.ctest + wr1.cHarness; // testHarness
+export const cApplicationName = wr1.cbuild + wr1.cRelease; // buildRelease
 export const cAppDevPath = bas.cForwardSlash + wr1.csrc + bas.cForwardSlash; // /src/
 export const cAppProdPath = bas.cForwardSlash + wr1.cbin + bas.cForwardSlash; // /bin/
 export const cResourcesCommonPath = wr1.cresources + bas.cForwardSlash; // resources/

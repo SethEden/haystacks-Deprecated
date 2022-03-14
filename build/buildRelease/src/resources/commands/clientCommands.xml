@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><CommandsAliases>
+  <Command Name="customEchoCommand" Aliases="CustomEchoC,CustomEchoCmd,CustomEchoCommand,CustomEcoC,CustomEcoCmd,CustomEcoCommand,CustomEC,CustomECmd,CustomECommand,CustEchoC,CustEchoCmd,CustEchoCommand,CustEcoC,CustEcoCmd,CustEcoCommand,CustEC,CustECmd,CustECommand,CEchoC,CEchoCmd,CEchoCommand,CEcoC,CEcoCmd,CEcoCommand,CEC,CECmd" Description="A client defined custom Echo command that echos back the input plus something extra."/>
+</CommandsAliases>

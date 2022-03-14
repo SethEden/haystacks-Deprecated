@@ -1,12 +1,12 @@
 /**
  * @file clientCommands.js
  * @module clientCommands
- * @description Contains all client defined commands for execution client actions with various operations.
+ * @description Contains all client defined  commands for execution client actions with various operations.
  * @requires module:application.command.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.business.constants
- * @requires module:haystacks.generic.constants
+ * @requires module:haystacks.generaic.constants
  * @requires module:haystacks.message.constants
  * @requires module:haystacks.numeric.constants
  * @requires module:haystacks.system.constants
@@ -14,7 +14,7 @@
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
- * @date 2022/02/07
+ * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -33,8 +33,8 @@ import chalk from 'chalk';
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// testHarness.commands.clientCommands.clientCommands.
-const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
+// buildRelease.commands.cientCommands.clientCommands.
+const namespacePrefix = apc.cbuildRelease + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEchoCommand
@@ -42,9 +42,9 @@ const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot +
  * dynamic data storage technique for client commands is working.
  * @param {string} inputData The string input data.
  * @param {string} inputMetaData The string of input meta-data.
- * @return {string} An echo of the inputData with some hard-coded modifier.
+ * @return {string} An echo of the input Data with some hard-coded modifier.
  * @author Seth Hollingsead
- * @date 2022/02/08
+ * @date 2022/03/13
  */
 const customEchoCommand = function(inputData, inputMetaData) {
   let functionName = customEchoCommand.name;

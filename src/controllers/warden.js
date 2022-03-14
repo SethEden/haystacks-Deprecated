@@ -387,7 +387,7 @@ function processCommandQueue() {
  * @author Seth Hollingsead
  * @date 2022/02/16
  */
-function setConfigurationSetting(configurationNamespace, configurationName, configuratinoValue) {
+function setConfigurationSetting(configurationNamespace, configurationName, configurationValue) {
   let functionName = setConfigurationSetting.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // configurationNamespace is:

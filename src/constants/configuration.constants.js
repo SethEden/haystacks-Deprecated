@@ -70,6 +70,8 @@ export const ccommandsPerformanceAnalysisStack = wr1.ccommands + wr1.cPerformanc
 export const cclearBusinessRulesPerformanceDataAfterAnalysis = wr1.cclear + wr1.cBusiness + wr1.cRules + wr1.cPerformance + wr1.cData + wr1.cAfter + wr1.cAnalysis; // clearBusinessRulesPerformanceDataAfterAnalysis
 export const cclearCommandPerformanceDataAfterAnalysis = wr1.cclear + wr1.cCommand + wr1.cPerformance + wr1.cData + wr1.cAfter + wr1.cAnalysis; // clearCommandPerformanceDataAfterAnalysis
 export const cprintDataHiveToLogFile = wr1.cprint + wr1.cData + wr1.cHive + wr1.cTo + gen.cLog + wr1.cFile; // printDataHiveToLogFile
+export const cdeploymentCompleted = wr1.cdeployment + wr1.cCompleted; // deploymentCompleted
+export const creleaseCompleted = wr1.crelease + wr1.cCompleted; // releaseCompleted
 
 // Test Time Tracking
 export const cBeginDateTimeStamp = wr1.cBegin + sys.cDateTimeStamp; // BeginDateTimeStamp
