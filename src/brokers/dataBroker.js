@@ -443,7 +443,7 @@ function processXmlData(data, contextName) {
 
 /**
  * @function preprocessJsonFile
- * @description Load al of the data from a single JSON data file.
+ * @description Load all of the data from a single JSON data file.
  * @param {string} fileToLoad The fully qualified path to the file that should be loaded.
  * @return {object} The JSON data object that was loaded from the specified JSON data file.
  * @author Seth Hollingsead
@@ -482,7 +482,7 @@ function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
-  fileOperations.writeJsonData(fileToSaveTo, path.resolve(dataToWriteOut));
+  fileOperations.writeJsonData(path.resolve(fileToSaveTo), dataToWriteOut);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -859,6 +859,7 @@ export default {
   [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
   [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
+  [fnc.cpreprocessJsonFile]: (fileToLoad) => preprocessJsonFile(fileToLoad),
   [fnc.cwriteJsonDataToFile]: (fileToSaveTo, dataToWriteOut) => writeJsonDataToFile(fileToSaveTo, dataToWriteOut),
   [fnc.csetupDataStorage]: () => setupDataStorage(),
   [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),

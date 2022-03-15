@@ -8,6 +8,8 @@
  * effectively test the framework.
  * @requires module:clientRules
  * @requires module:clientCommands
+ * @requires module:application.command.constants
+ * @requires module:application.configuration.constants
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
@@ -30,6 +32,7 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
+import * as app_cmd from './constants/application.command.constants.js';
 import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
@@ -134,6 +137,8 @@ async function application() {
   }
   // argumentDrivenInterface is:
   // haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
+  console.log('app_cmd.ccustomEchoCommand resolves as: ' + app_cmd.ccustomEchoCommand);
+  haystacks.enqueueCommand(app_cmd.ccustomEchoCommand + bas.cSpace + 'Hello World Client Command');
   haystacks.enqueueCommand(cmd.cStartupWorkflow);
 
   // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,

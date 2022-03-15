@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.brokers.commandBroker": false,
+  "debugFiles|debugSetting.brokers.commandBroker": true,
   "debugFiles|debugSetting.brokers.commandBroker@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.brokers.commandBroker@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.brokers.commandBroker@MessageFontStyle": "Underline",

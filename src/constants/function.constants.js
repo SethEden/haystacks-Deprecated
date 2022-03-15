@@ -31,6 +31,7 @@ export const cloadAllCsvData = wr1.cload + phn.cAll + gen.cCsv + wr1.cData; // l
 export const cloadAllXmlData = wr1.cload + phn.cAll + gen.cXml + wr1.cData; // LoadAllXmlData
 export const cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
 export const cprocessCsvData = wr1.cprocess + gen.cCsv + wr1.cData; // processCsvData
+export const cpreprocessJsonFile= wr1.cpreprocess + gen.cJson + wr1.cFile; // preprocessJsonFile
 export const cwriteJsonDataToFile = wr1.cwrite + gen.cJson + wr1.cData + wr1.cTo + wr1.cFile; // writeJsonDataToFile
 export const csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setupDataStorage
 export const cstoreData = wr1.cstore + wr1.cData; // storeData

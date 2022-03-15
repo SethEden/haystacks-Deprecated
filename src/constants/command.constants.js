@@ -37,7 +37,6 @@ export const cbusinessRulesMetrics = wr1.cbusiness + wr1.cRules + wr1.cMetrics; 
 export const ccommandMetrics = wr1.ccommand + wr1.cMetrics; // commandMetrics
 export const csaveConfiguration = wr1.csave + wr1.cConfiguration; // saveConfiguration
 export const cconvertColors = wr1.cconvert + wr1.cColors; // convertColors
-export const cdeployMetaData = wr1.cdeploy + wr1.cMetaData; // deployMetaData
 
 // ********************************
 // System defined workflows

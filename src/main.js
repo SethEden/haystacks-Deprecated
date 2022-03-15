@@ -72,43 +72,44 @@ const {NODE_ENV} = process.env;
 */
 function initFramework(clientConfiguration) {
  let functionName = initFramework.name;
- // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
  loggers.consoleLog(namespacePrefix + functionName, msg.cclientConfigurationIs + clientConfiguration);
 
  // let frameworkRootPath = path.resolve(process.cwd());
  // let frameworkRootPath = path.resolve(path.dirname(import.meta.url));
- let frameworkRootPath = url.fileURLToPath(path.dirname(import.meta.url));
+ let frameworkCodeRootPath = url.fileURLToPath(path.dirname(import.meta.url));
  let frameworkCommandAliasesPath = '';
  let frameworkWorkflowsPath = '';
- frameworkRootPath = warden.processRootPath(frameworkRootPath) + bas.cDoubleForwardSlash;
+ frameworkCodeRootPath = warden.processRootPath(frameworkCodeRootPath) + bas.cDoubleForwardSlash;
+ let frameworkRootPath = frameworkCodeRootPath;
  if (NODE_ENV === wr1.cdevelopment) {
-   frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
+   frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkDevelopRootPath;
  } else if (NODE_ENV === wr1.cproduction) {
-   frameworkRootPath = frameworkRootPath + sys.cFrameworkProductionRootPath;
+   frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkProductionRootPath;
  } else {
    // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
    console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
-   frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
+   frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkDevelopRootPath;
  }
- frameworkCommandAliasesPath = frameworkRootPath + sys.cframeworkResourcesCommandAliasesPath;
- frameworkWorkflowsPath = frameworkRootPath + sys.cframeworkResourcesWorkflowsPath;
+ frameworkCommandAliasesPath = frameworkCodeRootPath + sys.cframeworkResourcesCommandAliasesPath;
+ frameworkWorkflowsPath = frameworkCodeRootPath + sys.cframeworkResourcesWorkflowsPath;
 
- clientConfiguration[cfg.cframeworkRootPath] = frameworkRootPath;
+ clientConfiguration[cfg.cframeworkRootPath] = path.resolve(frameworkRootPath);
  clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cappConfigReferencePath];
- clientConfiguration[cfg.cframeworkResourcesPath] = frameworkRootPath + sys.cframeworkResourcesPath;
+ clientConfiguration[cfg.cframeworkResourcesPath] = frameworkCodeRootPath + sys.cframeworkResourcesPath;
  clientConfiguration[cfg.cclientMetaDataPath] = path.resolve(clientConfiguration[cfg.cclientRootPath] + clientConfiguration[cfg.cclientMetaDataPath]);
  clientConfiguration[cfg.cframeworkFullMetaDataPath] = path.resolve(clientConfiguration[cfg.cframeworkResourcesPath] + sys.cmetaDatadotJson);
- clientConfiguration[cfg.cframeworkConfigPath] = frameworkRootPath + sys.cframeworkResourcesConfigurationPath;
+ clientConfiguration[cfg.cframeworkConfigPath] = frameworkCodeRootPath + sys.cframeworkResourcesConfigurationPath;
  clientConfiguration[cfg.cframeworkCommandAliasesPath] = frameworkCommandAliasesPath;
  clientConfiguration[cfg.cframeworkWorkflowsPath] = frameworkWorkflowsPath;
 
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
- // console.log('All loaded data is: ' + JSON.stringify(D));
- // console.log(`END ${namespacePrefix}${functionName} function`);
+ console.log('All loaded data is: ' + JSON.stringify(D));
+ console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**

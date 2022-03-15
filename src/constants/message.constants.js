@@ -550,6 +550,7 @@ export const cargsArrayContainsColonIs = gen.cargs + wr1.cArray + wr1.cContains 
 export const cfileToSaveToIs = wr1.cfile + wr1.cTo + wr1.cSave + wr1.cTo + sys.cSpaceIsColonSpace; // fileToSaveTo is:
 export const cdataToWriteOutIs = wr1.cdata + wr1.cTo + wr1.cWrite + wr1.cOut + sys.cSpaceIsColonSpace; // dataToWriteOut is:
 export const clogFilePathAndNameIs = gen.clog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName + sys.cSpaceIsColonSpace; // logFilePathAndName is:
+export const cmetaDataOutputIs = wr1.cmetaData + wr1.cOutput + sys.cSpaceIsColonSpace; // metaDataOutput is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

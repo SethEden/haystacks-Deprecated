@@ -58,6 +58,52 @@ const customEchoCommand = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function deployMetaData
+ * @description Copies application meta-data from the soure to the destination.
+ * @param {object} inputData The data that should be transfered to the output file & path.
+ * @param {string} inputMetaData The path the data should be written out to.
+ * @return {boolean} A True or False value to indicate if the data was copied successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/03/14 Happy Pi day!! 3.141562653589793238462643383279502884197169399
+ */
+const deployMetaData = function(inputData, inputMetaData) {
+  let functionName = deployMetaData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+
+  // inputData.shift(); // Remove the first element of the array, because that is what is used to call this command.
+  // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
+  let frameworkMetaDataPathAndFilename = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
+  frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
+  frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
+  let frameworkMetaData = dataBroker.preprocessJsonFile(frameworkMetaDataPathAndFilename);
+  let frameworkName = frameworkMetaData[wr1.cname];
+  let frameworkVersion = frameworkMetaData[wr1.cversion];
+  let frameworkDescription = frameworkMetaData[wr1.cdescription];
+  let metaDataOutput = {};
+  metaDataOutput = {
+    Name: frameworkName,
+    Version: frameworkVersion,
+    Description: frameworkDescription
+  };
+
+  let metaDataPathAndFilename = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath);
+  metaDataPathAndFilename = path.resolve(metaDataPathAndFilename + sys.cmetaDatadotJson);
+  // metaDataPathAndFilename is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
+  // metaDataOutput is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
+  dataBroker.writeJsonDataToFile(metaDataPathAndFilename, metaDataOutput);
+
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
-  customEchoCommand
+  customEchoCommand,
+  deployMetaData
 };

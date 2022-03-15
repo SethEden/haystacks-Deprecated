@@ -93,8 +93,8 @@ function processRootPath(inputPath) {
  */
 function initFrameworkSchema(configData) {
   let functionName = initFrameworkSchema.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`configData is: ${JSON.stringify(configData)}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`configData is: ${JSON.stringify(configData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + JSON.stringify(configData));
   const appConfigPath = configData[cfg.cappConfigPath];
@@ -176,7 +176,7 @@ function initFrameworkSchema(configData) {
   loadCommandWorkflows(''); // Same as above.
   // We can pass in a name of a configuration setting that has a path to load plugin data this way.
 
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

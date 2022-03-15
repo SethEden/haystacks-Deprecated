@@ -7,6 +7,8 @@
  * It contains everything to build and deploy the entire npm package.
  * @requires module:clientRules
  * @requires module:clientCommands
+ * @requires module:application.command.constants
+ * @requires module:application.configuration.constants
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
@@ -29,6 +31,7 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
+import * as app_cmd from './constants/application.command.constants.js';
 import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
@@ -49,7 +52,8 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 
-let rootPath = '';
+let clientRootPath = '';
+let frameworkRootPath = '';
 let appName = '';
 let appVersion = '';
 let appDescription = '';
@@ -70,37 +74,34 @@ const {NODE_ENV} = process.env;
 function bootStrapApplication() {
   let functionName = bootStrapApplication.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  rootPath = url.fileURLToPath(path.dirname(import.meta.url));
-  let rootPathArray = rootPath.split(bas.cBackSlash);
+  clientRootPath = url.fileURLToPath(path.dirname(import.meta.url));
+  let rootPathArray = clientRootPath.split(bas.cBackSlash);
   rootPathArray.pop(); // remove any bin or src folder from the path.
-  rootPath = rootPathArray.join(bas.cBackSlash);
-  const packageJsonPath = path.resolve(rootPath + apc.cForwardSlashPackageDotJson);
-  // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, gen.cUTF8))
-  appName = packageJson.name;
-  appVersion = packageJson.version;
-  appDescription = packageJson.description;
-
+  clientRootPath = rootPathArray.join(bas.cBackSlash);
+  // rootPathArray.pop();
+  // rootPathArray.pop();
+  // frameworkRootPath = rootPathArray.join(bas.cBackSlash);
+  // console.log('frameworkRootPath is: ' + frameworkRootPath);
   let appConfig = {};
   if (NODE_ENV === wr1.cdevelopment) {
     appConfig = {
-      clientRootPath: rootPath,
-      appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
-      appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
+      clientRootPath: clientRootPath,
+      appConfigResourcesPath: clientRootPath + apc.cFullDevResourcesPath,
+      appConfigReferencePath: clientRootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
-      clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
-      clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      clientCommandAliasesPath: clientRootPath + apc.cFullDevCommandsPath,
+      clientWorkflowsPath: clientRootPath + apc.cFullDevWorkflowsPath,
       clientBusinessRules: {},
       clientCommands: {}
     };
   } else if (NODE_ENV === wr1.cproduction) {
     appConfig = {
-      clientRootPath: rootPath,
-      appConfigResouresPath: rootPath + apc.cFullProdResourcesPath,
-      appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
+      clientRootPath: clientRootPath,
+      appConfigResouresPath: clientRootPath + apc.cFullProdResourcesPath,
+      appConfigReferencePath: clientRootPath + apc.cFullProdConfigurationPath,
       clientMetaDataPath: apc.cmetaDataProdPath,
-      clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
-      clientWorkflowsPath: rotPath + apc.cFullProdWorkflowsPath,
+      clientCommandAliasesPath: clientRootPath + apc.cFullProdCommandsPath,
+      clientWorkflowsPath: clientRootPath + apc.cFullProdWorkflowsPath,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -108,12 +109,12 @@ function bootStrapApplication() {
     // WARNING: NO .env file found! Going to defalt to the DEVELOPMENT ENVIRONMENT!
     console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
     appConfig = {
-      clientRootPath: rootPath,
-      appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
-      appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
+      clientRootPath: clientRootPath,
+      appConfigResourcesPath: clientRootPath + apc.cFullDevResourcesPath,
+      appConfigReferencePath: clientRootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
-      clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
-      clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      clientCommandAliasesPath: clientRootPath + apc.cFullDevCommandsPath,
+      clientWorkflowsPath: clientRootPath + apc.cFullDevWorkflowsPath,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -147,11 +148,12 @@ function deployApplication() {
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cPassedAllCommandAliasesDuplicateChecks, false);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cSourceResourcesPath, apc.cDevelopResourcesPath);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cDestinatinoResourcesPath, apc.cProductionResourcesPath);
-    const appNameExpression = bas.cDoubleQuote + wr1.cName + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + appName + bas.cDoubleQuote; // "Name": "buildRelease"
-    const appVersionExpression = bas.cDoubleQuote + wr1.cVersion + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + appVersion + bas.cDoubleQuote; // "Version": "0.0.1"
-    const appDescriptionExpression = bas.cDoubleQuote + wr1.cDescription + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + appDescription + bas.cDoubleQuote; // "Description": "app-description"
-    haystacks.enqueueCommand(cmd.cdeployMetaData + bas.cSpace + appNameExpression + bas.cComa + appVersionExpression + bas.cComa + appDescriptionExpression);
-    // haystacks.enqueueCommand(cmd.cBuildWorkflow);
+    console.log('app_cmd.cdeployMetaData resolves as: ' + app_cmd.cdeployMetaData);
+    // NOTE: We could use a similar process to deploy an application that is based on the haystacks framework.
+    // However, in this case we are only concerned with building & releasing the framework.
+    // The test harness is not a concern for the release process, neither is the buildRelease application.
+    haystacks.enqueueCommand(app_cmd.cdeployMetaData);
+    // haystacks.enqueueCommand(cmd.cbuildWorkflow);
     let commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
       commandResult = true;

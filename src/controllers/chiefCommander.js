@@ -128,7 +128,7 @@ function isCommandQueueEmpty() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = false;
   returnData = queue.isEmpty(sys.cCommandQueue);
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -149,7 +149,7 @@ function processCommandQueue() {
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   returnData = commandBroker.executeCommand(commandToExecute);
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
