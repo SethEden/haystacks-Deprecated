@@ -46,6 +46,7 @@ export const cDoublePercent = cPercent + cPercent; // %%
 export const cCarrot = '^'; // ^
 export const cAndPersand = '&'; // &
 export const cDot = '.'; // .
+export const cDoubleDot = cDot + cDot; // ..
 export const cComa = ','; // ,
 export const cColon = ':'; // :
 export const cSemiColon = ';'; // ;

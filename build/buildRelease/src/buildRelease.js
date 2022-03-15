@@ -46,29 +46,19 @@ let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 import url from 'url';
 import dotenv from 'dotenv';
+import fs from 'fs';
 import path from 'path';
 
 let rootPath = '';
+let appName = '';
+let appVersion = '';
+let appDescription = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.
 let namespacePrefix = baseFileName + bas.cDot;
 global.appRoot = path.resolve(process.cwd());
 dotenv.config();
 const {NODE_ENV} = process.env;
-
-// NEW WAY!!
-// fs = require('fs')
-// json = JSON.parse(fs.readFileSync('package.json', 'utf8'))
-// version = json.version
-// Ref: https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code
-
-// OLD WAY!!
-// const appName = process.env.npm_package_name;
-// const appVersion = process.env.npm_package_version;
-// const appDescription = process.env.npm_package_description;
-// console.log('appName from: process.env.npm_package_name is: ' + appName);
-// console.log('appVersion from: process.env.npm_package_version is: ' + appVersion);
-// console.log('appDescription from: process.env.npm_package_description is: ' + appDescription);
 
 /**
  * @function bootStrapApplication
@@ -84,6 +74,13 @@ function bootStrapApplication() {
   let rootPathArray = rootPath.split(bas.cBackSlash);
   rootPathArray.pop(); // remove any bin or src folder from the path.
   rootPath = rootPathArray.join(bas.cBackSlash);
+  const packageJsonPath = path.resolve(rootPath + apc.cForwardSlashPackageDotJson);
+  // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, gen.cUTF8))
+  appName = packageJson.name;
+  appVersion = packageJson.version;
+  appDescription = packageJson.description;
+
   let appConfig = {};
   if (NODE_ENV === wr1.cdevelopment) {
     appConfig = {
@@ -150,12 +147,24 @@ function deployApplication() {
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cPassedAllCommandAliasesDuplicateChecks, false);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cSourceResourcesPath, apc.cDevelopResourcesPath);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cDestinatinoResourcesPath, apc.cProductionResourcesPath);
-
-    // import {name, version, description} from '../package.json';
-
-    // console.log('package.json name is: ' + name);
-    // console.log('package.json version is: ' + version);
-    // console.log('package.json description is: ' + description);
+    const appNameExpression = bas.cDoubleQuote + wr1.cName + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + appName + bas.cDoubleQuote; // "Name": "buildRelease"
+    const appVersionExpression = bas.cDoubleQuote + wr1.cVersion + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + appVersion + bas.cDoubleQuote; // "Version": "0.0.1"
+    const appDescriptionExpression = bas.cDoubleQuote + wr1.cDescription + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + appDescription + bas.cDoubleQuote; // "Description": "app-description"
+    haystacks.enqueueCommand(cmd.cdeployMetaData + bas.cSpace + appNameExpression + bas.cComa + appVersionExpression + bas.cComa + appDescriptionExpression);
+    // haystacks.enqueueCommand(cmd.cBuildWorkflow);
+    let commandResult = true;
+    while (haystacks.isCommandQueueEmpty() === false) {
+      commandResult = true;
+      commandResult = haystacks.processCommandQueue();
+    }
+    let deploymentResult = haystacks.getConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted);
+    if (deploymentResult) {
+      // Deployment was completed:
+      console.log(msg.cBuildMessage1 + deploymentResult);
+    } else {
+      console.log(msg.cBuildMessage1 + gen.cFalse);
+      haystacks.setConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted, false);
+    }
   } catch (err) {
     console.error(err);
     // deploymentCompleted

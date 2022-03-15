@@ -1130,7 +1130,7 @@ const saveConfiguration = function(inputData, inputMetaData) {
  * @date 2022/03/11
  * @reference {@Link: https://github.com/paularmstrong/normalizr/issues/15}
  */
-export const convertColors = function(inputData, inputMetaData) {
+const convertColors = function(inputData, inputMetaData) {
   let functionName = convertColors.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1163,6 +1163,69 @@ export const convertColors = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function deployMetaData
+ * @description Copies application meta-data from the soure to the destination.
+ * @param {object} inputData The data that should be transfered to the output file & path.
+ * @param {string} inputMetaData The path the data should be written out to.
+ * @return {boolean} A True or False value to indicate if the data was copied successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/03/14 Happy Pi day!! 3.141562653589793238462643383279502884197169399
+ */
+const deployMetaData = function(inputData, inputMetaData) {
+  let functionName = deployMetaData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (!inputData) {
+    returnData = false;
+  } else {
+    let aggregateCommandString = '';
+    let getAttributeNameRule = [];
+    let getAttributeValueRule = [];
+    getAttributeNameRule[0] = biz.cgetAttributeName;
+    getAttributeValueRule[0] = biz.cgetAttributeValue;
+    inputData.shift(); // Remove the first element of the array, because that is what is used to call this command.
+    let metaDataParameters = inputData.join(bas.cSpace).split(bas.cComa);
+    // metaDataParameters is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataParametersIs + JSON.stringify(metaDataParameters));
+    // metaDataParameters Length is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataParametersLengthIs + metaDataParameters.length);
+
+    let metaDataOutput = {};
+    for (let i = 0; i < metaDataParameters.length; i++) {
+      let attributeJsonString = metaDataParameters[i];
+      // attributeJsonString is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cattributeJsonStringIs + attributeJsonString);
+      let appAttributeName = ruleBroker.processRules(attributeJsonString, '', getAttributeNameRule);
+      // appAttributeName is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cappAttributeNameIs + appAttributeName);
+      let appAttributeValue = ruleBroker.processRules(attributeJsonString, '', getAttributeValueRule);
+      // appAttributeValue is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cappAttributeValueIs + appAttributeValue);
+      if (appAttributeName.includes(wr1.cName) === true) {
+        configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationName, appAttributeValue);
+      } else if (appAttributeName.includes(wr1.cVersion) === true) {
+        configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationVersionNumber, appAttributeValue);
+      } else if (appAttributeName.includes(wr1.cDescription) === true) {
+        configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationDescription, appAttributeValue);
+      } else {
+        configurator.setConfigurationSetting(wr1.csystem, appAttributeName, appAttributeValue);
+      }
+      metaDataOutput[appAttributeName] = appAttributeValue;
+    } // End-for (let i = 0; i < metaDataParameters.length; i++)
+    let metaDataPathAndFilename = configurator.getConfigurationSetting(wr1.csystem, sys.cconfigurationPath);
+    metaDataPathAndFilename = path.resolve(metaDataPathAndFilename + cfg.cmetaDatadotJson);
+    // metaDataPathAndFilename is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
+    fileBroker.writeJsonData(metaDataPathAndFilename, metaDataOutput);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   echoCommand,
   exit,
@@ -1183,5 +1246,6 @@ export default {
   businessRulesMetrics,
   commandMetrics,
   saveConfiguration,
-  convertColors
+  convertColors,
+  deployMetaData
 };

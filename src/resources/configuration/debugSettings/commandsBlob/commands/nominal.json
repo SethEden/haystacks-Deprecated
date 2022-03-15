@@ -271,5 +271,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.convertColors@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.convertColors@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.nominal.convertColors@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.nominal.convertColors@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.convertColors@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.nominal.deployMetaData@DataFontBackgroundColor": "Black"
 }

@@ -353,6 +353,8 @@ export const cDestinationResourcesPath = wr1.cDestination + wr1.cResources + wr1
 export const cBinaryRootPath = wr1.cBinary + wr1.cRoot + wr1.cPath; // BinaryRootPath
 export const cBinaryReleasePath = wr1.cBinary + wr1.cRelease + wr1.cPath; // BinaryReleasePath
 export const cdevtty = bas.cForwardSlash + cdev + bas.cForwardSlash + phn.ctty; // /dev/tty
+export const cpackageDotJson = wr1.cpackage + bas.cDot + gen.cjson; // package.json
+export const cDoubleDotForwardSlash = bas.cDoubleDot + bas.cForwardSlash; // ../
 
 // Constants Filenames
 export const cbasic_constants_js = wr1.cbasic + bas.cDot + wr1.cconstants + bas.cDot + bas.cjs; // basic.constants.js

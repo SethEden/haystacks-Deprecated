@@ -27,6 +27,7 @@ export const cCommandsCommonPath = wr1.ccommands + bas.cForwardSlash; // command
 export const cConfigurationCommonPath = wr1.cconfiguration + bas.cForwardSlash; // configuration/
 export const cWorkflowsCommonPath = wr1.cworkflows + bas.cForwardSlash; // workflows/
 export const cReleasePath = wr1.crelease + bas.cForwardSlash; // release/
+export const cForwardSlashPackageDotJson = bas.cForwardSlash + sys.cpackageDotJson; // /package.json
 
 // Full Dev paths
 export const cFullDevResourcesPath = cAppDevPath + cResourcesCommonPath; // /src/resources/
