@@ -316,7 +316,7 @@ const ascertainMatchingElements = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) {
       // Array elements match
-      loggers.consoleLog(namespacePrefix + functionName, msg.cArrayEelmentsMatch);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cArrayElementsMatch);
       returnData = true;
     } else {
       // Array elements do not match
@@ -389,7 +389,7 @@ const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
 
 /**
  * @function searchForPatternsInStringArray
- * @description Walks through sub-strings of each string in the input array of strings searchign or common patterns using a brute-force sequential array search.
+ * @description Walks through sub-strings of each string in the input array of strings searching or common patterns using a brute-force sequential array search.
  * Maximum string length to search is the maximum string length - 1 (basically the longest string in the array minus 1 character).
  * Minimum string length to search is 3 characters.
  * @param {array<string>} inputData The array of strigns that should be searched for matching patterns.
