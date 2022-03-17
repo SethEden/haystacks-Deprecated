@@ -137,8 +137,6 @@ async function application() {
   }
   // argumentDrivenInterface is:
   // haystacks.consoleLog(namespacePrefix, functionName, app_msg.cargumentDrivenInterfaceIs + argumentDrivenInterface);
-  console.log('app_cmd.ccustomEchoCommand resolves as: ' + app_cmd.ccustomEchoCommand);
-  haystacks.enqueueCommand(app_cmd.ccustomEchoCommand + bas.cSpace + 'Hello World Client Command');
   haystacks.enqueueCommand(cmd.cStartupWorkflow);
 
   // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,

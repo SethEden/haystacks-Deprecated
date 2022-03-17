@@ -148,7 +148,6 @@ function deployApplication() {
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cPassedAllCommandAliasesDuplicateChecks, false);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cSourceResourcesPath, apc.cDevelopResourcesPath);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cDestinatinoResourcesPath, apc.cProductionResourcesPath);
-    console.log('app_cmd.cdeployMetaData resolves as: ' + app_cmd.cdeployMetaData);
     // NOTE: We could use a similar process to deploy an application that is based on the haystacks framework.
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.

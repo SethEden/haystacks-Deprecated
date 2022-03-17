@@ -80,7 +80,12 @@ function bootStrapCommands() {
 function addClientCommands(clientCommands) {
   let functionName = addClientCommands.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  Object.assign(D[wr1.cCommands], clientCommands);
+  // Object.assign(D[wr1.cCommands], clientCommands);
+  // D[wr1.cCommands] = {...D[wr1.cCommands], Object.keys(clientCommands): clientCommands[Object.keys(clientCommands)]};
+  for (const [key, value] of Object.entries(clientCommands)) {
+    // console.log('%%%%%%%%%%%%%%%%%% ---- >>>>>>>>> key is: ' + key);
+    D[wr1.cCommands] = {...D[wr1.cCommands], [`${key}`]: value};
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

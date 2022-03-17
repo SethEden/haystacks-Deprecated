@@ -6,6 +6,7 @@
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.business.constants
+ * @requires module:haystacks.configuration.constants
  * @requires module:haystacks.generaic.constants
  * @requires module:haystacks.message.constants
  * @requires module:haystacks.numeric.constants
@@ -24,6 +25,7 @@ import * as apc from '../../constants/application.constants.js';
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let biz = haystacks.biz;
+let cfg = haystacks.cfg;
 let gen = haystacks.gen;
 let msg = haystacks.msg;
 let num = haystacks.num;
@@ -34,7 +36,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.commands.cientCommands.clientCommands.
-const namespacePrefix = apc.cbuildRelease + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEchoCommand
@@ -48,13 +50,14 @@ const namespacePrefix = apc.cbuildRelease + bas.cDot + wr1.ccommands + bas.cDot 
  */
 const customEchoCommand = function(inputData, inputMetaData) {
   let functionName = customEchoCommand.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log('inputData is: ' + inputData);
-  console.log('inputMetaData is: ' + inputMetaData);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log('inputData is: ' + inputData);
+  // console.log('inputMetaData is: ' + inputMetaData);
   let returnData;
   returnData = inputData + ' clientStringParsing.customEchoCommand';
-  console.log('returnData is: ' + returnData);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(returnData);
+  // console.log('returnData is: ' + returnData);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 
@@ -69,14 +72,14 @@ const customEchoCommand = function(inputData, inputMetaData) {
  */
 const deployMetaData = function(inputData, inputMetaData) {
   let functionName = deployMetaData.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
 
   // inputData.shift(); // Remove the first element of the array, because that is what is used to call this command.
   // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
-  let frameworkMetaDataPathAndFilename = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
+  let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
   let frameworkMetaData = dataBroker.preprocessJsonFile(frameworkMetaDataPathAndFilename);
@@ -90,16 +93,16 @@ const deployMetaData = function(inputData, inputMetaData) {
     Description: frameworkDescription
   };
 
-  let metaDataPathAndFilename = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath);
+  let metaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath);
   metaDataPathAndFilename = path.resolve(metaDataPathAndFilename + sys.cmetaDatadotJson);
   // metaDataPathAndFilename is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
   // metaDataOutput is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
   dataBroker.writeJsonDataToFile(metaDataPathAndFilename, metaDataOutput);
 
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
 

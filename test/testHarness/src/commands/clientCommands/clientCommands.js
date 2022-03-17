@@ -48,13 +48,14 @@ const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot +
  */
 const customEchoCommand = function(inputData, inputMetaData) {
   let functionName = customEchoCommand.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log('inputData is: ' + inputData);
-  console.log('inputMetaData is: ' + inputMetaData);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log('inputData is: ' + inputData);
+  // console.log('inputMetaData is: ' + inputMetaData);
   let returnData;
   returnData = inputData + ' clientStringParsing.customEchoCommand';
-  console.log('returnData is: ' + returnData);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(returnData);
+  // console.log('returnData is: ' + returnData);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
 };
 

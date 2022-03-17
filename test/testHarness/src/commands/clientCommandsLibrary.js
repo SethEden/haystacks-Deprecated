@@ -11,7 +11,7 @@
  */
 
 // Internal imports
-import * as clientCommands from './clientCommands/clientCommands.js';
+import clientCommands from './clientCommands/clientCommands.js';
 import * as app_cmd from '../constants/application.command.constants.js';
 import * as app_fnc from '../constants/application.function.constants.js';
 
@@ -32,7 +32,7 @@ const initClientCommandsLibrary = function() {
     // ***********************************************
     // client commands in order
     // ***********************************************
-    [app_cmd.ccustomEchoCommand]: (inputData, inputMetaData) => clientCommands.customEchoCommand(inputData, inputMetaData)
+    [app_cmd.ccustomEchoCommand]: (inputData, inputMetaData) => clientCommands.customEchoCommand(inputData, inputMetaData),
   };
 };
 
