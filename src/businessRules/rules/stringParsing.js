@@ -2007,7 +2007,7 @@ const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
  * @description Loads data from a specified file and stores it in the specified data hive path.
  * @param {string} inputData The full path and file name for the file that should be loaded into memory.
  * @param {string} inputMetaData The data hive path where the data should be stored once it is loaded.
- * @return {boolean} A True or False value to indicate if the data file was loaded successfully or not.
+ * @return {boolean} The data that was loaded, because sometimes a client command might need to use this to load data.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
@@ -2040,13 +2040,13 @@ const loadDataFile = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
     }
     // Loaded data is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataIs + JSON.stringify(loadedData));
+    loggers.consoleLog(namespacePrefix + functionName, msg.cLoadedDataIs + JSON.stringify(loadedData));
+    returnData = loadedData;
     if (loadedData !== null && loadedData && inputMetaData) {
-      returnData = true;
       dataBroker.storeData(inputMetaData, loadedData);
     }
   } // End-else-clause if (!inputData)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

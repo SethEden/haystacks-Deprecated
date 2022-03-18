@@ -34,7 +34,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.commands.clientCommands.clientCommands.
-const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEchoCommand
@@ -48,14 +48,14 @@ const namespacePrefix = apc.ctestHarness + bas.cDot + wr1.ccommands + bas.cDot +
  */
 const customEchoCommand = function(inputData, inputMetaData) {
   let functionName = customEchoCommand.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log('inputData is: ' + inputData);
-  // console.log('inputMetaData is: ' + inputMetaData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + inputData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   returnData = inputData + ' clientStringParsing.customEchoCommand';
   console.log(returnData);
-  // console.log('returnData is: ' + returnData);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
 

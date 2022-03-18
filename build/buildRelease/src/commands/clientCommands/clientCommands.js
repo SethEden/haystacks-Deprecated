@@ -50,14 +50,14 @@ const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.ccommands + bas.cD
  */
 const customEchoCommand = function(inputData, inputMetaData) {
   let functionName = customEchoCommand.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log('inputData is: ' + inputData);
-  // console.log('inputMetaData is: ' + inputMetaData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   returnData = inputData + ' clientStringParsing.customEchoCommand';
   console.log(returnData);
-  // console.log('returnData is: ' + returnData);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
 
@@ -72,8 +72,6 @@ const customEchoCommand = function(inputData, inputMetaData) {
  */
 const deployMetaData = function(inputData, inputMetaData) {
   let functionName = deployMetaData.name;
-  console.log('namespacePrefix is: ' + namespacePrefix);
-  console.log('functionName is: ' + functionName);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
@@ -84,6 +82,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
+  console.log('frameworkMetaDataPathAndFilename is: ' + frameworkMetaDataPathAndFilename);
   let frameworkMetaData = haystacks.executeBusinessRule(biz.cloadDataFile, frameworkMetaDataPathAndFilename, false);
   let frameworkName = frameworkMetaData[wr1.cname];
   let frameworkVersion = frameworkMetaData[wr1.cversion];

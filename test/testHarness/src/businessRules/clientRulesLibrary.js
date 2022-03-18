@@ -11,7 +11,7 @@
  */
 
 // Internal imports
-import * as clientStringParsing from './clientRules/clientStringParsing.js';
+import clientStringParsing from './clientRules/clientStringParsing.js';
 import * as app_biz from '../constants/application.business.constants.js';
 import * as app_fnc from '../constants/application.function.constants.js';
 

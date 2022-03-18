@@ -40,14 +40,16 @@ const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cbusiness + wr1.cR
  */
 const customEcho = function(inputData, inputMetaData) {
   let functionName = customEcho.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log('inputData is: ' + inputData);
-  console.log('inputMetaData is: ' + inputMetaData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   // clientStringParsing.customEcho
-  returnData = inputData + app_msg.cclientStringParsingDotCustomEcho;
-  console.log('returnData is: ' + returnData);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  returnData = inputData + bas.cSpace + app_msg.cclientStringParsingDotCustomEcho;
+  console.log(returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
+  return returnData;
 };
 
 export default {

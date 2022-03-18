@@ -714,7 +714,7 @@
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.getFirstTopLevelFolderFromPath@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.getFirstTopLevelFolderFromPath@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.getFirstTopLevelFolderFromPath@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.loadDataFile": false,
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.loadDataFile": true,
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.loadDataFile@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.loadDataFile@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.loadDataFile@MessageFontStyle": "Default",
