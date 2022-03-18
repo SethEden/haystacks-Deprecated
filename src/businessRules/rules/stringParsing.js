@@ -30,6 +30,7 @@ import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
+import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
 import * as math from 'mathjs';
@@ -2022,30 +2023,69 @@ const loadDataFile = function(inputData, inputMetaData) {
     returnData = false;
   } else { // Else-clause if (!inputData)
     let loadedData = {};
-    if (inputData.incudes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
+    if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
       // Attempting to load XML data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadXmlData);
-      loadedData = fileBroker.getXmlData(inputData);
+      loadedData = fileOperations.getXmlData(inputData);
     } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
       // Attempting to load CSV data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadCsvData);
-      loadedData = fileBroker.getCsvData(inputData);
+      loadedData = fileOperations.getCsvData(inputData);
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
       // Attempting to load JSON data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadJsonData);
-      loadedData = fileBroker.getJsonData(inputData);
+      loadedData = fileOperations.getJsonData(inputData);
     } else {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
     }
     // Loaded data is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataIs + JSON.stringify(loadedData));
-    if (loadedData !== null && loadedData) {
+    if (loadedData !== null && loadedData && inputMetaData) {
       returnData = true;
       dataBroker.storeData(inputMetaData, loadedData);
     }
   } // End-else-clause if (!inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function saveDataFile
+ * @description Saves data from a specified data to a specified path and file name.
+ * @param {string} inputData The full path and file name were the data should be saved.
+ * @param {object} inputMetaData The data that should be saved out to the specified file.
+ * @return {boolean} True or False value to indicate if the file was saved successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/03/17
+ */
+const saveDataFile = function(inputData, inputMetaData) {
+  let functionName = saveDataFile.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (!inputData) {
+    // WARNING: No data to save, please specify a valid path & filename!
+    loggers.consoleLog(namespacePrefix + functionName, msg.csaveDataFileMessage1 + msg.cloadDataFileMessage2);
+    returnData = false;
+  } else {
+    if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
+      fileOperations.writeJsonData(inputData, inputMetaData);
+      returnData = true;
+    } else {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    }
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -2241,6 +2281,7 @@ export default {
   removeXnumberOfFoldersFromEndOfPath,
   getFirstTopLevelFolderFromPath,
   loadDataFile,
+  saveDataFile,
   supportedFileFormatsAre,
   getAttributeName,
   getAttributeValue,

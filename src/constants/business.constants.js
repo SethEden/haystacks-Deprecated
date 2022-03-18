@@ -175,6 +175,7 @@ export const cgetKeywordNameFromDataContextName = wr1.cget + wr1.cKeyword + wr1.
 export const cremoveXnumberOfFoldersFromEndOfPath = wr1.cremove + bas.cX + wr1.cnumber + wr1.cOf + wr1.cFolders + wr1.cFrom + wr1.cEnd + wr1.cOf + wr1.cPath; // removeXnumberOfFoldersFromEndOfPath
 export const cgetFirstTopLevelFolderFromPath = wr1.cget + num.cFirst + wr1.cTop + wr1.cLevel + wr1.cFolder + wr1.cFrom + wr1.cPath; // getFirstTopLevelFolderFromPath
 export const cloadDataFile = wr1.cload + wr1.cData + wr1.cFile; // loadDataFile
+export const csaveDataFile = wr1.csave + wr1.cData + wr1.cFile; // saveDataFile
 export const csupportedFileFormatsAre = wr1.csupported + wr1.cFile + wr1.cFormats + wr1.cAre; // supportedFileFormatsAre
 export const cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
 export const cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue

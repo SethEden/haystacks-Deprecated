@@ -72,6 +72,8 @@ const customEchoCommand = function(inputData, inputMetaData) {
  */
 const deployMetaData = function(inputData, inputMetaData) {
   let functionName = deployMetaData.name;
+  console.log('namespacePrefix is: ' + namespacePrefix);
+  console.log('functionName is: ' + functionName);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
@@ -82,7 +84,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
-  let frameworkMetaData = dataBroker.preprocessJsonFile(frameworkMetaDataPathAndFilename);
+  let frameworkMetaData = haystacks.executeBusinessRule(biz.cloadDataFile, frameworkMetaDataPathAndFilename, false);
   let frameworkName = frameworkMetaData[wr1.cname];
   let frameworkVersion = frameworkMetaData[wr1.cversion];
   let frameworkDescription = frameworkMetaData[wr1.cdescription];
@@ -99,7 +101,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
   // metaDataOutput is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
-  dataBroker.writeJsonDataToFile(metaDataPathAndFilename, metaDataOutput);
+  haystacks.executeBusinessRule(biz.csaveDataFile, metaDataPathAndFilename, metaDataOutput);
 
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
