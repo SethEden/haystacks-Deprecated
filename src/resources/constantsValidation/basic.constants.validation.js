@@ -1,7 +1,7 @@
 /**
  * @file basic.constants.validation.js
  * @module basic.constants.validation
- * @description Contains validation for constants for all of the most basic characters and basic 2-character combinations.
+ * @description Contains all validation for constants for all of the most basic characters and basic 2-character combinations.
  * @requires module:basic.constants
  * @author Seth Hollingsead
  * @date 2022/03/18
@@ -1867,1094 +1867,1094 @@ export const basicConstantsValidation = [
   {Name: 'cPZ', Actual: bas.cPZ, Expected: 'PZ'},
 
   // qa-QA
-  export const cqa = cq + ca; // qa
-  export const cqb = cq + cb; // qb
-  export const cqc = cq + cc; // qc
-  export const cqd = cq + cd; // qd
-  export const cqe = cq + ce; // qe
-  export const cqf = cq + cf; // qf
-  export const cqg = cq + cg; // qg
-  export const cqh = cq + ch; // qh
-  export const cqi = cq + ci; // qi
-  export const cqj = cq + cj; // qj
-  export const cqk = cq + ck; // qk
-  export const cql = cq + cl; // ql
-  export const cqm = cq + cm; // qm
-  export const cqn = cq + cn; // qn
-  export const cqo = cq + co; // qo
-  export const cqp = cq + cp; // qp
-  export const cqq = cq + cq; // qq
-  export const cqr = cq + cr; // qr
-  export const cqs = cq + cs; // qs
-  export const cqt = cq + ct; // qt
-  export const cqu = cq + cu; // qu
-  export const cqv = cq + cv; // qv
-  export const cqw = cq + cw; // qw
-  export const cqx = cq + cx; // qx
-  export const cqy = cq + cy; // qy
-  export const cqz = cq + cz; // qz
+  {Name: 'cqa', Actual: bas.cqa, Expected: 'qa'},
+  {Name: 'cqb', Actual: bas.cqb, Expected: 'qb'},
+  {Name: 'cqc', Actual: bas.cqc, Expected: 'qc'},
+  {Name: 'cqd', Actual: bas.cqd, Expected: 'qd'},
+  {Name: 'cqe', Actual: bas.cqe, Expected: 'qe'},
+  {Name: 'cqf', Actual: bas.cqf, Expected: 'qf'},
+  {Name: 'cqg', Actual: bas.cqg, Expected: 'qg'},
+  {Name: 'cqh', Actual: bas.cqh, Expected: 'qh'},
+  {Name: 'cqi', Actual: bas.cqi, Expected: 'qi'},
+  {Name: 'cqj', Actual: bas.cqj, Expected: 'qj'},
+  {Name: 'cqk', Actual: bas.cqk, Expected: 'qk'},
+  {Name: 'cql', Actual: bas.cql, Expected: 'ql'},
+  {Name: 'cqm', Actual: bas.cqm, Expected: 'qm'},
+  {Name: 'cqn', Actual: bas.cqn, Expected: 'qn'},
+  {Name: 'cqo', Actual: bas.cqo, Expected: 'qo'},
+  {Name: 'cqp', Actual: bas.cqp, Expected: 'qp'},
+  {Name: 'cqq', Actual: bas.cqq, Expected: 'qq'},
+  {Name: 'cqr', Actual: bas.cqr, Expected: 'qr'},
+  {Name: 'cqs', Actual: bas.cqs, Expected: 'qs'},
+  {Name: 'cqt', Actual: bas.cqt, Expected: 'qt'},
+  {Name: 'cqu', Actual: bas.cqu, Expected: 'qu'},
+  {Name: 'cqv', Actual: bas.cqv, Expected: 'qv'},
+  {Name: 'cqw', Actual: bas.cqw, Expected: 'qw'},
+  {Name: 'cqx', Actual: bas.cqx, Expected: 'qx'},
+  {Name: 'cqy', Actual: bas.cqy, Expected: 'qy'},
+  {Name: 'cqz', Actual: bas.cqz, Expected: 'qz'},
 
-  export const cQa = cQ + ca; // Qa
-  export const cQb = cQ + cb; // Qb
-  export const cQc = cQ + cc; // Qc
-  export const cQd = cQ + cd; // Qd
-  export const cQe = cQ + ce; // Qe
-  export const cQf = cQ + cf; // Qf
-  export const cQg = cQ + cg; // Qg
-  export const cQh = cQ + ch; // Qh
-  export const cQi = cQ + ci; // Qi
-  export const cQj = cQ + cj; // Qj
-  export const cQk = cQ + ck; // Qk
-  export const cQl = cQ + cl; // Ql
-  export const cQm = cQ + cm; // Qm
-  export const cQn = cQ + cn; // Qn
-  export const cQo = cQ + co; // Qo
-  export const cQp = cQ + cp; // Qp
-  export const cQq = cQ + cq; // Qq
-  export const cQr = cQ + cr; // Qr
-  export const cQs = cQ + cs; // Qs
-  export const cQt = cQ + ct; // Qt
-  export const cQu = cQ + cu; // Qu
-  export const cQv = cQ + cv; // Qv
-  export const cQw = cQ + cw; // Qw
-  export const cQx = cQ + cx; // Qx
-  export const cQy = cQ + cy; // Qy
-  export const cQz = cQ + cz; // Qz
+  {Name: 'cQa', Actual: bas.cQa, Expected: 'Qa'},
+  {Name: 'cQb', Actual: bas.cQb, Expected: 'Qb'},
+  {Name: 'cQc', Actual: bas.cQc, Expected: 'Qc'},
+  {Name: 'cQd', Actual: bas.cQd, Expected: 'Qd'},
+  {Name: 'cQe', Actual: bas.cQe, Expected: 'Qe'},
+  {Name: 'cQf', Actual: bas.cQf, Expected: 'Qf'},
+  {Name: 'cQg', Actual: bas.cQg, Expected: 'Qg'},
+  {Name: 'cQh', Actual: bas.cQh, Expected: 'Qh'},
+  {Name: 'cQi', Actual: bas.cQi, Expected: 'Qi'},
+  {Name: 'cQj', Actual: bas.cQj, Expected: 'Qj'},
+  {Name: 'cQk', Actual: bas.cQk, Expected: 'Qk'},
+  {Name: 'cQl', Actual: bas.cQl, Expected: 'Ql'},
+  {Name: 'cQm', Actual: bas.cQm, Expected: 'Qm'},
+  {Name: 'cQn', Actual: bas.cQn, Expected: 'Qn'},
+  {Name: 'cQo', Actual: bas.cQo, Expected: 'Qo'},
+  {Name: 'cQp', Actual: bas.cQp, Expected: 'Qp'},
+  {Name: 'cQq', Actual: bas.cQq, Expected: 'Qq'},
+  {Name: 'cQr', Actual: bas.cQr, Expected: 'Qr'},
+  {Name: 'cQs', Actual: bas.cQs, Expected: 'Qs'},
+  {Name: 'cQt', Actual: bas.cQt, Expected: 'Qt'},
+  {Name: 'cQu', Actual: bas.cQu, Expected: 'Qu'},
+  {Name: 'cQv', Actual: bas.cQv, Expected: 'Qv'},
+  {Name: 'cQw', Actual: bas.cQw, Expected: 'Qw'},
+  {Name: 'cQx', Actual: bas.cQx, Expected: 'Qx'},
+  {Name: 'cQy', Actual: bas.cQy, Expected: 'Qy'},
+  {Name: 'cQz', Actual: bas.cQz, Expected: 'Qz'},
 
-  export const cqA = cq + cA; // qA
-  export const cqB = cq + cB; // qB
-  export const cqC = cq + cC; // qC
-  export const cqD = cq + cD; // qD
-  export const cqE = cq + cE; // qE
-  export const cqF = cq + cF; // qF
-  export const cqG = cq + cG; // qG
-  export const cqH = cq + cH; // qH
-  export const cqI = cq + cI; // qI
-  export const cqJ = cq + cJ; // qJ
-  export const cqK = cq + cK; // qK
-  export const cqL = cq + cL; // qL
-  export const cqM = cq + cM; // qM
-  export const cqN = cq + cN; // qN
-  export const cqO = cq + cO; // qO
-  export const cqP = cq + cP; // qP
-  export const cqQ = cq + cQ; // qQ
-  export const cqR = cq + cR; // qR
-  export const cqS = cq + cS; // qS
-  export const cqT = cq + cT; // qT
-  export const cqU = cq + cU; // qU
-  export const cqV = cq + cV; // qV
-  export const cqW = cq + cW; // qW
-  export const cqX = cq + cX; // qX
-  export const cqY = cq + cY; // qY
-  export const cqZ = cq + cZ; // qZ
+  {Name: 'cqA', Actual: bas.cqA, Expected: 'qA'},
+  {Name: 'cqB', Actual: bas.cqB, Expected: 'qB'},
+  {Name: 'cqC', Actual: bas.cqC, Expected: 'qC'},
+  {Name: 'cqD', Actual: bas.cqD, Expected: 'qD'},
+  {Name: 'cqE', Actual: bas.cqE, Expected: 'qE'},
+  {Name: 'cqF', Actual: bas.cqF, Expected: 'qF'},
+  {Name: 'cqG', Actual: bas.cqG, Expected: 'qG'},
+  {Name: 'cqH', Actual: bas.cqH, Expected: 'qH'},
+  {Name: 'cqI', Actual: bas.cqI, Expected: 'qI'},
+  {Name: 'cqJ', Actual: bas.cqJ, Expected: 'qJ'},
+  {Name: 'cqK', Actual: bas.cqK, Expected: 'qK'},
+  {Name: 'cqL', Actual: bas.cqL, Expected: 'qL'},
+  {Name: 'cqM', Actual: bas.cqM, Expected: 'qM'},
+  {Name: 'cqN', Actual: bas.cqN, Expected: 'qN'},
+  {Name: 'cqO', Actual: bas.cqO, Expected: 'qO'},
+  {Name: 'cqP', Actual: bas.cqP, Expected: 'qP'},
+  {Name: 'cqQ', Actual: bas.cqQ, Expected: 'qQ'},
+  {Name: 'cqR', Actual: bas.cqR, Expected: 'qR'},
+  {Name: 'cqS', Actual: bas.cqS, Expected: 'qS'},
+  {Name: 'cqT', Actual: bas.cqT, Expected: 'qT'},
+  {Name: 'cqU', Actual: bas.cqU, Expected: 'qU'},
+  {Name: 'cqV', Actual: bas.cqV, Expected: 'qV'},
+  {Name: 'cqW', Actual: bas.cqW, Expected: 'qW'},
+  {Name: 'cqX', Actual: bas.cqX, Expected: 'qX'},
+  {Name: 'cqY', Actual: bas.cqY, Expected: 'qY'},
+  {Name: 'cqZ', Actual: bas.cqZ, Expected: 'qZ'},
 
-  export const cQA = cQ + cA; // QA
-  export const cQB = cQ + cB; // QB
-  export const cQC = cQ + cC; // QC
-  export const cQD = cQ + cD; // QD
-  export const cQE = cQ + cE; // QE
-  export const cQF = cQ + cF; // QF
-  export const cQG = cQ + cG; // QG
-  export const cQH = cQ + cH; // QH
-  export const cQI = cQ + cI; // QI
-  export const cQJ = cQ + cJ; // QJ
-  export const cQK = cQ + cK; // QK
-  export const cQL = cQ + cL; // QL
-  export const cQM = cQ + cM; // QM
-  export const cQN = cQ + cN; // QN
-  export const cQO = cQ + cO; // QO
-  export const cQP = cQ + cP; // QP
-  export const cQQ = cQ + cQ; // QQ
-  export const cQR = cQ + cR; // QR
-  export const cQS = cQ + cS; // QS
-  export const cQT = cQ + cT; // QT
-  export const cQU = cQ + cU; // QU
-  export const cQV = cQ + cV; // QV
-  export const cQW = cQ + cW; // QW
-  export const cQX = cQ + cX; // QX
-  export const cQY = cQ + cY; // QY
-  export const cQZ = cQ + cZ; // QZ
+  {Name: 'cQA', Actual: bas.cQA, Expected: 'QA'},
+  {Name: 'cQB', Actual: bas.cQB, Expected: 'QB'},
+  {Name: 'cQC', Actual: bas.cQC, Expected: 'QC'},
+  {Name: 'cQD', Actual: bas.cQD, Expected: 'QD'},
+  {Name: 'cQE', Actual: bas.cQE, Expected: 'QE'},
+  {Name: 'cQF', Actual: bas.cQF, Expected: 'QF'},
+  {Name: 'cQG', Actual: bas.cQG, Expected: 'QG'},
+  {Name: 'cQH', Actual: bas.cQH, Expected: 'QH'},
+  {Name: 'cQI', Actual: bas.cQI, Expected: 'QI'},
+  {Name: 'cQJ', Actual: bas.cQJ, Expected: 'QJ'},
+  {Name: 'cQK', Actual: bas.cQK, Expected: 'QK'},
+  {Name: 'cQL', Actual: bas.cQL, Expected: 'QL'},
+  {Name: 'cQM', Actual: bas.cQM, Expected: 'QM'},
+  {Name: 'cQN', Actual: bas.cQN, Expected: 'QN'},
+  {Name: 'cQO', Actual: bas.cQO, Expected: 'QO'},
+  {Name: 'cQP', Actual: bas.cQP, Expected: 'QP'},
+  {Name: 'cQQ', Actual: bas.cQQ, Expected: 'QQ'},
+  {Name: 'cQR', Actual: bas.cQR, Expected: 'QR'},
+  {Name: 'cQS', Actual: bas.cQS, Expected: 'QS'},
+  {Name: 'cQT', Actual: bas.cQT, Expected: 'QT'},
+  {Name: 'cQU', Actual: bas.cQU, Expected: 'QU'},
+  {Name: 'cQV', Actual: bas.cQV, Expected: 'QV'},
+  {Name: 'cQW', Actual: bas.cQW, Expected: 'QW'},
+  {Name: 'cQX', Actual: bas.cQX, Expected: 'QX'},
+  {Name: 'cQY', Actual: bas.cQY, Expected: 'QY'},
+  {Name: 'cQZ', Actual: bas.cQZ, Expected: 'QZ'},
 
   // ra-RA
-  export const cra = cr + ca; // ra
-  export const crb = cr + cb; // rb
-  export const crc = cr + cc; // rc
-  export const crd = cr + cd; // rd
-  export const cre = cr + ce; // re
-  export const crf = cr + cf; // rf
-  export const crg = cr + cg; // rg
-  export const crh = cr + ch; // rh
-  export const cri = cr + ci; // ri
-  export const crj = cr + cj; // rj
-  export const crk = cr + ck; // rk
-  export const crl = cr + cl; // rl
-  export const crm = cr + cm; // rm
-  export const crn = cr + cn; // rn
-  export const cro = cr + co; // ro
-  export const crp = cr + cp; // rp
-  export const crq = cr + cq; // rq
-  export const crr = cr + cr; // rr
-  export const crs = cr + cs; // rs
-  export const crt = cr + ct; // rt
-  export const cru = cr + cu; // ru
-  export const crv = cr + cv; // rv
-  export const crw = cr + cw; // rw
-  export const crx = cr + cx; // rx
-  export const cry = cr + cy; // ry
-  export const crz = cr + cz; // rz
+  {Name: 'cra', Actual: bas.cra, Expected: 'ra'},
+  {Name: 'crb', Actual: bas.crb, Expected: 'rb'},
+  {Name: 'crc', Actual: bas.crc, Expected: 'rc'},
+  {Name: 'crd', Actual: bas.crd, Expected: 'rd'},
+  {Name: 'cre', Actual: bas.cre, Expected: 're'},
+  {Name: 'crf', Actual: bas.crf, Expected: 'rf'},
+  {Name: 'crg', Actual: bas.crg, Expected: 'rg'},
+  {Name: 'crh', Actual: bas.crh, Expected: 'rh'},
+  {Name: 'cri', Actual: bas.cri, Expected: 'ri'},
+  {Name: 'crj', Actual: bas.crj, Expected: 'rj'},
+  {Name: 'crk', Actual: bas.crk, Expected: 'rk'},
+  {Name: 'crl', Actual: bas.crl, Expected: 'rl'},
+  {Name: 'crm', Actual: bas.crm, Expected: 'rm'},
+  {Name: 'crn', Actual: bas.crn, Expected: 'rn'},
+  {Name: 'cro', Actual: bas.cro, Expected: 'ro'},
+  {Name: 'crp', Actual: bas.crp, Expected: 'rp'},
+  {Name: 'crq', Actual: bas.crq, Expected: 'rq'},
+  {Name: 'crr', Actual: bas.crr, Expected: 'rr'},
+  {Name: 'crs', Actual: bas.crs, Expected: 'rs'},
+  {Name: 'crt', Actual: bas.crt, Expected: 'rt'},
+  {Name: 'cru', Actual: bas.cru, Expected: 'ru'},
+  {Name: 'crv', Actual: bas.crv, Expected: 'rv'},
+  {Name: 'crw', Actual: bas.crw, Expected: 'rw'},
+  {Name: 'crx', Actual: bas.crx, Expected: 'rx'},
+  {Name: 'cry', Actual: bas.cry, Expected: 'ry'},
+  {Name: 'crz', Actual: bas.crz, Expected: 'rz'},
 
-  export const cRa = cR + ca; // Ra
-  export const cRb = cR + cb; // Rb
-  export const cRc = cR + cc; // Rc
-  export const cRd = cR + cd; // Rd
-  export const cRe = cR + ce; // Re
-  export const cRf = cR + cf; // Rf
-  export const cRg = cR + cg; // Rg
-  export const cRh = cR + ch; // Rh
-  export const cRi = cR + ci; // Ri
-  export const cRj = cR + cj; // Rj
-  export const cRk = cR + ck; // Rk
-  export const cRl = cR + cl; // Rl
-  export const cRm = cR + cm; // Rm
-  export const cRn = cR + cn; // Rn
-  export const cRo = cR + co; // Ro
-  export const cRp = cR + cp; // Rp
-  export const cRq = cR + cq; // Rq
-  export const cRr = cR + cr; // Rr
-  export const cRs = cR + cs; // Rs
-  export const cRt = cR + ct; // Rt
-  export const cRu = cR + cu; // Ru
-  export const cRv = cR + cv; // Rv
-  export const cRw = cR + cw; // Rw
-  export const cRx = cR + cx; // Rx
-  export const cRy = cR + cy; // Ry
-  export const cRz = cR + cz; // Rz
+  {Name: 'cRa', Actual: bas.cRa, Expected: 'Ra'},
+  {Name: 'cRb', Actual: bas.cRb, Expected: 'Rb'},
+  {Name: 'cRc', Actual: bas.cRc, Expected: 'Rc'},
+  {Name: 'cRd', Actual: bas.cRd, Expected: 'Rd'},
+  {Name: 'cRe', Actual: bas.cRe, Expected: 'Re'},
+  {Name: 'cRf', Actual: bas.cRf, Expected: 'Rf'},
+  {Name: 'cRg', Actual: bas.cRg, Expected: 'Rg'},
+  {Name: 'cRh', Actual: bas.cRh, Expected: 'Rh'},
+  {Name: 'cRi', Actual: bas.cRi, Expected: 'Ri'},
+  {Name: 'cRj', Actual: bas.cRj, Expected: 'Rj'},
+  {Name: 'cRk', Actual: bas.cRk, Expected: 'Rk'},
+  {Name: 'cRl', Actual: bas.cRl, Expected: 'Rl'},
+  {Name: 'cRm', Actual: bas.cRm, Expected: 'Rm'},
+  {Name: 'cRn', Actual: bas.cRn, Expected: 'Rn'},
+  {Name: 'cRo', Actual: bas.cRo, Expected: 'Ro'},
+  {Name: 'cRp', Actual: bas.cRp, Expected: 'Rp'},
+  {Name: 'cRq', Actual: bas.cRq, Expected: 'Rq'},
+  {Name: 'cRr', Actual: bas.cRr, Expected: 'Rr'},
+  {Name: 'cRs', Actual: bas.cRs, Expected: 'Rs'},
+  {Name: 'cRt', Actual: bas.cRt, Expected: 'Rt'},
+  {Name: 'cRu', Actual: bas.cRu, Expected: 'Ru'},
+  {Name: 'cRv', Actual: bas.cRv, Expected: 'Rv'},
+  {Name: 'cRw', Actual: bas.cRw, Expected: 'Rw'},
+  {Name: 'cRx', Actual: bas.cRx, Expected: 'Rx'},
+  {Name: 'cRy', Actual: bas.cRy, Expected: 'Ry'},
+  {Name: 'cRz', Actual: bas.cRz, Expected: 'Rz'},
 
-  export const crA = cr + cA; // rA
-  export const crB = cr + cB; // rB
-  export const crC = cr + cC; // rC
-  export const crD = cr + cD; // rD
-  export const crE = cr + cE; // rE
-  export const crF = cr + cF; // rF
-  export const crG = cr + cG; // rG
-  export const crH = cr + cH; // rH
-  export const crI = cr + cI; // rI
-  export const crJ = cr + cJ; // rJ
-  export const crK = cr + cK; // rK
-  export const crL = cr + cL; // rL
-  export const crM = cr + cM; // rM
-  export const crN = cr + cN; // rN
-  export const crO = cr + cO; // rO
-  export const crP = cr + cP; // rP
-  export const crQ = cr + cQ; // rQ
-  export const crR = cr + cR; // rR
-  export const crS = cr + cS; // rS
-  export const crT = cr + cT; // rT
-  export const crU = cr + cU; // rU
-  export const crV = cr + cV; // rV
-  export const crW = cr + cW; // rW
-  export const crX = cr + cX; // rX
-  export const crY = cr + cY; // rY
-  export const crZ = cr + cZ; // rZ
+  {Name: 'crA', Actual: bas.crA, Expected: 'rA'},
+  {Name: 'crB', Actual: bas.crB, Expected: 'rB'},
+  {Name: 'crC', Actual: bas.crC, Expected: 'rC'},
+  {Name: 'crD', Actual: bas.crD, Expected: 'rD'},
+  {Name: 'crE', Actual: bas.crE, Expected: 'rE'},
+  {Name: 'crF', Actual: bas.crF, Expected: 'rF'},
+  {Name: 'crG', Actual: bas.crG, Expected: 'rG'},
+  {Name: 'crH', Actual: bas.crH, Expected: 'rH'},
+  {Name: 'crI', Actual: bas.crI, Expected: 'rI'},
+  {Name: 'crJ', Actual: bas.crJ, Expected: 'rJ'},
+  {Name: 'crK', Actual: bas.crK, Expected: 'rK'},
+  {Name: 'crL', Actual: bas.crL, Expected: 'rL'},
+  {Name: 'crM', Actual: bas.crM, Expected: 'rM'},
+  {Name: 'crN', Actual: bas.crN, Expected: 'rN'},
+  {Name: 'crO', Actual: bas.crO, Expected: 'rO'},
+  {Name: 'crP', Actual: bas.crP, Expected: 'rP'},
+  {Name: 'crQ', Actual: bas.crQ, Expected: 'rQ'},
+  {Name: 'crR', Actual: bas.crR, Expected: 'rR'},
+  {Name: 'crS', Actual: bas.crS, Expected: 'rS'},
+  {Name: 'crT', Actual: bas.crT, Expected: 'rT'},
+  {Name: 'crU', Actual: bas.crU, Expected: 'rU'},
+  {Name: 'crV', Actual: bas.crV, Expected: 'rV'},
+  {Name: 'crW', Actual: bas.crW, Expected: 'rW'},
+  {Name: 'crX', Actual: bas.crX, Expected: 'rX'},
+  {Name: 'crY', Actual: bas.crY, Expected: 'rY'},
+  {Name: 'crZ', Actual: bas.crZ, Expected: 'rZ'},
 
-  export const cRA = cR + cA; // RA
-  export const cRB = cR + cB; // RB
-  export const cRC = cR + cC; // RC
-  export const cRD = cR + cD; // RD
-  export const cRE = cR + cE; // RE
-  export const cRF = cR + cF; // RF
-  export const cRG = cR + cG; // RG
-  export const cRH = cR + cH; // RH
-  export const cRI = cR + cI; // RI
-  export const cRJ = cR + cJ; // RJ
-  export const cRK = cR + cK; // RK
-  export const cRL = cR + cL; // RL
-  export const cRM = cR + cM; // RM
-  export const cRN = cR + cN; // RN
-  export const cRO = cR + cO; // RO
-  export const cRP = cR + cP; // RP
-  export const cRQ = cR + cQ; // RQ
-  export const cRR = cR + cR; // RR
-  export const cRS = cR + cS; // RS
-  export const cRT = cR + cT; // RT
-  export const cRU = cR + cU; // RU
-  export const cRV = cR + cV; // RV
-  export const cRW = cR + cW; // RW
-  export const cRX = cR + cX; // RX
-  export const cRY = cR + cY; // RY
-  export const cRZ = cR + cZ; // RZ
+  {Name: 'cRA', Actual: bas.cRA, Expected: 'RA'},
+  {Name: 'cRB', Actual: bas.cRB, Expected: 'RB'},
+  {Name: 'cRC', Actual: bas.cRC, Expected: 'RC'},
+  {Name: 'cRD', Actual: bas.cRD, Expected: 'RD'},
+  {Name: 'cRE', Actual: bas.cRE, Expected: 'RE'},
+  {Name: 'cRF', Actual: bas.cRF, Expected: 'RF'},
+  {Name: 'cRG', Actual: bas.cRG, Expected: 'RG'},
+  {Name: 'cRH', Actual: bas.cRH, Expected: 'RH'},
+  {Name: 'cRI', Actual: bas.cRI, Expected: 'RI'},
+  {Name: 'cRJ', Actual: bas.cRJ, Expected: 'RJ'},
+  {Name: 'cRK', Actual: bas.cRK, Expected: 'RK'},
+  {Name: 'cRL', Actual: bas.cRL, Expected: 'RL'},
+  {Name: 'cRM', Actual: bas.cRM, Expected: 'RM'},
+  {Name: 'cRN', Actual: bas.cRN, Expected: 'RN'},
+  {Name: 'cRO', Actual: bas.cRO, Expected: 'RO'},
+  {Name: 'cRP', Actual: bas.cRP, Expected: 'RP'},
+  {Name: 'cRQ', Actual: bas.cRQ, Expected: 'RQ'},
+  {Name: 'cRR', Actual: bas.cRR, Expected: 'RR'},
+  {Name: 'cRS', Actual: bas.cRS, Expected: 'RS'},
+  {Name: 'cRT', Actual: bas.cRT, Expected: 'RT'},
+  {Name: 'cRU', Actual: bas.cRU, Expected: 'RU'},
+  {Name: 'cRV', Actual: bas.cRV, Expected: 'RV'},
+  {Name: 'cRW', Actual: bas.cRW, Expected: 'RW'},
+  {Name: 'cRX', Actual: bas.cRX, Expected: 'RX'},
+  {Name: 'cRY', Actual: bas.cRY, Expected: 'RY'},
+  {Name: 'cRZ', Actual: bas.cRZ, Expected: 'RZ'},
 
   // sa-SA
-  export const csa = cs + ca; // sa
-  export const csb = cs + cb; // sb
-  export const csc = cs + cc; // sc
-  export const csd = cs + cd; // sd
-  export const cse = cs + ce; // se
-  export const csf = cs + cf; // sf
-  export const csg = cs + cg; // sg
-  export const csh = cs + ch; // sh
-  export const csi = cs + ci; // si
-  export const csj = cs + cj; // sj
-  export const csk = cs + ck; // sk
-  export const csl = cs + cl; // sl
-  export const csm = cs + cm; // sm
-  export const csn = cs + cn; // sn
-  export const cso = cs + co; // so
-  export const csp = cs + cp; // sp
-  export const csq = cs + cq; // sq
-  export const csr = cs + cr; // sr
-  export const css = cs + cs; // ss
-  export const cst = cs + ct; // st
-  export const csu = cs + cu; // su
-  export const csv = cs + cv; // sv
-  export const csw = cs + cw; // sw
-  export const csx = cs + cx; // sx
-  export const csy = cs + cy; // sy
-  export const csz = cs + cz; // sz
+  {Name: 'csa', Actual: bas.csa, Expected: 'sa'},
+  {Name: 'csb', Actual: bas.csb, Expected: 'sb'},
+  {Name: 'csc', Actual: bas.csc, Expected: 'sc'},
+  {Name: 'csd', Actual: bas.csd, Expected: 'sd'},
+  {Name: 'cse', Actual: bas.cse, Expected: 'se'},
+  {Name: 'csf', Actual: bas.csf, Expected: 'sf'},
+  {Name: 'csg', Actual: bas.csg, Expected: 'sg'},
+  {Name: 'csh', Actual: bas.csh, Expected: 'sh'},
+  {Name: 'csi', Actual: bas.csi, Expected: 'si'},
+  {Name: 'csj', Actual: bas.csj, Expected: 'sj'},
+  {Name: 'csk', Actual: bas.csk, Expected: 'sk'},
+  {Name: 'csl', Actual: bas.csl, Expected: 'sl'},
+  {Name: 'csm', Actual: bas.csm, Expected: 'sm'},
+  {Name: 'csn', Actual: bas.csn, Expected: 'sn'},
+  {Name: 'cso', Actual: bas.cso, Expected: 'so'},
+  {Name: 'csp', Actual: bas.csp, Expected: 'sp'},
+  {Name: 'csq', Actual: bas.csq, Expected: 'sq'},
+  {Name: 'csr', Actual: bas.csr, Expected: 'sr'},
+  {Name: 'css', Actual: bas.css, Expected: 'ss'},
+  {Name: 'cst', Actual: bas.cst, Expected: 'st'},
+  {Name: 'csu', Actual: bas.csu, Expected: 'su'},
+  {Name: 'csv', Actual: bas.csv, Expected: 'sv'},
+  {Name: 'csw', Actual: bas.csw, Expected: 'sw'},
+  {Name: 'csx', Actual: bas.csx, Expected: 'sx'},
+  {Name: 'csy', Actual: bas.csy, Expected: 'sy'},
+  {Name: 'csz', Actual: bas.csz, Expected: 'sz'},
 
-  export const cSa = cS + ca; // Sa
-  export const cSb = cS + cb; // Sb
-  export const cSc = cS + cc; // Sc
-  export const cSd = cS + cd; // Sd
-  export const cSe = cS + ce; // Se
-  export const cSf = cS + cf; // Sf
-  export const cSg = cS + cg; // Sg
-  export const cSh = cS + ch; // Sh
-  export const cSi = cS + ci; // Si
-  export const cSj = cS + cj; // Sj
-  export const cSk = cS + ck; // Sk
-  export const cSl = cS + cl; // Sl
-  export const cSm = cS + cm; // Sm
-  export const cSn = cS + cn; // Sn
-  export const cSo = cS + co; // So
-  export const cSp = cS + cp; // Sp
-  export const cSq = cS + cq; // Sq
-  export const cSr = cS + cr; // Sr
-  export const cSs = cS + cs; // Ss
-  export const cSt = cS + ct; // St
-  export const cSu = cS + cu; // Su
-  export const cSv = cS + cv; // Sv
-  export const cSw = cS + cw; // Sw
-  export const cSx = cS + cx; // Sx
-  export const cSy = cS + cy; // Sy
-  export const cSz = cS + cz; // Sz
+  {Name: 'cSa', Actual: bas.cSa, Expected: 'Sa'},
+  {Name: 'cSb', Actual: bas.cSb, Expected: 'Sb'},
+  {Name: 'cSc', Actual: bas.cSc, Expected: 'Sc'},
+  {Name: 'cSd', Actual: bas.cSd, Expected: 'Sd'},
+  {Name: 'cSe', Actual: bas.cSe, Expected: 'Se'},
+  {Name: 'cSf', Actual: bas.cSf, Expected: 'Sf'},
+  {Name: 'cSg', Actual: bas.cSg, Expected: 'Sg'},
+  {Name: 'cSh', Actual: bas.cSh, Expected: 'Sh'},
+  {Name: 'cSi', Actual: bas.cSi, Expected: 'Si'},
+  {Name: 'cSj', Actual: bas.cSj, Expected: 'Sj'},
+  {Name: 'cSk', Actual: bas.cSk, Expected: 'Sk'},
+  {Name: 'cSl', Actual: bas.cSl, Expected: 'Sl'},
+  {Name: 'cSm', Actual: bas.cSm, Expected: 'Sm'},
+  {Name: 'cSn', Actual: bas.cSn, Expected: 'Sn'},
+  {Name: 'cSo', Actual: bas.cSo, Expected: 'So'},
+  {Name: 'cSp', Actual: bas.cSp, Expected: 'Sp'},
+  {Name: 'cSq', Actual: bas.cSq, Expected: 'Sq'},
+  {Name: 'cSr', Actual: bas.cSr, Expected: 'Sr'},
+  {Name: 'cSs', Actual: bas.cSs, Expected: 'Ss'},
+  {Name: 'cSt', Actual: bas.cSt, Expected: 'St'},
+  {Name: 'cSu', Actual: bas.cSu, Expected: 'Su'},
+  {Name: 'cSv', Actual: bas.cSv, Expected: 'Sv'},
+  {Name: 'cSw', Actual: bas.cSw, Expected: 'Sw'},
+  {Name: 'cSx', Actual: bas.cSx, Expected: 'Sx'},
+  {Name: 'cSy', Actual: bas.cSy, Expected: 'Sy'},
+  {Name: 'cSz', Actual: bas.cSz, Expected: 'Sz'},
 
-  export const csA = cs + cA; // sA
-  export const csB = cs + cB; // sB
-  export const csC = cs + cC; // sC
-  export const csD = cs + cD; // sD
-  export const csE = cs + cE; // sE
-  export const csF = cs + cF; // sF
-  export const csG = cs + cG; // sG
-  export const csH = cs + cH; // sH
-  export const csI = cs + cI; // sI
-  export const csJ = cs + cJ; // sJ
-  export const csK = cs + cK; // sK
-  export const csL = cs + cL; // sL
-  export const csM = cs + cM; // sM
-  export const csN = cs + cN; // sN
-  export const csO = cs + cO; // sO
-  export const csP = cs + cP; // sP
-  export const csQ = cs + cQ; // sQ
-  export const csR = cs + cR; // sR
-  export const csS = cs + cS; // sS
-  export const csT = cs + cT; // sT
-  export const csU = cs + cU; // sU
-  export const csV = cs + cV; // sV
-  export const csW = cs + cW; // sW
-  export const csX = cs + cX; // sX
-  export const csY = cs + cY; // sY
-  export const csZ = cs + cZ; // sZ
+  {Name: 'csA', Actual: bas.csA, Expected: 'sA'},
+  {Name: 'csB', Actual: bas.csB, Expected: 'sB'},
+  {Name: 'csC', Actual: bas.csC, Expected: 'sC'},
+  {Name: 'csD', Actual: bas.csD, Expected: 'sD'},
+  {Name: 'csE', Actual: bas.csE, Expected: 'sE'},
+  {Name: 'csF', Actual: bas.csF, Expected: 'sF'},
+  {Name: 'csG', Actual: bas.csG, Expected: 'sG'},
+  {Name: 'csH', Actual: bas.csH, Expected: 'sH'},
+  {Name: 'csI', Actual: bas.csI, Expected: 'sI'},
+  {Name: 'csJ', Actual: bas.csJ, Expected: 'sJ'},
+  {Name: 'csK', Actual: bas.csK, Expected: 'sK'},
+  {Name: 'csL', Actual: bas.csL, Expected: 'sL'},
+  {Name: 'csM', Actual: bas.csM, Expected: 'sM'},
+  {Name: 'csN', Actual: bas.csN, Expected: 'sN'},
+  {Name: 'csO', Actual: bas.csO, Expected: 'sO'},
+  {Name: 'csP', Actual: bas.csP, Expected: 'sP'},
+  {Name: 'csQ', Actual: bas.csQ, Expected: 'sQ'},
+  {Name: 'csR', Actual: bas.csR, Expected: 'sR'},
+  {Name: 'csS', Actual: bas.csS, Expected: 'sS'},
+  {Name: 'csT', Actual: bas.csT, Expected: 'sT'},
+  {Name: 'csU', Actual: bas.csU, Expected: 'sU'},
+  {Name: 'csV', Actual: bas.csV, Expected: 'sV'},
+  {Name: 'csW', Actual: bas.csW, Expected: 'sW'},
+  {Name: 'csX', Actual: bas.csX, Expected: 'sX'},
+  {Name: 'csY', Actual: bas.csY, Expected: 'sY'},
+  {Name: 'csZ', Actual: bas.csZ, Expected: 'sZ'},
 
-  export const cSA = cS + cA; // SA
-  export const cSB = cS + cB; // SB
-  export const cSC = cS + cC; // SC
-  export const cSD = cS + cD; // SD
-  export const cSE = cS + cE; // SE
-  export const cSF = cS + cF; // SF
-  export const cSG = cS + cG; // SG
-  export const cSH = cS + cH; // SH
-  export const cSI = cS + cI; // SI
-  export const cSJ = cS + cJ; // SJ
-  export const cSK = cS + cK; // SK
-  export const cSL = cS + cL; // SL
-  export const cSM = cS + cM; // SM
-  export const cSN = cS + cN; // SN
-  export const cSO = cS + cO; // SO
-  export const cSP = cS + cP; // SP
-  export const cSQ = cS + cQ; // SQ
-  export const cSR = cS + cR; // SR
-  export const cSS = cS + cS; // SS
-  export const cST = cS + cT; // ST
-  export const cSU = cS + cU; // SU
-  export const cSV = cS + cV; // SV
-  export const cSW = cS + cW; // SW
-  export const cSX = cS + cX; // SX
-  export const cSY = cS + cY; // SY
-  export const cSZ = cS + cZ; // SZ
+  {Name: 'cSA', Actual: bas.cSA, Expected: 'SA'},
+  {Name: 'cSB', Actual: bas.cSB, Expected: 'SB'},
+  {Name: 'cSC', Actual: bas.cSC, Expected: 'SC'},
+  {Name: 'cSD', Actual: bas.cSD, Expected: 'SD'},
+  {Name: 'cSE', Actual: bas.cSE, Expected: 'SE'},
+  {Name: 'cSF', Actual: bas.cSF, Expected: 'SF'},
+  {Name: 'cSG', Actual: bas.cSG, Expected: 'SG'},
+  {Name: 'cSH', Actual: bas.cSH, Expected: 'SH'},
+  {Name: 'cSI', Actual: bas.cSI, Expected: 'SI'},
+  {Name: 'cSJ', Actual: bas.cSJ, Expected: 'SJ'},
+  {Name: 'cSK', Actual: bas.cSK, Expected: 'SK'},
+  {Name: 'cSL', Actual: bas.cSL, Expected: 'SL'},
+  {Name: 'cSM', Actual: bas.cSM, Expected: 'SM'},
+  {Name: 'cSN', Actual: bas.cSN, Expected: 'SN'},
+  {Name: 'cSO', Actual: bas.cSO, Expected: 'SO'},
+  {Name: 'cSP', Actual: bas.cSP, Expected: 'SP'},
+  {Name: 'cSQ', Actual: bas.cSQ, Expected: 'SQ'},
+  {Name: 'cSR', Actual: bas.cSR, Expected: 'SR'},
+  {Name: 'cSS', Actual: bas.cSS, Expected: 'SS'},
+  {Name: 'cST', Actual: bas.cST, Expected: 'ST'},
+  {Name: 'cSU', Actual: bas.cSU, Expected: 'SU'},
+  {Name: 'cSV', Actual: bas.cSV, Expected: 'SV'},
+  {Name: 'cSW', Actual: bas.cSW, Expected: 'SW'},
+  {Name: 'cSX', Actual: bas.cSX, Expected: 'SX'},
+  {Name: 'cSY', Actual: bas.cSY, Expected: 'SY'},
+  {Name: 'cSZ', Actual: bas.cSZ, Expected: 'SZ'},
 
   // ta-TA
-  export const cta = ct + ca; // ta
-  export const ctb = ct + cb; // tb
-  export const ctc = ct + cc; // tc
-  export const ctd = ct + cd; // td
-  export const cte = ct + ce; // te
-  export const ctf = ct + cf; // tf
-  export const ctg = ct + cg; // tg
-  export const cth = ct + ch; // th
-  export const cti = ct + ci; // ti
-  export const ctj = ct + cj; // tj
-  export const ctk = ct + ck; // tk
-  export const ctl = ct + cl; // tl
-  export const ctm = ct + cm; // tm
-  export const ctn = ct + cn; // tn
-  export const cto = ct + co; // to
-  export const ctp = ct + cp; // tp
-  export const ctq = ct + cq; // tq
-  export const ctr = ct + cr; // tr
-  export const cts = ct + cs; // ts
-  export const ctt = ct + ct; // tt
-  export const ctu = ct + cu; // tu
-  export const ctv = ct + cv; // tv
-  export const ctw = ct + cw; // tw
-  export const ctx = ct + cx; // tx
-  export const cty = ct + cy; // ty
-  export const ctz = ct + cz; // tz
+  {Name: 'cta', Actual: bas.cta, Expected: 'ta'},
+  {Name: 'ctb', Actual: bas.ctb, Expected: 'tb'},
+  {Name: 'ctc', Actual: bas.ctc, Expected: 'tc'},
+  {Name: 'ctd', Actual: bas.ctd, Expected: 'td'},
+  {Name: 'cte', Actual: bas.cte, Expected: 'te'},
+  {Name: 'ctf', Actual: bas.ctf, Expected: 'tf'},
+  {Name: 'ctg', Actual: bas.ctg, Expected: 'tg'},
+  {Name: 'cth', Actual: bas.cth, Expected: 'th'},
+  {Name: 'cti', Actual: bas.cti, Expected: 'ti'},
+  {Name: 'ctj', Actual: bas.ctj, Expected: 'tj'},
+  {Name: 'ctk', Actual: bas.ctk, Expected: 'tk'},
+  {Name: 'ctl', Actual: bas.ctl, Expected: 'tl'},
+  {Name: 'ctm', Actual: bas.ctm, Expected: 'tm'},
+  {Name: 'ctn', Actual: bas.ctn, Expected: 'tn'},
+  {Name: 'cto', Actual: bas.cto, Expected: 'to'},
+  {Name: 'ctp', Actual: bas.ctp, Expected: 'tp'},
+  {Name: 'ctq', Actual: bas.ctq, Expected: 'tq'},
+  {Name: 'ctr', Actual: bas.ctr, Expected: 'tr'},
+  {Name: 'cts', Actual: bas.cts, Expected: 'ts'},
+  {Name: 'ctt', Actual: bas.ctt, Expected: 'tt'},
+  {Name: 'ctu', Actual: bas.ctu, Expected: 'tu'},
+  {Name: 'ctv', Actual: bas.ctv, Expected: 'tv'},
+  {Name: 'ctw', Actual: bas.ctw, Expected: 'tw'},
+  {Name: 'ctx', Actual: bas.ctx, Expected: 'tx'},
+  {Name: 'cty', Actual: bas.cty, Expected: 'ty'},
+  {Name: 'ctz', Actual: bas.ctz, Expected: 'tz'},
 
-  export const cTa = cT + ca; // Ta
-  export const cTb = cT + cb; // Tb
-  export const cTc = cT + cc; // Tc
-  export const cTd = cT + cd; // Td
-  export const cTe = cT + ce; // Te
-  export const cTf = cT + cf; // Tf
-  export const cTg = cT + cg; // Tg
-  export const cTh = cT + ch; // Th
-  export const cTi = cT + ci; // Ti
-  export const cTj = cT + cj; // Tj
-  export const cTk = cT + ck; // Tk
-  export const cTl = cT + cl; // Tl
-  export const cTm = cT + cm; // Tm
-  export const cTn = cT + cn; // Tn
-  export const cTo = cT + co; // To
-  export const cTp = cT + cp; // Tp
-  export const cTq = cT + cq; // Tq
-  export const cTr = cT + cr; // Tr
-  export const cTs = cT + cs; // Ts
-  export const cTt = cT + ct; // Tt
-  export const cTu = cT + cu; // Tu
-  export const cTv = cT + cv; // Tv
-  export const cTw = cT + cw; // Tw
-  export const cTx = cT + cx; // Tx
-  export const cTy = cT + cy; // Ty
-  export const cTz = cT + cz; // Tz
+  {Name: 'cTa', Actual: bas.cTa, Expected: 'Ta'},
+  {Name: 'cTb', Actual: bas.cTb, Expected: 'Tb'},
+  {Name: 'cTc', Actual: bas.cTc, Expected: 'Tc'},
+  {Name: 'cTd', Actual: bas.cTd, Expected: 'Td'},
+  {Name: 'cTe', Actual: bas.cTe, Expected: 'Te'},
+  {Name: 'cTf', Actual: bas.cTf, Expected: 'Tf'},
+  {Name: 'cTg', Actual: bas.cTg, Expected: 'Tg'},
+  {Name: 'cTh', Actual: bas.cTh, Expected: 'Th'},
+  {Name: 'cTi', Actual: bas.cTi, Expected: 'Ti'},
+  {Name: 'cTj', Actual: bas.cTj, Expected: 'Tj'},
+  {Name: 'cTk', Actual: bas.cTk, Expected: 'Tk'},
+  {Name: 'cTl', Actual: bas.cTl, Expected: 'Tl'},
+  {Name: 'cTm', Actual: bas.cTm, Expected: 'Tm'},
+  {Name: 'cTn', Actual: bas.cTn, Expected: 'Tn'},
+  {Name: 'cTo', Actual: bas.cTo, Expected: 'To'},
+  {Name: 'cTp', Actual: bas.cTp, Expected: 'Tp'},
+  {Name: 'cTq', Actual: bas.cTq, Expected: 'Tq'},
+  {Name: 'cTr', Actual: bas.cTr, Expected: 'Tr'},
+  {Name: 'cTs', Actual: bas.cTs, Expected: 'Ts'},
+  {Name: 'cTt', Actual: bas.cTt, Expected: 'Tt'},
+  {Name: 'cTu', Actual: bas.cTu, Expected: 'Tu'},
+  {Name: 'cTv', Actual: bas.cTv, Expected: 'Tv'},
+  {Name: 'cTw', Actual: bas.cTw, Expected: 'Tw'},
+  {Name: 'cTx', Actual: bas.cTx, Expected: 'Tx'},
+  {Name: 'cTy', Actual: bas.cTy, Expected: 'Ty'},
+  {Name: 'cTz', Actual: bas.cTz, Expected: 'Tz'},
 
-  export const ctA = ct + cA; // tA
-  export const ctB = ct + cB; // tB
-  export const ctC = ct + cC; // tC
-  export const ctD = ct + cD; // tD
-  export const ctE = ct + cE; // tE
-  export const ctF = ct + cF; // tF
-  export const ctG = ct + cG; // tG
-  export const ctH = ct + cH; // tH
-  export const ctI = ct + cI; // tI
-  export const ctJ = ct + cJ; // tJ
-  export const ctK = ct + cK; // tK
-  export const ctL = ct + cL; // tL
-  export const ctM = ct + cM; // tM
-  export const ctN = ct + cN; // tN
-  export const ctO = ct + cO; // tO
-  export const ctP = ct + cP; // tP
-  export const ctQ = ct + cQ; // tQ
-  export const ctR = ct + cR; // tR
-  export const ctS = ct + cS; // tS
-  export const ctT = ct + cT; // tT
-  export const ctU = ct + cU; // tU
-  export const ctV = ct + cV; // tV
-  export const ctW = ct + cW; // tW
-  export const ctX = ct + cX; // tX
-  export const ctY = ct + cY; // tY
-  export const ctZ = ct + cZ; // tZ
+  {Name: 'ctA', Actual: bas.ctA, Expected: 'tA'},
+  {Name: 'ctB', Actual: bas.ctB, Expected: 'tB'},
+  {Name: 'ctC', Actual: bas.ctC, Expected: 'tC'},
+  {Name: 'ctD', Actual: bas.ctD, Expected: 'tD'},
+  {Name: 'ctE', Actual: bas.ctE, Expected: 'tE'},
+  {Name: 'ctF', Actual: bas.ctF, Expected: 'tF'},
+  {Name: 'ctG', Actual: bas.ctG, Expected: 'tG'},
+  {Name: 'ctH', Actual: bas.ctH, Expected: 'tH'},
+  {Name: 'ctI', Actual: bas.ctI, Expected: 'tI'},
+  {Name: 'ctJ', Actual: bas.ctJ, Expected: 'tJ'},
+  {Name: 'ctK', Actual: bas.ctK, Expected: 'tK'},
+  {Name: 'ctL', Actual: bas.ctL, Expected: 'tL'},
+  {Name: 'ctM', Actual: bas.ctM, Expected: 'tM'},
+  {Name: 'ctN', Actual: bas.ctN, Expected: 'tN'},
+  {Name: 'ctO', Actual: bas.ctO, Expected: 'tO'},
+  {Name: 'ctP', Actual: bas.ctP, Expected: 'tP'},
+  {Name: 'ctQ', Actual: bas.ctQ, Expected: 'tQ'},
+  {Name: 'ctR', Actual: bas.ctR, Expected: 'tR'},
+  {Name: 'ctS', Actual: bas.ctS, Expected: 'tS'},
+  {Name: 'ctT', Actual: bas.ctT, Expected: 'tT'},
+  {Name: 'ctU', Actual: bas.ctU, Expected: 'tU'},
+  {Name: 'ctV', Actual: bas.ctV, Expected: 'tV'},
+  {Name: 'ctW', Actual: bas.ctW, Expected: 'tW'},
+  {Name: 'ctX', Actual: bas.ctX, Expected: 'tX'},
+  {Name: 'ctY', Actual: bas.ctY, Expected: 'tY'},
+  {Name: 'ctZ', Actual: bas.ctZ, Expected: 'tZ'},
 
-  export const cTA = cT + cA; // TA
-  export const cTB = cT + cB; // TB
-  export const cTC = cT + cC; // TC
-  export const cTD = cT + cD; // TD
-  export const cTE = cT + cE; // TE
-  export const cTF = cT + cF; // TF
-  export const cTG = cT + cG; // TG
-  export const cTH = cT + cH; // TH
-  export const cTI = cT + cI; // TI
-  export const cTJ = cT + cJ; // TJ
-  export const cTK = cT + cK; // TK
-  export const cTL = cT + cL; // TL
-  export const cTM = cT + cM; // TM
-  export const cTN = cT + cN; // TN
-  export const cTO = cT + cO; // TO
-  export const cTP = cT + cP; // TP
-  export const cTQ = cT + cQ; // TQ
-  export const cTR = cT + cR; // TR
-  export const cTS = cT + cS; // TS
-  export const cTT = cT + cT; // TT
-  export const cTU = cT + cU; // TU
-  export const cTV = cT + cV; // TV
-  export const cTW = cT + cW; // TW
-  export const cTX = cT + cX; // TX
-  export const cTY = cT + cY; // TY
-  export const cTZ = cT + cZ; // TZ
+  {Name: 'cTA', Actual: bas.cTA, Expected: 'TA'},
+  {Name: 'cTB', Actual: bas.cTB, Expected: 'TB'},
+  {Name: 'cTC', Actual: bas.cTC, Expected: 'TC'},
+  {Name: 'cTD', Actual: bas.cTD, Expected: 'TD'},
+  {Name: 'cTE', Actual: bas.cTE, Expected: 'TE'},
+  {Name: 'cTF', Actual: bas.cTF, Expected: 'TF'},
+  {Name: 'cTG', Actual: bas.cTG, Expected: 'TG'},
+  {Name: 'cTH', Actual: bas.cTH, Expected: 'TH'},
+  {Name: 'cTI', Actual: bas.cTI, Expected: 'TI'},
+  {Name: 'cTJ', Actual: bas.cTJ, Expected: 'TJ'},
+  {Name: 'cTK', Actual: bas.cTK, Expected: 'TK'},
+  {Name: 'cTL', Actual: bas.cTL, Expected: 'TL'},
+  {Name: 'cTM', Actual: bas.cTM, Expected: 'TM'},
+  {Name: 'cTN', Actual: bas.cTN, Expected: 'TN'},
+  {Name: 'cTO', Actual: bas.cTO, Expected: 'TO'},
+  {Name: 'cTP', Actual: bas.cTP, Expected: 'TP'},
+  {Name: 'cTQ', Actual: bas.cTQ, Expected: 'TQ'},
+  {Name: 'cTR', Actual: bas.cTR, Expected: 'TR'},
+  {Name: 'cTS', Actual: bas.cTS, Expected: 'TS'},
+  {Name: 'cTT', Actual: bas.cTT, Expected: 'TT'},
+  {Name: 'cTU', Actual: bas.cTU, Expected: 'TU'},
+  {Name: 'cTV', Actual: bas.cTV, Expected: 'TV'},
+  {Name: 'cTW', Actual: bas.cTW, Expected: 'TW'},
+  {Name: 'cTX', Actual: bas.cTX, Expected: 'TX'},
+  {Name: 'cTY', Actual: bas.cTY, Expected: 'TY'},
+  {Name: 'cTZ', Actual: bas.cTZ, Expected: 'TZ'},
 
   // ua-UA
-  export const cua = cu + ca; // ua
-  export const cub = cu + cb; // ub
-  export const cuc = cu + cc; // uc
-  export const cud = cu + cd; // ud
-  export const cue = cu + ce; // ue
-  export const cuf = cu + cf; // uf
-  export const cug = cu + cg; // ug
-  export const cuh = cu + ch; // uh
-  export const cui = cu + ci; // ui
-  export const cuj = cu + cj; // uj
-  export const cuk = cu + ck; // uk
-  export const cul = cu + cl; // ul
-  export const cum = cu + cm; // um
-  export const cun = cu + cn; // un
-  export const cuo = cu + co; // uo
-  export const cup = cu + cp; // up
-  export const cuq = cu + cq; // uq
-  export const cur = cu + cr; // ur
-  export const cus = cu + cs; // us
-  export const cut = cu + ct; // ut
-  export const cuu = cu + cu; // uu
-  export const cuv = cu + cv; // uv
-  export const cuw = cu + cw; // uw
-  export const cux = cu + cx; // ux
-  export const cuy = cu + cy; // uy
-  export const cuz = cu + cz; // uz
+  {Name: 'cua', Actual: bas.cua, Expected: 'ua'},
+  {Name: 'cub', Actual: bas.cub, Expected: 'ub'},
+  {Name: 'cuc', Actual: bas.cuc, Expected: 'uc'},
+  {Name: 'cud', Actual: bas.cud, Expected: 'ud'},
+  {Name: 'cue', Actual: bas.cue, Expected: 'ue'},
+  {Name: 'cuf', Actual: bas.cuf, Expected: 'uf'},
+  {Name: 'cug', Actual: bas.cug, Expected: 'ug'},
+  {Name: 'cuh', Actual: bas.cuh, Expected: 'uh'},
+  {Name: 'cui', Actual: bas.cui, Expected: 'ui'},
+  {Name: 'cuj', Actual: bas.cuj, Expected: 'uj'},
+  {Name: 'cuk', Actual: bas.cuk, Expected: 'uk'},
+  {Name: 'cul', Actual: bas.cul, Expected: 'ul'},
+  {Name: 'cum', Actual: bas.cum, Expected: 'um'},
+  {Name: 'cun', Actual: bas.cun, Expected: 'un'},
+  {Name: 'cuo', Actual: bas.cuo, Expected: 'uo'},
+  {Name: 'cup', Actual: bas.cup, Expected: 'up'},
+  {Name: 'cuq', Actual: bas.cuq, Expected: 'uq'},
+  {Name: 'cur', Actual: bas.cur, Expected: 'ur'},
+  {Name: 'cus', Actual: bas.cus, Expected: 'us'},
+  {Name: 'cut', Actual: bas.cut, Expected: 'ut'},
+  {Name: 'cuu', Actual: bas.cuu, Expected: 'uu'},
+  {Name: 'cuv', Actual: bas.cuv, Expected: 'uv'},
+  {Name: 'cuw', Actual: bas.cuw, Expected: 'uw'},
+  {Name: 'cux', Actual: bas.cux, Expected: 'ux'},
+  {Name: 'cuy', Actual: bas.cuy, Expected: 'uy'},
+  {Name: 'cuz', Actual: bas.cuz, Expected: 'uz'},
 
-  export const cUa = cU + ca; // Ua
-  export const cUb = cU + cb; // Ub
-  export const cUc = cU + cc; // Uc
-  export const cUd = cU + cd; // Ud
-  export const cUe = cU + ce; // Ue
-  export const cUf = cU + cf; // Uf
-  export const cUg = cU + cg; // Ug
-  export const cUh = cU + ch; // Uh
-  export const cUi = cU + ci; // Ui
-  export const cUj = cU + cj; // Uj
-  export const cUk = cU + ck; // Uk
-  export const cUl = cU + cl; // Ul
-  export const cUm = cU + cm; // Um
-  export const cUn = cU + cn; // Un
-  export const cUo = cU + co; // Uo
-  export const cUp = cU + cp; // Up
-  export const cUq = cU + cq; // Uq
-  export const cUr = cU + cr; // Ur
-  export const cUs = cU + cs; // Us
-  export const cUt = cU + ct; // Ut
-  export const cUu = cU + cu; // Uu
-  export const cUv = cU + cv; // Uv
-  export const cUw = cU + cw; // Uw
-  export const cUx = cU + cx; // Ux
-  export const cUy = cU + cy; // Uy
-  export const cUz = cU + cz; // Uz
+  {Name: 'cUa', Actual: bas.cUa, Expected: 'Ua'},
+  {Name: 'cUb', Actual: bas.cUb, Expected: 'Ub'},
+  {Name: 'cUc', Actual: bas.cUc, Expected: 'Uc'},
+  {Name: 'cUd', Actual: bas.cUd, Expected: 'Ud'},
+  {Name: 'cUe', Actual: bas.cUe, Expected: 'Ue'},
+  {Name: 'cUf', Actual: bas.cUf, Expected: 'Uf'},
+  {Name: 'cUg', Actual: bas.cUg, Expected: 'Ug'},
+  {Name: 'cUh', Actual: bas.cUh, Expected: 'Uh'},
+  {Name: 'cUi', Actual: bas.cUi, Expected: 'Ui'},
+  {Name: 'cUj', Actual: bas.cUj, Expected: 'Uj'},
+  {Name: 'cUk', Actual: bas.cUk, Expected: 'Uk'},
+  {Name: 'cUl', Actual: bas.cUl, Expected: 'Ul'},
+  {Name: 'cUm', Actual: bas.cUm, Expected: 'Um'},
+  {Name: 'cUn', Actual: bas.cUn, Expected: 'Un'},
+  {Name: 'cUo', Actual: bas.cUo, Expected: 'Uo'},
+  {Name: 'cUp', Actual: bas.cUp, Expected: 'Up'},
+  {Name: 'cUq', Actual: bas.cUq, Expected: 'Uq'},
+  {Name: 'cUr', Actual: bas.cUr, Expected: 'Ur'},
+  {Name: 'cUs', Actual: bas.cUs, Expected: 'Us'},
+  {Name: 'cUt', Actual: bas.cUt, Expected: 'Ut'},
+  {Name: 'cUu', Actual: bas.cUu, Expected: 'Uu'},
+  {Name: 'cUv', Actual: bas.cUv, Expected: 'Uv'},
+  {Name: 'cUw', Actual: bas.cUw, Expected: 'Uw'},
+  {Name: 'cUx', Actual: bas.cUx, Expected: 'Ux'},
+  {Name: 'cUy', Actual: bas.cUy, Expected: 'Uy'},
+  {Name: 'cUz', Actual: bas.cUz, Expected: 'Uz'},
 
-  export const cuA = cu + cA; // uA
-  export const cuB = cu + cB; // uB
-  export const cuC = cu + cC; // uC
-  export const cuD = cu + cD; // uD
-  export const cuE = cu + cE; // uE
-  export const cuF = cu + cF; // uF
-  export const cuG = cu + cG; // uG
-  export const cuH = cu + cH; // uH
-  export const cuI = cu + cI; // uI
-  export const cuJ = cu + cJ; // uJ
-  export const cuK = cu + cK; // uK
-  export const cuL = cu + cL; // uL
-  export const cuM = cu + cM; // uM
-  export const cuN = cu + cN; // uN
-  export const cuO = cu + cO; // uO
-  export const cuP = cu + cP; // uP
-  export const cuQ = cu + cQ; // uQ
-  export const cuR = cu + cR; // uR
-  export const cuS = cu + cS; // uS
-  export const cuT = cu + cT; // uT
-  export const cuU = cu + cU; // uU
-  export const cuV = cu + cV; // uV
-  export const cuW = cu + cW; // uW
-  export const cuX = cu + cX; // uX
-  export const cuY = cu + cY; // uY
-  export const cuZ = cu + cZ; // uZ
+  {Name: 'cuA', Actual: bas.cuA, Expected: 'uA'},
+  {Name: 'cuB', Actual: bas.cuB, Expected: 'uB'},
+  {Name: 'cuC', Actual: bas.cuC, Expected: 'uC'},
+  {Name: 'cuD', Actual: bas.cuD, Expected: 'uD'},
+  {Name: 'cuE', Actual: bas.cuE, Expected: 'uE'},
+  {Name: 'cuF', Actual: bas.cuF, Expected: 'uF'},
+  {Name: 'cuG', Actual: bas.cuG, Expected: 'uG'},
+  {Name: 'cuH', Actual: bas.cuH, Expected: 'uH'},
+  {Name: 'cuI', Actual: bas.cuI, Expected: 'uI'},
+  {Name: 'cuJ', Actual: bas.cuJ, Expected: 'uJ'},
+  {Name: 'cuK', Actual: bas.cuK, Expected: 'uK'},
+  {Name: 'cuL', Actual: bas.cuL, Expected: 'uL'},
+  {Name: 'cuM', Actual: bas.cuM, Expected: 'uM'},
+  {Name: 'cuN', Actual: bas.cuN, Expected: 'uN'},
+  {Name: 'cuO', Actual: bas.cuO, Expected: 'uO'},
+  {Name: 'cuP', Actual: bas.cuP, Expected: 'uP'},
+  {Name: 'cuQ', Actual: bas.cuQ, Expected: 'uQ'},
+  {Name: 'cuR', Actual: bas.cuR, Expected: 'uR'},
+  {Name: 'cuS', Actual: bas.cuS, Expected: 'uS'},
+  {Name: 'cuT', Actual: bas.cuT, Expected: 'uT'},
+  {Name: 'cuU', Actual: bas.cuU, Expected: 'uU'},
+  {Name: 'cuV', Actual: bas.cuV, Expected: 'uV'},
+  {Name: 'cuW', Actual: bas.cuW, Expected: 'uW'},
+  {Name: 'cuX', Actual: bas.cuX, Expected: 'uX'},
+  {Name: 'cuY', Actual: bas.cuY, Expected: 'uY'},
+  {Name: 'cuZ', Actual: bas.cuZ, Expected: 'uZ'},
 
-  export const cUA = cU + cA; // UA
-  export const cUB = cU + cB; // UB
-  export const cUC = cU + cC; // UC
-  export const cUD = cU + cD; // UD
-  export const cUE = cU + cE; // UE
-  export const cUF = cU + cF; // UF
-  export const cUG = cU + cG; // UG
-  export const cUH = cU + cH; // UH
-  export const cUI = cU + cI; // UI
-  export const cUJ = cU + cJ; // UJ
-  export const cUK = cU + cK; // UK
-  export const cUL = cU + cL; // UL
-  export const cUM = cU + cM; // UM
-  export const cUN = cU + cN; // UN
-  export const cUO = cU + cO; // UO
-  export const cUP = cU + cP; // UP
-  export const cUQ = cU + cQ; // UQ
-  export const cUR = cU + cR; // UR
-  export const cUS = cU + cS; // US
-  export const cUT = cU + cT; // UT
-  export const cUU = cU + cU; // UU
-  export const cUV = cU + cV; // UV
-  export const cUW = cU + cW; // UW
-  export const cUX = cU + cX; // UX
-  export const cUY = cU + cY; // UY
-  export const cUZ = cU + cZ; // UZ
+  {Name: 'cUA', Actual: bas.cUA, Expected: 'UA'},
+  {Name: 'cUB', Actual: bas.cUB, Expected: 'UB'},
+  {Name: 'cUC', Actual: bas.cUC, Expected: 'UC'},
+  {Name: 'cUD', Actual: bas.cUD, Expected: 'UD'},
+  {Name: 'cUE', Actual: bas.cUE, Expected: 'UE'},
+  {Name: 'cUF', Actual: bas.cUF, Expected: 'UF'},
+  {Name: 'cUG', Actual: bas.cUG, Expected: 'UG'},
+  {Name: 'cUH', Actual: bas.cUH, Expected: 'UH'},
+  {Name: 'cUI', Actual: bas.cUI, Expected: 'UI'},
+  {Name: 'cUJ', Actual: bas.cUJ, Expected: 'UJ'},
+  {Name: 'cUK', Actual: bas.cUK, Expected: 'UK'},
+  {Name: 'cUL', Actual: bas.cUL, Expected: 'UL'},
+  {Name: 'cUM', Actual: bas.cUM, Expected: 'UM'},
+  {Name: 'cUN', Actual: bas.cUN, Expected: 'UN'},
+  {Name: 'cUO', Actual: bas.cUO, Expected: 'UO'},
+  {Name: 'cUP', Actual: bas.cUP, Expected: 'UP'},
+  {Name: 'cUQ', Actual: bas.cUQ, Expected: 'UQ'},
+  {Name: 'cUR', Actual: bas.cUR, Expected: 'UR'},
+  {Name: 'cUS', Actual: bas.cUS, Expected: 'US'},
+  {Name: 'cUT', Actual: bas.cUT, Expected: 'UT'},
+  {Name: 'cUU', Actual: bas.cUU, Expected: 'UU'},
+  {Name: 'cUV', Actual: bas.cUV, Expected: 'UV'},
+  {Name: 'cUW', Actual: bas.cUW, Expected: 'UW'},
+  {Name: 'cUX', Actual: bas.cUX, Expected: 'UX'},
+  {Name: 'cUY', Actual: bas.cUY, Expected: 'UY'},
+  {Name: 'cUZ', Actual: bas.cUZ, Expected: 'UZ'},
 
   // va-VA
-  export const cva = cv + ca; // va
-  export const cvb = cv + cb; // vb
-  export const cvc = cv + cc; // vc
-  export const cvd = cv + cd; // vd
-  export const cve = cv + ce; // ve
-  export const cvf = cv + cf; // vf
-  export const cvg = cv + cg; // vg
-  export const cvh = cv + ch; // vh
-  export const cvi = cv + ci; // vi
-  export const cvj = cv + cj; // vj
-  export const cvk = cv + ck; // vk
-  export const cvl = cv + cl; // vl
-  export const cvm = cv + cm; // vm
-  export const cvn = cv + cn; // vn
-  export const cvo = cv + co; // vo
-  export const cvp = cv + cp; // vp
-  export const cvq = cv + cq; // vq
-  export const cvr = cv + cr; // vr
-  export const cvs = cv + cs; // vs
-  export const cvt = cv + ct; // vt
-  export const cvu = cv + cu; // vu
-  export const cvv = cv + cv; // vv
-  export const cvw = cv + cw; // vw
-  export const cvx = cv + cx; // vx
-  export const cvy = cv + cy; // vy
-  export const cvz = cv + cz; // vz
+  {Name: 'cva', Actual: bas.cva, Expected: 'va'},
+  {Name: 'cvb', Actual: bas.cvb, Expected: 'vb'},
+  {Name: 'cvc', Actual: bas.cvc, Expected: 'vc'},
+  {Name: 'cvd', Actual: bas.cvd, Expected: 'vd'},
+  {Name: 'cve', Actual: bas.cve, Expected: 've'},
+  {Name: 'cvf', Actual: bas.cvf, Expected: 'vf'},
+  {Name: 'cvg', Actual: bas.cvg, Expected: 'vg'},
+  {Name: 'cvh', Actual: bas.cvh, Expected: 'vh'},
+  {Name: 'cvi', Actual: bas.cvi, Expected: 'vi'},
+  {Name: 'cvj', Actual: bas.cvj, Expected: 'vj'},
+  {Name: 'cvk', Actual: bas.cvk, Expected: 'vk'},
+  {Name: 'cvl', Actual: bas.cvl, Expected: 'vl'},
+  {Name: 'cvm', Actual: bas.cvm, Expected: 'vm'},
+  {Name: 'cvn', Actual: bas.cvn, Expected: 'vn'},
+  {Name: 'cvo', Actual: bas.cvo, Expected: 'vo'},
+  {Name: 'cvp', Actual: bas.cvp, Expected: 'vp'},
+  {Name: 'cvq', Actual: bas.cvq, Expected: 'vq'},
+  {Name: 'cvr', Actual: bas.cvr, Expected: 'vr'},
+  {Name: 'cvs', Actual: bas.cvs, Expected: 'vs'},
+  {Name: 'cvt', Actual: bas.cvt, Expected: 'vt'},
+  {Name: 'cvu', Actual: bas.cvu, Expected: 'vu'},
+  {Name: 'cvv', Actual: bas.cvv, Expected: 'vv'},
+  {Name: 'cvw', Actual: bas.cvw, Expected: 'vw'},
+  {Name: 'cvx', Actual: bas.cvx, Expected: 'vx'},
+  {Name: 'cvy', Actual: bas.cvy, Expected: 'vy'},
+  {Name: 'cvz', Actual: bas.cvz, Expected: 'vz'},
 
-  export const cVa = cV + ca; // Va
-  export const cVb = cV + cb; // Vb
-  export const cVc = cV + cc; // Vc
-  export const cVd = cV + cd; // Vd
-  export const cVe = cV + ce; // Ve
-  export const cVf = cV + cf; // Vf
-  export const cVg = cV + cg; // Vg
-  export const cVh = cV + ch; // Vh
-  export const cVi = cV + ci; // Vi
-  export const cVj = cV + cj; // Vj
-  export const cVk = cV + ck; // Vk
-  export const cVl = cV + cl; // Vl
-  export const cVm = cV + cm; // Vm
-  export const cVn = cV + cn; // Vn
-  export const cVo = cV + co; // Vo
-  export const cVp = cV + cp; // Vp
-  export const cVq = cV + cq; // Vq
-  export const cVr = cV + cr; // Vr
-  export const cVs = cV + cs; // Vs
-  export const cVt = cV + ct; // Vt
-  export const cVu = cV + cu; // Vu
-  export const cVv = cV + cv; // Vv
-  export const cVw = cV + cw; // Vw
-  export const cVx = cV + cx; // Vx
-  export const cVy = cV + cy; // Vy
-  export const cVz = cV + cz; // Vz
+  {Name: 'cVa', Actual: bas.cVa, Expected: 'Va'},
+  {Name: 'cVb', Actual: bas.cVb, Expected: 'Vb'},
+  {Name: 'cVc', Actual: bas.cVc, Expected: 'Vc'},
+  {Name: 'cVd', Actual: bas.cVd, Expected: 'Vd'},
+  {Name: 'cVe', Actual: bas.cVe, Expected: 'Ve'},
+  {Name: 'cVf', Actual: bas.cVf, Expected: 'Vf'},
+  {Name: 'cVg', Actual: bas.cVg, Expected: 'Vg'},
+  {Name: 'cVh', Actual: bas.cVh, Expected: 'Vh'},
+  {Name: 'cVi', Actual: bas.cVi, Expected: 'Vi'},
+  {Name: 'cVj', Actual: bas.cVj, Expected: 'Vj'},
+  {Name: 'cVk', Actual: bas.cVk, Expected: 'Vk'},
+  {Name: 'cVl', Actual: bas.cVl, Expected: 'Vl'},
+  {Name: 'cVm', Actual: bas.cVm, Expected: 'Vm'},
+  {Name: 'cVn', Actual: bas.cVn, Expected: 'Vn'},
+  {Name: 'cVo', Actual: bas.cVo, Expected: 'Vo'},
+  {Name: 'cVp', Actual: bas.cVp, Expected: 'Vp'},
+  {Name: 'cVq', Actual: bas.cVq, Expected: 'Vq'},
+  {Name: 'cVr', Actual: bas.cVr, Expected: 'Vr'},
+  {Name: 'cVs', Actual: bas.cVs, Expected: 'Vs'},
+  {Name: 'cVt', Actual: bas.cVt, Expected: 'Vt'},
+  {Name: 'cVu', Actual: bas.cVu, Expected: 'Vu'},
+  {Name: 'cVv', Actual: bas.cVv, Expected: 'Vv'},
+  {Name: 'cVw', Actual: bas.cVw, Expected: 'Vw'},
+  {Name: 'cVx', Actual: bas.cVx, Expected: 'Vx'},
+  {Name: 'cVy', Actual: bas.cVy, Expected: 'Vy'},
+  {Name: 'cVz', Actual: bas.cVz, Expected: 'Vz'},
 
-  export const cvA = cv + cA; // vA
-  export const cvB = cv + cB; // vB
-  export const cvC = cv + cC; // vC
-  export const cvD = cv + cD; // vD
-  export const cvE = cv + cE; // vE
-  export const cvF = cv + cF; // vF
-  export const cvG = cv + cG; // vG
-  export const cvH = cv + cH; // vH
-  export const cvI = cv + cI; // vI
-  export const cvJ = cv + cJ; // vJ
-  export const cvK = cv + cK; // vK
-  export const cvL = cv + cL; // vL
-  export const cvM = cv + cM; // vM
-  export const cvN = cv + cN; // vN
-  export const cvO = cv + cO; // vO
-  export const cvP = cv + cP; // vP
-  export const cvQ = cv + cQ; // vQ
-  export const cvR = cv + cR; // vR
-  export const cvS = cv + cS; // vS
-  export const cvT = cv + cT; // vT
-  export const cvU = cv + cU; // vU
-  export const cvV = cv + cV; // vV
-  export const cvW = cv + cW; // vW
-  export const cvX = cv + cX; // vX
-  export const cvY = cv + cY; // vY
-  export const cvZ = cv + cZ; // vZ
+  {Name: 'cvA', Actual: bas.cvA, Expected: 'vA'},
+  {Name: 'cvB', Actual: bas.cvB, Expected: 'vB'},
+  {Name: 'cvC', Actual: bas.cvC, Expected: 'vC'},
+  {Name: 'cvD', Actual: bas.cvD, Expected: 'vD'},
+  {Name: 'cvE', Actual: bas.cvE, Expected: 'vE'},
+  {Name: 'cvF', Actual: bas.cvF, Expected: 'vF'},
+  {Name: 'cvG', Actual: bas.cvG, Expected: 'vG'},
+  {Name: 'cvH', Actual: bas.cvH, Expected: 'vH'},
+  {Name: 'cvI', Actual: bas.cvI, Expected: 'vI'},
+  {Name: 'cvJ', Actual: bas.cvJ, Expected: 'vJ'},
+  {Name: 'cvK', Actual: bas.cvK, Expected: 'vK'},
+  {Name: 'cvL', Actual: bas.cvL, Expected: 'vL'},
+  {Name: 'cvM', Actual: bas.cvM, Expected: 'vM'},
+  {Name: 'cvN', Actual: bas.cvN, Expected: 'vN'},
+  {Name: 'cvO', Actual: bas.cvO, Expected: 'vO'},
+  {Name: 'cvP', Actual: bas.cvP, Expected: 'vP'},
+  {Name: 'cvQ', Actual: bas.cvQ, Expected: 'vQ'},
+  {Name: 'cvR', Actual: bas.cvR, Expected: 'vR'},
+  {Name: 'cvS', Actual: bas.cvS, Expected: 'vS'},
+  {Name: 'cvT', Actual: bas.cvT, Expected: 'vT'},
+  {Name: 'cvU', Actual: bas.cvU, Expected: 'vU'},
+  {Name: 'cvV', Actual: bas.cvV, Expected: 'vV'},
+  {Name: 'cvW', Actual: bas.cvW, Expected: 'vW'},
+  {Name: 'cvX', Actual: bas.cvX, Expected: 'vX'},
+  {Name: 'cvY', Actual: bas.cvY, Expected: 'vY'},
+  {Name: 'cvZ', Actual: bas.cvZ, Expected: 'vZ'},
 
-  export const cVA = cV + cA; // VA
-  export const cVB = cV + cB; // VB
-  export const cVC = cV + cC; // VC
-  export const cVD = cV + cD; // VD
-  export const cVE = cV + cE; // VE
-  export const cVF = cV + cF; // VF
-  export const cVG = cV + cG; // VG
-  export const cVH = cV + cH; // VH
-  export const cVI = cV + cI; // VI
-  export const cVJ = cV + cJ; // VJ
-  export const cVK = cV + cK; // VK
-  export const cVL = cV + cL; // VL
-  export const cVM = cV + cM; // VM
-  export const cVN = cV + cN; // VN
-  export const cVO = cV + cO; // VO
-  export const cVP = cV + cP; // VP
-  export const cVQ = cV + cQ; // VQ
-  export const cVR = cV + cR; // VR
-  export const cVS = cV + cS; // VS
-  export const cVT = cV + cT; // VT
-  export const cVU = cV + cU; // VU
-  export const cVV = cV + cV; // VV
-  export const cVW = cV + cW; // VW
-  export const cVX = cV + cX; // VX
-  export const cVY = cV + cY; // VY
-  export const cVZ = cV + cZ; // VZ
+  {Name: 'cVA', Actual: bas.cVA, Expected: 'VA'},
+  {Name: 'cVB', Actual: bas.cVB, Expected: 'VB'},
+  {Name: 'cVC', Actual: bas.cVC, Expected: 'VC'},
+  {Name: 'cVD', Actual: bas.cVD, Expected: 'VD'},
+  {Name: 'cVE', Actual: bas.cVE, Expected: 'VE'},
+  {Name: 'cVF', Actual: bas.cVF, Expected: 'VF'},
+  {Name: 'cVG', Actual: bas.cVG, Expected: 'VG'},
+  {Name: 'cVH', Actual: bas.cVH, Expected: 'VH'},
+  {Name: 'cVI', Actual: bas.cVI, Expected: 'VI'},
+  {Name: 'cVJ', Actual: bas.cVJ, Expected: 'VJ'},
+  {Name: 'cVK', Actual: bas.cVK, Expected: 'VK'},
+  {Name: 'cVL', Actual: bas.cVL, Expected: 'VL'},
+  {Name: 'cVM', Actual: bas.cVM, Expected: 'VM'},
+  {Name: 'cVN', Actual: bas.cVN, Expected: 'VN'},
+  {Name: 'cVO', Actual: bas.cVO, Expected: 'VO'},
+  {Name: 'cVP', Actual: bas.cVP, Expected: 'VP'},
+  {Name: 'cVQ', Actual: bas.cVQ, Expected: 'VQ'},
+  {Name: 'cVR', Actual: bas.cVR, Expected: 'VR'},
+  {Name: 'cVS', Actual: bas.cVS, Expected: 'VS'},
+  {Name: 'cVT', Actual: bas.cVT, Expected: 'VT'},
+  {Name: 'cVU', Actual: bas.cVU, Expected: 'VU'},
+  {Name: 'cVV', Actual: bas.cVV, Expected: 'VV'},
+  {Name: 'cVW', Actual: bas.cVW, Expected: 'VW'},
+  {Name: 'cVX', Actual: bas.cVX, Expected: 'VX'},
+  {Name: 'cVY', Actual: bas.cVY, Expected: 'VY'},
+  {Name: 'cVZ', Actual: bas.cVZ, Expected: 'VZ'},
 
   // wa-WA
-  export const cwa = cw + ca; // wa
-  export const cwb = cw + cb; // wb
-  export const cwc = cw + cc; // wc
-  export const cwd = cw + cd; // wd
-  export const cwe = cw + ce; // we
-  export const cwf = cw + cf; // wf
-  export const cwg = cw + cg; // wg
-  export const cwh = cw + ch; // wh
-  export const cwi = cw + ci; // wi
-  export const cwj = cw + cj; // wj
-  export const cwk = cw + ck; // wk
-  export const cwl = cw + cl; // wl
-  export const cwm = cw + cm; // wm
-  export const cwn = cw + cn; // wn
-  export const cwo = cw + co; // wo
-  export const cwp = cw + cp; // wp
-  export const cwq = cw + cq; // wq
-  export const cwr = cw + cr; // wr
-  export const cws = cw + cs; // ws
-  export const cwt = cw + ct; // wt
-  export const cwu = cw + cu; // wu
-  export const cwv = cw + cv; // wv
-  export const cww = cw + cw; // ww
-  export const cwx = cw + cx; // wx
-  export const cwy = cw + cy; // wy
-  export const cwz = cw + cz; // wz
+  {Name: 'cwa', Actual: bas.cwa, Expected: 'wa'},
+  {Name: 'cwb', Actual: bas.cwb, Expected: 'wb'},
+  {Name: 'cwc', Actual: bas.cwc, Expected: 'wc'},
+  {Name: 'cwd', Actual: bas.cwd, Expected: 'wd'},
+  {Name: 'cwe', Actual: bas.cwe, Expected: 'we'},
+  {Name: 'cwf', Actual: bas.cwf, Expected: 'wf'},
+  {Name: 'cwg', Actual: bas.cwg, Expected: 'wg'},
+  {Name: 'cwh', Actual: bas.cwh, Expected: 'wh'},
+  {Name: 'cwi', Actual: bas.cwi, Expected: 'wi'},
+  {Name: 'cwj', Actual: bas.cwj, Expected: 'wj'},
+  {Name: 'cwk', Actual: bas.cwk, Expected: 'wk'},
+  {Name: 'cwl', Actual: bas.cwl, Expected: 'wl'},
+  {Name: 'cwm', Actual: bas.cwm, Expected: 'wm'},
+  {Name: 'cwn', Actual: bas.cwn, Expected: 'wn'},
+  {Name: 'cwo', Actual: bas.cwo, Expected: 'wo'},
+  {Name: 'cwp', Actual: bas.cwp, Expected: 'wp'},
+  {Name: 'cwq', Actual: bas.cwq, Expected: 'wq'},
+  {Name: 'cwr', Actual: bas.cwr, Expected: 'wr'},
+  {Name: 'cws', Actual: bas.cws, Expected: 'ws'},
+  {Name: 'cwt', Actual: bas.cwt, Expected: 'wt'},
+  {Name: 'cwu', Actual: bas.cwu, Expected: 'wu'},
+  {Name: 'cwv', Actual: bas.cwv, Expected: 'wv'},
+  {Name: 'cww', Actual: bas.cww, Expected: 'ww'},
+  {Name: 'cwx', Actual: bas.cwx, Expected: 'wx'},
+  {Name: 'cwy', Actual: bas.cwy, Expected: 'wy'},
+  {Name: 'cwz', Actual: bas.cwz, Expected: 'wz'},
 
-  export const cWa = cW + ca; // Wa
-  export const cWb = cW + cb; // Wb
-  export const cWc = cW + cc; // Wc
-  export const cWd = cW + cd; // Wd
-  export const cWe = cW + ce; // We
-  export const cWf = cW + cf; // Wf
-  export const cWg = cW + cg; // Wg
-  export const cWh = cW + ch; // Wh
-  export const cWi = cW + ci; // Wi
-  export const cWj = cW + cj; // Wj
-  export const cWk = cW + ck; // Wk
-  export const cWl = cW + cl; // Wl
-  export const cWm = cW + cm; // Wm
-  export const cWn = cW + cn; // Wn
-  export const cWo = cW + co; // Wo
-  export const cWp = cW + cp; // Wp
-  export const cWq = cW + cq; // Wq
-  export const cWr = cW + cr; // Wr
-  export const cWs = cW + cs; // Ws
-  export const cWt = cW + ct; // Wt
-  export const cWu = cW + cu; // Wu
-  export const cWv = cW + cv; // Wv
-  export const cWw = cW + cw; // Ww
-  export const cWx = cW + cx; // Wx
-  export const cWy = cW + cy; // Wy
-  export const cWz = cW + cz; // Wz
+  {Name: 'cWa', Actual: bas.cWa, Expected: 'Wa'},
+  {Name: 'cWb', Actual: bas.cWb, Expected: 'Wb'},
+  {Name: 'cWc', Actual: bas.cWc, Expected: 'Wc'},
+  {Name: 'cWd', Actual: bas.cWd, Expected: 'Wd'},
+  {Name: 'cWe', Actual: bas.cWe, Expected: 'We'},
+  {Name: 'cWf', Actual: bas.cWf, Expected: 'Wf'},
+  {Name: 'cWg', Actual: bas.cWg, Expected: 'Wg'},
+  {Name: 'cWh', Actual: bas.cWh, Expected: 'Wh'},
+  {Name: 'cWi', Actual: bas.cWi, Expected: 'Wi'},
+  {Name: 'cWj', Actual: bas.cWj, Expected: 'Wj'},
+  {Name: 'cWk', Actual: bas.cWk, Expected: 'Wk'},
+  {Name: 'cWl', Actual: bas.cWl, Expected: 'Wl'},
+  {Name: 'cWm', Actual: bas.cWm, Expected: 'Wm'},
+  {Name: 'cWn', Actual: bas.cWn, Expected: 'Wn'},
+  {Name: 'cWo', Actual: bas.cWo, Expected: 'Wo'},
+  {Name: 'cWp', Actual: bas.cWp, Expected: 'Wp'},
+  {Name: 'cWq', Actual: bas.cWq, Expected: 'Wq'},
+  {Name: 'cWr', Actual: bas.cWr, Expected: 'Wr'},
+  {Name: 'cWs', Actual: bas.cWs, Expected: 'Ws'},
+  {Name: 'cWt', Actual: bas.cWt, Expected: 'Wt'},
+  {Name: 'cWu', Actual: bas.cWu, Expected: 'Wu'},
+  {Name: 'cWv', Actual: bas.cWv, Expected: 'Wv'},
+  {Name: 'cWw', Actual: bas.cWw, Expected: 'Ww'},
+  {Name: 'cWx', Actual: bas.cWx, Expected: 'Wx'},
+  {Name: 'cWy', Actual: bas.cWy, Expected: 'Wy'},
+  {Name: 'cWz', Actual: bas.cWz, Expected: 'Wz'},
 
-  export const cwA = cw + cA; // wA
-  export const cwB = cw + cB; // wB
-  export const cwC = cw + cC; // wC
-  export const cwD = cw + cD; // wD
-  export const cwE = cw + cE; // wE
-  export const cwF = cw + cF; // wF
-  export const cwG = cw + cG; // wG
-  export const cwH = cw + cH; // wH
-  export const cwI = cw + cI; // wI
-  export const cwJ = cw + cJ; // wJ
-  export const cwK = cw + cK; // wK
-  export const cwL = cw + cL; // wL
-  export const cwM = cw + cM; // wM
-  export const cwN = cw + cN; // wN
-  export const cwO = cw + cO; // wO
-  export const cwP = cw + cP; // wP
-  export const cwQ = cw + cQ; // wQ
-  export const cwR = cw + cR; // wR
-  export const cwS = cw + cS; // wS
-  export const cwT = cw + cT; // wT
-  export const cwU = cw + cU; // wU
-  export const cwV = cw + cV; // wV
-  export const cwW = cw + cW; // wW
-  export const cwX = cw + cX; // wX
-  export const cwY = cw + cY; // wY
-  export const cwZ = cw + cZ; // wZ
+  {Name: 'cwA', Actual: bas.cwA, Expected: 'wA'},
+  {Name: 'cwB', Actual: bas.cwB, Expected: 'wB'},
+  {Name: 'cwC', Actual: bas.cwC, Expected: 'wC'},
+  {Name: 'cwD', Actual: bas.cwD, Expected: 'wD'},
+  {Name: 'cwE', Actual: bas.cwE, Expected: 'wE'},
+  {Name: 'cwF', Actual: bas.cwF, Expected: 'wF'},
+  {Name: 'cwG', Actual: bas.cwG, Expected: 'wG'},
+  {Name: 'cwH', Actual: bas.cwH, Expected: 'wH'},
+  {Name: 'cwI', Actual: bas.cwI, Expected: 'wI'},
+  {Name: 'cwJ', Actual: bas.cwJ, Expected: 'wJ'},
+  {Name: 'cwK', Actual: bas.cwK, Expected: 'wK'},
+  {Name: 'cwL', Actual: bas.cwL, Expected: 'wL'},
+  {Name: 'cwM', Actual: bas.cwM, Expected: 'wM'},
+  {Name: 'cwN', Actual: bas.cwN, Expected: 'wN'},
+  {Name: 'cwO', Actual: bas.cwO, Expected: 'wO'},
+  {Name: 'cwP', Actual: bas.cwP, Expected: 'wP'},
+  {Name: 'cwQ', Actual: bas.cwQ, Expected: 'wQ'},
+  {Name: 'cwR', Actual: bas.cwR, Expected: 'wR'},
+  {Name: 'cwS', Actual: bas.cwS, Expected: 'wS'},
+  {Name: 'cwT', Actual: bas.cwT, Expected: 'wT'},
+  {Name: 'cwU', Actual: bas.cwU, Expected: 'wU'},
+  {Name: 'cwV', Actual: bas.cwV, Expected: 'wV'},
+  {Name: 'cwW', Actual: bas.cwW, Expected: 'wW'},
+  {Name: 'cwX', Actual: bas.cwX, Expected: 'wX'},
+  {Name: 'cwY', Actual: bas.cwY, Expected: 'wY'},
+  {Name: 'cwZ', Actual: bas.cwZ, Expected: 'wZ'},
 
-  export const cWA = cW + cA; // WA
-  export const cWB = cW + cB; // WB
-  export const cWC = cW + cC; // WC
-  export const cWD = cW + cD; // WD
-  export const cWE = cW + cE; // WE
-  export const cWF = cW + cF; // WF
-  export const cWG = cW + cG; // WG
-  export const cWH = cW + cH; // WH
-  export const cWI = cW + cI; // WI
-  export const cWJ = cW + cJ; // WJ
-  export const cWK = cW + cK; // WK
-  export const cWL = cW + cL; // WL
-  export const cWM = cW + cM; // WM
-  export const cWN = cW + cN; // WN
-  export const cWO = cW + cO; // WO
-  export const cWP = cW + cP; // WP
-  export const cWQ = cW + cQ; // WQ
-  export const cWR = cW + cR; // WR
-  export const cWS = cW + cS; // WS
-  export const cWT = cW + cT; // WT
-  export const cWU = cW + cU; // WU
-  export const cWV = cW + cV; // WV
-  export const cWW = cW + cW; // WW
-  export const cWX = cW + cX; // WX
-  export const cWY = cW + cY; // WY
-  export const cWZ = cW + cZ; // WZ
+  {Name: 'cWA', Actual: bas.cWA, Expected: 'WA'},
+  {Name: 'cWB', Actual: bas.cWB, Expected: 'WB'},
+  {Name: 'cWC', Actual: bas.cWC, Expected: 'WC'},
+  {Name: 'cWD', Actual: bas.cWD, Expected: 'WD'},
+  {Name: 'cWE', Actual: bas.cWE, Expected: 'WE'},
+  {Name: 'cWF', Actual: bas.cWF, Expected: 'WF'},
+  {Name: 'cWG', Actual: bas.cWG, Expected: 'WG'},
+  {Name: 'cWH', Actual: bas.cWH, Expected: 'WH'},
+  {Name: 'cWI', Actual: bas.cWI, Expected: 'WI'},
+  {Name: 'cWJ', Actual: bas.cWJ, Expected: 'WJ'},
+  {Name: 'cWK', Actual: bas.cWK, Expected: 'WK'},
+  {Name: 'cWL', Actual: bas.cWL, Expected: 'WL'},
+  {Name: 'cWM', Actual: bas.cWM, Expected: 'WM'},
+  {Name: 'cWN', Actual: bas.cWN, Expected: 'WN'},
+  {Name: 'cWO', Actual: bas.cWO, Expected: 'WO'},
+  {Name: 'cWP', Actual: bas.cWP, Expected: 'WP'},
+  {Name: 'cWQ', Actual: bas.cWQ, Expected: 'WQ'},
+  {Name: 'cWR', Actual: bas.cWR, Expected: 'WR'},
+  {Name: 'cWS', Actual: bas.cWS, Expected: 'WS'},
+  {Name: 'cWT', Actual: bas.cWT, Expected: 'WT'},
+  {Name: 'cWU', Actual: bas.cWU, Expected: 'WU'},
+  {Name: 'cWV', Actual: bas.cWV, Expected: 'WV'},
+  {Name: 'cWW', Actual: bas.cWW, Expected: 'WW'},
+  {Name: 'cWX', Actual: bas.cWX, Expected: 'WX'},
+  {Name: 'cWY', Actual: bas.cWY, Expected: 'WY'},
+  {Name: 'cWZ', Actual: bas.cWZ, Expected: 'WZ'},
 
   // xa-XA
-  export const cxa = cx + ca; // xa
-  export const cxb = cx + cb; // xb
-  export const cxc = cx + cc; // xc
-  export const cxd = cx + cd; // xd
-  export const cxe = cx + ce; // xe
-  export const cxf = cx + cf; // xf
-  export const cxg = cx + cg; // xg
-  export const cxh = cx + ch; // xh
-  export const cxi = cx + ci; // xi
-  export const cxj = cx + cj; // xj
-  export const cxk = cx + ck; // xk
-  export const cxl = cx + cl; // xl
-  export const cxm = cx + cm; // xm
-  export const cxn = cx + cn; // xn
-  export const cxo = cx + co; // xo
-  export const cxp = cx + cp; // xp
-  export const cxq = cx + cq; // xq
-  export const cxr = cx + cr; // xr
-  export const cxs = cx + cs; // xs
-  export const cxt = cx + ct; // xt
-  export const cxu = cx + cu; // xu
-  export const cxv = cx + cv; // xv
-  export const cxw = cx + cw; // xw
-  export const cxx = cx + cx; // xx
-  export const cxy = cx + cy; // xy
-  export const cxz = cx + cz; // xz
+  {Name: 'cxa', Actual: bas.cxa, Expected: 'xa'},
+  {Name: 'cxb', Actual: bas.cxb, Expected: 'xb'},
+  {Name: 'cxc', Actual: bas.cxc, Expected: 'xc'},
+  {Name: 'cxd', Actual: bas.cxd, Expected: 'xd'},
+  {Name: 'cxe', Actual: bas.cxe, Expected: 'xe'},
+  {Name: 'cxf', Actual: bas.cxf, Expected: 'xf'},
+  {Name: 'cxg', Actual: bas.cxg, Expected: 'xg'},
+  {Name: 'cxh', Actual: bas.cxh, Expected: 'xh'},
+  {Name: 'cxi', Actual: bas.cxi, Expected: 'xi'},
+  {Name: 'cxj', Actual: bas.cxj, Expected: 'xj'},
+  {Name: 'cxk', Actual: bas.cxk, Expected: 'xk'},
+  {Name: 'cxl', Actual: bas.cxl, Expected: 'xl'},
+  {Name: 'cxm', Actual: bas.cxm, Expected: 'xm'},
+  {Name: 'cxn', Actual: bas.cxn, Expected: 'xn'},
+  {Name: 'cxo', Actual: bas.cxo, Expected: 'xo'},
+  {Name: 'cxp', Actual: bas.cxp, Expected: 'xp'},
+  {Name: 'cxq', Actual: bas.cxq, Expected: 'xq'},
+  {Name: 'cxr', Actual: bas.cxr, Expected: 'xr'},
+  {Name: 'cxs', Actual: bas.cxs, Expected: 'xs'},
+  {Name: 'cxt', Actual: bas.cxt, Expected: 'xt'},
+  {Name: 'cxu', Actual: bas.cxu, Expected: 'xu'},
+  {Name: 'cxv', Actual: bas.cxv, Expected: 'xv'},
+  {Name: 'cxw', Actual: bas.cxw, Expected: 'xw'},
+  {Name: 'cxx', Actual: bas.cxx, Expected: 'xx'},
+  {Name: 'cxy', Actual: bas.cxy, Expected: 'xy'},
+  {Name: 'cxz', Actual: bas.cxz, Expected: 'xz'},
 
-  export const cXa = cX + ca; // Xa
-  export const cXb = cX + cb; // Xb
-  export const cXc = cX + cc; // Xc
-  export const cXd = cX + cd; // Xd
-  export const cXe = cX + ce; // Xe
-  export const cXf = cX + cf; // Xf
-  export const cXg = cX + cg; // Xg
-  export const cXh = cX + ch; // Xh
-  export const cXi = cX + ci; // Xi
-  export const cXj = cX + cj; // Xj
-  export const cXk = cX + ck; // Xk
-  export const cXl = cX + cl; // Xl
-  export const cXm = cX + cm; // Xm
-  export const cXn = cX + cn; // Xn
-  export const cXo = cX + co; // Xo
-  export const cXp = cX + cp; // Xp
-  export const cXq = cX + cq; // Xq
-  export const cXr = cX + cr; // Xr
-  export const cXs = cX + cs; // Xs
-  export const cXt = cX + ct; // Xt
-  export const cXu = cX + cu; // Xu
-  export const cXv = cX + cv; // Xv
-  export const cXw = cX + cw; // Xw
-  export const cXx = cX + cx; // Xx
-  export const cXy = cX + cy; // Xy
-  export const cXz = cX + cz; // Xz
+  {Name: 'cXa', Actual: bas.cXa, Expected: 'Xa'},
+  {Name: 'cXb', Actual: bas.cXb, Expected: 'Xb'},
+  {Name: 'cXc', Actual: bas.cXc, Expected: 'Xc'},
+  {Name: 'cXd', Actual: bas.cXd, Expected: 'Xd'},
+  {Name: 'cXe', Actual: bas.cXe, Expected: 'Xe'},
+  {Name: 'cXf', Actual: bas.cXf, Expected: 'Xf'},
+  {Name: 'cXg', Actual: bas.cXg, Expected: 'Xg'},
+  {Name: 'cXh', Actual: bas.cXh, Expected: 'Xh'},
+  {Name: 'cXi', Actual: bas.cXi, Expected: 'Xi'},
+  {Name: 'cXj', Actual: bas.cXj, Expected: 'Xj'},
+  {Name: 'cXk', Actual: bas.cXk, Expected: 'Xk'},
+  {Name: 'cXl', Actual: bas.cXl, Expected: 'Xl'},
+  {Name: 'cXm', Actual: bas.cXm, Expected: 'Xm'},
+  {Name: 'cXn', Actual: bas.cXn, Expected: 'Xn'},
+  {Name: 'cXo', Actual: bas.cXo, Expected: 'Xo'},
+  {Name: 'cXp', Actual: bas.cXp, Expected: 'Xp'},
+  {Name: 'cXq', Actual: bas.cXq, Expected: 'Xq'},
+  {Name: 'cXr', Actual: bas.cXr, Expected: 'Xr'},
+  {Name: 'cXs', Actual: bas.cXs, Expected: 'Xs'},
+  {Name: 'cXt', Actual: bas.cXt, Expected: 'Xt'},
+  {Name: 'cXu', Actual: bas.cXu, Expected: 'Xu'},
+  {Name: 'cXv', Actual: bas.cXv, Expected: 'Xv'},
+  {Name: 'cXw', Actual: bas.cXw, Expected: 'Xw'},
+  {Name: 'cXx', Actual: bas.cXx, Expected: 'Xx'},
+  {Name: 'cXy', Actual: bas.cXy, Expected: 'Xy'},
+  {Name: 'cXz', Actual: bas.cXz, Expected: 'Xz'},
 
-  export const cxA = cx + cA; // xA
-  export const cxB = cx + cB; // xB
-  export const cxC = cx + cC; // xC
-  export const cxD = cx + cD; // xD
-  export const cxE = cx + cE; // xE
-  export const cxF = cx + cF; // xF
-  export const cxG = cx + cG; // xG
-  export const cxH = cx + cH; // xH
-  export const cxI = cx + cI; // xI
-  export const cxJ = cx + cJ; // xJ
-  export const cxK = cx + cK; // xK
-  export const cxL = cx + cL; // xL
-  export const cxM = cx + cM; // xM
-  export const cxN = cx + cN; // xN
-  export const cxO = cx + cO; // xO
-  export const cxP = cx + cP; // xP
-  export const cxQ = cx + cQ; // xQ
-  export const cxR = cx + cR; // xR
-  export const cxS = cx + cS; // xS
-  export const cxT = cx + cT; // xT
-  export const cxU = cx + cU; // xU
-  export const cxV = cx + cV; // xV
-  export const cxW = cx + cW; // xW
-  export const cxX = cx + cX; // xX
-  export const cxY = cx + cY; // xY
-  export const cxZ = cx + cZ; // xZ
+  {Name: 'cxA', Actual: bas.cxA, Expected: 'xA'},
+  {Name: 'cxB', Actual: bas.cxB, Expected: 'xB'},
+  {Name: 'cxC', Actual: bas.cxC, Expected: 'xC'},
+  {Name: 'cxD', Actual: bas.cxD, Expected: 'xD'},
+  {Name: 'cxE', Actual: bas.cxE, Expected: 'xE'},
+  {Name: 'cxF', Actual: bas.cxF, Expected: 'xF'},
+  {Name: 'cxG', Actual: bas.cxG, Expected: 'xG'},
+  {Name: 'cxH', Actual: bas.cxH, Expected: 'xH'},
+  {Name: 'cxI', Actual: bas.cxI, Expected: 'xI'},
+  {Name: 'cxJ', Actual: bas.cxJ, Expected: 'xJ'},
+  {Name: 'cxK', Actual: bas.cxK, Expected: 'xK'},
+  {Name: 'cxL', Actual: bas.cxL, Expected: 'xL'},
+  {Name: 'cxM', Actual: bas.cxM, Expected: 'xM'},
+  {Name: 'cxN', Actual: bas.cxN, Expected: 'xN'},
+  {Name: 'cxO', Actual: bas.cxO, Expected: 'xO'},
+  {Name: 'cxP', Actual: bas.cxP, Expected: 'xP'},
+  {Name: 'cxQ', Actual: bas.cxQ, Expected: 'xQ'},
+  {Name: 'cxR', Actual: bas.cxR, Expected: 'xR'},
+  {Name: 'cxS', Actual: bas.cxS, Expected: 'xS'},
+  {Name: 'cxT', Actual: bas.cxT, Expected: 'xT'},
+  {Name: 'cxU', Actual: bas.cxU, Expected: 'xU'},
+  {Name: 'cxV', Actual: bas.cxV, Expected: 'xV'},
+  {Name: 'cxW', Actual: bas.cxW, Expected: 'xW'},
+  {Name: 'cxX', Actual: bas.cxX, Expected: 'xX'},
+  {Name: 'cxY', Actual: bas.cxY, Expected: 'xY'},
+  {Name: 'cxZ', Actual: bas.cxZ, Expected: 'xZ'},
 
-  export const cXA = cX + cA; // XA
-  export const cXB = cX + cB; // XB
-  export const cXC = cX + cC; // XC
-  export const cXD = cX + cD; // XD
-  export const cXE = cX + cE; // XE
-  export const cXF = cX + cF; // XF
-  export const cXG = cX + cG; // XG
-  export const cXH = cX + cH; // XH
-  export const cXI = cX + cI; // XI
-  export const cXJ = cX + cJ; // XJ
-  export const cXK = cX + cK; // XK
-  export const cXL = cX + cL; // XL
-  export const cXM = cX + cM; // XM
-  export const cXN = cX + cN; // XN
-  export const cXO = cX + cO; // XO
-  export const cXP = cX + cP; // XP
-  export const cXQ = cX + cQ; // XQ
-  export const cXR = cX + cR; // XR
-  export const cXS = cX + cS; // XS
-  export const cXT = cX + cT; // XT
-  export const cXU = cX + cU; // XU
-  export const cXV = cX + cV; // XV
-  export const cXW = cX + cW; // XW
-  export const cXX = cX + cX; // XX
-  export const cXY = cX + cY; // XY
-  export const cXZ = cX + cZ; // XZ
+  {Name: 'cXA', Actual: bas.cXA, Expected: 'XA'},
+  {Name: 'cXB', Actual: bas.cXB, Expected: 'XB'},
+  {Name: 'cXC', Actual: bas.cXC, Expected: 'XC'},
+  {Name: 'cXD', Actual: bas.cXD, Expected: 'XD'},
+  {Name: 'cXE', Actual: bas.cXE, Expected: 'XE'},
+  {Name: 'cXF', Actual: bas.cXF, Expected: 'XF'},
+  {Name: 'cXG', Actual: bas.cXG, Expected: 'XG'},
+  {Name: 'cXH', Actual: bas.cXH, Expected: 'XH'},
+  {Name: 'cXI', Actual: bas.cXI, Expected: 'XI'},
+  {Name: 'cXJ', Actual: bas.cXJ, Expected: 'XJ'},
+  {Name: 'cXK', Actual: bas.cXK, Expected: 'XK'},
+  {Name: 'cXL', Actual: bas.cXL, Expected: 'XL'},
+  {Name: 'cXM', Actual: bas.cXM, Expected: 'XM'},
+  {Name: 'cXN', Actual: bas.cXN, Expected: 'XN'},
+  {Name: 'cXO', Actual: bas.cXO, Expected: 'XO'},
+  {Name: 'cXP', Actual: bas.cXP, Expected: 'XP'},
+  {Name: 'cXQ', Actual: bas.cXQ, Expected: 'XQ'},
+  {Name: 'cXR', Actual: bas.cXR, Expected: 'XR'},
+  {Name: 'cXS', Actual: bas.cXS, Expected: 'XS'},
+  {Name: 'cXT', Actual: bas.cXT, Expected: 'XT'},
+  {Name: 'cXU', Actual: bas.cXU, Expected: 'XU'},
+  {Name: 'cXV', Actual: bas.cXV, Expected: 'XV'},
+  {Name: 'cXW', Actual: bas.cXW, Expected: 'XW'},
+  {Name: 'cXX', Actual: bas.cXX, Expected: 'XX'},
+  {Name: 'cXY', Actual: bas.cXY, Expected: 'XY'},
+  {Name: 'cXZ', Actual: bas.cXZ, Expected: 'XZ'},
 
   // ya-YA
-  export const cya = cy + ca; // ya
-  export const cyb = cy + cb; // yb
-  export const cyc = cy + cc; // yc
-  export const cyd = cy + cd; // yd
-  export const cye = cy + ce; // ye
-  export const cyf = cy + cf; // yf
-  export const cyg = cy + cg; // yg
-  export const cyh = cy + ch; // yh
-  export const cyi = cy + ci; // yi
-  export const cyj = cy + cj; // yj
-  export const cyk = cy + ck; // yk
-  export const cyl = cy + cl; // yl
-  export const cym = cy + cm; // ym
-  export const cyn = cy + cn; // yn
-  export const cyo = cy + co; // yo
-  export const cyp = cy + cp; // yp
-  export const cyq = cy + cq; // yq
-  export const cyr = cy + cr; // yr
-  export const cys = cy + cs; // ys
-  export const cyt = cy + ct; // yt
-  export const cyu = cy + cu; // yu
-  export const cyv = cy + cv; // yv
-  export const cyw = cy + cw; // yw
-  export const cyx = cy + cx; // yx
-  export const cyy = cy + cy; // yy
-  export const cyz = cy + cz; // yz
+  {Name: 'cya', Actual: bas.cya, Expected: 'ya'},
+  {Name: 'cyb', Actual: bas.cyb, Expected: 'yb'},
+  {Name: 'cyc', Actual: bas.cyc, Expected: 'yc'},
+  {Name: 'cyd', Actual: bas.cyd, Expected: 'yd'},
+  {Name: 'cye', Actual: bas.cye, Expected: 'ye'},
+  {Name: 'cyf', Actual: bas.cyf, Expected: 'yf'},
+  {Name: 'cyg', Actual: bas.cyg, Expected: 'yg'},
+  {Name: 'cyh', Actual: bas.cyh, Expected: 'yh'},
+  {Name: 'cyi', Actual: bas.cyi, Expected: 'yi'},
+  {Name: 'cyj', Actual: bas.cyj, Expected: 'yj'},
+  {Name: 'cyk', Actual: bas.cyk, Expected: 'yk'},
+  {Name: 'cyl', Actual: bas.cyl, Expected: 'yl'},
+  {Name: 'cym', Actual: bas.cym, Expected: 'ym'},
+  {Name: 'cyn', Actual: bas.cyn, Expected: 'yn'},
+  {Name: 'cyo', Actual: bas.cyo, Expected: 'yo'},
+  {Name: 'cyp', Actual: bas.cyp, Expected: 'yp'},
+  {Name: 'cyq', Actual: bas.cyq, Expected: 'yq'},
+  {Name: 'cyr', Actual: bas.cyr, Expected: 'yr'},
+  {Name: 'cys', Actual: bas.cys, Expected: 'ys'},
+  {Name: 'cyt', Actual: bas.cyt, Expected: 'yt'},
+  {Name: 'cyu', Actual: bas.cyu, Expected: 'yu'},
+  {Name: 'cyv', Actual: bas.cyv, Expected: 'yv'},
+  {Name: 'cyw', Actual: bas.cyw, Expected: 'yw'},
+  {Name: 'cyx', Actual: bas.cyx, Expected: 'yx'},
+  {Name: 'cyy', Actual: bas.cyy, Expected: 'yy'},
+  {Name: 'cyz', Actual: bas.cyz, Expected: 'yz'},
 
-  export const cYa = cY + ca; // Ya
-  export const cYb = cY + cb; // Yb
-  export const cYc = cY + cc; // Yc
-  export const cYd = cY + cd; // Yd
-  export const cYe = cY + ce; // Ye
-  export const cYf = cY + cf; // Yf
-  export const cYg = cY + cg; // Yg
-  export const cYh = cY + ch; // Yh
-  export const cYi = cY + ci; // Yi
-  export const cYj = cY + cj; // Yj
-  export const cYk = cY + ck; // Yk
-  export const cYl = cY + cl; // Yl
-  export const cYm = cY + cm; // Ym
-  export const cYn = cY + cn; // Yn
-  export const cYo = cY + co; // Yo
-  export const cYp = cY + cp; // Yp
-  export const cYq = cY + cq; // Yq
-  export const cYr = cY + cr; // Yr
-  export const cYs = cY + cs; // Ys
-  export const cYt = cY + ct; // Yt
-  export const cYu = cY + cu; // Yu
-  export const cYv = cY + cv; // Yv
-  export const cYw = cY + cw; // Yw
-  export const cYx = cY + cx; // Yx
-  export const cYy = cY + cy; // Yy
-  export const cYz = cY + cz; // Yz
+  {Name: 'cYa', Actual: bas.cYa, Expected: 'Ya'},
+  {Name: 'cYb', Actual: bas.cYb, Expected: 'Yb'},
+  {Name: 'cYc', Actual: bas.cYc, Expected: 'Yc'},
+  {Name: 'cYd', Actual: bas.cYd, Expected: 'Yd'},
+  {Name: 'cYe', Actual: bas.cYe, Expected: 'Ye'},
+  {Name: 'cYf', Actual: bas.cYf, Expected: 'Yf'},
+  {Name: 'cYg', Actual: bas.cYg, Expected: 'Yg'},
+  {Name: 'cYh', Actual: bas.cYh, Expected: 'Yh'},
+  {Name: 'cYi', Actual: bas.cYi, Expected: 'Yi'},
+  {Name: 'cYj', Actual: bas.cYj, Expected: 'Yj'},
+  {Name: 'cYk', Actual: bas.cYk, Expected: 'Yk'},
+  {Name: 'cYl', Actual: bas.cYl, Expected: 'Yl'},
+  {Name: 'cYm', Actual: bas.cYm, Expected: 'Ym'},
+  {Name: 'cYn', Actual: bas.cYn, Expected: 'Yn'},
+  {Name: 'cYo', Actual: bas.cYo, Expected: 'Yo'},
+  {Name: 'cYp', Actual: bas.cYp, Expected: 'Yp'},
+  {Name: 'cYq', Actual: bas.cYq, Expected: 'Yq'},
+  {Name: 'cYr', Actual: bas.cYr, Expected: 'Yr'},
+  {Name: 'cYs', Actual: bas.cYs, Expected: 'Ys'},
+  {Name: 'cYt', Actual: bas.cYt, Expected: 'Yt'},
+  {Name: 'cYu', Actual: bas.cYu, Expected: 'Yu'},
+  {Name: 'cYv', Actual: bas.cYv, Expected: 'Yv'},
+  {Name: 'cYw', Actual: bas.cYw, Expected: 'Yw'},
+  {Name: 'cYx', Actual: bas.cYx, Expected: 'Yx'},
+  {Name: 'cYy', Actual: bas.cYy, Expected: 'Yy'},
+  {Name: 'cYz', Actual: bas.cYz, Expected: 'Yz'},
 
-  export const cyA = cy + cA; // yA
-  export const cyB = cy + cB; // yB
-  export const cyC = cy + cC; // yC
-  export const cyD = cy + cD; // yD
-  export const cyE = cy + cE; // yE
-  export const cyF = cy + cF; // yF
-  export const cyG = cy + cG; // yG
-  export const cyH = cy + cH; // yH
-  export const cyI = cy + cI; // yI
-  export const cyJ = cy + cJ; // yJ
-  export const cyK = cy + cK; // yK
-  export const cyL = cy + cL; // yL
-  export const cyM = cy + cM; // yM
-  export const cyN = cy + cN; // yN
-  export const cyO = cy + cO; // yO
-  export const cyP = cy + cP; // yP
-  export const cyQ = cy + cQ; // yQ
-  export const cyR = cy + cR; // yR
-  export const cyS = cy + cS; // yS
-  export const cyT = cy + cT; // yT
-  export const cyU = cy + cU; // yU
-  export const cyV = cy + cV; // yV
-  export const cyW = cy + cW; // yW
-  export const cyX = cy + cX; // yX
-  export const cyY = cy + cY; // yY
-  export const cyZ = cy + cZ; // yZ
+  {Name: 'cyA', Actual: bas.cyA, Expected: 'yA'},
+  {Name: 'cyB', Actual: bas.cyB, Expected: 'yB'},
+  {Name: 'cyC', Actual: bas.cyC, Expected: 'yC'},
+  {Name: 'cyD', Actual: bas.cyD, Expected: 'yD'},
+  {Name: 'cyE', Actual: bas.cyE, Expected: 'yE'},
+  {Name: 'cyF', Actual: bas.cyF, Expected: 'yF'},
+  {Name: 'cyG', Actual: bas.cyG, Expected: 'yG'},
+  {Name: 'cyH', Actual: bas.cyH, Expected: 'yH'},
+  {Name: 'cyI', Actual: bas.cyI, Expected: 'yI'},
+  {Name: 'cyJ', Actual: bas.cyJ, Expected: 'yJ'},
+  {Name: 'cyK', Actual: bas.cyK, Expected: 'yK'},
+  {Name: 'cyL', Actual: bas.cyL, Expected: 'yL'},
+  {Name: 'cyM', Actual: bas.cyM, Expected: 'yM'},
+  {Name: 'cyN', Actual: bas.cyN, Expected: 'yN'},
+  {Name: 'cyO', Actual: bas.cyO, Expected: 'yO'},
+  {Name: 'cyP', Actual: bas.cyP, Expected: 'yP'},
+  {Name: 'cyQ', Actual: bas.cyQ, Expected: 'yQ'},
+  {Name: 'cyR', Actual: bas.cyR, Expected: 'yR'},
+  {Name: 'cyS', Actual: bas.cyS, Expected: 'yS'},
+  {Name: 'cyT', Actual: bas.cyT, Expected: 'yT'},
+  {Name: 'cyU', Actual: bas.cyU, Expected: 'yU'},
+  {Name: 'cyV', Actual: bas.cyV, Expected: 'yV'},
+  {Name: 'cyW', Actual: bas.cyW, Expected: 'yW'},
+  {Name: 'cyX', Actual: bas.cyX, Expected: 'yX'},
+  {Name: 'cyY', Actual: bas.cyY, Expected: 'yY'},
+  {Name: 'cyZ', Actual: bas.cyZ, Expected: 'yZ'},
 
-  export const cYA = cY + cA; // YA
-  export const cYB = cY + cB; // YB
-  export const cYC = cY + cC; // YC
-  export const cYD = cY + cD; // YD
-  export const cYE = cY + cE; // YE
-  export const cYF = cY + cF; // YF
-  export const cYG = cY + cG; // YG
-  export const cYH = cY + cH; // YH
-  export const cYI = cY + cI; // YI
-  export const cYJ = cY + cJ; // YJ
-  export const cYK = cY + cK; // YK
-  export const cYL = cY + cL; // YL
-  export const cYM = cY + cM; // YM
-  export const cYN = cY + cN; // YN
-  export const cYO = cY + cO; // YO
-  export const cYP = cY + cP; // YP
-  export const cYQ = cY + cQ; // YQ
-  export const cYR = cY + cR; // YR
-  export const cYS = cY + cS; // YS
-  export const cYT = cY + cT; // YT
-  export const cYU = cY + cU; // YU
-  export const cYV = cY + cV; // YV
-  export const cYW = cY + cW; // YW
-  export const cYX = cY + cX; // YX
-  export const cYY = cY + cY; // YY
-  export const cYZ = cY + cZ; // YZ
+  {Name: 'cYA', Actual: bas.cYA, Expected: 'YA'},
+  {Name: 'cYB', Actual: bas.cYB, Expected: 'YB'},
+  {Name: 'cYC', Actual: bas.cYC, Expected: 'YC'},
+  {Name: 'cYD', Actual: bas.cYD, Expected: 'YD'},
+  {Name: 'cYE', Actual: bas.cYE, Expected: 'YE'},
+  {Name: 'cYF', Actual: bas.cYF, Expected: 'YF'},
+  {Name: 'cYG', Actual: bas.cYG, Expected: 'YG'},
+  {Name: 'cYH', Actual: bas.cYH, Expected: 'YH'},
+  {Name: 'cYI', Actual: bas.cYI, Expected: 'YI'},
+  {Name: 'cYJ', Actual: bas.cYJ, Expected: 'YJ'},
+  {Name: 'cYK', Actual: bas.cYK, Expected: 'YK'},
+  {Name: 'cYL', Actual: bas.cYL, Expected: 'YL'},
+  {Name: 'cYM', Actual: bas.cYM, Expected: 'YM'},
+  {Name: 'cYN', Actual: bas.cYN, Expected: 'YN'},
+  {Name: 'cYO', Actual: bas.cYO, Expected: 'YO'},
+  {Name: 'cYP', Actual: bas.cYP, Expected: 'YP'},
+  {Name: 'cYQ', Actual: bas.cYQ, Expected: 'YQ'},
+  {Name: 'cYR', Actual: bas.cYR, Expected: 'YR'},
+  {Name: 'cYS', Actual: bas.cYS, Expected: 'YS'},
+  {Name: 'cYT', Actual: bas.cYT, Expected: 'YT'},
+  {Name: 'cYU', Actual: bas.cYU, Expected: 'YU'},
+  {Name: 'cYV', Actual: bas.cYV, Expected: 'YV'},
+  {Name: 'cYW', Actual: bas.cYW, Expected: 'YW'},
+  {Name: 'cYX', Actual: bas.cYX, Expected: 'YX'},
+  {Name: 'cYY', Actual: bas.cYY, Expected: 'YY'},
+  {Name: 'cYZ', Actual: bas.cYZ, Expected: 'YZ'},
 
   // za-ZA
-  export const cza = cz + ca; // za
-  export const czb = cz + cb; // zb
-  export const czc = cz + cc; // zc
-  export const czd = cz + cd; // zd
-  export const cze = cz + ce; // ze
-  export const czf = cz + cf; // zf
-  export const czg = cz + cg; // zg
-  export const czh = cz + ch; // zh
-  export const czi = cz + ci; // zi
-  export const czj = cz + cj; // zj
-  export const czk = cz + ck; // zk
-  export const czl = cz + cl; // zl
-  export const czm = cz + cm; // zm
-  export const czn = cz + cn; // zn
-  export const czo = cz + co; // zo
-  export const czp = cz + cp; // zp
-  export const czq = cz + cq; // zq
-  export const czr = cz + cr; // zr
-  export const czs = cz + cs; // zs
-  export const czt = cz + ct; // zt
-  export const czu = cz + cu; // zu
-  export const czv = cz + cv; // zv
-  export const czw = cz + cw; // zw
-  export const czx = cz + cx; // zx
-  export const czy = cz + cy; // zy
-  export const czz = cz + cz; // zz
+  {Name: 'cza', Actual: bas.cza, Expected: 'za'},
+  {Name: 'czb', Actual: bas.czb, Expected: 'zb'},
+  {Name: 'czc', Actual: bas.czc, Expected: 'zc'},
+  {Name: 'czd', Actual: bas.czd, Expected: 'zd'},
+  {Name: 'cze', Actual: bas.cze, Expected: 'ze'},
+  {Name: 'czf', Actual: bas.czf, Expected: 'zf'},
+  {Name: 'czg', Actual: bas.czg, Expected: 'zg'},
+  {Name: 'czh', Actual: bas.czh, Expected: 'zh'},
+  {Name: 'czi', Actual: bas.czi, Expected: 'zi'},
+  {Name: 'czj', Actual: bas.czj, Expected: 'zj'},
+  {Name: 'czk', Actual: bas.czk, Expected: 'zk'},
+  {Name: 'czl', Actual: bas.czl, Expected: 'zl'},
+  {Name: 'czm', Actual: bas.czm, Expected: 'zm'},
+  {Name: 'czn', Actual: bas.czn, Expected: 'zn'},
+  {Name: 'czo', Actual: bas.czo, Expected: 'zo'},
+  {Name: 'czp', Actual: bas.czp, Expected: 'zp'},
+  {Name: 'czq', Actual: bas.czq, Expected: 'zq'},
+  {Name: 'czr', Actual: bas.czr, Expected: 'zr'},
+  {Name: 'czs', Actual: bas.czs, Expected: 'zs'},
+  {Name: 'czt', Actual: bas.czt, Expected: 'zt'},
+  {Name: 'czu', Actual: bas.czu, Expected: 'zu'},
+  {Name: 'czv', Actual: bas.czv, Expected: 'zv'},
+  {Name: 'czw', Actual: bas.czw, Expected: 'zw'},
+  {Name: 'czx', Actual: bas.czx, Expected: 'zx'},
+  {Name: 'czy', Actual: bas.czy, Expected: 'zy'},
+  {Name: 'czz', Actual: bas.czz, Expected: 'zz'},
 
-  export const cZa = cZ + ca; // Za
-  export const cZb = cZ + cb; // Zb
-  export const cZc = cZ + cc; // Zc
-  export const cZd = cZ + cd; // Zd
-  export const cZe = cZ + ce; // Ze
-  export const cZf = cZ + cf; // Zf
-  export const cZg = cZ + cg; // Zg
-  export const cZh = cZ + ch; // Zh
-  export const cZi = cZ + ci; // Zi
-  export const cZj = cZ + cj; // Zj
-  export const cZk = cZ + ck; // Zk
-  export const cZl = cZ + cl; // Zl
-  export const cZm = cZ + cm; // Zm
-  export const cZn = cZ + cn; // Zn
-  export const cZo = cZ + co; // Zo
-  export const cZp = cZ + cp; // Zp
-  export const cZq = cZ + cq; // Zq
-  export const cZr = cZ + cr; // Zr
-  export const cZs = cZ + cs; // Zs
-  export const cZt = cZ + ct; // Zt
-  export const cZu = cZ + cu; // Zu
-  export const cZv = cZ + cv; // Zv
-  export const cZw = cZ + cw; // Zw
-  export const cZx = cZ + cx; // Zx
-  export const cZy = cZ + cy; // Zy
-  export const cZz = cZ + cz; // Zz
+  {Name: 'cZa', Actual: bas.cZa, Expected: 'Za'},
+  {Name: 'cZb', Actual: bas.cZb, Expected: 'Zb'},
+  {Name: 'cZc', Actual: bas.cZc, Expected: 'Zc'},
+  {Name: 'cZd', Actual: bas.cZd, Expected: 'Zd'},
+  {Name: 'cZe', Actual: bas.cZe, Expected: 'Ze'},
+  {Name: 'cZf', Actual: bas.cZf, Expected: 'Zf'},
+  {Name: 'cZg', Actual: bas.cZg, Expected: 'Zg'},
+  {Name: 'cZh', Actual: bas.cZh, Expected: 'Zh'},
+  {Name: 'cZi', Actual: bas.cZi, Expected: 'Zi'},
+  {Name: 'cZj', Actual: bas.cZj, Expected: 'Zj'},
+  {Name: 'cZk', Actual: bas.cZk, Expected: 'Zk'},
+  {Name: 'cZl', Actual: bas.cZl, Expected: 'Zl'},
+  {Name: 'cZm', Actual: bas.cZm, Expected: 'Zm'},
+  {Name: 'cZn', Actual: bas.cZn, Expected: 'Zn'},
+  {Name: 'cZo', Actual: bas.cZo, Expected: 'Zo'},
+  {Name: 'cZp', Actual: bas.cZp, Expected: 'Zp'},
+  {Name: 'cZq', Actual: bas.cZq, Expected: 'Zq'},
+  {Name: 'cZr', Actual: bas.cZr, Expected: 'Zr'},
+  {Name: 'cZs', Actual: bas.cZs, Expected: 'Zs'},
+  {Name: 'cZt', Actual: bas.cZt, Expected: 'Zt'},
+  {Name: 'cZu', Actual: bas.cZu, Expected: 'Zu'},
+  {Name: 'cZv', Actual: bas.cZv, Expected: 'Zv'},
+  {Name: 'cZw', Actual: bas.cZw, Expected: 'Zw'},
+  {Name: 'cZx', Actual: bas.cZx, Expected: 'Zx'},
+  {Name: 'cZy', Actual: bas.cZy, Expected: 'Zy'},
+  {Name: 'cZz', Actual: bas.cZz, Expected: 'Zz'},
 
-  export const czA = cz + cA; // zA
-  export const czB = cz + cB; // zB
-  export const czC = cz + cC; // zC
-  export const czD = cz + cD; // zD
-  export const czE = cz + cE; // zE
-  export const czF = cz + cF; // zF
-  export const czG = cz + cG; // zG
-  export const czH = cz + cH; // zH
-  export const czI = cz + cI; // zI
-  export const czJ = cz + cJ; // zJ
-  export const czK = cz + cK; // zK
-  export const czL = cz + cL; // zL
-  export const czM = cz + cM; // zM
-  export const czN = cz + cN; // zN
-  export const czO = cz + cO; // zO
-  export const czP = cz + cP; // zP
-  export const czQ = cz + cQ; // zQ
-  export const czR = cz + cR; // zR
-  export const czS = cz + cS; // zS
-  export const czT = cz + cT; // zT
-  export const czU = cz + cU; // zU
-  export const czV = cz + cV; // zV
-  export const czW = cz + cW; // zW
-  export const czX = cz + cX; // zX
-  export const czY = cz + cY; // zY
-  export const czZ = cz + cZ; // zZ
+  {Name: 'czA', Actual: bas.czA, Expected: 'zA'},
+  {Name: 'czB', Actual: bas.czB, Expected: 'zB'},
+  {Name: 'czC', Actual: bas.czC, Expected: 'zC'},
+  {Name: 'czD', Actual: bas.czD, Expected: 'zD'},
+  {Name: 'czE', Actual: bas.czE, Expected: 'zE'},
+  {Name: 'czF', Actual: bas.czF, Expected: 'zF'},
+  {Name: 'czG', Actual: bas.czG, Expected: 'zG'},
+  {Name: 'czH', Actual: bas.czH, Expected: 'zH'},
+  {Name: 'czI', Actual: bas.czI, Expected: 'zI'},
+  {Name: 'czJ', Actual: bas.czJ, Expected: 'zJ'},
+  {Name: 'czK', Actual: bas.czK, Expected: 'zK'},
+  {Name: 'czL', Actual: bas.czL, Expected: 'zL'},
+  {Name: 'czM', Actual: bas.czM, Expected: 'zM'},
+  {Name: 'czN', Actual: bas.czN, Expected: 'zN'},
+  {Name: 'czO', Actual: bas.czO, Expected: 'zO'},
+  {Name: 'czP', Actual: bas.czP, Expected: 'zP'},
+  {Name: 'czQ', Actual: bas.czQ, Expected: 'zQ'},
+  {Name: 'czR', Actual: bas.czR, Expected: 'zR'},
+  {Name: 'czS', Actual: bas.czS, Expected: 'zS'},
+  {Name: 'czT', Actual: bas.czT, Expected: 'zT'},
+  {Name: 'czU', Actual: bas.czU, Expected: 'zU'},
+  {Name: 'czV', Actual: bas.czV, Expected: 'zV'},
+  {Name: 'czW', Actual: bas.czW, Expected: 'zW'},
+  {Name: 'czX', Actual: bas.czX, Expected: 'zX'},
+  {Name: 'czY', Actual: bas.czY, Expected: 'zY'},
+  {Name: 'czZ', Actual: bas.czZ, Expected: 'zZ'},
 
-  export const cZA = cZ + cA; // ZA
-  export const cZB = cZ + cB; // ZB
-  export const cZC = cZ + cC; // ZC
-  export const cZD = cZ + cD; // ZD
-  export const cZE = cZ + cE; // ZE
-  export const cZF = cZ + cF; // ZF
-  export const cZG = cZ + cG; // ZG
-  export const cZH = cZ + cH; // ZH
-  export const cZI = cZ + cI; // ZI
-  export const cZJ = cZ + cJ; // ZJ
-  export const cZK = cZ + cK; // ZK
-  export const cZL = cZ + cL; // ZL
-  export const cZM = cZ + cM; // ZM
-  export const cZN = cZ + cN; // ZN
-  export const cZO = cZ + cO; // ZO
-  export const cZP = cZ + cP; // ZP
-  export const cZQ = cZ + cQ; // ZQ
-  export const cZR = cZ + cR; // ZR
-  export const cZS = cZ + cS; // ZS
-  export const cZT = cZ + cT; // ZT
-  export const cZU = cZ + cU; // ZU
-  export const cZV = cZ + cV; // ZV
-  export const cZW = cZ + cW; // ZW
-  export const cZX = cZ + cX; // ZX
-  export const cZY = cZ + cY; // ZY
-  export const cZZ = cZ + cZ; // ZZ
+  {Name: 'cZA', Actual: bas.cZA, Expected: 'ZA'},
+  {Name: 'cZB', Actual: bas.cZB, Expected: 'ZB'},
+  {Name: 'cZC', Actual: bas.cZC, Expected: 'ZC'},
+  {Name: 'cZD', Actual: bas.cZD, Expected: 'ZD'},
+  {Name: 'cZE', Actual: bas.cZE, Expected: 'ZE'},
+  {Name: 'cZF', Actual: bas.cZF, Expected: 'ZF'},
+  {Name: 'cZG', Actual: bas.cZG, Expected: 'ZG'},
+  {Name: 'cZH', Actual: bas.cZH, Expected: 'ZH'},
+  {Name: 'cZI', Actual: bas.cZI, Expected: 'ZI'},
+  {Name: 'cZJ', Actual: bas.cZJ, Expected: 'ZJ'},
+  {Name: 'cZK', Actual: bas.cZK, Expected: 'ZK'},
+  {Name: 'cZL', Actual: bas.cZL, Expected: 'ZL'},
+  {Name: 'cZM', Actual: bas.cZM, Expected: 'ZM'},
+  {Name: 'cZN', Actual: bas.cZN, Expected: 'ZN'},
+  {Name: 'cZO', Actual: bas.cZO, Expected: 'ZO'},
+  {Name: 'cZP', Actual: bas.cZP, Expected: 'ZP'},
+  {Name: 'cZQ', Actual: bas.cZQ, Expected: 'ZQ'},
+  {Name: 'cZR', Actual: bas.cZR, Expected: 'ZR'},
+  {Name: 'cZS', Actual: bas.cZS, Expected: 'ZS'},
+  {Name: 'cZT', Actual: bas.cZT, Expected: 'ZT'},
+  {Name: 'cZU', Actual: bas.cZU, Expected: 'ZU'},
+  {Name: 'cZV', Actual: bas.cZV, Expected: 'ZV'},
+  {Name: 'cZW', Actual: bas.cZW, Expected: 'ZW'},
+  {Name: 'cZX', Actual: bas.cZX, Expected: 'ZX'},
+  {Name: 'cZY', Actual: bas.cZY, Expected: 'ZY'},
+  {Name: 'cZZ', Actual: bas.cZZ, Expected: 'ZZ'}
 
   // inducedConstantsFailure = 'inducedConstantsFailure';
 
