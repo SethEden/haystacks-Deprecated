@@ -37,6 +37,8 @@ export const functionConstantsValidation = [
   {Name: 'cstoreData', Actual: fnc.cstoreData, Expected: 'storeData'},
   {Name: 'cgetData', Actual: fnc.cgetData, Expected: 'getData'},
   {Name: 'cclearData', Actual: fnc.cclearData, Expected: 'clearData'},
+  {Name: 'caddConstantsValidationData', Actual: fnc.caddConstantsValidationData, Expected: 'addConstantsValidationData'},
+  {Name: 'caddDeeplyNestedConstantsValidationData', Actual: fnc.caddDeeplyNestedConstantsValidationData, Expected: 'addDeeplyNestedConstantsValidationData'},
 
   // ruleBroker
   {Name: 'cbootStrapBusinessRules', Actual: fnc.cbootStrapBusinessRules, Expected: 'bootStrapBusinessRules'},
@@ -72,6 +74,7 @@ export const functionConstantsValidation = [
   {Name: 'csetupAllCsvData', Actual: fnc.csetupAllCsvData, Expected: 'setupAllCsvData'},
   {Name: 'csetupAllXmlData', Actual: fnc.csetupAllXmlData, Expected: 'setupAllXmlData'},
   {Name: 'csetupAllJsonConfigData', Actual: fnc.csetupAllJsonConfigData, Expected: 'setupAllJsonConfigData'},
+  {Name: 'cinitializeConstantsValidationData', Actual: fnc.cinitializeConstantsValidationData, Expected: 'initializeConstantsVaidationData'},
 
   // chiefWorkflow
   {Name: 'cloadCommandWorkflowsFromPath', Actual: fnc.cloadCommandWorkflowsFromPath, Expected: 'loadCommandWorkflowsFromPath'},

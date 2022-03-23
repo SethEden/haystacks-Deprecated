@@ -548,6 +548,8 @@ export const messageConstantsVaidation = [
   {Name: 'clogFilePathAndNameIs', Actual: msg.clogFilePathAndNameIs, Expected: 'logFilePathAndName is:'},
   {Name: 'cmetaDataOutputIs', Actual: msg.cmetaDataOutputIs, Expected: 'metaDataOutput is:'},
   {Name: 'callCommandAliasesDataIs', Actual: msg.callCommandAliasesDataIs, Expected: 'allCommandAliasesData is:'},
+  {Name: 'cresolvedFrameworkConstantsPathActualIs', Actual: msg.cresolvedFrameworkConstantsPathActualIs, Expected: 'resolvedFrameworkConstantsPathActual is:'},
+  {Name: 'cresolvedClientConstantsPathActualIs', Actual: msg.cresolvedClientConstantsPathActualIs, Expected: 'resolvedClientConstantsPathActual is:'},
 
   {Name: 'cCaptureSessionDateTimeStampLogFileName', Actual: msg.cCaptureSessionDateTimeStampLogFileName, Expected: 'Capture the session date-time-stamp so we can determine a log file name.'},
   {Name: 'cProcessRulesWarningSomeRulesDoNotExist', Actual: msg.cProcessRulesWarningSomeRulesDoNotExist, Expected: 'WARNING: Some rules do not exist:'},

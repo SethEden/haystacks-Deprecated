@@ -37,6 +37,9 @@ export const csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setup
 export const cstoreData = wr1.cstore + wr1.cData; // storeData
 export const cgetData = wr1.cget + wr1.cData; // getData
 export const cclearData = wr1.cclear + wr1.cData; // clearData
+// initializeConstantsValidationData Already created in the ChiefData file.
+export const caddConstantsValidationData = wr1.cadd + wr1.cConstants + wr1.cValidation + wr1.cData; // addConstantsValidationData
+export const caddDeeplyNestedConstantsValidationData = wr1.cadd + wr1.cDeeply + wr1.cNested + wr1.cConstants + wr1.cValidation + wr1.cData; // addDeeplyNestedConstantsValidationData
 
 // ruleBroker
 export const cbootStrapBusinessRules = wr1.cboot + wr1.cStrap + wr1.cBusiness + wr1.cRules; // bootStrapBusinessRules
@@ -72,6 +75,7 @@ export const cgetAndProcessXmlData = wr1.cget + wr1.cAnd + wr1.cProcess + gen.cX
 export const csetupAllCsvData = wr1.csetup + wr1.cAll + gen.cCsv + wr1.cData; // setupAllCsvData
 export const csetupAllXmlData = wr1.csetup + wr1.cAll + gen.cXml + wr1.cData; // setupAllXmlData
 export const csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
+export const cinitializeConstantsValidationData = wr1.cinitialize + wr1.cConstants + wr1.cValidation + wr1.cData; // initializeConstantsVaidationData
 
 // chiefWorkflow
 export const cloadCommandWorkflowsFromPath = wr1.cload + wr1.cCommand + wr1.cWorkflows + wr1.cFrom + wr1.cPath; // loadCommandWorkflowsFromPath

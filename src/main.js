@@ -49,6 +49,7 @@ import * as wr2 from './constants/word2.constants.js';
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
+import allSysCV from '../resources/constantsValidation/allConstantsValidationMetaData.js';
 import D from './structures/data.js';
 // External imports
 import url from 'url';
@@ -97,6 +98,7 @@ function initFramework(clientConfiguration) {
  frameworkWorkflowsPath = frameworkCodeRootPath + sys.cframeworkResourcesWorkflowsPath;
 
  clientConfiguration[cfg.cframeworkRootPath] = path.resolve(frameworkRootPath);
+ clientConfiguration[cfg.cframeworkConstantsPath] = frameworkCodeRootPath + sys.cframeworkConstantsPath;
  clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cappConfigReferencePath];
  clientConfiguration[cfg.cframeworkResourcesPath] = frameworkCodeRootPath + sys.cframeworkResourcesPath;
  clientConfiguration[cfg.cclientMetaDataPath] = path.resolve(clientConfiguration[cfg.cclientRootPath] + clientConfiguration[cfg.cclientMetaDataPath]);
@@ -104,7 +106,7 @@ function initFramework(clientConfiguration) {
  clientConfiguration[cfg.cframeworkConfigPath] = frameworkCodeRootPath + sys.cframeworkResourcesConfigurationPath;
  clientConfiguration[cfg.cframeworkCommandAliasesPath] = frameworkCommandAliasesPath;
  clientConfiguration[cfg.cframeworkWorkflowsPath] = frameworkWorkflowsPath;
-
+ clientConfiguration[cfg.cframeworkConstantsValidationData] = allSysCV.initiaizeAllSystemConstantsVaidationData;
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

@@ -2201,6 +2201,16 @@ export const word1ConstantsValidation = [
   {Name: 'cAnything', Actual: wr1.cAnything, Expected: 'Anything'},
   {Name: 'canythings', Actual: wr1.canythings, Expected: 'anythings'},
   {Name: 'cAnythings', Actual: wr1.cAnythings, Expected: 'Anythings'},
+  {Name: 'cinitiate', Actual: wr1.cinitiate, Expected: 'initiate'},
+  {Name: 'cInitiate', Actual: wr1.cInitiate, Expected: 'Initiate'},
+  {Name: 'cinitialize', Actual: wr1.cinitialize, Expected: 'initialize'},
+  {Name: 'cInitialize', Actual: wr1.cInitialize, Expected: 'Initialize'},
+  {Name: 'cinitializes', Actual: wr1.cinitializes, Expected: 'initializes'},
+  {Name: 'cInitializes', Actual: wr1.cInitializes, Expected: 'Initializes'},
+  {Name: 'cinitialized', Actual: wr1.cinitialized, Expected: 'initialized'},
+  {Name: 'cInitialized', Actual: wr1.cInitialized, Expected: 'Initialized'},
+  {Name: 'cinitializing', Actual: wr1.cinitializing, Expected: 'initializing'},
+  {Name: 'cInitializing', Actual: wr1.cInitializing, Expected: 'Initializing'},
   //////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////
   {Name: 'cAbsolute', Actual: wr1.cAbsolute, Expected: 'Absolute'},

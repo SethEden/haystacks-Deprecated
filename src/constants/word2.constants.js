@@ -2612,6 +2612,16 @@ export const canything = cany + cthing; // anything
 export const cAnything = cAny + cthing; // Anything
 export const canythings = canything + bas.cs; // anythings
 export const cAnythings = cAnything + bas.cs; // Anythings
+export const cinitiate = phn.cini + bas.cti + phn.cate; // initiate
+export const cInitiate = phn.cIni + bas.cti + phn.cate; // Initiate
+export const cinitialize = phn.cini + phn.ctial + phn.cize; // initialize
+export const cInitialize = phn.cIni + phn.ctial + phn.cize; // Initialize
+export const cinitializes = cInitialize + bas.cs; // initializes
+export const cInitializes = cInitialize + bas.cs; // Initializes
+export const cinitialized = cinitialize + bas.cd; // initialized
+export const cInitialized = cInitialize + bas.cd; // Initialized
+export const cinitializing = phn.cini + phn.ctial + bas.ciz + phn.cing; // initializing
+export const cInitializing = phn.cIni + phn.ctial + bas.ciz + phn.cing; // Initializing
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

@@ -13,6 +13,7 @@
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
+ * @requires module:allApplicationConstantsValidation
  * @requires module:haystacks
  * @requires module:haystacks.constants.basic
  * @requires module:haystacks.constants.configuration
@@ -37,6 +38,7 @@ import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
+import allAppCV from './resources/constantsValidation/allApplicationConstantsValidation.js';
 // External imports
 import haystacks from 'haystacks';
 // const {bas, cfg, } = haystacks
@@ -69,7 +71,7 @@ const {NODE_ENV} = process.env;
  */
 function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = url.fileURLToPath(path.dirname(import.meta.url));
   let rootPathArray = rootPath.split(bas.cBackSlash);
   rootPathArray.pop(); // remove any bin or src folder from the path.
@@ -82,7 +84,9 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsVaidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -93,7 +97,9 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
       clientMetaDataPath: apc.cmetaDataProdPath,
       clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsVaidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -106,7 +112,9 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsVaidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -114,7 +122,7 @@ function bootstrapApplication() {
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**

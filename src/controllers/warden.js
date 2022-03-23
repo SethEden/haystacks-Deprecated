@@ -158,7 +158,20 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wr1.cVersion]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wr1.cDescription]);
 
-  // TODO: Add constants data valadation loading process here, based on a configuration setting for enabling constants validation.
+  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+    let resolvedFrameworkConstantsPathActual = path.resolve(configData[cfg.cframeworkConstantsPath]);
+    let resolvedClientConstantsPathActual = path.resolve(configData[cfg.cclientConstantsPath])
+    loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedFrameworkConstantsPathActualIs + resolvedFrameworkConstantsPathActual);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientConstantsPathActualIs + resolvedClientConstantsPathActual);
+    configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConstantsPath, resolvedFrameworkConstantsPathActual);
+    configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
+
+    chiefData.initializeConstantsValidationData(); // This just makes sure that the data structure is created on the D-Data structure.
+    let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData];
+    let applicationConstantsVaidationData = configData[cfg.capplicationConstantsValidationData];
+    
+
+  }
 
   let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {

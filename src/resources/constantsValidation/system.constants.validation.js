@@ -385,6 +385,7 @@ export const systemConstantsValidation = [
   {Name: 'cmetaDatadotJson', Actual: sys.cmetaDatadotJson, Expected: 'metaData.json'},
   {Name: 'cFrameworkDevelopRootPath', Actual: sys.cFrameworkDevelopRootPath, Expected: 'src//'},
   {Name: 'cFrameworkProductionRootPath', Actual: sys.cFrameworkProductionRootPath, Expected: 'bin//'},
+  {Name: 'cframeworkConstantsPath', Actual: sys.cframeworkConstantsPath, Expected: 'constants//'},
   {Name: 'cframeworkResourcesPath', Actual: sys.cframeworkResourcesPath, Expected: 'resources//'},
   {Name: 'cframeworkResourcesConfigurationPath', Actual: sys.cframeworkResourcesConfigurationPath, Expected: 'resources//configuration//'},
   {Name: 'cframeworkResourcesCommandAliasesPath', Actual: sys.cframeworkResourcesCommandAliasesPath, Expected: 'resources//commands//'},

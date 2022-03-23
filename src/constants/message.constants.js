@@ -552,6 +552,8 @@ export const cdataToWriteOutIs = wr1.cdata + wr1.cTo + wr1.cWrite + wr1.cOut + s
 export const clogFilePathAndNameIs = gen.clog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName + sys.cSpaceIsColonSpace; // logFilePathAndName is:
 export const cmetaDataOutputIs = wr1.cmetaData + wr1.cOutput + sys.cSpaceIsColonSpace; // metaDataOutput is:
 export const callCommandAliasesDataIs = wr1.call + wr1.cCommand + wr1.cAliases + wr1.cData + sys.cSpaceIsColonSpace; // allCommandAliasesData is:
+export const cresolvedFrameworkConstantsPathActualIs = wr1.cresolved + wr1.cFramework + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedFrameworkConstantsPathActual is:
+export const cresolvedClientConstantsPathActualIs = wr1.cresolved + wr1.cClient + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedClientConstantsPathActual is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

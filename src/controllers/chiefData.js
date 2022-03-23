@@ -209,6 +209,20 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   return loadedAndMergedDataAllFiles;
 };
 
+/**
+ * @function initializeConstantsValidationData
+ * @description Calls the dataBroker to initialize the constants verification data structure.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/22
+ */
+function initializeConstantsValidationData() {
+  let functionName = initializeConstantsValidationData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  dataBroker.initializeConstantsValidationData();
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
 export default {
   [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName, contextName) => searchForUniversalDebugConfigSetting(
     appConfigPathName, frameworkConfigPathName, contextName),
@@ -216,5 +230,6 @@ export default {
   [fnc.cgetAndProcessXmlData]: (pathAndFilename) => getAndProcessXmlData(pathAndFilename),
   [fnc.csetupAllCsvData]: (dataPathConfigurationName, contextName) => setupAllCsvData(dataPathConfigurationName, contextName),
   [fnc.csetupAllXmlData]: (dataPathConfigurationName, contextName) => setupAllXmlData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName)
+  [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName),
+  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData()
 };

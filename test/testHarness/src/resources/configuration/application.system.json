@@ -18,5 +18,6 @@
   "system.clearBusinessRulesPerformanceDataAfterAnalysis": true,
   "system.clearCommandPerformanceDataAfterAnalysis": true,
   "system.printDataHiveToLogFile": true,
+  "system.enableConstantsValidation": true,
   "system.AppSetting": "TrunkMonkey"
 }
