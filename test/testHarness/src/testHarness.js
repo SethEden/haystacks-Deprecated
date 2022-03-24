@@ -13,7 +13,7 @@
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
- * @requires module:allApplicationConstantsValidation
+ * @requires module:allApplicationConstantsValidationMetadata
  * @requires module:haystacks
  * @requires module:haystacks.constants.basic
  * @requires module:haystacks.constants.configuration
@@ -38,7 +38,7 @@ import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
-import allAppCV from './resources/constantsValidation/allApplicationConstantsValidation.js';
+import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
 import haystacks from 'haystacks';
 // const {bas, cfg, } = haystacks
@@ -86,7 +86,7 @@ function bootstrapApplication() {
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
       clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
-      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsVaidationData,
+      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -99,7 +99,7 @@ function bootstrapApplication() {
       clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
       clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
-      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsVaidationData,
+      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -114,7 +114,7 @@ function bootstrapApplication() {
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
       clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
-      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsVaidationData,
+      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };

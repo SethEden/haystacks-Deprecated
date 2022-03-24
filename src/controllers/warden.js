@@ -167,9 +167,9 @@ function initFrameworkSchema(configData) {
     configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
 
     chiefData.initializeConstantsValidationData(); // This just makes sure that the data structure is created on the D-Data structure.
-    let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData];
-    let applicationConstantsVaidationData = configData[cfg.capplicationConstantsValidationData];
-    
+    let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData].call();
+    let applicationConstantsVaidationData = configData[cfg.capplicationConstantsValidationData].call();
+    loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConstantsValidationDataIs + JSON.stringify(frameworkConstantsValidationData));
 
   }
 

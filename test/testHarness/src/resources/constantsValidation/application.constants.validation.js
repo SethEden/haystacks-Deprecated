@@ -12,13 +12,13 @@
 import * as apc from '../../constants/application.constants.js';
 
 /**
- * @function applicationConstantsVaidation
+ * @function applicationConstantsValidation
  * @description Initializes the application constants validation data objects array.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
  */
-export const applicationConstantsVaidation = [
+export const applicationConstantsValidation = [
   {Name: 'cApplicationName', Actual: apc.cApplicationName, Expected: 'testHarness'},
   {Name: 'cAppDevPath', Actual: apc.cAppDevPath, Expected: '/src/'},
   {Name: 'cAppProdPath', Actual: apc.cAppProdPath, Expected: '/bin/'},

@@ -9,7 +9,7 @@
  */
 
 // Internal imports
-import * as biz from '../../constatns/busienss.constants.js';
+import * as biz from '../../constants/business.constants.js';
 
 /**
  * @function businessConstantsValidation

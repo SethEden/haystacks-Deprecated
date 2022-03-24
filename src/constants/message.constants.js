@@ -33,7 +33,7 @@ export const cinputMetaDataIs = wr1.cinput + wr1.cMetaData + sys.cSpaceIsColonSp
 export const creturnDataIs = wr1.creturn + wr1.cData + sys.cSpaceIsColonSpace; // return Data is:
 
 // System Messages
-// // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
+// WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
 export const cApplicationWarningMessage1a = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + gen.cDotEnv + bas.cSpace + wr1.cFile + bas.cSpace + wr1.cfound + bas.cExclamation + bas.cSpace; // WARNING: No .End File found!
 export const cApplicationWarningMessage1b = wr1.cGoing + bas.cSpace + bas.cto + bas.cSpace + wr1.cdefault + bas.cSpace + bas.cto + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cDEVELOPMENT + bas.cSpace + wr1.cENVIRONMENT + bas.cExclamation; // Going to default to the DEVELOPMENT ENVIRONMENT!
 export const cCharacterGenerationMessage1 = wr1.ctype + bas.cTo + wr1.cGenerate + sys.cSpaceIsColonSpace; // typeToGenerate is:
@@ -251,8 +251,9 @@ export const cresolvedConstantsPath_BusinessIs = wr1.cresolved + wr1.cConstants 
 export const cresolvedConstantsPath_ColorIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cColor + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Color is:
 export const cresolvedConstantsPath_CommandIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cCommand + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Command is:
 export const cresolvedConstantsPath_ConfigurationIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cConfiguration + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Configuration is:
-export const cresolvedConstantsPath_CountryIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cCountry + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Country Is:
+export const cresolvedConstantsPath_CountryIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cCountry + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Country is:
 export const cresolvedConstantsPath_ElementIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cElement + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Element is:
+export const cresolvedConstantsPath_FunctionIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cFunction + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Function is:
 export const cresolvedConstantsPath_GenericIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cGeneric + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Generic is:
 export const cresolvedConstantsPath_IsotopeIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cIsotope + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Isotope is:
 export const cresolvedConstantsPath_KnotIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cKnot + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Knot is:
@@ -263,7 +264,8 @@ export const cresolvedConstantsPath_PhonicIs = wr1.cresolved + wr1.cConstants + 
 export const cresolvedConstantsPath_ShapeIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cShape + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Shape is:
 export const cresolvedConstantsPath_SystemIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cSystem + sys.cSpaceIsColonSpace; // resolvedConstantsPath_System is:
 export const cresolvedConstantsPath_UnitIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cUnit + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Unit is:
-export const cresolvedConstantsPath_WordIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cWord + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Word is:
+export const cresolvedConstantsPath_Word1Is = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cWord + num.c1 + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Word1 is:
+export const cresolvedConstantsPath_Word2Is = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cWord + num.c2 + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Word2 is:
 export const cBasicConstantsPhase1Validation = wr1.cBasic + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Basic Constants Phase 1 Validation
 export const cBusinessConstantsPhase1Validation = wr1.cBusiness + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Business Constants Phase 1 Validation
 export const cColorConstantsPhase1Validation = wr1.cColor + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Color Constants Phase 1 Validation
@@ -554,6 +556,7 @@ export const cmetaDataOutputIs = wr1.cmetaData + wr1.cOutput + sys.cSpaceIsColon
 export const callCommandAliasesDataIs = wr1.call + wr1.cCommand + wr1.cAliases + wr1.cData + sys.cSpaceIsColonSpace; // allCommandAliasesData is:
 export const cresolvedFrameworkConstantsPathActualIs = wr1.cresolved + wr1.cFramework + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedFrameworkConstantsPathActual is:
 export const cresolvedClientConstantsPathActualIs = wr1.cresolved + wr1.cClient + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedClientConstantsPathActual is:
+export const cframeworkConstantsValidationDataIs = wr1.cframework + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // frameworkConstantsValidationData is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

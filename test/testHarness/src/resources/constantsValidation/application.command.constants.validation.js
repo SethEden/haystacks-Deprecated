@@ -12,8 +12,8 @@
 import * as app_cmd from '../../constants/application.command.constants.js';
 
 /**
- * @function applicationCommandConstantsVaidation
- * @description Initializes the appication command constants validation data objects array.
+ * @function applicationCommandConstantsValidation
+ * @description Initializes the application command constants validation data objects array.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
@@ -22,5 +22,5 @@ export const applicationCommandConstantsValidation = [
   // ********************************
   // Client Commands in order
   // ********************************
-  {Name: 'ccustomEchoCommand', Actual: ap_cmd.ccustomEchoCommand, Expected: 'customEchoCommand'}
+  {Name: 'ccustomEchoCommand', Actual: app_cmd.ccustomEchoCommand, Expected: 'customEchoCommand'}
 ];
