@@ -645,15 +645,15 @@ export const messageConstantsVaidation = [
   {Name: 'cprintDataHiveAttributesMessage1', Actual: msg.cprintDataHiveAttributesMessage1, Expected: 'Caught the case that the user may have only specified a single data hive, such as the configuration data hive.'},
   {Name: 'cprintDataHiveAttributesMessage2', Actual: msg.cprintDataHiveAttributesMessage2, Expected: 'such as the configuration data hive.'},
   {Name: 'cprintDataHiveAttributesMessage3', Actual: msg.cprintDataHiveAttributesMessage3, Expected: 'ERROR: Please enter a valid name.space.attributeName for the system to print out attribute data from.'},
-  {Name: 'cNothingToEcho', Actual: msg.cNothingToEcho, Expected: 'Nothing to echo.'}
+  {Name: 'cNothingToEcho', Actual: msg.cNothingToEcho, Expected: 'Nothing to echo.'},
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // smuggle something cprompt01 = 'cprompt01'; // 'Caught the case that the input string contains the global carriage return term.'
-  // smuggle something cprompt02 = 'cprompt02'; // 'index of the carriage return character: '
-  // smuggle something cprompt03 = 'cprompt03'; // 'Caught the case that the string includes a carriage return and new line characters.'
-  // smuggle something cprintMessageToFile01 = 'cprintMessageToFile01'; // '!file.includes(undefined)'
-  // smuggle something cprintMessageToFile02 = 'cprintMessageToFile02'; // 'ERROR: Failure to log to file: '
-  // smuggle something cprintMessageToFile03 = 'cprintMessageToFile03'; // 'ERROR: Log File includes undefined.'
+  {Name: 'cprompt01', Actual: msg.cprompt01, Expected: 'prompt01'},
+  {Name: 'cprompt02', Actual: msg.cprompt02, Expected: 'prompt02'},
+  {Name: 'cprompt03', Actual: msg.cprompt03, Expected: 'prompt03'},
+  {Name: 'cprintMessageToFile01', Actual: msg.cprintMessageToFile01, Expected: 'printMessageToFile01'},
+  {Name: 'cprintMessageToFile02', Actual: msg.cprintMessageToFile02, Expected: 'printMessageToFile02'},
+  {Name: 'cprintMessageToFile03', Actual: msg.cprintMessageToFile03, Expected: 'printMessageToFile03'}
 
   // Coded System Messages
   // EXAMPLE:

@@ -39,6 +39,11 @@ export const commandConstantsValidation = [
   {Name: 'csaveConfiguration', Actual: cmd.csaveConfiguration, Expected: 'saveConfiguration'},
   {Name: 'cconvertColors', Actual: cmd.cconvertColors, Expected: 'convertColors'},
 
+  // ***********************************************
+  // Integration Test commands in order
+  // ***********************************************
+  {Name: 'cvalidateConstants', Actual: cmd.cvalidateConstants, Expected: 'validateConstants'},
+
   // ********************************
   // System defined workflows
   // ********************************

@@ -21,7 +21,7 @@ import * as biz from '../../constants/business.constants.js';
 export const businessConstantsValidation = [
   // Business Rules
   {Name: 'cecho', Actual: biz.cecho, Expected: 'echo'},
-  {Name: 'cEcho', Actual: biz.cecho, Expected: 'Echo'},
+  {Name: 'cEcho', Actual: biz.cEcho, Expected: 'Echo'},
 
   // ***********************************************
   // ArrayParsing rules in order
@@ -119,7 +119,7 @@ export const businessConstantsValidation = [
   // StringParsing rules in order
   // ***********************************************
   {Name: 'csingleQuoteSwapAfterEquals', Actual: biz.csingleQuoteSwapAfterEquals, Expected: 'singleQuoteSwapAfterEquals'},
-  {Name: 'cswapForwardSlashToBackSlash', Actual: biz.cswapForwardSlashToBackSlash, Expected: 'swapForwadSlashToBackSlash'},
+  {Name: 'cswapForwardSlashToBackSlash', Actual: biz.cswapForwardSlashToBackSlash, Expected: 'swapForwardSlashToBackSlash'},
   {Name: 'cswapBackSlashToForwardSlash', Actual: biz.cswapBackSlashToForwardSlash, Expected: 'swapBackSlashToForwardSlash'},
   {Name: 'cswapDoubleForwardSlashToSingleForwardSlash', Actual: biz.cswapDoubleForwardSlashToSingleForwardSlash, Expected: 'swapDoubleForwardSlashToSingleForwardSlash'},
   {Name: 'cswapDoubleBackSlashToSingleBackSlash', Actual: biz.cswapDoubleBackSlashToSingleBackSlash, Expected: 'swapDoubleBackSlashToSingleBackSlash'},

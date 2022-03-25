@@ -28,6 +28,7 @@
     "haystacks": "^0.0.1",
     "mathjs": "10.1.0",
     "moment": "2.29.1",
+    "n-readlines": "^1.0.1",
     "papaparse": "5.3.1",
     "xml2js": "^0.4.23"
   },

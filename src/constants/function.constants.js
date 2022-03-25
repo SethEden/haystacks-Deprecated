@@ -19,7 +19,7 @@ import * as wr1 from './word1.constants.js';
 
 // commandBroker
 // let cbootStrapCommands = wr1.cboot + wr1.cStrap + wr1.cCommands; // bootStrapCommands // Duplicate definition in the chiefCommander
-// export const caddClientCommands = wr1.c_add + wr1.cClient + wr1.cCommands; // addClientCommands
+// smuggle something caddClientCommands = wr1.c_add + wr1.cClient + wr1.cCommands; // addClientCommands
 export const cgetValidCommand = wr1.cget + wr1.cValid + wr1.cCommand; // getValidCommand
 export const cgetCommandArgs = wr1.cget + wr1.cCommand + gen.cArgs; // getCommandArgs
 export const cexecuteCommand = wr1.cexecute + wr1.cCommand; // executeCommand
@@ -28,10 +28,10 @@ export const cexecuteCommand = wr1.cexecute + wr1.cCommand; // executeCommand
 export const cscanDataPath = wr1.cscan + wr1.cData + wr1.cPath; // scanDataPath
 export const cfindUniversalDebugConfigSetting = wr1.cfind + wr1.cUniversal + wr1.cDebug + wr1.cConfig + wr1.cSetting; // findUniversalDebugConfigSetting
 export const cloadAllCsvData = wr1.cload + phn.cAll + gen.cCsv + wr1.cData; // loadAllCsvData
-export const cloadAllXmlData = wr1.cload + phn.cAll + gen.cXml + wr1.cData; // LoadAllXmlData
+export const cloadAllXmlData = wr1.cload + phn.cAll + gen.cXml + wr1.cData; // loadAllXmlData
 export const cloadAllJsonData = wr1.cload + phn.cAll + gen.cJson + wr1.cData; // loadAllJsonData
 export const cprocessCsvData = wr1.cprocess + gen.cCsv + wr1.cData; // processCsvData
-export const cpreprocessJsonFile= wr1.cpreprocess + gen.cJson + wr1.cFile; // preprocessJsonFile
+export const cpreprocessJsonFile = wr1.cpreprocess + gen.cJson + wr1.cFile; // preprocessJsonFile
 export const cwriteJsonDataToFile = wr1.cwrite + gen.cJson + wr1.cData + wr1.cTo + wr1.cFile; // writeJsonDataToFile
 export const csetupDataStorage = wr1.csetup + wr1.cData + wr1.cStorage; // setupDataStorage
 export const cstoreData = wr1.cstore + wr1.cData; // storeData
@@ -76,7 +76,7 @@ export const csetupAllCsvData = wr1.csetup + wr1.cAll + gen.cCsv + wr1.cData; //
 export const csetupAllXmlData = wr1.csetup + wr1.cAll + gen.cXml + wr1.cData; // setupAllXmlData
 export const csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
 export const cinitializeConstantsValidationData = wr1.cinitialize + wr1.cConstants + wr1.cValidation + wr1.cData; // initializeConstantsVaidationData
-// caddConstantsValidationData // Already declared in the dataBroker section.
+// smuggle something caddConstantsValidationData // Already declared in the dataBroker section.
 
 // chiefWorkflow
 export const cloadCommandWorkflowsFromPath = wr1.cload + wr1.cCommand + wr1.cWorkflows + wr1.cFrom + wr1.cPath; // loadCommandWorkflowsFromPath
@@ -88,13 +88,13 @@ export const cmergeClientBusienssRules = wr1.cmerge + wr1.cClient + wr1.cBusines
 export const cmergeClientCommands = wr1.cmerge + wr1.cClient + wr1.cCommands; // mergeClientCommands
 export const cloadCommandAliases = wr1.cload + wr1.cCommand + wr1.cAliases; // loadCommandAliases
 export const cexecuteBusinessRule = wr1.cexecute + wr1.cBusiness + wr1.cRule; // executeBusinessRule
-// export const cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
-// export const cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
-// export const cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
-// export const csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
-// export const cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
-// export const cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
-// export const csleep = wr1.csleep; // sleep
+// smuggle something cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
+// smuggle something cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
+// smuggle something cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
+// smuggle something csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
+// smuggle something cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
+// smuggle something cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
+// smuggle something csleep = wr1.csleep; // sleep
 
 // colorizer
 export const ccolorizeMessage = wr1.ccolorize + wr1.cMessage; // colorizeMessage
@@ -173,16 +173,16 @@ export const cprint = wr1.cprint; // print
 
 // main
 export const cinitFramework = gen.cinit + wr1.cFramework; // initFramework
-// export const cmergeClientBusinessRules = wr1.cmerge + wr1.cClient + wr1.cBusiness + wr1.cRules; // mergeClientBusinessRules
-// export const cmergeClientCommands = wr1.cmerge + wr1.cClient + wr1.cCommands; // mergeClientCommands
-// export const cloadCommandAliases = wr1.cload + wr1.cCommand + wr1.cAliases; // loadCommandAliases
-// export const cloadCommandWorkflows = wr1.cload + wr1.cCommand + wr1.cWorkflows; // loadCommandWorkflows
-// export const cexecuteBusinessRule = wr1.cexecute + wr1.cBusiness + wr1.cRule; // executeBusinessRule
-// export const cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
-// export const cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
-// export const cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
-// export const csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
-// export const cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
-// export const cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
-// export const csleep = wr1.csleep; // sleep
-// export const cprompt = wr1.cprompt; // prompt
+// smuggle something cmergeClientBusinessRules = wr1.cmerge + wr1.cClient + wr1.cBusiness + wr1.cRules; // mergeClientBusinessRules
+// smuggle something cmergeClientCommands = wr1.cmerge + wr1.cClient + wr1.cCommands; // mergeClientCommands
+// smuggle something cloadCommandAliases = wr1.cload + wr1.cCommand + wr1.cAliases; // loadCommandAliases
+// smuggle something cloadCommandWorkflows = wr1.cload + wr1.cCommand + wr1.cWorkflows; // loadCommandWorkflows
+// smuggle something cexecuteBusinessRule = wr1.cexecute + wr1.cBusiness + wr1.cRule; // executeBusinessRule
+// smuggle something cenqueueCommand = wr1.cenqueue + wr1.cCommand; // enqueueCommand
+// smuggle something cisCommandQueueEmpty = wr1.cis + wr1.cCommand + wr1.cQueue + wr1.cEmpty; // isCommandQueueEmpty
+// smuggle something cprocessCommandQueue = wr1.cprocess + wr1.cCommand + wr1.cQueue; // processCommandQueue
+// smuggle something csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
+// smuggle something cgetConfigurationSetting = wr1.cget + wr1.cConfiguration + wr1.cSetting; // getConfigurationSetting
+// smuggle something cconsoleLog = wr1.cconsole + wr1.cLog; // consoleLog
+// smuggle something csleep = wr1.csleep; // sleep
+// smuggle something cprompt = wr1.cprompt; // prompt

@@ -171,7 +171,6 @@ function initFrameworkSchema(configData) {
     let applicationConstantsValidationData = configData[cfg.capplicationConstantsValidationData].call();
     loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConstantsValidationDataIs + JSON.stringify(frameworkConstantsValidationData));
     loggers.consoleLog(namespacePrefix + functionName, msg.capplicationConstantsValidationDataIs + JSON.stringify(applicationConstantsValidationData));
-    console.log('fnc.caddConstantsValidationData resolves as: ' + fnc.caddConstantsValidationData);
     chiefData.addConstantsValidationData(frameworkConstantsValidationData);
     chiefData.addConstantsValidationData(applicationConstantsValidationData);
   }

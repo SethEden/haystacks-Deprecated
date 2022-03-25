@@ -355,7 +355,7 @@ export const cJuly = bas.cJu + bas.cly; // July
 export const cAugust = bas.cAu + bas.cgu + bas.cst; // August
 export const cSeptember = bas.cSe + bas.cpt + phn.cemb + bas.cer; // September
 export const cOctober = bas.cOc + bas.cto + bas.cb + bas.cer; // October
-// export const cNovember = bas.cNo + bas.cv + bas.cemb + bas.cer; // November
+// smuggle something cNovember = bas.cNo + bas.cv + bas.cemb + bas.cer; // November
 export const cDecember = bas.cDe + bas.cc + phn.cemb + bas.cer; // December
 
 // Constants Abreviations

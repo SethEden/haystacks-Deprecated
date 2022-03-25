@@ -1119,6 +1119,9 @@ export const cSes = bas.cSe + bas.cs; // Ses
 export const ccla = bas.ccl + bas.ca; // cla
 export const cCla = bas.cCl + bas.ca; // Cla
 export const cped = bas.cpe + bas.cd; // ped
+export const cutil = bas.cut + bas.cil; // util
+export const cUtil = bas.cUt + bas.cil; // Util
+export const cities = bas.cit + cies; // ities
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

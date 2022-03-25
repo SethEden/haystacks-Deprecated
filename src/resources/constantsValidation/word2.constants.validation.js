@@ -19,6 +19,18 @@ import * as wr2 from '../../constants/word2.constants.js';
  * @date 2022/03/21
  */
 export const word2ConstantsValidation = [
+  // Numbers
+  {Name: 'c0', Actual: wr2.c0, Expected: '0'},
+  {Name: 'c1', Actual: wr2.c1, Expected: '1'},
+  {Name: 'c2', Actual: wr2.c2, Expected: '2'},
+  {Name: 'c3', Actual: wr2.c3, Expected: '3'},
+  {Name: 'c4', Actual: wr2.c4, Expected: '4'},
+  {Name: 'c5', Actual: wr2.c5, Expected: '5'},
+  {Name: 'c6', Actual: wr2.c6, Expected: '6'},
+  {Name: 'c7', Actual: wr2.c7, Expected: '7'},
+  {Name: 'c8', Actual: wr2.c8, Expected: '8'},
+  {Name: 'c9', Actual: wr2.c9, Expected: '9'},
+
   // String Numbers
   {Name: 'czero', Actual: wr2.czero, Expected: 'zero'},
   {Name: 'cZero', Actual: wr2.cZero, Expected: 'Zero'},
@@ -1368,6 +1380,7 @@ export const word2ConstantsValidation = [
   {Name: 'cDegrees', Actual: wr2.cDegrees, Expected: 'Degrees'},
   {Name: 'cangle', Actual: wr2.cangle, Expected: 'angle'},
   {Name: 'cAngle', Actual: wr2.cAngle, Expected: 'Angle'},
+  {Name: 'ctrap', Actual: wr2.ctrap, Expected: 'trap'},
   {Name: 'cTrap', Actual: wr2.cTrap, Expected: 'Trap'},
   {Name: 'cFraction', Actual: wr2.cFraction, Expected: 'Fraction'},
   {Name: 'cvector', Actual: wr2.cvector, Expected: 'vector'},
@@ -1394,7 +1407,8 @@ export const word2ConstantsValidation = [
   {Name: 'cConsolidates', Actual: wr2.cConsolidates, Expected: 'Consolidates'},
   {Name: 'cconsolidating', Actual: wr2.cconsolidating, Expected: 'consolidating'},
   {Name: 'cConsolidating', Actual: wr2.cConsolidating, Expected: 'Consolidating'},
-  {Name: 'care', Actual: wr2.care, Expected: 'Are'},
+  {Name: 'care', Actual: wr2.care, Expected: 'are'},
+  {Name: 'cAre', Actual: wr2.cAre, Expected: 'Are'},
   {Name: 'cARE', Actual: wr2.cARE, Expected: 'ARE'},
   {Name: 'ccompare', Actual: wr2.ccompare, Expected: 'compare'},
   {Name: 'cCompare', Actual: wr2.cCompare, Expected: 'Compare'},

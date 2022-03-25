@@ -35,5 +35,5 @@ export const applicationSystemConstantsValidation = [
   {Name: 'capplication_constants_js', Actual: app_sys.capplication_constants_js, Expected: 'application.constants.js'},
   {Name: 'capplication_function_constants_js', Actual: app_sys.capplication_function_constants_js, Expected: 'application.function.constants.js'},
   {Name: 'capplication_message_constants_js', Actual: app_sys.capplication_message_constants_js, Expected: 'application.message.constants.js'},
-  {Name: 'capplication_system_constants_js', Actual: app_sys.capplication_system_constants_js, Expected: 'application.system.constants.js;'}
+  {Name: 'capplication_system_constants_js', Actual: app_sys.capplication_system_constants_js, Expected: 'application.system.constants.js'}
 ];

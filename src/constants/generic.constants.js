@@ -245,6 +245,10 @@ export const capc = bas.cap + bas.cc; // apc
 
 // Miscelanious
 export const cUTF8 = bas.cUT + bas.cF + num.c8; // UTF8
+export const crgb = bas.crg + bas.cb; // rgb
+export const cRGB = bas.cRG + bas.cb; // RGB
+export const ccmyk = bas.ccm + bas.cyk; // cmyk
+export const cCMYK = bas.cCM + bas.cYK; // CMYK
 export const cconst = phn.ccon + bas.cst; // const
 export const cConst = phn.cCon + bas.cst; // Const
 export const cASAP = bas.cAS + bas.cAP; // ASAP

@@ -28,7 +28,7 @@ export const functionConstantsValidation = [
   {Name: 'cscanDataPath', Actual: fnc.cscanDataPath, Expected: 'scanDataPath'},
   {Name: 'cfindUniversalDebugConfigSetting', Actual: fnc.cfindUniversalDebugConfigSetting, Expected: 'findUniversalDebugConfigSetting'},
   {Name: 'cloadAllCsvData', Actual: fnc.cloadAllCsvData, Expected: 'loadAllCsvData'},
-  {Name: 'cloadAllXmlData', Actual: fnc.cloadAllXmlData, Expected: 'LoadAllXmlData'},
+  {Name: 'cloadAllXmlData', Actual: fnc.cloadAllXmlData, Expected: 'loadAllXmlData'},
   {Name: 'cloadAllJsonData', Actual: fnc.cloadAllJsonData, Expected: 'loadAllJsonData'},
   {Name: 'cprocessCsvData', Actual: fnc.cprocessCsvData, Expected: 'processCsvData'},
   {Name: 'cpreprocessJsonFile', Actual: fnc.cpreprocessJsonFile, Expected: 'preprocessJsonFile'},

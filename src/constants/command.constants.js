@@ -38,6 +38,11 @@ export const ccommandMetrics = wr1.ccommand + wr1.cMetrics; // commandMetrics
 export const csaveConfiguration = wr1.csave + wr1.cConfiguration; // saveConfiguration
 export const cconvertColors = wr1.cconvert + wr1.cColors; // convertColors
 
+// ***********************************************
+// Integration Test commands in order
+// ***********************************************
+export const cvalidateConstants = wr1.cvalidate + wr1.cConstants; // validateConstants
+
 // ********************************
 // System defined workflows
 // ********************************

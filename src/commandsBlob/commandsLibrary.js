@@ -19,6 +19,7 @@
  */
 
 // Internal imports
+import integrationTestCommands from './commands/integrationTests.js';
 import nominalCommands from './commands/nominal.js';
 // import integrationTests from './commands/integrationTests.js';
 import * as bas from '../constants/basic.constants.js';
@@ -75,12 +76,12 @@ function initCommandsLibrary() {
     [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData),
     [cmd.ccommandMetrics]: (inputData, inputMetaData) => nominalCommands.commandMetrics(inputData, inputMetaData),
     [cmd.csaveConfiguration]: (inputData, inputMetaData) => nominalCommands.saveConfiguration(inputData, inputMetaData),
-    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData)
+    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData),
 
     // ***********************************************
     // Integration Test commands in order
     // ***********************************************
-
+    [cmd.cvalidateConstants]: (inputData, inputMetaData) => integrationTestCommands.validateConstants(inputData, inputMetaData)
   };
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

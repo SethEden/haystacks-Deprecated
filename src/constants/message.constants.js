@@ -192,7 +192,7 @@ export const cRELEASE_APPLICATION = wr1.cRELEASE + bas.cUnderscore + wr1.cAPPLIC
 export const cDeploymentWasCompleted = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
 export const cDeploymentFailed = wr1.cDeployment + bas.cSpace + wr1.cfailed; // Deployment failed
 export const cReleaseFailed = wr1.cRelease + bas.cSpace + wr1.cfailed; // Release failed
-// export const cinputDataIis = cinputData + bas.cOpenBracket + bas.ci + bas.cCloseBracket + sys.cSpaceIsColonSpace; // inputData[i] is:
+// smuggle something cinputDataIis = cinputData + bas.cOpenBracket + bas.ci + bas.cCloseBracket + sys.cSpaceIsColonSpace; // inputData[i] is:
 export const caggregateCommandStringIs = wr1.caggregate + wr1.cCommand + wr1.cString + sys.cSpaceIsColonSpace; // aggregateCommandString is:
 export const cmetaDataParametersIs = wr1.cmetaData + wr1.cParameters + sys.cSpaceIsColonSpace; // metaDataParameters is:
 export const cmetaDataParametersLengthIs = wr1.cmetaData + wr1.cParameters + bas.cSpace + wr1.cLength + sys.cSpaceIsColonSpace; // metaDataParameters length is:
@@ -679,17 +679,17 @@ export const cprintDataHiveAttributesMessage3 = wr1.cERROR + bas.cColon + bas.cS
 export const cNothingToEcho = wr1.cNothing + bas.cSpace + bas.cto + bas.cSpace + wr1.cecho + bas.cDot; // Nothing to echo.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 'Caught the case that the input string contains the global carriage return term.'
-export const cprompt01 = 'cprompt01';
+export const cprompt01 = 'prompt01';
 // 'index of the carriage return character: '
-export const cprompt02 = 'cprompt02';
+export const cprompt02 = 'prompt02';
 // 'Caught the case that the string includes a carriage return and new line characters.'
-export const cprompt03 = 'cprompt03';
+export const cprompt03 = 'prompt03';
 // '!file.includes(undefined)'
-export const cprintMessageToFile01 = 'cprintMessageToFile01';
+export const cprintMessageToFile01 = 'printMessageToFile01';
 // 'ERROR: Failure to log to file: '
-export const cprintMessageToFile02 = 'cprintMessageToFile02';
+export const cprintMessageToFile02 = 'printMessageToFile02';
 // 'ERROR: Log File includes undefined.'
-export const cprintMessageToFile03 = 'cprintMessageToFile03';
+export const cprintMessageToFile03 = 'printMessageToFile03';
 
 // Coded System Messages
 // EXAMPLE:

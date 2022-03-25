@@ -71,7 +71,7 @@ const {NODE_ENV} = process.env;
  */
 function bootstrapApplication() {
   let functionName = bootstrapApplication.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = url.fileURLToPath(path.dirname(import.meta.url));
   let rootPathArray = rootPath.split(bas.cBackSlash);
   rootPathArray.pop(); // remove any bin or src folder from the path.
@@ -122,7 +122,7 @@ function bootstrapApplication() {
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**

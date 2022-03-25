@@ -10,11 +10,17 @@
  * @requires module:arrayParsing
  * @requires module:stringParsingUtilities
  * @requires module:basic.constants
+ * @requires module:configuration.constants
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
+ * @requires module:configurator
+ * @requires module:fileOperations
  * @requires module:loggers
+ * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/chalk|chalk}
+ * @requires {@link https://www.npmjs.com/package/n-readlines|n-readlines}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -26,13 +32,18 @@
 import arrayParsing from './arrayParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
+import * as cfg from '../../constants/configuration.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
+import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
+import D from '../../structures/data.js';
 // External imports
+import chalk from 'chalk';
+import lineByLine from 'n-readlines';
 import * as math from 'mathjs';
 import path from 'path';
 
@@ -1073,11 +1084,11 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
       if (lineInCode.includes(sys.cexportconst) === true) {
         let lineArray = lineInCode.split(bas.cSpace);
         // lineArray[2] is
-        loggers.consoleLog(namespacePrefix + functionName, msg.cineArray2Is + lineArray[2]);
-        foundConstant = validateConstantsDataValidationLineItemName(lineAray[2], inputMetaData);
+        loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
+        foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
         let qualifiedConstantsFilename = getFileNameFromPath(inputData, '');
         if (foundConstant === true) {
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             let passMessage = wr1.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cPASS;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
@@ -1086,14 +1097,14 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
             console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
           } // End-if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
         } else { // Else-clause if (foundConstant === true)
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
             let failMessage = wr1.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL;
             if (colorizeLogsEnabled === true) {
               failMessage = chalk.rgb(0,0,0)(failMessage);
               failMessage = chalk.bgRgb(255,0,0)(failMessage);
             }
             let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
-            console.log(qualifiedCosntantsFilename + bas.cColon + bas.cSpace + failMessage);
+            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
             // loggers.consoleLog(namespacePrefix + functionName, wr1.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL);
             let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
             if (suggestedLineOfCode !== '') {
@@ -1649,10 +1660,10 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
       if (validationLineItem) {
         if (validationLineItem.Actual === validationLineItem.Expected) {
           // PASS
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             // `PASS -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- PASS`;
             passMessage = wr1.cPASS + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
-              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + vaidationLineItem.Expected + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
               bas.cDoubleDash + bas.cSpace + wr1.cPASS;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
@@ -1663,10 +1674,10 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
         } else {
           // FAIL
           returnData = false;
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
             // `FAIL -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- FAIL`;
             passMessage = wr1.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
-              vaidationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + vaidationLineItem.Expected + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
               bas.cDoubleDash + bas.cSpace + wr1.cFAIL;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
