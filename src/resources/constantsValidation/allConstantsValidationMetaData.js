@@ -306,9 +306,7 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cWord1ConstantsValidation] = gen.cwr1 + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cWord2ConstantsValidation] = gen.cwr2 + bas.cDot;
 
-  // allSystemConstantsValidationData is: // The following line doesn't work for some reason and I cannot figure out why. Leaving the hard-coded line in, but commented out.
-  // loggers.consoleLog(namespacePrefix + functionName, msg.callSystemConstantsValidationDataIs + JSON.stringify(allSystemConstantsValidationData));
-  // console.log('HARD CODED: ' + msg.callSystemConstantsValidationDataIs + JSON.stringify(allSystemConstantsValidationData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.callSystemConstantsValidationDataIs + JSON.stringify(allSystemConstantsValidationData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allSystemConstantsValidationData;
 };

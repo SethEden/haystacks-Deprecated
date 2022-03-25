@@ -557,6 +557,8 @@ export const callCommandAliasesDataIs = wr1.call + wr1.cCommand + wr1.cAliases +
 export const cresolvedFrameworkConstantsPathActualIs = wr1.cresolved + wr1.cFramework + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedFrameworkConstantsPathActual is:
 export const cresolvedClientConstantsPathActualIs = wr1.cresolved + wr1.cClient + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedClientConstantsPathActual is:
 export const cframeworkConstantsValidationDataIs = wr1.cframework + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // frameworkConstantsValidationData is:
+export const capplicationConstantsValidationDataIs = wr1.capplication + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // applicationConstantsValidationData is:
+export const cActualColonDoublePercent = bas.cDoubleQuote + wr1.cActual + bas.cDoubleQuote + bas.cColon + bas.cDoubleQuote + bas.cDoublePercent + bas.cDoubleQuote + bas.cComa; // "Actual": "%%",
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;

@@ -168,9 +168,12 @@ function initFrameworkSchema(configData) {
 
     chiefData.initializeConstantsValidationData(); // This just makes sure that the data structure is created on the D-Data structure.
     let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData].call();
-    let applicationConstantsVaidationData = configData[cfg.capplicationConstantsValidationData].call();
+    let applicationConstantsValidationData = configData[cfg.capplicationConstantsValidationData].call();
     loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConstantsValidationDataIs + JSON.stringify(frameworkConstantsValidationData));
-
+    loggers.consoleLog(namespacePrefix + functionName, msg.capplicationConstantsValidationDataIs + JSON.stringify(applicationConstantsValidationData));
+    console.log('fnc.caddConstantsValidationData resolves as: ' + fnc.caddConstantsValidationData);
+    chiefData.addConstantsValidationData(frameworkConstantsValidationData);
+    chiefData.addConstantsValidationData(applicationConstantsValidationData);
   }
 
   let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled);

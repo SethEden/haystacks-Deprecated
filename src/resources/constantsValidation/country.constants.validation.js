@@ -218,5 +218,5 @@ export const countryConstantsValidation = [
   {Name: 'cVietnam', Actual: ctr.cVietnam, Expected: 'Vietnam'},
   {Name: 'cYemen', Actual: ctr.cYemen, Expected: 'Yemen'},
   {Name: 'cZambia', Actual: ctr.cZambia, Expected: 'Zambia'},
-  {Name: 'cZimbabwe', Actual: ctr.cZimbabwe, Expected: 'Zimbabwe'},
+  {Name: 'cZimbabwe', Actual: ctr.cZimbabwe, Expected: 'Zimbabwe'}
 ];

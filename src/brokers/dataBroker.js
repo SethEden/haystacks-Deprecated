@@ -614,7 +614,7 @@ function addConstantsValidationData(constantLibraryData) {
       } else {
         let data1 = constantLibraryData[sys.cConstantsValidationData][key1];
         D[sys.cConstantsValidationData][key1] = [];
-        Object.assign(D[sys.cConstantsVaidationData][key1], data1);
+        Object.assign(D[sys.cConstantsValidationData][key1], data1);
       }
     } // End-if (constantLibraryData[sys.cConstantsValidationData].hasOwnProperty(key1))
   } // End-for (let key1 in constantLibraryData[sys.cConstantsValidationData])
@@ -640,9 +640,9 @@ function addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData) {
 
   let d_dataStructureConstantsFilePaths = D[sys.cConstantsValidationData][contextName];
   for (let key2 in deeplyNestedData) {
-    if (deeplyNesteData.hasOwnProperty(key2)) {
+    if (deeplyNestedData.hasOwnProperty(key2)) {
       let data2 = deeplyNestedData[key2];
-      D[sys.cConstantsVaidationData][contextName][key2] = data2;
+      D[sys.cConstantsValidationData][contextName][key2] = data2;
     }
   } // End-for (let key2 in deeplyNestedData)
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

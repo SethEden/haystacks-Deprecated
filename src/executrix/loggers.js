@@ -217,6 +217,10 @@ function validMessage(outputMessage, originalMessage) {
     // This else-if condition catches the case that the caller just wants to dump a generic message,
     // that doesn't have a class-path designation.
     returnData = true;
+  } else if (outputMessage !== false && outputMessage.includes(msg.cActualColonDoublePercent) === true) {
+    // This else-if condition catches the special case that the caller wants to dump constants validation generic data to the console.
+    // that doesn't have a class-path designation.
+    returnData = true;
   }
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);

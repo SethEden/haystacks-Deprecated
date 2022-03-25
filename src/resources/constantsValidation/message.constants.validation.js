@@ -553,6 +553,8 @@ export const messageConstantsVaidation = [
   {Name: 'cresolvedFrameworkConstantsPathActualIs', Actual: msg.cresolvedFrameworkConstantsPathActualIs, Expected: 'resolvedFrameworkConstantsPathActual is:'},
   {Name: 'cresolvedClientConstantsPathActualIs', Actual: msg.cresolvedClientConstantsPathActualIs, Expected: 'resolvedClientConstantsPathActual is:'},
   {Name: 'cframeworkConstantsValidationDataIs', Actual: msg.cframeworkConstantsValidationDataIs, Expected: 'frameworkConstantsValidationData is:'},
+  {Name: 'capplicationConstantsValidationDataIs', Actual: msg.capplicationConstantsValidationDataIs, Expected: 'applicationConstantsValidationData is:'},
+  {Name: 'cActualColonDoublePercent', Actual: msg.cActualColonDoublePercent, Expected: '"Actual": "%%",'},
 
   {Name: 'cCaptureSessionDateTimeStampLogFileName', Actual: msg.cCaptureSessionDateTimeStampLogFileName, Expected: 'Capture the session date-time-stamp so we can determine a log file name.'},
   {Name: 'cProcessRulesWarningSomeRulesDoNotExist', Actual: msg.cProcessRulesWarningSomeRulesDoNotExist, Expected: 'WARNING: Some rules do not exist:'},
@@ -643,7 +645,7 @@ export const messageConstantsVaidation = [
   {Name: 'cprintDataHiveAttributesMessage1', Actual: msg.cprintDataHiveAttributesMessage1, Expected: 'Caught the case that the user may have only specified a single data hive, such as the configuration data hive.'},
   {Name: 'cprintDataHiveAttributesMessage2', Actual: msg.cprintDataHiveAttributesMessage2, Expected: 'such as the configuration data hive.'},
   {Name: 'cprintDataHiveAttributesMessage3', Actual: msg.cprintDataHiveAttributesMessage3, Expected: 'ERROR: Please enter a valid name.space.attributeName for the system to print out attribute data from.'},
-  {Name: 'cNothingToEcho', Actual: msg.cNothingToEcho, Expected: 'Nothing to echo.'},
+  {Name: 'cNothingToEcho', Actual: msg.cNothingToEcho, Expected: 'Nothing to echo.'}
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // smuggle something cprompt01 = 'cprompt01'; // 'Caught the case that the input string contains the global carriage return term.'

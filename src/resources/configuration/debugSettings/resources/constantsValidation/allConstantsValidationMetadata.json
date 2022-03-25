@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.resources.constantsValidation.allConstantsValidationMetadata": true,
+  "debugFiles|debugSetting.resources.constantsValidation.allConstantsValidationMetadata": false,
   "debugFiles|debugSetting.resources.constantsValidation.allConstantsValidationMetadata@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.resources.constantsValidation.allConstantsValidationMetadata@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.resources.constantsValidation.allConstantsValidationMetadata@MessageFontStyle": "Underline",

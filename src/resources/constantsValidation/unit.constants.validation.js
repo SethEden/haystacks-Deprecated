@@ -62,7 +62,7 @@ export const unitConstantsValidation = [
   {Name: 'cPicoSecond', Actual: unt.cPicoSecond, Expected: 'PicoSecond'},
   {Name: 'cPicoSeconds', Actual: unt.cPicoSeconds, Expected: 'PicoSeconds'},
   {Name: 'cFemtoSecond', Actual: unt.cFemtoSecond, Expected: 'FemtoSecond'},
-  {Name: 'cFemtoSeconds', Actual: unt.cFemtoSeconds, Expected: 'FemtoSeconds'},
+  {Name: 'cFemtoSeconds', Actual: unt.cFemtoSeconds, Expected: 'FemtoSeconds'}
 
   // Unit Conversions
   // Miles to Km

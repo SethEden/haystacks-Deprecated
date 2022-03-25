@@ -223,6 +223,23 @@ function initializeConstantsValidationData() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
+/**
+ * @function addConstantsValidationData
+ * @description Calls the dataBroker to ad constants validation data to the constants validation data structure.
+ * @param {array<array<string,object>>} arrayValidationData An array of arrays that contains all of the constants library validation names and data objects.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/24
+ */
+function addConstantsValidationData(arrayValidationData) {
+  let functionName = addConstantsValidationData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // arrayValidationData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.carrayValidationDataIs + JSON.stringify(arrayValidationData));
+  dataBroker.addConstantsValidationData(arrayValidationData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
 export default {
   [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName, contextName) => searchForUniversalDebugConfigSetting(
     appConfigPathName, frameworkConfigPathName, contextName),
@@ -231,5 +248,6 @@ export default {
   [fnc.csetupAllCsvData]: (dataPathConfigurationName, contextName) => setupAllCsvData(dataPathConfigurationName, contextName),
   [fnc.csetupAllXmlData]: (dataPathConfigurationName, contextName) => setupAllXmlData(dataPathConfigurationName, contextName),
   [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName),
-  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData()
+  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
+  [fnc.caddConstantsValidationData]: (arrayValidationData) => addConstantsValidationData(arrayValidationData)
 };

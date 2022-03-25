@@ -18,7 +18,7 @@ import * as lng from '../../constants/language.constants.js';
  * @author Seth Hollingsead
  * @date 2022/03/20
  */
-export const languageConstantsVaidation = [
+export const languageConstantsValidation = [
   // Languages
   {Name: 'cChinese', Actual: lng.cChinese, Expected: 'Chinese'},
   {Name: 'cChineseSimplified', Actual: lng.cChineseSimplified, Expected: 'ChineseSimplified'},
@@ -34,5 +34,5 @@ export const languageConstantsVaidation = [
   {Name: 'cPolish', Actual: lng.cPolish, Expected: 'Polish'},
   {Name: 'cPortuguese', Actual: lng.cPortuguese, Expected: 'Portuguese'},
   {Name: 'cRussian', Actual: lng.cRussian, Expected: 'Russian'},
-  {Name: 'cSpanish', Actual: lng.cSpanish, Expected: 'Spanish'},
+  {Name: 'cSpanish', Actual: lng.cSpanish, Expected: 'Spanish'}
 ];
