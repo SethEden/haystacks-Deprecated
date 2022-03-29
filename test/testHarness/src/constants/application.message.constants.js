@@ -23,7 +23,7 @@ let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 
 // Client String Parsing
-export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1.cParsing + bas.cDot + wr1.cCustom + wr1.cEcho; // clientStringParsing.customEcho
+export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1.cParsing + bas.cDot + wr1.ccustom + wr1.cEcho; // clientStringParsing.customEcho
 
 // Application Test Harness
 export const cargumentDrivenInterfaceIs = wr1.cargument + wr1.cDriven + wr1.cInterface + sys.cSpaceIsColonSpace; // argumentDrivenInterface is:

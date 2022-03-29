@@ -1131,6 +1131,10 @@ export const cGro = bas.cGr + bas.co; // Gro
 export const cliz = bas.cli + bas.cz; // liz
 export const csiz = bas.csi + bas.cz; // siz
 export const cSiz = bas.cSi + bas.cz; // Siz
+export const csmu = bas.csm + bas.cu; // smu
+export const cSmu = bas.cSm + bas.cu; // Smu
+export const cggl = bas.cgg + bas.cl; // ggl
+export const city = bas.cit + bas.cy; // ity
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

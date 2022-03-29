@@ -23,5 +23,5 @@ export const applicationFunctionConstantsValidation = [
   {Name: 'cinitClientRulesLibrary', Actual: app_fnc.cinitClientRulesLibrary, Expected: 'initClientRulesLibrary'},
 
   // commandsLibrary
-  {Name: 'cinitClientCommandsLibrary', Actual: app_fnc.cinitClientCommandsLibrary, Expeted: 'initClientCommandsLibrary'}
+  {Name: 'cinitClientCommandsLibrary', Actual: app_fnc.cinitClientCommandsLibrary, Expected: 'initClientCommandsLibrary'}
 ];
