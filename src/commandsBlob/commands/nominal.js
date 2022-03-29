@@ -643,7 +643,7 @@ const businessRule = function(inputData, inputMetaData) {
   // there are any inputs that need to be passed into the business rule.
   for (let i = 1; i < inputData.length; i++) {
     // Begin the i-th iteration fo the inputData array. i is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIterationOfInputDataArray + i);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_theIthIterationOfInputDataArray + i);
     let currentRuleArg = inputData[i]; // Check to see if this rule has inputs separate from the rule name.
     // currentRule is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentRuleIs + JSON.stringify(currentRuleArg));

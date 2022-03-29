@@ -74,7 +74,7 @@ export const functionConstantsValidation = [
   {Name: 'csetupAllCsvData', Actual: fnc.csetupAllCsvData, Expected: 'setupAllCsvData'},
   {Name: 'csetupAllXmlData', Actual: fnc.csetupAllXmlData, Expected: 'setupAllXmlData'},
   {Name: 'csetupAllJsonConfigData', Actual: fnc.csetupAllJsonConfigData, Expected: 'setupAllJsonConfigData'},
-  {Name: 'cinitializeConstantsValidationData', Actual: fnc.cinitializeConstantsValidationData, Expected: 'initializeConstantsVaidationData'},
+  {Name: 'cinitializeConstantsValidationData', Actual: fnc.cinitializeConstantsValidationData, Expected: 'initializeConstantsValidationData'},
 
   // chiefWorkflow
   {Name: 'cloadCommandWorkflowsFromPath', Actual: fnc.cloadCommandWorkflowsFromPath, Expected: 'loadCommandWorkflowsFromPath'},
@@ -110,7 +110,7 @@ export const functionConstantsValidation = [
   {Name: 'cgetXmlData', Actual: fnc.cgetXmlData, Expected: 'getXmlData'},
   {Name: 'cgetCsvData', Actual: fnc.cgetCsvData, Expected: 'getCsvData'},
   {Name: 'cgetJsonData', Actual: fnc.cgetJsonData, Expected: 'getJsonData'},
-  {Name: 'cwriteJsonData', Actual: fnc.cwriteJsonData, Expected: 'cwriteJsonData'},
+  {Name: 'cwriteJsonData', Actual: fnc.cwriteJsonData, Expected: 'writeJsonData'},
   {Name: 'creadDirectoryContents', Actual: fnc.creadDirectoryContents, Expected: 'readDirectoryContents'},
   {Name: 'cscanDirectoryContents', Actual: fnc.cscanDirectoryContents, Expected: 'scanDirectoryContents'},
   {Name: 'creadDirectorySynchronously', Actual: fnc.creadDirectorySynchronously, Expected: 'readDirectorySynchronously'},

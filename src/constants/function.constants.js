@@ -75,7 +75,7 @@ export const cgetAndProcessXmlData = wr1.cget + wr1.cAnd + wr1.cProcess + gen.cX
 export const csetupAllCsvData = wr1.csetup + wr1.cAll + gen.cCsv + wr1.cData; // setupAllCsvData
 export const csetupAllXmlData = wr1.csetup + wr1.cAll + gen.cXml + wr1.cData; // setupAllXmlData
 export const csetupAllJsonConfigData = wr1.csetup + phn.cAll + gen.cJson + wr1.cConfig + wr1.cData; // setupAllJsonConfigData
-export const cinitializeConstantsValidationData = wr1.cinitialize + wr1.cConstants + wr1.cValidation + wr1.cData; // initializeConstantsVaidationData
+export const cinitializeConstantsValidationData = wr1.cinitialize + wr1.cConstants + wr1.cValidation + wr1.cData; // initializeConstantsValidationData
 // smuggle something caddConstantsValidationData // Already declared in the dataBroker section.
 
 // chiefWorkflow
@@ -102,11 +102,11 @@ export const caggregateStyleSetting = wr1.caggregate + wr1.cStyle + wr1.cSetting
 export const cgetFontStyleSettingsFromSetting = wr1.cget + wr1.cFont + wr1.cStyle + wr1.cSettings + wr1.cFrom + wr1.cSetting; // getFontStyleSettingsFromSetting
 export const cgetColorStyleSettingFromSetting = wr1.cget + wr1.cColor + wr1.cStyle + wr1.cSetting + wr1.cFrom + wr1.cSetting; // getColorStyleSettingFromSetting
 export const cgetNamedColorData = wr1.cget + wr1.cNamed + wr1.cColor + wr1.cData; // getNamedColorData
-export const csetUnderlineFontStyleOnMessageComponentAccordingToSetting = wr1.cset + wr1.cUnderline + wr1.cFont + wr1.cStyle + wr1.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setUnderlineFontStyleOnMessageComponentAccordingToSetting
-export const csetBoldFontStyleOnMessageComponentAccordingToSetting = wr1.cset + wr1.cBold + wr1.cFont + wr1.cFont + wr1.cStyle + wr1.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setBoldFontStyleOnMessageComponentAccordingToSetting
-export const csetFontForegroundColorOnMessageComponentAccordingToSetting = wr1.cset + wr1.cFont + wr1.cForeground + wr1.cColor + wr1.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setFontForegroundColorOnMessageComponentAccordingToSetting
-export const csetFontBackgroundColorOnMessageComponentAccordingToSetting = wr1.cset + wr1.cFont + wr1.cBackground + wr1.cColor + wr1.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setFontBackgroundColorOnMessageComponentAccordingToSetting
-export const cremoveFontStyles = wr1.cremoe + wr1.cFont + wr1.cStyles; // removeFontStyles
+export const csetUnderlineFontStyleOnMessageComponentAccordingToSetting = wr1.cset + wr1.cUnderline + wr1.cFont + wr1.cStyle + bas.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setUnderlineFontStyleOnMessageComponentAccordingToSetting
+export const csetBoldFontStyleOnMessageComponentAccordingToSetting = wr1.cset + wr1.cBold + wr1.cFont + wr1.cStyle + bas.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setBoldFontStyleOnMessageComponentAccordingToSetting
+export const csetFontForegroundColorOnMessageComponentAccordingToSetting = wr1.cset + wr1.cFont + wr1.cForeground + wr1.cColor + bas.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setFontForegroundColorOnMessageComponentAccordingToSetting
+export const csetFontBackgroundColorOnMessageComponentAccordingToSetting = wr1.cset + wr1.cFont + wr1.cBackground + wr1.cColor + bas.cOn + wr1.cMessage + wr1.cComponent + wr1.cAccording + wr1.cTo + wr1.cSetting; // setFontBackgroundColorOnMessageComponentAccordingToSetting
+export const cremoveFontStyles = wr1.cremove + wr1.cFont + wr1.cStyles; // removeFontStyles
 
 // configurator
 export const csetConfigurationSetting = wr1.cset + wr1.cConfiguration + wr1.cSetting; // setConfigurationSetting
@@ -119,7 +119,7 @@ export const cprocessConfigurationValueRules = wr1.cprocess + wr1.cConfiguration
 export const cgetXmlData = wr1.cget + gen.cXml + wr1.cData; // getXmlData
 export const cgetCsvData = wr1.cget + gen.cCsv + wr1.cData; // getCsvData
 export const cgetJsonData = wr1.cget + gen.cJson + wr1.cData; // getJsonData
-export const cwriteJsonData = wr1.cwrite + gen.cJson + wr1.cData; // cwriteJsonData
+export const cwriteJsonData = wr1.cwrite + gen.cJson + wr1.cData; // writeJsonData
 export const creadDirectoryContents = wr1.cread + wr1.cDirectory + wr1.cContents; // readDirectoryContents
 export const cscanDirectoryContents = wr1.cscan + wr1.cDirectory + wr1.cContents; // scanDirectoryContents
 export const creadDirectorySynchronously = wr1.cread + wr1.cDirectory + wr1.cSynchronously; // readDirectorySynchronously

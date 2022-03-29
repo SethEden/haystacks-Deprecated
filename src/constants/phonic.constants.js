@@ -531,6 +531,7 @@ export const cson = bas.cso + bas.cn; // son
 export const cison = bas.ci + cson; // ison
 export const cera = bas.cer + bas.ca; // era
 export const cfore = bas.cfo + bas.cre; // fore
+export const cFore = bas.cFo + bas.cre; // Fore
 export const cFORE = bas.cFO + bas.cRE; // FORE
 export const cush = bas.cus + bas.ch; // ush
 export const cUSH = bas.cUS + bas.cH; // USH
@@ -1055,6 +1056,7 @@ export const cstar = bas.cst + bas.car; // star
 export const cune = bas.cun + bas.ce; // une
 export const ckin = bas.cki + bas.cn; // kin
 export const csty = bas.cst + bas.cy; // sty
+export const cSty = bas.cSt + bas.cy; // Sty
 export const cavy = bas.cav + bas.cy; // avy
 export const cazz = bas.caz + bas.cz; // azz
 export const creus = bas.cre + bas.cus; // reus
@@ -1122,6 +1124,13 @@ export const cped = bas.cpe + bas.cd; // ped
 export const cutil = bas.cut + bas.cil; // util
 export const cUtil = bas.cUt + bas.cil; // Util
 export const cities = bas.cit + cies; // ities
+export const cacc = bas.cac + bas.cc; // acc
+export const cAcc = bas.cAc + bas.cc; // Acc
+export const cgro = bas.cgr + bas.co; // gro
+export const cGro = bas.cGr + bas.co; // Gro
+export const cliz = bas.cli + bas.cz; // liz
+export const csiz = bas.csi + bas.cz; // siz
+export const cSiz = bas.cSi + bas.cz; // Siz
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

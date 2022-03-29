@@ -141,10 +141,10 @@ export const cYYYY = bas.cYY + bas.cYY; // YYYY
 export const cSSS = bas.cSS + bas.cS; // SSS
 export const cYYYYMMDD = cYYYY + bas.cMM + bas.cDD; // YYYYMMDD
 export const cHHmmss = bas.cHH + bas.cmm + bas.css; // HHmmss
-export const cHHmmss_SSS = cHHmmss + bas.cDash + cSSS; // HHmmss_SSS
-export const cYYYYMMDD_HHmmss  = cYYYYMMDD + bas.cDash + cHHmmss; // YYYYMMDD_HHmmss
-export const cYYYYMMDD_HHmmss_SSS = cYYYYMMDD_HHmmss + cSSS; // YYYYMMDD_HHmmss_SSS
-export const cYYYY_MM_DD_HH_mm_ss_SSS = cYYYY + bas.cColon + bas.cMM + bas.cColon + bas.cDD + bas.cDash + bas.cHH + bas.cColon + bas.cmm + bas.cColon + bas.css + bas.cColon + cSSS; // YYYY_MM_DD_HH_mm_ss_SSS
+export const cHHmmss_SSS = cHHmmss + bas.cDash + cSSS; // HHmmss-SSS
+export const cYYYYMMDD_HHmmss  = cYYYYMMDD + bas.cDash + cHHmmss; // YYYYMMDD-HHmmss
+export const cYYYYMMDD_HHmmss_SSS = cYYYYMMDD_HHmmss + bas.cDash + cSSS; // YYYYMMDD-HHmmss-SSS
+export const cYYYY_MM_DD_HH_mm_ss_SSS = cYYYY + bas.cColon + bas.cMM + bas.cColon + bas.cDD + bas.cDash + bas.cHH + bas.cColon + bas.cmm + bas.cColon + bas.css + bas.cColon + cSSS; // YYYY:MM:DD-HH:mm:ss:SSS
 
 // Operating Systems
 export const cwin32 = phn.cwin + num.c32;
@@ -225,7 +225,7 @@ export const cbiz = bas.cbi + bas.cz; // biz
 export const cclr = phn.cclr; // clr
 export const ccmd = bas.ccm + bas.cd; // cmd
 export const ccfg = bas.ccf + bas.cg; // cfg
-export const ccon = bas.co + bas.cn; // con
+export const ccon = bas.cco + bas.cn; // con
 export const cctr = phn.cctr; // ctr
 export const cfnc = bas.cfn + bas.cc; // fnc
 export const celm = bas.cel + bas.cm; // elm
@@ -246,7 +246,7 @@ export const capc = bas.cap + bas.cc; // apc
 // Miscelanious
 export const cUTF8 = bas.cUT + bas.cF + num.c8; // UTF8
 export const crgb = bas.crg + bas.cb; // rgb
-export const cRGB = bas.cRG + bas.cb; // RGB
+export const cRGB = bas.cRG + bas.cB; // RGB
 export const ccmyk = bas.ccm + bas.cyk; // cmyk
 export const cCMYK = bas.cCM + bas.cYK; // CMYK
 export const cconst = phn.ccon + bas.cst; // const

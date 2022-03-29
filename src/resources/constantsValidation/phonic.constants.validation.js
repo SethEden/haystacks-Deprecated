@@ -538,6 +538,7 @@ export const phonicConstantsValidation = [
   {Name: 'cison', Actual: phn.cison, Expected: 'ison'},
   {Name: 'cera', Actual: phn.cera, Expected: 'era'},
   {Name: 'cfore', Actual: phn.cfore, Expected: 'fore'},
+  {Name: 'cFore', Actual: phn.cFore, Expected: 'Fore'},
   {Name: 'cFORE', Actual: phn.cFORE, Expected: 'FORE'},
   {Name: 'cush', Actual: phn.cush, Expected: 'ush'},
   {Name: 'cUSH', Actual: phn.cUSH, Expected: 'USH'},
@@ -1062,6 +1063,7 @@ export const phonicConstantsValidation = [
   {Name: 'cune', Actual: phn.cune, Expected: 'une'},
   {Name: 'ckin', Actual: phn.ckin, Expected: 'kin'},
   {Name: 'csty', Actual: phn.csty, Expected: 'sty'},
+  {Name: 'cSty', Actual: phn.cSty, Expected: 'Sty'},
   {Name: 'cavy', Actual: phn.cavy, Expected: 'avy'},
   {Name: 'cazz', Actual: phn.cazz, Expected: 'azz'},
   {Name: 'creus', Actual: phn.creus, Expected: 'reus'},
@@ -1128,5 +1130,12 @@ export const phonicConstantsValidation = [
   {Name: 'cped', Actual: phn.cped, Expected: 'ped'},
   {Name: 'cutil', Actual: phn.cutil, Expected: 'util'},
   {Name: 'cUtil', Actual: phn.cUtil, Expected: 'Util'},
-  {Name: 'cities', Actual: phn.cities, Expected: 'ities'}
+  {Name: 'cities', Actual: phn.cities, Expected: 'ities'},
+  {Name: 'cacc', Actual: phn.ccacc, Expected: 'acc'},
+  {Name: 'cAcc', Actual: phn.ccAcc, Expected: 'Acc'},
+  {Name: 'cgro', Actual: phn.cgro, Expected: 'gro'},
+  {Name: 'cGro', Actual: phn.cGro, Expected: 'Gro'},
+  {Name: 'cliz', Actual: phn.cliz, Expected: 'liz'},
+  {Name: 'csiz', Actual: phn.csiz, Expected: 'siz'},
+  {Name: 'cSiz', Actual: phn.cSiz, Expected: 'Siz'}
 ];
