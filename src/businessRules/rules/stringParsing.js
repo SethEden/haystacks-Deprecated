@@ -1817,19 +1817,11 @@ loop2:
   if (returnData > 1) {
     // duplicateAliasCount is:
     let duplicateAliasCountMessage = msg.cduplicateAliasCountIs + returnData;
-    // if (colorizeLogsEnabled === true) {
-    //   duplicateAliasCountMessage = chalk.rgb(0,0,0)(duplicateAliasCountMessage);
-    //   duplicateAliasCountMessage = chalk.bgRgb(255,0,0)(duplicateAliasCountMessage);
-    // }
     duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, blackColorArray, true);
     duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, redColorArray, false);
     console.log(duplicateAliasCountMessage);
     // duplicate command alias is:
     let duplicateAliasCommandMessage = msg.cduplicateCommandAliasIs + inputData;
-    // if (colorizeLogsEnabled === true) {
-    //   duplicateAliasCommandMessage = chalk.rgb(0,0,0)(duplicateAliasCommandMessage);
-    //   duplicateAliasCommandMessage = chalk.bgRgb(255,0,0)(duplicateAliasCommandMessage);
-    // }
     duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, blackColorArray, true);
     duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, redColorArray, false);
     console.log(duplicateAliasCommandMessage);
