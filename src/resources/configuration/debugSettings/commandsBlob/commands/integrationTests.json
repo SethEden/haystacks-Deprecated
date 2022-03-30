@@ -24,5 +24,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateConstants@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateConstants@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateConstants@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateConstants@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateConstants@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@DataFontBackgroundColor": "Black"
 }

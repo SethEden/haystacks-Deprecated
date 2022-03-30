@@ -43,6 +43,7 @@ export const commandConstantsValidation = [
   // Integration Test commands in order
   // ***********************************************
   {Name: 'cvalidateConstants', Actual: cmd.cvalidateConstants, Expected: 'validateConstants'},
+  {Name: 'cvalidateCommandAliases', Actual: cmd.cvalidateCommandAliases, Expected: 'validateCommandAliases'},
 
   // ********************************
   // System defined workflows

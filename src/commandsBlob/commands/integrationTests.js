@@ -107,10 +107,67 @@ const validateConstants = function(inputData, inputMetaData) {
   } else {
     configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
   }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function validateCommandAliases
+ * @description Validates all command aliases have no duplicates within a command, but also between commands.
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/03/30
+ */
+const validateCommandAliases = function(inputData, inputMetaData) {
+  let functionName = validateCommandAliases.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommands];
+  let passedAllCommandAliasesDuplicateCheck = true;
+  let rules = [];
+  rules[0] = biz.ccountDuplicateCommandAliases;
+loop1:
+  for (let key1 in allCommandAliases) {
+    // key1 is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ckey1Is + key1);
+    let currentCommand = allCommandAliases[key1];
+    // currentCommand is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
+    let aliasList = currentCommand[wr1.cAliases];
+    // aliasList is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.caliasListIs + aliasList);
+    let arrayOfAliases = aliasList.split(bas.cComa);
+loop2:
+    for (let j = 0; j < arrayOfAliases.length; j++) {
+      // BEGIN j-th loop:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
+      let currentAlias = arrayOfAliases[j];
+      // currentAlias is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
+      let duplicateAliasCount = ruleBroker.processRules(currentAlias, allCommandAliases, rules);
+      if (duplicateAliasCount > 1) {
+        passedAllCommandAliasesDuplicateCheck = false;
+      }
+      // END j-th loop:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
+    } // End-for (let j = 0; j < arrayOfAliases.length; j++)
+  } // End-for (let i = 0; i < allCommandAliases.length; i++)
+  if (passedAllCommandAliasesDuplicateCheck === true) {
+    // PASSED: All duplicate command aliases validation tests!
+    console.log(msg.cvalidateCommandAliasesMessage1);
+  }
+  configurator.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, passedAllCommandAliasesDuplicateCheck);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
 
 export default {
-  validateConstants
+  validateConstants,
+  validateCommandAliases
 }

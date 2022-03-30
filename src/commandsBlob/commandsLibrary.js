@@ -81,7 +81,8 @@ function initCommandsLibrary() {
     // ***********************************************
     // Integration Test commands in order
     // ***********************************************
-    [cmd.cvalidateConstants]: (inputData, inputMetaData) => integrationTestCommands.validateConstants(inputData, inputMetaData)
+    [cmd.cvalidateConstants]: (inputData, inputMetaData) => integrationTestCommands.validateConstants(inputData, inputMetaData),
+    [cmd.cvalidateCommandAliases]: (inputData, inputMetaData) => integrationTestCommands.validateCommandAliases(inputData, inputMetaData)
   };
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

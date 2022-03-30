@@ -81,6 +81,7 @@ export const cdisplayIndividualCosntantsValidationFailMessages = wr1.cdisplay + 
 export const cdisplaySummaryConstantsValidationPassMessages = wr1.cdisplay + wr1.cSummary + wr1.cConstants + wr1.cValidation + wr1.cPass + wr1.cMessages; // displaySummaryConstantsValidationPassMessages
 export const cdisplaySummaryConstantsValidationFailMessages = wr1.cdisplay + wr1.cSummary + wr1.cConstants + wr1.cValidation + wr1.cFail + wr1.cMessages; // displaySummaryConstantsValidationFailMessages
 export const cpassAllConstantsValidation = wr1.cpass + wr1.cAll + wr1.cConstants + wr1.cValidation; // passAllConstantsValidation
+export const cpassedAllCommandAliasesDuplicateChecks = wr1.cpassed + wr1.cAll + wr1.cCommand + wr1.cAliases + wr1.cDuplicate + wr1.cChecks; // passedAllCommandAliasesDuplicateChecks
 export const cdeploymentCompleted = wr1.cdeployment + wr1.cCompleted; // deploymentCompleted
 export const creleaseCompleted = wr1.crelease + wr1.cCompleted; // releaseCompleted
 

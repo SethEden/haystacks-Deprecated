@@ -504,6 +504,7 @@ export const messageConstantsVaidation = [
   {Name: 'ccontentsOfLeafDataHiveElementIs', Actual: msg.ccontentsOfLeafDataHiveElementIs, Expected: 'contents of leafDataHiveElement is: '},
   {Name: 'centryIs', Actual: msg.centryIs, Expected: 'entry is: '},
   {Name: 'cattributeValueIs', Actual: msg.cattributeValueIs, Expected: 'attributeValue is: '},
+  {Name: 'ckey1Is', Actual: msg.ckey1Is, Expected: 'key1 is: '},
   {Name: 'ckey2Is', Actual: msg.ckey2Is, Expected: 'key2 is: '},
   {Name: 'centityIs', Actual: msg.centityIs, Expected: 'entity is: '},
   {Name: 'cqueueNameSpaceIs', Actual: msg.cqueueNameSpaceIs, Expected: 'queueNameSpace is: '},

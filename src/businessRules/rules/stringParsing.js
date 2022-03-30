@@ -10,11 +10,13 @@
  * @requires module:arrayParsing
  * @requires module:stringParsingUtilities
  * @requires module:basic.constants
+ * @requires module:color.constants
  * @requires module:configuration.constants
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
  * @requires module:word1.constants
+ * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
@@ -32,11 +34,13 @@
 import arrayParsing from './arrayParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
+import * as clr from '../../constants/color.constants.js';
 import * as cfg from '../../constants/configuration.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
+import colorizer from '../../executrix/colorizer.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
@@ -1777,15 +1781,16 @@ const countDuplicateCommandAliases = function(inputData, inputMetaData) {
   let functionName = countDuplicateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = 0;
+  let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
+  let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
   if (inputData && inputMetaData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
 loop1:
-    for (let i = 0; i < inputMetaData.length; i++) {
-      // BEGIN i-th loop:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
-      let currentCommand = inputMetaData[i];
+    for (let key1 in inputMetaData) {
+      // key1 is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ckey1Is + key1);
+      let currentCommand = inputMetaData[key1];
       // currentCommand is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
       let aliasList = currentCommand[wr1.cAliases];
@@ -1807,24 +1812,26 @@ loop2:
         // END j-th loop:
         loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
       } // End-for (let j = 0; j < arrayOfAliases.length; j++)
-      // END i-th loop:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
     } // End-for (let i = 0; i < inputMetaData.length; i++)
   } // End-if (inputData)
   if (returnData > 1) {
     // duplicateAliasCount is:
     let duplicateAliasCountMessage = msg.cduplicateAliasCountIs + returnData;
-    if (colorizeLogsEnabled === true) {
-      duplicateAliasCountMessage = chalk.rgb(0,0,0)(duplicateAliasCountMessage);
-      duplicateAliasCountMessage = chalk.bgRgb(255,0,0)(duplicateAliasCountMessage);
-    }
+    // if (colorizeLogsEnabled === true) {
+    //   duplicateAliasCountMessage = chalk.rgb(0,0,0)(duplicateAliasCountMessage);
+    //   duplicateAliasCountMessage = chalk.bgRgb(255,0,0)(duplicateAliasCountMessage);
+    // }
+    duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, blackColorArray, true);
+    duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, redColorArray, false);
     console.log(duplicateAliasCountMessage);
     // duplicate command alias is:
     let duplicateAliasCommandMessage = msg.cduplicateCommandAliasIs + inputData;
-    if (colorizeLogsEnabled === true) {
-      duplicateAliasCommandMessage = chalk.rgb(0,0,0)(duplicateAliasCommandMessage);
-      duplicateAliasCommandMessage = chalk.bgRgb(255,0,0)(duplicateAliasCommandMessage);
-    }
+    // if (colorizeLogsEnabled === true) {
+    //   duplicateAliasCommandMessage = chalk.rgb(0,0,0)(duplicateAliasCommandMessage);
+    //   duplicateAliasCommandMessage = chalk.bgRgb(255,0,0)(duplicateAliasCommandMessage);
+    // }
+    duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, blackColorArray, true);
+    duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, redColorArray, false);
     console.log(duplicateAliasCommandMessage);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

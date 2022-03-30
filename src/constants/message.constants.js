@@ -508,6 +508,7 @@ export const cdataHivePathArrayIs = wr1.cdata + wr1.cHive + wr1.cPath + wr1.cArr
 export const ccontentsOfLeafDataHiveElementIs = wr1.ccontents + bas.cSpace + bas.cof + bas.cSpace + wr1.cleaf + wr1.cData + wr1.cHive + wr1.cElement + sys.cSpaceIsColonSpace; // contents of leafDataHiveElement is:
 export const centryIs = wr1.centry + sys.cSpaceIsColonSpace; // entry is:
 export const cattributeValueIs = wr1.cattribute + wr1.cValue + sys.cSpaceIsColonSpace; // attributeValue is:
+export const ckey1Is = wr1.ckey + num.c1 + sys.cSpaceIsColonSpace; // key1 is:
 export const ckey2Is = wr1.ckey + num.c2 + sys.cSpaceIsColonSpace; // key2 is:
 export const centityIs = wr1.centity + sys.cSpaceIsColonSpace; // entity is:
 export const cqueueNameSpaceIs = wr1.cqueue + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // queueNameSpace is:

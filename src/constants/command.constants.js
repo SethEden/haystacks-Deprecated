@@ -42,6 +42,7 @@ export const cconvertColors = wr1.cconvert + wr1.cColors; // convertColors
 // Integration Test commands in order
 // ***********************************************
 export const cvalidateConstants = wr1.cvalidate + wr1.cConstants; // validateConstants
+export const cvalidateCommandAliases = wr1.cvalidate + wr1.cCommand + wr1.cAliases; // validateCommandAliases
 
 // ********************************
 // System defined workflows
