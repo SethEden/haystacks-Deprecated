@@ -21,5 +21,7 @@
   "system.enableConstantsValidation": true,
   "system.displayIndividualConstantsValidationPassMessages": false,
   "system.displayIndividualConstantsValidationFailMessages": true,
+  "system.displaySummaryConstantsValidationPassMessages": true,
+  "system.displaySummaryConstantsValidationFailMessages": true,
   "system.AppSetting": "TrunkMonkey"
 }

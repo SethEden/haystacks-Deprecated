@@ -37,8 +37,42 @@ const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url
 const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
+ * @function colorizeMessageSimple
+ * @description Applies a color setting to an entire message, according to the inputs, background or foreground font color settings.
+ * @param {string} message The message that should be formatted and returned according to the inputs, and controlled by the system configuration setting.
+ * @param {array<integers>} colorArray The RGB color array that describes the color that should be applied to the message.
+ * @param {boolean} isForeground A True or False to indicate if the color setting should be applied to the foreground or not.
+ * If False, then apply to the background.
+ * @return {string} The message with the color setting applied.
+ * @author Seth Hollingsead
+ * @date 2022/03/29
+ */
+function colorizeMessageSimple(message, colorArray, isForeground) {
+  let functionName = colorizeMessageSimple.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`message is: ${message}`);
+  // console.log(`colorArray is: ${JSON.stringify(colorArray)}`);
+  // console.log(`isForeground is: ${isForeground}`);
+  let colorizedMessage = message;
+  let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+  if (colorizeLogsEnabled === true) {
+    let red = colorArray[0];
+    let green = colorArray[1];
+    let blue = colorArray[2];
+    if (isForeground === true) {
+      colorizedMessage = chalk.rgb(red,green,blue)(colorizedMessage);
+    } else {
+      colorizedMessage = chalk.bgRgb(red,green,blue)(colorizedMessage);
+    }
+  }
+  // console.log('colorizedMessage is: ' + colorizedMessage);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+  return colorizedMessage;
+};
+
+/**
  * @function colorizeMessage
- * @description Applies coor settings to various portions of the message according to the settings from the configuration system.
+ * @description Applies color settings to various portions of the message according to the settings from the configuration system.
  * @param {string} message The message that should be formatted and returned to be logged to the console and/or logged to a log file.
  * @param {string} className The name of the module/file that made the log call.
  * @param {string} functionName The name of the function that made the log call.
@@ -433,7 +467,7 @@ function getColorStyleSettingFromSetting(settingValue, defaultColorArray) {
  * @function getNamedColorData
  * @description Queries the D-data structure for the named coor data.
  * All of this data should have been loaded from the Colors.csv file.
- * @param {string} colorName The name of the coor who's RGB value we should look up from the color data structure.
+ * @param {string} colorName The name of the color who's RGB value we should look up from the color data structure.
  * @param {array<integer>} defaultColorArray The default color that should be used.
  * @return {array<integer>} An array of integers that represent RGB values.
  * @author Seth Hollingsead
@@ -608,6 +642,7 @@ function removeFontStyles(message) {
 };
 
 export default {
+  [fnc.ccolorizeMessageSimple]: (message, colorArray, isForeground) => colorizeMessageSimple(message, colorArray, isForeground),
   [fnc.ccolorizeMessage]: (message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
     colorizeMessage(message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
   [fnc.caggregateStyleSetting]: (settingValue1, settingValue2, defaultColorArray, processAsFontSetting) => aggregateStyleSetting(settingValue1, settingValue2, defaultColorArray, processAsFontSetting),

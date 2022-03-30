@@ -79,6 +79,9 @@ export const configurationConstantsValidation = [
   {Name: 'capplicationConstantsValidationData', Actual: cfg.capplicationConstantsValidationData, Expected: 'applicationConstantsValidationData'},
   {Name: 'cdisplayIndividualConstantsValidationPassMessages', Actual: cfg.cdisplayIndividualConstantsValidationPassMessages, Expected: 'displayIndividualConstantsValidationPassMessages'},
   {Name: 'cdisplayIndividualCosntantsValidationFailMessages', Actual: cfg.cdisplayIndividualCosntantsValidationFailMessages, Expected: 'displayIndividualConstantsValidationFailMessages'},
+  {Name: 'cdisplaySummaryConstantsValidationPassMessages', Actual: cfg.cdisplaySummaryConstantsValidationPassMessages, Expected: 'displaySummaryConstantsValidationPassMessages'},
+  {Name: 'cdisplaySummaryConstantsValidationFailMessages', Actual: cfg.cdisplaySummaryConstantsValidationFailMessages, Expected: 'displaySummaryConstantsValidationFailMessages'},
+  {Name: 'cpassAllConstantsValidation', Actual: cfg.cpassAllConstantsValidation, Expected: 'passAllConstantsValidation'},
   {Name: 'cdeploymentCompleted', Actual: cfg.cdeploymentCompleted, Expected: 'deploymentCompleted'},
   {Name: 'creleaseCompleted', Actual: cfg.creleaseCompleted, Expected: 'releaseCompleted'},
 

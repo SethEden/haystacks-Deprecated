@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.commandsBlob.commands.integrationTests": true,
+  "debugFiles|debugSetting.commandsBlob.commands.integrationTests": false,
   "debugFiles|debugSetting.commandsBlob.commands.integrationTests@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.commandsBlob.commands.integrationTests@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.commandsBlob.commands.integrationTests@MessageFontStyle": "Underline",

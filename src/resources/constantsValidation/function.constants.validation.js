@@ -88,6 +88,7 @@ export const functionConstantsValidation = [
   {Name: 'cexecuteBusinessRule', Actual: fnc.cexecuteBusinessRule, Expected: 'executeBusinessRule'},
 
   // colorizer
+  {Name: 'ccolorizeMessageSimple', Actual: fnc.ccolorizeMessageSimple, Expected: 'colorizeMessageSimple'},
   {Name: 'ccolorizeMessage', Actual: fnc.ccolorizeMessage, Expected: 'colorizeMessage'},
   {Name: 'caggregateStyleSetting', Actual: fnc.caggregateStyleSetting, Expected: 'aggregateStyleSetting'},
   {Name: 'cgetFontStyleSettingsFromSetting', Actual: fnc.cgetFontStyleSettingsFromSetting, Expected: 'getFontStyleSettingsFromSetting'},
@@ -132,6 +133,7 @@ export const functionConstantsValidation = [
   // loggers
   {Name: 'cconsoleLog', Actual: fnc.cconsoleLog, Expected: 'consoleLog'},
   {Name: 'cconsoleTableLog', Actual: fnc.cconsoleTableLog, Expected: 'consoleTableLog'},
+  {Name: 'cconstantsValidationSummaryLog', Actual: fnc.cconstantsValidationSummaryLog, Expected: 'constantsValidationSummaryLog'},
   {Name: 'cgetLogFileNameAndPath', Actual: fnc.cgetLogFileNameAndPath, Expected: 'getLogFileNameAndPath'},
   {Name: 'cprintMessageToFile', Actual: fnc.cprintMessageToFile, Expected: 'printMessageToFile'},
 

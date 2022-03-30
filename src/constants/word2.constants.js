@@ -2716,6 +2716,12 @@ export const csmuggler = csmuggle + bas.cr; // smuggler
 export const cSmuggler = cSmuggle + bas.cr; // Smuggler
 export const csmuggling = phn.csmu + phn.cggl + phn.cing; // smuggling
 export const cSmuggling = phn.cSmu + phn.cggl + phn.cing; // Smuggling
+export const csimple = phn.csim + phn.cple; // simple
+export const cSimple = phn.cSim + phn.cple; // Simple
+export const csimpler = csimple + bas.cr; // simpler
+export const cSimpler = cSimple + bas.cr; // Simpler
+export const csimplest = csimple + bas.cst; // simplest
+export const cSimplest = cSimple + bas.cst; // Simplest
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

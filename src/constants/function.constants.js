@@ -97,6 +97,7 @@ export const cexecuteBusinessRule = wr1.cexecute + wr1.cBusiness + wr1.cRule; //
 // smuggle something csleep = wr1.csleep; // sleep
 
 // colorizer
+export const ccolorizeMessageSimple = wr1.ccolorize + wr1.cMessage + wr1.cSimple; // colorizeMessageSimple
 export const ccolorizeMessage = wr1.ccolorize + wr1.cMessage; // colorizeMessage
 export const caggregateStyleSetting = wr1.caggregate + wr1.cStyle + wr1.cSetting; // aggregateStyleSetting
 export const cgetFontStyleSettingsFromSetting = wr1.cget + wr1.cFont + wr1.cStyle + wr1.cSettings + wr1.cFrom + wr1.cSetting; // getFontStyleSettingsFromSetting
@@ -141,6 +142,7 @@ export const cremoveStringLiteralTagsFromArray = wr1.cremove + wr1.cString + wr1
 // loggers
 export const cconsoleLog = wr1.cconsole + gen.cLog; // consoleLog
 export const cconsoleTableLog = wr1.cconsole + wr1.cTable + gen.cLog; // consoleTableLog
+export const cconstantsValidationSummaryLog = wr1.cconstants + wr1.cValidation + wr1.cSummary + wr1.cLog; // constantsValidationSummaryLog
 export const cgetLogFileNameAndPath = wr1.cget + gen.cLog + wr1.cFileName + wr1.cAnd + wr1.cPath; // getLogFileNameAndPath
 export const cprintMessageToFile = wr1.cprint + wr1.cMessage + wr1.cTo + wr1.cFile; // printMessageToFile
 

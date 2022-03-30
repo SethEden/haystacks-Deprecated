@@ -8,6 +8,7 @@
  * @requires module:ruleBroker
  * @requires module:basic.constants
  * @requires module:business.constants
+ * @requires module:color.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:system.constants
@@ -19,6 +20,7 @@
  * @requires module:fileOperations
  * @requires module:timers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/18
@@ -29,6 +31,7 @@
 import ruleBroker from '../brokers/ruleBroker.js';
 import * as bas from '../constants/basic.constants.js';
 import * as biz from '../constants/business.constants.js';
+import * as clr from '../constants/color.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
@@ -41,6 +44,7 @@ import fileOperations from './fileOperations.js';
 import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
+import chalk from 'chalk';
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
@@ -133,6 +137,43 @@ function consoleTableLog(classPath, tableData, columnNames) {
   // console.log(`tableData is: ${JSON.stringify(tableData)}`);
   // console.log(`columnNames is: ${JSON.stringify(columnNames)}`);
   console.table(tableData, columnNames);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
+};
+
+/**
+ * @function constantsValidationSummaryLog
+ * @description Displays a constants log validation summary pass-fail results depending on the appropriate settings flag, which is passed in by the caller.
+ * @param {string} message The message that should be displayed, if the setting determines taht it should be displayed.
+ * @param {boolean} passFail True or False to indicate if the pas or fail message should be displayed to the console log.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/29
+ */
+function constantsValidationSummaryLog(message, passFail) {
+  let functionName = constantsValidationSummaryLog.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`message is: ${message}`);
+  // console.log(`passFail is: ${passFail}`);
+  let outputMessage = '';
+  let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
+  let greenColorArray = colorizer.getNamedColorData(clr.cGreen, [0,255,0]);
+  let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
+
+  if (passFail === true) {
+    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplaySummaryConstantsValidationPassMessages) === true) {
+      outputMessage = wr1.cPASSED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wr1.cPASSED; // `PASSED -- ${message} -- PASSED`;
+      outputMessage = colorizer.colorizeMessageSimple(outputMessage, blackColorArray, true);
+      outputMessage = colorizer.colorizeMessageSimple(outputMessage, greenColorArray, false);
+      console.log(outputMessage);
+    }
+  } else { // passFail === false
+    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplaySummaryConstantsVaidationFailMessages) === true) {
+      outputMessage = wr1.cFAILED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wr1.cFAILED; // `FAILED -- ${message} -- FAILED`;
+      outputMessage = colorizer.colorizeMessageSimple(outputMessage, blackColorArray, true);
+      outputMessage = colorizer.colorizeMessageSimple(outputMessage, redColorArray, false);
+      console.log(outputMessage);
+    }
+  }
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
@@ -367,6 +408,7 @@ function printMessageToFile(file, message) {
 export default {
   [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
   [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames),
+  [fnc.cconstantsValidationSummaryLog]: (message, passFail) => constantsValidationSummaryLog(message, passFail),
   [fnc.cgetLogFileNameAndPath]: () => getLogFileNameAndPath(),
   [fnc.cprintMessageToFile]: (file, message) => printMessageToFile(file, message)
 };

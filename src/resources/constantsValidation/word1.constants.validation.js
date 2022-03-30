@@ -2311,6 +2311,12 @@ export const word1ConstantsValidation = [
   {Name: 'cSmuggler', Actual: wr1.cSmuggler, Expected: 'Smuggler'},
   {Name: 'csmuggling', Actual: wr1.csmuggling, Expected: 'smuggling'},
   {Name: 'cSmuggling', Actual: wr1.cSmuggling, Expected: 'Smuggling'},
+  {Name: 'csimple', Actual: wr1.csimple, Expected: 'simple'},
+  {Name: 'cSimple', Actual: wr1.cSimple, Expected: 'Simple'},
+  {Name: 'csimpler', Actual: wr1.csimpler, Expected: 'simpler'},
+  {Name: 'cSimpler', Actual: wr1.cSimpler, Expected: 'Simpler'},
+  {Name: 'csimplest', Actual: wr1.csimplest, Expected: 'simplest'},
+  {Name: 'cSimplest', Actual: wr1.cSimplest, Expected: 'Simplest'},
   //////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////
   {Name: 'cAbsolute', Actual: wr1.cAbsolute, Expected: 'Absolute'},
