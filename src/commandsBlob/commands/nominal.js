@@ -1100,6 +1100,82 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
 };
 
 /**
+ * @function constantsPatternRecognizer
+ * @description Walks through a list of constants lookng for patterns internal to the strings.
+ * @param {string} inputData Parameterized coma delimited list of constants to be
+ * passed through pattern recognition to find common strings among them.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/03/31
+ */
+const constantsPatternRecognizer = function(inputData, inputMetaData) {
+  let functionName = constantsPatternRecognizer.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let validEntry = false;
+  let userDefinedConstantList = '';
+  let validConstantRule = [];
+  let recombineArrayInputRule = [];
+  let wordsArrayFromStringRule = [];
+  let searchForPatternsInStringArrayRule = [];
+  let validatePatternsNeedImplementationRule = [];
+  let wordsArray = [];
+  let commonPatternsArray = [];
+  validConstantRule[0] = biz.cisConstantValid;
+  recombineArrayInputRule[0] = biz.crecombineStringArrayWithSpaces
+  wordsArrayFromStringRule[0] = biz.cgetWordsArrayFromString;
+  searchForPatternsInStringArrayRule[0] = biz.csearchForPatternsInStringArray;
+  validatePatternsNeedImplementationRule[0] = biz.cvalidatePatternsThatNeedImplementation;
+  if (inputData.length === 0) {
+    while (validEntry === false) {
+      console.log(msg.cConstantsListPatternSearchPrompt1);
+      console.log(msg.cConstantsListPatternSearchPrompt2);
+      console.log(msg.cConstantsListPatternSearchPrompt3);
+      userDefinedConstantList = prompt.prompt(bas.cGreaterThan);
+      validEntry = ruleBroker.processRules(userDefinedConstantList, '', validConstantRule);
+      if (validEntry === false) {
+        // INVALID INPUT: Please enter a valid constant list.
+        console.log(msg.cconstantsGeneratorListMessage1);
+      }
+    } // End-while (validEntry === false)
+  } else if (inputData.length === 2) {
+    userDefinedConstantList = inputData[1];
+  } else {
+    // Combine all of the input parameters back into a single string then we will parse it for coma's into an array.
+    // The array elements will then be used to enqueue the command constantsGenerator.
+    userDefinedConstantList = ruleBroker.processRules(inputData, '', recombineArrayInputRule);
+  }
+  // userDefinedConstantLiset is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantListIs + userDefinedConstantList);
+  if (userDefinedConstantList.includes(bas.cComa) === true) {
+    wordsArray = userDefinedConstantList.split(bas.cComa);
+  } else {
+    // userDefinedConstantList DOES NOT contain comas
+    loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantsListDoesNotContainComas);
+    // Check and see if there is another delimiter we can use to break up the string into an array,
+    // such as a space character, Maybe the user entered a sentence and would like all the words of the sentence to be optimized.
+    wordsArray = ruleBroker.processRules(userDefinedConstantList, '' , wordsArrayFromStringRule);
+  }
+  // wordsArray is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cwordsArrayIs + JSON.stringify(wordsArray));
+  commonPatternsArray = ruleBroker.processRules(wordsArray, '', searchForPatternsInStringArrayRule);
+  // commonPatternsArray is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommonPatternsArrayIs + JSON.stringify(commonPatternsArray));
+  // This next call will compare the identified string patterns with existing constants, and highlight which ones are not yet implemented.
+  let newConstantsList = ruleBroker.processRules(commonPatternsArray, '', validatePatternsNeedImplementationRule);
+  let constantsPatternGenerationSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsPatternGeneration);
+  if (constantsPatternGenerationSetting === true) {
+    queue.enqueue(sys.cCommandQueue, cmd.cconstantsGeneratorList + bas.cSpace + newConstantsList);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
  * @function businessRulesMetrics
  * @description A command to compute business rule metrics for each of the
  * business rules that were called in a sequence of call(s) or workflow(s).
@@ -1341,6 +1417,7 @@ export default {
   commandAliasGenerator,
   constantsGenerator,
   constantsGeneratorList,
+  constantsPatternRecognizer,
   businessRulesMetrics,
   commandMetrics,
   saveConfiguration,

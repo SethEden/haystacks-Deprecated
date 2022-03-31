@@ -317,7 +317,7 @@ const ascertainMatchingElements = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) {
       // Array elements match
-      loggers.consoleLog(namespacePrefix + functionName, msg.cArrayEelmentsMatch);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cArrayElementsMatch);
       returnData = true;
     } else {
       // Array elements do not match
@@ -417,7 +417,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
       let currentMasterStringArrayElement = inputData[a];
       // currentMasterStringArrayElement is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentMasterStringArrayElementIs + currentMasterStringArrayElement);
-      if (currentMaserStringArrayElement.includes(bas.cSpace) === false) {
+      if (currentMasterStringArrayElement.includes(bas.cSpace) === false) {
         // currentMasterStringArrayElement does not contain a sapce character
         loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInStringArrayMessage1);
         // NOTE Al of the other loggers.consoleLog beow this are not actually getting called for some reason.
@@ -435,7 +435,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
             // console.log('currentMasterStringArrayElement.length is less than b');
             // Loop agan for the length of the current string - 3 (minStringLength)
             // Each loop will etermine our currentComparisonSrng (which will be used when we actually iterate over the array in ur search)
-            for (let c = 0; c <= currentMasterStringArayElement.length - minStringLength; c++) { // Loop through each set of strings in the master comparison string.
+            for (let c = 0; c <= currentMasterStringArrayElement.length - minStringLength; c++) { // Loop through each set of strings in the master comparison string.
               // loggers.consoleLog(namespacePrefix + functionName, 'c value is: ' + c);
               // console.log('c value is: ' + c);
               // Now here we should be able to finally compute the beginning and ending of the indexes for the string we want to use for comparison.
@@ -445,7 +445,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
               let endingIndex = c + b;
               // loggers.consoleLog(namespacePrefix + functionName, 'endingIndex is: ' + endingIndex);
               // console.log('ending index is: ' + endingIndex);
-              let stringToCompare = currentMasterStringArrayElement.subSring(beginningIndex, endingIndex);
+              let stringToCompare = currentMasterStringArrayElement.substring(beginningIndex, endingIndex);
               // loggers.consoleLog(namespacePrefix + functionName, 'stringToCompare is: ' + stringToCompare);
               // console.log('stringToCompare is: ' + stringToCompare);
               // Now we need another loop to go over all of the array elements, make sure we always ignore the current array element.
@@ -462,8 +462,8 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
                     // console.log('FOUND A MATCH!!!! ' + stringToCompare);
                     // Here we have found a match amoung brothers. We need to see if this stringToCompare has already been added to the returnData array.
-                    if (doesArrayContanValue(returnData, stringToCompare, ascertainMatchingElements) === false) {
-                      eturnData.puh(stringToCompare);
+                    if (doesArrayContainValue(returnData, stringToCompare, ascertainMatchingElements) === false) {
+                      returnData.push(stringToCompare);
                     } // End-if (doesArrayContanValue(returnData, stringToCompare, ascertainMatchingElements) === false)
                   } // End-if (otherStringToCompare.includes(stringToCompare))
                 } // End-if (d != a)

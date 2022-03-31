@@ -35,6 +35,7 @@ export const ccommandGenerator = wr1.ccommand + wr1.cGenerator; // commandGenera
 export const ccommandAliasGenerator = wr1.ccommand + wr1.cAlias + wr1.cGenerator; // commandAliasGenerator
 export const cconstantsGenerator = wr1.cconstants + wr1.cGenerator; // constantsGenerator
 export const cconstantsGeneratorList = cconstantsGenerator + wr1.cList; // constantsGeneratorList
+export const cconstantsPatternRecognizer = wr1.cconstants + wr1.cPattern + wr1.cRecognizer; // constantsPatternRecognizer
 export const cbusinessRulesMetrics = wr1.cbusiness + wr1.cRules + wr1.cMetrics; // businessRulesMetrics
 export const ccommandMetrics = wr1.ccommand + wr1.cMetrics; // commandMetrics
 export const csaveConfiguration = wr1.csave + wr1.cConfiguration; // saveConfiguration

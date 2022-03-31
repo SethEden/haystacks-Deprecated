@@ -75,6 +75,7 @@ function initCommandsLibrary() {
     [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData),
     [cmd.cconstantsGenerator]: (inputData, inputMetaData) => nominalCommands.constantsGenerator(inputData, inputMetaData),
     [cmd.cconstantsGeneratorList]: (inputData, inputMetaData) => nominalCommands.constantsGeneratorList(inputData, inputMetaData),
+    [cmd.cconstantsPatternRecognizer]: (inputData, inputMetaData) => nominalCommands.constantsPatternRecognizer(inputData, inputMetaData),
     [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData),
     [cmd.ccommandMetrics]: (inputData, inputMetaData) => nominalCommands.commandMetrics(inputData, inputMetaData),
     [cmd.csaveConfiguration]: (inputData, inputMetaData) => nominalCommands.saveConfiguration(inputData, inputMetaData),
