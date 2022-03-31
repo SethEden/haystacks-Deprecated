@@ -14,6 +14,7 @@
  * @requires module:configuration.constants
  * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:colorizer
@@ -38,6 +39,7 @@ import * as clr from '../../constants/color.constants.js';
 import * as cfg from '../../constants/configuration.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
+import * as num from '../../constants/numeric.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
 import colorizer from '../../executrix/colorizer.js';
@@ -1264,13 +1266,13 @@ const doesConstantExist = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
 loop1:
     for (let i = 0; i < constantsTypesKeys.length; i++) {
-      let consteantTypeKey = constantsTypesKeys[i];
+      let constantTypeKey = constantsTypesKeys[i];
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
       let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
       // constantTypeValues is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
-      let consteantsKeys = Object.keys(constantTypeValues);
+      let constantsKeys = Object.keys(constantTypeValues);
       // constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
 loop2:
@@ -1321,7 +1323,7 @@ loop1:
       let constantTypeKey = constantsTypesKeys[i];
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
-      let constantTypeValues = D[sys.cConstantsVaidationData][constantTypeKey];
+      let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
       // constantTypeValues is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
       let constantsKeys = Object.keys(constantTypeValues);
@@ -1329,7 +1331,7 @@ loop1:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
 loop2:
       for (let j = 0; j < constantsKeys.length; j++) {
-        let constKey = constantsKeys[j];
+        let constantKey = constantsKeys[j];
         // constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
         let constantActualValue = constantTypeValues[constantKey];
@@ -1450,7 +1452,7 @@ loop1:
       let constantTypeKey = constantsTypesKeys[i];
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
-      let constantTypeValues = D[sys.cConstantsVaidationData][constantTypeKey];
+      let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
       // constantTypeValues is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
       let constantsKeys = Object.keys(constantTypeValues);
@@ -1480,12 +1482,12 @@ loop2:
  * @function findConstantName
  * @description Looks through a string and tries to weed out a constant name.
  * @param {string} inputData The string that should be searched for a constant name.
- * @param {string} inutMetaData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The name of the constant that was found.
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const findConstantName = function(inputData, inutMetaData) {
+const findConstantName = function(inputData, inputMetaData) {
   let functionName = findConstantName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1579,12 +1581,12 @@ const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
   let constantName = '';
   if (inputData) {
     if (doesConstantExist(inputData, '') === false) {
-      returnData = constantsOptimizedFulfillmentSystem(inputData.subString(0, inputData.length - 1), inputMetaData);
+      returnData = constantsOptimizedFulfillmentSystem(inputData.substring(0, inputData.length - 1), inputMetaData);
     } else {
       constantType = getConstantType(inputData, true);
       constantName = getConstantName(inputData, '');
       let constantPrefix = convertConstantTypeToConstantPrefix(constantType, '');
-      returnData = constantprefix + constantName;
+      returnData = constantPrefix + constantName;
     }
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -1611,11 +1613,11 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
   let constantName = '';
   let constantType = '';
   if (inputData) {
-    returnData = constantsOptimizedFulfilmentSystem(inputData, '');
+    returnData = constantsOptimizedFulfillmentSystem(inputData, '');
     // We found the first part of the string, now lets continue processing the rest of the string!
     // First determien how many characters are being returned so we can
     // determine what portion of the string we need to continue processing with.
-    constName = findConstantName(returnData, '');
+    constantName = findConstantName(returnData, '');
     // constantName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantNameIs + constantName);
     let constantValue = getConstantActualValue(constantName, '');
@@ -1626,7 +1628,7 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
     // deltaLength is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cdeltaLengthIs + deltaLength);
     if (deltaLength != 0) {
-      let recursiveSubString = inputMetaData.substring(inputMetaData.length - deltaLe, inputMetaData.length);
+      let recursiveSubString = inputMetaData.substring(inputMetaData.length - deltaLength, inputMetaData.length);
       // recursiveSubString is:
       loggers.consoleLog(namespacePrefix + functionName, msg.crecursivesu + recursiveSubString);
       returnData = returnData + bas.cSpace + bas.cPlus + bas.cSpace + constantsFulfillmentSystem(recursiveSubString, inputData);

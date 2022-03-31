@@ -158,7 +158,7 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
 };
 
 /**
- * @function recombneStringArrayWithSpaces
+ * @function recombineStringArrayWithSpaces
  * @description Takes an array of strings and recombines them sequentially ith spaces between each array element.
  * This function is needed, because commands parse inputs by spaces ino an array,
  * and some commands need a single continuous strng that might be delimited by coma's.
@@ -176,10 +176,11 @@ const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    returnData = inputData[1];
-    for (let i = 2; i < inputData.length; i++) {
-      returnData = returnData + bas.cSpace + inputData[i];
-    }
+    // returnData = inputData[1];
+    // for (let i = 2; i < inputData.length; i++) {
+    //   returnData = returnData + bas.cSpace + inputData[i];
+    // }
+    returnData = inputData.join(bas.cSpace);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
