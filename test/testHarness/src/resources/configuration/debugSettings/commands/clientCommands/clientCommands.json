@@ -24,5 +24,18 @@
   "debugFunctions|debugSetting.commands.clientCommands.clientCommands.customEchoCommand@ModuleFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.commands.clientCommands.clientCommands.customEchoCommand@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.commands.clientCommands.clientCommands.customEchoCommand@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.customEchoCommand@DataFontBackgroundColor": "Default"
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.customEchoCommand@DataFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic": false,
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@ModuleFontColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@FunctionFontColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@MessageFontColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@DataFontColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@ModuleFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@FunctionFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@MessageFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.commands.clientCommands.clientCommands.bossPanic@DataFontBackgroundColor": "Default"
 }

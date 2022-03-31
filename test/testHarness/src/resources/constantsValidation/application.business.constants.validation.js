@@ -25,5 +25,9 @@ export const applicationBusinessConstantsVaidation = [
   // ********************************
   // ClientStringParsing rules in order
   // ********************************
-  {Name: 'ccustomEcho', Actual: app_biz.ccustomEcho, Expected: 'customEcho'}
+  {Name: 'ccustomEcho', Actual: app_biz.ccustomEcho, Expected: 'customEcho'},
+  {Name: 'cmostPopularNumber', Actual: app_biz.cmostPopularNumber, Expected: 'mostPopularNumber'},
+  {Name: 'cisAlmostPalindrome', Actual: app_biz.cisAlmostPalindrome, Expected: 'isAlmostPalindrome'},
+  {Name: 'cthreePointAverage', Actual: app_biz.cthreePointAverage, Expected: 'threePointAverage'},
+  {Name: 'carrayCounter', Actual: app_biz.carrayCounter, Expected: 'arrayCounter'}
 ];

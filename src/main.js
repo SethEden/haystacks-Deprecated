@@ -21,6 +21,7 @@
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
+ * @requires module:timers
  * @requires module:allConstantsValidationMetadata
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/url|url}
@@ -50,6 +51,7 @@ import * as wr2 from './constants/word2.constants.js';
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
+import timers from './executrix/timers.js';
 import allSysCV from './resources/constantsValidation/allConstantsValidationMetadata.js';
 import D from './structures/data.js';
 // External imports
@@ -74,8 +76,8 @@ const {NODE_ENV} = process.env;
 */
 function initFramework(clientConfiguration) {
  let functionName = initFramework.name;
- // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
- // console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
+ console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+ console.log(`clientConfiguration is: ${JSON.stringify(clientConfiguration)}`);
  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
  loggers.consoleLog(namespacePrefix + functionName, msg.cclientConfigurationIs + clientConfiguration);
 
@@ -111,8 +113,8 @@ function initFramework(clientConfiguration) {
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
- // console.log('All loaded data is: ' + JSON.stringify(D));
- // console.log(`END ${namespacePrefix}${functionName} function`);
+ console.log('All loaded data is: ' + JSON.stringify(D));
+ console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
 /**

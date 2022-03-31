@@ -560,6 +560,7 @@ export const messageConstantsVaidation = [
   {Name: 'cframeworkConstantsValidationDataIs', Actual: msg.cframeworkConstantsValidationDataIs, Expected: 'frameworkConstantsValidationData is: '},
   {Name: 'capplicationConstantsValidationDataIs', Actual: msg.capplicationConstantsValidationDataIs, Expected: 'applicationConstantsValidationData is: '},
   {Name: 'cActualColonDoublePercent', Actual: msg.cActualColonDoublePercent, Expected: '"Actual": "%%",'},
+  {Name: 'callCommandWorkflowsDataIs', Actual: msg.callCommandWorkflowsDataIs, Expected: 'allCommandWorkflowsData is: '},
 
   {Name: 'cCaptureSessionDateTimeStampLogFileName', Actual: msg.cCaptureSessionDateTimeStampLogFileName, Expected: 'Capture the session date-time-stamp so we can determine a log file name.'},
   {Name: 'cProcessRulesWarningSomeRulesDoNotExist', Actual: msg.cProcessRulesWarningSomeRulesDoNotExist, Expected: 'WARNING: Some rules do not exist: '},

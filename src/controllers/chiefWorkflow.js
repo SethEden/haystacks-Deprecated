@@ -50,13 +50,15 @@ function loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName) 
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandWorkflowFilePathConfigurationNameIs + commandWorkflowFilePathConfigurationName);
   let allCommandWorkflowsData = {};
   allCommandWorkflowsData = chiefData.setupAllXmlData(commandWorkflowFilePathConfigurationName, sys.cCommandWorkflows);
+  loggers.consoleLog(namespacePrefix + functionName, msg.callCommandWorkflowsDataIs + JSON.stringify(allCommandWorkflowsData));
   if (D[sys.cCommandWorkflows] === undefined) { // Make sure we only do this if it's undefined, otherwise we ight wipe out previously loaded data.
     D[sys.cCommandWorkflows] = {};
     D[sys.cCommandWorkflows] = allCommandWorkflowsData[sys.cCommandWorkflows];
   } else {
-    for (let i = 0; i < allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows].length; i++) {
-      D[sys.cCommandWorkflows][wr1.cWorkflows].push(allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows][i]);
-    }
+    // for (let i = 0; i < allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows].length; i++) {
+      // D[sys.cCommandWorkflows][wr1.cWorkflows].push(allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows][i]);
+      Object.assign(D[sys.cCommandWorkflows][wr1.cWorkflows], allCommandWorkflowsData[sys.cCommandWorkflows][wr1.cWorkflows]);
+    // }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

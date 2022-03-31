@@ -141,7 +141,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cgenerateValidEmail]: (inputData, inputMetaData) => stringGeneration.generateValidEmail(inputData, inputMetaData),
      [biz.cgenerateInvalidEmail]: (inputData, inputMetaData) => stringGeneration.generateInvalidEmail(inputData, inputMetaData),
      [biz.cgenerateRandomBrightColor]: (inputData, inputMetaData) => stringGeneration.generateRandomBrightColor(inputData, inputMetaData),
-     [biz.cgenerateRandomDarkColor]: (inputData, inputMetaDate) => stringGeneration.generateRandomDarkColor(inputData, inputMetaData),
+     [biz.cgenerateRandomDarkColor]: (inputData, inputMetaData) => stringGeneration.generateRandomDarkColor(inputData, inputMetaData),
      [biz.cgenerateRandomColor]: (inputData, inputMetaData) => stringGeneration.generateRandomColor(inputData, inputMetaData),
 
      // ***********************************************

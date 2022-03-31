@@ -5,6 +5,7 @@
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.numeric.constants
+ * @requires module:haystacks.phonic.constants
  * @requires module:haystacks.system.constants
  * @requires module:haystacks.word1.constants
  * @author Seth Hollingsead
@@ -19,6 +20,7 @@ import * as app_sys from './application.system.constants.js';
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let num = haystacks.num;
+let phn = haystacks.phn;
 let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 
@@ -27,6 +29,18 @@ export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1
 
 // Application Test Harness
 export const cargumentDrivenInterfaceIs = wr1.cargument + wr1.cDriven + wr1.cInterface + sys.cSpaceIsColonSpace; // argumentDrivenInterface is:
+
+// Messages
+export const ccomparisonIterationIs = wr1.ccomparison + bas.cSpace + wr1.citeration + sys.cSpaceIsColonSpace; // comparison iteration is:
+export const cstartingPointIs = wr1.cstarting + wr1.cPoint + sys.cSpaceIsColonSpace; // startingPoint is:
+export const cendingPointIs = wr1.cending + wr1.cPoint + sys.cSpaceIsColonSpace; // endingPoint is:
+export const cinputDataDotCharAtJIs = wr1.cinput + wr1.cData + bas.cDot + wr1.cchar + wr1.cAt + bas.cOpenParenthesis + bas.cj + bas.cCloseParenthesis + sys.cSpaceIsColonSpace; // inputData.charAt(j) is:
+export const cinputDataDotCharAtInputDataDotLengthDash = wr1.cinput + wr1.cData + bas.cDot + wr1.cchar + wr1.cAt + bas.cOpenParenthesis + wr1.cinput + wr1.cData + bas.cDot + wr1.clength + bas.cSpace + bas.cDash + bas.cSpace; // inputData.charAt(inputData.length) -
+export const cCloseParenthesisIs = bas.cCloseParenthesis + sys.cSpaceIsColonSpace; // ) is:
+export const cWeGotMismatch = bas.cWe + bas.cSpace + wr1.cgot + bas.cSpace + bas.ca + bas.cSpace + phn.cmis + wr1.cmatch + bas.cExclamation; // We got a mismatch!
+export const cmisCompareCountBeforeIncrementIs = phn.cmis + wr1.cCompare + wr1.cCount + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cincrement + sys.cSpaceIsColonSpace; // misCompareCount before increment is:
+export const cmisCompareCountPostIncrementIs = phn.cmis + wr1.cCompare + wr1.cCount + bas.cSpace + wr1.cpost + bas.cSpace + wr1.cincrement + sys.cSpaceIsColonSpace; // misCompareCount post increment is:
+export const cmisCompareCountAfterForLoopIs = phn.cmis + wr1.cCompare + wr1.cCount + bas.cSpace + wr1.cafter + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cfor + bas.cDash + wr1.cloop + sys.cSpaceIsColonSpace; // misCompareCountafter the for-loop is:
 
 // Constants Validation
 export const callClientConstantsValidationDataIs = wr1.call + wr1.cClient + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // allClientConstantsValidationData is:

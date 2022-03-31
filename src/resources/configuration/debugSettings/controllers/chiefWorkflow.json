@@ -12,7 +12,7 @@
   "debugFiles|debugSetting.controllers.chiefWorkflow@FunctionFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.controllers.chiefWorkflow@MessageFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.controllers.chiefWorkflow@DataFontBackgroundColor": "255,255,255",
-  "debugFunctions|debugSetting.controllers.chiefWorkflow.loadCommandWorkflowsFromPath": false,
+  "debugFunctions|debugSetting.controllers.chiefWorkflow.loadCommandWorkflowsFromPath": true,
   "debugFunctions|debugSetting.controllers.chiefWorkflow.loadCommandWorkflowsFromPath@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.controllers.chiefWorkflow.loadCommandWorkflowsFromPath@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.controllers.chiefWorkflow.loadCommandWorkflowsFromPath@MessageFontStyle": "Default",

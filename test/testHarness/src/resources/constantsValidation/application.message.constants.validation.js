@@ -25,6 +25,18 @@ export const applicationMessageConstantsValidation = [
   // Application Test Harness
   {Name: 'cargumentDrivenInterfaceIs', Actual: app_msg.cargumentDrivenInterfaceIs, Expected: 'argumentDrivenInterface is: '},
 
+  // Messages
+  {Name: 'ccomparisonIterationIs', Actual: app_msg.ccomparisonIterationIs, Expected: 'comparison iteration is: '},
+  {Name: 'cstartingPointIs', Actual: app_msg.cstartingPointIs, Expected: 'startingPoint is: '},
+  {Name: 'cendingPointIs', Actual: app_msg.cendingPointIs, Expected: 'endingPoint is: '},
+  {Name: 'cinputDataDotCharAtJIs', Actual: app_msg.cinputDataDotCharAtJIs, Expected: 'inputData.charAt(j) is: '},
+  {Name: 'cinputDataDotCharAtInputDataDotLengthDash', Actual: app_msg.cinputDataDotCharAtInputDataDotLengthDash, Expected: 'inputData.charAt(inputData.length - '},
+  {Name: 'cCloseParenthesisIs', Actual: app_msg.cCloseParenthesisIs, Expected: ') is: '},
+  {Name: 'cWeGotMismatch', Actual: app_msg.cWeGotMismatch, Expected: 'We got a mismatch!'},
+  {Name: 'cmisCompareCountBeforeIncrementIs', Actual: app_msg.cmisCompareCountBeforeIncrementIs, Expected: 'misCompareCount before increment is: '},
+  {Name: 'cmisCompareCountPostIncrementIs', Actual: app_msg.cmisCompareCountPostIncrementIs, Expected: 'misCompareCount post increment is: '},
+  {Name: 'cmisCompareCountAfterForLoopIs', Actual: app_msg.cmisCompareCountAfterForLoopIs, Expected: 'misCompareCount after the for-loop is: '},
+
   // Constants Validation
   {Name: 'callClientConstantsValidationDataIs', Actual: app_msg.callClientConstantsValidationDataIs, Expected: 'allClientConstantsValidationData is: '},
   {Name: 'cresolvedConstantsPath_ApplicationBusinessIs', Actual: app_msg.cresolvedConstantsPath_ApplicationBusinessIs, Expected: 'resolvedConstantsPath_ApplicationBusiness is: '},

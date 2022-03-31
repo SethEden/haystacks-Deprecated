@@ -1206,7 +1206,7 @@ const parseColorRangeInputs = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = [0,0,0];
-  let minimuColorRange = 0;
+  let minimumColorRange = 0;
   let tempMinimumColorRange = 0;
   let maximumColorRange = 0;
   let tempMaximumColorRange = 0;
