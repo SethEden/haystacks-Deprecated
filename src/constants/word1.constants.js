@@ -1095,6 +1095,7 @@ export const cslash = bas.cs + phn.clash; // slash
 export const cSlash = bas.cS + phn.clash; // Slash
 export const cmeta = bas.cm + phn.ceta; // meta
 export const cMeta = bas.cM + phn.ceta; // Meta
+export const cmetadata = cmeta + cdata; // metadata
 export const cmetaData = cmeta + cData; // metaData
 export const cMetaData = cMeta + cData; // MetaData
 export const cbusiness = bas.cb + phn.cusiness; // business

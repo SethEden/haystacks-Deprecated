@@ -1094,6 +1094,7 @@ export const word1ConstantsValidation = [
   {Name: 'cSlash', Actual: wr1.cSlash, Expected: 'Slash'},
   {Name: 'cmeta', Actual: wr1.cmeta, Expected: 'meta'},
   {Name: 'cMeta', Actual: wr1.cMeta, Expected: 'Meta'},
+  {Name: 'cmetadata', Actual: wr1.cmetadata, Expected: 'metadata'},
   {Name: 'cmetaData', Actual: wr1.cmetaData, Expected: 'metaData'},
   {Name: 'cMetaData', Actual: wr1.cMetaData, Expected: 'MetaData'},
   {Name: 'cbusiness', Actual: wr1.cbusiness, Expected: 'business'},
