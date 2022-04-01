@@ -39,6 +39,7 @@ export const phonicConstantsValidation = [
   {Name: 'cgreen', Actual: phn.cgreen, Expected: 'green'},
   {Name: 'cblue', Actual: phn.cblue, Expected: 'blue'},
   {Name: 'cund', Actual: phn.cund, Expected: 'und'},
+  {Name: 'cUND', Actual: phn.cUND, Expected: 'UND'},
   {Name: 'cundred', Actual: phn.cundred, Expected: 'undred'},
   {Name: 'cand', Actual: phn.cand, Expected: 'and'},
   {Name: 'csand', Actual: phn.csand, Expected: 'sand'},
@@ -262,6 +263,7 @@ export const phonicConstantsValidation = [
   {Name: 'cence', Actual: phn.cence, Expected: 'ence'},
   {Name: 'cain', Actual: phn.cain, Expected: 'ain'},
   {Name: 'ctch', Actual: phn.ctch, Expected: 'tch'},
+  {Name: 'cTCH', Actual: phn.cTCH, Expected: 'TCH'},
   {Name: 'cween', Actual: phn.cween, Expected: 'ween'},
   {Name: 'cord', Actual: phn.cord, Expected: 'ord'},
   {Name: 'cmap', Actual: phn.cmap, Expected: 'map'},
@@ -320,6 +322,7 @@ export const phonicConstantsValidation = [
   {Name: 'cLOY', Actual: phn.cLOY, Expected: 'LOY'},
   {Name: 'cumber', Actual: phn.cumber, Expected: 'umber'},
   {Name: 'ccond', Actual: phn.ccond, Expected: 'cond'},
+  {Name: 'cCond', Actual: phn.cCond, Expected: 'Cond'},
   {Name: 'cieth', Actual: phn.cieth, Expected: 'ieth'},
   {Name: 'ctieth', Actual: phn.ctieth, Expected: 'tieth'},
   {Name: 'cont', Actual: phn.cont, Expected: 'ont'},
@@ -511,6 +514,7 @@ export const phonicConstantsValidation = [
   {Name: 'cific', Actual: phn.cific, Expected: 'ific'},
   {Name: 'csuf', Actual: phn.csuf, Expected: 'suf'},
   {Name: 'cSuf', Actual: phn.cSuf, Expected: 'Suf'},
+  {Name: 'canc', Actual: phn.canc, Expected: 'anc'},
   {Name: 'cance', Actual: phn.cance, Expected: 'ance'},
   {Name: 'cional', Actual: phn.cional, Expected: 'ional'},
   {Name: 'ctional', Actual: phn.ctional, Expected: 'tional'},
@@ -1141,5 +1145,9 @@ export const phonicConstantsValidation = [
   {Name: 'csmu', Actual: phn.csmu, Expected: 'smu'},
   {Name: 'cSmu', Actual: phn.cSmu, Expected: 'Smu'},
   {Name: 'cggl', Actual: phn.cggl, Expected: 'ggl'},
-  {Name: 'city', Actual: phn.city, Expected: 'ity'}
+  {Name: 'city', Actual: phn.city, Expected: 'ity'},
+  {Name: 'cins', Actual: phn.cins, Expected: 'ins'},
+  {Name: 'cIns', Actual: phn.cIns, Expected: 'Ins'},
+  {Name: 'cinst', Actual: phn.cinst, Expected: 'inst'},
+  {Name: 'cInst', Actual: phn.cInst, Expected: 'Inst'}
 ];

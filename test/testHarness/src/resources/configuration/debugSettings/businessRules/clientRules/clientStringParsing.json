@@ -25,7 +25,7 @@
   "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.customEcho@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.customEcho@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.customEcho@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.mostPopularNumber": false,
+  "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.mostPopularNumber": true,
   "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.mostPopularNumber@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.mostPopularNumber@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.testHarness.businessRules.clientRules.clientStringParsing.mostPopularNumber@MessageFontStyle": "Default",

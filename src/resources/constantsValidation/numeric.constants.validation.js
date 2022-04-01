@@ -1112,7 +1112,8 @@ export const numericConstantsValidation = [
   // String Number Values
   {Name: 'cfirst', Actual: num.cfirst, Expected: 'first'},
   {Name: 'cFirst', Actual: num.cFirst, Expected: 'First'},
-  // Second - See below
+  {Name: 'csecond', Actual: num.csecond, Expected: 'second'},
+  {Name: 'cSecond', Actual: num.cSecond, Expected: 'Second'},
   {Name: 'cthird', Actual: num.cthird, Expected: 'third'},
   {Name: 'cThird', Actual: num.cThird, Expected: 'Third'},
   {Name: 'cfourth', Actual: num.cfourth, Expected: 'fourth'},

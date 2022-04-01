@@ -641,6 +641,8 @@ export const messageConstantsVaidation = [
   {Name: 'ccommandAliasGeneratorMessage5', Actual: msg.ccommandAliasGeneratorMessage5, Expected: 'INVALID COMMAND INPUT: Please enter valid command data when trying to call with parameters.'},
   {Name: 'cconstantsGeneratorMessage1', Actual: msg.cconstantsGeneratorMessage1, Expected: 'INVALID INPUT: Please enter a valid constant value that contains more than 4 characters.'},
   {Name: 'cconstantsGeneratorMessage2', Actual: msg.cconstantsGeneratorMessage2, Expected: 'WARNING: The constant has already been defined in the following library(ies): '},
+  {Name: 'cconstantsGeneratorMessage3', Actual: msg.cconstantsGeneratorMessage3, Expected: 'The enableConstantsValidation flag is disabled. '},
+  {Name: 'cconstantsGeneratorMessage4', Actual: msg.cconstantsGeneratorMessage4, Expected: 'Enable this flag in the configuration settings to activate this command.'},
   {Name: 'cconstantsGeneratorListMessage1', Actual: msg.cconstantsGeneratorListMessage1, Expected: 'INVALID INPUT: Please enter a valid constant list.'},
   {Name: 'cvalidateCommandAliasesMessage1', Actual: msg.cvalidateCommandAliasesMessage1, Expected: 'PASSED: All duplicate command aliases validation tests!'},
   {Name: 'cgetCommandArgsMessage1', Actual: msg.cgetCommandArgsMessage1, Expected: 'About to call the rule broker to process on the number of single quotes '},

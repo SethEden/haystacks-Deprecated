@@ -663,6 +663,10 @@ export const ccommandAliasGeneratorMessage5 = wr1.cINVALID + bas.cSpace + wr1.cC
 export const cconstantsGeneratorMessage1 = wr1.cINVALID + bas.cSpace + wr1.cINPUT + bas.cColon + bas.cSpace + wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.cvalue + bas.cSpace + wr1.cthat + bas.cSpace + wr1.ccontains + bas.cSpace + wr1.cmore + bas.cSpace + wr1.cthan + bas.cSpace + num.c4 + bas.cSpace + wr1.ccharacters + bas.cDot;
 // WARNING: The constant has already been defined in the following library(ies):
 export const cconstantsGeneratorMessage2 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.chas + bas.cSpace + wr1.calready + bas.cSpace + wr1.cbeen + bas.cSpace + wr1.cdefined + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cfollowing + bas.cSpace + wr1.clibrary + bas.cOpenParenthesis + phn.cies + bas.cCloseParenthesis + bas.cColon + bas.cSpace;
+// The enableConstantsValidation flag is disabled.
+export const cconstantsGeneratorMessage3 = wr1.cThe + bas.cSpace + wr1.cenable + wr1.cConstants + wr1.cValidation + bas.cSpace + wr1.cflag + bas.cSpace + wr1.cis + bas.cSpace + wr1.cdisabled + bas.cDot + bas.cSpace;
+// Enable this flag in the configuration settings to activate this command.
+export const cconstantsGeneratorMessage4 = wr1.cEnable + bas.cSpace + wr1.cthis + bas.cSpace + wr1.cflag + bas.cSpace + wr1.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconfiguration + bas.cSpace + wr1.csettings + bas.cSpace + wr1.cto + bas.cSpace + wr1.cactivate + bas.cSpace + wr1.cthis + bas.cSpace + wr1.ccommand + bas.cDot;
 // INVALID INPUT: Please enter a valid constant list.
 export const cconstantsGeneratorListMessage1 = wr1.cINVALID + bas.cSpace + wr1.cINPUT + bas.cColon + bas.cSpace + wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.clist + bas.cDot;
 // PASSED: All duplicate command aliases validation tests!

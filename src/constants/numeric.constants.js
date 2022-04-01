@@ -1106,7 +1106,8 @@ export const cTrillion = bas.cTr + phn.cillion; // Trillion
 // String Number Values
 export const cfirst = bas.cfi + bas.crs + bas.ct; // first
 export const cFirst = bas.cFi + bas.crs + bas.ct; // First
-// Second - See below
+export const csecond = bas.cse + phn.ccond; // second
+export const cSecond = bas.cSe + phn.ccond; // Second
 export const cthird = bas.cth + bas.cir + bas.cd; // third
 export const cThird = bas.cTh + bas.cir + bas.cd; // Third
 export const cfourth = cfour + bas.cth; // fourth

@@ -52,59 +52,65 @@ const validateConstants = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  // Get the array of keys and values for all the constants that need to be validated.
-  let validationArray = D[sys.cConstantsValidationData][sys.cConstantsFilePaths]; // This will return an object with all of the key-value pair attributes we need.
-  let phase1FinalResult = true;
-  let phase2FinalResult = true;
-  let phase1Results = {};
-  let phase2Results = {};
-  let phase1ResultsKeysArray = [];
-  let phase2ResultsKeysArray = [];
-  let rulesPhase1 = [];
-  let rulesPhase2 = [];
-  rulesPhase1[0] = biz.cvalidateConstantsDataValidation;
-  rulesPhase2[0] = biz.cvalidateConstantsDataValues;
+  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+    // Get the array of keys and values for all the constants that need to be validated.
+    let validationArray = D[sys.cConstantsValidationData][sys.cConstantsFilePaths]; // This will return an object with all of the key-value pair attributes we need.
+    let phase1FinalResult = true;
+    let phase2FinalResult = true;
+    let phase1Results = {};
+    let phase2Results = {};
+    let phase1ResultsKeysArray = [];
+    let phase2ResultsKeysArray = [];
+    let rulesPhase1 = [];
+    let rulesPhase2 = [];
+    rulesPhase1[0] = biz.cvalidateConstantsDataValidation;
+    rulesPhase2[0] = biz.cvalidateConstantsDataValues;
 
-  // Phase1 Constants Validation
-  // BEGIN Phase 1 Constants Validation
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase1ConstantsValidation);
-  // First scan through each file and vaidate that the constants defined in the constants code file are also contained in the validation file.
-  for (let key1 in validationArray) {
-    let path = validationArray[key1];
-    phase1Results[key1] = ruleBroker.processRules(path, key1, rulesPhase1);
-  }
-  phase1ResultsKeysArray = phase1Results.keys;
-  // END Phase 1 Constants Validation
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase1ConstantsValidation);
-
-  // Phase 2 Constants Validation
-  // BEGIN Phase 2 Constants Validation
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase2ConstantsValidation);
-  // Now verify that the values of the constants are what they are expected to be by using the constants validation data to validate.
-  for (let key2 in validationArray) {
-    phase2Results[key2] = ruleBroker.processRules(key2, '', rulesPhase2);
-  }
-  phase2ResultsKeysArray = phase2Results.keys;
-  // END Phase 2 Constants Vaidation
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase2ConstantsValidation);
-
-  for (let key3 in phase1Results) {
-    loggers.constantsValidationSummaryLog(D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][key3], phase1Results[key3]);
-    if (phase1Results[key3] === false) {
-      phase1FinalResult = false;
+    // Phase1 Constants Validation
+    // BEGIN Phase 1 Constants Validation
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase1ConstantsValidation);
+    // First scan through each file and vaidate that the constants defined in the constants code file are also contained in the validation file.
+    for (let key1 in validationArray) {
+      let path = validationArray[key1];
+      phase1Results[key1] = ruleBroker.processRules(path, key1, rulesPhase1);
     }
-  } // End-for (let key3 in phase1ResultsArray)
+    phase1ResultsKeysArray = phase1Results.keys;
+    // END Phase 1 Constants Validation
+    loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase1ConstantsValidation);
 
-  for (let key4 in phase2Results) {
-    loggers.constantsValidationSummaryLog(D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][key4], phase2Results[key4]);
-    if (phase2Results[key4] === false) {
-      phase2FinalResult = false;
+    // Phase 2 Constants Validation
+    // BEGIN Phase 2 Constants Validation
+    loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase2ConstantsValidation);
+    // Now verify that the values of the constants are what they are expected to be by using the constants validation data to validate.
+    for (let key2 in validationArray) {
+      phase2Results[key2] = ruleBroker.processRules(key2, '', rulesPhase2);
     }
-  }
+    phase2ResultsKeysArray = phase2Results.keys;
+    // END Phase 2 Constants Vaidation
+    loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase2ConstantsValidation);
 
-  if (phase1FinalResult === true && phase2FinalResult === true) {
-    configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, true);
+    for (let key3 in phase1Results) {
+      loggers.constantsValidationSummaryLog(D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][key3], phase1Results[key3]);
+      if (phase1Results[key3] === false) {
+        phase1FinalResult = false;
+      }
+    } // End-for (let key3 in phase1ResultsArray)
+
+    for (let key4 in phase2Results) {
+      loggers.constantsValidationSummaryLog(D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][key4], phase2Results[key4]);
+      if (phase2Results[key4] === false) {
+        phase2FinalResult = false;
+      }
+    }
+
+    if (phase1FinalResult === true && phase2FinalResult === true) {
+      configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, true);
+    } else {
+      configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
+    }
   } else {
+    // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
+    console.log(msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4);
     configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

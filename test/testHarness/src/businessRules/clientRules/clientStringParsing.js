@@ -75,65 +75,65 @@ const mostPopularNumber = function(inputData, inputMetaData) {
   let tempArray1 = [];
   let tempArray2 = [];
 
-  // console.log('BEGIN first for-loop');
+  console.log('BEGIN first for-loop');
   for (i = 0; i <= inputMetaData; i++) {
-    // console.log('BEGIN nested for-loop i = ' + i);
+    console.log('BEGIN nested for-loop i = ' + i);
     for (j = 0; j <= inputMetaData; j++) {
-      // console.log('BEGIN nested for-loop j = ' + j);
+      console.log('BEGIN nested for-loop j = ' + j);
       if (inputData[i] === inputData[j] && i !== j && i !== undefined && i !== null) {
-        // console.log('FOUND a MATCH!!');
-        // console.log('inputData[i] is: ' + JSON.stringify(inputData[i]));
-        // console.log('inputData[j] is: ' + JSON.stringify(inputData[j]));
+        console.log('FOUND a MATCH!!');
+        console.log('inputData[i] is: ' + JSON.stringify(inputData[i]));
+        console.log('inputData[j] is: ' + JSON.stringify(inputData[j]));
         tempArray1[i] = inputData[i];
-        // console.log('contents of tempArray1 are: ' + JSON.stringify(tempArray1));
+        console.log('contents of tempArray1 are: ' + JSON.stringify(tempArray1));
       } // End-if (inputData[i] === inputData[j] && i !== j && i !== undefined && i !== null)
-      // console.log('END nested for-loop j = ' + j);
+      console.log('END nested for-loop j = ' + j);
     } // End-for (j = 0; j <= inputMetaData; j++)
-    // console.log('END nested for-loop i = ' + i);
+    console.log('END nested for-loop i = ' + i);
   } // End-for (i = 0; i <= inputMetaData; i++)
-  // console.log('END first for-loop');
+  console.log('END first for-loop');
 
-  // console.log('BEGIN second for-loop');
+  console.log('BEGIN second for-loop');
   for (i = 0; i <= tempArray1.length; i++) {
-    // console.log('BEGIN nested for-loop i = ' + i);
+    console.log('BEGIN nested for-loop i = ' + i);
     for (j = 0; j <= tempArray1.length; j++) {
-      // console.log('BEGIN iteration j = ' + j);
+      console.log('BEGIN iteration j = ' + j);
       if (tempArray1[i] === inputData[j] && tempArray1[i] !== undefined && tempArray1[i] !== null && i !== j) {
-        // console.log('FOUND a MATCH!!');
-        // console.log('tempArray1[i] is: ' + JSON.stringify(tempArray1[i]));
-        // console.log('inputData[j] is ' + JSON.stringify(inputData[j]));
-        // console.log('instanceCounter before increment is: ' instanceCounter);
+        console.log('FOUND a MATCH!!');
+        console.log('tempArray1[i] is: ' + JSON.stringify(tempArray1[i]));
+        console.log('inputData[j] is ' + JSON.stringify(inputData[j]));
+        console.log('instanceCounter before increment is: ' + instanceCounter);
         tempArray2[i] = ++instanceCounter;
-        // console.log('instanceCounter after increment is: ' + instanceCounter);
-        // console.log('contents of tempArray2 are: ' + JSON.stringify(tempArray2));
+        console.log('instanceCounter after increment is: ' + instanceCounter);
+        console.log('contents of tempArray2 are: ' + JSON.stringify(tempArray2));
       } // End-if (tempArray1[i] === inputData[j] && tempArray1[i] !== undefined && tempArray1[i] !== null && i !== j)
-      // console.log('END iteration j = ' + j);
+      console.log('END iteration j = ' + j);
     } // End-for (j = 0; j <= tempArray1.length; j++)
-    // console.log('END nested for-loop i = ' + i);
+    console.log('END nested for-loop i = ' + i);
   } // End-for (i = 0; i <= tempArray1.length; i++)
-  // console.log('END second for-loop');
+  console.log('END second for-loop');
 
-  // console.log('BEGIN third for-loop');
-  // console.log('tempArray2.length is: ' + tempArray2.length);
+  console.log('BEGIN third for-loop');
+  console.log('tempArray2.length is: ' + tempArray2.length);
   for (i = 0; i <= tempArray2.length; i++) {
-    // console.log('BEGIN iteration i = ' + i);
+    console.log('BEGIN iteration i = ' + i);
     if (tempArray2[i] !== 0 && i === 0) {
-      // console.log('if-condition i = 0 has been met! i = ' + i);
+      console.log('if-condition i = 0 has been met! i = ' + i);
       returnData = inputData[i];
     } else {
-      // console.log('if-condition-else i <> 0 has been met! i = ' + i);
+      console.log('if-condition-else i <> 0 has been met! i = ' + i);
       if (tempArray2[i] > returnData) {
-        // console.log('found one greater');
-        // console.log('tempArray2[i] is: ' + JSON.stringify(tempArray2[i]));
-        // console.log('tempArray2[i - 1] is: ' + JSON.stringify(tempArray2[i - 1]));
+        console.log('found one greater');
+        console.log('tempArray2[i] is: ' + JSON.stringify(tempArray2[i]));
+        console.log('tempArray2[i - 1] is: ' + JSON.stringify(tempArray2[i - 1]));
         returnData = inputData[i];
-        // console.log('returnData is: ' + returnData);
+        console.log('returnData is: ' + returnData);
       } // End-if (tempArray2[i] > returnData)
     }
     i += 1;
-    // console.log('END iteration i = ' + i);
+    console.log('END iteration i = ' + i);
   } // End-for (i = 0; i <= tempArray2.length; i++)
-  // console.log('END third for-loop');
+  console.log('END third for-loop');
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
