@@ -7,4 +7,10 @@
   <Workflow Name="bossPanicWorkflow4" Value="bossPanic 400 200 30 25"/>
   <Workflow Name="bossPanicWorkflow5" Value="bossPanic 0 200 30 5 True"/>
   <Workflow Name="bossPanicWorkflow6" Value="bossPanic 0 200 30 5 True 25"/>
+  <Workflow Name="mostPopularNumber" Value="businessRule mostPopularNumber 1 2 2 3 4 5 2"/>
+  <Workflow Name="isAlmostPalindrome" Value="businessRule isAlmostPalindrome annae"/>
+  <Workflow Name="threePointAverage" Value="businessRule threePointAverage [1,1] [2,2] [3,3]"/>
+  <Workflow Name="arrayCounter" Value="businessRule arrayCounter 3 [1,2,3,3,2]"/>
+  <Workflow Name="allClientBusinessRules" Value="commandSequencer workflow,mostPopularNumber workflow,isAlmostPalindrome workflow,threePointAverage workflow,arrayCounter"/>
+  <Workflow Name="allClientAndFrameworkBusinessRules" Value="commandSequencer workflow,stringParsingCharacterAndStringGeneration workflow,allClientBusinessRules"/>
 </CommandWorkflows>
