@@ -132,7 +132,7 @@ function analyzeArgument(argumentValue) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cBracketsWereFound);
       // Check if there is a Regular Expression or not.
       loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereIsRegularExpressionOrNot);
-      if (analyzeForRegularExpression(argumenValue) === true) {
+      if (analyzeForRegularExpression(argumentValue) === true) {
         // A regular expression was found!
         loggers.consoleLog(namespacePrefix + functionName, msg.cRegularExpressionWasFound);
         returnData = parseArgumentAsRegularExpression(argumentValue);
