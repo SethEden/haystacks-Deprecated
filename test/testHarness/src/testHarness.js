@@ -86,7 +86,7 @@ function bootstrapApplication() {
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
       clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
-      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsValidationData,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -99,7 +99,7 @@ function bootstrapApplication() {
       clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
       clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
-      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsValidationData,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -114,7 +114,7 @@ function bootstrapApplication() {
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
       clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
-      applicationConstantsValidationData: allAppCV.initiaizeAllClientConstantsValidationData,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };

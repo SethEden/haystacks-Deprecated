@@ -15,5 +15,4 @@ import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let wr1 = haystacks.wr1;
 
-// export const ccustomEchoCommand = wr1.ccustom + wr1.cEcho + wr1.cCommand; // customEchoCommand
 export const cargumentDrivenInterface = wr1.cargument + wr1.cDriven + wr1.cInterface; // argumentDrivenInterface

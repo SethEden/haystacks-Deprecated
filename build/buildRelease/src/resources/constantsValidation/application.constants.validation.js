@@ -2,9 +2,8 @@
  * @file application.constants.validation.js
  * @module application.constants.validation
  * @description Contains all validations for named application constants.
- * @requires module:application-constants
- * @author Seth Hollingsead
- * @date 2022/03/22
+ * @requires odule:application-constants
+ * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -16,10 +15,10 @@ import * as apc from '../../constants/application.constants.js';
  * @description Initializes the application constants validation data objects array.
  * @return {void}
  * @author Seth Hollingsead
- * @date 2022/03/22
+ * @date 2022/04/05
  */
 export const applicationConstantsValidation = [
-  {Name: 'cApplicationName', Actual: apc.cApplicationName, Expected: 'testHarness'},
+  {Name: 'cApplicationName', Actual: apc.cApplicationName, Expected: 'buildRelease'},
   {Name: 'cAppDevPath', Actual: apc.cAppDevPath, Expected: '/src/'},
   {Name: 'cAppProdPath', Actual: apc.cAppProdPath, Expected: '/bin/'},
   {Name: 'cResourcesCommonPath', Actual: apc.cResourcesCommonPath, Expected: 'resources/'},
@@ -28,6 +27,7 @@ export const applicationConstantsValidation = [
   {Name: 'cConfigurationCommonPath', Actual: apc.cConfigurationCommonPath, Expected: 'configuration/'},
   {Name: 'cWorkflowsCommonPath', Actual: apc.cWorkflowsCommonPath, Expected: 'workflows/'},
   {Name: 'cReleasePath', Actual: apc.cReleasePath, Expected: 'release/'},
+  {Name: 'cForwardSlashPackageDotJson', Actual: apc.cForwardSlashPackageDotJson, Expected: '/package.json'},
 
   // Full Dev Paths
   {Name: 'cFullDevResourcesPath', Actual: apc.cFullDevResourcesPath, Expected: '/src/resources/'},

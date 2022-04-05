@@ -3,12 +3,12 @@
  * @module application.system.constants
  * @description A file to hold all of the client application system constants.
  * So none of the constants in this file should be generic/system/framework constants.
- * @requires module:haystacks
+ * @require module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.generic.constants
  * @requires module:haystacks.word1.constants
  * @author Seth Hollingsead
- * @date 2022/03/23
+ * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -29,10 +29,10 @@ export const capplicationMessageConstantsValidation = wr1.capplication + wr1.cMe
 export const capplicationSystemConstantsValidation = wr1.capplication + wr1.cSystem + wr1.cConstants + wr1.cValidation; // applicationSystemConstantsValidation
 
 // Filenames
-export const capplication_business_constants_js = wr1.capplication + bas.cDot + wr1.cbusiness + bas.cDot + wr1.cconstants + gen.cDotjs; // application.business.constants.js
+export const capplication_business_constants_js = wr1.capplication + bas.cDot + wr1.cbusiness + bas.cDot + wr1.cconstants + gen.cDotjs; // application.busienss.constants.js
 export const capplication_command_constants_js = wr1.capplication + bas.cDot + wr1.ccommand + bas.cDot + wr1.cconstants + gen.cDotjs; // application.command.constants.js
 export const capplication_configuration_constants_js = wr1.capplication + bas.cDot + wr1.cconfiguration + bas.cDot + wr1.cconstants + gen.cDotjs; // application.configuration.constants.js
 export const capplication_constants_js = wr1.capplication + bas.cDot + wr1.cconstants + gen.cDotjs; // application.constants.js
 export const capplication_function_constants_js = wr1.capplication + bas.cDot + wr1.cfunction + bas.cDot + wr1.cconstants + gen.cDotjs; // application.function.constants.js
 export const capplication_message_constants_js = wr1.capplication + bas.cDot + wr1.cmessage + bas.cDot + wr1.cconstants + gen.cDotjs; // application.message.constants.js
-export const capplication_system_constants_js = wr1.capplication + bas.cDot + wr1.csystem + bas.cDot + wr1.cconstants + gen.cDotjs; // application.system.constants.js;
+export const capplication_system_constants_js = wr1.capplication + bas.cDot + wr1.csystem + bas.cDot + wr1.cconstants + gen.cDotjs; // application.system.constants.js

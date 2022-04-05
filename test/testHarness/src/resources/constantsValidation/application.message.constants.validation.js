@@ -1,7 +1,7 @@
 /**
  * @file application.message.constants.validation.js
  * @module application.message.constants.validation
- * @description Contains all validations for named appication message constants.
+ * @description Contains all validations for named application message constants.
  * @requires module:application.message.constants
  * @author Seth Hollingsead
  * @date 2022/03/22

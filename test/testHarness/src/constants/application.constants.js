@@ -32,7 +32,7 @@ export const cReleasePath = wr1.crelease + bas.cForwardSlash; // release/
 // Full Dev paths
 export const cFullDevResourcesPath = cAppDevPath + cResourcesCommonPath; // /src/resources/
 export const cFullDevCommandsPath = cFullDevResourcesPath + cCommandsCommonPath; // /src/resources/commands/
-export const cFullDevConstantsPath = cAppDevPath + cConstantsPath // /src/constants/
+export const cFullDevConstantsPath = cAppDevPath + cConstantsPath; // /src/constants/
 export const cFullDevConfigurationPath = cFullDevResourcesPath + cConfigurationCommonPath; // /src/resources/configuration/
 export const cFullDevWorkflowsPath = cFullDevResourcesPath + cWorkflowsCommonPath; // /src/resources/workflows/
 export const cmetaDataDevPath = cFullDevResourcesPath + sys.cmetaDatadotJson; // /src/resources/metaData.json
@@ -40,7 +40,7 @@ export const cmetaDataDevPath = cFullDevResourcesPath + sys.cmetaDatadotJson; //
 // Full Prod paths
 export const cFullProdResourcesPath = cAppProdPath + cResourcesCommonPath; // /bin/resources/
 export const cFullProdCommandsPath = cFullProdResourcesPath + cCommandsCommonPath; // /bin/resources/commands/
-export const cFullProdConstantsPath = cAppProdPath + cConstantsPath // /bin/constants/
+export const cFullProdConstantsPath = cAppProdPath + cConstantsPath; // /bin/constants/
 export const cFullProdConfigurationPath = cFullProdResourcesPath + cConfigurationCommonPath; // /bin/resources/configuration/
 export const cFullProdWorkflowsPath = cFullProdResourcesPath + cWorkflowsCommonPath; // /bin/resources/workflows/
 export const cmetaDataProdPath = cFullProdResourcesPath + sys.cmetaDatadotJson; // /bin/resources/metaData.json

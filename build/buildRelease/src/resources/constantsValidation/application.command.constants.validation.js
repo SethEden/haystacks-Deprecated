@@ -4,7 +4,7 @@
  * @description Contains all validations for named application command constants.
  * @requires module:application.command.constants
  * @author Seth Hollingsead
- * @date 2022/03/22
+ * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -16,12 +16,18 @@ import * as app_cmd from '../../constants/application.command.constants.js';
  * @description Initializes the application command constants validation data objects array.
  * @return {void}
  * @author Seth Hollingsead
- * @date 2022/03/22
+ * @date 2022/04/05
  */
 export const applicationCommandConstantsValidation = [
   // ********************************
   // Client Commands in order
   // ********************************
   {Name: 'ccustomEchoCommand', Actual: app_cmd.ccustomEchoCommand, Expected: 'customEchoCommand'},
-  {Name: 'cbossPanic', Actual: app_cmd.cbossPanic, Expected: 'bossPanic'}
+  {Name: 'cdeployMetaData', Actual: app_cmd.cdeployMetaData, Expected: 'deployMetaData'},
+
+  // ********************************
+  // Client Workflows in order
+  // ********************************
+  {Name: 'cBuildWorkflow', Actual: app_cmd.cBuildWorkflow, Expected: 'Workflow build'},
+  {Name: 'cReleaseWorkflow', Actual: app_cmd.cReleaseWorkflow, Expected: 'Workflow release'}
 ];

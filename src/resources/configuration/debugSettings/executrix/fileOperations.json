@@ -51,7 +51,7 @@
   "debugFunctions|debugSetting.executrix.fileOperations.getJsonData@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.executrix.fileOperations.getJsonData@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.executrix.fileOperations.getJsonData@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData": true,
+  "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData": false,
   "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.executrix.fileOperations.writeJsonData@MessageFontStyle": "Default",

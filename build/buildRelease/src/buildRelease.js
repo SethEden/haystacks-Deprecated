@@ -12,6 +12,7 @@
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
+ * @requires module:allApplicationConstantsValidationMetadata
  * @requires module:haystacks
  * @requires module:haystacks.constants.basic
  * @requires module:haystacks.constants.configuration
@@ -36,6 +37,7 @@ import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
+import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
 import haystacks from 'haystacks';
 // const {bas, cfg, } = haystacks;
@@ -49,14 +51,9 @@ let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 import url from 'url';
 import dotenv from 'dotenv';
-import fs from 'fs';
 import path from 'path';
 
-let clientRootPath = '';
-let frameworkRootPath = '';
-let appName = '';
-let appVersion = '';
-let appDescription = '';
+let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.
 let namespacePrefix = baseFileName + bas.cDot;
@@ -66,7 +63,7 @@ const {NODE_ENV} = process.env;
 
 /**
  * @function bootStrapApplication
- * @description Setup all the testHarness appication data and configruation settings.
+ * @description Setup all the buildRelease application data and configruation settings.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/13
@@ -74,34 +71,34 @@ const {NODE_ENV} = process.env;
 function bootStrapApplication() {
   let functionName = bootStrapApplication.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  clientRootPath = url.fileURLToPath(path.dirname(import.meta.url));
-  let rootPathArray = clientRootPath.split(bas.cBackSlash);
+  rootPath = url.fileURLToPath(path.dirname(import.meta.url));
+  let rootPathArray = rootPath.split(bas.cBackSlash);
   rootPathArray.pop(); // remove any bin or src folder from the path.
-  clientRootPath = rootPathArray.join(bas.cBackSlash);
-  // rootPathArray.pop();
-  // rootPathArray.pop();
-  // frameworkRootPath = rootPathArray.join(bas.cBackSlash);
-  // console.log('frameworkRootPath is: ' + frameworkRootPath);
+  rootPath = rootPathArray.join(bas.cBackSlash);
   let appConfig = {};
   if (NODE_ENV === wr1.cdevelopment) {
     appConfig = {
-      clientRootPath: clientRootPath,
-      appConfigResourcesPath: clientRootPath + apc.cFullDevResourcesPath,
-      appConfigReferencePath: clientRootPath + apc.cFullDevConfigurationPath,
+      clientRootPath: rootPath,
+      appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
+      appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
-      clientCommandAliasesPath: clientRootPath + apc.cFullDevCommandsPath,
-      clientWorkflowsPath: clientRootPath + apc.cFullDevWorkflowsPath,
+      clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
+      clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
   } else if (NODE_ENV === wr1.cproduction) {
     appConfig = {
-      clientRootPath: clientRootPath,
-      appConfigResouresPath: clientRootPath + apc.cFullProdResourcesPath,
-      appConfigReferencePath: clientRootPath + apc.cFullProdConfigurationPath,
+      clientRootPath: rootPath,
+      appConfigResouresPath: rootPath + apc.cFullProdResourcesPath,
+      appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
       clientMetaDataPath: apc.cmetaDataProdPath,
-      clientCommandAliasesPath: clientRootPath + apc.cFullProdCommandsPath,
-      clientWorkflowsPath: clientRootPath + apc.cFullProdWorkflowsPath,
+      clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
+      clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
+      applicaitonConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
@@ -109,17 +106,18 @@ function bootStrapApplication() {
     // WARNING: NO .env file found! Going to defalt to the DEVELOPMENT ENVIRONMENT!
     console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
     appConfig = {
-      clientRootPath: clientRootPath,
-      appConfigResourcesPath: clientRootPath + apc.cFullDevResourcesPath,
-      appConfigReferencePath: clientRootPath + apc.cFullDevConfigurationPath,
+      clientRootPath: rootPath,
+      appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
+      appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
-      clientCommandAliasesPath: clientRootPath + apc.cFullDevCommandsPath,
-      clientWorkflowsPath: clientRootPath + apc.cFullDevWorkflowsPath,
+      clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
+      clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
   }
-  // console.log('appConfig is: ' + JSON.stringify(appConfig));
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
@@ -152,7 +150,7 @@ function deployApplication() {
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
-    // haystacks.enqueueCommand(cmd.cbuildWorkflow);
+    haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
     let commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
       commandResult = true;
@@ -161,9 +159,9 @@ function deployApplication() {
     let deploymentResult = haystacks.getConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted);
     if (deploymentResult) {
       // Deployment was completed:
-      console.log(msg.cBuildMessage1 + deploymentResult);
+      console.log(app_msg.cBuildMessage1 + deploymentResult);
     } else {
-      console.log(msg.cBuildMessage1 + gen.cFalse);
+      console.log(app_msg.cBuildMessage1 + gen.cFalse);
       haystacks.setConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted, false);
     }
   } catch (err) {

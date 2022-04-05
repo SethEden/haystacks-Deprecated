@@ -4,7 +4,6 @@
  * @description Contains all validation data for all client application constants.
  * @requires module:application.constants
  * @requires module:application.message.constants
- * @requires module:application.system.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.configuration.constants
@@ -14,7 +13,7 @@
  * @requires module:haystacks.word1.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
- * @date 2022/03/22
+ * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -41,7 +40,7 @@ let wr1 = haystacks.wr1;
 import path from 'path';
 
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// testHarness.resources.constantsVaidation.allApplicationConstantsValidation.
+// buildRelease.resources.constantsVaidation.allApplicationConstantsValidation.
 let namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cresources + bas.cDot + wr1.cconstants + wr1.cValidation + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -49,7 +48,7 @@ let namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cresources + bas.cDo
  * @description Initializes all of the client constants validation data so that it can be used to validate all of the constants.
  * @return {void}
  * @author Seth Hollingsead
- * @date 2022/03/23
+ * @date 2022/04/05
  */
 function initializeAllClientConstantsValidationData() {
   let functionName = initializeAllClientConstantsValidationData.name;
@@ -83,7 +82,7 @@ function initializeAllClientConstantsValidationData() {
   allClientConstantsValidationData[sys.cConstantsValidationData][app_sys.capplicationSystemConstantsValidation] = app_sys_cv.applicationSystemConstantsValidation;
 
   // Setup all the paths to the constants files.
-  let resolvedConstantsPath_ApplicationBusiness = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_business_constants_js);
+  let resolvedConstantsPath_ApplicationBusienss = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_business_constants_js);
   let resolvedConstantsPath_ApplicationCommand = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_command_constants_js);
   let resolvedConstantsPath_ApplicationConfiguration = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_configuration_constants_js);
   let resolvedConstantsPath_ApplicationConstant = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_constants_js);
@@ -91,8 +90,8 @@ function initializeAllClientConstantsValidationData() {
   let resolvedConstantsPath_ApplicationMessage = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_message_constants_js);
   let resolvedConstantsPath_ApplicationSystem = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_system_constants_js);
 
-  // resolvedConstantsPath_ApplicationBusiness is:
-  haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationBusinessIs + resolvedConstantsPath_ApplicationBusiness);
+  // resolvedConstantsPath_ApplicationBusienss is:
+  haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationBusinessIs + resolvedConstantsPath_ApplicationBusienss);
   // resolvedConstantsPath_ApplicationCommand is:
   haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationCommandIs + resolvedConstantsPath_ApplicationCommand);
   // resolvedConstantsPath_ApplicationConfiguration is:
@@ -106,7 +105,7 @@ function initializeAllClientConstantsValidationData() {
   // resolvedConstantsPath_ApplicationSystem is:
   haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationSystemIs + resolvedConstantsPath_ApplicationSystem);
 
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationBusinessConstantsValidation] = resolvedConstantsPath_ApplicationBusiness;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationBusinessConstantsValidation] = resolvedConstantsPath_ApplicationBusienss;
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationCommandConstantsValidation] = resolvedConstantsPath_ApplicationCommand;
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationConfigurationConstantsValidation] = resolvedConstantsPath_ApplicationConfiguration;
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationConstantsValidation] = resolvedConstantsPath_ApplicationConstant;
@@ -115,32 +114,32 @@ function initializeAllClientConstantsValidationData() {
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationSystemConstantsValidation] = resolvedConstantsPath_ApplicationSystem;
 
   // Application Business Constants Phase 1 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusinessConstantsPhase1Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusienssConstantsPhase1Validation;
   // Application Command Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationCommandConstantsValidation] = app_msg.cApplicationCommandConstantsPhase1Validation;
   // Application Configuration Constants Phase 1 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationConfigurationConstantsValidation] = app_msg.cApplicationConfigurationConstantsPhase1Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationConfigurationConstantsVaidation] = app_msg.cApplicationConfigurationConstantsPhase1Validation;
   // Application Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationConstantsValidation] = app_msg.cApplicationConstantsPhase1Validation;
   // Application Function Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationFunctionConstantsValidation] = app_msg.cApplicationFunctionConstantsPhase1Validation;
   // Application Message Constants Phase 1 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationMessageConstantsValidation] = app_msg.cApplicationMessageConstantsPhase1Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationMessageConstantsVaidation] = app_msg.cApplicationMessageConstantsPhase1Validation;
   // Application System Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationSystemConstantsValidation] = app_msg.cApplicationSystemConstantsPhase1Validation;
 
   // Application Business Constants Phase 2 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusinessConstantsPhase2Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusienssConstantsPhase2Validation;
   // Application Command Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationCommandConstantsValidation] = app_msg.cApplicationCommandConstantsPhase2Validation;
   // Application Configuration Constants Phase 2 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationConfigurationConstantsValidation] = app_msg.cApplicationConfigurationConstantsPhase2Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationConfigurationConstantsVaidation] = app_msg.cApplicationConfigurationConstantsPhase2Validation;
   // Application Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationConstantsValidation] = app_msg.cApplicationConstantsPhase2Validation;
   // Application Function Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationFunctionConstantsValidation] = app_msg.cApplicationFunctionConstantsPhase2Validation;
   // Application Message Constants Phase 2 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationMessageConstantsValidation] = app_msg.cApplicationMessageConstantsPhase2Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationMessageConstantsVaidation] = app_msg.cApplicationMessageConstantsPhase2Validation;
   // Application System Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationSystemConstantsValidation] = app_msg.cApplicationSystemConstantsPhase2Validation;
 

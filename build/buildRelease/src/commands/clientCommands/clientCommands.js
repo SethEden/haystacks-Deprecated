@@ -21,6 +21,7 @@
 
 // Internal imports
 import * as apc from '../../constants/application.constants.js';
+import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
@@ -54,7 +55,7 @@ const customEchoCommand = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
-  returnData = inputData + ' clientStringParsing.customEchoCommand';
+  returnData = inputData + app_msg.cclientStringParsingDotCustomEcho;
   console.log(returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
@@ -82,7 +83,6 @@ const deployMetaData = function(inputData, inputMetaData) {
   let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
-  console.log('frameworkMetaDataPathAndFilename is: ' + frameworkMetaDataPathAndFilename);
   let frameworkMetaData = haystacks.executeBusinessRule(biz.cloadDataFile, frameworkMetaDataPathAndFilename, false);
   let frameworkName = frameworkMetaData[wr1.cname];
   let frameworkVersion = frameworkMetaData[wr1.cversion];

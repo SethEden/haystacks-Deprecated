@@ -3,7 +3,7 @@
  * @module application.business.constants
  * @description A file to hold all of the client application business rules constants.
  * So none of the constants in this file should be generic/system/framework constants.
- * @requires module haystacks
+ * @requires module:haystacks
  * @requires module:haystacks.generic.constants
  * @requires module:haystacks.numeric.constants
  * @requires module:haystacks.word1.constants

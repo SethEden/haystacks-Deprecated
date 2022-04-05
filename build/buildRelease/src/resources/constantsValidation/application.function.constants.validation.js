@@ -4,7 +4,7 @@
  * @description Contains all validations for named function constants.
  * @requires module:application.function.constants
  * @author Seth Hollingsead
- * @date 2022/03/22
+ * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
@@ -15,8 +15,8 @@ import * as app_fnc from '../../constants/application.function.constants.js';
  * @function applicationFunctionConstantsValidation
  * @description Initializes the application function constants validation data objects array.
  * @return {void}
- * @autor Seth Hollingsead
- * @date 2022/03/22
+ * @author Seth Hollingsead
+ * @date 2022/04/05
  */
 export const applicationFunctionConstantsValidation = [
   // rulesLibrary
