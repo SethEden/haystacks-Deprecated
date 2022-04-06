@@ -104,7 +104,6 @@ const deployMetaData = function(inputData, inputMetaData) {
   // metaDataOutput is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
   haystacks.executeBusinessRule(biz.csaveDataFile, metaDataPathAndFilename, metaDataOutput);
-
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
@@ -126,8 +125,9 @@ const deployApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  if (haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation) === true &&
-  haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks) === true) {
+  let passAllConstantsValidation = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation);
+  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
+  if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
     // DEPLOY APPLICATION
     console.log(msg.cDEPLOY_APPLICATION);
     let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)
@@ -137,10 +137,22 @@ const deployApplication = function(inputData, inputMetaData) {
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-
+    let deploymentStatus = haystacks.executeBusinessRule(biz.ccopyAllFilesAndFoldersFromFolderToFolder, [sourcePath, destinationPath], [[gen.cDotenv, gen.cDotjs],[gen.cDotjson]]);
+    if (deploymentStatus === true) {
+      haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentWasCompleted + true);
+      haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, true);
+    } else {
+      haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentFailed);
+    }
   } else {
-    console.log(app_msg.cERROR_DeploymentFailedValidationError);
-    console.log(app_msg.cDeploymentFailureFix);
+    if (passAllConstantsValidation === false) {
+      // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another deployment.
+      console.log(msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a);
+    }
+    if (passAllCommandAliasesDuplicateChecks === false) {
+      // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
+      console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
+    }
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);

@@ -26,8 +26,13 @@ export const applicationMessageConstantsValidation = [
   {Name: 'cBuildMessage1', Actual: app_msg.cBuildMessage1, Expected: 'Deployment was completed: '},
   {Name: 'csourcePathIs', Actual: app_msg.csourcePathIs, Expected: 'sourcePath is: '},
   {Name: 'cdestinationPathIs', Actual: app_msg.cdestinationPathIs, Expected: 'destinationPath is: '},
-  {Name: 'cERROR_DeploymentFailedValidationError', Actual: app_msg.cERROR_DeploymentFailedValidationError, Expected: 'ERROR: Deployment failed because of validation failures.'},
-  {Name: 'cDeploymentFailureFix', Actual: app_msg.cDeploymentFailureFix, Expected: 'Fix the validation errors to re-enable the deployment process. '},
+  {Name: 'cDeploymentWasCompleted', Actual: app_msg.cDeploymentWasCompleted, Expected: 'Deployment was completed: '},
+  {Name: 'cDeploymentFailed', Actual: app_msg.cDeploymentFailed, Expected: 'Deployment failed'},
+  // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another deployment.
+  {Name: 'cdeployApplicationMessage1a', Actual: app_msg.cdeployApplicationMessage1a, Expected: 'ERROR: Release failed because of a failure in the constants validation system. '},
+  {Name: 'cdeployApplicationMessage2a', Actual: app_msg.cdeployApplicationMessage2a, Expected: 'Please fix ASAP before attempting another deployment.'},
+  // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
+  {Name: 'cdeployApplicationMessage1b', Actual: app_msg.cdeployApplicationMessage1b, Expected: 'ERROR: Release failed because of a failure in the commands alias validation system. '},
 
   // Constants Validation
   {Name: 'callClientConstantsValidationDataIs', Actual: app_msg.callClientConstantsValidationDataIs, Expected: 'allClientConstantsValidationData is: '},

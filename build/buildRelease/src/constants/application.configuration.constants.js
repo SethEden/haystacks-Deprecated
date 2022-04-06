@@ -18,3 +18,4 @@ let wr1 = haystacks.wr1;
 export const cargumentDrivenInterface = wr1.cargument + wr1.cDriven + wr1.cInterface; // argumentDrivenInterface
 export const csourceResourcesPath = wr1.csource + wr1.cResources + wr1.cPath; // sourceResourcesPath
 export const cdestinationResourcesPath = wr1.cdestination + wr1.cResources + wr1.cPath; // destinationResourcesPath
+export const cdeploymentCompleted = wr1.cdeployment + wr1.cCompleted; // deploymentCompleted

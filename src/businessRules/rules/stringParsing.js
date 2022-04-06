@@ -2123,6 +2123,40 @@ const supportedFileFormatsAre = function(inputData, inputMetaData) {
 };
 
 /**
+ * @function copyAllFilesAndFoldersFromFolderToFolder
+ * @description This is the wrapper for the fileOperations function of the same name.
+ * Copies all of the files and folders recursively from the source folder to the destination folder.
+ * Takes a second array of file filters that should be avoided.
+ * Example: [source, destination], [metaData.json, .js]
+ * @param {array<string>} inputData An array containing the source and destination paths.
+ * Example:
+ * inputData[0] = source path
+ * inputData[1] = destination path
+ * @param {array<array<string>>} inputMetaData two array's of strings that are exclusions and inclusions file filters,
+ * that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+ * Example:
+ * inputMetaData[0] = exclusionArray
+ * inputMetaData[1] = inclusionArray
+ * @return {boolean} A True or False to indicate if the full copy process is successful or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/06
+ * @NOTE This is mainly used by the build system to execute a copy process for the
+ * non-code fils from the source folder to the bin folder.
+ * It could also be used by a self-installer system, to copy code from an execution path to an installed path.
+ */
+const copyAllFilesAndFoldersFromFolderToFolder = function(inputData, inputMetaData) {
+  let functionName = copyAllFilesAndFoldersFromFolderToFolder.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  returnData = fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
  * @function getAttributeName
  * @description Takes a string representation of a JSON attribute and gets the name (left hand assignment key).
  * @param {string} inputData Teh string representation of the JSON attribute that should be parsed.
@@ -2295,6 +2329,7 @@ export default {
   loadDataFile,
   saveDataFile,
   supportedFileFormatsAre,
+  copyAllFilesAndFoldersFromFolderToFolder,
   getAttributeName,
   getAttributeValue,
   cleanCommandInput,

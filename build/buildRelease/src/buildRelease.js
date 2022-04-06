@@ -145,7 +145,7 @@ function deployApplication() {
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
     haystacks.setConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
-    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath, apc.cFullProdResourcesPath);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath, apc.cAppProdPath);
     // NOTE: We could use a similar process to deploy an application that is based on the haystacks framework.
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
@@ -157,18 +157,18 @@ function deployApplication() {
       commandResult = true;
       commandResult = haystacks.processCommandQueue();
     }
-    let deploymentResult = haystacks.getConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted);
+    let deploymentResult = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted);
     if (deploymentResult) {
       // Deployment was completed:
       console.log(app_msg.cBuildMessage1 + deploymentResult);
     } else {
       console.log(app_msg.cBuildMessage1 + gen.cFalse);
-      haystacks.setConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted, false);
+      haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, false);
     }
   } catch (err) {
     console.error(err);
     // deploymentCompleted
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cdeploymentCompleted, false);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, false);
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
 };

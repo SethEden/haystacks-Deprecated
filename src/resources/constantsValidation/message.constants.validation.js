@@ -187,8 +187,6 @@ export const messageConstantsVaidation = [
   {Name: 'creplacementIs', Actual: msg.creplacementIs, Expected: 'replacement is: '},
   {Name: 'cDEPLOY_APPLICATION', Actual: msg.cDEPLOY_APPLICATION, Expected: 'DEPLOY_APPLICATION'},
   {Name: 'cRELEASE_APPLICATION', Actual: msg.cRELEASE_APPLICATION, Expected: 'RELEASE_APPLICATION'},
-  {Name: 'cDeploymentWasCompleted', Actual: msg.cDeploymentWasCompleted, Expected: 'Deployment was completed: '},
-  {Name: 'cDeploymentFailed', Actual: msg.cDeploymentFailed, Expected: 'Deployment failed'},
   {Name: 'cReleaseFailed', Actual: msg.cReleaseFailed, Expected: 'Release failed'},
   {Name: 'caggregateCommandStringIs', Actual: msg.caggregateCommandStringIs, Expected: 'aggregateCommandString is: '},
   {Name: 'cmetaDataParametersIs', Actual: msg.cmetaDataParametersIs, Expected: 'metaDataParameters is: '},
@@ -561,6 +559,9 @@ export const messageConstantsVaidation = [
   {Name: 'capplicationConstantsValidationDataIs', Actual: msg.capplicationConstantsValidationDataIs, Expected: 'applicationConstantsValidationData is: '},
   {Name: 'cActualColonDoublePercent', Actual: msg.cActualColonDoublePercent, Expected: '"Actual": "%%",'},
   {Name: 'callCommandWorkflowsDataIs', Actual: msg.callCommandWorkflowsDataIs, Expected: 'allCommandWorkflowsData is: '},
+  {Name: 'csourceDestinationArrayIs', Actual: msg.csourceDestinationArrayIs, Expected: 'sourceDestinationArray is: '},
+  {Name: 'cfilterArrayIs', Actual: msg.cfilterArrayIs, Expected: 'filterArray is: '},
+  {Name: 'csuccessfulCopyIs', Actual: msg.csuccessfulCopyIs, Expected: 'successfulCopy is: '},
 
   {Name: 'cCaptureSessionDateTimeStampLogFileName', Actual: msg.cCaptureSessionDateTimeStampLogFileName, Expected: 'Capture the session date-time-stamp so we can determine a log file name.'},
   {Name: 'cProcessRulesWarningSomeRulesDoNotExist', Actual: msg.cProcessRulesWarningSomeRulesDoNotExist, Expected: 'WARNING: Some rules do not exist: '},
@@ -618,11 +619,6 @@ export const messageConstantsVaidation = [
   {Name: 'cloadDataFileMessage2', Actual: msg.cloadDataFileMessage2, Expected: 'please specify a valid path & filename!'},
   {Name: 'cloadDataFileMessage3', Actual: msg.cloadDataFileMessage3, Expected: 'WARNING: Invalid file format, file formats supported are: '},
   {Name: 'csaveDataFileMessage1', Actual: msg.csaveDataFileMessage1, Expected: 'WARNING: No data to save, '},
-  // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another release.
-  {Name: 'cdeployApplicationMessage1a', Actual: msg.cdeployApplicationMessage1a, Expected: 'ERROR: Release failed because of a failure in the constants validation system. '},
-  {Name: 'cdeployApplicationMessage2a', Actual: msg.cdeployApplicationMessage2a, Expected: 'Please fix ASAP before attempting another release.'},
-  // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another release.
-  {Name: 'cdeployApplicationMessage1b', Actual: msg.cdeployApplicationMessage1b, Expected: 'ERROR: Release failed because of a failure in the commands alias validation system. '},
   {Name: 'ccommandSequencerMessage1', Actual: msg.ccommandSequencerMessage1, Expected: 'WARNING: nominal.commandSequencer: The specified command was not found, '},
   {Name: 'ccommandSequencerMessage2', Actual: msg.ccommandSequencerMessage2, Expected: 'please enter a valid command and try again.'},
   {Name: 'cworkflowMessage1', Actual: msg.cworkflowMessage1, Expected: 'WARNING: nominal.workflow: The specified workflow: '},

@@ -177,6 +177,7 @@ export const cgetFirstTopLevelFolderFromPath = wr1.cget + num.cFirst + wr1.cTop 
 export const cloadDataFile = wr1.cload + wr1.cData + wr1.cFile; // loadDataFile
 export const csaveDataFile = wr1.csave + wr1.cData + wr1.cFile; // saveDataFile
 export const csupportedFileFormatsAre = wr1.csupported + wr1.cFile + wr1.cFormats + wr1.cAre; // supportedFileFormatsAre
+export const ccopyAllFilesAndFoldersFromFolderToFolder = wr1.ccopy + wr1.cAll + wr1.cFiles + wr1.cAnd + wr1.cFolders + wr1.cFrom + wr1.cFolder + wr1.cTo + wr1.cFolder; // copyAllFilesAndFoldersFromFolderToFolder
 export const cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
 export const cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue
 export const ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput

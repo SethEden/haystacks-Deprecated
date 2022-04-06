@@ -21,5 +21,6 @@ import * as app_cfg from '../../constants/application.configuration.constants.js
 export const applicationConfigurationConstantsValidation = [
   {Name: 'cargumentDrivenInterface', Actual: app_cfg.cargumentDrivenInterface, Expected: 'argumentDrivenInterface'},
   {Name: 'csourceResourcesPath', Actual: app_cfg.csourceResourcesPath, Expected: 'sourceResourcesPath'},
-  {Name: 'cdestinationResourcesPath', Actual: app_cfg.cdestinationResourcesPath, Expected: 'destinationResourcesPath'}
+  {Name: 'cdestinationResourcesPath', Actual: app_cfg.cdestinationResourcesPath, Expected: 'destinationResourcesPath'},
+  {Name: 'cdeploymentCompleted', Actual: app_cfg.cdeploymentCompleted, Expected: 'deploymentCompleted'},
 ];

@@ -189,8 +189,6 @@ export const cindexIs = wr1.cindex + sys.cSpaceIsColonSpace; // index is:
 export const creplacementIs = wr1.creplacement + sys.cSpaceIsColonSpace; // replacement is:
 export const cDEPLOY_APPLICATION = wr1.cDEPLOY + bas.cUnderscore + wr1.cAPPLICATION; // DEPLOY_APPLICATION
 export const cRELEASE_APPLICATION = wr1.cRELEASE + bas.cUnderscore + wr1.cAPPLICATION; // RELEASE_APPLICATION
-export const cDeploymentWasCompleted = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
-export const cDeploymentFailed = wr1.cDeployment + bas.cSpace + wr1.cfailed; // Deployment failed
 export const cReleaseFailed = wr1.cRelease + bas.cSpace + wr1.cfailed; // Release failed
 // smuggle something cinputDataIis = cinputData + bas.cOpenBracket + bas.ci + bas.cCloseBracket + sys.cSpaceIsColonSpace; // inputData[i] is:
 export const caggregateCommandStringIs = wr1.caggregate + wr1.cCommand + wr1.cString + sys.cSpaceIsColonSpace; // aggregateCommandString is:
@@ -565,6 +563,8 @@ export const cframeworkConstantsValidationDataIs = wr1.cframework + wr1.cConstan
 export const capplicationConstantsValidationDataIs = wr1.capplication + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // applicationConstantsValidationData is:
 export const cActualColonDoublePercent = bas.cDoubleQuote + wr1.cActual + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + bas.cDoublePercent + bas.cDoubleQuote + bas.cComa; // "Actual": "%%",
 export const callCommandWorkflowsDataIs = wr1.call + wr1.cCommand + wr1.cWorkflows + wr1.cData + sys.cSpaceIsColonSpace; // allCommandWorkflowsData is:
+export const csourceDestinationArrayIs = wr1.csource + wr1.cDestination + wr1.cArray + sys.cSpaceIsColonSpace; // sourceDestinationArray is:
+export const cfilterArrayIs = wr1.cfilter + wr1.cArray + sys.cSpaceIsColonSpace; // filterArray is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;
@@ -626,11 +626,6 @@ export const cloadDataFileMessage2 = wr1.cplease + bas.cSpace + wr1.cspecify + b
 export const cloadDataFileMessage3 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cInvalid + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cformat + bas.cComa + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cformats + bas.cSpace + wr1.csupported + bas.cSpace + wr1.care + bas.cColon + bas.cSpace; // WARNING: Invalid file format, file formats supported are:
 // WARNING: No data to save, please specify a valid path & filename!
 export const csaveDataFileMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + wr1.cdata + bas.cSpace + bas.cto + bas.cSpace + wr1.csave + bas.cComa + bas.cSpace; // WARNING: No data to save,
-// ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another release.
-export const cdeployApplicationMessage1a = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; // ERROR: Release failed because of a failure in the constants validation system.
-export const cdeployApplicationMessage2a = wr1.cPlease + bas.cSpace + wr1.cfix + bas.cSpace + gen.cASAP + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempting + bas.cSpace + wr1.canother + bas.cSpace + wr1.crelease + bas.cDot; // Please fix ASAP before attempting another release.
-// ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another release.
-export const cdeployApplicationMessage1b = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommands + bas.cSpace + wr1.calias + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; //ERROR: Release failed because of a failure in the commands alias validation system.
 export const ccommandSequencerMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.ccommand + wr1.cSequencer + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cspecified + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cwas + bas.cSpace + gen.cnot + bas.cSpace + wr1.cfound + bas.cComa + bas.cSpace; // WARNING: nominal.commandSequencer: The specified command was not found,
 export const ccommandSequencerMessage2 = wr1.cplease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cand + bas.cSpace + wr1.ctry + bas.cSpace + wr1.cagain + bas.cDot; // please enter a valid command and try again.
 export const cworkflowMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.cworkflow + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cspecified + bas.cSpace + wr1.cworkflow + bas.cColon + bas.cSpace; // WARNING: nominal.workflow: The specified workflow:

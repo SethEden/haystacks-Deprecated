@@ -204,6 +204,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cloadDataFile]: (inputData, inputMetaData) => stringParsing.loadDataFile(inputData, inputMetaData),
      [biz.csaveDataFile]: (inputData, inputMetaData) => stringParsing.saveDataFile(inputData, inputMetaData),
      [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => stringParsing.supportedFileFormatsAre(inputData, inputMetaData),
+     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => stringParsing.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
      [biz.cgetAttributeName]: (inputData, inputMetaData) => stringParsing.getAttributeName(inputData, inputMetaData),
      [biz.cgetAttributeValue]: (inputData, inputMetaData) => stringParsing.getAttributeValue(inputData, inputMetaData),
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => stringParsing.cleanCommandInput(inputData, inputMetaData),

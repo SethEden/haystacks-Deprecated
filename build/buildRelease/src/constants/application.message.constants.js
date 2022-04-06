@@ -20,6 +20,7 @@
 // External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
+let gen = haystacks.gen;
 let msg = haystacks.msg;
 let num = haystacks.num;
 let phn = haystacks.phn;
@@ -33,8 +34,13 @@ export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1
 export const cBuildMessage1 = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
 export const csourcePathIs = wr1.csource + wr1.cPath + sys.cSpaceIsColonSpace; // sourcePath is:
 export const cdestinationPathIs = wr1.cdestination + wr1.cPath + sys.cSpaceIsColonSpace; // destinationPath is:
-export const cERROR_DeploymentFailedValidationError = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cDeployment + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + wr1.cof + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.cfailures + bas.cDot; // ERROR: Deployment failed because of validation failures.
-export const cDeploymentFailureFix = wr1.cFix + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.cerrors + bas.cSpace + wr1.cto + bas.cSpace + bas.cre + bas.cDash + wr1.cenable + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cdeployment + bas.cSpace + wr1.cProcess + bas.cDot; // Fix the validation errors to re-enable the deployment process. 
+export const cDeploymentWasCompleted = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
+export const cDeploymentFailed = wr1.cDeployment + bas.cSpace + wr1.cfailed; // Deployment failed
+// ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another release.
+export const cdeployApplicationMessage1a = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; // ERROR: Release failed because of a failure in the constants validation system.
+export const cdeployApplicationMessage2a = wr1.cPlease + bas.cSpace + wr1.cfix + bas.cSpace + gen.cASAP + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempting + bas.cSpace + wr1.canother + bas.cSpace + wr1.cdeployment + bas.cDot; // Please fix ASAP before attempting another deployment.
+// ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another release.
+export const cdeployApplicationMessage1b = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommands + bas.cSpace + wr1.calias + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; //ERROR: Release failed because of a failure in the commands alias validation system.
 
 // Constants Validation
 export const callClientConstantsValidationDataIs = wr1.call + wr1.cClient + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // allClientConstantsValidationData is:

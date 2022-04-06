@@ -175,6 +175,7 @@ export const businessConstantsValidation = [
   {Name: 'cloadDataFile', Actual: biz.cloadDataFile, Expected: 'loadDataFile'},
   {Name: 'csaveDataFile', Actual: biz.csaveDataFile, Expected: 'saveDataFile'},
   {Name: 'csupportedFileFormatsAre', Actual: biz.csupportedFileFormatsAre, Expected: 'supportedFileFormatsAre'},
+  {Name: 'ccopyAllFilesAndFoldersFromFolderToFolder', Actual: biz.ccopyAllFilesAndFoldersFromFolderToFolder, Expected: 'copyAllFilesAndFoldersFromFolderToFolder'},
   {Name: 'cgetAttributeName', Actual: biz.cgetAttributeName, Expected: 'getAttributeName'},
   {Name: 'cgetAttributeValue', Actual: biz.cgetAttributeValue, Expected: 'getAttributeValue'},
   {Name: 'ccleanCommandInput', Actual: biz.ccleanCommandInput, Expected: 'cleanCommandInput'},

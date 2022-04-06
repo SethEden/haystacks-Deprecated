@@ -1149,5 +1149,6 @@ export const phonicConstantsValidation = [
   {Name: 'cins', Actual: phn.cins, Expected: 'ins'},
   {Name: 'cIns', Actual: phn.cIns, Expected: 'Ins'},
   {Name: 'cinst', Actual: phn.cinst, Expected: 'inst'},
-  {Name: 'cInst', Actual: phn.cInst, Expected: 'Inst'}
+  {Name: 'cInst', Actual: phn.cInst, Expected: 'Inst'},
+  {Name: 'cclu', Actual: phn.cclu, Expected: 'clu'}
 ];

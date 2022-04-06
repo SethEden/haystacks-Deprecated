@@ -1143,6 +1143,7 @@ export const cins = bas.cin + bas.cs; // ins
 export const cIns = bas.cIn + bas.cs; // Ins
 export const cinst = cins + bas.ct; // inst
 export const cInst = cIns + bas.ct; // Inst
+export const cclu = bas.ccl + bas.cu; // clu
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
