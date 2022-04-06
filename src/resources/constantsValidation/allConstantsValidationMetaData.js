@@ -102,7 +102,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cSystemConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cUnitConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cWord1ConstantsValidation] = [];
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cWord2ConstantsValidation] = [];
 
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cBasicConstantsValidation] = bas_cv.basicConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cBusinessConstantsValidation] = biz_cv.businessConstantsValidation;
@@ -119,7 +118,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cSystemConstantsValidation] = sys_cv.systemConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cUnitConstantsValidation] = unt_cv.unitConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cWord1ConstantsValidation] = wr1_cv.word1ConstantsValidation;
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cWord2ConstantsValidation] = wr2_cv.word2ConstantsValidation;
 
   // Setup all the paths to the constants files.
   let resolvedConstantsPath_Basic = path.resolve(constantsPath + bas.cForwardSlash + sys.cbasic_constants_js);
@@ -137,7 +135,6 @@ function initiaizeAllSystemConstantsValidationData() {
   let resolvedConstantsPath_System = path.resolve(constantsPath + bas.cForwardSlash + sys.csystem_constants_js);
   let resolvedConstantsPath_Unit = path.resolve(constantsPath + bas.cForwardSlash + sys.cunit_constants_js);
   let resolvedConstantsPath_Word1 = path.resolve(constantsPath + bas.cForwardSlash + sys.cword1_constants_js);
-  let resolvedConstantsPath_Word2 = path.resolve(constantsPath + bas.cForwardSlash + sys.cword2_constants_js);
 
   // resolvedConstantsPath_Basic is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_BasicIs + resolvedConstantsPath_Basic);
@@ -169,8 +166,6 @@ function initiaizeAllSystemConstantsValidationData() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_UnitIs + resolvedConstantsPath_Unit);
   // resolvedConstantsPath_Word1 is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_Word1Is + resolvedConstantsPath_Word1);
-  // resolvedConstantsPath_Word2 is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_Word2Is + resolvedConstantsPath_Word2);
 
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cBasicConstantsValidation] = resolvedConstantsPath_Basic;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cBusinessConstantsValidation] = resolvedConstantsPath_Business;
@@ -187,7 +182,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cSystemConstantsValidation] = resolvedConstantsPath_System;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cUnitConstantsValidation] = resolvedConstantsPath_Unit;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cWord1ConstantsValidation] = resolvedConstantsPath_Word1;
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cWord2ConstantsValidation] = resolvedConstantsPath_Word2;
 
   // Basic Constants Phase 1 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cBasicConstantsValidation] = msg.cBasicConstantsPhase1Validation;
@@ -219,8 +213,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cUnitConstantsValidation] = msg.cUnitConstantsPhase1Validation;
   // Word1 Constants Phase 1 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cWord1ConstantsValidation] = msg.cWord1ConstantsPhase1Validation;
-  // Word2 Constants Phase 1 Validation
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cWord2ConstantsValidation] = msg.cWord2ConstantsPhase1Validation;
 
   // Basic Constants Phase 2 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cBasicConstantsValidation] = msg.cBasicConstantsPhase2Validation;
@@ -252,8 +244,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cUnitConstantsValidation] = msg.cUnitConstantsPhase2Validation;
   // Word1 Constants Phase 2 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cWord1ConstantsValidation] = msg.cWord1ConstantsPhase2Validation;
-  // Word2 Constants Phase 2 Validation
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cWord2ConstantsValidation] = msg.cWord2ConstantsPhase2Validation;
 
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cBasicConstantsValidation] = gen.cbas;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cBusinessConstantsValidation] = gen.cbiz;
@@ -270,7 +260,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cSystemConstantsValidation] = gen.csys;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cUnitConstantsValidation] = gen.cunt;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cWord1ConstantsValidation] = gen.cwr1;
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cWord2ConstantsValidation] = gen.cwr2;
 
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cBasicConstantsValidation] = sys.cbasic_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cBusinessConstantsValidation] = sys.cbusiness_constants_js;
@@ -287,7 +276,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cSystemConstantsValidation] = sys.csystem_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cUnitConstantsValidation] = sys.cunit_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cWord1ConstantsValidation] = sys.cword1_constants_js;
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cWord2ConstantsValidation] = sys.cword2_constants_js;
 
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cBasicConstantsValidation] = gen.cbas + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cBusinessConstantsValidation] = gen.cbiz + bas.cDot;
@@ -304,7 +292,6 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cSystemConstantsValidation] = gen.csys + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cUnitConstantsValidation] = gen.cunt + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cWord1ConstantsValidation] = gen.cwr1 + bas.cDot;
-  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cWord2ConstantsValidation] = gen.cwr2 + bas.cDot;
 
   loggers.consoleLog(namespacePrefix + functionName, msg.callSystemConstantsValidationDataIs + JSON.stringify(allSystemConstantsValidationData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

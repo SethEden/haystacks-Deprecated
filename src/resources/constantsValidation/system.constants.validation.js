@@ -377,7 +377,6 @@ export const systemConstantsValidation = [
   {Name: 'csystem_constants_js', Actual: sys.csystem_constants_js, Expected: 'system.constants.js'},
   {Name: 'cunit_constants_js', Actual: sys.cunit_constants_js, Expected: 'unit.constants.js'},
   {Name: 'cword1_constants_js', Actual: sys.cword1_constants_js, Expected: 'word1.constants.js'},
-  {Name: 'cword2_constants_js', Actual: sys.cword2_constants_js, Expected: 'word2.constants.js'},
 
   // System Paths
   {Name: 'cActualFrameworkName', Actual: sys.cActualFrameworkName, Expected: 'haystacks'},

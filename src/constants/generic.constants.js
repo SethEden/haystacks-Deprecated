@@ -240,7 +240,6 @@ export const cshp = phn.cshp; // shp
 export const csys = bas.csy + bas.cs; // sys
 export const cunt = phn.cunt; // unt
 export const cwr1 = bas.cwr + num.c1; // wr1
-export const cwr2 = bas.cwr + num.c2; // wr2
 export const capc = bas.cap + bas.cc; // apc
 
 // Miscelanious

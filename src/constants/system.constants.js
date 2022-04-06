@@ -377,7 +377,6 @@ export const cshape_constants_js = wr1.cshape + bas.cDot + wr1.cconstants + gen.
 export const csystem_constants_js = wr1.csystem + bas.cDot + wr1.cconstants + gen.cDotjs; // system.constants.js
 export const cunit_constants_js = wr1.cunit + bas.cDot + wr1.cconstants + gen.cDotjs; // unit.constants.js
 export const cword1_constants_js = wr1.cword + num.c1 + bas.cDot + wr1.cconstants + gen.cDotjs; // word1.constants.js
-export const cword2_constants_js = wr1.cword + num.c2 + bas.cDot + wr1.cconstants + gen.cDotjs; // word2.constants.js
 
 // System Paths
 export const cActualFrameworkName = wr1.chay + wr1.cstacks; // haystacks
