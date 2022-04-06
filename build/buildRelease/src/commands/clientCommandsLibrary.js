@@ -33,7 +33,8 @@ const initClientCommandsLibrary = function() {
     // client commands in order
     // ***********************************************
     [app_cmd.ccustomEchoCommand]: (inputData, inputMetaData) => clientCommands.customEchoCommand(inputData, inputMetaData),
-    [app_cmd.cdeployMetaData]: (inputData, inputMetaData) => clientCommands.deployMetaData(inputData, inputMetaData)
+    [app_cmd.cdeployMetaData]: (inputData, inputMetaData) => clientCommands.deployMetaData(inputData, inputMetaData),
+    [app_cmd.cdeployApplication]: (inputData, inputMetaData) => clientCommands.deployApplication(inputData, inputMetaData)
   };
 };
 

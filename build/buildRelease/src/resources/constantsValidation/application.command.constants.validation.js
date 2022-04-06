@@ -24,6 +24,7 @@ export const applicationCommandConstantsValidation = [
   // ********************************
   {Name: 'ccustomEchoCommand', Actual: app_cmd.ccustomEchoCommand, Expected: 'customEchoCommand'},
   {Name: 'cdeployMetaData', Actual: app_cmd.cdeployMetaData, Expected: 'deployMetaData'},
+  {Name: 'cdeployApplication', Actual: app_cmd.cdeployApplication, Expected: 'deployApplication'},
 
   // ********************************
   // Client Workflows in order

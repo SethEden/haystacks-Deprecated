@@ -114,32 +114,32 @@ function initializeAllClientConstantsValidationData() {
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationSystemConstantsValidation] = resolvedConstantsPath_ApplicationSystem;
 
   // Application Business Constants Phase 1 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusienssConstantsPhase1Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusinessConstantsPhase1Validation;
   // Application Command Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationCommandConstantsValidation] = app_msg.cApplicationCommandConstantsPhase1Validation;
   // Application Configuration Constants Phase 1 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationConfigurationConstantsVaidation] = app_msg.cApplicationConfigurationConstantsPhase1Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationConfigurationConstantsValidation] = app_msg.cApplicationConfigurationConstantsPhase1Validation;
   // Application Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationConstantsValidation] = app_msg.cApplicationConstantsPhase1Validation;
   // Application Function Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationFunctionConstantsValidation] = app_msg.cApplicationFunctionConstantsPhase1Validation;
   // Application Message Constants Phase 1 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationMessageConstantsVaidation] = app_msg.cApplicationMessageConstantsPhase1Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationMessageConstantsValidation] = app_msg.cApplicationMessageConstantsPhase1Validation;
   // Application System Constants Phase 1 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][app_sys.capplicationSystemConstantsValidation] = app_msg.cApplicationSystemConstantsPhase1Validation;
 
   // Application Business Constants Phase 2 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusienssConstantsPhase2Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationBusinessConstantsValidation] = app_msg.cApplicationBusinessConstantsPhase2Validation;
   // Application Command Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationCommandConstantsValidation] = app_msg.cApplicationCommandConstantsPhase2Validation;
   // Application Configuration Constants Phase 2 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationConfigurationConstantsVaidation] = app_msg.cApplicationConfigurationConstantsPhase2Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationConfigurationConstantsValidation] = app_msg.cApplicationConfigurationConstantsPhase2Validation;
   // Application Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationConstantsValidation] = app_msg.cApplicationConstantsPhase2Validation;
   // Application Function Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationFunctionConstantsValidation] = app_msg.cApplicationFunctionConstantsPhase2Validation;
   // Application Message Constants Phase 2 Validation
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationMessageConstantsVaidation] = app_msg.cApplicationMessageConstantsPhase2Validation;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationMessageConstantsValidation] = app_msg.cApplicationMessageConstantsPhase2Validation;
   // Application System Constants Phase 2 Validation
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][app_sys.capplicationSystemConstantsValidation] = app_msg.cApplicationSystemConstantsPhase2Validation;
 

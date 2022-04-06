@@ -21,6 +21,7 @@ let wr1 = haystacks.wr1;
 // ********************************
 export const ccustomEchoCommand = wr1.ccustom + wr1.cEcho + wr1.cCommand; // customEchoCommand
 export const cdeployMetaData = wr1.cdeploy + wr1.cMetaData; // deployMetaData
+export const cdeployApplication = wr1.cdeploy + wr1.cApplication; // deployApplication
 
 // ********************************
 // Client Workflows in order

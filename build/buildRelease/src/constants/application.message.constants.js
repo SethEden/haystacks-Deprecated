@@ -31,6 +31,10 @@ export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1
 
 // Messages
 export const cBuildMessage1 = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
+export const csourcePathIs = wr1.csource + wr1.cPath + sys.cSpaceIsColonSpace; // sourcePath is:
+export const cdestinationPathIs = wr1.cdestination + wr1.cPath + sys.cSpaceIsColonSpace; // destinationPath is:
+export const cERROR_DeploymentFailedValidationError = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cDeployment + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + wr1.cof + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.cfailures + bas.cDot; // ERROR: Deployment failed because of validation failures.
+export const cDeploymentFailureFix = wr1.cFix + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.cerrors + bas.cSpace + wr1.cto + bas.cSpace + bas.cre + bas.cDash + wr1.cenable + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cdeployment + bas.cSpace + wr1.cProcess + bas.cDot; // Fix the validation errors to re-enable the deployment process. 
 
 // Constants Validation
 export const callClientConstantsValidationDataIs = wr1.call + wr1.cClient + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // allClientConstantsValidationData is:

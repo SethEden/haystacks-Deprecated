@@ -350,8 +350,6 @@ export const systemConstantsValidation = [
   {Name: 'cUnitConstantsValidation', Actual: sys.cUnitConstantsValidation, Expected: 'UnitConstantsValidation'},
   {Name: 'cWord1ConstantsValidation', Actual: sys.cWord1ConstantsValidation, Expected: 'Word1ConstantsValidation'},
   {Name: 'cWord2ConstantsValidation', Actual: sys.cWord2ConstantsValidation, Expected: 'Word2ConstantsValidation'},
-  {Name: 'cSourceResourcesPath', Actual: sys.cSourceResourcesPath, Expected: 'SourceResourcesPath'},
-  {Name: 'cDestinationResourcesPath', Actual: sys.cDestinationResourcesPath, Expected: 'DestinationResourcesPath'},
   {Name: 'cBinaryRootPath', Actual: sys.cBinaryRootPath, Expected: 'BinaryRootPath'},
   {Name: 'cBinaryReleasePath', Actual: sys.cBinaryReleasePath, Expected: 'BinaryReleasePath'},
   {Name: 'cdevtty', Actual: sys.cdevtty, Expected: '/dev/tty'},

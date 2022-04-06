@@ -142,13 +142,14 @@ function deployApplication() {
   try {
     // fse.copySync('/src/Application/NodeJS-App/Resources/*', '/bin/Application/NodeJS-App/Resources/*');
     haystacks.setConfigurationSetting(wr1.csystem, cfg.creleaseCompleted, false);
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cPassAllConstantsValidations, false);
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cPassedAllCommandAliasesDuplicateChecks, false);
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cSourceResourcesPath, apc.cDevelopResourcesPath);
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cDestinatinoResourcesPath, apc.cProductionResourcesPath);
+    haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
+    haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath, apc.cFullProdResourcesPath);
     // NOTE: We could use a similar process to deploy an application that is based on the haystacks framework.
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
+    haystacks.enqueueCommand(cmd.cStartupWorkflow);
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
     haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
     let commandResult = true;

@@ -24,6 +24,10 @@ export const applicationMessageConstantsValidation = [
 
   // Messages
   {Name: 'cBuildMessage1', Actual: app_msg.cBuildMessage1, Expected: 'Deployment was completed: '},
+  {Name: 'csourcePathIs', Actual: app_msg.csourcePathIs, Expected: 'sourcePath is: '},
+  {Name: 'cdestinationPathIs', Actual: app_msg.cdestinationPathIs, Expected: 'destinationPath is: '},
+  {Name: 'cERROR_DeploymentFailedValidationError', Actual: app_msg.cERROR_DeploymentFailedValidationError, Expected: 'ERROR: Deployment failed because of validation failures.'},
+  {Name: 'cDeploymentFailureFix', Actual: app_msg.cDeploymentFailureFix, Expected: 'Fix the validation errors to re-enable the deployment process. '},
 
   // Constants Validation
   {Name: 'callClientConstantsValidationDataIs', Actual: app_msg.callClientConstantsValidationDataIs, Expected: 'allClientConstantsValidationData is: '},

@@ -2,7 +2,9 @@
  * @file clientCommands.js
  * @module clientCommands
  * @description Contains all client defined  commands for execution client actions with various operations.
- * @requires module:application.command.constants
+ * @requires module:application.configuration.constants
+ * @requires module:application.constants
+ * @requires module:application.message.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.business.constants
@@ -20,6 +22,7 @@
  */
 
 // Internal imports
+import * as app_cfg from '../../constants/application.configuration.constants.js';
 import * as apc from '../../constants/application.constants.js';
 import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
@@ -107,7 +110,45 @@ const deployMetaData = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function deployApplication
+ * @description Executes the deployment of the application, part of the build-deploy-release cycle.
+ * This command copies the non-source code files from the src folder structure to the bin folder structure.
+ * @param {string} inputData The path the non-code files should be copied from. (SOURCE)
+ * @param {string} inputmetaData The path the non-code files should be copied to. (DESTINATION)
+ * @return {boolean} a True or False value to indicate if the deployment was successful or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/05
+ */
+const deployApplication = function(inputData, inputMetaData) {
+  let functionName = deployApplication.name;
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation) === true &&
+  haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks) === true) {
+    // DEPLOY APPLICATION
+    console.log(msg.cDEPLOY_APPLICATION);
+    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)
+    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath);
+    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath);
+    // sourcePath is:
+    haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
+    // destinationPath is:
+    haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
+
+  } else {
+    console.log(app_msg.cERROR_DeploymentFailedValidationError);
+    console.log(app_msg.cDeploymentFailureFix);
+  }
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   customEchoCommand,
-  deployMetaData
+  deployMetaData,
+  deployApplication
 };
