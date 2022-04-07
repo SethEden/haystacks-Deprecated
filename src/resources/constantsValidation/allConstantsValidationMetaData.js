@@ -56,7 +56,6 @@ import * as phn_cv from './phonic.constants.validation.js';
 import * as sys_cv from './system.constants.validation.js';
 import * as unt_cv from './unit.constants.validation.js';
 import * as wr1_cv from './word1.constants.validation.js';
-import * as wr2_cv from './word2.constants.validation.js';
 
 // External imports
 import path from 'path';

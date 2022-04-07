@@ -47,7 +47,6 @@ import * as phn from './constants/phonic.constants.js';
 import * as sys from './constants/system.constants.js';
 import * as unt from './constants/unit.constants.js';
 import * as wr1 from './constants/word1.constants.js';
-import * as wr2 from './constants/word2.constants.js';
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
@@ -398,6 +397,5 @@ export default {
   [gen.cphn]: phn,
   [gen.csys]: sys,
   [gen.cunt]: unt,
-  [gen.cwr1]: wr1,
-  [gen.cwr2]: wr2
+  [gen.cwr1]: wr1
 };
