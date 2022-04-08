@@ -26,7 +26,7 @@ export const applicationConstantsValidation = [
   {Name: 'cConstantsPath', Actual: apc.cConstantsPath, Expected: 'constants/'},
   {Name: 'cConfigurationCommonPath', Actual: apc.cConfigurationCommonPath, Expected: 'configuration/'},
   {Name: 'cWorkflowsCommonPath', Actual: apc.cWorkflowsCommonPath, Expected: 'workflows/'},
-  {Name: 'cReleasePath', Actual: apc.cReleasePath, Expected: 'release/'},
+  {Name: 'cReleasePath', Actual: apc.cReleasePath, Expected: '/release/'},
   {Name: 'cForwardSlashPackageDotJson', Actual: apc.cForwardSlashPackageDotJson, Expected: '/package.json'},
 
   // Full Dev Paths

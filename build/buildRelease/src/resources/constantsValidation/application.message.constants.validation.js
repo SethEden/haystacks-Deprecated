@@ -33,6 +33,7 @@ export const applicationMessageConstantsValidation = [
   {Name: 'cdeployApplicationMessage2a', Actual: app_msg.cdeployApplicationMessage2a, Expected: 'Please fix ASAP before attempting another deployment.'},
   // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
   {Name: 'cdeployApplicationMessage1b', Actual: app_msg.cdeployApplicationMessage1b, Expected: 'ERROR: Release failed because of a failure in the commands alias validation system. '},
+  {Name: 'cReleasingFramework', Actual: app_msg.cReleasingFramework, Expected: 'Releasing Framework:'},
 
   // Constants Validation
   {Name: 'callClientConstantsValidationDataIs', Actual: app_msg.callClientConstantsValidationDataIs, Expected: 'allClientConstantsValidationData is: '},

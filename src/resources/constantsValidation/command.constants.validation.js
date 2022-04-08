@@ -51,5 +51,6 @@ export const commandConstantsValidation = [
   // ********************************
   // System defined workflows
   // ********************************
-  {Name: 'cStartupWorkflow', Actual: cmd.cStartupWorkflow, Expected: 'Workflow startup'}
+  {Name: 'cStartupWorkflow', Actual: cmd.cStartupWorkflow, Expected: 'Workflow startup'},
+  {Name: 'cFrameworkDetailsWorkflow', Actual: cmd.cFrameworkDetailsWorkflow, Expected: 'Workflow frameworkDetails'}
 ];

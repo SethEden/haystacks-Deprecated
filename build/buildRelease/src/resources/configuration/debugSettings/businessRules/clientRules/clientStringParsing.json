@@ -11,7 +11,7 @@
   "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@ModuleFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@FunctionFontBackgroundColor": "255,255,255",
   "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@MessageFontBackgroundColor": "255,255,255",
-  "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@DataFontBackgroundColor": "255,255,255",
+  "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@DataFontBackgroundColor": "0,0,0",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho": false,
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@FunctionFontStyle": "Default",
@@ -24,5 +24,18 @@
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@ModuleFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@DataFontBackgroundColor": "Default"
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@DataFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage": true,
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@ModuleFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@FunctionFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@MessageFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@DataFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@ModuleFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@FunctionFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@MessageFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@DataFontBackgroundColor": "Default"
 }

@@ -2,6 +2,7 @@
  * @file clientCommands.js
  * @module clientCommands
  * @description Contains all client defined  commands for execution client actions with various operations.
+ * @requires module:application.business.constants
  * @requires module:application.configuration.constants
  * @requires module:application.constants
  * @requires module:application.message.constants
@@ -22,6 +23,7 @@
  */
 
 // Internal imports
+import * as app_biz from '../../constants/application.business.constants.js';
 import * as app_cfg from '../../constants/application.configuration.constants.js';
 import * as apc from '../../constants/application.constants.js';
 import * as app_msg from '../../constants/application.message.constants.js';
@@ -159,8 +161,58 @@ const deployApplication = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function releaseApplication
+ * @description Executes teh release of the application, part of the build-deploy-release cycle.
+ * Scans the specified release folder path and determines if there is a zip file for the current release or not.
+ * If there is not, then the system will build a zip file from the bin folder excluding the release folder,
+ * and save the resulting archie to the release folder.
+ * @param {string} inputData The path or the bin folder where the latest source code will have been deployed. (SOURCE)
+ * @param {string} inputMetaData The path for the release folder where the reelase zip arcive file should be saed. (RELEASE)
+ * @return {boolean} A True or False value to indicate if the zip archive was created successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/07
+ */
+const releaseApplication = function(inputData, inputMetaData) {
+  let functionName = releaseApplication.name;
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let passAllConstantsValidation = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation);
+  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
+  if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
+    // RELEASE APPLICATION
+    console.log(msg.cRELEASE_APPLICATION);
+    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)
+    // NOTE: The destinationResourcesPath works out to be the root/bin of the framework, for this next operation that will be our source path.
+    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath);
+    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.creleasePath);
+    // sourcePath is:
+    haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
+    // destinationPath is:
+    haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
+    let releaseResult = haystacks.executeBusinessRule(app_biz.cbuildReleasePackage, sourcePath, destinationPath);
+  } else {
+    // Technically it should never even get here, because this same conditino is caught at the deployApplication command.
+    // The deployApplication command should be executing before this comand.
+    if (passAllConstantsValidation === false) {
+      // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another deployment.
+      console.log(msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a);
+    }
+    if (passAllCommandAliasesDuplicateChecks === false) {
+      // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
+      console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
+    }
+  }
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   customEchoCommand,
   deployMetaData,
-  deployApplication
+  deployApplication,
+  releaseApplication
 };

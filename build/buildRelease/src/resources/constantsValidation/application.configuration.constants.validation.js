@@ -22,5 +22,6 @@ export const applicationConfigurationConstantsValidation = [
   {Name: 'cargumentDrivenInterface', Actual: app_cfg.cargumentDrivenInterface, Expected: 'argumentDrivenInterface'},
   {Name: 'csourceResourcesPath', Actual: app_cfg.csourceResourcesPath, Expected: 'sourceResourcesPath'},
   {Name: 'cdestinationResourcesPath', Actual: app_cfg.cdestinationResourcesPath, Expected: 'destinationResourcesPath'},
+  {Name: 'creleasePath', Actual: app_cfg.creleasePath, Expected: 'releasePath'},
   {Name: 'cdeploymentCompleted', Actual: app_cfg.cdeploymentCompleted, Expected: 'deploymentCompleted'},
 ];

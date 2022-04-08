@@ -50,5 +50,18 @@
   "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.deployApplication@ModuleFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.deployApplication@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.deployApplication@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.deployApplication@DataFontBackgroundColor": "Default"
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.deployApplication@DataFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication": true,
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@ModuleFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@FunctionFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@MessageFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@DataFontColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@ModuleFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@FunctionFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@MessageFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.buildRelease.commands.clientCommands.clientCommands.releaseApplication@DataFontBackgroundColor": "Default"
 }

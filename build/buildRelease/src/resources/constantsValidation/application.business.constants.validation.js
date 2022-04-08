@@ -25,5 +25,6 @@ export const applicationBusinessConstantsValidation = [
   // ********************************
   // ClientStringParsing rules in order
   // ********************************
-  {Name: 'ccustomEcho', Actual: app_biz.ccustomEcho, Expected: 'customEcho'}
+  {Name: 'ccustomEcho', Actual: app_biz.ccustomEcho, Expected: 'customEcho'},
+  {Name: 'cbuildReleasePackage', Actual: app_biz.cbuildReleasePackage, Expected: 'buildReleasePackage'}
 ];

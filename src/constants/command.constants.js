@@ -51,3 +51,4 @@ export const cvalidateCommandAliases = wr1.cvalidate + wr1.cCommand + wr1.cAlias
 // System defined workflows
 // ********************************
 export const cStartupWorkflow = wr1.cWorkflow + bas.cSpace + wr1.cstartup; // Workflow startup
+export const cFrameworkDetailsWorkflow = wr1.cWorkflow + bas.cSpace + wr1.cframework + wr1.cDetails; // Workflow frameworkDetails

@@ -25,3 +25,4 @@ export const cclientEcho = wr1.cclient + wr1.cEcho; // clientEcho
 // ClientStringParsing rules in order
 // ********************************
 export const ccustomEcho = wr1.ccustom + wr1.cEcho; // customEcho
+export const cbuildReleasePackage = wr1.cbuild + wr1.cRelease + wr1.cPackage; // buildReleasePackage

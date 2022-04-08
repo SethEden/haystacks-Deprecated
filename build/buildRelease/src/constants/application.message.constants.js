@@ -41,6 +41,7 @@ export const cdeployApplicationMessage1a = wr1.cERROR + bas.cColon + bas.cSpace 
 export const cdeployApplicationMessage2a = wr1.cPlease + bas.cSpace + wr1.cfix + bas.cSpace + gen.cASAP + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempting + bas.cSpace + wr1.canother + bas.cSpace + wr1.cdeployment + bas.cDot; // Please fix ASAP before attempting another deployment.
 // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another release.
 export const cdeployApplicationMessage1b = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommands + bas.cSpace + wr1.calias + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; //ERROR: Release failed because of a failure in the commands alias validation system.
+export const cReleasingFramework = wr1.cReleasing + bas.cSpace + wr1.cFramework + bas.cColon; // Releasing Framework:
 
 // Constants Validation
 export const callClientConstantsValidationDataIs = wr1.call + wr1.cClient + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // allClientConstantsValidationData is:

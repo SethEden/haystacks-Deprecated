@@ -7,6 +7,7 @@
  * @requires module:application.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
+ * @requires module:haystacks.message.constants
  * @requires module:haystacks.word1.constants
  * @requires module:haystacks.system.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -21,6 +22,7 @@ import * as apc from '../../constants/application.constants.js';
 // External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
+let msg = haystacks.msg;
 let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
 import path from 'path';
@@ -52,6 +54,29 @@ const customEcho = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function buildReleasePackage
+ * @description Add all the files from the sourceFolder into a zip file and
+ * give a name to the file for the current date-time and release version, saving to the destination folder.
+ * @param {string} inputData The folder that should be packaged up for the release zip file.
+ * @param {string} inputMetaData The folder where the zip file release package should be saved.
+ * @return {boolean} A true or False to indicate if the release package process is sucessful or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/07
+ */
+const buildReleasePackage = function(inputData, inputMetaData) {
+  let functionName = buildReleasePackage.name;
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
-  customEcho
+  customEcho,
+  buildReleasePackage
 };

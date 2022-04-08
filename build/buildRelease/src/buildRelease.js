@@ -146,13 +146,28 @@ function deployApplication() {
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
     haystacks.setConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
     haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath, apc.cAppProdPath);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.creleasePath, apc.cReleasePath);
     // NOTE: We could use a similar process to deploy an application that is based on the haystacks framework.
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
     haystacks.enqueueCommand(cmd.cStartupWorkflow);
+    let commandResult = true;
+    while (haystacks.isCommandQueueEmpty() === false) {
+      commandResult = true;
+      commandResult = haystacks.processCommandQueue();
+    }
+    // 2nd stage deploy-release process:
+    console.log(app_msg.cReleasingFramework);
+    haystacks.enqueueCommand(cmd.cFrameworkDetailsWorkflow);
+    commandResult = true;
+    while (haystacks.isCommandQueueEmpty() === false) {
+      commandResult = true;
+      commandResult = haystacks.processCommandQueue();
+    }
+    // 3rd stage deploy-release process:
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
     haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
-    let commandResult = true;
+    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
       commandResult = true;
       commandResult = haystacks.processCommandQueue();

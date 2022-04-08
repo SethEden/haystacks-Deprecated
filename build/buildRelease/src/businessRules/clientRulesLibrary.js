@@ -35,7 +35,8 @@ const initClientRulesLibrary = function() {
     // ***********************************************
     // clientStringParsing rules in order
     // ***********************************************
-    [app_biz.ccustomEcho]: (inputData, inputMetaData) => clientStringParsing.customEcho(inputData, inputMetaData)
+    [app_biz.ccustomEcho]: (inputData, inputMetaData) => clientStringParsing.customEcho(inputData, inputMetaData),
+    [app_biz.cbuildReleasePackage]: (inputData, inputMetaData) => clientStringParsing.buildReleasePackage(inputData, inputMetaData)
   };
 };
 
