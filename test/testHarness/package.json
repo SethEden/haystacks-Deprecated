@@ -21,13 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.0.0",
-    "haystacks": "0.0.x"
+    "haystacks": "file:../.."
   },
   "devDependencies": {
-    "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.8",
-    "@babel/node": "7.15.8",
-    "@babel/preset-env": "7.15.8",
     "jsdoc": "3.6.7",
     "standard-version": "9.3.2"
   },

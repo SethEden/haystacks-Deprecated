@@ -6,11 +6,11 @@
   "bin": "./bin/main.js",
   "type": "module",
   "scripts": {
-    "build": "babel src --out-dir bin",
-    "deploy": "npm run build && babel-node ./build/buildRelease/src/buildRelease.js",
+    "build": "cp src bin",
+    "deploy": "npm run build && node ./build/buildRelease/src/buildRelease.js",
     "release": "babel-node ./build/buildRelease/src/buildRelease.js",
-    "test": "babel-node ./test/testHarness/src/testHarness.js",
-    "start": "babel-node ./src/main.js",
+    "test": "node ./test/testHarness/src/testHarness.js",
+    "start": "node ./src/main.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
   },
@@ -36,15 +36,20 @@
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.8",
-    "@babel/node": "7.15.8",
-    "@babel/preset-env": "7.15.8",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
     "jsdoc": "3.6.7",
+    "prettier": "^2.6.0",
     "standard-version": "9.3.2"
   },
   "bugs": {
     "url": "https://github.com/SethEden/haystacks/issues"
   },
-  "homepage": "https://github.com/SethEden/haystacks#readme"
+  "homepage": "https://github.com/SethEden/haystacks#readme",
+  "volta": {
+    "node": "16.14.2"
+  }
 }

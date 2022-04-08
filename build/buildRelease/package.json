@@ -12,6 +12,6 @@
   "author": "Seth Hollingsead",
   "license": "MIT",
   "dependencies": {
-    "haystacks": "0.0.x"
+    "haystacks": "file:../.."
   }
 }
