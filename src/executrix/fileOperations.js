@@ -14,6 +14,7 @@
  * @requires module:word1.constants
  * @requires module:loggers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/adm-zip|adm-zip}
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/papaparse|papaparse}
  * @requires {@link https://www.npmjs.com/package/xml2js|xml2js}
@@ -33,6 +34,7 @@ import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
+import admZip from 'adm-zip';
 import fs from 'fs';
 import papa from 'papaparse';
 import xml2js from 'xml2js';
@@ -373,7 +375,7 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   let currentVersionReleased = false;
   let releaseDateTimeStamp;
   let originalSource, originalDestination;
-  let zip = new AdmZip();
+  let zip = new admZip();
   // current version is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentVersionIs + currentVersion);
   originalSource = bas.cDot + sourceFolder;
@@ -426,6 +428,42 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   } else {
     // current version already released
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentVersionAlreadyReleased);
+  }
+  // packageSuccess is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpackageSuccessIs + packageSuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return packageSuccess;
+};
+
+/**
+ * @function createZipArchive
+ * @description Creates a new zip archive of the files listed in the input array,
+ * and saves the file to the specified file path and name.
+ * @param {array<string>} folderPaths All the folders and paths to include in the zip archive.
+ * @param {string} destinationPathFileName The full path and file name to the
+ * destination where the zip file should be saved.
+ * @return {boolean} A True or False value to indicate if the zip file was created successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+function createZipArchive(folderPaths, destinationPathFileName) {
+  let functionName = createZipArchive.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfolderPathsIs + JSON.stringify(folderPaths));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationPathFileNameIs + destinationPathFileName);
+  let packageSuccess = false;
+  let zip = new admZip();
+  try {
+    zip.addLocalFolder(folderPaths);
+    zip.writeZip(destinationPathFileName);
+    // Done writing the zip file:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWritingTheZipFile + destinationPathFileName);
+    packageSuccess = true;
+  } catch (err) {
+    // ERROR: Zip package release failed
+    console.log(msg.cErrorZipPackageReleaseFailed);
+    console.error(err.stack);
+    process.exit(1);
   }
   // packageSuccess is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cpackageSuccessIs + packageSuccess);
@@ -660,6 +698,7 @@ export default {
   [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
   [fnc.ccopyAllFilesAndFoldersFromFolderToFolder]: (sourceDestinationArray, filterArray) => copyAllFilesAndFoldersFromFolderToFolder(sourceDestinationArray, filterArray),
   [fnc.cbuildReleasePackage]: (sourceFolder, destinatinoFolder) => buildReleasePackage(sourceFolder, destinationFolder),
+  [fnc.ccreateZipArchive]: (folderPaths, destinationPathFileName) => createZipArchive(folderPaths, destinationPathFileName),
   [fnc.ccopyFileSync]: (sourceDestinationArray, filterArray) => copyFileSync(sourceDestinationArray, filterArray),
   [fnc.ccopyFolderRecursiveSync]: (sourceDestinationArray, filterArray) => copyFolderRecursiveSync(sourceDestinationArray, filterArray),
   [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)

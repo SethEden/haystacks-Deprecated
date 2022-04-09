@@ -70,6 +70,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cremoveCharacterFromArray]: (inputData, inputMetaData) => arrayParsing.removeCharacterFromArray(inputData, inputMetaData),
      [biz.cascertainMatchingElements]: (inputData, inputMetaData) => arrayParsing.ascertainMatchingElements(inputData, inputMetaData),
      [biz.cdoesArrayContainFilename]: (inputData, inputMetaData) => arrayParsing.doesArrayContainFilename(inputData, inputMetaData),
+     [biz.creadDirectoryContents]: (inputData, inputMetaData) => arrayParsing.readDirectoryContents(inputData, inputMetaData),
      [biz.cgetLengthOfLongestStringInArray]: (inputData, inputMetaData) => arrayParsing.getLengthOfLongestStringInArray(inputData, inputMetaData),
      [biz.csearchForPatternsInStringArray]: (inputData, inputMetaData) => arrayParsing.searchForPatternsInStringArray(inputData, inputMetaData),
      [biz.cvalidatePatternsThatNeedImplementation]: (inputData, inputMetaData) => arrayParsing.validatePatternsThatNeedImplementation(inputData, inputMetaData),
@@ -208,6 +209,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cgetAttributeName]: (inputData, inputMetaData) => stringParsing.getAttributeName(inputData, inputMetaData),
      [biz.cgetAttributeValue]: (inputData, inputMetaData) => stringParsing.getAttributeValue(inputData, inputMetaData),
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => stringParsing.cleanCommandInput(inputData, inputMetaData),
+     [biz.cgetNowMoment]: (inputData, inputMetaData) => stringParsing.getNowMoment(inputData, inputMetaData),
+     [biz.ccreateZipArchive]: (inputData, inputMetaData) => stringParsing.createZipArchive(inputData, inputMetaData),
 
      // ***********************************************
      // stringParsingutilities rules in order

@@ -7,6 +7,8 @@
  * @requires module:application.constants
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
+ * @requires module:haystacks.business.constants
+ * @requires module:haystacks.generic.constants
  * @requires module:haystacks.message.constants
  * @requires module:haystacks.word1.constants
  * @requires module:haystacks.system.constants
@@ -22,6 +24,8 @@ import * as apc from '../../constants/application.constants.js';
 // External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
+let biz = haystacks.biz;
+let gen = haystacks.gen;
 let msg = haystacks.msg;
 let sys = haystacks.sys;
 let wr1 = haystacks.wr1;
@@ -67,10 +71,57 @@ const customEcho = function(inputData, inputMetaData) {
 const buildReleasePackage = function(inputData, inputMetaData) {
   let functionName = buildReleasePackage.name;
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + inputData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
-
+  let releaseFiles = [];
+  let releasedArchiveFiles = [];
+  let currentVersion = haystacks.getConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber);
+  let frameworkName = haystacks.getConfigurationSetting(wr1.csystem, sys.cFrameworkName);
+  let currentVersionReleased = false;
+  let releaseDateTimeStamp;
+  let originalSource, originalDestination;
+  // current version is:
+  haystacks.consoleLog(namespacePrefix, functionName, msg.ccurrentVersionIs + currentVersion);
+  originalSource = path.resolve(inputData);
+  originalDestination = path.resolve(inputMetaData);
+  releaseFiles = haystacks.executeBusinessRule(biz.creadDirectoryContents, originalSource, '');
+  releasedArchiveFiles = haystacks.executeBusinessRule(biz.creadDirectoryContents, originalDestination, '');
+  // released archive files list is:
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creleasedArchiveFilesListIs + JSON.stringify(releasedArchiveFiles));
+  // Check if the current version number has already een released as a zip file in the Release folder.
+  // If it has ot been released, then we can build the zip file with the current reelase number and date-time stamp.
+  for (let i = 0; i <= releasedArchiveFiles.length - 1; i++) {
+    // file is:
+    haystacks.consoleLog(namespacePrefix, functionName, msg.cfileIs + releasedArchiveFiles[i]);
+    let pathAndFileName = releasedArchiveFiles[i];
+    let fileName = haystacks.executeBusinessRule(biz.cgetFileNameFromPath, pathAndFileName, '');
+    fileName = haystacks.executeBusinessRule(biz.cremoveFileExtensionFromFileName, fileName, '');
+    // fileName is:
+    haystacks.consoleLog(namespacePrefix, functionName, msg.cfileNameIs + fileName);
+    if (fileName.includes(currentVersion) === true) {
+      currentVersionReleased = true;
+    }
+  } // End-for (let i = 0; i <= releasedArchiveFiles.length - 1; i++)
+  if (currentVersionReleased === false) {
+    // release Files list is:
+    haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
+    releaseDateTimeStamp = haystacks.executeBusinessRule(biz.cgetNowMoment, haystacks.getConfigurationSetting(wr1.csystem, sys.cDateTimeStamp), '');
+    // release date-time stamp is:
+    haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
+    let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + frameworkName;
+    // release fileName is:
+    haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseFileNameIs + releaseFileName);
+    let fullReleasePath = path.resolve(originalDestination + bas.cForwardSlash + releaseFileName + gen.cDotzip);
+    returnData = haystacks.executeBusinessRule(biz.ccreateZipArchive, originalSource, fullReleasePath);
+    if (returnData) {
+      // Set the return package success flag to True.
+      haystacks.consoleLog(namespacePrefix, functionName, msg.cSethTheReturnPackageSuccessFlagToTrue);
+    }
+  } else {
+    // current version already released
+    haystacks.consoleLog(namespacePrefix, functionName, msg.ccurrentVersionAlreadyReleased);
+  }
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;

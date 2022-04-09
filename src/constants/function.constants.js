@@ -126,6 +126,7 @@ export const cscanDirectoryContents = wr1.cscan + wr1.cDirectory + wr1.cContents
 export const creadDirectorySynchronously = wr1.cread + wr1.cDirectory + wr1.cSynchronously; // readDirectorySynchronously
 export const ccopyAllFilesAndFoldersFromFolderToFolder = wr1.ccopy + wr1.cAll + wr1.cFiles + wr1.cAnd + wr1.cFolders + wr1.cFrom + wr1.cFolder + wr1.cTo + wr1.cFolder; // copyAllFilesAndFoldersFromFolderToFolder
 export const cbuildReleasePackage = wr1.cbuild + wr1.cRelease + wr1.cPackage; // buildReleasePackage
+export const ccreateZipArchive = wr1.ccreate + gen.cZip + wr1.cArchive; // createZipArchive
 export const ccleanRootPath = wr1.cclean + wr1.cRoot + wr1.cPath; // cleanRootPath
 export const ccopyFileSync = wr1.ccopy + wr1.cFile + wr1.cSync; // copyFileSync
 export const ccopyFolderRecursiveSync = wr1.ccopy + wr1.cFolder + wr1.cRecursive + wr1.cSync; // copyFolderRecursiveSync

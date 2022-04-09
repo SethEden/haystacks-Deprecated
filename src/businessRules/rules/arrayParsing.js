@@ -11,6 +11,7 @@
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:configurator
+ * @requires module:fileOperations
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/lodash|lodash}
  * @requires {@link https://mathjs.org/index.html|math}
@@ -31,6 +32,7 @@ import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
 import configurator from '../../executrix/configurator.js';
+import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
 import _ from 'lodash';
@@ -359,6 +361,30 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   //     break;
   //   }
   // }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function readDiretoryContents
+ * @description Scans an input folder path recursively and
+ * returns all of the contents of all files and folders and their paths in an array.
+ * This is a wrapper function to expose the fileOperations function readDirectoryContents,
+ * out to client applications that will need this functionality.
+ * @param {string} inputData The path for the folder that should be scanned recursively.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string>} The array of the files & folders contained within the input path.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+const readDirectoryContents = function(inputData, inputMetaData) {
+  let functionName = readDirectoryContents.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  returnData = fileOperations.readDirectoryContents(inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -1301,6 +1327,7 @@ export default {
   removeCharacterFromArray,
   ascertainMatchingElements,
   doesArrayContainFilename,
+  readDirectoryContents,
   getLengthOfLongestStringInArray,
   searchForPatternsInStringArray,
   validatePatternsThatNeedImplementation,

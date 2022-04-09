@@ -36,6 +36,7 @@ export const businessConstantsValidation = [
   {Name: 'cremoveCharacterFromArray', Actual: biz.cremoveCharacterFromArray, Expected: 'removeCharacterFromArray'},
   {Name: 'cascertainMatchingElements', Actual: biz.cascertainMatchingElements, Expected: 'ascertainMatchingElements'},
   {Name: 'cdoesArrayContainFilename', Actual: biz.cdoesArrayContainFilename, Expected: 'doesArrayContainFilename'},
+  {Name: 'creadDirectoryContents', Actual: biz.creadDirectoryContents, Expected: 'readDirectoryContents'},
   {Name: 'cgetLengthOfLongestStringInArray', Actual: biz.cgetLengthOfLongestStringInArray, Expected: 'getLengthOfLongestStringInArray'},
   {Name: 'csearchForPatternsInStringArray', Actual: biz.csearchForPatternsInStringArray, Expected: 'searchForPatternsInStringArray'},
   {Name: 'cvalidatePatternsThatNeedImplementation', Actual: biz.cvalidatePatternsThatNeedImplementation, Expected: 'validatePatternsThatNeedImplementation'},
@@ -179,6 +180,8 @@ export const businessConstantsValidation = [
   {Name: 'cgetAttributeName', Actual: biz.cgetAttributeName, Expected: 'getAttributeName'},
   {Name: 'cgetAttributeValue', Actual: biz.cgetAttributeValue, Expected: 'getAttributeValue'},
   {Name: 'ccleanCommandInput', Actual: biz.ccleanCommandInput, Expected: 'cleanCommandInput'},
+  {Name: 'cgetNowMoment', Actual: biz.cgetNowMoment, Expected: 'getNowMoment'},
+  {Name: 'ccreateZipArchive', Actual: biz.ccreateZipArchive, Expected: 'createZipArchive'},
 
   // ***********************************************
   // StringParsingUtiities rules in order

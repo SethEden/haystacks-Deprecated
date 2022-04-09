@@ -38,6 +38,7 @@ export const cdoesArrayContainCharacter = wr1.cdoes + wr1.cArray + wr1.cContain 
 export const cremoveCharacterFromArray = wr1.cremove + wr1.cCharacter + wr1.cFrom + wr1.cArray; // removeCharacterFromArray
 export const cascertainMatchingElements = wr1.cascertain + wr1.cMatching + wr1.cElements; // ascertainMatchingElements
 export const cdoesArrayContainFilename = wr1.cdoes + wr1.cArray + wr1.cContain + wr1.cFilename; // doesArrayContainFilename
+export const creadDirectoryContents = wr1.cread + wr1.cDirectory + wr1.cContents; // readDirectoryContents
 export const cgetLengthOfLongestStringInArray = wr1.cget + wr1.cLength + wr1.cOf + wr1.cLongest + wr1.cString + bas.cIn + wr1.cArray; // getLengthOfLongestStringInArray
 export const csearchForPatternsInStringArray = wr1.csearch + wr1.cFor + wr1.cPatterns + bas.cIn + wr1.cString + wr1.cArray; // searchForPatternsInStringArray
 export const cvalidatePatternsThatNeedImplementation = wr1.cvalidate + wr1.cPatterns + wr1.cThat + wr1.cNeed + wr1.cImplementation; // validatePatternsThatNeedImplementation
@@ -181,6 +182,8 @@ export const ccopyAllFilesAndFoldersFromFolderToFolder = wr1.ccopy + wr1.cAll + 
 export const cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
 export const cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue
 export const ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput
+export const cgetNowMoment = wr1.cget + wr1.cNow + wr1.cMoment; // getNowMoment
+export const ccreateZipArchive = wr1.ccreate + gen.cZip + wr1.cArchive; // createZipArchive
 
 // ***********************************************
 // StringParsingUtiities rules in order

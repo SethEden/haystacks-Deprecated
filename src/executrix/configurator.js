@@ -68,7 +68,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getConfigurationSetting(configurationNamespace, configurationName) {
-  // let functionName = getConfigurationSetting.name;
+  let functionName = getConfigurationSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configurationNamespace is: ${configurationNamespace}`);
   // console.log(`configurationName is: ${configurationName}`);

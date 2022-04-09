@@ -21,6 +21,7 @@
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
+ * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/n-readlines|n-readlines}
@@ -46,6 +47,7 @@ import colorizer from '../../executrix/colorizer.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
+import timers from '../../executrix/timers.js';
 import D from '../../structures/data.js';
 // External imports
 import chalk from 'chalk';
@@ -2240,6 +2242,50 @@ const cleanCommandInput = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function getNowMoment
+ * @description This function is a wrapper for the timers.getNowMoment function.
+ * It returns a time stamp for the current instant that the function is called.
+ * @param {string} inputData The format for the time stamp should be followed.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The current time stamp, formatted according to the inpu string.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+const getNowMoment = function(inputData, inputMetaData) {
+  let functionName = getNowMoment.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = '';
+  returnData = timers.getNowMoment(inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function createZipArchive
+ * @description Creates a zip archive of all the files from an input specified path,
+ * and saves the zip file to the specified destination location.
+ * @param {array<string>} inputData An array of paths to pass to be used to create the zip archive package.
+ * @param {string} inputMetaData The full path and file name where the zip archive should be saved.
+ * @return {boolean} A True or False value to indicate if the zip archive process completed successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+const createZipArchive = function(inputData, inputMetaData) {
+  let functionName = createZipArchive.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  returnData = fileOperations.createZipArchive(inputData, inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 // ******************************************************
 // Internal functions
 // ******************************************************
@@ -2333,5 +2379,7 @@ export default {
   getAttributeName,
   getAttributeValue,
   cleanCommandInput,
+  getNowMoment,
+  createZipArchive,
   replaceCharacterAtIndexOfString
 };

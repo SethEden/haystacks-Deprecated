@@ -117,6 +117,7 @@ export const functionConstantsValidation = [
   {Name: 'creadDirectorySynchronously', Actual: fnc.creadDirectorySynchronously, Expected: 'readDirectorySynchronously'},
   {Name: 'ccopyAllFilesAndFoldersFromFolderToFolder', Actual: fnc.ccopyAllFilesAndFoldersFromFolderToFolder, Expected: 'copyAllFilesAndFoldersFromFolderToFolder'},
   {Name: 'cbuildReleasePackage', Actual: fnc.cbuildReleasePackage, Expected: 'buildReleasePackage'},
+  {Name: 'ccreateZipArchive', Actual: fnc.ccreateZipArchive, Expected: 'createZipArchive'},
   {Name: 'ccleanRootPath', Actual: fnc.ccleanRootPath, Expected: 'cleanRootPath'},
   {Name: 'ccopyFileSync', Actual: fnc.ccopyFileSync, Expected: 'copyFileSync'},
   {Name: 'ccopyFolderRecursiveSync', Actual: fnc.ccopyFolderRecursiveSync, Expected: 'copyFolderRecursiveSync'},
