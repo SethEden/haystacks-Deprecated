@@ -1,5 +1,5 @@
 {
-  "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing": true,
+  "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing": false,
   "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@ModuleFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@FunctionFontStyle": "Bold|Underline",
   "debugFiles|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing@MessageFontStyle": "Underline",
@@ -25,7 +25,7 @@
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.customEcho@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage": true,
+  "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage": false,
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.buildRelease.businessRules.clientRules.clientStringParsing.buildReleasePackage@MessageFontStyle": "Default",

@@ -166,6 +166,12 @@ function deployApplication() {
     }
     // 3rd stage deploy-release process:
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
+    commandResult = true;
+    while (haystacks.isCommandQueueEmpty() === false) {
+      commandResult = true;
+      commandResult = haystacks.processCommandQueue();
+    }
+
     haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
     commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {

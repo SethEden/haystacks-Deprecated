@@ -99,7 +99,22 @@ const deployMetaData = function(inputData, inputMetaData) {
     Description: frameworkDescription
   };
 
-  let metaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath);
+  // We should check to see if the newly copied version is different than the version that was loaded initially.
+  // Most likely if we are copying this file, then the version number should have been updated.
+  // In which case we should update the running version as well, otherwise,
+  // The application deployment process will try to generate a zip package for the previous version.
+  // That would fail the process because the previous version would have already been released.
+  // Which would mean that the release process would have to be run twice for every release, and we want to avoid that.
+  let currentFrameworkVersion = haystacks.getConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber);
+  if (currentFrameworkVersion != frameworkVersion) {
+    // The current version number is out dated. We need to update it with the new version number.
+    // Update all these generic fields that come from the metaData.json file.
+    haystacks.setConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber, frameworkVersion);
+    haystacks.setConfigurationSetting(wr1.csystem, sys.cFrameworkName, frameworkName);
+    haystacks.setConfigurationSetting(wr1.csystem, sys.cFrameworkDescription, frameworkDescription);
+  }
+
+  let metaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkResourcesPath);
   metaDataPathAndFilename = path.resolve(metaDataPathAndFilename + sys.cmetaDatadotJson);
   // metaDataPathAndFilename is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);

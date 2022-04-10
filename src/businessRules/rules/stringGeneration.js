@@ -451,7 +451,7 @@ const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMeta
  * from an optional list of allowable special characters, should be generated;
  * generate them and string them together to the specified length.
  * @param {string} inputData The string that contains the number of characters to generate.
- * @param {array<boolean,string,string} inputMetaData An array map with multiple input parameters.
+ * @param {array<boolean,string,string>} inputMetaData An array map with multiple input parameters.
  * inputMetaData[0] = generateSpecialCharacters - A boolean value to indiate if
  * special characters should be included when randomlygenerating characters for the output string.
  * inputMetaData[1] = allowableSpecialCharacters - The list of allowable special characters as a string,

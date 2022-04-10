@@ -53,6 +53,7 @@ export const cPageScript = wr1.cPage + wr1.cScript; // PageScript
 export const cIntermediatePath = wr1.cIntermediate + wr1.cPath; // IntermediatePath
 export const cTimeStamp = wr1.cTime + wr1.cStamp; // TimeStamp
 export const cPageScriptTimeStamp = cPageScript + cTimeStamp; // PageScriptTimeStamp
+export const cdateTimeStamp = wr1.cdate + cTimeStamp; // dateTimeStamp
 export const cDateTimeStamp = wr1.cDate + cTimeStamp; // DateTimeStamp
 export const cScriptDateStamp = wr1.cScript + wr1.cDate + wr1.cStamp; // ScriptDateStamp
 export const cScriptTimeStamp = wr1.cScript + cTimeStamp; // ScriptTimeStamp

@@ -53,6 +53,7 @@ export const systemConstantsValidation = [
   {Name: 'cIntermediatePath', Actual: sys.cIntermediatePath, Expected: 'IntermediatePath'},
   {Name: 'cTimeStamp', Actual: sys.cTimeStamp, Expected: 'TimeStamp'},
   {Name: 'cPageScriptTimeStamp', Actual: sys.cPageScriptTimeStamp, Expected: 'PageScriptTimeStamp'},
+  {Name: 'cdateTimeStamp', Actual: sys.cdateTimeStamp, Expected: 'dateTimeStamp'},
   {Name: 'cDateTimeStamp', Actual: sys.cDateTimeStamp, Expected: 'DateTimeStamp'},
   {Name: 'cScriptDateStamp', Actual: sys.cScriptDateStamp, Expected: 'ScriptDateStamp'},
   {Name: 'cScriptTimeStamp', Actual: sys.cScriptTimeStamp, Expected: 'ScriptTimeStamp'},

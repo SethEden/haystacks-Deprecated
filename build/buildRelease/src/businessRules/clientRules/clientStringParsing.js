@@ -106,7 +106,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   if (currentVersionReleased === false) {
     // release Files list is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = haystacks.executeBusinessRule(biz.cgetNowMoment, haystacks.getConfigurationSetting(wr1.csystem, sys.cDateTimeStamp), '');
+    releaseDateTimeStamp = haystacks.executeBusinessRule(biz.cgetNowMoment, haystacks.getConfigurationSetting(wr1.csystem, sys.cdateTimeStamp), '');
     // release date-time stamp is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + frameworkName;
@@ -116,7 +116,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
     returnData = haystacks.executeBusinessRule(biz.ccreateZipArchive, originalSource, fullReleasePath);
     if (returnData) {
       // Set the return package success flag to True.
-      haystacks.consoleLog(namespacePrefix, functionName, msg.cSethTheReturnPackageSuccessFlagToTrue);
+      haystacks.consoleLog(namespacePrefix, functionName, msg.cSetTheReturnPackageSuccessFlagToTrue);
     }
   } else {
     // current version already released

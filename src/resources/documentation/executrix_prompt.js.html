@@ -30,16 +30,33 @@
  * @file prompt.js
  * @module prompt
  * @description A simple prompt module to get input from the user using process.stdin.
- * @requires {@link https://www.npmjs.com/package/fs|fs}
+ * @requires module:basic.constants
+ * @requires module:function.constants
+ * @requires module:generic.constants
+ * @requires module:message.constants
+ * @requires module:word1.constants
+ * @requires module:loggers
+ * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
+ * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/26
  */
 
-var fs = require('fs');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `framework.${baseFileName}.`;
-var term = 13; // carriage return
+// Internal imports
+import * as bas from '../constants/basic.constants.js';
+import * as fnc from '../constants/function.constants.js';
+import * as gen from '../constants/generic.constants.js';
+import * as msg from '../constants/message.constants.js';
+import * as wr1 from '../constants/word1.constants.js';
+import loggers from './loggers.js';
+// External imports
+import fs from 'fs';
+import path from 'path';
+
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.prompt.
+const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const term = 13; // carriage return
 
 /**
  * @function prompt
@@ -53,6 +70,8 @@ function prompt(ask) {
   let functionName = prompt.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`ask is: ${JSON.stringify(ask)}`);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.caskIs + JSON.stringify(ask));
   let input = '';
   if (ask) {
     process.stdout.write(ask);
@@ -60,27 +79,33 @@ function prompt(ask) {
 
   var
     buffer = Buffer.alloc(1024),
-    fd = process.platform === 'win32' ? process.stdin.fd : fs.openSync('/dev/tty', 'r'),
+    fd = process.platform === gen.cwin32 ? process.stdin.fd : fs.openSync(sys.cdevtty, bas.cr),
     //readSize = fs.readSync(fd, buffer, 0, 1024);
     readSize = fs.readSync(0, buffer, 0, 1024);
 
   // console.log('INPUT: ' + buffer.toString('utf8', 0, readSize));
-  input = buffer.toString('utf8', 0, readSize);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cINPUT + buffer.toString(gen.cUTF8, 0, readSize));
+  input = buffer.toString(gen.cUTF8, 0, readSize);
   if (input.includes(String.fromCharCode(term))) {
-    // console.log('caught the case that the input string contains the global carriage return term.')
+    // console.log('Caught the case that the input string contains the global carriage return term.')
     // console.log('index of the carriage return character: ' + input.indexOf(String.fromCharCode(term)));
+    loggers.consoleLog(namespacePrefix + functionName, msg.cprompt01);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cprompt02 + input.indexOf(String.fromCharCode(term)));
     input = input.slice(0, input.indexOf(String.fromCharCode(term)));
-  } else if (input.includes('\r\n')) {
-    // console.log('caught the case that the string includes a carriage return and new line characters.');
-    input = input.slice(0, input.indexOf('\r\n'));
+  } else if (input.includes(bas.cCarriageReturn + bas.cNewLine)) {
+    // console.log('Caught the case that the string includes a carriage return and new line characters.');
+    loggers.consoleLog(namespacePrefix + functionName, msg.cprompt03);
+    input = input.slice(0, input.indexOf(bas.cCarriageReturn + bas.cNewLine));
   }
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputIs + JSON.stringify(input));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`input is: ${JSON.stringify(input)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return input;
 };
 
-module.exports = {
-  ['prompt']: (ask) => prompt(ask)
+export default {
+  [fnc.cprompt]: (ask) => prompt(ask)
 };
 </code></pre>
         </article>
@@ -92,13 +117,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="basic.constants.module_validation.html">basic.constants.validation</a></li><li><a href="business.constants.module_validation.html">business.constants.validation</a></li><li><a href="business.module_constants.html">business.constants</a></li><li><a href="color.constants.module_validation.html">color.constants.validation</a></li><li><a href="color.module_constants.html">color.constants</a></li><li><a href="command.constants.module_validation.html">command.constants.validation</a></li><li><a href="command.module_constants.html">command.constants</a></li><li><a href="configuration.constants.module_validation.html">configuration.constants.validation</a></li><li><a href="configuration.module_constants.html">configuration.constants</a></li><li><a href="country.constants.module_validation.html">country.constants.validation</a></li><li><a href="country.module_constants.html">country.constants</a></li><li><a href="function.constants.module_validation.html">function.constants.validation</a></li><li><a href="function.module_constants.html">function.constants</a></li><li><a href="generic.constants.module_vaidation.html">generic.constants.vaidation</a></li><li><a href="language.constants.module_validation.html">language.constants.validation</a></li><li><a href="language.module_constants.html">language.constants</a></li><li><a href="message.constants.module_validation.html">message.constants.validation</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-basic-constants.html">basic-constants</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-generic-constants.html">generic-constants</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-message-constants.html">message-constants</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-numeric-constants.html">numeric-constants</a></li><li><a href="module-phonic-constants.html">phonic-constants</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-unit-constants.html">unit-constants</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li><li><a href="numeric.constants.module_validation.html">numeric.constants.validation</a></li><li><a href="phonic.constants.module_validation.html">phonic.constants.validation</a></li><li><a href="system.constants.module_validation.html">system.constants.validation</a></li><li><a href="system.module_constants.html">system.constants</a></li><li><a href="unit.constants.module_validation.html">unit.constants.validation</a></li><li><a href="word.constants.module_validation.html">word.constants.validation</a></li><li><a href="word1.module_constants.html">word1.constants</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Oct 27 2021 09:18:35 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Apr 09 2022 21:36:02 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

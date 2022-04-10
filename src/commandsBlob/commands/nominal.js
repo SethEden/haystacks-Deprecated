@@ -69,7 +69,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wr1.ccommands + bas.cDot 
 /**
  * @function echoCommand
  * @description Returns the input as the output without any changes.
- * @param {array<boolean|string|integer} inputData String that shoudl be echoed.
+ * @param {array<boolean|string|integer>} inputData String that should be echoed.
  * inputData[0] === 'echoCommand'
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True to indicate that the application should not exit.
@@ -97,7 +97,7 @@ const echoCommand = function(inputData, inputMetaData) {
 /**
  * @function exit
  * @description Returns false so the entire application can exit.
- * @param {array<boolean|string|integer} inputData Not used for thsi command.
+ * @param {array<boolean|string|integer>} inputData Not used for this command.
  * inputData[0] === 'exit'
  * @param {string} inputMetaData Not used for this command.
  * @return {boolean} False to indicate that the application should exit.
@@ -155,7 +155,7 @@ const version = function(inputData, inputMetaData) {
 /**
  * @function about
  * @description Displays the message about the current application.
- * @param {array<boolean|string|integer} inputData Not used for this command.
+ * @param {array<boolean|string|integer>} inputData Not used for this command.
  * inputData[0] === 'about'
  * inputData[1] === 'application|framework' (optional)
  * @param {string} inputMetaData Not used for this command.
@@ -411,7 +411,7 @@ const workflow = function(inputData, inputMetaData) {
  * @function printDataHive
  * @description Prints out all the data contents of a particular data hive in the D-data structure.
  * If no hive is specified then the entire D-data structure will be printed.
- * @param {array<boolean|string|integer} inputData An array that could actually contain anything,
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
  * extracts the case the user has entered a dat hive name at the top level of the D-data structure.
  * Examples: Configuration, Workflows, Colors, cCommandAliases, etc...
@@ -480,7 +480,7 @@ const printDataHive = function(inputData, inputMetaData) {
 /**
  * @function printDataHiveAttributes
  * @description Prints out all of the attributes for a given specified data-set from the D-data structure.
- * @param {array<boolean|string|integer} inputData An array that could actually contain anything,
+ * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
  * extracts the case the user has entered a data hive or leaf data structure in the heirarchy and
  * a name of an attribute where all values should be printed.

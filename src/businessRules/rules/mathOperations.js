@@ -34,7 +34,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + 
  * @description Converts a hexidecimal color value to an RGB color value.
  * @param {string} inputData The hexidecmal value that should be converted to an RGB value.
  * @param {string} inputMetaData Not used for this busienss rule.
- * @return {array<integer,integer,integer} The RGB value.
+ * @return {array<integer,integer,integer>} The RGB value.
  * @author Seth Hollingsead
  * @date 2022/01/27
  * @reference {@link: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb}
