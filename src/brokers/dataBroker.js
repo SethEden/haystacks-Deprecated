@@ -331,7 +331,7 @@ function loadAllJsonData(filesToLoad, contextName) {
     for (let j = 0; j < filesToLoad.length; j++) {
       let fileToLoad = filesToLoad[j];
       if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
-      && fileToLoad.toUpperCase().includes(gen.cDotJSON)) {
+      && fileToLoad.toUpperCase().includes(gen.cDotJSON) && !fileToLoad.toLowerCase().includes(wr1.cmetadata + gen.cDotjson)) {
         let dataFile = preprocessJsonFile(fileToLoad);
         // console.log('dataFile to merge is: ' + JSON.stringify(dataFile));
         loggers.consoleLog(namespacePrefix + functionName, msg.cdataFileToMergeIs + JSON.stringify(dataFile));
@@ -443,7 +443,7 @@ function processXmlData(data, contextName) {
 
 /**
  * @function preprocessJsonFile
- * @description Load al of the data from a single JSON data file.
+ * @description Load all of the data from a single JSON data file.
  * @param {string} fileToLoad The fully qualified path to the file that should be loaded.
  * @return {object} The JSON data object that was loaded from the specified JSON data file.
  * @author Seth Hollingsead
@@ -482,7 +482,7 @@ function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
-  fileOperations.writeJsonData(fileToSaveTo, path.resolve(dataToWriteOut));
+  fileOperations.writeJsonData(path.resolve(fileToSaveTo), dataToWriteOut);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -566,6 +566,85 @@ function clearData(dataStorageContextName) {
   } else {
     D[sys.cDataStorage] = {};
   }
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function initializeConstantsValidationData
+ * @description Initializes the constants validation data structure.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/22
+ */
+function initializeConstantsValidationData() {
+  let functionName = initializeConstantsValidationData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  D[sys.cConstantsValidationData] = {};
+  D[sys.cConstantsValidationData][sys.cConstantsShortNames] = {};
+  D[sys.cConstantsValidationData][sys.cConstantsFileNames] = {};
+  D[sys.cConstantsValidationData][sys.cConstantsPrefix] = {};
+  D[sys.cConstantsValidationData][sys.cConstantsFilePaths] = {};
+  D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages] = {};
+  D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages] = {};
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function addConstantsValidationData
+ * @description Adds a library of constants vaidation data to the existing constants vaidation data.
+ * @param {array<array<string,object>>} constantLibraryData The array of data that should be added to the validation data et for the purpose of validation.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/03/22
+ */
+function addConstantsValidationData(constantLibraryData) {
+  let functionName = addConstantsValidationData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // constantLibraryData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cconstantLibraryDataIs + JSON.stringify(constantLibraryData));
+  for (let key1 in constantLibraryData[sys.cConstantsValidationData]) {
+    if (constantLibraryData[sys.cConstantsValidationData].hasOwnProperty(key1)) {
+      if (key1 === sys.cConstantsFilePaths ||
+      key1 === sys.cConstantsPhase1ValidationMessages ||
+      key1 === sys.cConstantsPhase2ValidationMessages ||
+      key1 === sys.cConstantsShortNames ||
+      key1 === sys.cConstantsFileNames ||
+      key1 === sys.cConstantsPrefix) {
+        addDeeplyNestedConstantsValidationData(key1, constantLibraryData[sys.cConstantsValidationData][key1]);
+      } else {
+        let data1 = constantLibraryData[sys.cConstantsValidationData][key1];
+        D[sys.cConstantsValidationData][key1] = [];
+        Object.assign(D[sys.cConstantsValidationData][key1], data1);
+      }
+    } // End-if (constantLibraryData[sys.cConstantsValidationData].hasOwnProperty(key1))
+  } // End-for (let key1 in constantLibraryData[sys.cConstantsValidationData])
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+};
+
+/**
+ * @function addDeeplyNestedConstantsValidationData
+ * @description Adds all the constants validation auxilary data that is deeply nested inside sub-data structures to the main D-data structure.
+ * Such as file paths, and validation messages.
+ * @param {string} contextName The name that should be used when accessing and alo adding the data to the D-data structure.
+ * @param {array<array<string,object>>} deeplyNestedData The actual data that should be added.
+ * @author Seth Hollingsead
+ * @date 2022/03/22
+ */
+function addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData) {
+  let functionName = addDeeplyNestedConstantsValidationData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // contextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
+  // deeplyNestedData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdeeplyNestedDataIs + JSON.stringify(deeplyNestedData));
+
+  let d_dataStructureConstantsFilePaths = D[sys.cConstantsValidationData][contextName];
+  for (let key2 in deeplyNestedData) {
+    if (deeplyNestedData.hasOwnProperty(key2)) {
+      let data2 = deeplyNestedData[key2];
+      D[sys.cConstantsValidationData][contextName][key2] = data2;
+    }
+  } // End-for (let key2 in deeplyNestedData)
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -859,9 +938,13 @@ export default {
   [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
   [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
   [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
+  [fnc.cpreprocessJsonFile]: (fileToLoad) => preprocessJsonFile(fileToLoad),
   [fnc.cwriteJsonDataToFile]: (fileToSaveTo, dataToWriteOut) => writeJsonDataToFile(fileToSaveTo, dataToWriteOut),
   [fnc.csetupDataStorage]: () => setupDataStorage(),
   [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
   [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),
-  [fnc.cclearData]: (dataStorageContextName) => clearData(dataStorageContextName)
+  [fnc.cclearData]: (dataStorageContextName) => clearData(dataStorageContextName),
+  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
+  [fnc.caddConstantsValidationData]: (constantLibraryData) => addConstantsValidationData(constantLibraryData),
+  [fnc.caddDeeplyNestedConstantsValidationData]: (contextName, deeplyNestedData) => addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData)
 };

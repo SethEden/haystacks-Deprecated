@@ -11,6 +11,7 @@
  * @requires module:system.constants
  * @requires module:word1.constants
  * @requires module:configurator
+ * @requires module:fileOperations
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/lodash|lodash}
  * @requires {@link https://mathjs.org/index.html|math}
@@ -31,6 +32,7 @@ import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
 import configurator from '../../executrix/configurator.js';
+import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
 import _ from 'lodash';
@@ -47,7 +49,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + 
  * @description Replaces all of the specified character in the inputData with another specified character.
  * @param {string} inputData A string that may or may not contain the specified
  * characters that should be converted to another specified character.
- * @param {array<string,string} inputMetaData An array of data that contains 2 additional string parameters:
+ * @param {array<string,string>} inputMetaData An array of data that contains 2 additional string parameters:
  * inputMetaData[0] === character2Find - The character to be searched and replaced from the input string.
  * inputMetaData[1] === character2Replace - The character that should be used to replace
  * the character specified for replacement from the input data.
@@ -81,7 +83,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
  * @description Takes a string in camelCase and returns an array of the words.
  * @param {string} inputData String to decompose into an array.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {array<string} The array of words that were composed in the original string.
+ * @return {array<string>} The array of words that were composed in the original string.
  * @author Seth Hollingsead
  * @date 2022/01/18
  * @NOTE Might not work so well with numbers as part of the string, they are not treated as capital letters.
@@ -158,7 +160,7 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
 };
 
 /**
- * @function recombneStringArrayWithSpaces
+ * @function recombineStringArrayWithSpaces
  * @description Takes an array of strings and recombines them sequentially ith spaces between each array element.
  * This function is needed, because commands parse inputs by spaces ino an array,
  * and some commands need a single continuous strng that might be delimited by coma's.
@@ -176,10 +178,11 @@ const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    returnData = inputData[1];
-    for (let i = 2; i < inputData.length; i++) {
-      returnData = returnData + bas.cSpace + inputData[i];
-    }
+    // returnData = inputData[1];
+    // for (let i = 2; i < inputData.length; i++) {
+    //   returnData = returnData + bas.cSpace + inputData[i];
+    // }
+    returnData = inputData.join(bas.cSpace);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -274,7 +277,7 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
  * @param {string|integer|boolean|float|object} inputData The character, integer, boolean, float or object
  * that should be reoved from all instances of the input array.
  * @param {array<string|boolean|integer|object>} inputMetaData Teh array from which all isntances of the input character, integer, etc...should be removed.
- * @return {array<string|boolean|integer|object} The array after having the specified character removed from all elements of the input array.
+ * @return {array<string|boolean|integer|object>} The array after having the specified character removed from all elements of the input array.
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
@@ -316,7 +319,7 @@ const ascertainMatchingElements = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) {
       // Array elements match
-      loggers.consoleLog(namespacePrefix + functionName, msg.cArrayEelmentsMatch);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cArrayElementsMatch);
       returnData = true;
     } else {
       // Array elements do not match
@@ -358,6 +361,30 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   //     break;
   //   }
   // }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function readDiretoryContents
+ * @description Scans an input folder path recursively and
+ * returns all of the contents of all files and folders and their paths in an array.
+ * This is a wrapper function to expose the fileOperations function readDirectoryContents,
+ * out to client applications that will need this functionality.
+ * @param {string} inputData The path for the folder that should be scanned recursively.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string>} The array of the files & folders contained within the input path.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+const readDirectoryContents = function(inputData, inputMetaData) {
+  let functionName = readDirectoryContents.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  returnData = fileOperations.readDirectoryContents(inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -416,7 +443,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
       let currentMasterStringArrayElement = inputData[a];
       // currentMasterStringArrayElement is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentMasterStringArrayElementIs + currentMasterStringArrayElement);
-      if (currentMaserStringArrayElement.includes(bas.cSpace) === false) {
+      if (currentMasterStringArrayElement.includes(bas.cSpace) === false) {
         // currentMasterStringArrayElement does not contain a sapce character
         loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInStringArrayMessage1);
         // NOTE Al of the other loggers.consoleLog beow this are not actually getting called for some reason.
@@ -434,7 +461,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
             // console.log('currentMasterStringArrayElement.length is less than b');
             // Loop agan for the length of the current string - 3 (minStringLength)
             // Each loop will etermine our currentComparisonSrng (which will be used when we actually iterate over the array in ur search)
-            for (let c = 0; c <= currentMasterStringArayElement.length - minStringLength; c++) { // Loop through each set of strings in the master comparison string.
+            for (let c = 0; c <= currentMasterStringArrayElement.length - minStringLength; c++) { // Loop through each set of strings in the master comparison string.
               // loggers.consoleLog(namespacePrefix + functionName, 'c value is: ' + c);
               // console.log('c value is: ' + c);
               // Now here we should be able to finally compute the beginning and ending of the indexes for the string we want to use for comparison.
@@ -444,7 +471,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
               let endingIndex = c + b;
               // loggers.consoleLog(namespacePrefix + functionName, 'endingIndex is: ' + endingIndex);
               // console.log('ending index is: ' + endingIndex);
-              let stringToCompare = currentMasterStringArrayElement.subSring(beginningIndex, endingIndex);
+              let stringToCompare = currentMasterStringArrayElement.substring(beginningIndex, endingIndex);
               // loggers.consoleLog(namespacePrefix + functionName, 'stringToCompare is: ' + stringToCompare);
               // console.log('stringToCompare is: ' + stringToCompare);
               // Now we need another loop to go over all of the array elements, make sure we always ignore the current array element.
@@ -461,8 +488,8 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
                     // console.log('FOUND A MATCH!!!! ' + stringToCompare);
                     // Here we have found a match amoung brothers. We need to see if this stringToCompare has already been added to the returnData array.
-                    if (doesArrayContanValue(returnData, stringToCompare, ascertainMatchingElements) === false) {
-                      eturnData.puh(stringToCompare);
+                    if (doesArrayContainValue(returnData, stringToCompare, ascertainMatchingElements) === false) {
+                      returnData.push(stringToCompare);
                     } // End-if (doesArrayContanValue(returnData, stringToCompare, ascertainMatchingElements) === false)
                   } // End-if (otherStringToCompare.includes(stringToCompare))
                 } // End-if (d != a)
@@ -544,7 +571,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
 /**
  * @function solveLehmerCode
  * @description Used the inputData as an addressable Lehmer Code to find all possible combinations of array elements.
- * @param {array<integer} inputData The Lehmer code addressable index array we will use to permutate over all possible combinations.
+ * @param {array<integer>} inputData The Lehmer code addressable index array we will use to permutate over all possible combinations.
  * @param {array<array<string>>} inputMetaData The nested array that contains all instances of strings that should be used when generating permutations.
  * @return {string} The delimited list of possible combinations generated by solving the Lehmer Code.
  * @author Seth Hollingsead
@@ -1205,7 +1232,7 @@ const parseColorRangeInputs = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = [0,0,0];
-  let minimuColorRange = 0;
+  let minimumColorRange = 0;
   let tempMinimumColorRange = 0;
   let maximumColorRange = 0;
   let tempMaximumColorRange = 0;
@@ -1300,6 +1327,7 @@ export default {
   removeCharacterFromArray,
   ascertainMatchingElements,
   doesArrayContainFilename,
+  readDirectoryContents,
   getLengthOfLongestStringInArray,
   searchForPatternsInStringArray,
   validatePatternsThatNeedImplementation,

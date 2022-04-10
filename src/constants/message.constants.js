@@ -28,13 +28,13 @@ export const cinputData = wr1.cinput + wr1.cData; // inputData
 export const cInputData = wr1.cInput + wr1.cData; // InputData
 export const cinputMetaData = wr1.cinput + wr1.cMetaData; // inputMetaData
 export const cInputMetaData = wr1.cInput + wr1.cMetaData; // InputMetaData
-export const cinputDataIs = cinputData + sys.cSpaceIsColonSpace; // input Data is:
-export const cinputMetaDataIs = wr1.cinput + wr1.cMetaData + sys.cSpaceIsColonSpace; // input MetaData is:
-export const creturnDataIs = wr1.creturn + wr1.cData + sys.cSpaceIsColonSpace; // return Data is:
+export const cinputDataIs = cinputData + sys.cSpaceIsColonSpace; // inputData is:
+export const cinputMetaDataIs = wr1.cinput + wr1.cMetaData + sys.cSpaceIsColonSpace; // inputMetaData is:
+export const creturnDataIs = wr1.creturn + wr1.cData + sys.cSpaceIsColonSpace; // returnData is:
 
 // System Messages
-// // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
-export const cApplicationWarningMessage1a = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + gen.cDotEnv + bas.cSpace + wr1.cFile + bas.cSpace + wr1.cfound + bas.cExclamation + bas.cSpace; // WARNING: No .End File found!
+// WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
+export const cApplicationWarningMessage1a = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + gen.cDotEnv + bas.cSpace + wr1.cFile + bas.cSpace + wr1.cfound + bas.cExclamation + bas.cSpace; // WARNING: No .Env File found!
 export const cApplicationWarningMessage1b = wr1.cGoing + bas.cSpace + bas.cto + bas.cSpace + wr1.cdefault + bas.cSpace + bas.cto + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cDEVELOPMENT + bas.cSpace + wr1.cENVIRONMENT + bas.cExclamation; // Going to default to the DEVELOPMENT ENVIRONMENT!
 export const cCharacterGenerationMessage1 = wr1.ctype + bas.cTo + wr1.cGenerate + sys.cSpaceIsColonSpace; // typeToGenerate is:
 export const cCharacterGenerationMessage2 = sys.cGenerateA + bas.cSpace + wr1.cnumber + bas.cDot; // Generate a number.
@@ -79,7 +79,7 @@ export const cWithoutTheAtSymbolSuffixAndDomainName = sys.cWithoutThe + bas.cSpa
 export const cWithoutTheDotSuffixAndDomainName = sys.cWithoutThe + bas.cSpace + bas.cDot + bas.cComa + bas.cSpace + wr1.csuffix + bas.cSpace + sys.candSpaceDomainSpaceName + bas.cDot; // Without the ., suffix and domain name.
 export const cWithoutTheAtSymbolPrefixSuffixAndDomainName = sys.cWithoutThe + bas.cSpace + bas.cAt + bas.cComa + bas.cSpace + wr1.cprefix + bas.cComa + bas.cSpace + wr1.csuffix + bas.cSpace + sys.candSpaceDomainSpaceName + bas.cDot; // Without the @, prefix, suffix and domain name.
 export const cWithoutTheDotPrefixSuffixAndDomainName = sys.cWithoutThe + bas.cSpace + bas.cDot + bas.cComa + bas.cSpace + wr1.cprefix + bas.cComa + bas.cSpace + wr1.csuffix + bas.cSpace + sys.candSpaceDomainSpaceName + bas.cDot; // Without the ., prefix, suffix and domain name.
-export const cWithoutThePrefixSuffixAndAtSymbol = sys.cWithoutThe + bas.cSpace + wr1.cprefix + bas.cComa + bas.cSpace + wr1.csuffix + bas.cSpace + wr1.cname + bas.cAt + bas.cDot; // Without the prefix, suffix and @.
+export const cWithoutThePrefixSuffixAndAtSymbol = sys.cWithoutThe + bas.cSpace + wr1.cprefix + bas.cComa + bas.cSpace + wr1.csuffix + bas.cSpace + wr1.cand + bas.cSpace + bas.cAt + bas.cDot; // Without the prefix, suffix and @.
 export const cWithoutThePrefixSuffixAndDot = sys.cWithoutThe + bas.cSpace + wr1.cprefix + bas.cComa + bas.cSpace + wr1.csuffix + bas.cSpace + wr1.cand + bas.cSpace + bas.cDot + bas.cDot; // Without the prefix, suffix and ..
 export const cIndexOfTheSpace = wr1.cIndex + bas.cSpace + bas.cof + bas.cSpace + wr1.cthe + bas.cSpace; // Index of the
 export const cisResolvingAs = bas.cis + bas.cSpace + wr1.cresolving + bas.cSpace + bas.cas + bas.cColon + bas.cSpace; // is resolving as:
@@ -130,14 +130,14 @@ export const cBEGIN_ithIteration = wr1.cBEGIN + bas.cSpace + bas.ci + bas.cDash 
 export const cBEGIN_jthLoop = wr1.cBEGIN + bas.cSpace + bas.cj + bas.cDash + bas.cth + bas.cSpace + wr1.cloop + bas.cColon + bas.cSpace; // BEGIN j-th loop:
 export const cBEGIN_kthIteration = wr1.cBEGIN + bas.cSpace + bas.ck + bas.cDash + bas.cth + bas.cSpace + wr1.citeration + bas.cColon + bas.cSpace; // BEGIN k-th iteration:
 export const cEND_ithLoop = wr1.cEND + bas.cSpace + bas.ci + bas.cDash + bas.cth + bas.cSpace + wr1.cloop + bas.cColon + bas.cSpace; // END i-th loop:
-export const cEND_ithIteration = wr1.cEND + bas.cSpace + bas.ci + bas.cDash + bas.cth + bas.cSpace + wr1.cIteration + bas.cColon + bas.cSpace; // END i-th iteration:
+export const cEND_ithIteration = wr1.cEND + bas.cSpace + bas.ci + bas.cDash + bas.cth + bas.cSpace + wr1.citeration + bas.cColon + bas.cSpace; // END i-th iteration:
 export const cEND_jthLoop = wr1.cEND + bas.cSpace + bas.cj + bas.cDash + bas.cth + bas.cSpace + wr1.cloop + bas.cColon + bas.cSpace; // END j-th loop:
 export const cEND_kthIteration = wr1.cEND + bas.cSpace + bas.ck + bas.cDash + bas.cth + bas.cSpace + wr1.citeration + bas.cColon + bas.cSpace; // END k-th iteration:
 export const ccurrentCommandIs = wr1.ccurrent + wr1.cCommand + sys.cSpaceIsColonSpace; // currentCommand is:
 export const caliasListIs = wr1.calias + wr1.cList + sys.cSpaceIsColonSpace; // aliasList is:
 export const ccurrentAliasIs = wr1.ccurrent + wr1.cAlias + sys.cSpaceIsColonSpace; // currentAlias is:
 export const cduplicateAliasCountIs = wr1.cduplicate + wr1.cAlias + wr1.cCount + sys.cSpaceIsColonSpace; // duplicateAliasCount is:
-export const cduplicateCommandAliasIs = wr1.cduplicate + bas.cSpace + wr1.cCommand + bas.cSpace + wr1.cAlias + sys.cSpaceIsColonSpace; // duplicate command alias is:
+export const cduplicateCommandAliasIs = wr1.cduplicate + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.calias + sys.cSpaceIsColonSpace; // duplicate command alias is:
 export const ccommandWordAliasesBeforeChangeIs = wr1.ccommand + wr1.cWord + wr1.cAliases + bas.cSpace + wr1.cBEFORE + bas.cSpace + wr1.cCHANGE + sys.cSpaceIsColonSpace; // commandWordAliases BEFORE CHANGE is:
 export const ccommandWordAliasesAfterChangeIs = wr1.ccommand + wr1.cWord + wr1.cAliases + wr1.cArray + bas.cSpace + wr1.cAFTER + bas.cSpace + wr1.cCHANGE + sys.cSpaceIsColonSpace; // commandWordAliasesArray AFTER CHANGE is:
 export const cmasterCommandWordAlisesArrayIs = wr1.cmaster + wr1.cCommand + wr1.cWord + wr1.cAliases + wr1.cArray + sys.cSpaceIsColonSpace; // masterCommandWordAliasesArray is:
@@ -147,16 +147,16 @@ export const cexpandedLehmerCodeArrayIs = wr1.cexpanded + sys.cLehmerCodeArray +
 export const cindexOfExpansionIs = wr1.cindex + bas.cOf + wr1.cExpansion + sys.cSpaceIsColonSpace; // indexOfExpansion is:
 export const carrayToBeExpandedIs = wr1.carray+ bas.cTo + bas.cBe + wr1.cExpanded + sys.cSpaceIsColonSpace; // arrayToBeExpanded is:
 export const climitOfExpansionIs = wr1.climit + bas.cOf + wr1.cExpansion + sys.cSpaceIsColonSpace;  // limitOfExpansion is:
-export const cpushingLehmerCodeArray1ToReturnDataValue = wr1.cpushing + bas.cSpace + sys.cLehmerCodeArray + num.c1 + bas.cSpace + bas.cto + bas.cSpace + sys.creturnData + bas.cSpace + wr1.cvalue + bas.cColon + bas.cSpace; // pushing lehmerCodeArray1 to returnData value:
+export const cpushingLehmerCodeArray1ToReturnDataValue = wr1.cpushing + bas.cSpace + sys.cLehmerCodeArray + num.c1 + bas.cSpace + bas.cto + bas.cSpace + sys.creturnData + bas.cSpace + wr1.cvalue + bas.cColon + bas.cSpace; // pushing LehmerCodeArray1 to returnData value:
 export const creturnDataAfterPushIs = sys.creturnData + bas.cSpace + wr1.cafter + bas.cSpace + wr1.cpush + sys.cSpaceIsColonSpace; // returnData after push is:
 export const creturnDataAfterLevel1Is = sys.creturnData + bas.cSpace + wr1.cafter + bas.cSpace + wr1.clevel + bas.cSpace + num.c1 + sys.cSpaceIsColonSpace; // returnData after Level 1 is:
 export const carrayToBeExpandedDotLengthIs = wr1.carray + bas.cTo + bas.cBe + wr1.cExpanded + bas.cDot + wr1.clength + sys.cSpaceIsColonSpace; // arrayToBeExpanded.length is:
-export const creturnDataDotLengthIs = sys.creturnData + bas.cDot + wr1.cLength + sys.cSpaceIsColonSpace; // returnData.length is:
+export const creturnDataDotLengthIs = sys.creturnData + bas.cDot + wr1.clength + sys.cSpaceIsColonSpace; // returnData.length is:
 export const creturnDataBeforePopIs = sys.creturnData + bas.cSpace + wr1.cBEFORE + bas.cSpace + wr1.cPOP + sys.cSpaceIsColonSpace; // returnData BEFORE POP is:
 export const creturnDataAfterPopIs = sys.creturnData + bas.cSpace + wr1.cAFTER + bas.cSpace + wr1.cPOP + sys.cSpaceIsColonSpace; // returnData AFTER POP is:
 export const cmasterTempReturnDataBeforeRecursiveCallIs = wr1.cmaster + wr1.cTemp + wr1.cReturn + wr1.cData + bas.cSpace + wr1.cBEFORE + bas.cSpace + wr1.crecursive + bas.cSpace + wr1.ccall + sys.cSpaceIsColonSpace; // masterTempReturnData BEFORE recursive call is:
 export const ctempReturnData1Is = wr1.ctemp + wr1.cReturn + wr1.cData + num.c1 + sys.cSpaceIsColonSpace; // tempReturnData1 is:
-export const ctempReturnData1DotLengthIs = wr1.ctemp + wr1.cReturn + wr1.cData + num.c1 + wr1.clength + sys.cSpaceIsColonSpace; // tempReturnData1.length is:
+export const ctempReturnData1DotLengthIs = wr1.ctemp + wr1.cReturn + wr1.cData + num.c1 + bas.cDot + wr1.clength + sys.cSpaceIsColonSpace; // tempReturnData1.length is:
 export const cpushingTempReturnData1Kvalue = wr1.cpushing + bas.cSpace + wr1.ctemp + wr1.cReturn + wr1.cData + num.c1 + bas.cOpenBracket + bas.ck + bas.cCloseBracket + bas.cSpace + wr1.cvalue + bas.cColon + bas.cSpace; // pushing tempReturnData1[k] value:
 export const cmasterTempReturnDataAfterRecursiveCallIs = wr1.cmaster + wr1.cTemp + wr1.cReturn + wr1.cData + bas.cSpace + wr1.cAFTER + bas.cSpace + wr1.crecursive + bas.cSpace + wr1.ccall + sys.cSpaceIsColonSpace; // masterTempReturnData AFTER recursive call is:
 export const clookupIndexIs = wr1.clookup + wr1.cIndex + sys.cSpaceIsColonSpace; // lookupIndex is:
@@ -187,20 +187,18 @@ export const cTheValueWasNotFoundInTheArray = wr1.cThe + bas.cSpace + wr1.cvalue
 export const coriginalStringIs = wr1.coriginal + wr1.cString + sys.cSpaceIsColonSpace; // originalString is:
 export const cindexIs = wr1.cindex + sys.cSpaceIsColonSpace; // index is:
 export const creplacementIs = wr1.creplacement + sys.cSpaceIsColonSpace; // replacement is:
-export const cDEPLOY_APPLICATION = wr1.cDEPLOY + bas.cUnderscore + wr1.cAPPLICATION; // DEPLOY APPLICATION
-export const cRELEASE_APPLICATION = wr1.cRELEASE + bas.cUnderscore + wr1.cAPPLICATION; // RELEASE APPLICATION
-export const cDeploymentWasCompleted = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
-export const cDeploymentFailed = wr1.cDeployment + bas.cSpace + wr1.cfailed; // Deployment failed
+export const cDEPLOY_APPLICATION = wr1.cDEPLOY + bas.cUnderscore + wr1.cAPPLICATION; // DEPLOY_APPLICATION
+export const cRELEASE_APPLICATION = wr1.cRELEASE + bas.cUnderscore + wr1.cAPPLICATION; // RELEASE_APPLICATION
 export const cReleaseFailed = wr1.cRelease + bas.cSpace + wr1.cfailed; // Release failed
-// export const cinputDataIis = cinputData + bas.cOpenBracket + bas.ci + bas.cCloseBracket + sys.cSpaceIsColonSpace; // inputData[i] is:
+// smuggle something cinputDataIis = cinputData + bas.cOpenBracket + bas.ci + bas.cCloseBracket + sys.cSpaceIsColonSpace; // inputData[i] is:
 export const caggregateCommandStringIs = wr1.caggregate + wr1.cCommand + wr1.cString + sys.cSpaceIsColonSpace; // aggregateCommandString is:
 export const cmetaDataParametersIs = wr1.cmetaData + wr1.cParameters + sys.cSpaceIsColonSpace; // metaDataParameters is:
-export const cmetaDataParametersLengthIs = wr1.cmetaData + wr1.cParameters + bas.cSpace + wr1.cLength + sys.cSpaceIsColonSpace; // metaDataParameters length is:
+export const cmetaDataParametersLengthIs = wr1.cmetaData + wr1.cParameters + bas.cSpace + wr1.clength + sys.cSpaceIsColonSpace; // metaDataParameters length is:
 export const cmetaDataPathAndFilenameIs = wr1.cmetaData + wr1.cPath + wr1.cAnd + wr1.cFilename + sys.cSpaceIsColonSpace; // metaDataPathAndFilename is:
 export const cpathAndFilenameIs = wr1.cpath + wr1.cAnd + wr1.cFilename + sys.cSpaceIsColonSpace; // pathAndFilename is:
 export const ccontentsAre = wr1.ccontents + bas.cSpace + wr1.care + bas.cColon + bas.cSpace; // contents are:
 export const ccontentsOfDare = wr1.ccontents + bas.cSpace + bas.cof + bas.cSpace + bas.cD + bas.cSpace + wr1.care + bas.cColon + bas.cSpace; // contents of D are:
-export const cBEGIN_ithIterationOfInputDataArray = cBEGIN_ithIteration + bas.cof + bas.cSpace + wr1.cthe + bas.cSpace + cinputData + bas.cSpace + wr1.carray + bas.cDot + bas.cSpace + bas.ci + sys.cSpaceIsColonSpace; // Begin the i-th iteration of the inputData array. i is:
+export const cBEGIN_theIthIterationOfInputDataArray = wr1.cBEGIN + bas.cSpace + wr1.cthe + bas.cSpace + bas.ci + bas.cDash + bas.cth + bas.cSpace + wr1.citeration + bas.cSpace + bas.cof + bas.cSpace + wr1.cthe + bas.cSpace + cinputData + bas.cSpace + wr1.carray + bas.cDot + bas.cSpace + bas.ci + sys.cSpaceIsColonSpace; // Begin the i-th iteration of the inputData array. i is:
 export const ccurrentRuleIs = wr1.ccurrent + wr1.cRule + sys.cSpaceIsColonSpace; // currentRule is:
 export const crulesIs = wr1.crules + sys.cSpaceIsColonSpace; // rules is:
 export const cruleInputDataIs = wr1.crule + cInputData + sys.cSpaceIsColonSpace; // ruleInputData is:
@@ -208,19 +206,19 @@ export const cruleInputMetaData = wr1.crule + wr1.cInput + wr1.cMetaData + sys.c
 export const cBusinessRuleStartTimeIs = wr1.cBusiness + bas.cSpace + wr1.cRule + bas.cSpace + wr1.cStart + bas.cSpace + wr1.ctime + sys.cSpaceIsColonSpace; // Business Rule Start time is:
 export const cBusinessRuleEndTimeIs = wr1.cBusiness + bas.cSpace + wr1.cRule + bas.cSpace + wr1.cEnd + bas.cSpace + wr1.ctime + sys.cSpaceIsColonSpace; // Business Rule End time is:
 export const cBusinessRuleRunTimeIs = wr1.cBusiness + wr1.cRule + bas.cSpace + wr1.crun + bas.cDash + wr1.ctime + sys.cSpaceIsColonSpace; // BusinessRule run-time is:
-export const ccommandStringBeforeAttemptedDelimiterSwapIs = wr1.ccommand + wr1.cString + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempted + bas.cSpace + wr1.cswap + sys.cSpaceIsColonSpace; // commandString before attempted delimiter swap is:
+export const ccommandStringBeforeAttemptedDelimiterSwapIs = wr1.ccommand + wr1.cString + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempted + bas.cSpace + wr1.cdelimiter + bas.cSpace + wr1.cswap + sys.cSpaceIsColonSpace; // commandString before attempted delimiter swap is:
 export const creplaceCharacterWithCharacterRuleIs = wr1.creplace + wr1.cCharacter + wr1.cWith + wr1.cCharacter + wr1.cRule + sys.cSpaceIsColonSpace; // replaceCharacterWithCharacterRule is:
 export const cRuleOutputIs = wr1.cRule + bas.cSpace + wr1.coutput + sys.cSpaceIsColonSpace; // Rule output is:
 export const ccamelCaseCommandNameArrayIs = wr1.ccamel + wr1.cCase + wr1.cCommand + wr1.cName + wr1.cArray + sys.cSpaceIsColonSpace; // camelCaseCommandNameArray is:
-export const ccurrentCommandWordIs = wr1.ccurrent + wr1.cCommand + wr1.cWord + sys.cSpaceIsColonSpace; // current commandWord is:
-export const cPARSER_ERROR = wr1.cPARSER + bas.cUnderscore + wr1.cERROR + bas.cColon + bas.cSpace; // PARSER ERROR:
+export const ccurrentCommandWordIs = wr1.ccurrent + bas.cSpace + wr1.ccommand + wr1.cWord + sys.cSpaceIsColonSpace; // current commandWord is:
+export const cPARSER_ERROR = wr1.cPARSER + bas.cSpace + wr1.cERROR + bas.cColon + bas.cSpace; // PARSER ERROR:
 export const ccommandAliasDataStructureIs = wr1.ccommand + wr1.cAlias + wr1.cData + wr1.cStructure + sys.cSpaceIsColonSpace; // commandAliasDataStructure is:
 export const cuserDefinedConstantIs = wr1.cuser + wr1.cDefined + wr1.cConstant + sys.cSpaceIsColonSpace; // userDefinedConstant is:
 export const cwordCountIs = wr1.cword + wr1.cCount + sys.cSpaceIsColonSpace; // wordCount is:
 export const cwordsArrayIs = wr1.cwords + wr1.cArray + sys.cSpaceIsColonSpace; // wordsArray is:
 export const cOptimizedConstantDefinitionForWord = wr1.cOptimized + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.cdefinition + bas.cSpace + wr1.cfor + bas.cSpace + wr1.cword + bas.cColon + bas.cSpace; // Optimized constant definition for word:
-export const cuserDefinedConstantListIs = wr1.cuser + wr1.cDefined + wr1.cConstants + wr1.cList + sys.cSpaceIsColonSpace; // userDefinedConstantList is:
-export const cuserDefinedConstantListContainsComas = wr1.cuser + wr1.cDefined + wr1.cConstants + wr1.cList + bas.cSpace + wr1.ccontains + bas.cSpace + wr1.ccomas; // userDefinedConstantList contains comas
+export const cuserDefinedConstantListIs = wr1.cuser + wr1.cDefined + wr1.cConstant + wr1.cList + sys.cSpaceIsColonSpace; // userDefinedConstantList is:
+export const cuserDefinedConstantListContainsComas = wr1.cuser + wr1.cDefined + wr1.cConstant + wr1.cList + bas.cSpace + wr1.ccontains + bas.cSpace + wr1.ccomas; // userDefinedConstantList contains comas
 export const cuserDefinedConstantsListArrayIs = wr1.cuser + wr1.cDefined + wr1.cConstants + wr1.cList + wr1.cArray + sys.cSpaceIsColonSpace; // userDefinedConstantsListArray is:
 export const cuserDefinedConstantsListDoesNotContainComas = wr1.cuser + wr1.cDefined + wr1.cConstant + wr1.cList + bas.cSpace + wr1.cDOES + bas.cSpace + gen.cNOT + bas.cSpace + wr1.ccontain + bas.cSpace + wr1.ccomas; // userDefinedConstantList DOES NOT contain comas
 export const ccommonPatternsArrayIs = wr1.ccommon + wr1.cPatterns + wr1.cArray + sys.cSpaceIsColonSpace; // commonPatternsArray is:
@@ -251,19 +249,20 @@ export const cresolvedConstantsPath_BusinessIs = wr1.cresolved + wr1.cConstants 
 export const cresolvedConstantsPath_ColorIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cColor + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Color is:
 export const cresolvedConstantsPath_CommandIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cCommand + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Command is:
 export const cresolvedConstantsPath_ConfigurationIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cConfiguration + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Configuration is:
-export const cresolvedConstantsPath_CountryIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cCountry + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Country Is:
+export const cresolvedConstantsPath_CountryIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cCountry + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Country is:
 export const cresolvedConstantsPath_ElementIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cElement + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Element is:
+export const cresolvedConstantsPath_FunctionIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cFunction + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Function is:
 export const cresolvedConstantsPath_GenericIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cGeneric + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Generic is:
 export const cresolvedConstantsPath_IsotopeIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cIsotope + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Isotope is:
 export const cresolvedConstantsPath_KnotIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cKnot + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Knot is:
 export const cresolvedConstantsPath_LanguageIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cLanguage + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Language is:
-export const cresolvedConstantsPath_MessageIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cMessage + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Messages is:
+export const cresolvedConstantsPath_MessageIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cMessage + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Message is:
 export const cresolvedConstantsPath_NumericIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cNumeric + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Numeric is:
 export const cresolvedConstantsPath_PhonicIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cPhonic + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Phonic is:
 export const cresolvedConstantsPath_ShapeIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cShape + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Shape is:
 export const cresolvedConstantsPath_SystemIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cSystem + sys.cSpaceIsColonSpace; // resolvedConstantsPath_System is:
 export const cresolvedConstantsPath_UnitIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cUnit + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Unit is:
-export const cresolvedConstantsPath_WordIs = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cWord + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Word is:
+export const cresolvedConstantsPath_Word1Is = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cWord + num.c1 + sys.cSpaceIsColonSpace; // resolvedConstantsPath_Word1 is:
 export const cBasicConstantsPhase1Validation = wr1.cBasic + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Basic Constants Phase 1 Validation
 export const cBusinessConstantsPhase1Validation = wr1.cBusiness + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Business Constants Phase 1 Validation
 export const cColorConstantsPhase1Validation = wr1.cColor + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Color Constants Phase 1 Validation
@@ -271,17 +270,18 @@ export const cCommandConstantsPhase1Validation = wr1.cCommand + bas.cSpace + wr1
 export const cConfigurationConstantsPhase1Validation = wr1.cConfiguration + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Configuration Constants Phase 1 Validation
 export const cCountryConstantsPhase1Validation = wr1.cCountry + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Country Constants Phase 1 Validation
 export const cElementConstantsPhase1Validation = wr1.cElement + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Element Constants Phase 1 Validation
+export const cFunctionConstantsPhase1Validation = wr1.cFunction + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Function Constants Phase 1 Validation
 export const cGenericConstantsPhase1Validation = wr1.cGeneric + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Generic Constants Phase 1 Validation
 export const cIsotopeConstantsPhase1Validation = wr1.cIsotope + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Isotope Constants Phase 1 Validation
 export const cKnotConstantsPhase1Validation = wr1.cKnot + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Knot Constants Phase 1 Validation
 export const cLanguageConstantsPhase1Validation = wr1.cLanguage + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Language Constants Phase 1 Validation
 export const cMessageConstantsPhase1Validation = wr1.cMessage + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Message Constants Phase 1 Validation
-export const cNumericalConstantsPhase1Validation = wr1.cNumerical + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Numerical Constants Phase 1 Validation
+export const cNumericConstantsPhase1Validation = wr1.cNumeric + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Numeric Constants Phase 1 Validation
 export const cPhonicConstantsPhase1Validation = wr1.cPhonic + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Phonic Constants Phase 1 Validation
 export const cShapeConstantsPhase1Validation = wr1.cShape + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Shape Constants Phase 1 Validation
 export const cSystemConstantsPhase1Validation = wr1.cSystem + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // System Constants Phase 1 Validation
 export const cUnitConstantsPhase1Validation = wr1.cUnit + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Unit Constants Phase 1 Validation
-export const cWordConstantsPhase1Validation = wr1.cWord + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Word Constants Phase 1 Validation
+export const cWord1ConstantsPhase1Validation = wr1.cWord + num.c1 + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Word1 Constants Phase 1 Validation
 export const cBasicConstantsPhase2Validation = wr1.cBasic + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Basic Constants Phase 2 Validation
 export const cBusinessConstantsPhase2Validation = wr1.cBusiness + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Business Constants Phase 2 Validation
 export const cColorConstantsPhase2Validation = wr1.cColor + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Color Constants Phase 2 Validation
@@ -289,17 +289,18 @@ export const cCommandConstantsPhase2Validation = wr1.cCommand + bas.cSpace + wr1
 export const cConfigurationConstantsPhase2Validation = wr1.cConfiguration + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Configuration Constants Phase 2 Validation
 export const cCountryConstantsPhase2Validation = wr1.cCountry + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Country Constants Phase 2 Validation
 export const cElementConstantsPhase2Validation = wr1.cElement + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Element Constants Phase 2 Validation
+export const cFunctionConstantsPhase2Validation = wr1.cFunction + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Function Constants Phase 2 Validation
 export const cGenericConstantsPhase2Validation = wr1.cGeneric + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Generic Constants Phase 2 Validation
 export const cIsotopeConstantsPhase2Validation = wr1.cIsotope + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Isotope Constants Phase 2 Validation
 export const cKnotConstantsPhase2Validation = wr1.cKnot + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Knot Constants Phase 2 Validation
 export const cLanguageConstantsPhase2Validation = wr1.cLanguage + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Language Constants Phase 2 Validation
 export const cMessageConstantsPhase2Validation = wr1.cMessage + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Message Constants Phase 2 Validation
-export const cNumericalConstantsPhase2Validation = wr1.cNumerical + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Numerical Constants Phase 2 Validation
+export const cNumericConstantsPhase2Validation = wr1.cNumeric + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Numeric Constants Phase 2 Validation
 export const cPhonicConstantsPhase2Validation = wr1.cPhonic + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Phonic Constants Phase 2 Validation
 export const cShapeConstantsPhase2Validation = wr1.cShape + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Shape Constants Phase 2 Validation
 export const cSystemConstantsPhase2Validation = wr1.cSystem + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // System Constants Phase 2 Validation
 export const cUnitConstantsPhase2Validation = wr1.cUnit + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Unit Constants Phase 2 Validation
-export const cWordConstantsPhase2Validation = wr1.cWord + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Word Constants Phase 2 Validation
+export const cWord1ConstantsPhase2Validation = wr1.cWord + num.c1 + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Word1 Constants Phase 2 Validation
 export const ccommandStringIs = wr1.ccommand + wr1.cString + sys.cSpaceIsColonSpace; // commandString is:
 export const ccommandDelimiterIs = wr1.ccommand + wr1.cDelimiter + sys.cSpaceIsColonSpace; // commandDelimiter is:
 export const ccommandToExecuteBeforeTheAliasIs = wr1.ccommand + bas.cTo + wr1.cExecute + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cAlias + sys.cSpaceIsColonSpace; // commandToExecute before the Alias is:
@@ -336,7 +337,7 @@ export const cdataPathIs = wr1.cdata + wr1.cPath + sys.cSpaceIsColonSpace; // da
 export const cfilesFoundIs = wr1.cfiles + wr1.cFound + sys.cSpaceIsColonSpace; // filesFound is:
 export const cfileToLoadIs = wr1.cfile + wr1.cTo + wr1.cLoad + sys.cSpaceIsColonSpace; // fileToLoad is:
 export const cfilesToLoadIs = wr1.cfiles + wr1.cTo + wr1.cLoad + sys.cSpaceIsColonSpace; // filesToLoad is:
-export const cdataFileToMergeIs = wr1.cdata + wr1.cFile + bas.cSpace + bas.cTo + bas.cSpace + wr1.cmerge + sys.cSpaceIsColonSpace; // dataFile to merge is:
+export const cdataFileToMergeIs = wr1.cdata + wr1.cFile + bas.cSpace + bas.cto + bas.cSpace + wr1.cmerge + sys.cSpaceIsColonSpace; // dataFile to merge is:
 export const cparsedDataFileIs = wr1.cparsed + wr1.cData + wr1.cFile + sys.cSpaceIsColonSpace; // parsedDataFile is:
 export const cexecuteBusinessRules = wr1.cexecute + bas.cSpace + wr1.cbusiness + bas.cSpace + wr1.crules + bas.cColon + bas.cSpace; // execute business rules:
 export const cdataFileIs = wr1.cdata + wr1.cFile + sys.cSpaceIsColonSpace; // dataFile is:
@@ -362,7 +363,7 @@ export const cAllLoadedDataIs = wr1.cAll + bas.cSpace + wr1.cloaded + bas.cSpace
 export const cconfigDataIs = wr1.cconfig + wr1.cData + sys.cSpaceIsColonSpace; // configData is:
 export const cERROR = wr1.cERROR + bas.cColon + bas.cSpace; // ERROR:
 // ERROR: Invalid access to:
-export const cErrorInvalidAccessTo = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cInvalid + bas.cSpace + wr1.cAccess + bas.cSpace + wr1.cTo + bas.cColon + bas.cSpace;
+export const cErrorInvalidAccessTo = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cInvalid + bas.cSpace + wr1.caccess + bas.cSpace + wr1.cto + bas.cColon + bas.cSpace;
 export const crootPathIs = wr1.croot + wr1.cPath + sys.cSpaceIsColonSpace; // rootPath is:
 export const caskIs = wr1.cask + sys.cSpaceIsColonSpace; // ask is:
 export const cINPUT = wr1.cINPUT + bas.cColon + bas.cSpace; // INPUT:
@@ -466,13 +467,13 @@ export const cSourceIs = wr1.csource + sys.cSpaceIsColonSpace; // source is:
 export const ctargetIs = wr1.ctarget + sys.cSpaceIsColonSpace; // target is:
 export const cErrorCouldNotCopyFile = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cCould + bas.cSpace + gen.cnot + bas.cSpace + wr1.ccopy + bas.cSpace + wr1.cfile + bas.cColon + bas.cSpace; // ERROR: Could not copy file:
 export const cErrorCouldNotCreateFolder = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cCould + bas.cSpace + gen.cnot + bas.cSpace + wr1.ccreate + bas.cSpace + wr1.cfolder + bas.cColon + bas.cSpace; // ERROR: Could not create folder:
-export const csuccessfullCopyIs = wr1.csuccessful + wr1.cCopy + sys.cSpaceIsColonSpace; // successfullCopy is:
+export const csuccessfulCopyIs = wr1.csuccessful + wr1.cCopy + sys.cSpaceIsColonSpace; // successfulCopy is:
 export const cErrorCouldNotCopyFolderContents = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cCould + bas.cSpace + gen.cnot + bas.cSpace + wr1.ccopy + bas.cSpace + wr1.cfolder + bas.cSpace + wr1.ccontents + bas.cColon + bas.cSpace; // ERROR: Could not copy folder contents:
 export const cargumentValueIs = wr1.cargument + wr1.cValue + sys.cSpaceIsColonSpace; // argumentValue is:
 export const cconsolidatedArgumentModeIs = wr1.cconsolidated + wr1.cArgument + wr1.cMode + sys.cSpaceIsColonSpace; // consolidatedArgumentMode is:
 export const cPushingArgumentValueToReturnDataAsArrayElement = wr1.cPushing + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cargument + wr1.cValue + bas.cSpace + bas.cto + bas.cSpace + wr1.cthe + bas.cSpace + wr1.creturn + wr1.cData + bas.cSpace + bas.cas + bas.cSpace + bas.can + bas.cSpace + wr1.carray + bas.cSpace + wr1.celement; // Pushing the argumentValue to the returnData as an array element
-export const cargumentValueLengthGreaterThanZero = wr1.cargument + wr1.cValue + bas.cDot + wr1.cLength + bas.cSpace + bas.cGreaterThan + bas.cSpace + num.c0; // argumentValue.length > 0
-export const cCallingAnalyzeArgumentIndexIs = wr1.cCalling + wr1.cAnalyze + wr1.cArgument + wr1.cIndex + sys.cSpaceIsColonSpace; // Calling AnalyzeArgumentIndex is:
+export const cargumentValueLengthGreaterThanZero = wr1.cargument + wr1.cValue + bas.cDot + wr1.clength + bas.cSpace + bas.cGreaterThan + bas.cSpace + num.c0; // argumentValue.length > 0
+export const cCallingAnalyzeArgumentIndexIs = wr1.cCalling + bas.cSpace + wr1.canalyze + wr1.cArgument + wr1.cIndex + sys.cSpaceIsColonSpace; // Calling analyzeArgumentIndex is:
 export const cReturnArgumentValueSameAsItWasPassedIn = wr1.cReturn + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cargument + wr1.cValue + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csame + bas.cSpace + bas.cas + bas.cSpace + bas.cit + bas.cSpace + wr1.cwas + bas.cSpace + wr1.cpassed + bas.cSpace + bas.cin + bas.cDot; // Return the argumentValue the same as it was passed in.
 export const cCheckIfThereAreBracketsOrNoBrackets = wr1.cCheck + bas.cSpace + bas.cif + bas.cSpace + wr1.cthere + bas.cSpace + wr1.care + bas.cSpace + wr1.cbrackets + bas.cSpace + bas.cor + bas.cSpace + bas.cno + bas.cSpace + wr1.cbrackets + bas.cDot; // Check if there are brackets or no brackets.
 export const cBracketsWereFound = wr1.cBrackets + bas.cSpace + wr1.cwere + bas.cSpace + wr1.cfound; // Brackets were found
@@ -485,7 +486,7 @@ export const cregularExpressionIs = wr1.cregular + bas.cSpace + wr1.cexpression 
 export const cregExValueIs = gen.cregEx + wr1.cValue + sys.cSpaceIsColonSpace; // regExValue is:
 export const cregularExpressionFlagsAre = wr1.cregular + bas.cSpace + wr1.cexpression + bas.cSpace + wr1.cflags + bas.cSpace + wr1.care + bas.cColon + bas.cSpace; // regular expression flags are:
 export const cregExFlagsIs = gen.cregEx + wr1.cFlags + sys.cSpaceIsColonSpace; // regExFlags is:
-export const cargumentValueContainsTheDelimiterLetsSplitIt = wr1.cargument + wr1.cValue + bas.cSpace + wr1.ccontains + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cdelimiter + bas.cColon + bas.cSpace + wr1.cLets + bas.cSpace + wr1.csplit + bas.cSpace + bas.cit + bas.cExclamation; // argumentValue contains the delimiter, lets split it!
+export const cargumentValueContainsTheDelimiterLetsSplitIt = wr1.cargument + wr1.cValue + bas.cSpace + wr1.ccontains + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cdelimiter + bas.cComa + bas.cSpace + wr1.clets + bas.cSpace + wr1.csplit + bas.cSpace + bas.cit + bas.cExclamation; // argumentValue contains the delimiter, lets split it!
 export const cargumentValueAfterAttemptingToRemoveOpenBracketFromAllArrayElementsIs = wr1.cargument + wr1.cValue + bas.cSpace + wr1.cafter + bas.cSpace + wr1.cattempting + bas.cSpace + bas.cto + bas.cSpace + wr1.cremove + bas.cSpace + bas.ca + bas.cSpace + wr1.copen + bas.cSpace + wr1.cbracket + bas.cSpace + wr1.cfrom + bas.cSpace + wr1.call + bas.cSpace + wr1.carray + bas.cSpace + wr1.celements + sys.cSpaceIsColonSpace; // argumentValue after attempting to remove a open bracket from all array elements is:
 export const cargumentValueAfterAttemptingToRemoveCloseBracketFromAllArrayElementsIs = wr1.cargument + wr1.cValue + bas.cSpace + wr1.cafter + bas.cSpace + wr1.cattempting + bas.cSpace + bas.cto + bas.cSpace + wr1.cremove + bas.cSpace + bas.ca + bas.cSpace + wr1.cclose + bas.cSpace + wr1.cbracket + bas.cSpace + wr1.cfrom + bas.cSpace + wr1.call + bas.cSpace + wr1.carray + bas.cSpace + wr1.celements + sys.cSpaceIsColonSpace; // argumentValue after attempting to remove a close bracket from all array elements is:
 export const csecondaryCommandArgsDelimiterIs = wr1.csecondary + wr1.cCommand + gen.cArgs + wr1.cDelimiter + sys.cSpaceIsColonSpace; // secondaryCommandArgsDelimiter is:
@@ -502,10 +503,11 @@ export const cdataHivePathArrayIs = wr1.cdata + wr1.cHive + wr1.cPath + wr1.cArr
 export const ccontentsOfLeafDataHiveElementIs = wr1.ccontents + bas.cSpace + bas.cof + bas.cSpace + wr1.cleaf + wr1.cData + wr1.cHive + wr1.cElement + sys.cSpaceIsColonSpace; // contents of leafDataHiveElement is:
 export const centryIs = wr1.centry + sys.cSpaceIsColonSpace; // entry is:
 export const cattributeValueIs = wr1.cattribute + wr1.cValue + sys.cSpaceIsColonSpace; // attributeValue is:
+export const ckey1Is = wr1.ckey + num.c1 + sys.cSpaceIsColonSpace; // key1 is:
 export const ckey2Is = wr1.ckey + num.c2 + sys.cSpaceIsColonSpace; // key2 is:
 export const centityIs = wr1.centity + sys.cSpaceIsColonSpace; // entity is:
-export const cqueueNameSpaceIs = wr1.cqueue + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // queueNameSpace Is:
-export const cstackNameSpaceIs = wr1.cstack + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // stackNameSpace Is:
+export const cqueueNameSpaceIs = wr1.cqueue + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // queueNameSpace is:
+export const cstackNameSpaceIs = wr1.cstack + wr1.cName + wr1.cSpace + sys.cSpaceIsColonSpace; // stackNameSpace is:
 export const cWarningStackColon = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cStack + bas.cColon + bas.cSpace; // WARNING: Stack:
 export const cAlreadyExists = bas.cSpace + wr1.cALREADY + bas.cSpace + wr1.cexist + bas.cExclamation; // ALREADY exist!
 export const cdoesNotExist = bas.cSpace + wr1.cdoes + bas.cSpace + gen.cnot + bas.cSpace + wr1.cexist + bas.cExclamation; // does not exist!
@@ -524,7 +526,7 @@ export const carrayValidationDataIs = wr1.carray + wr1.cValidation + wr1.cData +
 export const cfilesListLimitIs = wr1.cfiles + wr1.cList + wr1.cLimit + sys.cSpaceIsColonSpace; // filesListLimit is:
 export const cenableLimitIs = wr1.cenable + wr1.cLimit + sys.cSpaceIsColonSpace; // enableLimit is:
 export const cfilesLimitIs = wr1.cfiles + wr1.cLimit + sys.cSpaceIsColonSpace; // filesLimit is:
-export const cinputDataRightBeforeProcessingIs = cinputData + wr1.cRight + wr1.cBefore + wr1.cProcessing + sys.cSpaceIsColonSpace; // inputData right before processing is:
+export const cinputDataRightBeforeProcessingIs = cinputData + bas.cSpace + wr1.cright + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cprocessing + sys.cSpaceIsColonSpace; // inputData right before processing is:
 export const cnumberIs = wr1.cnumber + sys.cSpaceIsColonSpace; // number is:
 export const capplicationMetaDataPathAndFilenameIs = wr1.capplication + wr1.cMetaData + wr1.cPath + wr1.cAnd + wr1.cFilename + sys.cSpaceIsColonSpace; // applicationMetaDataPathAndFilename is:
 export const cframeworkMetaDataPathAndFilenameIs = wr1.cframework + wr1.cMetaData + wr1.cPath + wr1.cAnd + wr1.cFilename + sys.cSpaceIsColonSpace; // frameworkMetaDataPathAndFilename is:
@@ -550,6 +552,16 @@ export const cargsArrayContainsColonIs = gen.cargs + wr1.cArray + wr1.cContains 
 export const cfileToSaveToIs = wr1.cfile + wr1.cTo + wr1.cSave + wr1.cTo + sys.cSpaceIsColonSpace; // fileToSaveTo is:
 export const cdataToWriteOutIs = wr1.cdata + wr1.cTo + wr1.cWrite + wr1.cOut + sys.cSpaceIsColonSpace; // dataToWriteOut is:
 export const clogFilePathAndNameIs = gen.clog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName + sys.cSpaceIsColonSpace; // logFilePathAndName is:
+export const cmetaDataOutputIs = wr1.cmetaData + wr1.cOutput + sys.cSpaceIsColonSpace; // metaDataOutput is:
+export const callCommandAliasesDataIs = wr1.call + wr1.cCommand + wr1.cAliases + wr1.cData + sys.cSpaceIsColonSpace; // allCommandAliasesData is:
+export const cresolvedFrameworkConstantsPathActualIs = wr1.cresolved + wr1.cFramework + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedFrameworkConstantsPathActual is:
+export const cresolvedClientConstantsPathActualIs = wr1.cresolved + wr1.cClient + wr1.cConstants + wr1.cPath + wr1.cActual + sys.cSpaceIsColonSpace; // resolvedClientConstantsPathActual is:
+export const cframeworkConstantsValidationDataIs = wr1.cframework + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // frameworkConstantsValidationData is:
+export const capplicationConstantsValidationDataIs = wr1.capplication + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // applicationConstantsValidationData is:
+export const cActualColonDoublePercent = bas.cDoubleQuote + wr1.cActual + bas.cDoubleQuote + bas.cColon + bas.cSpace + bas.cDoubleQuote + bas.cDoublePercent + bas.cDoubleQuote + bas.cComa; // "Actual": "%%",
+export const callCommandWorkflowsDataIs = wr1.call + wr1.cCommand + wr1.cWorkflows + wr1.cData + sys.cSpaceIsColonSpace; // allCommandWorkflowsData is:
+export const csourceDestinationArrayIs = wr1.csource + wr1.cDestination + wr1.cArray + sys.cSpaceIsColonSpace; // sourceDestinationArray is:
+export const cfilterArrayIs = wr1.cfilter + wr1.cArray + sys.cSpaceIsColonSpace; // filterArray is:
 
 // Capture the session date-time-stamp so we can determine a log file name.
 export const cCaptureSessionDateTimeStampLogFileName = wr1.cCapture + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csession + bas.cSpace + wr1.cdate + bas.cDash + wr1.ctime + bas.cDash + wr1.cstamp + bas.cSpace + bas.cso + bas.cSpace + wr1.cwe + bas.cSpace + wr1.ccan + bas.cSpace + wr1.cdetermine + bas.cSpace + bas.ca + bas.cSpace + wr1.clog + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cname + bas.cDot;
@@ -565,7 +577,7 @@ export const cGetWordCountInStringMessage1 = wr1.cWARNING + bas.cColon + bas.cSp
 export const cGetWordCountInStringMessage2 = wr1.cCannot + bas.cSpace + wr1.cdetermine + bas.cSpace + wr1.chow + bas.cSpace + wr1.cwords + bas.cSpace + wr1.care + bas.cSpace + wr1.cdelimited + bas.cSpace; // Cannot determine how words are delimited
 export const cGetWordCountInStringMessage3 = bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace + wr1.cUnable + bas.cSpace + bas.cto + bas.cSpace + wr1.ccount + bas.cSpace + wr1.cwords + bas.cDot; // in the string. Unable to count words.
 // WARNING: Mixed string. Cannot get words from the string. Unable to determine words.
-export const cGetWordsArrayFromStringMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cString + bas.cDot + bas.cSpace; // WARNING: Mixed string.
+export const cGetWordsArrayFromStringMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cMixed + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // WARNING: Mixed string.
 export const cGetWordsArrayFromStringMessage2 = wr1.cCannot + bas.cSpace + wr1.cget + bas.cSpace + wr1.cwords + bas.cSpace + wr1.cfrom + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cstring + bas.cDot + bas.cSpace; // Cannot get words from the string.
 export const cGetWordsArrayFromStringMessage3 = wr1.cUnable + bas.cSpace + bas.cto + bas.cSpace + wr1.cdetermine + bas.cSpace + wr1.cwords + bas.cDot; // Unable to determine words.
 // Please enter a named command where the first word starts with a lower case letter and all other words in the named command start with an upper case letter:
@@ -573,23 +585,23 @@ export const cCommandNamePrompt1 = wr1.cPlease + bas.cSpace + wr1.center + bas.c
 export const cCommandNamePrompt2 = wr1.cthe + bas.cSpace + num.cfirst + bas.cSpace + wr1.cword + bas.cSpace + wr1.cstarts + bas.cSpace + wr1.cwith + bas.cSpace + bas.ca + bas.cSpace; // the first word starts with a
 export const cCommandNamePrompt3 = wr1.clower + bas.cSpace + wr1.ccase + bas.cSpace + wr1.cletter + bas.cSpace + wr1.cand + bas.cSpace + wr1.call + bas.cSpace + wr1.cother + bas.cSpace; // lower case letter and all other
 export const cCommandNamePrompt4 = wr1.cwords + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cnamed + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cstart + bas.cSpace; // words in the named command start
-export const cCommandNamePrompt5 = wr1.cwith + bas.cSpace + bas.can + bas.cSpace + wr1.cupper + bas.cSpace + wr1.ccase + bas.cSpace + wr1.cletter + bas.cColon; // with an upper case letter:
+export const cCommandNamePrompt5 = wr1.cwith + bas.cSpace + bas.can + bas.cSpace + wr1.cupper + bas.cSpace + wr1.ccase + bas.cSpace + wr1.cletter + bas.cColon + bas.cSpace; // with an upper case letter:
 // Please enter a list of command word abreviations/acronyms/aliases for the command word:
 export const cCommandWordAliasPrompt1 = wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.clist + bas.cSpace + bas.cof + bas.cSpace + wr1.ccommand + bas.cSpace;
 export const cCommandWordAliasPrompt2 = wr1.cword + bas.cSpace + wr1.cabreviations + bas.cForwardSlash + wr1.cacronyms + bas.cForwardSlash + wr1.caliases + bas.cSpace;
-export const cCommandWordAliasPrompt3 = wr1.cfor + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cword + bas.cColon;
+export const cCommandWordAliasPrompt3 = wr1.cfor + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cword + bas.cColon + bas.cSpace;
 // Please enter a string you would like to define as a constant in the constants system:
 export const cConstantPrompt1 = wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cstring + bas.cSpace + wr1.cyou + bas.cSpace + wr1.cwould + bas.cSpace; // Please enter a string you would
 export const cConstantPrompt2 = wr1.clike + bas.cSpace + bas.cto + bas.cSpace + wr1.cdefine + bas.cSpace + bas.cas + bas.cSpace + bas.ca + bas.cSpace + wr1.cconstant + bas.cSpace; // like to define as a constant
-export const cConstantPrompt3 = bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.csystem + bas.cColon; // in the constants system:
+export const cConstantPrompt3 = bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.csystem + bas.cColon + bas.cSpace; // in the constants system:
 // Please enter a coma separated list of strings you would like to define in the constants system:
 export const cConstantsListPrompt1 = wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.ccoma + bas.cSpace + wr1.cseparated + bas.cSpace + wr1.clist + bas.cSpace + bas.cof + bas.cSpace;
 export const cConstantsListPrompt2 = wr1.cstrings + bas.cSpace + wr1.cyou + bas.cSpace + wr1.cwould + bas.cSpace + wr1.clike + bas.cSpace + bas.cto + bas.cSpace + wr1.cdefine + bas.cSpace + bas.cin + bas.cSpace;
-export const cConstantsListPrompt3 = wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.csystem + bas.cColon;
+export const cConstantsListPrompt3 = wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.csystem + bas.cColon + bas.cSpace;
 // Please enter a coma separated list of strings you would like to search for common patterns:
 export const cConstantsListPatternSearchPrompt1 = wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.ccoma + bas.cSpace + wr1.cseparated + bas.cSpace + wr1.clist + bas.cSpace + bas.cof + bas.cSpace; // Please enter a coma separated list of
 export const cConstantsListPatternSearchPrompt2 = wr1.cstrings + bas.cSpace + wr1.cyou + bas.cSpace + wr1.cwould + bas.cSpace + wr1.clike + bas.cSpace + bas.cto + bas.cSpace + wr1.csearch + bas.cSpace + wr1.cfor + bas.cSpace; // strings you would like to search for
-export const cConstantsListPatternSearchPrompt3 = wr1.ccommon + bas.cSpace + wr1.cpatterns + bas.cColon; // common patterns:
+export const cConstantsListPatternSearchPrompt3 = wr1.ccommon + bas.cSpace + wr1.cpatterns + bas.cColon + bas.cSpace; // common patterns:
 // ERROR: Attempted to generate a suggested line of code to validate the constant, ' +
 // 'but the constant is not formatted correctly, it should begin with a lower case "c". ' +
 // 'Please reformat the constant correctly so a line of code can be generated for you.
@@ -601,7 +613,7 @@ export const cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage5 = wr1
 export const cDetermineSuggestedConstantsValidationLineOfCodeErrorMessage6 = wr1.cline + bas.cSpace + bas.cof + bas.cSpace + wr1.ccode + bas.cSpace + wr1.ccan + bas.cSpace + bas.cbe + bas.cSpace + wr1.cgenerated + bas.cSpace + wr1.cfor + bas.cSpace + wr1.cyou + bas.cDot; // line of code can be generated for you.
 export const cSearchForPatternsInStringArrayMessage1 = sys.ccurrentMasterStringArrayElement + bas.cSpace + wr1.cdoes + bas.cSpace + gen.cnot + bas.cSpace + wr1.ccontain + bas.cSpace + bas.ca + bas.cSpace + wr1.cspace + bas.cSpace + wr1.ccharacter; // currentMasterStringArrayElement does not contain a space character
 // WARNING: The current string being searched contains a space character, we are going to skip comparison.
-export const cSearchForPatternsInStringArrayMessage2 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.ccurrent + bas.cSpace + wr1.cstring + bas.cSpace + wr1.cbeing + bas.cSpace + wr1.csearched + bas.cSpace + wr1.ccontains + bas.cSpace + bas.ca + bas.cSpace + wr1.cspace + bas.cSpace + wr1.ccharacter + bas.cComa + bas.cSpace; // WARNING: The current string being search contains a space character,
+export const cSearchForPatternsInStringArrayMessage2 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.ccurrent + bas.cSpace + wr1.cstring + bas.cSpace + wr1.cbeing + bas.cSpace + wr1.csearched + bas.cSpace + wr1.ccontains + bas.cSpace + bas.ca + bas.cSpace + wr1.cspace + bas.cSpace + wr1.ccharacter + bas.cComa + bas.cSpace; // WARNING: The current string being searched contains a space character,
 export const cSearchForPatternsInStringArrayMessage3 = bas.cwe + bas.cSpace + wr1.care + bas.cSpace + wr1.cgoing + bas.cSpace + bas.cto + bas.cSpace + wr1.cskip + bas.cSpace + wr1.ccomparison + bas.cDot; // we are going to skip comparison.
 // WARNING: InputData was not an array or had an empty array.
 export const cSearchForPatternsInStringArrayMessage4 = wr1.cWARNING + bas.cColon + bas.cSpace + cInputData + bas.cSpace + wr1.cwas + bas.cSpace + gen.cnot + bas.cSpace + bas.can + bas.cSpace + wr1.carray + bas.cSpace + bas.cor + bas.cSpace + wr1.chad + bas.cSpace + bas.can + bas.cSpace + wr1.cempty + bas.cSpace + wr1.carray + bas.cDot; // WARNING: InputData was not an array or had an empty array.
@@ -609,13 +621,10 @@ export const cSearchForPatternsInStringArrayMessage4 = wr1.cWARNING + bas.cColon
 export const cLoadDataFileMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + wr1.cdata + bas.cSpace + bas.cto + bas.cSpace + wr1.cload + bas.cComa + bas.cSpace; // WARNING: No data to load,
 export const cloadDataFileMessage2 = wr1.cplease + bas.cSpace + wr1.cspecify + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cpath + bas.cSpace + bas.cAndPersand + bas.cSpace + wr1.cfilename + bas.cExclamation; // please specify a valid path & filename!
 export const cloadDataFileMessage3 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cInvalid + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cformat + bas.cComa + bas.cSpace + wr1.cfile + bas.cSpace + wr1.cformats + bas.cSpace + wr1.csupported + bas.cSpace + wr1.care + bas.cColon + bas.cSpace; // WARNING: Invalid file format, file formats supported are:
-// ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another release.
-export const cdeployApplicationMessage1a = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; // ERROR: Release failed because of a failure in the constants validation system.
-export const cdeployApplicationMessage2a = wr1.cPlease + bas.cSpace + wr1.cfix + bas.cSpace + gen.cASAP + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempting + bas.cSpace + wr1.canother + bas.cSpace + wr1.crelease + bas.cDot; // Please fix ASAP before attempting another release.
-// ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another release.
-export const cdeployApplicationMessage1b = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommands + bas.cSpace + wr1.calias + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; //ERROR: Release failed because of a failure in the commands alias validation system.
+// WARNING: No data to save, please specify a valid path & filename!
+export const csaveDataFileMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + bas.cNo + bas.cSpace + wr1.cdata + bas.cSpace + bas.cto + bas.cSpace + wr1.csave + bas.cComa + bas.cSpace; // WARNING: No data to save,
 export const ccommandSequencerMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.ccommand + wr1.cSequencer + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cspecified + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cwas + bas.cSpace + gen.cnot + bas.cSpace + wr1.cfound + bas.cComa + bas.cSpace; // WARNING: nominal.commandSequencer: The specified command was not found,
-export const ccommandSequencerMessage2 = wr1.cplease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cand + bas.cSpace + wr1.ctry + bas.cSpace + wr1.cagain + bas.cDot; // Please enter a valid command and try again.
+export const ccommandSequencerMessage2 = wr1.cplease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cand + bas.cSpace + wr1.ctry + bas.cSpace + wr1.cagain + bas.cDot; // please enter a valid command and try again.
 export const cworkflowMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.cworkflow + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cspecified + bas.cSpace + wr1.cworkflow + bas.cColon + bas.cSpace; // WARNING: nominal.workflow: The specified workflow:
 export const cworkflowMessage2 = bas.cSpace + wr1.cwas + bas.cSpace + gen.cnot + bas.cSpace + wr1.cfound + bas.cSpace + bas.cin + bas.cSpace + wr1.ceither + bas.cSpace + wr1.cthe + bas.cSpace + wr1.csystem + bas.cSpace + wr1.cdefined + bas.cSpace + wr1.cworkflows + bas.cComa + bas.cSpace + bas.cor + bas.cSpace + wr1.cclient + bas.cSpace + wr1.cdefined + bas.cSpace + wr1.cworkflows + bas.cDot; // was not found in either the system defined workflows, or client defined workflows.
 export const cworkflowMessage3 = bas.cSpace + wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cworkflow + bas.cSpace + wr1.cname + bas.cSpace + wr1.cand + bas.cSpace + wr1.ctry + bas.cSpace + wr1.cagain + bas.cDot; // Please enter a valid workflow name and try again.
@@ -628,7 +637,7 @@ export const ccommandGeneratorMessage3 = wr1.cWARNING + bas.cColon + bas.cSpace 
 // WARNING: nominal.commandGenerator: Number entered for the number of commands to generate is not a number:
 export const ccommandGeneratorMessage4 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.ccommand + wr1.cGenerator + bas.cColon + bas.cSpace + wr1.cNumber + bas.cSpace + wr1.centered + bas.cSpace + wr1.cfor + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cnumber + bas.cSpace + bas.cof + bas.cSpace + wr1.ccommands + bas.cSpace + bas.cto + bas.cSpace + wr1.cgenerate + bas.cSpace + bas.cis + bas.cSpace + gen.cnot + bas.cSpace + bas.ca + bas.cSpace + wr1.cnumber + bas.cColon + bas.cSpace;
 // WARNING: nominal.commandGenerator: The specified command:
-export const ccommandGeneratorMessage5 = wr1.cWarning + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.ccommand + wr1.cGenerator + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cspecified + bas.cSpace + wr1.ccommand + bas.cColon + bas.cSpace;
+export const ccommandGeneratorMessage5 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cnominal + bas.cDot + wr1.ccommand + wr1.cGenerator + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cspecified + bas.cSpace + wr1.ccommand + bas.cColon + bas.cSpace;
 // was not found, please enter a valid command and try again.
 export const ccommandGeneratorMessage6 = bas.cSpace + wr1.cwas + bas.cSpace + gen.cnot + bas.cSpace + wr1.cfound + bas.cComa + bas.cSpace + wr1.cplease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cand + bas.cSpace + wr1.ctry + bas.cSpace + wr1.cagain + bas.cDot;
 // Command can be called by passing parameters and bypass the prompt system.
@@ -646,10 +655,14 @@ export const ccommandAliasGeneratorMessage5 = wr1.cINVALID + bas.cSpace + wr1.cC
 export const cconstantsGeneratorMessage1 = wr1.cINVALID + bas.cSpace + wr1.cINPUT + bas.cColon + bas.cSpace + wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.cvalue + bas.cSpace + wr1.cthat + bas.cSpace + wr1.ccontains + bas.cSpace + wr1.cmore + bas.cSpace + wr1.cthan + bas.cSpace + num.c4 + bas.cSpace + wr1.ccharacters + bas.cDot;
 // WARNING: The constant has already been defined in the following library(ies):
 export const cconstantsGeneratorMessage2 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.cThe + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.chas + bas.cSpace + wr1.calready + bas.cSpace + wr1.cbeen + bas.cSpace + wr1.cdefined + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cfollowing + bas.cSpace + wr1.clibrary + bas.cOpenParenthesis + phn.cies + bas.cCloseParenthesis + bas.cColon + bas.cSpace;
+// The enableConstantsValidation flag is disabled.
+export const cconstantsGeneratorMessage3 = wr1.cThe + bas.cSpace + wr1.cenable + wr1.cConstants + wr1.cValidation + bas.cSpace + wr1.cflag + bas.cSpace + wr1.cis + bas.cSpace + wr1.cdisabled + bas.cDot + bas.cSpace;
+// Enable this flag in the configuration settings to activate this command.
+export const cconstantsGeneratorMessage4 = wr1.cEnable + bas.cSpace + wr1.cthis + bas.cSpace + wr1.cflag + bas.cSpace + wr1.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconfiguration + bas.cSpace + wr1.csettings + bas.cSpace + wr1.cto + bas.cSpace + wr1.cactivate + bas.cSpace + wr1.cthis + bas.cSpace + wr1.ccommand + bas.cDot;
 // INVALID INPUT: Please enter a valid constant list.
-export const cconstantsGeneratorListMessage1 = wr1.cINVALID + bas.cSpace + wr1.cINPUT + bas.cColon + bas.cSpace + wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.cList + bas.cDot;
+export const cconstantsGeneratorListMessage1 = wr1.cINVALID + bas.cSpace + wr1.cINPUT + bas.cColon + bas.cSpace + wr1.cPlease + bas.cSpace + wr1.center + bas.cSpace + bas.ca + bas.cSpace + wr1.cvalid + bas.cSpace + wr1.cconstant + bas.cSpace + wr1.clist + bas.cDot;
 // PASSED: All duplicate command aliases validation tests!
-export const cvalidateCommandAliasesMessage1 = wr1.cPASSED + bas.cColon + bas.cSpace + wr1.cAll + bas.cSpace + wr1.cduplicate + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.cAliases + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.ctests + bas.cExclamation;
+export const cvalidateCommandAliasesMessage1 = wr1.cPASSED + bas.cColon + bas.cSpace + wr1.cAll + bas.cSpace + wr1.cduplicate + bas.cSpace + wr1.ccommand + bas.cSpace + wr1.caliases + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.ctests + bas.cExclamation;
 // About to call the rule broker to process on the number of single quotes
 export const cgetCommandArgsMessage1 = wr1.cAbout + bas.cSpace + bas.cto + bas.cSpace + wr1.ccall + bas.cSpace + wr1.cthe + bas.cSpace + wr1.crule + bas.cSpace + wr1.cbroker + bas.cSpace + bas.cto + bas.cSpace + wr1.cprocess + bas.cSpace + bas.con + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cnumber + bas.cSpace + bas.cof + bas.cSpace + wr1.csingle + bas.cSpace + wr1.cquotes + bas.cSpace; // About to call the rule broker to process on the number of single quotes
 // and determine if it-be even or odd
@@ -659,7 +672,7 @@ export const cexecuteCommandMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + 
 // WARNING: lexical.parseBusinessRuleArgument: Invalid combination of inputs to the lexical.parseBusinessRuleArgument function!
 export const cparseBusinessRuleArgumentMessage1 = wr1.cWARNING + bas.cColon + bas.cSpace + wr1.clexical + bas.cDot + wr1.cparse + wr1.cBusiness + wr1.cRule + wr1.cArgument + bas.cColon + bas.cSpace + wr1.cInvalid + bas.cSpace + wr1.ccombination + bas.cSpace + bas.cof + bas.cSpace + wr1.cinputs + bas.cSpace + bas.cto + bas.cSpace + wr1.cthe + bas.cSpace + wr1.clexical + bas.cDot + wr1.cparse + wr1.cBusiness + wr1.cRule + wr1.cArgument + bas.cSpace + wr1.cfunction + bas.cExclamation + bas.cSpace;
 export const cparseBusinessRuleArgumentMessage2 = wr1.cPlease + bas.cSpace + wr1.cadjust + bas.cSpace + wr1.cinputs + bas.cSpace + wr1.cand + bas.cSpace + wr1.ctry + bas.cSpace + wr1.cagain + bas.cDot; //Please adjust inputs and try again.
-// Caught the case that the user may have only specified a single data hive, such as the configuration data hive.
+// Caught the case the user may have only specified a single data hive, such as the configuration data hive.
 export const cprintDataHiveAttributesMessage1 = wr1.cCaught + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccase + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cuser + bas.cSpace + wr1.cmay + bas.cSpace + wr1.chave + bas.cSpace + wr1.conly + bas.cSpace + wr1.cspecified + bas.cSpace + bas.ca + bas.cSpace + wr1.csingle + bas.cSpace + wr1.cdata + bas.cSpace + wr1.chive + bas.cComa + bas.cSpace;
 export const cprintDataHiveAttributesMessage2 = wr1.csuch + bas.cSpace + bas.cas + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconfiguration + bas.cSpace + wr1.cdata + bas.cSpace + wr1.chive + bas.cDot;
 // ERROR: Please enter a valid name.space.attributeName for the system to print out attribute data from.
@@ -668,17 +681,17 @@ export const cprintDataHiveAttributesMessage3 = wr1.cERROR + bas.cColon + bas.cS
 export const cNothingToEcho = wr1.cNothing + bas.cSpace + bas.cto + bas.cSpace + wr1.cecho + bas.cDot; // Nothing to echo.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 'Caught the case that the input string contains the global carriage return term.'
-export const cprompt01 = 'cprompt01';
+export const cprompt01 = 'prompt01';
 // 'index of the carriage return character: '
-export const cprompt02 = 'cprompt02';
+export const cprompt02 = 'prompt02';
 // 'Caught the case that the string includes a carriage return and new line characters.'
-export const cprompt03 = 'cprompt03';
+export const cprompt03 = 'prompt03';
 // '!file.includes(undefined)'
-export const cprintMessageToFile01 = 'cprintMessageToFile01';
+export const cprintMessageToFile01 = 'printMessageToFile01';
 // 'ERROR: Failure to log to file: '
-export const cprintMessageToFile02 = 'cprintMessageToFile02';
+export const cprintMessageToFile02 = 'printMessageToFile02';
 // 'ERROR: Log File includes undefined.'
-export const cprintMessageToFile03 = 'cprintMessageToFile03';
+export const cprintMessageToFile03 = 'printMessageToFile03';
 
 // Coded System Messages
 // EXAMPLE:

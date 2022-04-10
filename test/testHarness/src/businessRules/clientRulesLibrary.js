@@ -11,7 +11,7 @@
  */
 
 // Internal imports
-import * as clientStringParsing from './clientRules/clientStringParsing.js';
+import clientStringParsing from './clientRules/clientStringParsing.js';
 import * as app_biz from '../constants/application.business.constants.js';
 import * as app_fnc from '../constants/application.function.constants.js';
 
@@ -35,7 +35,11 @@ const initClientRulesLibrary = function() {
     // ***********************************************
     // clientStringParsing rules in order
     // ***********************************************
-    [app_biz.ccustomEcho]: (inputData, inputMetaData) => clientStringParsing.customEcho(inputData, inputMetaData)
+    [app_biz.ccustomEcho]: (inputData, inputMetaData) => clientStringParsing.customEcho(inputData, inputMetaData),
+    [app_biz.cmostPopularNumber]: (inputData, inputMetaData) => clientStringParsing.mostPopularNumber(inputData, inputMetaData),
+    [app_biz.cisAlmostPalindrome]: (inputData, inputMetaData) => clientStringParsing.isAlmostPalindrome(inputData, inputMetaData),
+    [app_biz.cthreePointAverage]: (inputData, inputMetaData) => clientStringParsing.threePointAverage(inputData, inputMetaData),
+    [app_biz.carrayCounter]: (inputData, inputMetaData) => clientStringParsing.arrayCounter(inputData, inputMetaData)
   };
 };
 

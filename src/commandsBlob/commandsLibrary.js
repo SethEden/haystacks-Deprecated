@@ -19,6 +19,7 @@
  */
 
 // Internal imports
+import integrationTestCommands from './commands/integrationTests.js';
 import nominalCommands from './commands/nominal.js';
 // import integrationTests from './commands/integrationTests.js';
 import * as bas from '../constants/basic.constants.js';
@@ -72,15 +73,19 @@ function initCommandsLibrary() {
     [cmd.cbusinessRule]: (inputData, inputMetaData) => nominalCommands.businessRule(inputData, inputMetaData),
     [cmd.ccommandGenerator]: (inputData, inputMetaData) => nominalCommands.commandGenerator(inputData, inputMetaData),
     [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData),
+    [cmd.cconstantsGenerator]: (inputData, inputMetaData) => nominalCommands.constantsGenerator(inputData, inputMetaData),
+    [cmd.cconstantsGeneratorList]: (inputData, inputMetaData) => nominalCommands.constantsGeneratorList(inputData, inputMetaData),
+    [cmd.cconstantsPatternRecognizer]: (inputData, inputMetaData) => nominalCommands.constantsPatternRecognizer(inputData, inputMetaData),
     [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData),
     [cmd.ccommandMetrics]: (inputData, inputMetaData) => nominalCommands.commandMetrics(inputData, inputMetaData),
     [cmd.csaveConfiguration]: (inputData, inputMetaData) => nominalCommands.saveConfiguration(inputData, inputMetaData),
-    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData)
+    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData),
 
     // ***********************************************
     // Integration Test commands in order
     // ***********************************************
-
+    [cmd.cvalidateConstants]: (inputData, inputMetaData) => integrationTestCommands.validateConstants(inputData, inputMetaData),
+    [cmd.cvalidateCommandAliases]: (inputData, inputMetaData) => integrationTestCommands.validateCommandAliases(inputData, inputMetaData)
   };
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

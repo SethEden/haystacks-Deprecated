@@ -70,6 +70,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cremoveCharacterFromArray]: (inputData, inputMetaData) => arrayParsing.removeCharacterFromArray(inputData, inputMetaData),
      [biz.cascertainMatchingElements]: (inputData, inputMetaData) => arrayParsing.ascertainMatchingElements(inputData, inputMetaData),
      [biz.cdoesArrayContainFilename]: (inputData, inputMetaData) => arrayParsing.doesArrayContainFilename(inputData, inputMetaData),
+     [biz.creadDirectoryContents]: (inputData, inputMetaData) => arrayParsing.readDirectoryContents(inputData, inputMetaData),
      [biz.cgetLengthOfLongestStringInArray]: (inputData, inputMetaData) => arrayParsing.getLengthOfLongestStringInArray(inputData, inputMetaData),
      [biz.csearchForPatternsInStringArray]: (inputData, inputMetaData) => arrayParsing.searchForPatternsInStringArray(inputData, inputMetaData),
      [biz.cvalidatePatternsThatNeedImplementation]: (inputData, inputMetaData) => arrayParsing.validatePatternsThatNeedImplementation(inputData, inputMetaData),
@@ -141,7 +142,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cgenerateValidEmail]: (inputData, inputMetaData) => stringGeneration.generateValidEmail(inputData, inputMetaData),
      [biz.cgenerateInvalidEmail]: (inputData, inputMetaData) => stringGeneration.generateInvalidEmail(inputData, inputMetaData),
      [biz.cgenerateRandomBrightColor]: (inputData, inputMetaData) => stringGeneration.generateRandomBrightColor(inputData, inputMetaData),
-     [biz.cgenerateRandomDarkColor]: (inputData, inputMetaDate) => stringGeneration.generateRandomDarkColor(inputData, inputMetaData),
+     [biz.cgenerateRandomDarkColor]: (inputData, inputMetaData) => stringGeneration.generateRandomDarkColor(inputData, inputMetaData),
      [biz.cgenerateRandomColor]: (inputData, inputMetaData) => stringGeneration.generateRandomColor(inputData, inputMetaData),
 
      // ***********************************************
@@ -202,10 +203,14 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cremoveXnumberOfFoldersFromEndOfPath]: (inputData, inputMetaData) => stringParsing.removeXnumberOfFoldersFromEndOfPath(inputData, inputMetaData),
      [biz.cgetFirstTopLevelFolderFromPath]: (inputData, inputMetaData) => stringParsing.getFirstTopLevelFolderFromPath(inputData, inputMetaData),
      [biz.cloadDataFile]: (inputData, inputMetaData) => stringParsing.loadDataFile(inputData, inputMetaData),
+     [biz.csaveDataFile]: (inputData, inputMetaData) => stringParsing.saveDataFile(inputData, inputMetaData),
      [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => stringParsing.supportedFileFormatsAre(inputData, inputMetaData),
+     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => stringParsing.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
      [biz.cgetAttributeName]: (inputData, inputMetaData) => stringParsing.getAttributeName(inputData, inputMetaData),
      [biz.cgetAttributeValue]: (inputData, inputMetaData) => stringParsing.getAttributeValue(inputData, inputMetaData),
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => stringParsing.cleanCommandInput(inputData, inputMetaData),
+     [biz.cgetNowMoment]: (inputData, inputMetaData) => stringParsing.getNowMoment(inputData, inputMetaData),
+     [biz.ccreateZipArchive]: (inputData, inputMetaData) => stringParsing.createZipArchive(inputData, inputMetaData),
 
      // ***********************************************
      // stringParsingutilities rules in order

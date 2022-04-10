@@ -46,6 +46,7 @@ export const cDoublePercent = cPercent + cPercent; // %%
 export const cCarrot = '^'; // ^
 export const cAndPersand = '&'; // &
 export const cDot = '.'; // .
+export const cDoubleDot = cDot + cDot; // ..
 export const cComa = ','; // ,
 export const cColon = ':'; // :
 export const cSemiColon = ';'; // ;
@@ -2943,4 +2944,4 @@ export const cZX = cZ + cX; // ZX
 export const cZY = cZ + cY; // ZY
 export const cZZ = cZ + cZ; // ZZ
 
-// inducedConstantsFailure = 'inducedConstantsFailure';
+// cinducedConstantsFailure = 'inducedConstantsFailure';

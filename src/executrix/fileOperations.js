@@ -14,6 +14,7 @@
  * @requires module:word1.constants
  * @requires module:loggers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/adm-zip|adm-zip}
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/papaparse|papaparse}
  * @requires {@link https://www.npmjs.com/package/xml2js|xml2js}
@@ -33,6 +34,7 @@ import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
+import admZip from 'adm-zip';
 import fs from 'fs';
 import papa from 'papaparse';
 import xml2js from 'xml2js';
@@ -309,32 +311,31 @@ function readDirectorySynchronously(directory) {
 /**
  * @function copyAllFilesAndFoldersFromFolderToFolder
  * @description Copies all of the files and folders recursively from the source folder to the destination folder.
- * @param {string} sourceFolder The full source path where files and folders should be copied from.
- * @param {string} destinationFolder The full destination path where files and folders should be copied.
- * @return {boolean} a True or False value to indicate if the full copy process is successful or not.
+ * @param {array<string>} sourceDestinationArray An array containing the source and destination paths.
+ * Example:
+ * sourceDestinationArray[0] = source path
+ * sourceDestinationArray[1] = destination path
+ * @param  {array<array<string>>} filterArray two array's of strings that are exclusions and inclusions,
+ * file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+ * Example:
+ * filterArray[0] = exclusionArray
+ * filterArray[1] = inclusionArray
+ * @return {boolean} A True or False value to indicate if the fully copy process is successful or not.
  * @author Seth Hollingsead
- * @date 2022/01/28
- * @NOTE: This is mainly used by the build system to execute a copy process for the
+ * @date 2022/04/06
+ * @NOTE This is mainly used by the build system to execute a copy process for the
  * non-code files from the surce folder to the bin folder.
+ * But it could also be used by a self-installing system to copy files from an execution path to an installation path.
  */
-function copyAllFilesAndFoldersFromFolderToFolder(sourceFolder, destinationFolder) {
+function copyAllFilesAndFoldersFromFolderToFolder(sourceDestinationArray, filterArray) {
   let functionName = copyAllFilesAndFoldersFromFolderToFolder.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // sourceFolder is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.csourceFolderIs + sourceFolder);
-  // destinationFolder is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationFolderIs + destinationFolder);
+  // sourceDestinationArray is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.csourceDestinationArrayIs + JSON.stringify(sourceDestinationArray));
+  // exclusionArray is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfilterArrayIs + JSON.stringify(filterArray));
   let copySuccess = false;
-  let rotPath = cleanRootPath();
-  sourceFolder = rootPath + sourceFolder;
-  sourceFolder = path.resolve(sourceFolder);
-  destinationFolder = rootPath + destinationFolder;
-  destinationFolder = path.resolve(destinationFolder);
-  // sourceFolder is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.csourceFolderIs + sourceFolder);
-  // destinationFolder is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationFolderIs + destinationFolder);
-  copySuccess = copyFolderRecursiveSync(surceFolder, destinationFolder);
+  copySuccess = copyFolderRecursiveSync(sourceDestinationArray, filterArray);
   // copySuccess is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccopySuccessIs + copySuccess);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -374,7 +375,7 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   let currentVersionReleased = false;
   let releaseDateTimeStamp;
   let originalSource, originalDestination;
-  let zip = new AdmZip();
+  let zip = new admZip();
   // current version is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentVersionIs + currentVersion);
   originalSource = bas.cDot + sourceFolder;
@@ -435,6 +436,42 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
 };
 
 /**
+ * @function createZipArchive
+ * @description Creates a new zip archive of the files listed in the input array,
+ * and saves the file to the specified file path and name.
+ * @param {array<string>} folderPaths All the folders and paths to include in the zip archive.
+ * @param {string} destinationPathFileName The full path and file name to the
+ * destination where the zip file should be saved.
+ * @return {boolean} A True or False value to indicate if the zip file was created successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+function createZipArchive(folderPaths, destinationPathFileName) {
+  let functionName = createZipArchive.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cfolderPathsIs + JSON.stringify(folderPaths));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdestinationPathFileNameIs + destinationPathFileName);
+  let packageSuccess = false;
+  let zip = new admZip();
+  try {
+    zip.addLocalFolder(folderPaths);
+    zip.writeZip(destinationPathFileName);
+    // Done writing the zip file:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWritingTheZipFile + destinationPathFileName);
+    packageSuccess = true;
+  } catch (err) {
+    // ERROR: Zip package release failed
+    console.log(msg.cErrorZipPackageReleaseFailed);
+    console.error(err.stack);
+    process.exit(1);
+  }
+  // packageSuccess is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpackageSuccessIs + packageSuccess);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return packageSuccess;
+};
+
+/**
  * @function cleanRootPath
  * @description Takes the application root path and cleans it to give a real root path,
  * or top-level folder path for the application.
@@ -466,9 +503,17 @@ function cleanRootPath() {
 
 /**
  * @function copyFileSync
- * @description Reads the files from the source and copies them to the target.
- * @param {string} source The soruce file that should be copied (read and then re-written to the destination).
- * @param {string} target The target file that shoudl be saved to.
+ * @description Reads the files from the source and copies them to the target,
+ * ignoring any files that match with any of the contents of the exclusionArray.
+ * @param {array<string>} sourceDestinationArray An array containing the source and destination paths.
+ * Example:
+ * sourceDestinationArray[0] = source path
+ * sourceDestinationArray[1] = destination path
+ * @param  {array<array<string>>} filterArray two array's of strings that are exclusions and inclusions,
+ * file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+ * Example:
+ * filterArray[0] = exclusionArray
+ * filterArray[1] = inclusionArray
  * @return {boolean} A True or False to indicate if the copy operation was successful or not.
  * @author Simon Zyx
  * @date 2014/09/25
@@ -477,14 +522,18 @@ function cleanRootPath() {
  * However, it should suffice for our needs. Meta-data in this case is not all that critical
  * since the original file is more important, and this is really just about the deployment of a build-release.
  */
-function copyFileSync(source, target) {
+function copyFileSync(sourceDestinationArray, filterArray) {
   let functionName = copyFileSync.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // source is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cSourceIs + source);
+  loggers.consoleLog(namespacePrefix + functionName, msg.csourceDestinationArrayIs + JSON.stringify(sourceDestinationArray));
   // target is:
-  loggers.consoleLog(namespacePrefix + functionName , msg.ctargetIs + target);
-  let successfullCopy = false;
+  loggers.consoleLog(namespacePrefix + functionName , msg.cfilterArrayIs + JSON.stringify(filterArray));
+  let successfulCopy = false;
+  let source = sourceDestinationArray[0];
+  let target = sourceDestinationArray[1];
+  let exclusionArray = filterArray[0];
+  let inclusinoArray = filterArray[1];
   let targetFile = target;
 
   // If target is a directory a new file with the same name will be created.
@@ -494,28 +543,51 @@ function copyFileSync(source, target) {
     }
   } // End-if (fs.existsSync(target))
   try {
-    if (source.includes(bas.cDot + gen.cenv) === false) {
-      fs.wrieFileSync(targetFile, fs.readFileSync(source));
-      successfullCopy = true;
+    let foundExclusion = false;
+    let foundInclusion = false;
+    for (let i = 0; i < inclusinoArray.length; i++) {
+      if (source.includes(inclusinoArray[i])) {
+        foundInclusion = true;
+        break;
+      }
+    } // End-for (let i = 0; i < inclusinoArray.length; i++)
+    for (let j = 0; j < exclusionArray.length; j++) {
+      if (source.includes(exclusionArray[j])) {
+        foundExclusion = true;
+        break;
+      }
+    } // End-for (let j = 0; j < exclusionArray.length; j++)
+    // We need a logical converse operation:
+    // https://en.wikipedia.org/wiki/Converse_(logic)
+    if (foundInclusion || !(foundInclusion || foundExclusion)) {
+      fs.writeFileSync(targetFile, fs.readFileSync(source));
+      successfulCopy = true;
     } else {
-      // console.log('Detected the .env file, and avoided it!');
+      // console.log('Detected an exclusion condition.');
     }
   } catch (err) {
     // ERROR: Could not copy file:
     console.log(msg.cErrorCouldNotCopyFile + source);
-    successfullCopy = false;
+    successfulCopy = false;
   }
   // successfullCopy is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.csuccessfullCopyIs + successfullCopy);
+  loggers.consoleLog(namespacePrefix + functionName, msg.csuccessfulCopyIs + successfulCopy);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return successfullCopy;
+  return successfulCopy;
 };
 
 /**
  * @function copyFolderRecursiveSync
- * @description Copies afolder and all of its files and sub-folders and sub-files recursively.
- * @param {string} source The source path where all files and folders should be copied from.
- * @param {string} target The target path where all the files and folders should be copied to.
+ * @description Copies a folder and all of its files and sub-folders and sub-files recursively.
+ * @param {array<string>} sourceDestinationArray An array containing the source and destination paths.
+ * Example:
+ * sourceDestinationArray[0] = source path
+ * sourceDestinationArray[1] = destination path
+ * @param  {array<array<string>>} filterArray two array's of strings that are exclusions and inclusions,
+ * file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+ * Example:
+ * filterArray[0] = exclusionArray
+ * filterArray[1] = inclusionArray
  * @return {boolean} A True or False value to indicate fi the copy operation was a success or not.
  * @author Simon Zyx
  * @date 2014/09/25
@@ -524,18 +596,20 @@ function copyFileSync(source, target) {
  * However, it should suffice for our needs. Meta-data in this case is not all that critical
  * since the original file is more important, and this is really just about the deployment of a build-release.
  */
-function copyFolderRecursiveSync(source, target) {
+function copyFolderRecursiveSync(sourceDestinationArray, filterArray) {
   let functionName = copyFolderRecursiveSync.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // source is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cSourceIs + source);
+  loggers.consoleLog(namespacePrefix + functionName, msg.csourceDestinationArrayIs + JSON.stringify(sourceDestinationArray));
   // target is:
-  loggers.consoleLog(namespacePrefix + functionName , msg.ctargetIs + target);
-  let successfullCopy = false;
+  loggers.consoleLog(namespacePrefix + functionName , msg.cfilterArrayIs + JSON.stringify(filterArray));
+  let successfulCopy = false;
   let files = [];
+  let source = sourceDestinationArray[0];
+  let target = sourceDestinationArray[1];
 
   // Check if folder needs to be created or integrated
-  let targetFolder = path.join(target, path.basename(soruce));
+  let targetFolder = path.join(target, path.basename(source));
   if (!fs.existsSync(targetFolder)) {
     try {
       fs.mkdirSync(targetFolder);
@@ -546,7 +620,7 @@ function copyFolderRecursiveSync(source, target) {
       console.log(msg.cErrorCouldNotCreateFolder + targetFolder);
       // ERROR:
       console.log(msg.cERROR_Colon + err);
-      successfullCopy = false;
+      successfulCopy = false;
     }
   } // End-if (!fs.existsSync(targetFolder))
 
@@ -557,9 +631,9 @@ function copyFolderRecursiveSync(source, target) {
       files.forEach(function(file) {
         let currentSource = path.join(source, file);
         if (fs.lstatSync(currentSource).isDirectory()) {
-          successfullCopy = copyFolderRecursiveSync(currentSource + targetFolder);
+          successfulCopy = copyFolderRecursiveSync([currentSource, targetFolder], filterArray);
         } else {
-          successfullCopy = copyFileSync(currentSource + targetFolder);
+          successfulCopy = copyFileSync([currentSource, targetFolder], filterArray);
         }
       });
     } // End-if (fs.lstatSync(source).isDirectory())
@@ -568,12 +642,12 @@ function copyFolderRecursiveSync(source, target) {
     console.log(msg.cErrorCouldNotCopyFolderContents + targetFolder);
     // ERROR:
     console.log(msg.cERROR_Colon + err);
-    successfullCopy = false;
+    successfulCopy = false;
   }
   // successfullCopy Is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.csuccessfullCopyIs + successfullCopy);
+  loggers.consoleLog(namespacePrefix + functionName, msg.csuccessfulCopyIs + successfulCopy);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return successfullCopy;
+  return successfulCopy;
 };
 
 /**
@@ -622,9 +696,10 @@ export default {
   [fnc.creadDirectoryContents]: (directory) => readDirectoryContents(directory),
   [fnc.cscanDirectoryContents]: (directory, enableLimit, filesLimit) => scanDirectoryContents(directory, enableLimit, filesLimit),
   [fnc.creadDirectorySynchronously]: (directory) => readDirectorySynchronously(directory),
-  [fnc.ccopyAllFilesAndFoldersFromFolderToFolder]: (sourceFolder, destinationFolder) => copyAllFilesAndFoldersFromFolderToFolder(sourceFolder, destinationFolder),
+  [fnc.ccopyAllFilesAndFoldersFromFolderToFolder]: (sourceDestinationArray, filterArray) => copyAllFilesAndFoldersFromFolderToFolder(sourceDestinationArray, filterArray),
   [fnc.cbuildReleasePackage]: (sourceFolder, destinatinoFolder) => buildReleasePackage(sourceFolder, destinationFolder),
-  [fnc.ccopyFileSync]: (source, target) => copyFileSync(source, target),
-  [fnc.ccopyFolderRecursiveSync]: (source, target) => copyFolderRecursiveSync(source, target),
+  [fnc.ccreateZipArchive]: (folderPaths, destinationPathFileName) => createZipArchive(folderPaths, destinationPathFileName),
+  [fnc.ccopyFileSync]: (sourceDestinationArray, filterArray) => copyFileSync(sourceDestinationArray, filterArray),
+  [fnc.ccopyFolderRecursiveSync]: (sourceDestinationArray, filterArray) => copyFolderRecursiveSync(sourceDestinationArray, filterArray),
   [fnc.cappendMessageToFile]: (file, message) => appendMessageToFile(file, message)
 };

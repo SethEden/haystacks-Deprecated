@@ -158,7 +158,22 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wr1.cVersion]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wr1.cDescription]);
 
-  // TODO: Add constants data valadation loading process here, based on a configuration setting for enabling constants validation.
+  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+    let resolvedFrameworkConstantsPathActual = path.resolve(configData[cfg.cframeworkConstantsPath]);
+    let resolvedClientConstantsPathActual = path.resolve(configData[cfg.cclientConstantsPath])
+    loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedFrameworkConstantsPathActualIs + resolvedFrameworkConstantsPathActual);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientConstantsPathActualIs + resolvedClientConstantsPathActual);
+    configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConstantsPath, resolvedFrameworkConstantsPathActual);
+    configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
+
+    chiefData.initializeConstantsValidationData(); // This just makes sure that the data structure is created on the D-Data structure.
+    let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData].call();
+    let applicationConstantsValidationData = configData[cfg.capplicationConstantsValidationData].call();
+    loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConstantsValidationDataIs + JSON.stringify(frameworkConstantsValidationData));
+    loggers.consoleLog(namespacePrefix + functionName, msg.capplicationConstantsValidationDataIs + JSON.stringify(applicationConstantsValidationData));
+    chiefData.addConstantsValidationData(frameworkConstantsValidationData);
+    chiefData.addConstantsValidationData(applicationConstantsValidationData);
+  }
 
   let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
@@ -387,7 +402,7 @@ function processCommandQueue() {
  * @author Seth Hollingsead
  * @date 2022/02/16
  */
-function setConfigurationSetting(configurationNamespace, configurationName, configuratinoValue) {
+function setConfigurationSetting(configurationNamespace, configurationName, configurationValue) {
   let functionName = setConfigurationSetting.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // configurationNamespace is:

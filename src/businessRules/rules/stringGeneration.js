@@ -451,7 +451,7 @@ const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMeta
  * from an optional list of allowable special characters, should be generated;
  * generate them and string them together to the specified length.
  * @param {string} inputData The string that contains the number of characters to generate.
- * @param {array<boolean,string,string} inputMetaData An array map with multiple input parameters.
+ * @param {array<boolean,string,string>} inputMetaData An array map with multiple input parameters.
  * inputMetaData[0] = generateSpecialCharacters - A boolean value to indiate if
  * special characters should be included when randomlygenerating characters for the output string.
  * inputMetaData[1] = allowableSpecialCharacters - The list of allowable special characters as a string,
@@ -1175,12 +1175,12 @@ const generateRandomBrightColor = function(inputData, inputMetaData) {
  * This makes the function nearly identical to the same function that generates random bright colors.
  * Really the only difference is the default values. So this function is refactored to call a generic random coor generator business rule.
  * @param {string|integer} inputData The number in either numeric or string format that represents the minimum range that should be used to generate the random color.
- * @param {string|integer} inputMetaDate The number in either numeric or string format that represents the maximum range that should be used to generate the random color.
+ * @param {string|integer} inputMetaData The number in either numeric or string format that represents the maximum range that should be used to generate the random color.
  * @return {array<integer,integer,integer>} An array of RGB values in the dark color spectrum range.
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-const generateRandomDarkColor = function(inputData, inputMetaDate) {
+const generateRandomDarkColor = function(inputData, inputMetaData) {
   let functionName = generateRandomDarkColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1217,7 +1217,7 @@ const generateRandomColor = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [0,0,0];
   let minimumColorRange = 0;
-  let maxim;umCoorRange = 255;
+  let maximumColorRange = 255;
   let parsedColorRangeArray = [];
   if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
     // Try to parse them as numbers for the range.

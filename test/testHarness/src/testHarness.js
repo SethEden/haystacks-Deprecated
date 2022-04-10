@@ -4,13 +4,16 @@
  * @file testHarness.js
  * @module testHarness
  * @description This is the main init for the testHarness application.
- * It contains just enough of the main program loop and/or basic argument parsing to effectively test the framework.
- *
+ * It contains just enough of the main program loop and/or basic argument parsing to
+ * effectively test the framework.
  * @requires module:clientRules
  * @requires module:clientCommands
+ * @requires module:application.command.constants
+ * @requires module:application.configuration.constants
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
+ * @requires module:allApplicationConstantsValidationMetadata
  * @requires module:haystacks
  * @requires module:haystacks.constants.basic
  * @requires module:haystacks.constants.configuration
@@ -30,10 +33,12 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
+import * as app_cmd from './constants/application.command.constants.js';
 import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
+import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
 import haystacks from 'haystacks';
 // const {bas, cfg, } = haystacks
@@ -53,7 +58,7 @@ let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.
 let namespacePrefix = baseFileName + bas.cDot;
-global.appRot = path.resolve(process.cwd());
+global.appRoot = path.resolve(process.cwd());
 dotenv.config();
 const {NODE_ENV} = process.env;
 
@@ -79,10 +84,12 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   } else if (NODE_ENV === wr1.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
@@ -90,10 +97,12 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
       clientMetaDataPath: apc.cmetaDataProdPath,
       clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   } else {
     // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
     console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
@@ -103,10 +112,12 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   }
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();

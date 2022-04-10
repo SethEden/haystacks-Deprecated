@@ -84,12 +84,15 @@ function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesFilePathConfigurationNameIs + commandAliasesFilePathConfigurationName);
   let allCommandAliasesData = {};
   allCommandAliasesData = chiefData.setupAllXmlData(commandAliasesFilePathConfigurationName, sys.cCommandsAliases);
+  // allCommandAliasesData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesDataIs + JSON.stringify(allCommandAliasesData));
   if (D[sys.cCommandsAliases] === undefined) { // Make sure we only do this if it's undefined, otherwise we might wipe out previously loaded data.
     D[sys.cCommandsAliases] = {};
     D[sys.cCommandsAliases] = allCommandAliasesData[sys.cCommandsAliases];
   } else {
-    for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands].length; i++) {
-      D[sys.cCommandsAliases][wr1.cCommands].push(allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands][i]);
+    let commandKeys = Object.keys(allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands]);
+    for (let i = 0; i < commandKeys.length; i++) {
+      D[sys.cCommandsAliases][wr1.cCommands][commandKeys[i]] = allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands][commandKeys[i]];
     } // End-for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wr1.cCommand].length; i++)
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -128,7 +131,7 @@ function isCommandQueueEmpty() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = false;
   returnData = queue.isEmpty(sys.cCommandQueue);
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -149,7 +152,7 @@ function processCommandQueue() {
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   returnData = commandBroker.executeCommand(commandToExecute);
-  loggers.consoleLog(namespacePrefix + functionName, msg.returnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

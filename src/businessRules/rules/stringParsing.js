@@ -10,11 +10,21 @@
  * @requires module:arrayParsing
  * @requires module:stringParsingUtilities
  * @requires module:basic.constants
+ * @requires module:color.constants
+ * @requires module:configuration.constants
  * @requires module:generic.constants
  * @requires module:message.constants
+ * @requires module:numeric.constants
  * @requires module:system.constants
  * @requires module:word1.constants
+ * @requires module:colorizer
+ * @requires module:configurator
+ * @requires module:fileOperations
  * @requires module:loggers
+ * @requires module:timers
+ * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/chalk|chalk}
+ * @requires {@link https://www.npmjs.com/package/n-readlines|n-readlines}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -26,12 +36,22 @@
 import arrayParsing from './arrayParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
 import * as bas from '../../constants/basic.constants.js';
+import * as clr from '../../constants/color.constants.js';
+import * as cfg from '../../constants/configuration.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
+import * as num from '../../constants/numeric.constants.js';
 import * as sys from '../../constants/system.constants.js';
 import * as wr1 from '../../constants/word1.constants.js';
+import colorizer from '../../executrix/colorizer.js';
+import configurator from '../../executrix/configurator.js';
+import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
+import timers from '../../executrix/timers.js';
+import D from '../../structures/data.js';
 // External imports
+import chalk from 'chalk';
+import lineByLine from 'n-readlines';
 import * as math from 'mathjs';
 import path from 'path';
 
@@ -1072,11 +1092,11 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
       if (lineInCode.includes(sys.cexportconst) === true) {
         let lineArray = lineInCode.split(bas.cSpace);
         // lineArray[2] is
-        loggers.consoleLog(namespacePrefix + functionName, msg.cineArray2Is + lineArray[2]);
-        foundConstant = validateConstantsDataValidationLineItemName(lineAray[2], inputMetaData);
+        loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
+        foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
         let qualifiedConstantsFilename = getFileNameFromPath(inputData, '');
         if (foundConstant === true) {
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             let passMessage = wr1.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cPASS;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
@@ -1085,14 +1105,14 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
             console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
           } // End-if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
         } else { // Else-clause if (foundConstant === true)
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
             let failMessage = wr1.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL;
             if (colorizeLogsEnabled === true) {
               failMessage = chalk.rgb(0,0,0)(failMessage);
               failMessage = chalk.bgRgb(255,0,0)(failMessage);
             }
             let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
-            console.log(qualifiedCosntantsFilename + bas.cColon + bas.cSpace + failMessage);
+            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
             // loggers.consoleLog(namespacePrefix + functionName, wr1.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL);
             let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
             if (suggestedLineOfCode !== '') {
@@ -1248,13 +1268,13 @@ const doesConstantExist = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
 loop1:
     for (let i = 0; i < constantsTypesKeys.length; i++) {
-      let consteantTypeKey = constantsTypesKeys[i];
+      let constantTypeKey = constantsTypesKeys[i];
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
       let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
       // constantTypeValues is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
-      let consteantsKeys = Object.keys(constantTypeValues);
+      let constantsKeys = Object.keys(constantTypeValues);
       // constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
 loop2:
@@ -1305,7 +1325,7 @@ loop1:
       let constantTypeKey = constantsTypesKeys[i];
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
-      let constantTypeValues = D[sys.cConstantsVaidationData][constantTypeKey];
+      let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
       // constantTypeValues is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
       let constantsKeys = Object.keys(constantTypeValues);
@@ -1313,7 +1333,7 @@ loop1:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
 loop2:
       for (let j = 0; j < constantsKeys.length; j++) {
-        let constKey = constantsKeys[j];
+        let constantKey = constantsKeys[j];
         // constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
         let constantActualValue = constantTypeValues[constantKey];
@@ -1434,7 +1454,7 @@ loop1:
       let constantTypeKey = constantsTypesKeys[i];
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
-      let constantTypeValues = D[sys.cConstantsVaidationData][constantTypeKey];
+      let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
       // constantTypeValues is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeValuesIs + JSON.stringify(constantTypeValues));
       let constantsKeys = Object.keys(constantTypeValues);
@@ -1464,12 +1484,12 @@ loop2:
  * @function findConstantName
  * @description Looks through a string and tries to weed out a constant name.
  * @param {string} inputData The string that should be searched for a constant name.
- * @param {string} inutMetaData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The name of the constant that was found.
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const findConstantName = function(inputData, inutMetaData) {
+const findConstantName = function(inputData, inputMetaData) {
   let functionName = findConstantName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -1563,12 +1583,12 @@ const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
   let constantName = '';
   if (inputData) {
     if (doesConstantExist(inputData, '') === false) {
-      returnData = constantsOptimizedFulfillmentSystem(inputData.subString(0, inputData.length - 1), inputMetaData);
+      returnData = constantsOptimizedFulfillmentSystem(inputData.substring(0, inputData.length - 1), inputMetaData);
     } else {
       constantType = getConstantType(inputData, true);
       constantName = getConstantName(inputData, '');
       let constantPrefix = convertConstantTypeToConstantPrefix(constantType, '');
-      returnData = constantprefix + constantName;
+      returnData = constantPrefix + constantName;
     }
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -1595,11 +1615,11 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
   let constantName = '';
   let constantType = '';
   if (inputData) {
-    returnData = constantsOptimizedFulfilmentSystem(inputData, '');
+    returnData = constantsOptimizedFulfillmentSystem(inputData, '');
     // We found the first part of the string, now lets continue processing the rest of the string!
     // First determien how many characters are being returned so we can
     // determine what portion of the string we need to continue processing with.
-    constName = findConstantName(returnData, '');
+    constantName = findConstantName(returnData, '');
     // constantName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantNameIs + constantName);
     let constantValue = getConstantActualValue(constantName, '');
@@ -1610,7 +1630,7 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
     // deltaLength is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cdeltaLengthIs + deltaLength);
     if (deltaLength != 0) {
-      let recursiveSubString = inputMetaData.substring(inputMetaData.length - deltaLe, inputMetaData.length);
+      let recursiveSubString = inputMetaData.substring(inputMetaData.length - deltaLength, inputMetaData.length);
       // recursiveSubString is:
       loggers.consoleLog(namespacePrefix + functionName, msg.crecursivesu + recursiveSubString);
       returnData = returnData + bas.cSpace + bas.cPlus + bas.cSpace + constantsFulfillmentSystem(recursiveSubString, inputData);
@@ -1648,10 +1668,10 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
       if (validationLineItem) {
         if (validationLineItem.Actual === validationLineItem.Expected) {
           // PASS
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             // `PASS -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- PASS`;
             passMessage = wr1.cPASS + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
-              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + vaidationLineItem.Expected + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
               bas.cDoubleDash + bas.cSpace + wr1.cPASS;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
@@ -1662,10 +1682,10 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
         } else {
           // FAIL
           returnData = false;
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true) {
+          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
             // `FAIL -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- FAIL`;
             passMessage = wr1.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
-              vaidationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + vaidationLineItem.Expected + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
               bas.cDoubleDash + bas.cSpace + wr1.cFAIL;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
@@ -1765,15 +1785,16 @@ const countDuplicateCommandAliases = function(inputData, inputMetaData) {
   let functionName = countDuplicateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = 0;
+  let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
+  let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
   if (inputData && inputMetaData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
 loop1:
-    for (let i = 0; i < inputMetaData.length; i++) {
-      // BEGIN i-th loop:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
-      let currentCommand = inputMetaData[i];
+    for (let key1 in inputMetaData) {
+      // key1 is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.ckey1Is + key1);
+      let currentCommand = inputMetaData[key1];
       // currentCommand is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
       let aliasList = currentCommand[wr1.cAliases];
@@ -1795,24 +1816,18 @@ loop2:
         // END j-th loop:
         loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
       } // End-for (let j = 0; j < arrayOfAliases.length; j++)
-      // END i-th loop:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
     } // End-for (let i = 0; i < inputMetaData.length; i++)
   } // End-if (inputData)
   if (returnData > 1) {
     // duplicateAliasCount is:
     let duplicateAliasCountMessage = msg.cduplicateAliasCountIs + returnData;
-    if (colorizeLogsEnabled === true) {
-      duplicateAliasCountMessage = chalk.rgb(0,0,0)(duplicateAliasCountMessage);
-      duplicateAliasCountMessage = chalk.bgRgb(255,0,0)(duplicateAliasCountMessage);
-    }
+    duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, blackColorArray, true);
+    duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, redColorArray, false);
     console.log(duplicateAliasCountMessage);
     // duplicate command alias is:
     let duplicateAliasCommandMessage = msg.cduplicateCommandAliasIs + inputData;
-    if (colorizeLogsEnabled === true) {
-      duplicateAliasCommandMessage = chalk.rgb(0,0,0)(duplicateAliasCommandMessage);
-      duplicateAliasCommandMessage = chalk.bgRgb(255,0,0)(duplicateAliasCommandMessage);
-    }
+    duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, blackColorArray, true);
+    duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, redColorArray, false);
     console.log(duplicateAliasCommandMessage);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -2006,7 +2021,7 @@ const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
  * @description Loads data from a specified file and stores it in the specified data hive path.
  * @param {string} inputData The full path and file name for the file that should be loaded into memory.
  * @param {string} inputMetaData The data hive path where the data should be stored once it is loaded.
- * @return {boolean} A True or False value to indicate if the data file was loaded successfully or not.
+ * @return {boolean} The data that was loaded, because sometimes a client command might need to use this to load data.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
@@ -2022,30 +2037,69 @@ const loadDataFile = function(inputData, inputMetaData) {
     returnData = false;
   } else { // Else-clause if (!inputData)
     let loadedData = {};
-    if (inputData.incudes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
+    if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
       // Attempting to load XML data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadXmlData);
-      loadedData = fileBroker.getXmlData(inputData);
+      loadedData = fileOperations.getXmlData(inputData);
     } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
       // Attempting to load CSV data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadCsvData);
-      loadedData = fileBroker.getCsvData(inputData);
+      loadedData = fileOperations.getCsvData(inputData);
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
       // Attempting to load JSON data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadJsonData);
-      loadedData = fileBroker.getJsonData(inputData);
+      loadedData = fileOperations.getJsonData(inputData);
     } else {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
     }
     // Loaded data is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataIs + JSON.stringify(loadedData));
-    if (loadedData !== null && loadedData) {
-      returnData = true;
+    loggers.consoleLog(namespacePrefix + functionName, msg.cLoadedDataIs + JSON.stringify(loadedData));
+    returnData = loadedData;
+    if (loadedData !== null && loadedData && inputMetaData) {
       dataBroker.storeData(inputMetaData, loadedData);
     }
   } // End-else-clause if (!inputData)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function saveDataFile
+ * @description Saves data from a specified data to a specified path and file name.
+ * @param {string} inputData The full path and file name were the data should be saved.
+ * @param {object} inputMetaData The data that should be saved out to the specified file.
+ * @return {boolean} True or False value to indicate if the file was saved successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/03/17
+ */
+const saveDataFile = function(inputData, inputMetaData) {
+  let functionName = saveDataFile.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  if (!inputData) {
+    // WARNING: No data to save, please specify a valid path & filename!
+    loggers.consoleLog(namespacePrefix + functionName, msg.csaveDataFileMessage1 + msg.cloadDataFileMessage2);
+    returnData = false;
+  } else {
+    if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
+      fileOperations.writeJsonData(inputData, inputMetaData);
+      returnData = true;
+    } else {
+      // WARNING: Invalid file format, file formats supported are:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+    }
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -2065,6 +2119,40 @@ const supportedFileFormatsAre = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = gen.cXML + bas.cComa + bas.cSpace + gen.cCSV + bas.cComa + bas.cSpace + gen.cJSON;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function copyAllFilesAndFoldersFromFolderToFolder
+ * @description This is the wrapper for the fileOperations function of the same name.
+ * Copies all of the files and folders recursively from the source folder to the destination folder.
+ * Takes a second array of file filters that should be avoided.
+ * Example: [source, destination], [metaData.json, .js]
+ * @param {array<string>} inputData An array containing the source and destination paths.
+ * Example:
+ * inputData[0] = source path
+ * inputData[1] = destination path
+ * @param {array<array<string>>} inputMetaData two array's of strings that are exclusions and inclusions file filters,
+ * that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+ * Example:
+ * inputMetaData[0] = exclusionArray
+ * inputMetaData[1] = inclusionArray
+ * @return {boolean} A True or False to indicate if the full copy process is successful or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/06
+ * @NOTE This is mainly used by the build system to execute a copy process for the
+ * non-code fils from the source folder to the bin folder.
+ * It could also be used by a self-installer system, to copy code from an execution path to an installed path.
+ */
+const copyAllFilesAndFoldersFromFolderToFolder = function(inputData, inputMetaData) {
+  let functionName = copyAllFilesAndFoldersFromFolderToFolder.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  returnData = fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -2149,6 +2237,50 @@ const cleanCommandInput = function(inputData, inputMetaData) {
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\[/g, '']);
     returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\]/g, '']);
   } // End-if (inputData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function getNowMoment
+ * @description This function is a wrapper for the timers.getNowMoment function.
+ * It returns a time stamp for the current instant that the function is called.
+ * @param {string} inputData The format for the time stamp should be followed.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {string} The current time stamp, formatted according to the inpu string.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+const getNowMoment = function(inputData, inputMetaData) {
+  let functionName = getNowMoment.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = '';
+  returnData = timers.getNowMoment(inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function createZipArchive
+ * @description Creates a zip archive of all the files from an input specified path,
+ * and saves the zip file to the specified destination location.
+ * @param {array<string>} inputData An array of paths to pass to be used to create the zip archive package.
+ * @param {string} inputMetaData The full path and file name where the zip archive should be saved.
+ * @return {boolean} A True or False value to indicate if the zip archive process completed successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/04/08
+ */
+const createZipArchive = function(inputData, inputMetaData) {
+  let functionName = createZipArchive.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  returnData = fileOperations.createZipArchive(inputData, inputMetaData);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -2241,9 +2373,13 @@ export default {
   removeXnumberOfFoldersFromEndOfPath,
   getFirstTopLevelFolderFromPath,
   loadDataFile,
+  saveDataFile,
   supportedFileFormatsAre,
+  copyAllFilesAndFoldersFromFolderToFolder,
   getAttributeName,
   getAttributeValue,
   cleanCommandInput,
+  getNowMoment,
+  createZipArchive,
   replaceCharacterAtIndexOfString
 };

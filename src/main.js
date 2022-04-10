@@ -21,6 +21,8 @@
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
+ * @requires module:timers
+ * @requires module:allConstantsValidationMetadata
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/url|url}
  * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
@@ -45,10 +47,11 @@ import * as phn from './constants/phonic.constants.js';
 import * as sys from './constants/system.constants.js';
 import * as unt from './constants/unit.constants.js';
 import * as wr1 from './constants/word1.constants.js';
-import * as wr2 from './constants/word2.constants.js';
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
+import timers from './executrix/timers.js';
+import allSysCV from './resources/constantsValidation/allConstantsValidationMetadata.js';
 import D from './structures/data.js';
 // External imports
 import url from 'url';
@@ -79,31 +82,33 @@ function initFramework(clientConfiguration) {
 
  // let frameworkRootPath = path.resolve(process.cwd());
  // let frameworkRootPath = path.resolve(path.dirname(import.meta.url));
- let frameworkRootPath = url.fileURLToPath(path.dirname(import.meta.url));
+ let frameworkCodeRootPath = url.fileURLToPath(path.dirname(import.meta.url));
  let frameworkCommandAliasesPath = '';
  let frameworkWorkflowsPath = '';
- frameworkRootPath = warden.processRootPath(frameworkRootPath) + bas.cDoubleForwardSlash;
+ frameworkCodeRootPath = warden.processRootPath(frameworkCodeRootPath) + bas.cDoubleForwardSlash;
+ let frameworkRootPath = frameworkCodeRootPath;
  if (NODE_ENV === wr1.cdevelopment) {
-   frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
+   frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkDevelopRootPath;
  } else if (NODE_ENV === wr1.cproduction) {
-   frameworkRootPath = frameworkRootPath + sys.cFrameworkProductionRootPath;
+   frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkProductionRootPath;
  } else {
    // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
    console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
-   frameworkRootPath = frameworkRootPath + sys.cFrameworkDevelopRootPath;
+   frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkDevelopRootPath;
  }
- frameworkCommandAliasesPath = frameworkRootPath + sys.cframeworkResourcesCommandAliasesPath;
- frameworkWorkflowsPath = frameworkRootPath + sys.cframeworkResourcesWorkflowsPath;
+ frameworkCommandAliasesPath = frameworkCodeRootPath + sys.cframeworkResourcesCommandAliasesPath;
+ frameworkWorkflowsPath = frameworkCodeRootPath + sys.cframeworkResourcesWorkflowsPath;
 
- clientConfiguration[cfg.cframeworkRootPath] = frameworkRootPath;
+ clientConfiguration[cfg.cframeworkRootPath] = path.resolve(frameworkRootPath);
+ clientConfiguration[cfg.cframeworkConstantsPath] = frameworkCodeRootPath + sys.cframeworkConstantsPath;
  clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cappConfigReferencePath];
- clientConfiguration[cfg.cframeworkResourcesPath] = frameworkRootPath + sys.cframeworkResourcesPath;
+ clientConfiguration[cfg.cframeworkResourcesPath] = frameworkCodeRootPath + sys.cframeworkResourcesPath;
  clientConfiguration[cfg.cclientMetaDataPath] = path.resolve(clientConfiguration[cfg.cclientRootPath] + clientConfiguration[cfg.cclientMetaDataPath]);
  clientConfiguration[cfg.cframeworkFullMetaDataPath] = path.resolve(clientConfiguration[cfg.cframeworkResourcesPath] + sys.cmetaDatadotJson);
- clientConfiguration[cfg.cframeworkConfigPath] = frameworkRootPath + sys.cframeworkResourcesConfigurationPath;
+ clientConfiguration[cfg.cframeworkConfigPath] = frameworkCodeRootPath + sys.cframeworkResourcesConfigurationPath;
  clientConfiguration[cfg.cframeworkCommandAliasesPath] = frameworkCommandAliasesPath;
  clientConfiguration[cfg.cframeworkWorkflowsPath] = frameworkWorkflowsPath;
-
+ clientConfiguration[cfg.cframeworkConstantsValidationData] = allSysCV.initiaizeAllSystemConstantsValidationData;
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -392,6 +397,5 @@ export default {
   [gen.cphn]: phn,
   [gen.csys]: sys,
   [gen.cunt]: unt,
-  [gen.cwr1]: wr1,
-  [gen.cwr2]: wr2
+  [gen.cwr1]: wr1
 };

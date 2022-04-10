@@ -141,9 +141,29 @@ zipping files and saving zip-packages as part of a deployment/release process.</
         <h3 class="subsection-title">Requires</h3>
 
         <ul>
+            <li>module:basic.constants</li>
+        
+            <li>module:function.constants</li>
+        
+            <li>module:generic.constants</li>
+        
+            <li>module:message.constants</li>
+        
+            <li>module:system.constants</li>
+        
+            <li>module:word1.constants</li>
+        
+            <li><a href="module-loggers.html">module:loggers</a></li>
+        
             <li><a href="module-data.html">module:data</a></li>
         
-            <li><a href="https://www.npmjs.com/package/fs">fs</a></li>
+            <li><a href="https://www.npmjs.com/package/adm-zip">adm-zip</a></li>
+        
+            <li><a href="https://nodejs.dev/learn/the-nodejs-fs-module">fs</a></li>
+        
+            <li><a href="https://www.npmjs.com/package/papaparse">papaparse</a></li>
+        
+            <li><a href="https://www.npmjs.com/package/xml2js">xml2js</a></li>
         
             <li><a href="https://www.npmjs.com/package/path">path</a></li>
         </ul>
@@ -300,7 +320,7 @@ should be opened, appended and saved.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line162">line 162</a>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line653">line 653</a>
     </li></ul></dd>
     
 
@@ -330,6 +350,196 @@ should be opened, appended and saved.</p></td>
         
 <div class="param-desc">
     <p>A TRUE or FALSE to indicate if the append happened successfully or not.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~buildReleasePackage"><span class="type-signature">(inner) </span>buildReleasePackage<span class="signature">(sourceFolder, destinationFolder)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Add all the files from the sourceFolder into a zip file and
+give a name to the file for the current date-time and release version, savng to the destination folder.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sourceFolder</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The folder that should be packaged up for the release zip file.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>destinationFolder</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The folder where teh zip file release package should be saved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line345">line 345</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A True or False value to indicate if the release package process is successful or not.</p>
 </div>
 
 
@@ -418,7 +628,7 @@ or top-level folder path for the application.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line141">line 141</a>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line474">line 474</a>
     </li></ul></dd>
     
 
@@ -459,6 +669,952 @@ or top-level folder path for the application.</p>
     <dd>
         
 <span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~copyAllFilesAndFoldersFromFolderToFolder"><span class="type-signature">(inner) </span>copyAllFilesAndFoldersFromFolderToFolder<span class="signature">(sourceDestinationArray, filterArray)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Copies all of the files and folders recursively from the source folder to the destination folder.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sourceDestinationArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing the source and destination paths.
+Example:
+sourceDestinationArray[0] = source path
+sourceDestinationArray[1] = destination path</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filterArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;array.&lt;string>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>two array's of strings that are exclusions and inclusions,
+file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+Example:
+filterArray[0] = exclusionArray
+filterArray[1] = inclusionArray</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line311">line 311</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A True or False value to indicate if the fully copy process is successful or not.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~copyFileSync"><span class="type-signature">(inner) </span>copyFileSync<span class="signature">(sourceDestinationArray, filterArray)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Reads the files from the source and copies them to the target,
+ignoring any files that match with any of the contents of the exclusionArray.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sourceDestinationArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing the source and destination paths.
+Example:
+sourceDestinationArray[0] = source path
+sourceDestinationArray[1] = destination path</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filterArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;array.&lt;string>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>two array's of strings that are exclusions and inclusions,
+file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+Example:
+filterArray[0] = exclusionArray
+filterArray[1] = inclusionArray</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Simon Zyx</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line504">line 504</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A True or False to indicate if the copy operation was successful or not.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~copyFolderRecursiveSync"><span class="type-signature">(inner) </span>copyFolderRecursiveSync<span class="signature">(sourceDestinationArray, filterArray)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Copies a folder and all of its files and sub-folders and sub-files recursively.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sourceDestinationArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing the source and destination paths.
+Example:
+sourceDestinationArray[0] = source path
+sourceDestinationArray[1] = destination path</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filterArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;array.&lt;string>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>two array's of strings that are exclusions and inclusions,
+file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+Example:
+filterArray[0] = exclusionArray
+filterArray[1] = inclusionArray</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Simon Zyx</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line579">line 579</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A True or False value to indicate fi the copy operation was a success or not.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~createZipArchive"><span class="type-signature">(inner) </span>createZipArchive<span class="signature">(folderPaths, destinationPathFileName)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Creates a new zip archive of the files listed in the input array,
+and saves the file to the specified file path and name.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>folderPaths</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>All the folders and paths to include in the zip archive.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>destinationPathFileName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The full path and file name to the
+destination where the zip file should be saved.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line438">line 438</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A True or False value to indicate if the zip file was created successfully or not.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getCsvData"><span class="type-signature">(inner) </span>getCsvData<span class="signature">(pathAndFilename)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>loads the specified file and parses it into JSON objects.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pathAndFilename</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path and file name of the CSV file that should be loaded and parsed into JSON objects.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The JSON object as it was loaded from the file with minimal to no additional processing.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
 
 
     </dd>
@@ -585,7 +1741,7 @@ should be loaded and parsed into JSON objects.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line28">line 28</a>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line126">line 126</a>
     </li></ul></dd>
     
 
@@ -615,6 +1771,173 @@ should be loaded and parsed into JSON objects.</p></td>
         
 <div class="param-desc">
     <p>The JSON object as it was loaded from the file with minimal to no additional processing.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getXmlData"><span class="type-signature">(inner) </span>getXmlData<span class="signature">(pathAndFilename)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Loads the specified file and parses it into JSON objects, all strings.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pathAndFilename</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path and file name of the XML file that should be loaded and parsed into JSON objects.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A parsed JSON object contianing all of the data, meta-data, objects,
+values and attributes that were stored  in the specified XML file.</p>
 </div>
 
 
@@ -753,7 +2076,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line52">line 52</a>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line180">line 180</a>
     </li></ul></dd>
     
 
@@ -919,7 +2242,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line79">line 79</a>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line248">line 248</a>
     </li></ul></dd>
     
 
@@ -972,6 +2295,411 @@ needs to be reset after the work is done with it. So these are the things that t
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="~scanDirectoryContents"><span class="type-signature">(inner) </span>scanDirectoryContents<span class="signature">(directory, enableLimit, filesLimit)</span><span class="type-signature"> &rarr; {array.&lt;string>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
+The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
+Really this is used for scanning large volumes of data such as the entire C-Drive.
+This way the user can control the number of files that are returned by the system.
+The user might only want 10,000 files or just the first million files found. etc...</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>directory</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">sring</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path that should be scanned for files including all sub-folders and all sub-files.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enableLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>True or False to indicate if the boolean limit should be enabled or not.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filesLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of files that should be limited when scanning, if the enableLimit is set to True.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line208">line 208</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>An array of all the files in the folder up to the limit if specified.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array.&lt;string></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~writeJsonData"><span class="type-signature">(inner) </span>writeJsonData<span class="signature">(pathAndFilename, dataToWrite)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Writes out JSON data to the specified file and path location, it will automatically over-write any existing file.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pathAndFilename</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path and file name for the file that should have data written to it.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataToWrite</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data that should be written to the specified file.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line151">line 151</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>True or False to indicate if the file was written out successfully or not.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
@@ -987,13 +2715,13 @@ needs to be reset after the work is done with it. So these are the things that t
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="basic.constants.module_validation.html">basic.constants.validation</a></li><li><a href="business.constants.module_validation.html">business.constants.validation</a></li><li><a href="business.module_constants.html">business.constants</a></li><li><a href="color.constants.module_validation.html">color.constants.validation</a></li><li><a href="color.module_constants.html">color.constants</a></li><li><a href="command.constants.module_validation.html">command.constants.validation</a></li><li><a href="command.module_constants.html">command.constants</a></li><li><a href="configuration.constants.module_validation.html">configuration.constants.validation</a></li><li><a href="configuration.module_constants.html">configuration.constants</a></li><li><a href="country.constants.module_validation.html">country.constants.validation</a></li><li><a href="country.module_constants.html">country.constants</a></li><li><a href="function.constants.module_validation.html">function.constants.validation</a></li><li><a href="function.module_constants.html">function.constants</a></li><li><a href="generic.constants.module_vaidation.html">generic.constants.vaidation</a></li><li><a href="language.constants.module_validation.html">language.constants.validation</a></li><li><a href="language.module_constants.html">language.constants</a></li><li><a href="message.constants.module_validation.html">message.constants.validation</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-basic-constants.html">basic-constants</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-generic-constants.html">generic-constants</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-message-constants.html">message-constants</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-numeric-constants.html">numeric-constants</a></li><li><a href="module-phonic-constants.html">phonic-constants</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-unit-constants.html">unit-constants</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li><li><a href="numeric.constants.module_validation.html">numeric.constants.validation</a></li><li><a href="phonic.constants.module_validation.html">phonic.constants.validation</a></li><li><a href="system.constants.module_validation.html">system.constants.validation</a></li><li><a href="system.module_constants.html">system.constants</a></li><li><a href="unit.constants.module_validation.html">unit.constants.validation</a></li><li><a href="word.constants.module_validation.html">word.constants.validation</a></li><li><a href="word1.module_constants.html">word1.constants</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Oct 27 2021 12:17:16 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Apr 09 2022 21:36:02 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
