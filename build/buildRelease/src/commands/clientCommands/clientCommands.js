@@ -147,14 +147,14 @@ const deployApplication = function(inputData, inputMetaData) {
   if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
     // DEPLOY APPLICATION
     console.log(msg.cDEPLOY_APPLICATION);
-    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)
-    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath);
-    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath);
+    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)    
+    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.csourcePath);
+    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdestinationPath);
     // sourcePath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-    let deploymentStatus = haystacks.executeBusinessRule(biz.ccopyAllFilesAndFoldersFromFolderToFolder, [sourcePath, destinationPath], [[gen.cDotenv, gen.cDotjs],[gen.cDotjson]]);
+    let deploymentStatus = haystacks.executeBusinessRule(biz.ccopyAllFilesAndFoldersFromFolderToFolder, [sourcePath, destinationPath], []);
     if (deploymentStatus === true) {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentWasCompleted + true);
       haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, true);

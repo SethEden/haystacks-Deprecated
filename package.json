@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "babel src --out-dir bin",
-    "deploy": "npm run build && babel-node ./build/buildRelease/src/buildRelease.js",
+    "deploy": "babel-node ./build/buildRelease/src/buildRelease.js",
     "release": "babel-node ./build/buildRelease/src/buildRelease.js",
     "test": "babel-node ./test/testHarness/src/testHarness.js",
     "start": "babel-node ./src/main.js",

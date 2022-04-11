@@ -140,10 +140,13 @@ function deployApplication() {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   let copyResult;
   try {
-    // fse.copySync('/src/Application/NodeJS-App/Resources/*', '/bin/Application/NodeJS-App/Resources/*');
+    // fse.copySync('/src/*', '/bin/*');
     haystacks.setConfigurationSetting(wr1.csystem, cfg.creleaseCompleted, false);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
     haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
+    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.csourcePath, apc.cAppDevPath);
+    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationPath, apc.cAppProdPath);
     haystacks.setConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
     haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath, apc.cAppProdPath);
     haystacks.setConfigurationSetting(wr1.csystem, app_cfg.creleasePath, apc.cReleasePath);

@@ -2361,6 +2361,8 @@ export const word1ConstantsValidation = [
   {Name: 'cExclusion', Actual: wr1.cExclusion, Expected: 'Exclusion'},
   {Name: 'cexclusions', Actual: wr1.cexclusions, Expected: 'exclusions'},
   {Name: 'cExclusions', Actual: wr1.cExclusions, Expected: 'Exclusions'},
+  {Name: 'ceach', Actual: wr1.ceach, Expected: 'each'},
+  {Name: 'cEach', Actual: wr1.cEach, Expected: 'Each'},
   //////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////
   {Name: 'cAbsolute', Actual: wr1.cAbsolute, Expected: 'Absolute'},

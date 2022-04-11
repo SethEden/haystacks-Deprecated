@@ -2362,6 +2362,8 @@ export const cexclusion = bas.cex + phn.cclu + phn.csion; // exclusion
 export const cExclusion = bas.cEx + phn.cclu + phn.csion; // Exclusion
 export const cexclusions = cexclusion + bas.cs; // exclusions
 export const cExclusions = cExclusion + bas.cs; // Exclusions
+export const ceach = bas.cea + bas.cch; // each
+export const cEach = bas.cEa + bas.cch; // Each
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 export const cAbsolute = bas.cAb + phn.csol + phn.cute; // Absolute

@@ -2,8 +2,6 @@
 node_modules/*
 */documentation/*
 documentation/*
-*/bin/*
-bin/*
 *.env
 *.Env
 *.ENV
