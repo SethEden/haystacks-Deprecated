@@ -239,7 +239,7 @@ export const genericConstantsValidation = [
   {Name: 'cshp', Actual: gen.cshp, Expected: 'shp'},
   {Name: 'csys', Actual: gen.csys, Expected: 'sys'},
   {Name: 'cunt', Actual: gen.cunt, Expected: 'unt'},
-  {Name: 'cwr1', Actual: gen.cwr1, Expected: 'wr1'},
+  {Name: 'cwrd', Actual: gen.cwrd, Expected: 'wrd'},
   {Name: 'capc', Actual: gen.capc, Expected: 'apc'},
 
   // Miscelanious

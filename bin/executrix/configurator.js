@@ -5,7 +5,7 @@
  * @requires module:basic.constants
  * @requires module:configuration.constants
  * @requires module:function.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -20,7 +20,7 @@
 import * as bas from '../constants/basic.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
@@ -28,7 +28,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.configurator.
-const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function setConfigurationSetting
@@ -230,11 +230,11 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configurationNamespace is: ${configurationNamespace}`);
   let returnValue = true; // Assume there will be a return value.
-  let configurationDataRoot = D[wr1.cconfiguration];
+  let configurationDataRoot = D[wrd.cconfiguration];
   let configurationPathObject = configurationDataRoot;
   if (!configurationPathObject) { // Need to handle the case that the configuration data object doesn't even exist at all!
-    D[wr1.cconfiguration] = {};
-    configurationDataRoot = D[wr1.cconfiguration];
+    D[wrd.cconfiguration] = {};
+    configurationDataRoot = D[wrd.cconfiguration];
     configurationPathObject = configurationDataRoot;
   }
   for (let i = 0; i < configurationNamespace.length; i++) {

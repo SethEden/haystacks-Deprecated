@@ -8,7 +8,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/12/28
@@ -20,13 +20,13 @@ import * as bas from '../../constants/basic.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
+import * as wrd from '../../constants/word.constants.js';
 // External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsingUtilities.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function parseSystemRootPath
@@ -99,16 +99,16 @@ const stringToDataType = function(inputData, inputMetaData) {
   if (inputData) {
     let dataType = determineObjectDataType(inputData, '');
     switch (dataType) {
-      case wr1.cBoolean:
+      case wrd.cBoolean:
         returnData = stringToBoolean(inputData, '');
         break;
-      case wr1.cInteger:
+      case wrd.cInteger:
         returnData = parseInt(inputData, '');
         break;
-      case wr1.cFloat:
+      case wrd.cFloat:
         returnData = parseFloat(inputData, '');
         break;
-      case wr1.cString:
+      case wrd.cString:
         returnData = inputData;
         break;
       default: // We don't know what kind of object this is, better just return it the way it is.
@@ -141,7 +141,7 @@ const stringToBoolean = function(inputData, inputMetaData) {
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = false;
   if (inputData) {
-    if (typeof inputData === wr1.cboolean) {
+    if (typeof inputData === wrd.cboolean) {
       returnData = inputData;
     } else {
       switch (inputData.toLowerCase().trim()) {
@@ -181,18 +181,18 @@ const determineObjectDataType = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     if (isBoolean(inputData, '') === true) {
-      returnData = wr1.cBoolean;
+      returnData = wrd.cBoolean;
     } else if (isInteger(inputData, '') === true) {
-      returnData = wr1.cInteger;
+      returnData = wrd.cInteger;
     } else if (isFloat(inputData, '') === true) {
-      returnData = wr1.cFloat;
+      returnData = wrd.cFloat;
     } else if (isString(inputData, '') === true) {
-      returnData = wr1.cString;
+      returnData = wrd.cString;
     } else { // Otherwise we cannot figure out what the data type is.
       // No real way to tell the difference between Short, Long and Double.
       // And we don't really need to tell the difference between all these complicated data types.
       // At least not yet!
-      returnData = wr1.cObject;
+      returnData = wrd.cObject;
     }
   }
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
@@ -320,7 +320,7 @@ const isString = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     if (isBoolean(inputData, '') === false && isInteger(inputData, '') === false && isFloat(inputData, '') === false &&
-    (typeof inputData === wr1.cstring || inputData instanceof String)) {
+    (typeof inputData === wrd.cstring || inputData instanceof String)) {
       returnData = true; // If it's not a Boolean, and not an Integer, and not a Float, then it must be a string,
       // especially given the type of the variable is a string!
     } else { // Else clause is redundant, but kept here for code completeness.

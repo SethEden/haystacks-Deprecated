@@ -10,7 +10,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:chiefData
  * @requires module:configurator
  * @requires module:loggers
@@ -29,7 +29,7 @@ import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import chiefData from './chiefData.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
@@ -39,7 +39,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefConfiguration.
-const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName +bas.cDot;
+const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
 
 /**
  * @function setupConfiguration
@@ -64,15 +64,15 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   // console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
   frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
   // console.log(`frameworkConfigPath after rule processing is: ${frameworkConfigPath}`);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cappConfigPath, appConfigPath);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cappConfigPath, appConfigPath);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
   let universalDebugConfigSetting = chiefData.searchForUniversalDebugConfigSetting(
     sys.cappConfigPath, sys.cframeworkConfigPath
   );
-  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wr1.cconfiguration);
-  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wr1.cconfiguration);
+  allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wrd.cconfiguration);
+  allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
   // console.log('ALL DATA IS: ' + JSON.stringify(D));
@@ -109,7 +109,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let advancedDebugSettingPrefix;
   rules[0] = biz.cstringToDataType;
 
-  highLevelSystemConfigurationContainer = allConfigurationData[wr1.csystem];
+  highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
   highLevelDebugConfigurationContainer = allConfigurationData[cfg.cdebugSettings];
   // console.log('highLevelDebugConfigurationContainer is: ' + JSON.stringify(highLevelDebugConfigurationContainer));
@@ -133,7 +133,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
       // console.log('value BEFORE rule processing is: ' + value);
       value = ruleBroker.processRules(value, '', rules);
       // console.log('value AFTER rule processing is: ' + value);
-      if ((namespace === wr1.csystem && name === cfg.cdebugSettings) &&
+      if ((namespace === wrd.csystem && name === cfg.cdebugSettings) &&
       configurator.getConfigurationSetting(namespace, name) === true) {
         // console.log('CAUGHT THE CASE THAT WE ARE SETTING A FALSE VALUE FOR DEBUG-SETTINGS');
         // NOTE: DO NOT over write the value because the base value is already saved as true.

@@ -349,8 +349,7 @@ export const systemConstantsValidation = [
   {Name: 'cShapeConstantsValidation', Actual: sys.cShapeConstantsValidation, Expected: 'ShapeConstantsValidation'},
   {Name: 'cSystemConstantsValidation', Actual: sys.cSystemConstantsValidation, Expected: 'SystemConstantsValidation'},
   {Name: 'cUnitConstantsValidation', Actual: sys.cUnitConstantsValidation, Expected: 'UnitConstantsValidation'},
-  {Name: 'cWord1ConstantsValidation', Actual: sys.cWord1ConstantsValidation, Expected: 'Word1ConstantsValidation'},
-  {Name: 'cWord2ConstantsValidation', Actual: sys.cWord2ConstantsValidation, Expected: 'Word2ConstantsValidation'},
+  {Name: 'cWordConstantsValidation', Actual: sys.cWordConstantsValidation, Expected: 'WordConstantsValidation'},
   {Name: 'cBinaryRootPath', Actual: sys.cBinaryRootPath, Expected: 'BinaryRootPath'},
   {Name: 'cBinaryReleasePath', Actual: sys.cBinaryReleasePath, Expected: 'BinaryReleasePath'},
   {Name: 'cdevtty', Actual: sys.cdevtty, Expected: '/dev/tty'},
@@ -377,7 +376,7 @@ export const systemConstantsValidation = [
   {Name: 'cshape_constants_js', Actual: sys.cshape_constants_js, Expected: 'shape.constants.js'},
   {Name: 'csystem_constants_js', Actual: sys.csystem_constants_js, Expected: 'system.constants.js'},
   {Name: 'cunit_constants_js', Actual: sys.cunit_constants_js, Expected: 'unit.constants.js'},
-  {Name: 'cword1_constants_js', Actual: sys.cword1_constants_js, Expected: 'word1.constants.js'},
+  {Name: 'cword_constants_js', Actual: sys.cword_constants_js, Expected: 'word.constants.js'},
 
   // System Paths
   {Name: 'cActualFrameworkName', Actual: sys.cActualFrameworkName, Expected: 'haystacks'},

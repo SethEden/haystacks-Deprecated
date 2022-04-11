@@ -16,8 +16,7 @@
  * @requires module:phonic.constants
  * @requires module:system.constants
  * @requires module:unit.constants
- * @requires module:word1.constants
- * @requires module:word2.constants
+ * @requires module:word.constants
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
@@ -46,7 +45,7 @@ import * as num from './constants/numeric.constants.js';
 import * as phn from './constants/phonic.constants.js';
 import * as sys from './constants/system.constants.js';
 import * as unt from './constants/unit.constants.js';
-import * as wr1 from './constants/word1.constants.js';
+import * as wrd from './constants/word.constants.js';
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
@@ -87,9 +86,9 @@ function initFramework(clientConfiguration) {
  let frameworkWorkflowsPath = '';
  frameworkCodeRootPath = warden.processRootPath(frameworkCodeRootPath) + bas.cDoubleForwardSlash;
  let frameworkRootPath = frameworkCodeRootPath;
- if (NODE_ENV === wr1.cdevelopment) {
+ if (NODE_ENV === wrd.cdevelopment) {
    frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkDevelopRootPath;
- } else if (NODE_ENV === wr1.cproduction) {
+ } else if (NODE_ENV === wrd.cproduction) {
    frameworkCodeRootPath = frameworkCodeRootPath + sys.cFrameworkProductionRootPath;
  } else {
    // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
@@ -164,7 +163,7 @@ function loadCommandAliases(commandAliasesPath, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesPathIs + commandAliasesPath);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  warden.setConfigurationSetting(wr1.csystem, contextName, commandAliasesPath);
+  warden.setConfigurationSetting(wrd.csystem, contextName, commandAliasesPath);
   warden.loadCommandAliases(contextName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -187,7 +186,7 @@ function loadCommandWorkflows(workflowPath, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowPathIs + workflowPath);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  warden.setConfigurationSetting(wr1.csystem, contextName, workflowPath);
+  warden.setConfigurationSetting(wrd.csystem, contextName, workflowPath);
   warden.loadCommandWorkflows(contextName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -397,5 +396,5 @@ export default {
   [gen.cphn]: phn,
   [gen.csys]: sys,
   [gen.cunt]: unt,
-  [gen.cwr1]: wr1
+  [gen.cwrd]: wrd
 };

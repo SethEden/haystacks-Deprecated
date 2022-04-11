@@ -8,7 +8,7 @@
  * @requires module:configuration.constants
  * @requires module:function.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
@@ -25,7 +25,7 @@ import * as clr from '../constants/color.constants.js';
 import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import D from '../structures/data.js';
 // External imports
@@ -34,7 +34,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.colorizer.
-const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function colorizeMessageSimple
@@ -54,7 +54,7 @@ function colorizeMessageSimple(message, colorArray, isForeground) {
   // console.log(`colorArray is: ${JSON.stringify(colorArray)}`);
   // console.log(`isForeground is: ${isForeground}`);
   let colorizedMessage = message;
-  let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+  let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
   if (colorizeLogsEnabled === true) {
     let red = colorArray[0];
     let green = colorArray[1];
@@ -104,31 +104,31 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
   let messageContentSuffix;
   let messageData;
   let processingMessageData = false;
-  let debugFilesModuleFontStyleSetting = wr1.cDefault;
-  let debugFilesFunctionFontStyleSetting = wr1.cDefault;
-  let debugFilesMessageFontStyleSetting = wr1.cDefault;
-  let debugFilesDataFontStyleSetting = wr1.cDefault;
-  let debugFilesModuleFontColorSetting = wr1.cDefault;
-  let debugFilesFunctionFontColorSetting = wr1.cDefault;
-  let debugFilesMessageFontColorSetting = wr1.cDefault;
-  let debugFilesDataFontColorSetting = wr1.cDefault;
-  let debugFilesModuleFontBackgroundColorSetting = wr1.cDefault;
-  let debugFilesFunctionFontBackgroundColorSetting = wr1.cDefault;
-  let debugFilesMessageFontBackgroundColorSetting = wr1.cDefault;
-  let debugFilesDataFontBackgroundColorSetting = wr1.cDefault;
+  let debugFilesModuleFontStyleSetting = wrd.cDefault;
+  let debugFilesFunctionFontStyleSetting = wrd.cDefault;
+  let debugFilesMessageFontStyleSetting = wrd.cDefault;
+  let debugFilesDataFontStyleSetting = wrd.cDefault;
+  let debugFilesModuleFontColorSetting = wrd.cDefault;
+  let debugFilesFunctionFontColorSetting = wrd.cDefault;
+  let debugFilesMessageFontColorSetting = wrd.cDefault;
+  let debugFilesDataFontColorSetting = wrd.cDefault;
+  let debugFilesModuleFontBackgroundColorSetting = wrd.cDefault;
+  let debugFilesFunctionFontBackgroundColorSetting = wrd.cDefault;
+  let debugFilesMessageFontBackgroundColorSetting = wrd.cDefault;
+  let debugFilesDataFontBackgroundColorSetting = wrd.cDefault;
 
-  let debugFunctionsModuleFontStyleSetting = wr1.cDefault;
-  let debugFunctionsFunctionFontStyleSetting = wr1.cDefault;
-  let debugFunctionsMessageFontStyleSetting = wr1.cDefault;
-  let debugFunctionsDataFontStyleSetting = wr1.cDefault;
-  let debugFunctionsModuleFontColorSetting = wr1.cDefault;
-  let debugFunctionsFunctionFontColorSetting = wr1.cDefault;
-  let debugFunctionsMessageFontColorSetting = wr1.cDefaul;
-  let debugFunctionsDataFontColorSetting = wr1.cDefault;
-  let debugFunctionsModuleFontBackgroundColorSetting = wr1.cDefault;
-  let debugFunctionsFunctionFontBackgroundColorSetting = wr1.cDefault;
-  let debugFunctionsMessageFontBackgroundColorSetting = wr1.cDefault;
-  let debugFunctionsDataFontBackgroundColorSetting = wr1.cDefault;
+  let debugFunctionsModuleFontStyleSetting = wrd.cDefault;
+  let debugFunctionsFunctionFontStyleSetting = wrd.cDefault;
+  let debugFunctionsMessageFontStyleSetting = wrd.cDefault;
+  let debugFunctionsDataFontStyleSetting = wrd.cDefault;
+  let debugFunctionsModuleFontColorSetting = wrd.cDefault;
+  let debugFunctionsFunctionFontColorSetting = wrd.cDefault;
+  let debugFunctionsMessageFontColorSetting = wrd.cDefaul;
+  let debugFunctionsDataFontColorSetting = wrd.cDefault;
+  let debugFunctionsModuleFontBackgroundColorSetting = wrd.cDefault;
+  let debugFunctionsFunctionFontBackgroundColorSetting = wrd.cDefault;
+  let debugFunctionsMessageFontBackgroundColorSetting = wrd.cDefault;
+  let debugFunctionsDataFontBackgroundColorSetting = wrd.cDefault;
 
   // We need a 3rd set of variables because we wil need to aggregate these settings together to determine which ones are in effect.
   // One way is to aggregate each setting individually and let which ever one is defined be in effect.
@@ -353,14 +353,14 @@ function aggregateStyleSetting(settingValue1, settingValue2, defaultColorArray, 
   // console.log(`settingValue2 is: ${settingValue2}`);
   // console.log(`processAsFontSetting is: ${processAsFontSetting}`);
   let styles = [];
-  if ((settingValue1 !== wr1.cDefault || settingValue2 !== wr1.cDefault) && (settingValue1 !== undefined || settingValue2 !== undefined)) {
-    if ((settingValue1 !== wr1.cDefault && settingValue2 === wr1.cDefault) || (settingValue1 !== undefined && settingValue2 === undefined)) {
+  if ((settingValue1 !== wrd.cDefault || settingValue2 !== wrd.cDefault) && (settingValue1 !== undefined || settingValue2 !== undefined)) {
+    if ((settingValue1 !== wrd.cDefault && settingValue2 === wrd.cDefault) || (settingValue1 !== undefined && settingValue2 === undefined)) {
       if (processAsFontSetting === true) {
         styles = getFontStyleSettingsFromSetting(settingValue1);
       } else {
         styles = getColorStyleSettingFromSetting(settingValue1, defaultColorArray);
       }
-    } else if ((settingValue1 === wr1.cDefault && settingValue2 !== wr1.cDefault) || (settingValue1 === undefined && settingValue2 !== undefined)) {
+    } else if ((settingValue1 === wrd.cDefault && settingValue2 !== wrd.cDefault) || (settingValue1 === undefined && settingValue2 !== undefined)) {
       if (processAsFontSetting === true) {
         styles = getFontStyleSettingsFromSetting(settingValue2);
       } else {
@@ -373,7 +373,7 @@ function aggregateStyleSetting(settingValue1, settingValue2, defaultColorArray, 
         styles = getColorStyleSettingFromSetting(settingValue2, defaultColorArray);
       }
     }
-  } // End-if ((settingValue1 !== wr1.cDefault || settingValue2 !== wr1.cDefault) && (settingValue1 !== undefined || settingValue2 !== undefined))
+  } // End-if ((settingValue1 !== wrd.cDefault || settingValue2 !== wrd.cDefault) && (settingValue1 !== undefined || settingValue2 !== undefined))
   // console.log('styles is: ' + JSON.stringify(styles));
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return styles;
@@ -399,27 +399,27 @@ function getFontStyleSettingsFromSetting(settingValue) {
       // console.log('aggregateUnderlineBoldArray is: ' + JSON.stringify(aggregateUnderlineBoldArray));
       // console.log('aggregateUnderlineBoldArray[0] is: ' + aggregateUnderlineBoldArray[0]);
       // console.log('aggregateUnderlineBoldArray[1] is: ' + aggregateUnderlineBoldArray[1]);
-      if (aggregateUnderlineBoldArray[0] === wr1.cUnderline && aggregateUnderlineBoldArray[1] === wr1.cBold) {
+      if (aggregateUnderlineBoldArray[0] === wrd.cUnderline && aggregateUnderlineBoldArray[1] === wrd.cBold) {
         // aggregateModuleFontStyleUnderline = true;
         // aggregateModuleFontStyleBold = true;
         fontStyles[true, true];
-      } else if (aggregateUnderlineBoldArray[0] === wr1.cBold && aggregateUnderlineBoldArray[1] === wr1.cUnderline) {
+      } else if (aggregateUnderlineBoldArray[0] === wrd.cBold && aggregateUnderlineBoldArray[1] === wrd.cUnderline) {
         // aggregateModuleFontStyleUnderline = true;
         // aggregateModuleFontStyleBold = true;
         fontStyles[true, true];
-      } else if (aggregateUnderlineBoldArray[0] === wr1.cUnderline && aggregateUnderlineBoldArray[1] !== wr1.cBold) {
+      } else if (aggregateUnderlineBoldArray[0] === wrd.cUnderline && aggregateUnderlineBoldArray[1] !== wrd.cBold) {
         // aggregateModuleFontStyleUnderline = true;
         fontStyles[true, false];
-      } else if (aggregateUnderlineBoldArray[0] === wr1.cBold && aggregateUnderlineBoldArray[1] !== wr1.cUnderline) {
+      } else if (aggregateUnderlineBoldArray[0] === wrd.cBold && aggregateUnderlineBoldArray[1] !== wrd.cUnderline) {
         // aggregateModuleFontStyleBold = true;
         fontStyles[false, true];
       } else {
         console.log('ERROR: Did not find any matching style logic pattern!');
       }
-    } else if (settingValue === wr1.cUnderline) {
+    } else if (settingValue === wrd.cUnderline) {
       // aggregateModuleFontStyleUnderline = true;
       fontStyles[true, false];
-    } else if (settingValue === wr1.cBold) {
+    } else if (settingValue === wrd.cBold) {
       // aggregateModuleFontStyleBold = true;
       fontStyles[false, true];
     }
@@ -450,7 +450,7 @@ function getColorStyleSettingFromSetting(settingValue, defaultColorArray) {
       colorStyle[clr.cRed] = aggregateColorArray[0];
       colorStyle[clr.cGreen] = aggregateColorArray[1];
       colorStyle[clr.cBlue] = aggregateColorArray[2];
-    } else if (settingValue === wr1.cDefault) {
+    } else if (settingValue === wrd.cDefault) {
       colorStyle = false; // Do not apply any color settings of any kind!
     } else { // It must be a named color.
       colorStyle = getNamedColorData(settingValue, defaultColorArray);
@@ -478,12 +478,12 @@ function getNamedColorData(colorName, defaultColorArray) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`colorName is: ${colorName}`);
   let returnColorData = defaultColorArray;
-  if (D[wr1.ccolors] !== undefined) {
-    if (D[wr1.ccolors][sys.cColorData] !== undefined) {
-      if (D[wr1.ccolors][sys.cColorData][colorName] !== undefined) {
-        returnColorData[clr.cRed] = D[wr1.ccolors][sys.cColorData][colorName][clr.cRed];
-        returnColorData[clr.cGreen] = D[wr1.ccolors][sys.cColorData][colorName][clr.cGreen];
-        returnColorData[clr.cBlue] = D[wr1.ccolors][sys.cColorData][colorName][clr.cBlue];
+  if (D[wrd.ccolors] !== undefined) {
+    if (D[wrd.ccolors][sys.cColorData] !== undefined) {
+      if (D[wrd.ccolors][sys.cColorData][colorName] !== undefined) {
+        returnColorData[clr.cRed] = D[wrd.ccolors][sys.cColorData][colorName][clr.cRed];
+        returnColorData[clr.cGreen] = D[wrd.ccolors][sys.cColorData][colorName][clr.cGreen];
+        returnColorData[clr.cBlue] = D[wrd.ccolors][sys.cColorData][colorName][clr.cBlue];
       } else {
         returnColorData = defaultColorArray;
       }
@@ -514,7 +514,7 @@ function setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageCompon
   // console.log(`underlineSettingValue is: ${underlineSettingValue}`);
   let returnMessageComponent = messageComponent;
   if (underlineSettingValue === true) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
     if (colorizeLogsEnabled === true) {
       returnMessageComponent.chalk.underline(returnMessageComponent);
     }
@@ -540,7 +540,7 @@ function setBoldFontStyleOnMessageComponentAccordingToSetting(messageComponent, 
   // console.log(`boldSettingValue is: ${boldSettingValue}`);
   let returnMessageComponent = messageComponent;
   if (boldSettingValue === true) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
     if (coorizeLogsEnabled === true) {
       returnMessageComponent = chalk.bold(returnMessageComponent);
     }
@@ -572,7 +572,7 @@ function setFontForegroundColorOnMessageComponentAccordingToSetting(messageCompo
     // console.log('Blue coor setting value is: ' + colorSettingValue[clr.cBlue]);
     // console.log('Before using chalk, returnMessageComponent is: ' + returnMessageComponent);
     if (colorSettingValue[clr.cRed] !== undefined && colorSettingValue[clr.cGreen] !== undefined && colorSettingValue[clr.cBlue] !== undefined) {
-      let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+      let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
       if (colorizeLogsEnabled === true) {
         returnMessageComponent = chalk.rgb(colorSettingValue[clr.cRed], colorSettingValue[clr.cGreen], colorSettingValue[clr.cBlue])(returnMessageComponent);
       }
@@ -605,7 +605,7 @@ function setFontBackgroundColorOnMessageComponentAccordingToSetting(messageCompo
     // console.log('Blue coor setting value is: ' + colorSettingValue[clr.cBlue]);
     // console.log('Before using chalk, returnMessageComponent is: ' + returnMessageComponent);
     if (colorSettingValue[clr.cRed] !== undefined && colorSettingValue[clr.cGreen] !== undefined && colorSettingValue[clr.cBlue] !== undefined) {
-      let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+      let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
       if (colorizeLogsEnabled === true) {
         returnMessageComponent = chalk.bgRgb(colorSettingValue[clr.cRed], colorSettingValue[clr.cGreen], colorSettingValue[clr.cBlue])(returnMessageComponent);
       }

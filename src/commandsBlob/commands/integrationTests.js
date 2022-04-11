@@ -8,7 +8,7 @@
  * @requires module:configuration.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:loggers
  * @requires module:data
@@ -25,7 +25,7 @@ import * as biz from '../../constants/business.constants.js';
 import * as cfg from '../../constants/configuration.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
+import * as wrd from '../../constants/word.constants.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
@@ -35,7 +35,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.integrationTests.
-const namespacePrefix = sys.ccommandsBlob + bas.cDot + wr1.ccommands + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function validateConstants
@@ -52,7 +52,7 @@ const validateConstants = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     // Get the array of keys and values for all the constants that need to be validated.
     let validationArray = D[sys.cConstantsValidationData][sys.cConstantsFilePaths]; // This will return an object with all of the key-value pair attributes we need.
     let phase1FinalResult = true;
@@ -104,14 +104,14 @@ const validateConstants = function(inputData, inputMetaData) {
     }
 
     if (phase1FinalResult === true && phase2FinalResult === true) {
-      configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, true);
+      configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, true);
     } else {
-      configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
+      configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, false);
     }
   } else {
     // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
     console.log(msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, false);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -133,7 +133,7 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommands];
+  let allCommandAliases = D[sys.cCommandsAliases][wrd.cCommands];
   let passedAllCommandAliasesDuplicateCheck = true;
   let rules = [];
   rules[0] = biz.ccountDuplicateCommandAliases;
@@ -144,7 +144,7 @@ loop1:
     let currentCommand = allCommandAliases[key1];
     // currentCommand is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
-    let aliasList = currentCommand[wr1.cAliases];
+    let aliasList = currentCommand[wrd.cAliases];
     // aliasList is:
     loggers.consoleLog(namespacePrefix + functionName, msg.caliasListIs + aliasList);
     let arrayOfAliases = aliasList.split(bas.cComa);
@@ -167,7 +167,7 @@ loop2:
     // PASSED: All duplicate command aliases validation tests!
     console.log(msg.cvalidateCommandAliasesMessage1);
   }
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, passedAllCommandAliasesDuplicateCheck);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, passedAllCommandAliasesDuplicateCheck);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

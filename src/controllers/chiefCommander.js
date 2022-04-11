@@ -9,7 +9,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:chiefData
  * @requires module:loggers
  * @requires module:data
@@ -26,7 +26,7 @@ import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import chiefData from '../controllers/chiefData.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
@@ -36,7 +36,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefCommander.
-const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
@@ -90,10 +90,10 @@ function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName) {
     D[sys.cCommandsAliases] = {};
     D[sys.cCommandsAliases] = allCommandAliasesData[sys.cCommandsAliases];
   } else {
-    let commandKeys = Object.keys(allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands]);
+    let commandKeys = Object.keys(allCommandAliasesData[sys.cCommandsAliases][wrd.cCommands]);
     for (let i = 0; i < commandKeys.length; i++) {
-      D[sys.cCommandsAliases][wr1.cCommands][commandKeys[i]] = allCommandAliasesData[sys.cCommandsAliases][wr1.cCommands][commandKeys[i]];
-    } // End-for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wr1.cCommand].length; i++)
+      D[sys.cCommandsAliases][wrd.cCommands][commandKeys[i]] = allCommandAliasesData[sys.cCommandsAliases][wrd.cCommands][commandKeys[i]];
+    } // End-for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wrd.cCommand].length; i++)
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

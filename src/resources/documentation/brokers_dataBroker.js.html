@@ -39,7 +39,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
@@ -59,7 +59,7 @@ import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
@@ -69,7 +69,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.dataBroker.
-const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function scanDataPath
@@ -149,23 +149,23 @@ function findIndividualDebugConfigSetting(filesToLoad) {
   let systemConfigFileName = sys.csystemConfigFileName; // 'framework.system.json';
   let applicationConfigFileName = sys.capplicationConfigFileName; // 'application.system.json';
   let multiMergedData = {};
-  let systemDotDebugSettings = wr1.csystem + bas.cDot + cfg.cdebugSettings;
+  let systemDotDebugSettings = wrd.csystem + bas.cDot + cfg.cdebugSettings;
 
   for (let i = 0; i &lt; filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
     // console.log('fileToLoad is: ' + fileToLoad);
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
       let dataFile = preprocessJsonFile(fileToLoad);
-      multiMergedData[wr1.csystem] = {};
-      multiMergedData[wr1.csystem] = dataFile;
+      multiMergedData[wrd.csystem] = {};
+      multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
     }
     if (foundSystemData === true) {
       break;
     }
   }
-  if (multiMergedData[wr1.csystem]) {
-    if (multiMergedData[wr1.csystem][systemDotDebugSettings]) {
+  if (multiMergedData[wrd.csystem]) {
+    if (multiMergedData[wrd.csystem][systemDotDebugSettings]) {
       individualDebugConfigSetting = true;
     }
   }
@@ -286,7 +286,7 @@ function loadAllXmlData(filesToLoad, contextName) {
         multiMergedData = dataFile;
       } else {
         j++;
-        multiMergedData = mergeData(multiMergedData, wr1.cPage, '', dataFile);
+        multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
       }
       // DONE PROCESSING ADDITIONAL DATA
       loggers.consoleLog(namespacePrefix + functionName, msg.cDONE_PROCESSING_ADDITIONAL_DATA);
@@ -345,8 +345,8 @@ function loadAllJsonData(filesToLoad, contextName) {
       // We will have a new setting that determines if all the extra debug settings should be loaded or not.
       // This way the application performance can be seriously optimized to greater levels of lean performance.
       // Adding all that extra debugging cnfiguration settings can affect load times, and application performance to a much lesser degree.
-      multiMergedData[wr1.csystem] = {};
-      multiMergedData[wr1.csystem] = dataFile;
+      multiMergedData[wrd.csystem] = {};
+      multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
     }
     if (foundSystemData === true) {
@@ -355,11 +355,11 @@ function loadAllJsonData(filesToLoad, contextName) {
   }
 
   // Now we need to determine if we should load the rest of the data.
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugSettings) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugSettings) === true) {
     for (let j = 0; j &lt; filesToLoad.length; j++) {
       let fileToLoad = filesToLoad[j];
       if (!fileToLoad.includes(systemConfigFileName) &amp;&amp; !fileToLoad.includes(applicationConfigFileName)
-      &amp;&amp; fileToLoad.toUpperCase().includes(gen.cDotJSON) &amp;&amp; !fileToLoad.toLowerCase().includes(wr1.cmetadata + gen.cDotjson)) {
+      &amp;&amp; fileToLoad.toUpperCase().includes(gen.cDotJSON) &amp;&amp; !fileToLoad.toLowerCase().includes(wrd.cmetadata + gen.cDotjson)) {
         let dataFile = preprocessJsonFile(fileToLoad);
         // console.log('dataFile to merge is: ' + JSON.stringify(dataFile));
         loggers.consoleLog(namespacePrefix + functionName, msg.cdataFileToMergeIs + JSON.stringify(dataFile));
@@ -401,12 +401,12 @@ function processCsvData(data, contextName) {
   // dataCatagory is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
   let dataCatagoryDetailName;
-  if (contextName.includes(wr1.cWorkflow)) {
+  if (contextName.includes(wrd.cWorkflow)) {
     // Processing a workflow
-    Object.assign(D[wr1.cWorkflow], parsedData[contextName]);
-  } else if (contextName.includes(wr1.ccolors)) {
-    D[wr1.ccolors] = {};
-    Object.assign(D[wr1.ccolors], parsedData);
+    Object.assign(D[wrd.cWorkflow], parsedData[contextName]);
+  } else if (contextName.includes(wrd.ccolors)) {
+    D[wrd.ccolors] = {};
+    Object.assign(D[wrd.ccolors], parsedData);
   } else {
     // Processing all other kinds of files.
     if (typeof D[dataCatagory] !== 'undefined' &amp;&amp; D[dataCatagory]) {
@@ -449,18 +449,18 @@ function processXmlData(data, contextName) {
   let parsedDataFile = {};
   if (dataCatagory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
-    parsedDataFile[sys.cCommandsAliases][wr1.cCommands] = {};
-    for (let i = 0; i &lt; data[sys.cCommandsAliases][wr1.cCommand].length; i++) {
-      let command = data[sys.cCommandsAliases][wr1.cCommand][i][bas.cDollar];
-      parsedDataFile[sys.cCommandsAliases][wr1.cCommands][command.Name] = command;
-    } // End-for (let i = 0; i &lt; data[sys.cCommandAliases][wr1.cCommand].length; i++)
+    parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
+    for (let i = 0; i &lt; data[sys.cCommandsAliases][wrd.cCommand].length; i++) {
+      let command = data[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
+      parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
+    } // End-for (let i = 0; i &lt; data[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
-    parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows] = {};
-    for (let j = 0; j &lt; data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++) {
-      let workflow = data[sys.cCommandWorkflows][wr1.cWorkflow][j][bas.cDollar];
-      parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows][workflow.Name] = workflow;
-    } // End-for (let j = 0; j &lt; data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++)
+    parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows] = {};
+    for (let j = 0; j &lt; data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++) {
+      let workflow = data[sys.cCommandWorkflows][wrd.cWorkflow][j][bas.cDollar];
+      parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows][workflow.Name] = workflow;
+    } // End-for (let j = 0; j &lt; data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
   } // End-else-if (dataCatagory === sys.cCommandWorkflows)
 
   // parsedDataFile is:
@@ -745,27 +745,27 @@ function extractDataFromPapaParseObject(data, contextName) {
   let cleanKeysRules = [];
   let tempData = {};
   let validDataAdded = false;
-  if (contextName === wr1.ccolors) {
+  if (contextName === wrd.ccolors) {
     contextName = sys.cColorData;
   }
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   tempData[contextName] = {};
   cleanKeysRules[0] = biz.ccleanCarriageReturnFromString;
-  let highLevelDataCount = Object.keys(data[wr1.cdata]).length;
+  let highLevelDataCount = Object.keys(data[wrd.cdata]).length;
   for (let i = 0; i &lt;= highLevelDataCount; i++) {
     validDataAdded = false;
     let lowLevelTempData = {};
     if (contextName === sys.cColorData) {
       let colorName = '';
-      for (let key in data[wr1.cdata][i]) {
+      for (let key in data[wrd.cdata][i]) {
         validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
         if (key === sys.cColorName) {
-          colorName = data[wr1.cdata][i][key];
+          colorName = data[wrd.cdata][i][key];
         }
-        lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
-      } // End-for (let key in data[wr1.cdata][i])
+        lowLevelTempData[newKey] = ruleBroker.processRules(data[wrd.cdata][i][key], '', cleanKeysRules);
+      } // End-for (let key in data[wrd.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][colorName] = {};
         if (i === 0) {
@@ -775,11 +775,11 @@ function extractDataFromPapaParseObject(data, contextName) {
         }
       } // End-if (validDataAdded === true)
     } else { // Else-clause (contextName === sys.cColorData)
-      for (let key in data[wr1.cdata][i]) {
+      for (let key in data[wrd.cdata][i]) {
         validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
-        lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
-      } // End-for (let key in data[wr1.cdata][i])
+        lowLevelTempData[newKey] = ruleBroker.processRules(data[wrd.cdata][i][key], '', cleanKeysRules);
+      } // End-for (let key in data[wrd.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][i] = {};
         if (i === 0) {
@@ -986,7 +986,7 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="basic.constants.module_validation.html">basic.constants.validation</a></li><li><a href="business.constants.module_validation.html">business.constants.validation</a></li><li><a href="business.module_constants.html">business.constants</a></li><li><a href="color.constants.module_validation.html">color.constants.validation</a></li><li><a href="color.module_constants.html">color.constants</a></li><li><a href="command.constants.module_validation.html">command.constants.validation</a></li><li><a href="command.module_constants.html">command.constants</a></li><li><a href="configuration.constants.module_validation.html">configuration.constants.validation</a></li><li><a href="configuration.module_constants.html">configuration.constants</a></li><li><a href="country.constants.module_validation.html">country.constants.validation</a></li><li><a href="country.module_constants.html">country.constants</a></li><li><a href="function.constants.module_validation.html">function.constants.validation</a></li><li><a href="function.module_constants.html">function.constants</a></li><li><a href="generic.constants.module_vaidation.html">generic.constants.vaidation</a></li><li><a href="language.constants.module_validation.html">language.constants.validation</a></li><li><a href="language.module_constants.html">language.constants</a></li><li><a href="message.constants.module_validation.html">message.constants.validation</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-basic-constants.html">basic-constants</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-generic-constants.html">generic-constants</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-message-constants.html">message-constants</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-numeric-constants.html">numeric-constants</a></li><li><a href="module-phonic-constants.html">phonic-constants</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-unit-constants.html">unit-constants</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li><li><a href="numeric.constants.module_validation.html">numeric.constants.validation</a></li><li><a href="phonic.constants.module_validation.html">phonic.constants.validation</a></li><li><a href="system.constants.module_validation.html">system.constants.validation</a></li><li><a href="system.module_constants.html">system.constants</a></li><li><a href="unit.constants.module_validation.html">unit.constants.validation</a></li><li><a href="word.constants.module_validation.html">word.constants.validation</a></li><li><a href="word1.module_constants.html">word1.constants</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="basic.constants.module_validation.html">basic.constants.validation</a></li><li><a href="business.constants.module_validation.html">business.constants.validation</a></li><li><a href="business.module_constants.html">business.constants</a></li><li><a href="color.constants.module_validation.html">color.constants.validation</a></li><li><a href="color.module_constants.html">color.constants</a></li><li><a href="command.constants.module_validation.html">command.constants.validation</a></li><li><a href="command.module_constants.html">command.constants</a></li><li><a href="configuration.constants.module_validation.html">configuration.constants.validation</a></li><li><a href="configuration.module_constants.html">configuration.constants</a></li><li><a href="country.constants.module_validation.html">country.constants.validation</a></li><li><a href="country.module_constants.html">country.constants</a></li><li><a href="function.constants.module_validation.html">function.constants.validation</a></li><li><a href="function.module_constants.html">function.constants</a></li><li><a href="generic.constants.module_vaidation.html">generic.constants.vaidation</a></li><li><a href="language.constants.module_validation.html">language.constants.validation</a></li><li><a href="language.module_constants.html">language.constants</a></li><li><a href="message.constants.module_validation.html">message.constants.validation</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-basic-constants.html">basic-constants</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-generic-constants.html">generic-constants</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-message-constants.html">message-constants</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-numeric-constants.html">numeric-constants</a></li><li><a href="module-phonic-constants.html">phonic-constants</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-unit-constants.html">unit-constants</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li><li><a href="numeric.constants.module_validation.html">numeric.constants.validation</a></li><li><a href="phonic.constants.module_validation.html">phonic.constants.validation</a></li><li><a href="system.constants.module_validation.html">system.constants.validation</a></li><li><a href="system.module_constants.html">system.constants</a></li><li><a href="unit.constants.module_validation.html">unit.constants.validation</a></li><li><a href="word.constants.module_validation.html">word.constants.validation</a></li><li><a href="word.module_constants.html">word.constants</a></li></ul>
 </nav>
 
 <br class="clear">

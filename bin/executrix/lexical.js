@@ -10,7 +10,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -28,7 +28,7 @@ import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import configurator from './configurator.js';
 import loggers from './loggers.js';
 // External imports
@@ -36,7 +36,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.lexical.
-const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function parseBusinessRuleArgument
@@ -119,8 +119,8 @@ function analyzeArgument(argumentValue) {
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
   removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
 
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
-  let tertiaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
+  let tertiaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
   if (argumentValue.includes(secondaryCommandArgsDelimiter) === true ||
   argumentValue.includes(tertiaryCommandArgsDelimiter) === true) {
     // Check if there are brackets or no brackets.
@@ -184,9 +184,9 @@ function analyzeForRegularExpression(argumentValue) {
   let returnData = false;
   let argsArrayContainsCharacterRule = [];
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
-  let argsArrayContainsRegEx1 = ruleBroker.processRules(wr1.cregEx, [argumentValue], argsArrayContainsCharacterRule);
+  let argsArrayContainsRegEx1 = ruleBroker.processRules(wrd.cregEx, [argumentValue], argsArrayContainsCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsRegEx1Is + argsArrayContainsRegEx1);
-  let argsArrayContainsRegEx2 = ruleBroker.processRules(wr1.cRegEx, [argumentValue], argsArrayContainsCharacterRule);
+  let argsArrayContainsRegEx2 = ruleBroker.processRules(wrd.cRegEx, [argumentValue], argsArrayContainsCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsRegEx2Is + argsArrayContainsRegEx2);
   let argsArrayContainsColon = ruleBroker.processRules(bas.cColon, [argumentValue], argsArrayContainsCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsColonIs + argsArrayContainsColon);
@@ -215,14 +215,14 @@ function parseArgumentAsRegularExpression(argumentValue) {
   let regExValue, regExFlags;
   let regExArray = argumentValue.split(bas.cColon);
   for (let k = 0; k < regExArray.length; k++) {
-    if (regExArray[k] === wr1.cregEx || regExArray[k] === wr1.cRegEx) {
+    if (regExArray[k] === wrd.cregEx || regExArray[k] === wrd.cRegEx) {
       k++;
       // regular expression is;
       loggers.consoleLog(namespacePrefix + functionName, msg.cregularExpressionIs + regExArray[k]);
       regExValue = regExArray[k];
       // regExValue is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cregExValueIs + regExValue);
-    } else if (regExArray[k] === wr1.cflags || regExArray[k] === wr1.cFlags) {
+    } else if (regExArray[k] === wrd.cflags || regExArray[k] === wrd.cFlags) {
       k++;
       // regular expression flags are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cregularExpressionFlagsAre + regExArray[k]);
@@ -260,7 +260,7 @@ function parseArgumentAsArray(argumentValue) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueIs + JSON.stringify(argumentValue));
   let returnData;
   let isArray = false;
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
   let argsArrayContainsCharacterRule = [];
   let removeBracketsFromArgsArrayRule = [];
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;

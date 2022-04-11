@@ -9,7 +9,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
@@ -30,7 +30,7 @@ import * as cfg from '../../constants/configuration.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
+import * as wrd from '../../constants/word.constants.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
@@ -42,7 +42,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function replaceCharacterWithCharacter
@@ -528,7 +528,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
   let returnData = '';
   if (inputData) {
     let passMessage = '';
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
     for (let i = 0; i < inputData.length; i++) {
       let currentString = inputData[i];
@@ -1070,11 +1070,11 @@ const generateCommandAliases = function(inputData, inputMetaData) {
     // "Woman": "wman,wmn,womn",
     // "Amazing": "amzing,amzng"
     // }
-    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter);
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.cprimaryCommandDelimiterIs + primaryCommandDelimiter);
-    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandDelimiter);
-    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
     let commandDelimiter = '';
     let commandWordsKeys1 = Object.keys(inputData);
@@ -1198,11 +1198,11 @@ const getFileAndPathListForPath = function(inputData, inputMetaData) {
   let returnData = '';
   if (inputData) {
     if (inputMetaData) {
-      enableFilesListLimit = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableFilesListLimit);
+      enableFilesListLimit = configurator.getConfigurationSetting(wrd.csystem, cfg.cEnableFilesListLimit);
       filesListLimit = inputMetaData;
     } else {
-      enableFilesListLimit = configurator.getConfigurationSetting(wr1.csystem, cfg.cEnableFilesListLimit);
-      filesListLimit = configurator.getConfigurationSetting(wr1.csystem, cfg.cFilesListLimit);
+      enableFilesListLimit = configurator.getConfigurationSetting(wrd.csystem, cfg.cEnableFilesListLimit);
+      filesListLimit = configurator.getConfigurationSetting(wrd.csystem, cfg.cFilesListLimit);
     }
     // filesListLimit is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cfilesListLimitIs + filesListLimit);

@@ -259,7 +259,7 @@ export const messageConstantsVaidation = [
   {Name: 'cresolvedConstantsPath_ShapeIs', Actual: msg.cresolvedConstantsPath_ShapeIs, Expected: 'resolvedConstantsPath_Shape is: '},
   {Name: 'cresolvedConstantsPath_SystemIs', Actual: msg.cresolvedConstantsPath_SystemIs, Expected: 'resolvedConstantsPath_System is: '},
   {Name: 'cresolvedConstantsPath_UnitIs', Actual: msg.cresolvedConstantsPath_UnitIs, Expected: 'resolvedConstantsPath_Unit is: '},
-  {Name: 'cresolvedConstantsPath_Word1Is', Actual: msg.cresolvedConstantsPath_Word1Is, Expected: 'resolvedConstantsPath_Word1 is: '},
+  {Name: 'cresolvedConstantsPath_WordIs', Actual: msg.cresolvedConstantsPath_WordIs, Expected: 'resolvedConstantsPath_Word is: '},
   {Name: 'cBasicConstantsPhase1Validation', Actual: msg.cBasicConstantsPhase1Validation, Expected: 'Basic Constants Phase 1 Validation'},
   {Name: 'cBusinessConstantsPhase1Validation', Actual: msg.cBusinessConstantsPhase1Validation, Expected: 'Business Constants Phase 1 Validation'},
   {Name: 'cColorConstantsPhase1Validation', Actual: msg.cColorConstantsPhase1Validation, Expected: 'Color Constants Phase 1 Validation'},
@@ -278,7 +278,7 @@ export const messageConstantsVaidation = [
   {Name: 'cShapeConstantsPhase1Validation', Actual: msg.cShapeConstantsPhase1Validation, Expected: 'Shape Constants Phase 1 Validation'},
   {Name: 'cSystemConstantsPhase1Validation', Actual: msg.cSystemConstantsPhase1Validation, Expected: 'System Constants Phase 1 Validation'},
   {Name: 'cUnitConstantsPhase1Validation', Actual: msg.cUnitConstantsPhase1Validation, Expected: 'Unit Constants Phase 1 Validation'},
-  {Name: 'cWord1ConstantsPhase1Validation', Actual: msg.cWord1ConstantsPhase1Validation, Expected: 'Word1 Constants Phase 1 Validation'},
+  {Name: 'cWordConstantsPhase1Validation', Actual: msg.cWordConstantsPhase1Validation, Expected: 'Word Constants Phase 1 Validation'},
   {Name: 'cBasicConstantsPhase2Validation', Actual: msg.cBasicConstantsPhase2Validation, Expected: 'Basic Constants Phase 2 Validation'},
   {Name: 'cBusinessConstantsPhase2Validation', Actual: msg.cBusinessConstantsPhase2Validation, Expected: 'Business Constants Phase 2 Validation'},
   {Name: 'cColorConstantsPhase2Validation', Actual: msg.cColorConstantsPhase2Validation, Expected: 'Color Constants Phase 2 Validation'},
@@ -297,7 +297,7 @@ export const messageConstantsVaidation = [
   {Name: 'cShapeConstantsPhase2Validation', Actual: msg.cShapeConstantsPhase2Validation, Expected: 'Shape Constants Phase 2 Validation'},
   {Name: 'cSystemConstantsPhase2Validation', Actual: msg.cSystemConstantsPhase2Validation, Expected: 'System Constants Phase 2 Validation'},
   {Name: 'cUnitConstantsPhase2Validation', Actual: msg.cUnitConstantsPhase2Validation, Expected: 'Unit Constants Phase 2 Validation'},
-  {Name: 'cWord1ConstantsPhase2Validation', Actual: msg.cWord1ConstantsPhase2Validation, Expected: 'Word1 Constants Phase 2 Validation'},
+  {Name: 'cWordConstantsPhase2Validation', Actual: msg.cWordConstantsPhase2Validation, Expected: 'Word Constants Phase 2 Validation'},
   {Name: 'ccommandStringIs', Actual: msg.ccommandStringIs, Expected: 'commandString is: '},
   {Name: 'ccommandDelimiterIs', Actual: msg.ccommandDelimiterIs, Expected: 'commandDelimiter is: '},
   {Name: 'ccommandToExecuteBeforeTheAliasIs', Actual: msg.ccommandToExecuteBeforeTheAliasIs, Expected: 'commandToExecute before the Alias is: '},
@@ -658,6 +658,6 @@ export const messageConstantsVaidation = [
 
   // Coded System Messages
   // EXAMPLE:
-  // '!mergedData[wr1.csystem] && !D[wr1.csystem] === true'
+  // '!mergedData[wrd.csystem] && !D[wrd.csystem] === true'
 
 ];

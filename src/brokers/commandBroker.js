@@ -13,7 +13,7 @@
  * @requires module:message.constants
  * @requires module:numeric.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:lexical
  * @requires module:loggers
@@ -37,7 +37,7 @@ import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as num from '../constants/numeric.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import lexical from '../executrix/lexical.js';
 import loggers from '../executrix/loggers.js';
@@ -49,7 +49,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.commandBroker.
-const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
@@ -80,11 +80,11 @@ function bootStrapCommands() {
 function addClientCommands(clientCommands) {
   let functionName = addClientCommands.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // Object.assign(D[wr1.cCommands], clientCommands);
-  // D[wr1.cCommands] = {...D[wr1.cCommands], Object.keys(clientCommands): clientCommands[Object.keys(clientCommands)]};
+  // Object.assign(D[wrd.cCommands], clientCommands);
+  // D[wrd.cCommands] = {...D[wrd.cCommands], Object.keys(clientCommands): clientCommands[Object.keys(clientCommands)]};
   for (const [key, value] of Object.entries(clientCommands)) {
     // console.log('%%%%%%%%%%%%%%%%%% ---- >>>>>>>>> key is: ' + key);
-    D[wr1.cCommands] = {...D[wr1.cCommands], [`${key}`]: value};
+    D[wrd.cCommands] = {...D[wrd.cCommands], [`${key}`]: value};
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -127,15 +127,15 @@ function getValidCommand(commandString, commandDelimiter) {
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   if (commandString) {
-    if (D[wr1.cCommands][commandToExecute] !== undefined) {
+    if (D[wrd.cCommands][commandToExecute] !== undefined) {
       foundValidCommand = true;
       returnData = commandToExecute;
-    } else { // else-clause if (D[wr1.cCommands][commandToExecute] !== undefined)
+    } else { // else-clause if (D[wrd.cCommands][commandToExecute] !== undefined)
       // else-clause looking for command aliases.
       loggers.consoleLog(namespacePrefix + functionName, msg.celseClauseLookingForCommandAliases);
       // NOTE: It could be that the user entered a command alias, so we will need to search through all of the command aliases,
       // to see if we can find a match, then get the actual command that should be executed.
-      let allCommandAliases = D[sys.cCommandsAliases][wr1.cCommands];
+      let allCommandAliases = D[sys.cCommandsAliases][wrd.cCommands];
       // allCommandAliases is:
       loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesIs + JSON.stringify(allCommandAliases));
 loop1:
@@ -144,7 +144,7 @@ loop1:
         // command alias that matches the command the user is trying to execute.
         let currentCommand = value
         loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
-        let aliasList = currentCommand[wr1.cAliases];
+        let aliasList = currentCommand[wrd.cAliases];
         let arrayOfAliases = aliasList.split(bas.cComa);
 loop2:
         for (let j = 0; j < arrayOfAliases.length; j++) {
@@ -167,7 +167,7 @@ loop2:
             foundValidCommand = true;
             // commandToExecute before the Alias is:
             loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteBeforeTheAliasIs + commandToExecute);
-            commandToExecute = currentCommand[wr1.cName];
+            commandToExecute = currentCommand[wrd.cName];
             // commandToExecute after the Alias is:
             loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteAfterTheAliasIs + commandToExecute);
             break loop1;
@@ -175,7 +175,7 @@ loop2:
         } // End-for (let j = 0; j < arrayOfAliases.length; j++)
       } // End-for (let i = 0; i < allCmmandAliases.length; i++)
       if (foundValidCommand === true) {
-        if (D[wr1.cCommands][commandToExecute] !== undefined) {
+        if (D[wrd.cCommands][commandToExecute] !== undefined) {
           returnData = commandToExecute;
         } else {
           // WARNING: The specified command:
@@ -225,7 +225,7 @@ function getCommandArgs(commandString, commandDelimiter) {
   isOddRule[0] = biz.cisOdd;
   replaceCharacterAtIndexRule[0] = biz.creplaceCharacterAtIndex;
   replaceTildesWithSingleQuoteRule[0] = biz.creplaceCharacterWithCharacter;
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cSecondaryCommandDelimiter);
   if (commandDelimiter === null || commandDelimiter !== commandDelimiter || commandDelimiter === undefined) {
     commandArgsDelimiter = bas.cSpace;
   }
@@ -374,13 +374,13 @@ function executeCommand(commandString) {
   // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   let returnData = false;
-  let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter));
+  let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter));
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
-  let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter));
+  let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter));
   // commandArgs is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandArgsIs + commandArgs);
-  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableCommandPerformanceMetrics);
+  let commandMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableCommandPerformanceMetrics);
   let commandStartTime = '';
   let commandEndTime = '';
   let commandDeltaTime = '';
@@ -395,10 +395,10 @@ function executeCommand(commandString) {
   } // End-if (commandMetricsEnabled === true)
   if (commandToExecute !== false && commandArgs !== false) {
     // console.log('commandToExecute is: ' + commandToExecute);
-    returnData = D[wr1.cCommands][commandToExecute](commandArgs, '');
+    returnData = D[wrd.cCommands][commandToExecute](commandArgs, '');
   } else if (commandToExecute !== false && commandArgs === false) {
     // This could be a command without any arguments.
-    returnData = D[wr1.cCommands][commandToExecute]('', '');
+    returnData = D[wrd.cCommands][commandToExecute]('', '');
   } else {
     // This command does not exist, nothing to execute, but we don't want the application to exit.
     // An error message should have already been thrown, but we should throw another one here.

@@ -5,7 +5,7 @@
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.generic.constants
- * @requires module:haystacks.word1.constants
+ * @requires module:haystacks.word.constants
  * @author Seth Hollingsead
  * @date 2022/02/11
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
@@ -15,10 +15,10 @@
 import haystacks from 'haystacks';
 const bas = haystacks.bas;
 const gen = haystacks.gen;
-const wr1 = haystacks.wr1;
+const wrd = haystacks.wrd;
 
 // rulesLibrary
-export const cinitClientRulesLibrary = gen.cinit + wr1.cClient + wr1.cRules + wr1.cLibrary; // initClientRulesLibrary
+export const cinitClientRulesLibrary = gen.cinit + wrd.cClient + wrd.cRules + wrd.cLibrary; // initClientRulesLibrary
 
 // commandsLibrary
-export const cinitClientCommandsLibrary = gen.cinit + wr1.cClient + wr1.cCommands + wr1.cLibrary; // initClientCommandsLibrary
+export const cinitClientCommandsLibrary = gen.cinit + wrd.cClient + wrd.cCommands + wrd.cLibrary; // initClientCommandsLibrary

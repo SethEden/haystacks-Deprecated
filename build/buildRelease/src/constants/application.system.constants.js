@@ -6,7 +6,7 @@
  * @require module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.generic.constants
- * @requires module:haystacks.word1.constants
+ * @requires module:haystacks.word.constants
  * @author Seth Hollingsead
  * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
@@ -16,23 +16,23 @@
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let gen = haystacks.gen;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 
 // Constants Validation
-export const cresolvedConstantsPath_Application = wr1.cresolved + wr1.cConstants + wr1.cPath + bas.cUnderscore + wr1.cApplication; // resolvedConstantsPath_Application
-export const capplicationBusinessConstantsValidation = wr1.capplication + wr1.cBusiness + wr1.cConstants + wr1.cValidation; // applicationBusinessConstantsValidation
-export const capplicationCommandConstantsValidation = wr1.capplication + wr1.cCommand + wr1.cConstants + wr1.cValidation; // applicationCommandConstantsValidation
-export const capplicationConfigurationConstantsValidation = wr1.capplication + wr1.cConfiguration + wr1.cConstants + wr1.cValidation; // applicationConfigurationConstantsValidation
-export const capplicationConstantsValidation = wr1.capplication + wr1.cConstants + wr1.cValidation; // applicationConstantsValidation
-export const capplicationFunctionConstantsValidation = wr1.capplication + wr1.cFunction + wr1.cConstants + wr1.cValidation; // applicationFunctionConstantsValidation
-export const capplicationMessageConstantsValidation = wr1.capplication + wr1.cMessage + wr1.cConstants + wr1.cValidation; // applicationMessageConstantsValidation
-export const capplicationSystemConstantsValidation = wr1.capplication + wr1.cSystem + wr1.cConstants + wr1.cValidation; // applicationSystemConstantsValidation
+export const cresolvedConstantsPath_Application = wrd.cresolved + wrd.cConstants + wrd.cPath + bas.cUnderscore + wrd.cApplication; // resolvedConstantsPath_Application
+export const capplicationBusinessConstantsValidation = wrd.capplication + wrd.cBusiness + wrd.cConstants + wrd.cValidation; // applicationBusinessConstantsValidation
+export const capplicationCommandConstantsValidation = wrd.capplication + wrd.cCommand + wrd.cConstants + wrd.cValidation; // applicationCommandConstantsValidation
+export const capplicationConfigurationConstantsValidation = wrd.capplication + wrd.cConfiguration + wrd.cConstants + wrd.cValidation; // applicationConfigurationConstantsValidation
+export const capplicationConstantsValidation = wrd.capplication + wrd.cConstants + wrd.cValidation; // applicationConstantsValidation
+export const capplicationFunctionConstantsValidation = wrd.capplication + wrd.cFunction + wrd.cConstants + wrd.cValidation; // applicationFunctionConstantsValidation
+export const capplicationMessageConstantsValidation = wrd.capplication + wrd.cMessage + wrd.cConstants + wrd.cValidation; // applicationMessageConstantsValidation
+export const capplicationSystemConstantsValidation = wrd.capplication + wrd.cSystem + wrd.cConstants + wrd.cValidation; // applicationSystemConstantsValidation
 
 // Filenames
-export const capplication_business_constants_js = wr1.capplication + bas.cDot + wr1.cbusiness + bas.cDot + wr1.cconstants + gen.cDotjs; // application.busienss.constants.js
-export const capplication_command_constants_js = wr1.capplication + bas.cDot + wr1.ccommand + bas.cDot + wr1.cconstants + gen.cDotjs; // application.command.constants.js
-export const capplication_configuration_constants_js = wr1.capplication + bas.cDot + wr1.cconfiguration + bas.cDot + wr1.cconstants + gen.cDotjs; // application.configuration.constants.js
-export const capplication_constants_js = wr1.capplication + bas.cDot + wr1.cconstants + gen.cDotjs; // application.constants.js
-export const capplication_function_constants_js = wr1.capplication + bas.cDot + wr1.cfunction + bas.cDot + wr1.cconstants + gen.cDotjs; // application.function.constants.js
-export const capplication_message_constants_js = wr1.capplication + bas.cDot + wr1.cmessage + bas.cDot + wr1.cconstants + gen.cDotjs; // application.message.constants.js
-export const capplication_system_constants_js = wr1.capplication + bas.cDot + wr1.csystem + bas.cDot + wr1.cconstants + gen.cDotjs; // application.system.constants.js
+export const capplication_business_constants_js = wrd.capplication + bas.cDot + wrd.cbusiness + bas.cDot + wrd.cconstants + gen.cDotjs; // application.busienss.constants.js
+export const capplication_command_constants_js = wrd.capplication + bas.cDot + wrd.ccommand + bas.cDot + wrd.cconstants + gen.cDotjs; // application.command.constants.js
+export const capplication_configuration_constants_js = wrd.capplication + bas.cDot + wrd.cconfiguration + bas.cDot + wrd.cconstants + gen.cDotjs; // application.configuration.constants.js
+export const capplication_constants_js = wrd.capplication + bas.cDot + wrd.cconstants + gen.cDotjs; // application.constants.js
+export const capplication_function_constants_js = wrd.capplication + bas.cDot + wrd.cfunction + bas.cDot + wrd.cconstants + gen.cDotjs; // application.function.constants.js
+export const capplication_message_constants_js = wrd.capplication + bas.cDot + wrd.cmessage + bas.cDot + wrd.cconstants + gen.cDotjs; // application.message.constants.js
+export const capplication_system_constants_js = wrd.capplication + bas.cDot + wrd.csystem + bas.cDot + wrd.cconstants + gen.cDotjs; // application.system.constants.js

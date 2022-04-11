@@ -4,7 +4,7 @@
  * @description A file to hold all of the cient configuration constants.
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
- * @requires module:haystacks.word1.constants
+ * @requires module:haystacks.word.constants
  * @author Seth Hollingsead
  * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
@@ -13,12 +13,12 @@
 // External imports
 import haystacks from 'haystacks';
 let bas = haystacks.bas;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 
-export const cargumentDrivenInterface = wr1.cargument + wr1.cDriven + wr1.cInterface; // argumentDrivenInterface
-export const csourcePath = wr1.csource + wr1.cPath; // sourcePath
-export const cdestinationPath = wr1.cdestination + wr1.cPath; // destinationPath
-export const csourceResourcesPath = wr1.csource + wr1.cResources + wr1.cPath; // sourceResourcesPath
-export const cdestinationResourcesPath = wr1.cdestination + wr1.cResources + wr1.cPath; // destinationResourcesPath
-export const creleasePath = wr1.crelease + wr1.cPath; // releasePath
-export const cdeploymentCompleted = wr1.cdeployment + wr1.cCompleted; // deploymentCompleted
+export const cargumentDrivenInterface = wrd.cargument + wrd.cDriven + wrd.cInterface; // argumentDrivenInterface
+export const csourcePath = wrd.csource + wrd.cPath; // sourcePath
+export const cdestinationPath = wrd.cdestination + wrd.cPath; // destinationPath
+export const csourceResourcesPath = wrd.csource + wrd.cResources + wrd.cPath; // sourceResourcesPath
+export const cdestinationResourcesPath = wrd.cdestination + wrd.cResources + wrd.cPath; // destinationResourcesPath
+export const creleasePath = wrd.crelease + wrd.cPath; // releasePath
+export const cdeploymentCompleted = wrd.cdeployment + wrd.cCompleted; // deploymentCompleted

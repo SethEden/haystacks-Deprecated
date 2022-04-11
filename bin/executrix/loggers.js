@@ -14,7 +14,7 @@
  * @requires module:system.constants
  * @requires module:generic.constants
  * @requires module:message.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
@@ -37,7 +37,7 @@ import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import colorizer from './colorizer.js';
 import configurator from './configurator.js';
 import fileOperations from './fileOperations.js';
@@ -49,7 +49,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.loggers.
-const namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function consoleLog
@@ -69,18 +69,18 @@ const namespacePrefix =  wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 function consoleLog(classPath, message) {
   let functionName = consoleLog.name;
   if (Object.keys(D).length !== 0 && message !== undefined) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
-    let consoleLogEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cconsoleLogEnabled);
+    let consoleLogEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
       // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
       // console.log(`classPath is: ${classPath}`);
       // console.log(`message is: ${message}`);
-      // let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
+      // let logFile = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientRootPath);
       // if (logFile !== undefined) {
-      //   logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
+      //   logFile = logFile + bas.cDoubleForwardSlash + wrd.clogs;
       //   // console.log(`Logfile before path.resolve is: ${logFile}`);
       //   logFile = path.resolve(logFile);
       //   // console.log(`Logfile after path.resolve is: ${logFile}`);
-      //   logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+      //   logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileName);
       //   logFile = path.resolve(logFile);
       //   // console.log(`logFile after adding the log filename: ${logFile}`);
       // }
@@ -160,15 +160,15 @@ function constantsValidationSummaryLog(message, passFail) {
   let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
 
   if (passFail === true) {
-    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplaySummaryConstantsValidationPassMessages) === true) {
-      outputMessage = wr1.cPASSED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wr1.cPASSED; // `PASSED -- ${message} -- PASSED`;
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplaySummaryConstantsValidationPassMessages) === true) {
+      outputMessage = wrd.cPASSED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wrd.cPASSED; // `PASSED -- ${message} -- PASSED`;
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, blackColorArray, true);
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, greenColorArray, false);
       console.log(outputMessage);
     }
   } else { // passFail === false
-    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplaySummaryConstantsVaidationFailMessages) === true) {
-      outputMessage = wr1.cFAILED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wr1.cFAILED; // `FAILED -- ${message} -- FAILED`;
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplaySummaryConstantsVaidationFailMessages) === true) {
+      outputMessage = wrd.cFAILED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wrd.cFAILED; // `FAILED -- ${message} -- FAILED`;
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, blackColorArray, true);
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, redColorArray, false);
       console.log(outputMessage);
@@ -216,7 +216,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
       printMessageToFile(logFile, outputMessage);
       // console.log('DONE printing the message to the logFile');
     }
-  } else if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugTestExhaustive) === true) {
+  } else if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugTestExhaustive) === true) {
     // console.log('else-block the debugTestExhaustive setting is true!');
     // TODO: Add rule here to replace double percent with message/class-path.
     // Debug Exhaustive is probably not the best, we might want to consider another configuration setting to
@@ -347,13 +347,13 @@ function getLogFileNameAndPath() {
   let functionName = getLogFileNameAndPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   let returnData = '';
-  let logFile = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientRootPath);
+  let logFile = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientRootPath);
   if (logFile !== undefined) {
-    logFile = logFile + bas.cDoubleForwardSlash + wr1.clogs;
+    logFile = logFile + bas.cDoubleForwardSlash + wrd.clogs;
     // console.log(`Logfile before path.resolve is: ${logFile}`);
     logFile = path.resolve(logFile);
     // console.log(`Logfile after path.resolve is: ${logFile}`);
-    logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileName);
+    logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileName);
     logFile = path.resolve(logFile);
     // console.log(`logFile after adding the log filename: ${logFile}`);
   }
@@ -382,12 +382,12 @@ function printMessageToFile(file, message) {
   if (!file.includes('undefined')) { // NOTE: This usage of the string undefined, must be hard-coded here.
     // '!file.includes(undefined)'
     // console.log(msg.cprintMessageToFile01);
-    if (configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled) === true) {
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
-      if (configurator.getConfigurationSetting(wr1.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
+      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
         dateTimeStamp = timers.getNowMoment(gen.cYYYY_MM_DD_HH_mm_ss_SSS);
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);

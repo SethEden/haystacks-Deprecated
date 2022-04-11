@@ -11,7 +11,7 @@
  * @requires module:haystacks.message.constants
  * @requires module:haystacks.numeric.constants
  * @requires module:haystacks.system.constants
- * @requires module:haystacks.word1.constants
+ * @requires module:haystacks.word.constants
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -30,13 +30,13 @@ let gen = haystacks.gen;
 let msg = haystacks.msg;
 let num = haystacks.num;
 let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 import chalk from 'chalk';
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.commands.clientCommands.clientCommands.
-const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.ccommands + bas.cDot + wrd.cclient + wrd.cCommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEchoCommand
@@ -112,7 +112,7 @@ const bossPanic = function(inputData, inputMetaData) {
   let coloredLinesMaxLength = 20;
   let fastTypingOutput = false;
   let speedTypingPerformanceIndex = 100; // Default to a fast typing speed.
-  let systemColorLogsEnabled = haystacks.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+  let systemColorLogsEnabled = haystacks.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
 
   // Rather than doing the above, I'll just call the business rule to generate a random number between 1 and 100.
   // Then I can call the string generator to generate a random string of characters to match that length.

@@ -1,6 +1,6 @@
 /**
- * @file word1.constants.js
- * @module word1.constants
+ * @file word.constants.js
+ * @module word.constants
  * @description Contains many re-usable word constants.
  * @requires module:basic.constants
  * @requires module:generic.constants

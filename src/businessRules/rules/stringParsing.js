@@ -16,7 +16,7 @@
  * @requires module:message.constants
  * @requires module:numeric.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
@@ -42,7 +42,7 @@ import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as num from '../../constants/numeric.constants.js';
 import * as sys from '../../constants/system.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
+import * as wrd from '../../constants/word.constants.js';
 import colorizer from '../../executrix/colorizer.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
@@ -57,7 +57,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
 * @function singleQuoteSwapAfterEquals
@@ -882,9 +882,9 @@ const isStringList = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter);
-    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cSecondaryCommandDelimiter);
-    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cTertiaryCommandDelimiter);
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cPrimaryCommandDelimiter);
+    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cSecondaryCommandDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cTertiaryCommandDelimiter);
     if (inputData.ncludes(primaryCommandDelimiter) === true ||
     inputData.includes(secondaryCommandDelimiter) === true ||
     inputData.includes(tertiaryCommandDelimiter) === true) {
@@ -1081,7 +1081,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     const liner = new lineByLine(inputData);
     let line;
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
 
     while (line = liner.next()) {
       // constants line is:
@@ -1096,24 +1096,24 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
         foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
         let qualifiedConstantsFilename = getFileNameFromPath(inputData, '');
         if (foundConstant === true) {
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
-            let passMessage = wr1.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cPASS;
+          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
+            let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(0,255,0)(passMessage);
             }
             console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
-          } // End-if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
+          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
         } else { // Else-clause if (foundConstant === true)
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
-            let failMessage = wr1.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL;
+          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
+            let failMessage = wrd.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL;
             if (colorizeLogsEnabled === true) {
               failMessage = chalk.rgb(0,0,0)(failMessage);
               failMessage = chalk.bgRgb(255,0,0)(failMessage);
             }
             let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
             console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
-            // loggers.consoleLog(namespacePrefix + functionName, wr1.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wr1.cFAIL);
+            // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
             let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
             if (suggestedLineOfCode !== '') {
               if (colorizeLogsEnabled === true) {
@@ -1123,7 +1123,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
               // Suggested line of code is:
               console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
             } // End-if (suggestedLineOfCode !== '')
-          } // End-if (configurator.getConfigurationSetting(wr1.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
+          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
           foundAFailure = true;
         }
       } // End-if (lineInCode.includes(sys.cexportconst) === true)
@@ -1193,9 +1193,9 @@ const determineSuggestedConstantsValidationLineOfCode = function(inputData, inpu
     if (inputData.charAt(0) === bas.cc) {
       let literalValue = inputData.substr(1);
       // `{Name: '${inputData}', Actual: ${inputMetaData}.${inputData}, Expected: '${literalValue}'}`;
-      returnData = bas.cOpenCurlyBrace + wr1.cName + bas.cColon + bas.cSpace + bas.cSingleQuote + inputData +
-        bas.cSingleQuote + bas.cComa + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace + inputMetaData +
-        bas.cDot + inputData + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace +
+      returnData = bas.cOpenCurlyBrace + wrd.cName + bas.cColon + bas.cSpace + bas.cSingleQuote + inputData +
+        bas.cSingleQuote + bas.cComa + bas.cSpace + wrd.cActual + bas.cColon + bas.cSpace + inputMetaData +
+        bas.cDot + inputData + bas.cComa + bas.cSpace + wrd.cExpected + bas.cColon + bas.cSpace +
         bas.cSingleQuote + literalValue + bas.cSingleQuote + bas.cCloseCurlyBrace;
     } else { // Else-clause if (inputData.charAt(0) === bas.cc)
       // 'ERROR: Attempted to generate a suggested line of code to validate the constant, ' +
@@ -1661,18 +1661,18 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
   let returnData = true;
   let passMessage = '';
   if (inputData) {
-    let colorizeLogsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableColorizedConsoleLogs);
+    let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
     for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++) {
       passMessage = '';
       let validationLineItem = D[sys.cConstantsValidationData][inputData][i];
       if (validationLineItem) {
         if (validationLineItem.Actual === validationLineItem.Expected) {
           // PASS
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
+          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             // `PASS -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- PASS`;
-            passMessage = wr1.cPASS + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
-              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
-              bas.cDoubleDash + bas.cSpace + wr1.cPASS;
+            passMessage = wrd.cPASS + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wrd.cActual + bas.cColon + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wrd.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
+              bas.cDoubleDash + bas.cSpace + wrd.cPASS;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(0,255,0)(passMessage);
@@ -1682,11 +1682,11 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
         } else {
           // FAIL
           returnData = false;
-          if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
+          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
             // `FAIL -- ${inputData} Actual: ${validationLineItem.Actual}, Expected: ${validationLineItem.Expected} -- FAIL`;
-            passMessage = wr1.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wr1.cActual + bas.cColon + bas.cSpace +
-              validationLineItem.Actual + bas.cComa + bas.cSpace + wr1.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
-              bas.cDoubleDash + bas.cSpace + wr1.cFAIL;
+            passMessage = wrd.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + wrd.cActual + bas.cColon + bas.cSpace +
+              validationLineItem.Actual + bas.cComa + bas.cSpace + wrd.cExpected + bas.cColon + bas.cSpace + validationLineItem.Expected + bas.cSpace +
+              bas.cDoubleDash + bas.cSpace + wrd.cFAIL;
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(255,0,0)(passMessage);
@@ -1696,7 +1696,7 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
         }
       } else { // Else-clause if (validationLineItem)
         // `FAIL -- ${inputData} -- FAIL`
-        passMessage = wr1.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + bas.cDoubleDash + bas.cSpace + wr1.cFAIL;
+        passMessage = wrd.cFAIL + bas.cSpace + bas.cDoubleDash + bas.cSpace + inputData + bas.cSpace + bas.cDoubleDash + bas.cSpace + wrd.cFAIL;
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(255,0,0)(passMessage);
@@ -1797,7 +1797,7 @@ loop1:
       let currentCommand = inputMetaData[key1];
       // currentCommand is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
-      let aliasList = currentCommand[wr1.cAliases];
+      let aliasList = currentCommand[wrd.cAliases];
       // aliasList is:
       loggers.consoleLog(namespacePrefix + functionName, msg.caliasListIs + aliasList);
       let arrayOfAliases = aliasList.split(bas.cComa);

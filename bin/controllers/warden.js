@@ -12,7 +12,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:chiefCommander
  * @requires module:chiefConfiguration
  * @requires module:chiefData
@@ -37,7 +37,7 @@ import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import chiefCommander from './chiefCommander.js';
 import chiefConfiguration from './chiefConfiguration.js';
 import chiefData from './chiefData.js';
@@ -52,7 +52,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.warden.
-const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**
  * @function processRootPath
@@ -113,19 +113,19 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataIs + JSON.stringify(applicationMetaData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataIs + JSON.stringify(frameworkMetaData));
 
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientRootPath, configData[cfg.cclientRootPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigResourcesPath, configData[cfg.cappConfigResourcesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigReferencePath, configData[cfg.cappConfigReferencePath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientMetaDataPath, configData[cfg.cclientMetaDataPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientCommandAliasesPath, configData[cfg.cclientCommandAliasesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientWorkflowsPath, configData[cfg.cclientWorkflowsPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath, configData[cfg.cframeworkRootPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigPath, configData[cfg.cappConfigPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkResourcesPath, configData[cfg.cframeworkResourcesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkFullMetaDataPath, configData[cfg.cframeworkFullMetaDataPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkCommandAliasesPath, configData[cfg.cframeworkCommandAliasesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkWorkflowsPath, configData[cfg.cframeworkWorkflowsPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientRootPath, configData[cfg.cclientRootPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigResourcesPath, configData[cfg.cappConfigResourcesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigReferencePath, configData[cfg.cappConfigReferencePath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientMetaDataPath, configData[cfg.cclientMetaDataPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientCommandAliasesPath, configData[cfg.cclientCommandAliasesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientWorkflowsPath, configData[cfg.cclientWorkflowsPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath, configData[cfg.cframeworkRootPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigPath, configData[cfg.cappConfigPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkResourcesPath, configData[cfg.cframeworkResourcesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkFullMetaDataPath, configData[cfg.cframeworkFullMetaDataPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath, configData[cfg.cframeworkCommandAliasesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath, configData[cfg.cframeworkWorkflowsPath]);
 
   loggers.consoleLog(namespacePrefix + functionName, msg.cclientRootPathIs + configData[cfg.cclientRootPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigResourcesPathIs + configData[cfg.cappConfigResourcesPath]);
@@ -142,29 +142,29 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
 
   // Make sure the color data gets loaded as well! File: colors.csv (This is used by  the colorizer to colorize the fonts for the console output)
-  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wr1.ccolors);
+  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wrd.ccolors);
 
-  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationName, applicationMetaData[wr1.cName]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber, applicationMetaData[wr1.cVersion]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationDescription, applicationMetaData[wr1.cDescription]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationNameIs + applicationMetaData[wr1.cName]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationVersionNumberIs + applicationMetaData[wr1.cVersion]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationDescriptionIs + applicationMetaData[wr1.cDescription]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationName, applicationMetaData[wrd.cName]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber, applicationMetaData[wrd.cVersion]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationDescription, applicationMetaData[wrd.cDescription]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationNameIs + applicationMetaData[wrd.cName]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationVersionNumberIs + applicationMetaData[wrd.cVersion]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationDescriptionIs + applicationMetaData[wrd.cDescription]);
 
-  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkName, frameworkMetaData[wr1.cName]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber, frameworkMetaData[wr1.cVersion]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkDescription, frameworkMetaData[wr1.cDescription]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkNameIs + frameworkMetaData[wr1.cName]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wr1.cVersion]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wr1.cDescription]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cFrameworkName, frameworkMetaData[wrd.cName]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber, frameworkMetaData[wrd.cVersion]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cFrameworkDescription, frameworkMetaData[wrd.cDescription]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkNameIs + frameworkMetaData[wrd.cName]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wrd.cVersion]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wrd.cDescription]);
 
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let resolvedFrameworkConstantsPathActual = path.resolve(configData[cfg.cframeworkConstantsPath]);
     let resolvedClientConstantsPathActual = path.resolve(configData[cfg.cclientConstantsPath])
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedFrameworkConstantsPathActualIs + resolvedFrameworkConstantsPathActual);
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientConstantsPathActualIs + resolvedClientConstantsPathActual);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConstantsPath, resolvedFrameworkConstantsPathActual);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConstantsPath, resolvedFrameworkConstantsPathActual);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
 
     chiefData.initializeConstantsValidationData(); // This just makes sure that the data structure is created on the D-Data structure.
     let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData].call();
@@ -175,14 +175,14 @@ function initFrameworkSchema(configData) {
     chiefData.addConstantsValidationData(applicationConstantsValidationData);
   }
 
-  let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled);
+  let enableLogFileOutputSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cCaptureSessionDateTimeStampLogFileName);
-    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
+    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp));
     loggers.consoleLog(namespacePrefix + functionName, msg.csessionDateTimeStampIs + sessionDateTimeStamp);
-    let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wr1.cVersion] + bas.cUnderscore + applicationMetaData[wr1.cName] + gen.cDotLog;
+    let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wrd.cVersion] + bas.cUnderscore + applicationMetaData[wrd.cName] + gen.cDotLog;
     loggers.consoleLog(namespacePrefix + functionName, msg.clogFileNameIs + logFileName);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.clogFileName, logFileName);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.clogFileName, logFileName);
   }
 
   mergeClientBusinessRules(configData[sys.cclientBusinessRules]);
@@ -248,13 +248,13 @@ function loadCommandAliases(commandAliasesPathConfigName) {
   let resolvedClientCommandsAliasesPath;
   let resolvedCustomCommandsAliasesPath;
   if (commandAliasesPathConfigName) {
-    resolvedCustomCommandsAliasesPath = path.resolve(configurator.getConfigurationSetting(wr1.csystem, commandAliasesPathConfigName));
+    resolvedCustomCommandsAliasesPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, commandAliasesPathConfigName));
     // resolvedCustomCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomCommandsAliasesPathIs + resolvedCustomCommandsAliasesPath);
     chiefCommander.loadCommandAliasesFromPath(commandAliasesPathConfigName);
   } else {
-    resolvedSystemCommandsAliasesPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkCommandAliasesPath);
-    resolvedClientCommandsAliasesPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientCommandAliasesPath);
+    resolvedSystemCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath);
+    resolvedClientCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientCommandAliasesPath);
     // resolvedSystemCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemCommandsAliasesPathIs + resolvedSystemCommandsAliasesPath);
     // resolvedClientCommandsAliasesPath is:
@@ -284,13 +284,13 @@ function loadCommandWorkflows(workflowPathConfigName) {
   let resolvedClientWorkflowsPath;
   let resolvedCustomWorkflowsPath;
   if (workflowPathConfigName) {
-    resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wr1.csystem, workflowPathConfigName));
+    resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, workflowPathConfigName));
     // resolvedCustomWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomWorkflowsPathIs + resolvedSystemWorkflowsPath);
     chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName);
   } else {
-    resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkWorkflowsPath);
-    resolvedClientWorkflowsPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientWorkflowsPath);
+    resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath);
+    resolvedClientWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientWorkflowsPath);
     // resolvedSystemWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemWorkflowsPathIs + resolvedSystemWorkflowsPath);
     // resolvedClientWorkflowsPath is:

@@ -9,7 +9,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -25,7 +25,7 @@ import * as cfg from '../constants/configuration.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
 // External imports
@@ -33,7 +33,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefData.
-const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function searchForUniversalDebugConfigSetting
@@ -55,18 +55,18 @@ function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfig
   // console.log(`frameworkConfigPathName is: ${frameworkConfigPathName}`);
   // console.log(`contextName is: ${contextName}`);
   let universalDebugConfigSetting = false;
-  let appConfigDataPath = configurator.getConfigurationSetting(wr1.csystem, appConfigPathName);
-  let frameworkConfigDataPath = configurator.getConfigurationSetting(wr1.csystem, frameworkConfigPathName);
+  let appConfigDataPath = configurator.getConfigurationSetting(wrd.csystem, appConfigPathName);
+  let frameworkConfigDataPath = configurator.getConfigurationSetting(wrd.csystem, frameworkConfigPathName);
   appConfigDataPath = path.resolve(appConfigDataPath);
   frameworkConfigDataPath = path.resolve(frameworkConfigDataPath);
   let appConfigFilesToLoad = dataBroker.scanDataPath(appConfigDataPath, contextName);
   let frameworkConfigFilesToLoad = dataBroker.scanDataPath(frameworkConfigDataPath, contextName);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigFiles, appConfigFilesToLoad);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConfigFiles, frameworkConfigFilesToLoad);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigFiles, appConfigFilesToLoad);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConfigFiles, frameworkConfigFilesToLoad);
   universalDebugConfigSetting = dataBroker.findUniversalDebugConfigSetting(
     appConfigFilesToLoad, frameworkConfigFilesToLoad
   );
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cdebugSettings, universalDebugConfigSetting);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cdebugSettings, universalDebugConfigSetting);
   // console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return universalDebugConfigSetting;
@@ -136,7 +136,7 @@ function setupAllCsvData(dataPathConfigurationName, contextName) {
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let loadedAndMergedDataAllFiles = {};
-  let dataPath = configurator.getConfigurationSetting(wr1.csystem, dataPathConfigurationName);
+  let dataPath = configurator.getConfigurationSetting(wrd.csystem, dataPathConfigurationName);
   dataPath = path.resolve(dataPath);
   // dataPath is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + dataPath);
@@ -167,7 +167,7 @@ function setupAllXmlData(dataPathConfigurationName, contextName) {
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let loadedAndMergedDataAllFiles = {};
-  let dataPath = configurator.getConfigurationSetting(wr1.csystem, dataPathConfigurationName);
+  let dataPath = configurator.getConfigurationSetting(wrd.csystem, dataPathConfigurationName);
   dataPath = path.resolve(dataPath);
   // dataPath is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + dataPath);
@@ -199,9 +199,9 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   let loadedAndMergedDataAllFiles = {};
   let filesToLoad = [];
   if (dataPathConfigurationName === sys.cappConfigPath) {
-    filesToLoad = configurator.getConfigurationSetting(wr1.csystem, cfg.cappConfigFiles);
+    filesToLoad = configurator.getConfigurationSetting(wrd.csystem, cfg.cappConfigFiles);
   } else if (dataPathConfigurationName === sys.cframeworkConfigPath) {
-    filesToLoad = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkConfigFiles);
+    filesToLoad = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkConfigFiles);
   }
   loadedAndMergedDataAllFiles = dataBroker.loadAllJsonData(filesToLoad, contextName);
   // console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);

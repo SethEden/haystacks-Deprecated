@@ -11,7 +11,7 @@
  * @requires module:message.constants
  * @requires module:numeric.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -29,14 +29,14 @@ import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as num from '../../constants/numeric.constants.js';
 import * as sys from '../../constants/system.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
+import * as wrd from '../../constants/word.constants.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringGeneration.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wr1.crules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function generateRandomMixedCaseTextByLength
@@ -494,10 +494,10 @@ const generateValidEmail = function(inputData, inputMetaData) {
       }
       returnData = generateRandomValidEmail(inputData, generateSpecialCharacters, allowableSpecialCharacters);
     } else {
-      returnData = generateRandomValidEmail(inputData, bas.cFalse, wr1.cEmpty);
+      returnData = generateRandomValidEmail(inputData, bas.cFalse, wrd.cEmpty);
     }
   } else { // Else-clause if (!!inputMetaData && inputMetaData !== 'undefined' && inputMetaData !== '')
-    returnData = generateRandomValidEmail(inputData, bas.cFalse, wr1.cEmpty);
+    returnData = generateRandomValidEmail(inputData, bas.cFalse, wrd.cEmpty);
   } // End-else-clause if (!!inputMetaData && inputMetaData !== 'undefined' && inputMetaData !== '')
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -554,10 +554,10 @@ const generateInvalidEmail = function(inputData, inputMetaData) {
       }
       returnData = generateRandomInvalidEmail(inputData, generateSpecialCharacters, allowableSpecialCharacters);
     } else {
-      returnData = generateRandomInvalidEmail(inputData, [bas.cFalse, wr1.cEmpty]);
+      returnData = generateRandomInvalidEmail(inputData, [bas.cFalse, wrd.cEmpty]);
     }
   } else {
-    returnData = generateRandomInvalidEmail(inputData, [bas.cFalse, wr1.cEmpty]);
+    returnData = generateRandomInvalidEmail(inputData, [bas.cFalse, wrd.cEmpty]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

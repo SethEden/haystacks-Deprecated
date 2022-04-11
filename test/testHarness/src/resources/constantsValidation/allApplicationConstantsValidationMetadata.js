@@ -11,7 +11,7 @@
  * @requires module:haystacks.generic.constants
  * @requires module:haystacks.message.constants
  * @requires module:haystacks.system.constants
- * @requires module:haystacks.word1.constants
+ * @requires module:haystacks.word.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/03/22
@@ -37,12 +37,12 @@ let cfg = haystacks.cfg;
 let gen = haystacks.gen;
 let msg = haystacks.msg;
 let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 import path from 'path';
 
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.resources.constantsVaidation.allApplicationConstantsValidation.
-let namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cresources + bas.cDot + wr1.cconstants + wr1.cValidation + bas.cDot + baseFileName + bas.cDot;
+let namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cresources + bas.cDot + wrd.cconstants + wrd.cValidation + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function initializeAllClientConstantsValidationData
@@ -54,7 +54,7 @@ let namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cresources + bas.cDo
 function initializeAllClientConstantsValidationData() {
   let functionName = initializeAllClientConstantsValidationData.name;
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
-  let constantsPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.capplicationConstantsPath);
+  let constantsPath = haystacks.getConfigurationSetting(wrd.csystem, cfg.capplicationConstantsPath);
   // constantsPath is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cconstantsPathIs + constantsPath);
 

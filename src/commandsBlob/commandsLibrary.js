@@ -9,7 +9,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -27,7 +27,7 @@ import * as cmd from '../constants/command.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
@@ -51,22 +51,22 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + baseFileName + bas.cDot;
 function initCommandsLibrary() {
   let functionName = initCommandsLibrary.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  D[wr1.cCommands] = {};
-  D[wr1.cCommands] = {
+  D[wrd.cCommands] = {};
+  D[wrd.cCommands] = {
     // Commands
     // ***********************************************
     // Nominal commands in order
     // ***********************************************
     [cmd.cechoCommand]: (inputData, inputMetaData) => nominalCommands.echoCommand(inputData, inputMetaData),
-    [wr1.cexit]: (inputData, inputMetData) => nominalCommands.exit(inputData, inputMetData),
-    [wr1.cversion]: (inputData, inputMetaData) => nominalCommands.version(inputData, inputMetaData),
-    [wr1.cabout]: (inputData, inputMetaData) => nominalCommands.about(inputData, inputMetaData),
-    [wr1.cname]: (inputData, inputMetaData) => nominalCommands.name(inputData, inputMetaData),
+    [wrd.cexit]: (inputData, inputMetData) => nominalCommands.exit(inputData, inputMetData),
+    [wrd.cversion]: (inputData, inputMetaData) => nominalCommands.version(inputData, inputMetaData),
+    [wrd.cabout]: (inputData, inputMetaData) => nominalCommands.about(inputData, inputMetaData),
+    [wrd.cname]: (inputData, inputMetaData) => nominalCommands.name(inputData, inputMetaData),
     [cmd.cclearScreen]: (inputData, inputMetaData) => nominalCommands.clearScreen(inputData, inputMetaData),
-    [wr1.chelp]: (inputData, inputMetaData) => nominalCommands.help(inputData, inputMetaData),
+    [wrd.chelp]: (inputData, inputMetaData) => nominalCommands.help(inputData, inputMetaData),
     [cmd.cworkflowHelp]: (inputData, inputMetaData) => nominalCommands.workflowHelp(inputData, inputMetaData),
     [cmd.ccommandSequencer]: (inputData, inputMetaData) => nominalCommands.commandSequencer(inputData, inputMetaData),
-    [wr1.cworkflow]: (inputData, inputMetaData) => nominalCommands.workflow(inputData, inputMetaData),
+    [wrd.cworkflow]: (inputData, inputMetaData) => nominalCommands.workflow(inputData, inputMetaData),
     [cmd.cprintDataHive]: (inputData, inputMetaData) => nominalCommands.printDataHive(inputData, inputMetaData),
     [cmd.cprintDataHiveAttributes]: (inputData, inputMetaData) => nominalCommands.printDataHiveAttributes(inputData,inputMetaData),
     [cmd.cclearDataStorage]: (inputData, inputMetaData) => nominalCommands.clearDataStorage(inputData, inputMetaData),

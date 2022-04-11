@@ -13,7 +13,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:lexical
@@ -45,7 +45,7 @@ import * as fnc from '../../constants/function.constants.js';
 import * as gen from '../../constants/generic.constants.js';
 import * as msg from '../../constants/message.constants.js';
 import * as sys from '../../constants/system.constants.js';
-import * as wr1 from '../../constants/word1.constants.js';
+import * as wrd from '../../constants/word.constants.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import lexical from '../../executrix/lexical.js';
@@ -63,7 +63,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.nominal.
-const namespacePrefix = sys.ccommandsBlob + bas.cDot + wr1.ccommands + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
 // prompt();
 
 /**
@@ -136,15 +136,15 @@ const version = function(inputData, inputMetaData) {
   let appContext = '';
   if (inputData.length === 2) {
     appContext = inputData[1];
-    if (appContext.toUpperCase() === wr1.cAPPLICATION) {
-      configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
-    } else if (appContext.toUpperCase() === wr1.cFRAMEWORK) {
-      configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber);
+    if (appContext.toUpperCase() === wrd.cAPPLICATION) {
+      configVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber);
+    } else if (appContext.toUpperCase() === wrd.cFRAMEWORK) {
+      configVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber);
     } else {
-      configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
+      configVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber);
     }
   } else {
-    configVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
+    configVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber);
   }
   console.log(configVersion);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -173,15 +173,15 @@ const about = function(inputData, inputMetaData) {
   let appContext = '';
   if (inputData.length === 2) {
     appContext = inputData[1];
-    if (appContext.toUpperCase() === wr1.cAPPLICATION) {
-      configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription);
-    } else if (appContext.toUpperCase() === wr1.cFRAMEWORK) {
-      configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cFrameworkDescription);
+    if (appContext.toUpperCase() === wrd.cAPPLICATION) {
+      configDescription = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationDescription);
+    } else if (appContext.toUpperCase() === wrd.cFRAMEWORK) {
+      configDescription = configurator.getConfigurationSetting(wrd.csystem, sys.cFrameworkDescription);
     } else {
-      configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription);
+      configDescription = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationDescription);
     }
   } else {
-    configDescription = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationDescription);
+    configDescription = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationDescription);
   }
   console.log(configDescription);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -224,18 +224,18 @@ const name = function(inputData, inputMetaData) {
     useFancyFont = ruleBroker.processRules(inputData[2], '', rules);
   }
   if (appContext !== '') {
-    if (appContext.toUpperCase() === wr1.cAPPLICATION) {
-      reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
-    } else if (appContext.toUpperCase() === wr1.cFRAMEWORK) {
-      reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cFrameworkName);
+    if (appContext.toUpperCase() === wrd.cAPPLICATION) {
+      reportedName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);
+    } else if (appContext.toUpperCase() === wrd.cFRAMEWORK) {
+      reportedName = configurator.getConfigurationSetting(wrd.csystem, sys.cFrameworkName);
     } else {
-      reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+      reportedName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);
     }
   } else {
-    reportedName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+    reportedName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);
   }
   if (useFancyFont === true) {
-    figletFont = configurator.getConfigurationSetting(wr1.csystem, cfg.cfigletFont);
+    figletFont = configurator.getConfigurationSetting(wrd.csystem, cfg.cfigletFont);
     console.log(figlet.textSync(reportedName, {font: figletFont, horizontalLayout: sys.cfull}));
   } else {
     console.log(reportedName);
@@ -283,7 +283,7 @@ const help = function(inputData, inputMetaData) {
   let functionName = help.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = true;
-  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandsAliases][wr1.cCommands], [wr1.cName, wr1.cDescription]);
+  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandsAliases][wrd.cCommands], [wrd.cName, wrd.cDescription]);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -304,7 +304,7 @@ const workflowHelp = function(inputData, inputMetaData) {
   let functionName = workflowHelp.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = true;
-  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wr1.cWorkflows], [wr1.cName]);
+  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wrd.cWorkflows], [wrd.cName]);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -334,14 +334,14 @@ const commandSequencer = function(inputData, inputMetaData) {
   let returnData = true;
   for (let i = 1; i < inputData.length; i++) {
     let commandString = inputData[i];
-    let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cprimaryCommandDelimiter);
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.cprimaryCommandDelimiterIs + primaryCommandDelimiter);
     if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
       primaryCommandDelimiter = bas.cSpace;
     }
-    let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+    let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
-    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
     // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
     const regEx1 = new RegExp(secondaryCommandArgsDelimiter, bas.cg);
@@ -430,7 +430,7 @@ const printDataHive = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let printDataHiveToLogFileConfigSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.cprintDataHiveToLogFile);
+  let printDataHiveToLogFileConfigSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.cprintDataHiveToLogFile);
   let logFilePathAndName = '';
   // if (printDataHiveToLogFileConfigSetting === true) {
     logFilePathAndName = loggers.getLogFileNameAndPath();
@@ -523,7 +523,7 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
         for (let j = 0; j < leafDataHiveElement.length; j++) {
           let dataEntry = leafDataHiveElement[j];
           if (dataEntry) {
-            if (attributeName.toLowerCase() === wr1.centity) {
+            if (attributeName.toLowerCase() === wrd.centity) {
               // entity is:
               console.log(msg.centryIs + JSON.stringify(dataEntry));
             } else {
@@ -537,10 +537,10 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
       } else {
         let leafDataHiveElementKeys2 = Object.keys(leafDataHiveElement);
         leafDataHiveElementKeys2.forEach((key2) => {
-          if (attributeName.toLowerCase() === wr1.ckey) {
+          if (attributeName.toLowerCase() === wrd.ckey) {
             // key2 is:
             console.log(msg.ckey2Is + key2);
-          } else if (attributeName.toLowerCase() === wr1.centity) {
+          } else if (attributeName.toLowerCase() === wrd.centity) {
             // entity is:
             console.log(msg.centityIs + JSON.stringify(leafDataHiveElement[key2]));
           } else {
@@ -626,13 +626,13 @@ const businessRule = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
   let rules = [];
   let ruleInputData, ruleInputMetaData;
   let ruleOutput = '';
   let addedARule = false;
-  let businessRuleOutput = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRuleOutput);
-  let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
+  let businessRuleOutput = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRuleOutput);
+  let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRulePerformanceMetrics);
   let businessRuleStartTime = '';
   let businessRuleEndTime = '';
   let businessRuleDeltaTime = '';
@@ -746,12 +746,12 @@ const commandGenerator = function(inputData, inputMetaData) {
   let legitNumberIndex = -1;
   let replaceCharacterWithCharacterRule = [];
   replaceCharacterWithCharacterRule[0] = biz.creplaceCharacterWithCharacter;
-  let primaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.cPrimaryCommandDelimiter);
+  let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cPrimaryCommandDelimiter);
   if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
     primaryCommandDelimiter = bas.cSpace;
   }
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.csecondaryCommandDelimiter);
-  let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wr1.csystem, cfg.ctertiaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
+  let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
   let commandString = '';
   if (inputData.length === 3) {
     commandString = inputData[1];
@@ -959,7 +959,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let validEntry = false;
     let userDefinedConstant = '';
     let validConstantRule = [];
@@ -1021,8 +1021,8 @@ const constantsGenerator = function(inputData, inputMetaData) {
       } // End-for (let j = 0; j < wordsArray.length; j++)
     } else { // There is only a single word to process.
       // output a proper line of code:
-      // export const csomething = wr1.csome + wr1.cthing; // something
-      console.log(wr1.cexport + bas.cSpace + gen.cconst + bas.cSpace + bas.cc + userDefinedConstant + bas.cSpace + bas.cEqual + bas.cSpace +
+      // export const csomething = wrd.csome + wrd.cthing; // something
+      console.log(wrd.cexport + bas.cSpace + gen.cconst + bas.cSpace + bas.cc + userDefinedConstant + bas.cSpace + bas.cEqual + bas.cSpace +
       ruleBroker.processRules(userDefinedConstant, userDefinedConstant, constantsFulfillmentSystemRule) +
       bas.cSemiColon + bas.cSpace + bas.cDoubleForwardSlash + bas.cSpace + userDefinedConstant);
     }
@@ -1053,7 +1053,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let validEntry = false;
     let userDefinedConstantList = '';
     let validConstantRule = [];
@@ -1125,7 +1125,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let validEntry = false;
     let userDefinedConstantList = '';
     let validConstantRule = [];
@@ -1177,7 +1177,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.ccommonPatternsArrayIs + JSON.stringify(commonPatternsArray));
     // This next call will compare the identified string patterns with existing constants, and highlight which ones are not yet implemented.
     let newConstantsList = ruleBroker.processRules(commonPatternsArray, '', validatePatternsNeedImplementationRule);
-    let constantsPatternGenerationSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsPatternGeneration);
+    let constantsPatternGenerationSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsPatternGeneration);
     if (constantsPatternGenerationSetting === true) {
       queue.enqueue(sys.cCommandQueue, cmd.cconstantsGeneratorList + bas.cSpace + newConstantsList);
     }
@@ -1206,7 +1206,7 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableBusinessRulePerformanceMetrics);
+  let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRulePerformanceMetrics);
   if (businessRuleMetricsEnabled === true) {
     let businessRuleCounter = 0;
     let businessRulePerformanceSum = 0;
@@ -1224,14 +1224,14 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
       // do the necessary math for each business rule according to the parent loop.
       let currentBusinessRuleName = D[cfg.cbusinessRulesNamesPerformanceTrackingStack][i];
       for (let j = 0; j < stack.length(cfg.cbusinessRulesPerformanceTrackingStack); j++) {
-        if (D[cfg.cbusinessRulesPerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName) {
+        if (D[cfg.cbusinessRulesPerformanceTrackingStack][j][wrd.cName] === currentBusinessRuleName) {
           businessRuleCounter = businessRuleCounter + 1;
           // businessRuleCounter is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRuleCounterIs + businessRuleCounter);
           businessRulePerformanceSum = businessRulePerformanceSum + D[cfg.cbusinessRulesPerformanceTrackingStack][j][sys.cRunTime];
           // businessRulePerformanceSum is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulePerformanceSumIs + businessRulePerformanceSum);
-        } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][j][wr1.cName] === currentBusinessRuleName)
+        } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][j][wrd.cName] === currentBusinessRuleName)
       } // End-for (let j = 0; j < stack.length(cfg.cBusinessRulePerformanceTrackingStack); j++)
       // DONE! businessRulePerformanceSum is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoneBusinessRulePerformanceSumIs + businessRulePerformanceSum);
@@ -1240,11 +1240,11 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.caverageIs + average);
       // Now go back through them all so we can compute the standard deviation.
       for (let k = 0; k < stack.length(cfg.cbusinessRulesPerformanceTrackingStack); k++) {
-        if (D[cfg.cbusinessRulesPerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName) {
+        if (D[cfg.cbusinessRulesPerformanceTrackingStack][k][wrd.cName] === currentBusinessRuleName) {
           businessRulePerformanceStdSum = businessRulePerformanceStdSum + math.pow((D[cfg.cbusinessRulesPerformanceTrackingStack][k][sys.cRunTime] - average), 2);
           // businessRulePerformanceStdSum is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulePerformanceStdSumIs + businessRulePerformanceStdSum);
-        } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][k][wr1.cName] === currentBusinessRuleName)
+        } // End-if (D[cfg.cBusinessRulePerformanceTrackingStack][k][wrd.cName] === currentBusinessRuleName)
       } // End-for (let k = 0; k < stack.length(cfg.cBusinessRulePerformanceTrackingStack); k++)
       // DONE! businessRulePerformanceStdSum is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoneBusinessRulePerformanceStdSumIs + businessRulePerformanceStdSum);
@@ -1256,11 +1256,11 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
       }
       stack.push(cfg.cbusinessRulesPerformanceAnalysisStack, {Name: currentBusinessRuleName, Average: average, StandardDeviation: standardDev});
     } // End-for (let i = 0; i < stack.length(cfg.cBusinessRulesNamesPerformanceTrackingStack); i++)
-    loggers.consoleTableLog('', D[cfg.cbusinessRulesPerformanceAnalysisStack], [wr1.cName, wr1.cAverage, sys.cStandardDeviation]);
+    loggers.consoleTableLog('', D[cfg.cbusinessRulesPerformanceAnalysisStack], [wrd.cName, wrd.cAverage, sys.cStandardDeviation]);
     stack.clearStack(cfg.cbusinessRulesPerformanceAnalysisStack);
     // We need to have a flag that will enable the user to determine if the data should be cleared after the analysis is complete.
     // It might be that the user wants to do somethign else with this data in memory after it's done.
-    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true) {
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true) {
       stack.clearStack(cfg.cbusinessRulesPerformanceTrackingStack);
       stack.clearStack(cfg.cbusinessRulesNamesPerformanceTrackingStack);
     }
@@ -1285,7 +1285,7 @@ const commandMetrics = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let commandMetricsEnabled = configurator.getConfigurationSetting(wr1.csystem, cfg.cenableCommandPerformanceMetrics);
+  let commandMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableCommandPerformanceMetrics);
   if (commandMetricsEnabled === true) {
     let commandCounter = 0;
     let commandPerformanceSum = 0;
@@ -1303,14 +1303,14 @@ const commandMetrics = function(inputData, inputMetaData) {
       // do the necessary math for each command according to the parent loop.
       let currentCommandName = D[cfg.ccommandNamesPerformanceTrackingStack][i];
       for (let j = 0; j < stack.length(cfg.ccommandsPerformanceTrackingStack); j++) {
-        if (D[cfg.ccommandsPerformanceTrackingStack][j][wr1.cName] === currentCommandName) {
+        if (D[cfg.ccommandsPerformanceTrackingStack][j][wrd.cName] === currentCommandName) {
           commandCounter = commandCounter + 1;
           // commandCounter is:
           loggers.consoleLog(namespacePrefix + functionName, msg.ccommandCounterIs + commandCounter);
           commandPerformanceSum = commandPerformanceSum + D[cfg.ccommandsPerformanceTrackingStack][j][sys.cRunTime];
           // commandPerformanceSum is:
           loggers.consoleLog(namespacePrefix + functionName, msg.ccommandPerformanceSumIs + commandPerformanceSum);
-        } // End-if (D[cfg.ccommandsPerformanceTrackingStack][j][wr1.cName] === currentCommandName)
+        } // End-if (D[cfg.ccommandsPerformanceTrackingStack][j][wrd.cName] === currentCommandName)
       } // End-for (let j = 0; j < stack.length(cfg.ccommandsPerformanceTrackingStack); j++)
       // DONE! commandPerformanceSum is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoneCommandPerformanceSumIs + commandPerformanceSum);
@@ -1319,11 +1319,11 @@ const commandMetrics = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.caverageIs + average);
       // Now go back through them allso we can compute the standard deviation.
       for (let k = 0; k < stack.length(cfg.ccommandsPerformanceTrackingStack); k++) {
-        if (D[cfg.ccommandsPerformanceTrackingStack][k][wr1.cName] === currentCommandName) {
+        if (D[cfg.ccommandsPerformanceTrackingStack][k][wrd.cName] === currentCommandName) {
           commandPerformanceStdSum = commandPerformanceStdSum + math.pow((D[cfg.ccommandsPerformanceTrackingStack][k][sys.cRunTime] - average), 2);
           // commandPerformanceStdSum is:
           loggers.consoleLog(namespacePrefix + functionName, msg.ccommandPerformanceStdSumIs + commandPerformanceStdSum);
-        } // End-if (D[cfg.ccommandsPerformanceTrackingStack][k][wr1.cName] === currentCommandName)
+        } // End-if (D[cfg.ccommandsPerformanceTrackingStack][k][wrd.cName] === currentCommandName)
       } // End-for (let k = 0; k < stack.length(cfg.ccommandsPerformanceTrackingStack); k++)
       // DONE! commandPerformanceStdSum is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoneCommandPerformanceStdSumIs + commandPerformanceStdSum);
@@ -1335,11 +1335,11 @@ const commandMetrics = function(inputData, inputMetaData) {
       }
       stack.push(cfg.ccommandsPerformanceAnalysisStack, {Name: currentCommandName, Average: average, StandardDeviation: standardDev});
     } // End-for (let i = 0; i < stack.length(cfg.ccommandNamesPerformanceTrackingStack); i++)
-    loggers.consoleTableLog('', D[cfg.ccommandsPerformanceAnalysisStack], [wr1.cName, wr1.cAverage, sys.cStandardDeviation]);
+    loggers.consoleTableLog('', D[cfg.ccommandsPerformanceAnalysisStack], [wrd.cName, wrd.cAverage, sys.cStandardDeviation]);
     stack.clearStack(cfg.ccommandsPerformanceAnalysisStack);
     // We need to have a flag that will enable the user to determine if the data should be cleared afer the analysis is complete.
     // It might be that the user wants to do something else with this data in memory after it's done.
-    if (configurator.getConfigurationSetting(wr1.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true) {
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true) {
       stack.clearStack(cfg.ccommandsPerformanceTrackingStack);
       stack.clearStack(cfg.ccommandNamesPerformanceTrackingStack);
     }
@@ -1364,7 +1364,7 @@ const saveConfiguration = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  dataBroker.writeJsonDataToFile(configurator.getConfigurationSetting(wr1.csystem, cfg.cappConfigPath) + wr1.cconfig + gen.cDotjson, JSON.stringify(D));
+  dataBroker.writeJsonDataToFile(configurator.getConfigurationSetting(wrd.csystem, cfg.cappConfigPath) + wrd.cconfig + gen.cDotjson, JSON.stringify(D));
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -1390,14 +1390,14 @@ const convertColors = function(inputData, inputMetaData) {
   colorConversionRule[0] = biz.creplaceCharacterWithCharacter;
   colorConversionRule[1] = biz.chex2rgbConversion;
 
-  let colorKeys = Object.keys(D[wr1.ccolors][sys.cColorData]);
+  let colorKeys = Object.keys(D[wrd.ccolors][sys.cColorData]);
   // colorKeys is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccolorKeysIs + JSON.stringify(colorKeys));
   for (let i = 0; i < colorKeys.length; i++) {
     let currentColorName = colorKeys[i];
     // currentColorName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorNameIs + currentColorName);
-    let currentColorObject = D[wr1.ccolors][sys.cColorData][currentColorName];
+    let currentColorObject = D[wrd.ccolors][sys.cColorData][currentColorName];
     // currentColorObject is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorObjectIs + JSON.stringify(currentColorObject));
     let currentColorHexValue = currentColorObject[sys.cHexValue];

@@ -21,7 +21,7 @@
  * @requires module:haystacks.constants.message
  * @requires module:haystacks.constants.phonic
  * @requires module:haystacks.constants.system
- * @requires module:haystacks.constants.word1
+ * @requires module:haystacks.constants.word
  * @requires {@link https://www.npmjs.com/package/url|url}
  * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -49,7 +49,7 @@ let gen = haystacks.gen;
 let msg = haystacks.msg;
 let phn = haystacks.phn;
 let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -77,7 +77,7 @@ function bootstrapApplication() {
   rootPathArray.pop(); // remove any bin or src folder from the path.
   rootPath = rootPathArray.join(bas.cBackSlash);
   let appConfig = {};
-  if (NODE_ENV === wr1.cdevelopment) {
+  if (NODE_ENV === wrd.cdevelopment) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
@@ -90,7 +90,7 @@ function bootstrapApplication() {
       clientBusinessRules: {},
       clientCommands: {}
     };
-  } else if (NODE_ENV === wr1.cproduction) {
+  } else if (NODE_ENV === wrd.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullProdResourcesPath,
@@ -139,7 +139,7 @@ async function application() {
   let commandInput;
   let commandResult;
 
-  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cargumentDrivenInterface);
+  argumentDrivenInterface = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cargumentDrivenInterface);
   if (argumentDrivenInterface === undefined) {
     argumentDrivenInterface = false;
   }

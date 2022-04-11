@@ -6,7 +6,7 @@
  * @requires module:haystacks
  * @requires module:haystacks.generic.constants
  * @requires module:haystacks.numeric.constants
- * @requires module:haystacks.word1.constants
+ * @requires module:haystacks.word.constants
  * @author Seth Hollingsead
  * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
@@ -16,13 +16,13 @@
 import haystacks from 'haystacks';
 let gen = haystacks.gen;
 let num = haystacks.num;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 
 // Client Business Rules
-export const cclientEcho = wr1.cclient + wr1.cEcho; // clientEcho
+export const cclientEcho = wrd.cclient + wrd.cEcho; // clientEcho
 
 // ********************************
 // ClientStringParsing rules in order
 // ********************************
-export const ccustomEcho = wr1.ccustom + wr1.cEcho; // customEcho
-export const cbuildReleasePackage = wr1.cbuild + wr1.cRelease + wr1.cPackage; // buildReleasePackage
+export const ccustomEcho = wrd.ccustom + wrd.cEcho; // customEcho
+export const cbuildReleasePackage = wrd.cbuild + wrd.cRelease + wrd.cPackage; // buildReleasePackage

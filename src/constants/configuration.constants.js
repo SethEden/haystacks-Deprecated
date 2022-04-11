@@ -5,7 +5,7 @@
  * @requires module:basic.constants
  * @requires module:generic.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @author Seth Hollingsead
  * @date 2021/11/09
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
@@ -15,78 +15,78 @@
 import * as bas from './basic.constants.js';
 import * as gen from './generic.constants.js';
 import * as sys from './system.constants.js';
-import * as wr1 from './word1.constants.js';
+import * as wrd from './word.constants.js';
 
 // Configuration Settings
-export const crootPath = wr1.croot + wr1.cPath; // rootPath
-export const cRootPath = wr1.cRoot + wr1.cPath; // RootPath
-export const cappRootPath = gen.capp + wr1.cRoot + wr1.cPath; // appRootPath
-export const cclientRootPath = wr1.cclient + wr1.cRoot + wr1.cPath; // clientRootPath
-export const cframeworkRootPath = wr1.cframework + wr1.cRoot + wr1.cPath; // frameworkRootPath
-export const cappConfigResourcesPath = gen.capp + wr1.cConfig + wr1.cResources + wr1.cPath; // appConfigResourcesPath
-export const cframeworkResourcesPath = wr1.cframework + wr1.cResources + wr1.cPath; // frameworkResourcesPath
-export const cframeworkConstantsPath = wr1.cframework + wr1.cConstants + wr1.cPath; // frameworkConstantsPath
-export const cclientConstantsPath = wr1.cclient + wr1.cConstants + wr1.cPath; // clientConstantsPath
-export const capplicationConstantsPath = wr1.capplication + wr1.cConstants + wr1.cPath; // applicationConstantsPath
-export const cclientMetaDataPath = wr1.cclient + wr1.cMetaData + wr1.cPath; // clientMetaDataPath
-export const cclientCommandAliasesPath = wr1.cclient + wr1.cCommand + wr1.cAliases + wr1.cPath; // clientCommandAliasesPath
-export const cclientWorkflowsPath = wr1.cclient + wr1.cWorkflows + wr1.cPath; // clientWorkflowsPath
-export const cframeworkFullMetaDataPath = wr1.cframework + wr1.cFull + wr1.cMetaData + wr1.cPath; // frameworkFullMetaDataPath
-export const cappConfigPath = gen.capp + wr1.cConfig + wr1.cPath; // appConfigPath
-export const cframeworkConfigPath = wr1.cframework + wr1.cConfig + wr1.cPath; // frameworkConfigPath
-export const cappConfigFiles = gen.capp + wr1.cConfig + wr1.cFiles; // appConfigFiles
-export const cframeworkConfigFiles = wr1.cframework + wr1.cConfig + wr1.cFiles; // frameworkConfigFiles
-export const cappConfigReferencePath = gen.capp + wr1.cConfig + wr1.cReference + wr1.cPath; // appConfigReferencePath
-export const cframeworkCommandAliasesPath = wr1.cframework + wr1.cCommand + wr1.cAliases + wr1.cPath; // frameworkCommandAliasesPath
-export const cframeworkWorkflowsPath = wr1.cframework + wr1.cWorkflows + wr1.cPath; // frameworkWorkflowsPath
-export const cdebugSetting = wr1.cdebug + wr1.cSetting; // debugSetting
-export const cdebugSettings = wr1.cdebug + wr1.cSettings; // debugSettings
-export const cdebugFiles = wr1.cdebug + wr1.cFiles; // debugFiles
-export const cdebugFunctions = wr1.cdebug + wr1.cFunctions; // debugFunctions
-export const cfigletFont = wr1.cfiglet + wr1.cFont; // figletFont
-export const cincludeDateTimeStampInLogFiles = wr1.cinclude + wr1.cDate + wr1.cTime + wr1.cStamp + bas.cIn + gen.cLog + wr1.cFiles; // includeDateTimeStampInLogFiles
-export const cLogFilePathAndName = wr1.cLog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName; // LogFilePathAndName
-export const cDataLogFilePathAndName = wr1.cData + wr1.cLog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName; // DataLogFilePathAndName
-export const cExecutionJournalFilePathAndName = wr1.cExecution + wr1.cJournal + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName; // ExecutionJournalFilePathAndName
-export const cResultsLogFilePathAndName = wr1.cResults + wr1.cLog + wr1.cFile + wr1.cPath + wr1.cAnd + wr1.cName; // ResultsLogFilePathAndName
-export const cTestDataPath = wr1.cTest + wr1.cData + wr1.cPath; // TestDataPath
-export const cconsoleLogEnabled = wr1.cconsole + wr1.cLog + wr1.cEnabled; // consoleLogEnabled
-export const clogFileEnabled = wr1.clog + wr1.cFile + wr1.cEnabled; // logFileEnabled
-export const cdateTimeStamp = wr1.cdate + wr1.cTime + wr1.cStamp; // dateTimeStamp
-export const cdateStamp = wr1.cdate + wr1.cStamp; // dateStamp
-export const ctimeStamp = wr1.ctime + wr1.cStamp; // timeStamp
-export const clogFileName = gen.clog + wr1.cFileName; // logFileName
-export const cIncludeDateTimeStampInLogFiles = wr1.cInclude + wr1.cDate + wr1.cTime + wr1.cStamp + bas.cIn + gen.cLog + wr1.cFiles; // IncludeDateTimeStampInLogFiles
-export const cenableColorizedConsoleLogs = wr1.cenable + wr1.cColorized + wr1.cConsole + wr1.cLogs; // enableColorizedConsoleLogs
-export const cprimaryCommandDelimiter = wr1.cprimary + wr1.cCommand + wr1.cDelimiter; // primaryCommandDelimiter
-export const csecondaryCommandDelimiter = wr1.csecondary + wr1.cCommand + wr1.cDelimiter; // secondaryCommandDelimiter
-export const ctertiaryCommandDelimiter = wr1.ctertiary + wr1.cCommand + wr1.cDelimiter; // tertiaryCommandDelimiter
-export const cenableBusinessRuleOutput = wr1.cenable + wr1.cBusiness + wr1.cRule + wr1.cOutput; // enableBusinessRuleOutput
-export const cenableBusinessRulePerformanceMetrics = wr1.cenable + wr1.cBusiness + wr1.cRule + wr1.cPerformance + wr1.cMetrics; // enableBusinessRulePerformanceMetrics
-export const cbusinessRulesNamesPerformanceTrackingStack = wr1.cbusiness + wr1.cRules + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // businessRulesNamesPerformanceTrackingStack
-export const cbusinessRulesPerformanceTrackingStack = wr1.cbusiness + wr1.cRules + wr1.cPerformance + wr1.cTracking + wr1.cStack; // businessRulesPerformanceTrackingStack
-export const cbusinessRulesPerformanceAnalysisStack = wr1.cbusiness + wr1.cRules + wr1.cPerformance + wr1.cAnalysis + wr1.cStack; // businessRulesPerformanceAnalysisStack
-export const cenableCommandPerformanceMetrics = wr1.cenable + wr1.cCommand + wr1.cPerformance + wr1.cMetrics; // enableCommandPerformanceMetrics
-export const ccommandNamesPerformanceTrackingStack = wr1.ccommand + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // commandNamesPerformanceTrackingStack
-export const ccommandsPerformanceTrackingStack = wr1.ccommands + wr1.cPerformance + wr1.cTracking + wr1.cStack; // commandsPerformanceTrackingStack
-export const ccommandsPerformanceAnalysisStack = wr1.ccommands + wr1.cPerformance + wr1.cAnalysis + wr1.cStack; // commandsPerformanceAnalysisStack
-export const cclearBusinessRulesPerformanceDataAfterAnalysis = wr1.cclear + wr1.cBusiness + wr1.cRules + wr1.cPerformance + wr1.cData + wr1.cAfter + wr1.cAnalysis; // clearBusinessRulesPerformanceDataAfterAnalysis
-export const cclearCommandPerformanceDataAfterAnalysis = wr1.cclear + wr1.cCommand + wr1.cPerformance + wr1.cData + wr1.cAfter + wr1.cAnalysis; // clearCommandPerformanceDataAfterAnalysis
-export const cprintDataHiveToLogFile = wr1.cprint + wr1.cData + wr1.cHive + wr1.cTo + gen.cLog + wr1.cFile; // printDataHiveToLogFile
-export const cenableConstantsValidation = wr1.cenable + wr1.cConstants + wr1.cValidation; // enableConstantsValidation
-export const cframeworkConstantsValidationData = wr1.cframework + wr1.cConstants + wr1.cValidation + wr1.cData; // frameworkConstantsValidationData
-export const capplicationConstantsValidationData = wr1.capplication + wr1.cConstants + wr1.cValidation + wr1.cData; // applicationConstantsValidationData
-export const cdisplayIndividualConstantsValidationPassMessages = wr1.cdisplay + wr1.cIndividual + wr1.cConstants + wr1.cValidation + wr1.cPass + wr1.cMessages; // displayIndividualConstantsValidationPassMessages
-export const cdisplayIndividualCosntantsValidationFailMessages = wr1.cdisplay + wr1.cIndividual + wr1.cConstants + wr1.cValidation + wr1.cFail + wr1.cMessages; // displayIndividualConstantsValidationFailMessages
-export const cdisplaySummaryConstantsValidationPassMessages = wr1.cdisplay + wr1.cSummary + wr1.cConstants + wr1.cValidation + wr1.cPass + wr1.cMessages; // displaySummaryConstantsValidationPassMessages
-export const cdisplaySummaryConstantsValidationFailMessages = wr1.cdisplay + wr1.cSummary + wr1.cConstants + wr1.cValidation + wr1.cFail + wr1.cMessages; // displaySummaryConstantsValidationFailMessages
-export const cpassAllConstantsValidation = wr1.cpass + wr1.cAll + wr1.cConstants + wr1.cValidation; // passAllConstantsValidation
-export const cpassedAllCommandAliasesDuplicateChecks = wr1.cpassed + wr1.cAll + wr1.cCommand + wr1.cAliases + wr1.cDuplicate + wr1.cChecks; // passedAllCommandAliasesDuplicateChecks
-export const creleaseCompleted = wr1.crelease + wr1.cCompleted; // releaseCompleted
+export const crootPath = wrd.croot + wrd.cPath; // rootPath
+export const cRootPath = wrd.cRoot + wrd.cPath; // RootPath
+export const cappRootPath = gen.capp + wrd.cRoot + wrd.cPath; // appRootPath
+export const cclientRootPath = wrd.cclient + wrd.cRoot + wrd.cPath; // clientRootPath
+export const cframeworkRootPath = wrd.cframework + wrd.cRoot + wrd.cPath; // frameworkRootPath
+export const cappConfigResourcesPath = gen.capp + wrd.cConfig + wrd.cResources + wrd.cPath; // appConfigResourcesPath
+export const cframeworkResourcesPath = wrd.cframework + wrd.cResources + wrd.cPath; // frameworkResourcesPath
+export const cframeworkConstantsPath = wrd.cframework + wrd.cConstants + wrd.cPath; // frameworkConstantsPath
+export const cclientConstantsPath = wrd.cclient + wrd.cConstants + wrd.cPath; // clientConstantsPath
+export const capplicationConstantsPath = wrd.capplication + wrd.cConstants + wrd.cPath; // applicationConstantsPath
+export const cclientMetaDataPath = wrd.cclient + wrd.cMetaData + wrd.cPath; // clientMetaDataPath
+export const cclientCommandAliasesPath = wrd.cclient + wrd.cCommand + wrd.cAliases + wrd.cPath; // clientCommandAliasesPath
+export const cclientWorkflowsPath = wrd.cclient + wrd.cWorkflows + wrd.cPath; // clientWorkflowsPath
+export const cframeworkFullMetaDataPath = wrd.cframework + wrd.cFull + wrd.cMetaData + wrd.cPath; // frameworkFullMetaDataPath
+export const cappConfigPath = gen.capp + wrd.cConfig + wrd.cPath; // appConfigPath
+export const cframeworkConfigPath = wrd.cframework + wrd.cConfig + wrd.cPath; // frameworkConfigPath
+export const cappConfigFiles = gen.capp + wrd.cConfig + wrd.cFiles; // appConfigFiles
+export const cframeworkConfigFiles = wrd.cframework + wrd.cConfig + wrd.cFiles; // frameworkConfigFiles
+export const cappConfigReferencePath = gen.capp + wrd.cConfig + wrd.cReference + wrd.cPath; // appConfigReferencePath
+export const cframeworkCommandAliasesPath = wrd.cframework + wrd.cCommand + wrd.cAliases + wrd.cPath; // frameworkCommandAliasesPath
+export const cframeworkWorkflowsPath = wrd.cframework + wrd.cWorkflows + wrd.cPath; // frameworkWorkflowsPath
+export const cdebugSetting = wrd.cdebug + wrd.cSetting; // debugSetting
+export const cdebugSettings = wrd.cdebug + wrd.cSettings; // debugSettings
+export const cdebugFiles = wrd.cdebug + wrd.cFiles; // debugFiles
+export const cdebugFunctions = wrd.cdebug + wrd.cFunctions; // debugFunctions
+export const cfigletFont = wrd.cfiglet + wrd.cFont; // figletFont
+export const cincludeDateTimeStampInLogFiles = wrd.cinclude + wrd.cDate + wrd.cTime + wrd.cStamp + bas.cIn + gen.cLog + wrd.cFiles; // includeDateTimeStampInLogFiles
+export const cLogFilePathAndName = wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // LogFilePathAndName
+export const cDataLogFilePathAndName = wrd.cData + wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // DataLogFilePathAndName
+export const cExecutionJournalFilePathAndName = wrd.cExecution + wrd.cJournal + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // ExecutionJournalFilePathAndName
+export const cResultsLogFilePathAndName = wrd.cResults + wrd.cLog + wrd.cFile + wrd.cPath + wrd.cAnd + wrd.cName; // ResultsLogFilePathAndName
+export const cTestDataPath = wrd.cTest + wrd.cData + wrd.cPath; // TestDataPath
+export const cconsoleLogEnabled = wrd.cconsole + wrd.cLog + wrd.cEnabled; // consoleLogEnabled
+export const clogFileEnabled = wrd.clog + wrd.cFile + wrd.cEnabled; // logFileEnabled
+export const cdateTimeStamp = wrd.cdate + wrd.cTime + wrd.cStamp; // dateTimeStamp
+export const cdateStamp = wrd.cdate + wrd.cStamp; // dateStamp
+export const ctimeStamp = wrd.ctime + wrd.cStamp; // timeStamp
+export const clogFileName = gen.clog + wrd.cFileName; // logFileName
+export const cIncludeDateTimeStampInLogFiles = wrd.cInclude + wrd.cDate + wrd.cTime + wrd.cStamp + bas.cIn + gen.cLog + wrd.cFiles; // IncludeDateTimeStampInLogFiles
+export const cenableColorizedConsoleLogs = wrd.cenable + wrd.cColorized + wrd.cConsole + wrd.cLogs; // enableColorizedConsoleLogs
+export const cprimaryCommandDelimiter = wrd.cprimary + wrd.cCommand + wrd.cDelimiter; // primaryCommandDelimiter
+export const csecondaryCommandDelimiter = wrd.csecondary + wrd.cCommand + wrd.cDelimiter; // secondaryCommandDelimiter
+export const ctertiaryCommandDelimiter = wrd.ctertiary + wrd.cCommand + wrd.cDelimiter; // tertiaryCommandDelimiter
+export const cenableBusinessRuleOutput = wrd.cenable + wrd.cBusiness + wrd.cRule + wrd.cOutput; // enableBusinessRuleOutput
+export const cenableBusinessRulePerformanceMetrics = wrd.cenable + wrd.cBusiness + wrd.cRule + wrd.cPerformance + wrd.cMetrics; // enableBusinessRulePerformanceMetrics
+export const cbusinessRulesNamesPerformanceTrackingStack = wrd.cbusiness + wrd.cRules + wrd.cNames + wrd.cPerformance + wrd.cTracking + wrd.cStack; // businessRulesNamesPerformanceTrackingStack
+export const cbusinessRulesPerformanceTrackingStack = wrd.cbusiness + wrd.cRules + wrd.cPerformance + wrd.cTracking + wrd.cStack; // businessRulesPerformanceTrackingStack
+export const cbusinessRulesPerformanceAnalysisStack = wrd.cbusiness + wrd.cRules + wrd.cPerformance + wrd.cAnalysis + wrd.cStack; // businessRulesPerformanceAnalysisStack
+export const cenableCommandPerformanceMetrics = wrd.cenable + wrd.cCommand + wrd.cPerformance + wrd.cMetrics; // enableCommandPerformanceMetrics
+export const ccommandNamesPerformanceTrackingStack = wrd.ccommand + wrd.cNames + wrd.cPerformance + wrd.cTracking + wrd.cStack; // commandNamesPerformanceTrackingStack
+export const ccommandsPerformanceTrackingStack = wrd.ccommands + wrd.cPerformance + wrd.cTracking + wrd.cStack; // commandsPerformanceTrackingStack
+export const ccommandsPerformanceAnalysisStack = wrd.ccommands + wrd.cPerformance + wrd.cAnalysis + wrd.cStack; // commandsPerformanceAnalysisStack
+export const cclearBusinessRulesPerformanceDataAfterAnalysis = wrd.cclear + wrd.cBusiness + wrd.cRules + wrd.cPerformance + wrd.cData + wrd.cAfter + wrd.cAnalysis; // clearBusinessRulesPerformanceDataAfterAnalysis
+export const cclearCommandPerformanceDataAfterAnalysis = wrd.cclear + wrd.cCommand + wrd.cPerformance + wrd.cData + wrd.cAfter + wrd.cAnalysis; // clearCommandPerformanceDataAfterAnalysis
+export const cprintDataHiveToLogFile = wrd.cprint + wrd.cData + wrd.cHive + wrd.cTo + gen.cLog + wrd.cFile; // printDataHiveToLogFile
+export const cenableConstantsValidation = wrd.cenable + wrd.cConstants + wrd.cValidation; // enableConstantsValidation
+export const cframeworkConstantsValidationData = wrd.cframework + wrd.cConstants + wrd.cValidation + wrd.cData; // frameworkConstantsValidationData
+export const capplicationConstantsValidationData = wrd.capplication + wrd.cConstants + wrd.cValidation + wrd.cData; // applicationConstantsValidationData
+export const cdisplayIndividualConstantsValidationPassMessages = wrd.cdisplay + wrd.cIndividual + wrd.cConstants + wrd.cValidation + wrd.cPass + wrd.cMessages; // displayIndividualConstantsValidationPassMessages
+export const cdisplayIndividualCosntantsValidationFailMessages = wrd.cdisplay + wrd.cIndividual + wrd.cConstants + wrd.cValidation + wrd.cFail + wrd.cMessages; // displayIndividualConstantsValidationFailMessages
+export const cdisplaySummaryConstantsValidationPassMessages = wrd.cdisplay + wrd.cSummary + wrd.cConstants + wrd.cValidation + wrd.cPass + wrd.cMessages; // displaySummaryConstantsValidationPassMessages
+export const cdisplaySummaryConstantsValidationFailMessages = wrd.cdisplay + wrd.cSummary + wrd.cConstants + wrd.cValidation + wrd.cFail + wrd.cMessages; // displaySummaryConstantsValidationFailMessages
+export const cpassAllConstantsValidation = wrd.cpass + wrd.cAll + wrd.cConstants + wrd.cValidation; // passAllConstantsValidation
+export const cpassedAllCommandAliasesDuplicateChecks = wrd.cpassed + wrd.cAll + wrd.cCommand + wrd.cAliases + wrd.cDuplicate + wrd.cChecks; // passedAllCommandAliasesDuplicateChecks
+export const creleaseCompleted = wrd.crelease + wrd.cCompleted; // releaseCompleted
 
 // Test Time Tracking
-export const cBeginDateTimeStamp = wr1.cBegin + sys.cDateTimeStamp; // BeginDateTimeStamp
-export const cEndDateTimeStamp = wr1.cEnd + sys.cDateTimeStamp; // EndDateTimeStamp
+export const cBeginDateTimeStamp = wrd.cBegin + sys.cDateTimeStamp; // BeginDateTimeStamp
+export const cEndDateTimeStamp = wrd.cEnd + sys.cDateTimeStamp; // EndDateTimeStamp
 
-export const cBusinessRulePerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRulePerformanceTrackingStack
-export const cBusinessRuleNamesPerformanceTrackingStack = wr1.cBusiness + wr1.cRule + wr1.cNames + wr1.cPerformance + wr1.cTracking + wr1.cStack; // BusinessRuleNamesPerformanceTrackingStack
+export const cBusinessRulePerformanceTrackingStack = wrd.cBusiness + wrd.cRule + wrd.cPerformance + wrd.cTracking + wrd.cStack; // BusinessRulePerformanceTrackingStack
+export const cBusinessRuleNamesPerformanceTrackingStack = wrd.cBusiness + wrd.cRule + wrd.cNames + wrd.cPerformance + wrd.cTracking + wrd.cStack; // BusinessRuleNamesPerformanceTrackingStack

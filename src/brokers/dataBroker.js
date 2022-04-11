@@ -11,7 +11,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
@@ -31,7 +31,7 @@ import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
@@ -41,7 +41,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.dataBroker.
-const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function scanDataPath
@@ -121,23 +121,23 @@ function findIndividualDebugConfigSetting(filesToLoad) {
   let systemConfigFileName = sys.csystemConfigFileName; // 'framework.system.json';
   let applicationConfigFileName = sys.capplicationConfigFileName; // 'application.system.json';
   let multiMergedData = {};
-  let systemDotDebugSettings = wr1.csystem + bas.cDot + cfg.cdebugSettings;
+  let systemDotDebugSettings = wrd.csystem + bas.cDot + cfg.cdebugSettings;
 
   for (let i = 0; i < filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
     // console.log('fileToLoad is: ' + fileToLoad);
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
       let dataFile = preprocessJsonFile(fileToLoad);
-      multiMergedData[wr1.csystem] = {};
-      multiMergedData[wr1.csystem] = dataFile;
+      multiMergedData[wrd.csystem] = {};
+      multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
     }
     if (foundSystemData === true) {
       break;
     }
   }
-  if (multiMergedData[wr1.csystem]) {
-    if (multiMergedData[wr1.csystem][systemDotDebugSettings]) {
+  if (multiMergedData[wrd.csystem]) {
+    if (multiMergedData[wrd.csystem][systemDotDebugSettings]) {
       individualDebugConfigSetting = true;
     }
   }
@@ -258,7 +258,7 @@ function loadAllXmlData(filesToLoad, contextName) {
         multiMergedData = dataFile;
       } else {
         j++;
-        multiMergedData = mergeData(multiMergedData, wr1.cPage, '', dataFile);
+        multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
       }
       // DONE PROCESSING ADDITIONAL DATA
       loggers.consoleLog(namespacePrefix + functionName, msg.cDONE_PROCESSING_ADDITIONAL_DATA);
@@ -317,8 +317,8 @@ function loadAllJsonData(filesToLoad, contextName) {
       // We will have a new setting that determines if all the extra debug settings should be loaded or not.
       // This way the application performance can be seriously optimized to greater levels of lean performance.
       // Adding all that extra debugging cnfiguration settings can affect load times, and application performance to a much lesser degree.
-      multiMergedData[wr1.csystem] = {};
-      multiMergedData[wr1.csystem] = dataFile;
+      multiMergedData[wrd.csystem] = {};
+      multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
     }
     if (foundSystemData === true) {
@@ -327,11 +327,11 @@ function loadAllJsonData(filesToLoad, contextName) {
   }
 
   // Now we need to determine if we should load the rest of the data.
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cdebugSettings) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugSettings) === true) {
     for (let j = 0; j < filesToLoad.length; j++) {
       let fileToLoad = filesToLoad[j];
       if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
-      && fileToLoad.toUpperCase().includes(gen.cDotJSON) && !fileToLoad.toLowerCase().includes(wr1.cmetadata + gen.cDotjson)) {
+      && fileToLoad.toUpperCase().includes(gen.cDotJSON) && !fileToLoad.toLowerCase().includes(wrd.cmetadata + gen.cDotjson)) {
         let dataFile = preprocessJsonFile(fileToLoad);
         // console.log('dataFile to merge is: ' + JSON.stringify(dataFile));
         loggers.consoleLog(namespacePrefix + functionName, msg.cdataFileToMergeIs + JSON.stringify(dataFile));
@@ -373,12 +373,12 @@ function processCsvData(data, contextName) {
   // dataCatagory is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
   let dataCatagoryDetailName;
-  if (contextName.includes(wr1.cWorkflow)) {
+  if (contextName.includes(wrd.cWorkflow)) {
     // Processing a workflow
-    Object.assign(D[wr1.cWorkflow], parsedData[contextName]);
-  } else if (contextName.includes(wr1.ccolors)) {
-    D[wr1.ccolors] = {};
-    Object.assign(D[wr1.ccolors], parsedData);
+    Object.assign(D[wrd.cWorkflow], parsedData[contextName]);
+  } else if (contextName.includes(wrd.ccolors)) {
+    D[wrd.ccolors] = {};
+    Object.assign(D[wrd.ccolors], parsedData);
   } else {
     // Processing all other kinds of files.
     if (typeof D[dataCatagory] !== 'undefined' && D[dataCatagory]) {
@@ -421,18 +421,18 @@ function processXmlData(data, contextName) {
   let parsedDataFile = {};
   if (dataCatagory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
-    parsedDataFile[sys.cCommandsAliases][wr1.cCommands] = {};
-    for (let i = 0; i < data[sys.cCommandsAliases][wr1.cCommand].length; i++) {
-      let command = data[sys.cCommandsAliases][wr1.cCommand][i][bas.cDollar];
-      parsedDataFile[sys.cCommandsAliases][wr1.cCommands][command.Name] = command;
-    } // End-for (let i = 0; i < data[sys.cCommandAliases][wr1.cCommand].length; i++)
+    parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
+    for (let i = 0; i < data[sys.cCommandsAliases][wrd.cCommand].length; i++) {
+      let command = data[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
+      parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
+    } // End-for (let i = 0; i < data[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
-    parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows] = {};
-    for (let j = 0; j < data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++) {
-      let workflow = data[sys.cCommandWorkflows][wr1.cWorkflow][j][bas.cDollar];
-      parsedDataFile[sys.cCommandWorkflows][wr1.cWorkflows][workflow.Name] = workflow;
-    } // End-for (let j = 0; j < data[sys.cCommandWorkflows][wr1.cWorkflow].length; j++)
+    parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows] = {};
+    for (let j = 0; j < data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++) {
+      let workflow = data[sys.cCommandWorkflows][wrd.cWorkflow][j][bas.cDollar];
+      parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows][workflow.Name] = workflow;
+    } // End-for (let j = 0; j < data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
   } // End-else-if (dataCatagory === sys.cCommandWorkflows)
 
   // parsedDataFile is:
@@ -717,27 +717,27 @@ function extractDataFromPapaParseObject(data, contextName) {
   let cleanKeysRules = [];
   let tempData = {};
   let validDataAdded = false;
-  if (contextName === wr1.ccolors) {
+  if (contextName === wrd.ccolors) {
     contextName = sys.cColorData;
   }
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   tempData[contextName] = {};
   cleanKeysRules[0] = biz.ccleanCarriageReturnFromString;
-  let highLevelDataCount = Object.keys(data[wr1.cdata]).length;
+  let highLevelDataCount = Object.keys(data[wrd.cdata]).length;
   for (let i = 0; i <= highLevelDataCount; i++) {
     validDataAdded = false;
     let lowLevelTempData = {};
     if (contextName === sys.cColorData) {
       let colorName = '';
-      for (let key in data[wr1.cdata][i]) {
+      for (let key in data[wrd.cdata][i]) {
         validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
         if (key === sys.cColorName) {
-          colorName = data[wr1.cdata][i][key];
+          colorName = data[wrd.cdata][i][key];
         }
-        lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
-      } // End-for (let key in data[wr1.cdata][i])
+        lowLevelTempData[newKey] = ruleBroker.processRules(data[wrd.cdata][i][key], '', cleanKeysRules);
+      } // End-for (let key in data[wrd.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][colorName] = {};
         if (i === 0) {
@@ -747,11 +747,11 @@ function extractDataFromPapaParseObject(data, contextName) {
         }
       } // End-if (validDataAdded === true)
     } else { // Else-clause (contextName === sys.cColorData)
-      for (let key in data[wr1.cdata][i]) {
+      for (let key in data[wrd.cdata][i]) {
         validDataAdded = true;
         let newKey = ruleBroker.processRules(key, '', cleanKeysRules);
-        lowLevelTempData[newKey] = ruleBroker.processRules(data[wr1.cdata][i][key], '', cleanKeysRules);
-      } // End-for (let key in data[wr1.cdata][i])
+        lowLevelTempData[newKey] = ruleBroker.processRules(data[wrd.cdata][i][key], '', cleanKeysRules);
+      } // End-for (let key in data[wrd.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][i] = {};
         if (i === 0) {

@@ -9,7 +9,7 @@
  * @requires module:function.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -23,7 +23,7 @@ import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
@@ -31,7 +31,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.workflowBroker.
-const namespacePrefix = wr1.cbrokers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getWorkflow
@@ -49,25 +49,25 @@ function getWorkflow(workflowName) {
   // workflowName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowNameIs + workflowName);
   let workflowValue = false;
-  let arrayOfWorkflows = D[sys.cCommandWorkflows][wr1.cWorkflows];
+  let arrayOfWorkflows = D[sys.cCommandWorkflows][wrd.cWorkflows];
   // Code to print all the workflows for debugging.
   // console.log('arrayOfWorkflows is: ' + JSON.stringify(arrayOfWorkflows));
   // for (let i = 0; i < arrayOfWorkflows.length; i++) {
   //   let currentWorkflow = arrayOfWorkflows[i];
   //   // currentWorkflow is:
   //   loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentWorkflowIs + JSON.stringify(currentWorkflow));
-  //   if (currentWorkflow[wr1.cName] === workflowName) {
-  //     workflowValue = currentWorkflow[wr1.cValue];
+  //   if (currentWorkflow[wrd.cName] === workflowName) {
+  //     workflowValue = currentWorkflow[wrd.cValue];
   //     // workflowValue is:
   //     loggers.consoleLog(namespacePrefix + functionName, msg.cwokflowValueIs + JSON.stringify(workflowValue));
   //     break;
-  //   } // End-if (currentWorkflow[wr1.cName] === workflowName)
+  //   } // End-if (currentWorkflow[wrd.cName] === workflowName)
   // } // End-for (let i = 0; i < arrayOfWorkflows.length; i++)
   if (arrayOfWorkflows[workflowName] !== undefined) {
     let currentWorkflow = arrayOfWorkflows[workflowName];
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentWorkflowIs + JSON.stringify(currentWorkflow));
-    if (currentWorkflow[wr1.cName] === workflowName) {
-      workflowValue = currentWorkflow[wr1.cValue];
+    if (currentWorkflow[wrd.cName] === workflowName) {
+      workflowValue = currentWorkflow[wrd.cValue];
       // workflowValue is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cwokflowValueIs + JSON.stringify(workflowValue));
     }

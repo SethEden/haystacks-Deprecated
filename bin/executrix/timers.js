@@ -7,7 +7,7 @@
  * @requires module:function.constants
  * @requires module:generic.constants
  * @requires module:message.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/moment|moment}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -21,7 +21,7 @@ import * as bas from '../constants/basic.constants.js';
 import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import loggers from './loggers.js';
 // External imports
 import moment from 'moment';
@@ -29,7 +29,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.timers.
-const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getNowMoment

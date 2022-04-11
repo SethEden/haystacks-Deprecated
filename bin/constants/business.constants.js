@@ -7,7 +7,7 @@
  * @requires module:numeric.constants
  * @requires module:phonic.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @author Seth Hollingsead
  * @date 2021/10/29
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
@@ -19,182 +19,182 @@ import * as gen from './generic.constants.js';
 import * as num from './numeric.constants.js';
 import * as phn from './phonic.constants.js';
 import * as sys from './system.constants.js';
-import * as wr1 from './word1.constants.js';
+import * as wrd from './word.constants.js';
 
 // Business Rules
-export const cecho = wr1.cecho; // echo
-export const cEcho = wr1.cEcho; // Echo
+export const cecho = wrd.cecho; // echo
+export const cEcho = wrd.cEcho; // Echo
 
 // ***********************************************
 // ArrayParsing rules in order
 // ***********************************************
-export const creplaceCharacterWithCharacter = wr1.creplace + wr1.cCharacter + wr1.cWith + wr1.cCharacter; // replaceCharacterWithCharacter
-export const cconvertCamelCaseStringToArray = wr1.cconvert + wr1.cCamel + wr1.cCase + wr1.cString + wr1.cTo + wr1.cArray; // convertCamelCaseStringToArray
-export const cgetWordsArrayFromString = wr1.cget + wr1.cWords + wr1.cArray + wr1.cFrom + wr1.cString; // getWordsArrayFromString
-export const crecombineStringArrayWithSpaces = wr1.crecombine + wr1.cString + wr1.cArray + wr1.cWith + wr1.cSpaces; // recombineStringArrayWithSpaces
-export const cconvertArrayToCamelCaseString = wr1.cconvert + wr1.cArray + wr1.cTo + wr1.cCamel + wr1.cCase + wr1.cString; // convertArrayToCamelCaseString
-export const cdoesArrayContainLowerCaseConsolidatedString = wr1.cdoes + wr1.cArray + wr1.cContain + wr1.cLower + wr1.cCase + wr1.cConsolidated + wr1.cString; // doesArrayContainLowerCaseConsolidatedString
-export const cdoesArrayContainCharacter = wr1.cdoes + wr1.cArray + wr1.cContain + wr1.cCharacter; // doesArrayContainCharacter
-export const cremoveCharacterFromArray = wr1.cremove + wr1.cCharacter + wr1.cFrom + wr1.cArray; // removeCharacterFromArray
-export const cascertainMatchingElements = wr1.cascertain + wr1.cMatching + wr1.cElements; // ascertainMatchingElements
-export const cdoesArrayContainFilename = wr1.cdoes + wr1.cArray + wr1.cContain + wr1.cFilename; // doesArrayContainFilename
-export const creadDirectoryContents = wr1.cread + wr1.cDirectory + wr1.cContents; // readDirectoryContents
-export const cgetLengthOfLongestStringInArray = wr1.cget + wr1.cLength + wr1.cOf + wr1.cLongest + wr1.cString + bas.cIn + wr1.cArray; // getLengthOfLongestStringInArray
-export const csearchForPatternsInStringArray = wr1.csearch + wr1.cFor + wr1.cPatterns + bas.cIn + wr1.cString + wr1.cArray; // searchForPatternsInStringArray
-export const cvalidatePatternsThatNeedImplementation = wr1.cvalidate + wr1.cPatterns + wr1.cThat + wr1.cNeed + wr1.cImplementation; // validatePatternsThatNeedImplementation
-export const csolveLehmerCode = wr1.csolve + wr1.cLehmer + wr1.cCode; // solveLehmerCode
-export const crecursiveArrayExpansion = wr1.crecursive + wr1.cArray + wr1.cExpansion; // recursiveArrayExpansion
-export const cgetLehmerCodeValue = wr1.cget + wr1.cLehmer + wr1.cCode + wr1.cValue; // getLehmerCodeValue
-export const carraysAreEqual = wr1.carrays + wr1.cAre + wr1.cEqual; // arraysAreEqual
-export const cstoreData = wr1.cstore + wr1.cData; // storeData
-export const cgetStoredData = wr1.cget + wr1.cStored + wr1.cData; // getStoredData
-export const cisObjectEmpty = wr1.cis + wr1.cObject + wr1.cEmpty; // isObjectEmpty
-export const cisArrayEmpty = wr1.cis + wr1.cArray + wr1.cEmpty; // isArrayEmpty
-export const cisObject = wr1.cis + wr1.cObject; // isObject
-export const cisArray = wr1.cis + wr1.cArray; // isArray
-export const cisArrayOrObject = wr1.cis + wr1.cArray + wr1.cOr + wr1.cObject; // isArrayOrObject
-export const cisNonZeroLengthArray = wr1.cis + phn.cNon + num.cZero + wr1.cLength + wr1.cArray; // isNonZeroLengthArray
-export const carrayDeepClone = wr1.carray + wr1.cDeep + wr1.cClone; // arrayDeepClone
-export const creplaceCharacterAtIndex = wr1.creplace + wr1.cCharacter + wr1.cAt + wr1.cIndex; // replaceCharacterAtIndex
-export const cgenerateCommandAliases = wr1.cgenerate + wr1.cCommand + wr1.cAliases; // generateCommandAliases
-export const caggregateCommandArguments = wr1.caggregate + wr1.cCommand + wr1.cArguments; // aggregateCommandArguments
-export const cgetFileAndPathListForPath = wr1.cget + wr1.cFile + wr1.cAnd + wr1.cPath + wr1.cList + wr1.cFor + wr1.cPath; // getFileAndPathListForPath
-export const cparseColorRangeInputs = wr1.cparse + wr1.cColor + wr1.cRange + wr1.cInputs; // parseColorRangeInputs
-export const cdoesArrayContainValue = wr1.cdoes + wr1.cArray + wr1.cContain + wr1.cValue; // doesArrayContainValue
+export const creplaceCharacterWithCharacter = wrd.creplace + wrd.cCharacter + wrd.cWith + wrd.cCharacter; // replaceCharacterWithCharacter
+export const cconvertCamelCaseStringToArray = wrd.cconvert + wrd.cCamel + wrd.cCase + wrd.cString + wrd.cTo + wrd.cArray; // convertCamelCaseStringToArray
+export const cgetWordsArrayFromString = wrd.cget + wrd.cWords + wrd.cArray + wrd.cFrom + wrd.cString; // getWordsArrayFromString
+export const crecombineStringArrayWithSpaces = wrd.crecombine + wrd.cString + wrd.cArray + wrd.cWith + wrd.cSpaces; // recombineStringArrayWithSpaces
+export const cconvertArrayToCamelCaseString = wrd.cconvert + wrd.cArray + wrd.cTo + wrd.cCamel + wrd.cCase + wrd.cString; // convertArrayToCamelCaseString
+export const cdoesArrayContainLowerCaseConsolidatedString = wrd.cdoes + wrd.cArray + wrd.cContain + wrd.cLower + wrd.cCase + wrd.cConsolidated + wrd.cString; // doesArrayContainLowerCaseConsolidatedString
+export const cdoesArrayContainCharacter = wrd.cdoes + wrd.cArray + wrd.cContain + wrd.cCharacter; // doesArrayContainCharacter
+export const cremoveCharacterFromArray = wrd.cremove + wrd.cCharacter + wrd.cFrom + wrd.cArray; // removeCharacterFromArray
+export const cascertainMatchingElements = wrd.cascertain + wrd.cMatching + wrd.cElements; // ascertainMatchingElements
+export const cdoesArrayContainFilename = wrd.cdoes + wrd.cArray + wrd.cContain + wrd.cFilename; // doesArrayContainFilename
+export const creadDirectoryContents = wrd.cread + wrd.cDirectory + wrd.cContents; // readDirectoryContents
+export const cgetLengthOfLongestStringInArray = wrd.cget + wrd.cLength + wrd.cOf + wrd.cLongest + wrd.cString + bas.cIn + wrd.cArray; // getLengthOfLongestStringInArray
+export const csearchForPatternsInStringArray = wrd.csearch + wrd.cFor + wrd.cPatterns + bas.cIn + wrd.cString + wrd.cArray; // searchForPatternsInStringArray
+export const cvalidatePatternsThatNeedImplementation = wrd.cvalidate + wrd.cPatterns + wrd.cThat + wrd.cNeed + wrd.cImplementation; // validatePatternsThatNeedImplementation
+export const csolveLehmerCode = wrd.csolve + wrd.cLehmer + wrd.cCode; // solveLehmerCode
+export const crecursiveArrayExpansion = wrd.crecursive + wrd.cArray + wrd.cExpansion; // recursiveArrayExpansion
+export const cgetLehmerCodeValue = wrd.cget + wrd.cLehmer + wrd.cCode + wrd.cValue; // getLehmerCodeValue
+export const carraysAreEqual = wrd.carrays + wrd.cAre + wrd.cEqual; // arraysAreEqual
+export const cstoreData = wrd.cstore + wrd.cData; // storeData
+export const cgetStoredData = wrd.cget + wrd.cStored + wrd.cData; // getStoredData
+export const cisObjectEmpty = wrd.cis + wrd.cObject + wrd.cEmpty; // isObjectEmpty
+export const cisArrayEmpty = wrd.cis + wrd.cArray + wrd.cEmpty; // isArrayEmpty
+export const cisObject = wrd.cis + wrd.cObject; // isObject
+export const cisArray = wrd.cis + wrd.cArray; // isArray
+export const cisArrayOrObject = wrd.cis + wrd.cArray + wrd.cOr + wrd.cObject; // isArrayOrObject
+export const cisNonZeroLengthArray = wrd.cis + phn.cNon + num.cZero + wrd.cLength + wrd.cArray; // isNonZeroLengthArray
+export const carrayDeepClone = wrd.carray + wrd.cDeep + wrd.cClone; // arrayDeepClone
+export const creplaceCharacterAtIndex = wrd.creplace + wrd.cCharacter + wrd.cAt + wrd.cIndex; // replaceCharacterAtIndex
+export const cgenerateCommandAliases = wrd.cgenerate + wrd.cCommand + wrd.cAliases; // generateCommandAliases
+export const caggregateCommandArguments = wrd.caggregate + wrd.cCommand + wrd.cArguments; // aggregateCommandArguments
+export const cgetFileAndPathListForPath = wrd.cget + wrd.cFile + wrd.cAnd + wrd.cPath + wrd.cList + wrd.cFor + wrd.cPath; // getFileAndPathListForPath
+export const cparseColorRangeInputs = wrd.cparse + wrd.cColor + wrd.cRange + wrd.cInputs; // parseColorRangeInputs
+export const cdoesArrayContainValue = wrd.cdoes + wrd.cArray + wrd.cContain + wrd.cValue; // doesArrayContainValue
 
 // ***********************************************
 // characterGeneration rules in order
 // ***********************************************
-export const crandomlyGenerateMixedCaseLetterOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cMixed + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateMixedCaseLetterOrSpecialCharacter
-export const crandomlyGenerateUpperCaseLetterOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cUpper + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateUpperCaseLetterOrSpecialCharacter
-export const crandomlyGenerateLowerCaseLetterOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cLower + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateLowerCaseLetterOrSpecialCharacter
-export const crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cEither + wr1.cMixed + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cNumber + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
-export const crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cEither + wr1.cUpper + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cNumber + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter
-export const crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cEither + wr1.cLower + wr1.cCase + wr1.cLetter + wr1.cOr + wr1.cNumber + wr1.cOr + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter
-export const crandomlyGenerateMixedCaseAlphaNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateMixedCaseAlphaNumericCharacter
-export const crandomlyGenerateUpperCaseAlphaNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateUpperCaseAlphaNumericCharacter
-export const crandomlyGenerateLowerCaseAlphaNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cLower + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateLowerCaseAlphaNumericCharacter
-export const crandomlyGenerateNumericCharacter = wr1.crandomly + wr1.cGenerate + wr1.cNumeric + wr1.cCharacter; // randomlyGenerateNumericCharacter
-export const crandomlyGenerateSpecialCharacter = wr1.crandomly + wr1.cGenerate + wr1.cSpecial + wr1.cCharacter; // randomlyGenerateSpecialCharacter
-export const crandomlyGenerateNumberInRange = wr1.crandomly + wr1.cGenerate + wr1.cNumber + wr1.cIn + wr1.cRange; // randomlyGenerateNumberInRange
-export const crandomlyGenerateBooleanValue = wr1.crandomly + wr1.cGenerate + wr1.cBoolean + wr1.cValue; // randomlyGenerateBooleanValue
-export const crandomlyGenerateMixedCaseAlphabeticCharacter = wr1.crandomly + wr1.cGenerate + wr1.cMixed + wr1.cCase + wr1.cAlphabetic + wr1.cCharacter; // randomlyGenerateMixedCaseAlphabeticCharacter
-export const crandomlyGenerateLowerCaseLetter = wr1.crandomly + wr1.cGenerate + wr1.cLower + wr1.cCase + wr1.cLetter; // randomlyGenerateLowerCaseLetter
-export const crandomlyGenerateUpperCaseLetter = wr1.crandomly + wr1.cGenerate + wr1.cUpper + wr1.cCase + wr1.cLetter; // randomlyGenerateUpperCaseLetter
-export const cconvertNumberToUpperCaseLetter = wr1.cconvert + wr1.cNumber + wr1.cTo + wr1.cUpper + wr1.cCase + wr1.cLetter; // convertNumberToUpperCaseLetter
-export const cconvertNumberToLowerCaseLetter = wr1.cconvert + wr1.cNumber + wr1.cTo + wr1.cLower + wr1.cCase + wr1.cLetter; // convertNumberToLowerCaseLetter
+export const crandomlyGenerateMixedCaseLetterOrSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cMixed + wrd.cCase + wrd.cLetter + wrd.cOr + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateMixedCaseLetterOrSpecialCharacter
+export const crandomlyGenerateUpperCaseLetterOrSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cUpper + wrd.cCase + wrd.cLetter + wrd.cOr + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateUpperCaseLetterOrSpecialCharacter
+export const crandomlyGenerateLowerCaseLetterOrSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cLower + wrd.cCase + wrd.cLetter + wrd.cOr + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateLowerCaseLetterOrSpecialCharacter
+export const crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cEither + wrd.cMixed + wrd.cCase + wrd.cLetter + wrd.cOr + wrd.cNumber + wrd.cOr + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
+export const crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cEither + wrd.cUpper + wrd.cCase + wrd.cLetter + wrd.cOr + wrd.cNumber + wrd.cOr + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter
+export const crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cEither + wrd.cLower + wrd.cCase + wrd.cLetter + wrd.cOr + wrd.cNumber + wrd.cOr + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter
+export const crandomlyGenerateMixedCaseAlphaNumericCharacter = wrd.crandomly + wrd.cGenerate + wrd.cMixed + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCharacter; // randomlyGenerateMixedCaseAlphaNumericCharacter
+export const crandomlyGenerateUpperCaseAlphaNumericCharacter = wrd.crandomly + wrd.cGenerate + wrd.cUpper + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCharacter; // randomlyGenerateUpperCaseAlphaNumericCharacter
+export const crandomlyGenerateLowerCaseAlphaNumericCharacter = wrd.crandomly + wrd.cGenerate + wrd.cLower + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCharacter; // randomlyGenerateLowerCaseAlphaNumericCharacter
+export const crandomlyGenerateNumericCharacter = wrd.crandomly + wrd.cGenerate + wrd.cNumeric + wrd.cCharacter; // randomlyGenerateNumericCharacter
+export const crandomlyGenerateSpecialCharacter = wrd.crandomly + wrd.cGenerate + wrd.cSpecial + wrd.cCharacter; // randomlyGenerateSpecialCharacter
+export const crandomlyGenerateNumberInRange = wrd.crandomly + wrd.cGenerate + wrd.cNumber + wrd.cIn + wrd.cRange; // randomlyGenerateNumberInRange
+export const crandomlyGenerateBooleanValue = wrd.crandomly + wrd.cGenerate + wrd.cBoolean + wrd.cValue; // randomlyGenerateBooleanValue
+export const crandomlyGenerateMixedCaseAlphabeticCharacter = wrd.crandomly + wrd.cGenerate + wrd.cMixed + wrd.cCase + wrd.cAlphabetic + wrd.cCharacter; // randomlyGenerateMixedCaseAlphabeticCharacter
+export const crandomlyGenerateLowerCaseLetter = wrd.crandomly + wrd.cGenerate + wrd.cLower + wrd.cCase + wrd.cLetter; // randomlyGenerateLowerCaseLetter
+export const crandomlyGenerateUpperCaseLetter = wrd.crandomly + wrd.cGenerate + wrd.cUpper + wrd.cCase + wrd.cLetter; // randomlyGenerateUpperCaseLetter
+export const cconvertNumberToUpperCaseLetter = wrd.cconvert + wrd.cNumber + wrd.cTo + wrd.cUpper + wrd.cCase + wrd.cLetter; // convertNumberToUpperCaseLetter
+export const cconvertNumberToLowerCaseLetter = wrd.cconvert + wrd.cNumber + wrd.cTo + wrd.cLower + wrd.cCase + wrd.cLetter; // convertNumberToLowerCaseLetter
 
 // ***********************************************
 // mathOperations rules in order
 // ***********************************************
-export const chex2rgbConversion = gen.chex + num.c2 + gen.crgb + wr1.cConversion; // hex2rgbConversion
-export const cisOdd = wr1.cis + wr1.cOdd; // isOdd
-export const cisEven = wr1.cis + wr1.cEven; // isEven
+export const chex2rgbConversion = gen.chex + num.c2 + gen.crgb + wrd.cConversion; // hex2rgbConversion
+export const cisOdd = wrd.cis + wrd.cOdd; // isOdd
+export const cisEven = wrd.cis + wrd.cEven; // isEven
 
 // ***********************************************
 // stringGeneration rules in order
 // ***********************************************
-export const cgenerateRandomMixedCaseTextByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cText + wr1.cBy + wr1.cLength; // generateRandomMixedCaseTextByLength
-export const cgenerateRandomUpperCaseTextByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cText + wr1.cBy + wr1.cLength; // generateRandomUpperCaseTextByLength
-export const cgenerateRandomLowerCaseTextByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cText + wr1.cBy + wr1.cLength; // generateRandomLowerCaseTextByLength
-export const cgenerateRandomMixedCaseTextWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cText + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomMixedCaseTextWithSpecialCharactersByLength
-export const cgenerateRandomUpperCaseTextWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cText + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomUpperCaseTextWithSpecialCharactersByLength
-export const cgenerateRandomLowerCaseTextWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cText + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomLowerCaseTextWithSpecialCharactersByLength
-export const cgenerateRandomMixedCaseAlphaNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomMixedCaseAlphaNumericCodeByLength
-export const cgenerateRandomUpperCaseAlphaNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomUpperCaseAlphaNumericCodeByLength
-export const cgenerateRandomLowerCaseAlphaNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomLowerCaseAlphaNumericCodeByLength
-export const cgenerateRandomNumericCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cNumeric + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomNumericCodeByLength
-export const cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cMixed + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength
-export const cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cUpper + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength
-export const cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = wr1.cgenerate + wr1.cRandom + wr1.cLower + wr1.cCase + wr1.cAlpha + wr1.cNumeric + wr1.cCode + wr1.cWith + wr1.cSpecial + wr1.cCharacters + wr1.cBy + wr1.cLength; // generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
-export const cgenerateRandomSpecialCharacterCodeByLength = wr1.cgenerate + wr1.cRandom + wr1.cSpecial + wr1.cCharacter + wr1.cCode + wr1.cBy + wr1.cLength; // generateRandomSpecialCharacterCodeByLength
-export const cgenerateValidEmail = wr1.cgenerate + wr1.cValid + wr1.cEmail; // generateValidEmail
-export const cgenerateInvalidEmail = wr1.cgenerate + wr1.cInvalid + wr1.cEmail; // generateInvalidEmail
-export const cgenerateValidEmailWithSpecificSuffixAndDomainName = wr1.cgenerate + wr1.cValid + wr1.cEmail + wr1.cWith + wr1.cSpecific + wr1.cSuffix + wr1.cAnd + wr1.cDomain + wr1.cName; // generateValidEmailWithSpecificSuffixAndDomainName
-export const cgenerateRandomValidEmail = wr1.cgenerate + wr1.cRandom + wr1.cValid + wr1.cEmail; // generateRandomValidEmail
-export const cgenerateInvalidEmailWithSpecificSuffixAndDomainName = wr1.cgenerate + wr1.cInvalid + wr1.cEmail + wr1.cWith + wr1.cSpecific + wr1.cSuffix + wr1.cAnd + wr1.cDomain + wr1.cName; // generateInvalidEmailWithSpecificSuffixAndDomainName
-export const cgenerateRandomInvalidEmail = wr1.cgenerate + wr1.cRandom + wr1.cInvalid + wr1.cEmail; // generateRandomInvalidEmail
-export const cgenerateRandomBrightColor = wr1.cgenerate + wr1.cRandom + wr1.cBright + wr1.cColor; // generateRandomBrightColor
-export const cgenerateRandomDarkColor = wr1.cgenerate + wr1.cRandom + wr1.cDark + wr1.cColor; // generateRandomDarkColor
-export const cgenerateRandomColor = wr1.cgenerate + wr1.cRandom + wr1.cColor; // generateRandomColor
+export const cgenerateRandomMixedCaseTextByLength = wrd.cgenerate + wrd.cRandom + wrd.cMixed + wrd.cCase + wrd.cText + wrd.cBy + wrd.cLength; // generateRandomMixedCaseTextByLength
+export const cgenerateRandomUpperCaseTextByLength = wrd.cgenerate + wrd.cRandom + wrd.cUpper + wrd.cCase + wrd.cText + wrd.cBy + wrd.cLength; // generateRandomUpperCaseTextByLength
+export const cgenerateRandomLowerCaseTextByLength = wrd.cgenerate + wrd.cRandom + wrd.cLower + wrd.cCase + wrd.cText + wrd.cBy + wrd.cLength; // generateRandomLowerCaseTextByLength
+export const cgenerateRandomMixedCaseTextWithSpecialCharactersByLength = wrd.cgenerate + wrd.cRandom + wrd.cMixed + wrd.cCase + wrd.cText + wrd.cWith + wrd.cSpecial + wrd.cCharacters + wrd.cBy + wrd.cLength; // generateRandomMixedCaseTextWithSpecialCharactersByLength
+export const cgenerateRandomUpperCaseTextWithSpecialCharactersByLength = wrd.cgenerate + wrd.cRandom + wrd.cUpper + wrd.cCase + wrd.cText + wrd.cWith + wrd.cSpecial + wrd.cCharacters + wrd.cBy + wrd.cLength; // generateRandomUpperCaseTextWithSpecialCharactersByLength
+export const cgenerateRandomLowerCaseTextWithSpecialCharactersByLength = wrd.cgenerate + wrd.cRandom + wrd.cLower + wrd.cCase + wrd.cText + wrd.cWith + wrd.cSpecial + wrd.cCharacters + wrd.cBy + wrd.cLength; // generateRandomLowerCaseTextWithSpecialCharactersByLength
+export const cgenerateRandomMixedCaseAlphaNumericCodeByLength = wrd.cgenerate + wrd.cRandom + wrd.cMixed + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCode + wrd.cBy + wrd.cLength; // generateRandomMixedCaseAlphaNumericCodeByLength
+export const cgenerateRandomUpperCaseAlphaNumericCodeByLength = wrd.cgenerate + wrd.cRandom + wrd.cUpper + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCode + wrd.cBy + wrd.cLength; // generateRandomUpperCaseAlphaNumericCodeByLength
+export const cgenerateRandomLowerCaseAlphaNumericCodeByLength = wrd.cgenerate + wrd.cRandom + wrd.cLower + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCode + wrd.cBy + wrd.cLength; // generateRandomLowerCaseAlphaNumericCodeByLength
+export const cgenerateRandomNumericCodeByLength = wrd.cgenerate + wrd.cRandom + wrd.cNumeric + wrd.cCode + wrd.cBy + wrd.cLength; // generateRandomNumericCodeByLength
+export const cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = wrd.cgenerate + wrd.cRandom + wrd.cMixed + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCode + wrd.cWith + wrd.cSpecial + wrd.cCharacters + wrd.cBy + wrd.cLength; // generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength
+export const cgenerateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = wrd.cgenerate + wrd.cRandom + wrd.cUpper + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCode + wrd.cWith + wrd.cSpecial + wrd.cCharacters + wrd.cBy + wrd.cLength; // generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength
+export const cgenerateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = wrd.cgenerate + wrd.cRandom + wrd.cLower + wrd.cCase + wrd.cAlpha + wrd.cNumeric + wrd.cCode + wrd.cWith + wrd.cSpecial + wrd.cCharacters + wrd.cBy + wrd.cLength; // generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
+export const cgenerateRandomSpecialCharacterCodeByLength = wrd.cgenerate + wrd.cRandom + wrd.cSpecial + wrd.cCharacter + wrd.cCode + wrd.cBy + wrd.cLength; // generateRandomSpecialCharacterCodeByLength
+export const cgenerateValidEmail = wrd.cgenerate + wrd.cValid + wrd.cEmail; // generateValidEmail
+export const cgenerateInvalidEmail = wrd.cgenerate + wrd.cInvalid + wrd.cEmail; // generateInvalidEmail
+export const cgenerateValidEmailWithSpecificSuffixAndDomainName = wrd.cgenerate + wrd.cValid + wrd.cEmail + wrd.cWith + wrd.cSpecific + wrd.cSuffix + wrd.cAnd + wrd.cDomain + wrd.cName; // generateValidEmailWithSpecificSuffixAndDomainName
+export const cgenerateRandomValidEmail = wrd.cgenerate + wrd.cRandom + wrd.cValid + wrd.cEmail; // generateRandomValidEmail
+export const cgenerateInvalidEmailWithSpecificSuffixAndDomainName = wrd.cgenerate + wrd.cInvalid + wrd.cEmail + wrd.cWith + wrd.cSpecific + wrd.cSuffix + wrd.cAnd + wrd.cDomain + wrd.cName; // generateInvalidEmailWithSpecificSuffixAndDomainName
+export const cgenerateRandomInvalidEmail = wrd.cgenerate + wrd.cRandom + wrd.cInvalid + wrd.cEmail; // generateRandomInvalidEmail
+export const cgenerateRandomBrightColor = wrd.cgenerate + wrd.cRandom + wrd.cBright + wrd.cColor; // generateRandomBrightColor
+export const cgenerateRandomDarkColor = wrd.cgenerate + wrd.cRandom + wrd.cDark + wrd.cColor; // generateRandomDarkColor
+export const cgenerateRandomColor = wrd.cgenerate + wrd.cRandom + wrd.cColor; // generateRandomColor
 
 // ***********************************************
 // StringParsing rules in order
 // ***********************************************
-export const csingleQuoteSwapAfterEquals = wr1.csingle + wr1.cQuote + wr1.cSwap + wr1.cAfter + wr1.cEquals; // singleQuoteSwapAfterEquals
-export const cswapForwardSlashToBackSlash = wr1.cswap + sys.cForwardSlash + bas.cTo + sys.cBackSlash; // swapForwardSlashToBackSlash
-export const cswapBackSlashToForwardSlash = wr1.cswap + sys.cBackSlash + bas.cTo + sys.cForwardSlash; // swapBackSlashToForwardSlash
-export const cswapDoubleForwardSlashToSingleForwardSlash = wr1.cswap + wr1.cDouble + sys.cForwardSlash + bas.cTo + wr1.cSingle + sys.cForwardSlash; // swapDoubleForwardSlashToSingleForwardSlash
-export const cswapDoubleBackSlashToSingleBackSlash = wr1.cswap + wr1.cDouble + sys.cBackSlash + bas.cTo + wr1.cSingle + sys.cBackSlash; // swapDoubleBackSlashToSingleBackSlash
-export const cgetUserNameFromEmail = wr1.cget + wr1.cUser + wr1.cName + wr1.cFrom + wr1.cEmail; // getUserNameFromEmail
-export const creplaceSpacesWithPlus = wr1.creplace + wr1.cSpaces + wr1.cWith + wr1.cPlus; // replaceSpacesWithPlus
-export const creplaceColonWithUnderscore = wr1.creplace + wr1.cColon + wr1.cWith + wr1.cUnderscore; // replaceColonWithUnderscore
-export const ccleanCarriageReturnFromString = wr1.cclean + wr1.cCarriage + wr1.cReturn + wr1.cFrom + wr1.cString; // cleanCarriageReturnFromString
-export const cconvertStringToLowerCase = wr1.cconvert + wr1.cString + wr1.cTo + wr1.cLower + wr1.cCase; // convertStringToLowerCase
-export const cconvertStringToUpperCase = wr1.cconvert + wr1.cString + wr1.cTo + wr1.cUpper + wr1.cCase; // convertStringToUpperCase
-export const cgetFileNameFromPath = wr1.cget + wr1.cFile + wr1.cName + wr1.cFrom + wr1.cPath; // getFileNameFromPath
-export const cgetFileExtension = wr1.cget + wr1.cFile + wr1.cExtension; // getFileExtension
-export const cremoveDotFromFileExtension = wr1.cremove + wr1.cDot + wr1.cFrom + wr1.cFile + wr1.cExtension; // removeDotFromFileExtension
-export const cremoveFileExtensionFromFileName = wr1.cremove + wr1.cFile + wr1.cExtension + wr1.cFrom + wr1.cFileName; // removeFileExtensionFromFileName
-export const cgetValueFromAssignmentOperationString = wr1.cget + wr1.cValue + wr1.cFrom + wr1.cAssignment + wr1.cOperation + wr1.cString; // getValueFromAssignmentOperationString
-export const caggregateNumericalDifferenceBetweenTwoStrings = wr1.caggregate + wr1.cNumerical + wr1.cDifference + wr1.cBetween + num.cTwo + wr1.cStrings; // aggregateNumericalDifferenceBetweenTwoStrings
-export const ccountCamelCaseWords = wr1.ccount + wr1.cCamel + wr1.cCase + wr1.cWords; // countCamelCaseWords
-export const cdoesStringContainAcronym = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cAcronym; // doesStringContainAcronym
-export const ccountDelimiterInString = wr1.ccount + wr1.cDelimiter + wr1.cIn + wr1.cString; // countDelimiterInString
-export const cdetermineWordDelimiter = wr1.cdetermine + wr1.cWord + wr1.cDelimiter; // determineWordDelimiter
-export const cgetWordCountInString = wr1.cget + wr1.cWord + wr1.cCount + wr1.cIn + wr1.cString; // getWordCountInString
-export const cdoesStringContainUpperCaseCharacter = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cUpper + wr1.cCase + wr1.cCharacter; // doesStringContainUpperCaseCharacter
-export const cdoesStringContainLowerCaseCharacter = wr1.cdoes + wr1.cString + wr1.cContain + wr1.cLower + wr1.cCase + wr1.cCharacter; // doesStringContainLowerCaseCharacter
-export const cisFirstCharacterLowerCase = wr1.cis + num.cFirst + wr1.cCharacter + wr1.cLower + wr1.cCase; // isFirstCharacterLowerCase
-export const cisFirstCharacterUpperCase = wr1.cis + num.cFirst + wr1.cCharacter + wr1.cUpper + wr1.cCase; // isFirstCharacterUpperCase
-export const cisStringList = wr1.cis + wr1.cString + wr1.cList; // isStringList
-export const cisStringCamelCase = wr1.cis + wr1.cString + wr1.cCamel + wr1.cCase; // isStringCamelCase
-export const cmapWordToCamelCaseWord = wr1.cmap + wr1.cWord + wr1.cTo + wr1.cCamel + wr1.cCase + wr1.cWord; // mapWordToCamelCaseWord
-export const csimplifyAndConsolidateString = wr1.csimplify + wr1.cAnd + wr1.cConsolidate + wr1.cString; // simplifyAndConsolidateString
-export const ccompareSimplifiedAndConsolidatedStrings = wr1.ccompare + wr1.cSimplified + wr1.cAnd + wr1.cConsolidated + wr1.cStrings; // compareSimplifiedAndConsolidatedStrings
-export const cascertainMatchingFilenames = wr1.cascertain + wr1.cMatching + wr1.cFilenames; // ascertainMatchingFilenames
-export const cvalidateConstantsDataValidation = wr1.cvalidate + wr1.cConstants + wr1.cData + wr1.cValidation; // validateConstantsDataValidation
-export const cdetermineConstantsContextQualifiedPrefix = wr1.cdetermine + wr1.cConstants + wr1.cContext + wr1.cQualified + wr1.cPrefix; // determineConstantsContextQualifiedPrefix
-export const cdetermineSuggestedConstantsValidationLineOfCode = wr1.cdetermine + wr1.cSuggested + wr1.cConstants + wr1.cValidation + wr1.cLine + wr1.cOf + wr1.cCode; // determineSuggestedConstantsValidationLineOfCode
-export const cvalidateConstantsDataValidationLineItemName = wr1.cvalidate + wr1.cConstants + wr1.cData + wr1.cValidation + wr1.cLine + wr1.cItem + wr1.cName; // validateConstantsDataValidationLineItemName
-export const cdoesConstantExist = wr1.cdoes + wr1.cConstant + wr1.cExist; // doesConstantExist
-export const cgetConstantType = wr1.cget + wr1.cConstant + wr1.cType; // getConstantType
-export const cgetConstantActualValue = wr1.cget + wr1.cConstant + wr1.cActual + wr1.cValue; // getConstantActualValue
-export const cgetConstantName = wr1.cget + wr1.cConstant + wr1.cName; // getConstantName
-export const cfindConstantName = wr1.cfind + wr1.cConstant + wr1.cName; // findConstantName
-export const cisConstantTypeValid = wr1.cis + wr1.cConstant + wr1.cType + wr1.cValid; // isConstantTypeValid
-export const cconvertConstantTypeToConstantPrefix = wr1.cconvert + wr1.cConstant + wr1.cType + wr1.cTo + wr1.cConstant + wr1.cPrefix; // convertConstantTypeToConstantPrefix
-export const cconstantsOptimizedFulfillmentSystem = wr1.cconstants + wr1.cOptimized + wr1.cFulfillment + wr1.cSystem; // constantsOptimizedFulfillmentSystem
-export const cconstantsFulfillmentSystem = wr1.cconstants + wr1.cFulfillment + wr1.cSystem; // constantsFulfillmentSystem
-export const cvalidateConstantsDataValues = wr1.cvalidate + wr1.cConstants + wr1.cData + wr1.cValues; // validateConstantsDataValues
-export const cisValidCommandNameString = wr1.cis + wr1.cValid + wr1.cCommand + wr1.cName + wr1.cString; // isValidCommandNameString
-export const cisConstantValid = wr1.cis + wr1.cConstant + wr1.cValid; // isConstantValid
-export const ccountDuplicateCommandAliases = wr1.ccount + wr1.cDuplicate + wr1.cCommand + wr1.cAliases; // countDuplicateCommandAliases
-export const cgetDataCatagoryFromDataContextName = wr1.cget + wr1.cData + wr1.cCatagory + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getDataCatagoryFromDataContextName
-export const cgetDataCatagoryDetailNameFromDataContextName = wr1.cget + wr1.cData + wr1.cCatagory + wr1.cDetail + wr1.cName + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getDataCatagoryDetailNameFromDataContextName
-export const cgetKeywordNameFromDataContextName = wr1.cget + wr1.cKeyword + wr1.cName + wr1.cFrom + wr1.cData + wr1.cContext + wr1.cName; // getKeywordNameFromDataContextName
-export const cremoveXnumberOfFoldersFromEndOfPath = wr1.cremove + bas.cX + wr1.cnumber + wr1.cOf + wr1.cFolders + wr1.cFrom + wr1.cEnd + wr1.cOf + wr1.cPath; // removeXnumberOfFoldersFromEndOfPath
-export const cgetFirstTopLevelFolderFromPath = wr1.cget + num.cFirst + wr1.cTop + wr1.cLevel + wr1.cFolder + wr1.cFrom + wr1.cPath; // getFirstTopLevelFolderFromPath
-export const cloadDataFile = wr1.cload + wr1.cData + wr1.cFile; // loadDataFile
-export const csaveDataFile = wr1.csave + wr1.cData + wr1.cFile; // saveDataFile
-export const csupportedFileFormatsAre = wr1.csupported + wr1.cFile + wr1.cFormats + wr1.cAre; // supportedFileFormatsAre
-export const ccopyAllFilesAndFoldersFromFolderToFolder = wr1.ccopy + wr1.cAll + wr1.cFiles + wr1.cAnd + wr1.cFolders + wr1.cFrom + wr1.cFolder + wr1.cTo + wr1.cFolder; // copyAllFilesAndFoldersFromFolderToFolder
-export const cgetAttributeName = wr1.cget + wr1.cAttribute + wr1.cName; // getAttributeName
-export const cgetAttributeValue = wr1.cget + wr1.cAttribute + wr1.cValue; // getAttributeValue
-export const ccleanCommandInput = wr1.cclean + wr1.cCommand + wr1.cInput; // cleanCommandInput
-export const cgetNowMoment = wr1.cget + wr1.cNow + wr1.cMoment; // getNowMoment
-export const ccreateZipArchive = wr1.ccreate + gen.cZip + wr1.cArchive; // createZipArchive
+export const csingleQuoteSwapAfterEquals = wrd.csingle + wrd.cQuote + wrd.cSwap + wrd.cAfter + wrd.cEquals; // singleQuoteSwapAfterEquals
+export const cswapForwardSlashToBackSlash = wrd.cswap + sys.cForwardSlash + bas.cTo + sys.cBackSlash; // swapForwardSlashToBackSlash
+export const cswapBackSlashToForwardSlash = wrd.cswap + sys.cBackSlash + bas.cTo + sys.cForwardSlash; // swapBackSlashToForwardSlash
+export const cswapDoubleForwardSlashToSingleForwardSlash = wrd.cswap + wrd.cDouble + sys.cForwardSlash + bas.cTo + wrd.cSingle + sys.cForwardSlash; // swapDoubleForwardSlashToSingleForwardSlash
+export const cswapDoubleBackSlashToSingleBackSlash = wrd.cswap + wrd.cDouble + sys.cBackSlash + bas.cTo + wrd.cSingle + sys.cBackSlash; // swapDoubleBackSlashToSingleBackSlash
+export const cgetUserNameFromEmail = wrd.cget + wrd.cUser + wrd.cName + wrd.cFrom + wrd.cEmail; // getUserNameFromEmail
+export const creplaceSpacesWithPlus = wrd.creplace + wrd.cSpaces + wrd.cWith + wrd.cPlus; // replaceSpacesWithPlus
+export const creplaceColonWithUnderscore = wrd.creplace + wrd.cColon + wrd.cWith + wrd.cUnderscore; // replaceColonWithUnderscore
+export const ccleanCarriageReturnFromString = wrd.cclean + wrd.cCarriage + wrd.cReturn + wrd.cFrom + wrd.cString; // cleanCarriageReturnFromString
+export const cconvertStringToLowerCase = wrd.cconvert + wrd.cString + wrd.cTo + wrd.cLower + wrd.cCase; // convertStringToLowerCase
+export const cconvertStringToUpperCase = wrd.cconvert + wrd.cString + wrd.cTo + wrd.cUpper + wrd.cCase; // convertStringToUpperCase
+export const cgetFileNameFromPath = wrd.cget + wrd.cFile + wrd.cName + wrd.cFrom + wrd.cPath; // getFileNameFromPath
+export const cgetFileExtension = wrd.cget + wrd.cFile + wrd.cExtension; // getFileExtension
+export const cremoveDotFromFileExtension = wrd.cremove + wrd.cDot + wrd.cFrom + wrd.cFile + wrd.cExtension; // removeDotFromFileExtension
+export const cremoveFileExtensionFromFileName = wrd.cremove + wrd.cFile + wrd.cExtension + wrd.cFrom + wrd.cFileName; // removeFileExtensionFromFileName
+export const cgetValueFromAssignmentOperationString = wrd.cget + wrd.cValue + wrd.cFrom + wrd.cAssignment + wrd.cOperation + wrd.cString; // getValueFromAssignmentOperationString
+export const caggregateNumericalDifferenceBetweenTwoStrings = wrd.caggregate + wrd.cNumerical + wrd.cDifference + wrd.cBetween + num.cTwo + wrd.cStrings; // aggregateNumericalDifferenceBetweenTwoStrings
+export const ccountCamelCaseWords = wrd.ccount + wrd.cCamel + wrd.cCase + wrd.cWords; // countCamelCaseWords
+export const cdoesStringContainAcronym = wrd.cdoes + wrd.cString + wrd.cContain + wrd.cAcronym; // doesStringContainAcronym
+export const ccountDelimiterInString = wrd.ccount + wrd.cDelimiter + wrd.cIn + wrd.cString; // countDelimiterInString
+export const cdetermineWordDelimiter = wrd.cdetermine + wrd.cWord + wrd.cDelimiter; // determineWordDelimiter
+export const cgetWordCountInString = wrd.cget + wrd.cWord + wrd.cCount + wrd.cIn + wrd.cString; // getWordCountInString
+export const cdoesStringContainUpperCaseCharacter = wrd.cdoes + wrd.cString + wrd.cContain + wrd.cUpper + wrd.cCase + wrd.cCharacter; // doesStringContainUpperCaseCharacter
+export const cdoesStringContainLowerCaseCharacter = wrd.cdoes + wrd.cString + wrd.cContain + wrd.cLower + wrd.cCase + wrd.cCharacter; // doesStringContainLowerCaseCharacter
+export const cisFirstCharacterLowerCase = wrd.cis + num.cFirst + wrd.cCharacter + wrd.cLower + wrd.cCase; // isFirstCharacterLowerCase
+export const cisFirstCharacterUpperCase = wrd.cis + num.cFirst + wrd.cCharacter + wrd.cUpper + wrd.cCase; // isFirstCharacterUpperCase
+export const cisStringList = wrd.cis + wrd.cString + wrd.cList; // isStringList
+export const cisStringCamelCase = wrd.cis + wrd.cString + wrd.cCamel + wrd.cCase; // isStringCamelCase
+export const cmapWordToCamelCaseWord = wrd.cmap + wrd.cWord + wrd.cTo + wrd.cCamel + wrd.cCase + wrd.cWord; // mapWordToCamelCaseWord
+export const csimplifyAndConsolidateString = wrd.csimplify + wrd.cAnd + wrd.cConsolidate + wrd.cString; // simplifyAndConsolidateString
+export const ccompareSimplifiedAndConsolidatedStrings = wrd.ccompare + wrd.cSimplified + wrd.cAnd + wrd.cConsolidated + wrd.cStrings; // compareSimplifiedAndConsolidatedStrings
+export const cascertainMatchingFilenames = wrd.cascertain + wrd.cMatching + wrd.cFilenames; // ascertainMatchingFilenames
+export const cvalidateConstantsDataValidation = wrd.cvalidate + wrd.cConstants + wrd.cData + wrd.cValidation; // validateConstantsDataValidation
+export const cdetermineConstantsContextQualifiedPrefix = wrd.cdetermine + wrd.cConstants + wrd.cContext + wrd.cQualified + wrd.cPrefix; // determineConstantsContextQualifiedPrefix
+export const cdetermineSuggestedConstantsValidationLineOfCode = wrd.cdetermine + wrd.cSuggested + wrd.cConstants + wrd.cValidation + wrd.cLine + wrd.cOf + wrd.cCode; // determineSuggestedConstantsValidationLineOfCode
+export const cvalidateConstantsDataValidationLineItemName = wrd.cvalidate + wrd.cConstants + wrd.cData + wrd.cValidation + wrd.cLine + wrd.cItem + wrd.cName; // validateConstantsDataValidationLineItemName
+export const cdoesConstantExist = wrd.cdoes + wrd.cConstant + wrd.cExist; // doesConstantExist
+export const cgetConstantType = wrd.cget + wrd.cConstant + wrd.cType; // getConstantType
+export const cgetConstantActualValue = wrd.cget + wrd.cConstant + wrd.cActual + wrd.cValue; // getConstantActualValue
+export const cgetConstantName = wrd.cget + wrd.cConstant + wrd.cName; // getConstantName
+export const cfindConstantName = wrd.cfind + wrd.cConstant + wrd.cName; // findConstantName
+export const cisConstantTypeValid = wrd.cis + wrd.cConstant + wrd.cType + wrd.cValid; // isConstantTypeValid
+export const cconvertConstantTypeToConstantPrefix = wrd.cconvert + wrd.cConstant + wrd.cType + wrd.cTo + wrd.cConstant + wrd.cPrefix; // convertConstantTypeToConstantPrefix
+export const cconstantsOptimizedFulfillmentSystem = wrd.cconstants + wrd.cOptimized + wrd.cFulfillment + wrd.cSystem; // constantsOptimizedFulfillmentSystem
+export const cconstantsFulfillmentSystem = wrd.cconstants + wrd.cFulfillment + wrd.cSystem; // constantsFulfillmentSystem
+export const cvalidateConstantsDataValues = wrd.cvalidate + wrd.cConstants + wrd.cData + wrd.cValues; // validateConstantsDataValues
+export const cisValidCommandNameString = wrd.cis + wrd.cValid + wrd.cCommand + wrd.cName + wrd.cString; // isValidCommandNameString
+export const cisConstantValid = wrd.cis + wrd.cConstant + wrd.cValid; // isConstantValid
+export const ccountDuplicateCommandAliases = wrd.ccount + wrd.cDuplicate + wrd.cCommand + wrd.cAliases; // countDuplicateCommandAliases
+export const cgetDataCatagoryFromDataContextName = wrd.cget + wrd.cData + wrd.cCatagory + wrd.cFrom + wrd.cData + wrd.cContext + wrd.cName; // getDataCatagoryFromDataContextName
+export const cgetDataCatagoryDetailNameFromDataContextName = wrd.cget + wrd.cData + wrd.cCatagory + wrd.cDetail + wrd.cName + wrd.cFrom + wrd.cData + wrd.cContext + wrd.cName; // getDataCatagoryDetailNameFromDataContextName
+export const cgetKeywordNameFromDataContextName = wrd.cget + wrd.cKeyword + wrd.cName + wrd.cFrom + wrd.cData + wrd.cContext + wrd.cName; // getKeywordNameFromDataContextName
+export const cremoveXnumberOfFoldersFromEndOfPath = wrd.cremove + bas.cX + wrd.cnumber + wrd.cOf + wrd.cFolders + wrd.cFrom + wrd.cEnd + wrd.cOf + wrd.cPath; // removeXnumberOfFoldersFromEndOfPath
+export const cgetFirstTopLevelFolderFromPath = wrd.cget + num.cFirst + wrd.cTop + wrd.cLevel + wrd.cFolder + wrd.cFrom + wrd.cPath; // getFirstTopLevelFolderFromPath
+export const cloadDataFile = wrd.cload + wrd.cData + wrd.cFile; // loadDataFile
+export const csaveDataFile = wrd.csave + wrd.cData + wrd.cFile; // saveDataFile
+export const csupportedFileFormatsAre = wrd.csupported + wrd.cFile + wrd.cFormats + wrd.cAre; // supportedFileFormatsAre
+export const ccopyAllFilesAndFoldersFromFolderToFolder = wrd.ccopy + wrd.cAll + wrd.cFiles + wrd.cAnd + wrd.cFolders + wrd.cFrom + wrd.cFolder + wrd.cTo + wrd.cFolder; // copyAllFilesAndFoldersFromFolderToFolder
+export const cgetAttributeName = wrd.cget + wrd.cAttribute + wrd.cName; // getAttributeName
+export const cgetAttributeValue = wrd.cget + wrd.cAttribute + wrd.cValue; // getAttributeValue
+export const ccleanCommandInput = wrd.cclean + wrd.cCommand + wrd.cInput; // cleanCommandInput
+export const cgetNowMoment = wrd.cget + wrd.cNow + wrd.cMoment; // getNowMoment
+export const ccreateZipArchive = wrd.ccreate + gen.cZip + wrd.cArchive; // createZipArchive
 
 // ***********************************************
 // StringParsingUtiities rules in order
 // ***********************************************
-export const cparseSystemRootPath = wr1.cparse + wr1.cSystem + wr1.cRoot + wr1.cPath; // parseSystemRootPath
-export const cstringToDataType = wr1.cstring + wr1.cTo + wr1.cData + wr1.cType; // stringToDataType
-export const cstringToBoolean = wr1.cstring + wr1.cTo + wr1.cBoolean; // stringToBoolean
-export const cdetermineObjectDataType = wr1.cdetermine + wr1.cObject + wr1.cData + wr1.cType; // determineObjectDataType
-export const cisBoolean = wr1.cis + wr1.cBoolean; // isBoolean
-export const cisInteger = wr1.cis + wr1.cInteger; // isInteger
-export const cisFloat = wr1.cis + wr1.cFloat; // isFloat
-export const cisString = wr1.cis + wr1.cString; // isString
-export const creplaceDoublePercentWithMessage = wr1.creplace + wr1.cDouble + wr1.cPercent + wr1.cWith + wr1.cMessage; // replaceDoublePercentWithMessage
-export const cutilitiesReplaceCharacterWithCharacter = wr1.cutilities + wr1.cReplace + wr1.cCharacter + wr1.cWith + wr1.cCharacter; // utilitiesReplaceCharacterWithCharacter
+export const cparseSystemRootPath = wrd.cparse + wrd.cSystem + wrd.cRoot + wrd.cPath; // parseSystemRootPath
+export const cstringToDataType = wrd.cstring + wrd.cTo + wrd.cData + wrd.cType; // stringToDataType
+export const cstringToBoolean = wrd.cstring + wrd.cTo + wrd.cBoolean; // stringToBoolean
+export const cdetermineObjectDataType = wrd.cdetermine + wrd.cObject + wrd.cData + wrd.cType; // determineObjectDataType
+export const cisBoolean = wrd.cis + wrd.cBoolean; // isBoolean
+export const cisInteger = wrd.cis + wrd.cInteger; // isInteger
+export const cisFloat = wrd.cis + wrd.cFloat; // isFloat
+export const cisString = wrd.cis + wrd.cString; // isString
+export const creplaceDoublePercentWithMessage = wrd.creplace + wrd.cDouble + wrd.cPercent + wrd.cWith + wrd.cMessage; // replaceDoublePercentWithMessage
+export const cutilitiesReplaceCharacterWithCharacter = wrd.cutilities + wrd.cReplace + wrd.cCharacter + wrd.cWith + wrd.cCharacter; // utilitiesReplaceCharacterWithCharacter

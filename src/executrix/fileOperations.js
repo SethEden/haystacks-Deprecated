@@ -11,7 +11,7 @@
  * @requires module:generic.constants
  * @requires module:message.constants
  * @requires module:system.constants
- * @requires module:word1.constants
+ * @requires module:word.constants
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/adm-zip|adm-zip}
@@ -30,7 +30,7 @@ import * as fnc from '../constants/function.constants.js';
 import * as gen from '../constants/generic.constants.js';
 import * as msg from '../constants/message.constants.js';
 import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
+import * as wrd from '../constants/word.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
@@ -42,7 +42,7 @@ import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.fileOperations.
-const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash', 'config.json'];
 let filesCollection = [];
 let enableFilesListLimit = false;
@@ -369,9 +369,9 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   cleanFilePathsBusienssRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   cleanFilePathsBusinessRules[1] = biz.cswapDoubleBackSlashToSingleBackSlash;
   cleanFilePathsBusienssRules[2] = biz.cswapForwardSlashToBackSlash;
-  let rootPath = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationCleanedRootPath);
-  let currentVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
-  let applicationName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+  let rootPath = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationCleanedRootPath);
+  let currentVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber);
+  let applicationName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);
   let currentVersionReleased = false;
   let releaseDateTimeStamp;
   let originalSource, originalDestination;
@@ -404,7 +404,7 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   if (currentVersionReleased === false) {
     // release files list is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
+    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp));
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;
@@ -487,7 +487,7 @@ function cleanRootPath() {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let rootPath;
-  rootPath = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationRootPath);
+  rootPath = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationRootPath);
   cleanRootPathRules = [];
   cleanRootPathRules[0] = biz.cremoveXnumberOfFoldersFromEndOfpath;
   // RootPath before processing is:
@@ -618,7 +618,7 @@ function copyFolderRecursiveSync(sourceDestinationArray, filterArray) {
   // but first check if the source is the /src/ folder, because we don't want to duplicate that.
   // Otherwise we would be copying /src/ to /bin/src/ and that we do not want!!
   let pathLeafNode = path.basename(source);
-  if (pathLeafNode.includes(wr1.csrc)) {
+  if (pathLeafNode.includes(wrd.csrc)) {
     targetFolder = target;
   } else {
     targetFolder = path.join(target, pathLeafNode);

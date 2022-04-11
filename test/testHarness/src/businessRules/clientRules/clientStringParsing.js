@@ -9,8 +9,8 @@
  * @requires module:haystacks
  * @requires module:haystacks.basic.constants
  * @requires module:haystacks.message.constants
- * @requires module:haystacks.word1.constants
  * @requires module:haystacks.system.constants
+ * @requires module:haystacks.word.constants
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/08
@@ -26,12 +26,12 @@ import haystacks from 'haystacks';
 let bas = haystacks.bas;
 let msg = haystacks.msg;
 let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+let wrd = haystacks.wrd;
 import path from 'path';
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.businessRules.clientRules.clientStringParsing.
-const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cbusiness + wrd.cRules + bas.cDot + wrd.cclient + wrd.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEcho
