@@ -2,9 +2,9 @@
 node_modules/*
 */documentation/*
 documentation/*
-*/bin/*
-bin/*
-.env
+*.env
+*.Env
+*.ENV
 *.log
 *.Log
 *.LOG

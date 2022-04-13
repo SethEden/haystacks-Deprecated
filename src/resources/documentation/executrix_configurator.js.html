@@ -30,7 +30,9 @@
  * @file configurator.js
  * @module configurator
  * @description Contains the functions necessary to set and get configuration settings from the shared data structure.
+ * @requires module:timers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2020/10/13
@@ -39,29 +41,38 @@
  * Because having these functions in the chiefConfiguration can cause a circular dependency.
  */
 
-var timers = require('./timers');
-var D = require('../structures/data');
-var path = require('path');
-var baseFileName = path.basename(module.filename, path.extname(module.filename));
-var namespacePrefix = `executrix.${baseFileName}.`;
+// Internal imports
+import timers from './timers.js';
+import D from '../structures/data.js';
+// External imports
+import hayConst from '@haystacks/constants';
+import path from 'path';
+
+const {bas, cfg, fnc, wrd} = hayConst;
+const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
+// executrix.configurator.
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function setConfigurationSetting
  * @description Sets a configuration setting on the configuration data structure stored on the D-data structure.
- * @param {array&lt;string>} configurationNamespace The path in the configurationJSON object where the configuration setting should be set.
+ * @param {string} configurationNamespace The path in the configuration JSON object
+ * where the configuration setting should be set.
+ * Ex: businessRules.rules.stringParsing.countCamelCaseWords
  * @param {string} configurationName The key of the configuration setting.
  * @param {string|integer|boolean|double} configurationValue The value of the configuration setting.
+ * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/13
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function setConfigurationSetting(configurationNamespace, configurationName, configurationValue) {
-  let functionName = setConfigurationSetting.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configurationNamespace is: ${configurationNamespace}`);
-  console.log(`configurationName is: ${configurationName}`);
-  console.log(`configurationValue is: ${configurationValue}`);
-  let namespaceConfigObject = getConfigurationNamespaceObject(configurationNamespace.split('.'));
+  // let functionName = setConfigurationSetting.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configurationNamespace is: ${configurationNamespace}`);
+  // console.log(`configurationName is: ${configurationName}`);
+  // console.log(`configurationValue is: ${configurationValue}`);
+  let namespaceConfigObject = getConfigurationNamespaceObject(configurationNamespace.split(bas.cDot));
   if (namespaceConfigObject) {
     namespaceConfigObject[`${configurationNamespace}.${configurationName}`] = configurationValue;
   }
@@ -71,7 +82,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
 /**
  * @function getConfigurationSetting
  * @description Gets a configuration value based on the configuration name.
- * @param {array&lt;string>} configurationNamespace The path in the configuration JSON object
+ * @param {string} configurationNamespace The path in the configuration JSON object
  * where the configuration setting should be found.
  * @param {string} configurationName The key of the configuration setting.
  * @return {string|integer|boolean|double} The value of whatever was stored in the D[configuration].
@@ -81,35 +92,31 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
  */
 function getConfigurationSetting(configurationNamespace, configurationName) {
   let functionName = getConfigurationSetting.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configurationNamespace is: ${configurationNamespace}`);
-  console.log(`configurationName is: ${configurationName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configurationNamespace is: ${configurationNamespace}`);
+  // console.log(`configurationName is: ${configurationName}`);
   let returnConfigurationValue;
   let namespaceConfigObject = undefined;
-  let parentConfigurationNamespaceArray = undefined;
-  let newParentConfigurationName = undefined;
-  let newParentConfigurationNamespace = undefined;
-  let parentNamespaceCnfigObject = undefined;
-  namespaceConfigObject = getConfigurationNamespaceObject(configurationNamespace.split('.'));
+  namespaceConfigObject = getConfigurationNamespaceObject(configurationNamespace.split(bas.cDot));
   if (namespaceConfigObject) {
     if (configurationName) {
-      if (configurationName.includes('@') &amp;&amp; configurationName.indexOf('@') === 0) {
+      if (configurationName.includes(bas.cAt) &amp;&amp; configurationName.indexOf(bas.cAt) === 0) {
         returnConfigurationValue = getParentConfigurationNamespaceObject(configurationNamespace, configurationName);
       } else {
-        returnConfigurationValue = namespaceConfigObject[`${configurationNamespace}.${configurationName}`];
+        returnConfigurationValue = namespaceConfigObject[configurationNamespace + bas.cDot + configurationName];
       }
     } else {
       returnConfigurationValue = getParentConfigurationNamespaceObject(configurationNamespace, '');
     }
   }
-  console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnConfigurationValue;
 };
 
 /**
  * @function processConfigurationNameRules
- * @description Processes a fully qualified name and extracts the configuration anme without the namespace.
+ * @description Processes a fully qualified name and extracts the configuration name without the namespace.
  * @param {string} fullyQualifiedName The fully qualified name with the namespace included.
  * @return {string} The name of the configuration setting without the namespace.
  * @author Seth Hollingsead
@@ -118,13 +125,13 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  */
 function processConfigurationNameRules(fullyQualifiedName) {
   let functionName = processConfigurationNameRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
-  let fullyQualifiedNameArray = fullyQualifiedName.split('.');
+  let fullyQualifiedNameArray = fullyQualifiedName.split(bas.cDot);
   returnValue = fullyQualifiedNameArray[fullyQualifiedNameArray.length - 1];
-  console.log(`returnValue is: ${returnValue}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnValue is: ${returnValue}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
 };
 
@@ -132,28 +139,31 @@ function processConfigurationNameRules(fullyQualifiedName) {
  * @function processConfigurationNamespaceRules
  * @description Processes a fully qualified name and extracts the namespace.
  * @param {string} fullyQualifiedName The fully qualified name with the namespace included.
- * @return {string} The namespace of the configuration setting, wthout the configuration name.
+ * @return {string} The namespace of the configuration setting, without the configuration name.
  * @author Seth Hollingsead
  * @date 2021/10/26
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processConfigurationNamespaceRules(fullyQualifiedName) {
   let functionName = processConfigurationNamespaceRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
-  returnValue = fullyQualifiedName.substr(0, fully.lastIndexOf('.'));
-  if (returnValue.includes('debugFunctions') || returnValue.includes('debugFiles')) {
+  returnValue = fullyQualifiedName.substr(0, fullyQualifiedName.lastIndexOf(bas.cDot));
+  // console.log('returnValue is: ' + returnValue);
+  if (returnValue.includes(cfg.cdebugFunctions) || returnValue.includes(cfg.cdebugFiles)) {
+    // console.log('contains debugFunctions or debugFiles');
     // We need to strip off the "debugFunctions" &amp; "debugFiles" prefixes along with the pipe that delimits them.
     // At some point we might need these separate designations, like for the colorizer logic, but for now,
     // until there is a business need I will keep them unified.
     // Everything to the right all falls under the designation of "debugSettings"
-    // so that as teh base for the namespace tree should work perfectly.
-    let parsedDebugSettingsNamespace = returnValue.split('.');
+    // so that as the base for the namespace tree should work perfectly.
+    let parsedDebugSettingsNamespace = returnValue.split(bas.cPipe);
+    // console.log('parsedDebugSettingsNamespace is: ' + parsedDebugSettingsNamespace);
     returnValue = parsedDebugSettingsNamespace[1];
   }
-  console.log(`returnValue is: ${returnValue}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnValue is: ${returnValue}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
 };
 
@@ -169,25 +179,25 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processConfigurationValueRules(name, value) {
-  let functionName = processConfigurationValueRules.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`name is: ${name}`);
-  console.log(`value is: ${value}`);
+  // let functionName = processConfigurationValueRules.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`name is: ${name}`);
+  // console.log(`value is: ${value}`);
   let returnValue;
   switch (name) {
-    case 'dateTimeStamp': case 'dateStamp': case 'timeStamp':
+    case cfg.cdateTimeStamp: case cfg.cdateStamp: case cfg.ctimeStamp:
       // NOTE: All of these three configurations are processed exactly the same way.
-      // As long as waht is stored in the configuration file is correct, then they should be processed correctly here.
+      // As long as what is stored in the configuration file is correct, then they should be processed correctly here.
       returnValue = timers.getNowMoment(value);
       break;
     default: // We don't know what the value is.
-      // We have to just eturn the value as it has passed in, no processing.
+      // We have to just return the value as it was passed in, no processing.
       // We don't want to corrupt the other data that may be passed into this function.
       returnValue = value;
       break;
   }
-  console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
 };
 
@@ -199,8 +209,8 @@ function processConfigurationValueRules(name, value) {
  * @param {string} configurationNamespace The fully qualified path in the configuration JSON object
  * where the configuration setting should be found.
  * @param {string} optionalFunctionNameAppendix An optional function name appendix that could
- * poentially be added to the end of the function name.
- * Ex: @ModuleFondBackgroundColor
+ * potentially be added to the end of the function name.
+ * Ex: @ModuleFontBackgroundColor
  * @return {object|boolean} The parent of the object found at the specified namespace address in the configuration data object,
  * or False if nothing was found.
  * @author Seth Hollingsead
@@ -208,22 +218,22 @@ function processConfigurationValueRules(name, value) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getParentConfigurationNamespaceObject(configurationNamespace, optionalFunctionNameAppendix) {
-  let functionName = getParentConfigurationNamespaceObject.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configurationNamespace is: ${configurationNamespace}`);
-  console.log(`optionalFunctionNameAppendix is: ${optionalFunctionNameAppendix}`);
+  // let functionName = getParentConfigurationNamespaceObject.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configurationNamespace is: ${configurationNamespace}`);
+  // console.log(`optionalFunctionNameAppendix is: ${optionalFunctionNameAppendix}`);
   let returnValue = true;
-  let parentConfigurationNamespaceArray = configurationNamespace.split('.');
+  let parentConfigurationNamespaceArray = configurationNamespace.split(bas.cDot);
   let newParentConfigurationName = parentConfigurationNamespaceArray.pop();
-  let newParentConfigurationNamespace = parentConfigurationNamespaceArray.join('.');
+  let newParentConfigurationNamespace = parentConfigurationNamespaceArray.join(bas.cDot);
   let parentNamespaceConfigObject = getConfigurationNamespaceObject(parentConfigurationNamespaceArray);
   if (optionalFunctionNameAppendix !== '') {
-    returnValue = parentNamespaceConfigObject[`${newParentConfigurationNamespace}.${newParentConfigurationName}${optionalFunctionNameAppendix}`];
+    returnValue = parentNamespaceConfigObject[newParentConfigurationNamespace + bas.cDot + newParentConfigurationName + optionalFunctionNameAppendix];
   } else {
-    returnValue = parentNamespaceConfigObject[`${newParentConfigurationNamespace}.${newParentConfigurationName}`];
+    returnValue = parentNamespaceConfigObject[newParentConfigurationNamespace + bas.cDot + newParentConfigurationName];
   }
-  console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
 };
 
@@ -239,15 +249,15 @@ function getParentConfigurationNamespaceObject(configurationNamespace, optionalF
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getConfigurationNamespaceObject(configurationNamespace) {
-  let functionName = getConfigurationNamespaceObject.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`configurationNamespace is: ${configurationNamespace}`);
+  // let functionName = getConfigurationNamespaceObject.name;
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`configurationNamespace is: ${configurationNamespace}`);
   let returnValue = true; // Assume there will be a return value.
-  let configurationDataRoot = D['configuration'];
+  let configurationDataRoot = D[wrd.cconfiguration];
   let configurationPathObject = configurationDataRoot;
   if (!configurationPathObject) { // Need to handle the case that the configuration data object doesn't even exist at all!
-    D['configuration'] = {};
-    configurationDataRoot = D['configuration'];
+    D[wrd.cconfiguration] = {};
+    configurationDataRoot = D[wrd.cconfiguration];
     configurationPathObject = configurationDataRoot;
   }
   for (let i = 0; i &lt; configurationNamespace.length; i++) {
@@ -260,18 +270,18 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   if (returnValue) {
     returnValue = configurationPathObject;
   }
-  console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
 };
 
-module.exports = {
-  ['setConfigurationSetting']: (configurationNamespace, configurationName, configurationValue) =>
+export default {
+  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>
     setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  ['getConfigurationSetting']: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  ['processConfigurationNameRules']: (fullyQualifiedName) => processConfigurationNameRules(fullyQualifiedName),
-  ['processConfigurationNamespaceRules']: (fullyQualifiedName) => processConfigurationNamespaceRules(fullyQualifiedName),
-  ['processConfigurationValueRules']: (name, value) => processConfigurationValueRules(name, value)
+  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
+  [fnc.cprocessConfigurationNameRules]: (fullyQualifiedName) => processConfigurationNameRules(fullyQualifiedName),
+  [fnc.cprocessConfigurationNamespaceRules]: (fullyQualifiedName) => processConfigurationNamespaceRules(fullyQualifiedName),
+  [fnc.cprocessConfigurationValueRules]: (name, value) => processConfigurationValueRules(name, value)
 };
 </code></pre>
         </article>
@@ -283,13 +293,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Oct 27 2021 12:17:16 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Apr 13 2022 16:31:10 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

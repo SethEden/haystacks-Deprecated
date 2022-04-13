@@ -1,0 +1,39 @@
+{
+  "name": "testHarness",
+  "version": "0.0.1",
+  "description": "A test harness application to test the haystacks framework.",
+  "main": "./src/testHarness.js",
+  "type": "module",
+  "scripts": {
+    "start": "babel-node ./src/testHarness.js",
+    "vers": "standard-version -m \"chore(release) version %s \"",
+    "docs": "jsdoc -c jsdoc.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SethEden/haystacks.git"
+  },
+  "keywords": [
+    "application",
+    "automation"
+  ],
+  "author": "Seth Hollingsead <iceversaka@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "haystacks": "0.0.x",
+    "@haystacks/constants": "^0.0.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.15.7",
+    "@babel/core": "7.15.8",
+    "@babel/node": "7.15.8",
+    "@babel/preset-env": "7.15.8",
+    "jsdoc": "3.6.7",
+    "standard-version": "9.3.2"
+  },
+  "bugs": {
+    "url": "https://github.com/SethEden/haystacks/issues"
+  },
+  "homepage": "https://github.com/SethEden/haystacks#readme"
+}
