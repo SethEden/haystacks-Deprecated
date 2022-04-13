@@ -34,14 +34,9 @@
  * Including loading files, saving files, reloading files, resaving files,
  * copying files, moving files, copying folders including copying folders recursively,
  * zipping files and saving zip-packages as part of a deployment/release process.
- * @requires module:basic.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word1.constants
  * @requires module:loggers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/adm-zip|adm-zip}
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/papaparse|papaparse}
@@ -53,24 +48,20 @@
  */
 
 // Internal imports
-import * as bas from '../constants/basic.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import admZip from 'adm-zip';
 import fs from 'fs';
 import papa from 'papaparse';
 import xml2js from 'xml2js';
 import path from 'path';
 
+const {bas, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.fileOperations.
-const namespacePrefix = wr1.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash', 'config.json'];
 let filesCollection = [];
 let enableFilesListLimit = false;
@@ -397,9 +388,9 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   cleanFilePathsBusienssRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   cleanFilePathsBusinessRules[1] = biz.cswapDoubleBackSlashToSingleBackSlash;
   cleanFilePathsBusienssRules[2] = biz.cswapForwardSlashToBackSlash;
-  let rootPath = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationCleanedRootPath);
-  let currentVersion = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber);
-  let applicationName = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationName);
+  let rootPath = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationCleanedRootPath);
+  let currentVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber);
+  let applicationName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);
   let currentVersionReleased = false;
   let releaseDateTimeStamp;
   let originalSource, originalDestination;
@@ -432,7 +423,7 @@ function buildReleasePackage(sourceFolder, destinationFolder) {
   if (currentVersionReleased === false) {
     // release files list is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
+    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp));
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;
@@ -515,7 +506,7 @@ function cleanRootPath() {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let rootPath;
-  rootPath = configurator.getConfigurationSetting(wr1.csystem, sys.cApplicationRootPath);
+  rootPath = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationRootPath);
   cleanRootPathRules = [];
   cleanRootPathRules[0] = biz.cremoveXnumberOfFoldersFromEndOfpath;
   // RootPath before processing is:
@@ -561,7 +552,7 @@ function copyFileSync(sourceDestinationArray, filterArray) {
   let source = sourceDestinationArray[0];
   let target = sourceDestinationArray[1];
   let exclusionArray = filterArray[0];
-  let inclusinoArray = filterArray[1];
+  let inclusionArray = filterArray[1];
   let targetFile = target;
 
   // If target is a directory a new file with the same name will be created.
@@ -573,18 +564,22 @@ function copyFileSync(sourceDestinationArray, filterArray) {
   try {
     let foundExclusion = false;
     let foundInclusion = false;
-    for (let i = 0; i &lt; inclusinoArray.length; i++) {
-      if (source.includes(inclusinoArray[i])) {
-        foundInclusion = true;
-        break;
-      }
-    } // End-for (let i = 0; i &lt; inclusinoArray.length; i++)
-    for (let j = 0; j &lt; exclusionArray.length; j++) {
-      if (source.includes(exclusionArray[j])) {
-        foundExclusion = true;
-        break;
-      }
-    } // End-for (let j = 0; j &lt; exclusionArray.length; j++)
+    if (inclusionArray) {
+      for (let i = 0; i &lt; inclusionArray.length; i++) {
+        if (source.includes(inclusionArray[i])) {
+          foundInclusion = true;
+          break;
+        }
+      } // End-for (let i = 0; i &lt; inclusinoArray.length; i++)
+    } // End-if (inclusionArray)
+    if (exclusionArray) {
+      for (let j = 0; j &lt; exclusionArray.length; j++) {
+        if (source.includes(exclusionArray[j])) {
+          foundExclusion = true;
+          break;
+        }
+      } // End-for (let j = 0; j &lt; exclusionArray.length; j++)
+    } // End-if (exclusionArray)
     // We need a logical converse operation:
     // https://en.wikipedia.org/wiki/Converse_(logic)
     if (foundInclusion || !(foundInclusion || foundExclusion)) {
@@ -596,6 +591,7 @@ function copyFileSync(sourceDestinationArray, filterArray) {
   } catch (err) {
     // ERROR: Could not copy file:
     console.log(msg.cErrorCouldNotCopyFile + source);
+    console.log(err);
     successfulCopy = false;
   }
   // successfullCopy is:
@@ -635,11 +631,21 @@ function copyFolderRecursiveSync(sourceDestinationArray, filterArray) {
   let files = [];
   let source = sourceDestinationArray[0];
   let target = sourceDestinationArray[1];
+  let targetFolder = '';
 
-  // Check if folder needs to be created or integrated
-  let targetFolder = path.join(target, path.basename(source));
-  if (!fs.existsSync(targetFolder)) {
+  // Check if folder needs to be created or integrated,
+  // but first check if the source is the /src/ folder, because we don't want to duplicate that.
+  // Otherwise we would be copying /src/ to /bin/src/ and that we do not want!!
+  let pathLeafNode = path.basename(source);
+  if (pathLeafNode.includes(wrd.csrc)) {
+    targetFolder = target;
+  } else {
+    targetFolder = path.join(target, pathLeafNode);
+  }
+  targetFolder = path.resolve(targetFolder);
+  if (fs.existsSync(targetFolder) != true) {
     try {
+      // console.log('making the path');
       fs.mkdirSync(targetFolder);
       // NOTE: Just because we complete the above code doesn't mean the entie copy process was a success.
       // But atleast we haven't errored out, so it wasn't a failure YET.
@@ -650,7 +656,27 @@ function copyFolderRecursiveSync(sourceDestinationArray, filterArray) {
       console.log(msg.cERROR_Colon + err);
       successfulCopy = false;
     }
+  } else {
+    // console.log('Supposedly the path exists!');
   } // End-if (!fs.existsSync(targetFolder))
+
+  // try {
+  //   console.log('attempt to access the path/file: ' + targetFolder);
+  //   fs.accessSync(targetFolder);
+  // } catch (err) {
+  //   console.log('access did not work out, so create the folder.');
+  //   fs.mkdirSync(targetFolder);
+  //   console.log('targetFolder created');
+  // }
+
+  // try {
+  //   console.log('attempt to access the path/file: ' + targetFolder);
+  //   fs.statSync(targetFolder);
+  // } catch (err) {
+  //   console.log('access did not work out, so create the folder.');
+  //   fs.mkdirSync(targetFolder);
+  //   console.log('targetFolder created');
+  // }
 
   // Copy
   try {
@@ -741,13 +767,13 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="basic.constants.module_validation.html">basic.constants.validation</a></li><li><a href="business.constants.module_validation.html">business.constants.validation</a></li><li><a href="business.module_constants.html">business.constants</a></li><li><a href="color.constants.module_validation.html">color.constants.validation</a></li><li><a href="color.module_constants.html">color.constants</a></li><li><a href="command.constants.module_validation.html">command.constants.validation</a></li><li><a href="command.module_constants.html">command.constants</a></li><li><a href="configuration.constants.module_validation.html">configuration.constants.validation</a></li><li><a href="configuration.module_constants.html">configuration.constants</a></li><li><a href="country.constants.module_validation.html">country.constants.validation</a></li><li><a href="country.module_constants.html">country.constants</a></li><li><a href="function.constants.module_validation.html">function.constants.validation</a></li><li><a href="function.module_constants.html">function.constants</a></li><li><a href="generic.constants.module_vaidation.html">generic.constants.vaidation</a></li><li><a href="language.constants.module_validation.html">language.constants.validation</a></li><li><a href="language.module_constants.html">language.constants</a></li><li><a href="message.constants.module_validation.html">message.constants.validation</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-basic-constants.html">basic-constants</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-generic-constants.html">generic-constants</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-message-constants.html">message-constants</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-numeric-constants.html">numeric-constants</a></li><li><a href="module-phonic-constants.html">phonic-constants</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-unit-constants.html">unit-constants</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li><li><a href="numeric.constants.module_validation.html">numeric.constants.validation</a></li><li><a href="phonic.constants.module_validation.html">phonic.constants.validation</a></li><li><a href="system.constants.module_validation.html">system.constants.validation</a></li><li><a href="system.module_constants.html">system.constants</a></li><li><a href="unit.constants.module_validation.html">unit.constants.validation</a></li><li><a href="word.constants.module_validation.html">word.constants.validation</a></li><li><a href="word1.module_constants.html">word1.constants</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Apr 09 2022 21:36:02 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Apr 13 2022 16:31:10 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -14,14 +14,8 @@
  * @requires module:application.function.constants
  * @requires module:application.message.constants
  * @requires module:allApplicationConstantsValidationMetadata
- * @requires module:haystacks
- * @requires module:haystacks.constants.basic
- * @requires module:haystacks.constants.configuration
- * @requires module:haystacks.constants.generic
- * @requires module:haystacks.constants.message
- * @requires module:haystacks.constants.phonic
- * @requires module:haystacks.constants.system
- * @requires module:haystacks.constants.word1
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/url|url}
  * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -41,19 +35,12 @@ import * as app_msg from './constants/application.message.constants.js';
 import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
 import haystacks from 'haystacks';
-// const {bas, cfg, } = haystacks
-let bas = haystacks.bas;
-let cmd = haystacks.cmd;
-let cfg = haystacks.cfg;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let phn = haystacks.phn;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
 import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
+const {bas, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.
@@ -77,7 +64,7 @@ function bootstrapApplication() {
   rootPathArray.pop(); // remove any bin or src folder from the path.
   rootPath = rootPathArray.join(bas.cBackSlash);
   let appConfig = {};
-  if (NODE_ENV === wr1.cdevelopment) {
+  if (NODE_ENV === wrd.cdevelopment) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
@@ -90,7 +77,7 @@ function bootstrapApplication() {
       clientBusinessRules: {},
       clientCommands: {}
     };
-  } else if (NODE_ENV === wr1.cproduction) {
+  } else if (NODE_ENV === wrd.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullProdResourcesPath,
@@ -139,7 +126,7 @@ async function application() {
   let commandInput;
   let commandResult;
 
-  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cargumentDrivenInterface);
+  argumentDrivenInterface = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cargumentDrivenInterface);
   if (argumentDrivenInterface === undefined) {
     argumentDrivenInterface = false;
   }

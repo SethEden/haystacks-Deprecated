@@ -33,14 +33,6 @@
  * Also provides an interface to easily manage all the framework features &amp; various functionality from a single entry point.
  * @requires module:dataBroker
  * @requires module:ruleBroker
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word1.constants
  * @requires module:chiefCommander
  * @requires module:chiefConfiguration
  * @requires module:chiefData
@@ -49,6 +41,7 @@
  * @requires module:fileOperations
  * @requires module:loggers
  * @requires module:timers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -58,14 +51,6 @@
 // Internal imports
 import dataBroker from '../brokers/dataBroker.js';
 import ruleBroker from '../brokers/ruleBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wr1 from '../constants/word1.constants.js';
 import chiefCommander from './chiefCommander.js';
 import chiefConfiguration from './chiefConfiguration.js';
 import chiefData from './chiefData.js';
@@ -76,11 +61,13 @@ import loggers from '../executrix/loggers.js';
 import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.warden.
-const namespacePrefix = wr1.ccontrollers + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
 
  /**
  * @function processRootPath
@@ -141,19 +128,19 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataIs + JSON.stringify(applicationMetaData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataIs + JSON.stringify(frameworkMetaData));
 
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientRootPath, configData[cfg.cclientRootPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigResourcesPath, configData[cfg.cappConfigResourcesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigReferencePath, configData[cfg.cappConfigReferencePath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientMetaDataPath, configData[cfg.cclientMetaDataPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientCommandAliasesPath, configData[cfg.cclientCommandAliasesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cclientWorkflowsPath, configData[cfg.cclientWorkflowsPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath, configData[cfg.cframeworkRootPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cappConfigPath, configData[cfg.cappConfigPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkResourcesPath, configData[cfg.cframeworkResourcesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkFullMetaDataPath, configData[cfg.cframeworkFullMetaDataPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkCommandAliasesPath, configData[cfg.cframeworkCommandAliasesPath]);
-  configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkWorkflowsPath, configData[cfg.cframeworkWorkflowsPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientRootPath, configData[cfg.cclientRootPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigResourcesPath, configData[cfg.cappConfigResourcesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigReferencePath, configData[cfg.cappConfigReferencePath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientMetaDataPath, configData[cfg.cclientMetaDataPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientCommandAliasesPath, configData[cfg.cclientCommandAliasesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cclientWorkflowsPath, configData[cfg.cclientWorkflowsPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath, configData[cfg.cframeworkRootPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigPath, configData[cfg.cappConfigPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkResourcesPath, configData[cfg.cframeworkResourcesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkFullMetaDataPath, configData[cfg.cframeworkFullMetaDataPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath, configData[cfg.cframeworkCommandAliasesPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath, configData[cfg.cframeworkWorkflowsPath]);
 
   loggers.consoleLog(namespacePrefix + functionName, msg.cclientRootPathIs + configData[cfg.cclientRootPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigResourcesPathIs + configData[cfg.cappConfigResourcesPath]);
@@ -170,29 +157,29 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
 
   // Make sure the color data gets loaded as well! File: colors.csv (This is used by  the colorizer to colorize the fonts for the console output)
-  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wr1.ccolors);
+  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wrd.ccolors);
 
-  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationName, applicationMetaData[wr1.cName]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationVersionNumber, applicationMetaData[wr1.cVersion]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cApplicationDescription, applicationMetaData[wr1.cDescription]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationNameIs + applicationMetaData[wr1.cName]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationVersionNumberIs + applicationMetaData[wr1.cVersion]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationDescriptionIs + applicationMetaData[wr1.cDescription]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationName, applicationMetaData[wrd.cName]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber, applicationMetaData[wrd.cVersion]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationDescription, applicationMetaData[wrd.cDescription]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationNameIs + applicationMetaData[wrd.cName]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationVersionNumberIs + applicationMetaData[wrd.cVersion]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cApplicationDescriptionIs + applicationMetaData[wrd.cDescription]);
 
-  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkName, frameworkMetaData[wr1.cName]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber, frameworkMetaData[wr1.cVersion]);
-  configurator.setConfigurationSetting(wr1.csystem, sys.cFrameworkDescription, frameworkMetaData[wr1.cDescription]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkNameIs + frameworkMetaData[wr1.cName]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wr1.cVersion]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wr1.cDescription]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cFrameworkName, frameworkMetaData[wrd.cName]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber, frameworkMetaData[wrd.cVersion]);
+  configurator.setConfigurationSetting(wrd.csystem, sys.cFrameworkDescription, frameworkMetaData[wrd.cDescription]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkNameIs + frameworkMetaData[wrd.cName]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkVersionNumberIs + frameworkMetaData[wrd.cVersion]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cFrameworkDescriptionIs + frameworkMetaData[wrd.cDescription]);
 
-  if (configurator.getConfigurationSetting(wr1.csystem, cfg.cenableConstantsValidation) === true) {
+  if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let resolvedFrameworkConstantsPathActual = path.resolve(configData[cfg.cframeworkConstantsPath]);
     let resolvedClientConstantsPathActual = path.resolve(configData[cfg.cclientConstantsPath])
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedFrameworkConstantsPathActualIs + resolvedFrameworkConstantsPathActual);
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientConstantsPathActualIs + resolvedClientConstantsPathActual);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.cframeworkConstantsPath, resolvedFrameworkConstantsPathActual);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConstantsPath, resolvedFrameworkConstantsPathActual);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.capplicationConstantsPath, resolvedClientConstantsPathActual);
 
     chiefData.initializeConstantsValidationData(); // This just makes sure that the data structure is created on the D-Data structure.
     let frameworkConstantsValidationData = configData[cfg.cframeworkConstantsValidationData].call();
@@ -203,14 +190,14 @@ function initFrameworkSchema(configData) {
     chiefData.addConstantsValidationData(applicationConstantsValidationData);
   }
 
-  let enableLogFileOutputSetting = configurator.getConfigurationSetting(wr1.csystem, cfg.clogFileEnabled);
+  let enableLogFileOutputSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cCaptureSessionDateTimeStampLogFileName);
-    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wr1.csystem, cfg.cdateTimeStamp));
+    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp));
     loggers.consoleLog(namespacePrefix + functionName, msg.csessionDateTimeStampIs + sessionDateTimeStamp);
-    let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wr1.cVersion] + bas.cUnderscore + applicationMetaData[wr1.cName] + gen.cDotLog;
+    let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wrd.cVersion] + bas.cUnderscore + applicationMetaData[wrd.cName] + gen.cDotLog;
     loggers.consoleLog(namespacePrefix + functionName, msg.clogFileNameIs + logFileName);
-    configurator.setConfigurationSetting(wr1.csystem, cfg.clogFileName, logFileName);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.clogFileName, logFileName);
   }
 
   mergeClientBusinessRules(configData[sys.cclientBusinessRules]);
@@ -276,13 +263,13 @@ function loadCommandAliases(commandAliasesPathConfigName) {
   let resolvedClientCommandsAliasesPath;
   let resolvedCustomCommandsAliasesPath;
   if (commandAliasesPathConfigName) {
-    resolvedCustomCommandsAliasesPath = path.resolve(configurator.getConfigurationSetting(wr1.csystem, commandAliasesPathConfigName));
+    resolvedCustomCommandsAliasesPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, commandAliasesPathConfigName));
     // resolvedCustomCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomCommandsAliasesPathIs + resolvedCustomCommandsAliasesPath);
     chiefCommander.loadCommandAliasesFromPath(commandAliasesPathConfigName);
   } else {
-    resolvedSystemCommandsAliasesPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkCommandAliasesPath);
-    resolvedClientCommandsAliasesPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientCommandAliasesPath);
+    resolvedSystemCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath);
+    resolvedClientCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientCommandAliasesPath);
     // resolvedSystemCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemCommandsAliasesPathIs + resolvedSystemCommandsAliasesPath);
     // resolvedClientCommandsAliasesPath is:
@@ -312,13 +299,13 @@ function loadCommandWorkflows(workflowPathConfigName) {
   let resolvedClientWorkflowsPath;
   let resolvedCustomWorkflowsPath;
   if (workflowPathConfigName) {
-    resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wr1.csystem, workflowPathConfigName));
+    resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, workflowPathConfigName));
     // resolvedCustomWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomWorkflowsPathIs + resolvedSystemWorkflowsPath);
     chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName);
   } else {
-    resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cframeworkWorkflowsPath);
-    resolvedClientWorkflowsPath = configurator.getConfigurationSetting(wr1.csystem, cfg.cclientWorkflowsPath);
+    resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath);
+    resolvedClientWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientWorkflowsPath);
     // resolvedSystemWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemWorkflowsPathIs + resolvedSystemWorkflowsPath);
     // resolvedClientWorkflowsPath is:
@@ -532,13 +519,13 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="basic.constants.module_validation.html">basic.constants.validation</a></li><li><a href="business.constants.module_validation.html">business.constants.validation</a></li><li><a href="business.module_constants.html">business.constants</a></li><li><a href="color.constants.module_validation.html">color.constants.validation</a></li><li><a href="color.module_constants.html">color.constants</a></li><li><a href="command.constants.module_validation.html">command.constants.validation</a></li><li><a href="command.module_constants.html">command.constants</a></li><li><a href="configuration.constants.module_validation.html">configuration.constants.validation</a></li><li><a href="configuration.module_constants.html">configuration.constants</a></li><li><a href="country.constants.module_validation.html">country.constants.validation</a></li><li><a href="country.module_constants.html">country.constants</a></li><li><a href="function.constants.module_validation.html">function.constants.validation</a></li><li><a href="function.module_constants.html">function.constants</a></li><li><a href="generic.constants.module_vaidation.html">generic.constants.vaidation</a></li><li><a href="language.constants.module_validation.html">language.constants.validation</a></li><li><a href="language.module_constants.html">language.constants</a></li><li><a href="message.constants.module_validation.html">message.constants.validation</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-basic-constants.html">basic-constants</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-generic-constants.html">generic-constants</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-message-constants.html">message-constants</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-numeric-constants.html">numeric-constants</a></li><li><a href="module-phonic-constants.html">phonic-constants</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-unit-constants.html">unit-constants</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li><li><a href="numeric.constants.module_validation.html">numeric.constants.validation</a></li><li><a href="phonic.constants.module_validation.html">phonic.constants.validation</a></li><li><a href="system.constants.module_validation.html">system.constants.validation</a></li><li><a href="system.module_constants.html">system.constants</a></li><li><a href="unit.constants.module_validation.html">unit.constants.validation</a></li><li><a href="word.constants.module_validation.html">word.constants.validation</a></li><li><a href="word1.module_constants.html">word1.constants</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-arrayParsing.html">arrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-nominal.html">nominal</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsing.html">stringParsing</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Apr 09 2022 21:36:02 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Apr 13 2022 16:31:10 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

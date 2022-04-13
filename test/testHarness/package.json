@@ -21,7 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.0.0",
-    "haystacks": "0.0.x"
+    "haystacks": "0.0.x",
+    "@haystacks/constants": "^0.0.5"
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",

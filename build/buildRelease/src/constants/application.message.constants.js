@@ -2,13 +2,7 @@
  * @file application.message.constants.js
  * @module application.message.constants
  * @description Contains many re-usable application message constants.
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.numeric.constants
- * @requires module:haystacks.phonic.constants
- * @requires module:haystacks.system.constants
- * @requires module:haystacks.word1.constants
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @author Seth Hollingsead
  * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
@@ -18,53 +12,47 @@
  import * as app_sys from './application.system.constants.js';
 
 // External imports
-import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let num = haystacks.num;
-let phn = haystacks.phn;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
+const {bas, gen, msg, num, phn, sys, wrd} = hayConst;
 
 // Client String Parsing
-export const cclientStringParsingDotCustomEcho = wr1.cclient + wr1.cString + wr1.cParsing + bas.cDot + wr1.ccustom + wr1.cEcho; // clientStringParsing.customEcho
+export const cclientStringParsingDotCustomEcho = wrd.cclient + wrd.cString + wrd.cParsing + bas.cDot + wrd.ccustom + wrd.cEcho; // clientStringParsing.customEcho
 
 // Messages
-export const cBuildMessage1 = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
-export const csourcePathIs = wr1.csource + wr1.cPath + sys.cSpaceIsColonSpace; // sourcePath is:
-export const cdestinationPathIs = wr1.cdestination + wr1.cPath + sys.cSpaceIsColonSpace; // destinationPath is:
-export const cDeploymentWasCompleted = wr1.cDeployment + bas.cSpace + wr1.cwas + bas.cSpace + wr1.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
-export const cDeploymentFailed = wr1.cDeployment + bas.cSpace + wr1.cfailed; // Deployment failed
+export const cBuildMessage1 = wrd.cDeployment + bas.cSpace + wrd.cwas + bas.cSpace + wrd.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
+export const csourcePathIs = wrd.csource + wrd.cPath + sys.cSpaceIsColonSpace; // sourcePath is:
+export const cdestinationPathIs = wrd.cdestination + wrd.cPath + sys.cSpaceIsColonSpace; // destinationPath is:
+export const cDeploymentWasCompleted = wrd.cDeployment + bas.cSpace + wrd.cwas + bas.cSpace + wrd.ccompleted + bas.cColon + bas.cSpace; // Deployment was completed:
+export const cDeploymentFailed = wrd.cDeployment + bas.cSpace + wrd.cfailed; // Deployment failed
 // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another release.
-export const cdeployApplicationMessage1a = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.cconstants + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; // ERROR: Release failed because of a failure in the constants validation system.
-export const cdeployApplicationMessage2a = wr1.cPlease + bas.cSpace + wr1.cfix + bas.cSpace + gen.cASAP + bas.cSpace + wr1.cbefore + bas.cSpace + wr1.cattempting + bas.cSpace + wr1.canother + bas.cSpace + wr1.cdeployment + bas.cDot; // Please fix ASAP before attempting another deployment.
+export const cdeployApplicationMessage1a = wrd.cERROR + bas.cColon + bas.cSpace + wrd.cRelease + bas.cSpace + wrd.cfailed + bas.cSpace + wrd.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wrd.cfailure + bas.cSpace + bas.cin + bas.cSpace + wrd.cthe + bas.cSpace + wrd.cconstants + bas.cSpace + wrd.cvalidation + bas.cSpace + wrd.csystem + bas.cDot + bas.cSpace; // ERROR: Release failed because of a failure in the constants validation system.
+export const cdeployApplicationMessage2a = wrd.cPlease + bas.cSpace + wrd.cfix + bas.cSpace + gen.cASAP + bas.cSpace + wrd.cbefore + bas.cSpace + wrd.cattempting + bas.cSpace + wrd.canother + bas.cSpace + wrd.cdeployment + bas.cDot; // Please fix ASAP before attempting another deployment.
 // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another release.
-export const cdeployApplicationMessage1b = wr1.cERROR + bas.cColon + bas.cSpace + wr1.cRelease + bas.cSpace + wr1.cfailed + bas.cSpace + wr1.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wr1.cfailure + bas.cSpace + bas.cin + bas.cSpace + wr1.cthe + bas.cSpace + wr1.ccommands + bas.cSpace + wr1.calias + bas.cSpace + wr1.cvalidation + bas.cSpace + wr1.csystem + bas.cDot + bas.cSpace; //ERROR: Release failed because of a failure in the commands alias validation system.
-export const cReleasingFramework = wr1.cReleasing + bas.cSpace + wr1.cFramework + bas.cColon; // Releasing Framework:
+export const cdeployApplicationMessage1b = wrd.cERROR + bas.cColon + bas.cSpace + wrd.cRelease + bas.cSpace + wrd.cfailed + bas.cSpace + wrd.cbecause + bas.cSpace + bas.cof + bas.cSpace + bas.ca + bas.cSpace + wrd.cfailure + bas.cSpace + bas.cin + bas.cSpace + wrd.cthe + bas.cSpace + wrd.ccommands + bas.cSpace + wrd.calias + bas.cSpace + wrd.cvalidation + bas.cSpace + wrd.csystem + bas.cDot + bas.cSpace; //ERROR: Release failed because of a failure in the commands alias validation system.
+export const cReleasingFramework = wrd.cReleasing + bas.cSpace + wrd.cFramework + bas.cColon; // Releasing Framework:
 
 // Constants Validation
-export const callClientConstantsValidationDataIs = wr1.call + wr1.cClient + wr1.cConstants + wr1.cValidation + wr1.cData + sys.cSpaceIsColonSpace; // allClientConstantsValidationData is:
-export const cresolvedConstantsPath_ApplicationBusinessIs = app_sys.cresolvedConstantsPath_Application + wr1.cBusiness + sys.cSpaceIsColonSpace; // resolvedConstantsPawth_ApplicationBusiness is:
-export const cresolvedConstantsPath_ApplicationCommandIs = app_sys.cresolvedConstantsPath_Application + wr1.cCommand + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationCommand is:
-export const cresolvedConstantsPath_ApplicationConfigurationIs = app_sys.cresolvedConstantsPath_Application + wr1.cConfiguration + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationConfiguration is:
-export const cresolvedConstantsPath_ApplicationConstantsIs = app_sys.cresolvedConstantsPath_Application + wr1.cConstants + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationConstants is:
-export const cresolvedConstantsPath_ApplicationFunctionIs = app_sys.cresolvedConstantsPath_Application + wr1.cFunction + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationFunction is:
-export const cresolvedConstantsPath_ApplicationMessageIs = app_sys.cresolvedConstantsPath_Application + wr1.cMessage + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationMessage is:
-export const cresolvedConstantsPath_ApplicationSystemIs = app_sys.cresolvedConstantsPath_Application + wr1.cSystem + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationSystem is:
+export const callClientConstantsValidationDataIs = wrd.call + wrd.cClient + wrd.cConstants + wrd.cValidation + wrd.cData + sys.cSpaceIsColonSpace; // allClientConstantsValidationData is:
+export const cresolvedConstantsPath_ApplicationBusinessIs = app_sys.cresolvedConstantsPath_Application + wrd.cBusiness + sys.cSpaceIsColonSpace; // resolvedConstantsPawth_ApplicationBusiness is:
+export const cresolvedConstantsPath_ApplicationCommandIs = app_sys.cresolvedConstantsPath_Application + wrd.cCommand + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationCommand is:
+export const cresolvedConstantsPath_ApplicationConfigurationIs = app_sys.cresolvedConstantsPath_Application + wrd.cConfiguration + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationConfiguration is:
+export const cresolvedConstantsPath_ApplicationConstantsIs = app_sys.cresolvedConstantsPath_Application + wrd.cConstants + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationConstants is:
+export const cresolvedConstantsPath_ApplicationFunctionIs = app_sys.cresolvedConstantsPath_Application + wrd.cFunction + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationFunction is:
+export const cresolvedConstantsPath_ApplicationMessageIs = app_sys.cresolvedConstantsPath_Application + wrd.cMessage + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationMessage is:
+export const cresolvedConstantsPath_ApplicationSystemIs = app_sys.cresolvedConstantsPath_Application + wrd.cSystem + sys.cSpaceIsColonSpace; // resolvedConstantsPath_ApplicationSystem is:
 
-export const cApplicationBusinessConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cBusiness + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application Business Constants Phase 1 Validation
-export const cApplicationCommandConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cCommand + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application Command Constants Phase 1 Validation
-export const cApplicationConfigurationConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cConfiguration + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application Configuration Constants Phase 1 Validation
-export const cApplicationConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application Constants Phase 1 Validation
-export const cApplicationFunctionConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cFunction + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application Function Constants Phase 1 Validation
-export const cApplicationMessageConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cMessage + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application Message Constants Phase 1 Validation
-export const cApplicationSystemConstantsPhase1Validation = wr1.cApplication + bas.cSpace + wr1.cSystem + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c1 + bas.cSpace + wr1.cValidation; // Application System Constants Phase 1 Validation
+export const cApplicationBusinessConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cBusiness + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application Business Constants Phase 1 Validation
+export const cApplicationCommandConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cCommand + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application Command Constants Phase 1 Validation
+export const cApplicationConfigurationConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cConfiguration + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application Configuration Constants Phase 1 Validation
+export const cApplicationConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application Constants Phase 1 Validation
+export const cApplicationFunctionConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cFunction + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application Function Constants Phase 1 Validation
+export const cApplicationMessageConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cMessage + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application Message Constants Phase 1 Validation
+export const cApplicationSystemConstantsPhase1Validation = wrd.cApplication + bas.cSpace + wrd.cSystem + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c1 + bas.cSpace + wrd.cValidation; // Application System Constants Phase 1 Validation
 
-export const cApplicationBusinessConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cBusiness + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application Business Constants Phase 2 Validation
-export const cApplicationCommandConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cCommand + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application Command Constants Phase 2 Validation
-export const cApplicationConfigurationConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cConfiguration + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application Configuration Constants Phase 2 Validation
-export const cApplicationConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application Constants Phase 2 Vaidation
-export const cApplicationFunctionConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cFunction + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application Function Constants Phase 2 Validation
-export const cApplicationMessageConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cMessage + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application Message Constants Phase 2 Validation
-export const cApplicationSystemConstantsPhase2Validation = wr1.cApplication + bas.cSpace + wr1.cSystem + bas.cSpace + wr1.cConstants + bas.cSpace + wr1.cPhase + bas.cSpace + num.c2 + bas.cSpace + wr1.cValidation; // Application System Constants Phase 2 Validation
+export const cApplicationBusinessConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cBusiness + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application Business Constants Phase 2 Validation
+export const cApplicationCommandConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cCommand + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application Command Constants Phase 2 Validation
+export const cApplicationConfigurationConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cConfiguration + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application Configuration Constants Phase 2 Validation
+export const cApplicationConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application Constants Phase 2 Vaidation
+export const cApplicationFunctionConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cFunction + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application Function Constants Phase 2 Validation
+export const cApplicationMessageConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cMessage + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application Message Constants Phase 2 Validation
+export const cApplicationSystemConstantsPhase2Validation = wrd.cApplication + bas.cSpace + wrd.cSystem + bas.cSpace + wrd.cConstants + bas.cSpace + wrd.cPhase + bas.cSpace + num.c2 + bas.cSpace + wrd.cValidation; // Application System Constants Phase 2 Validation

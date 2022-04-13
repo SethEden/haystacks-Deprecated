@@ -6,11 +6,8 @@
  * @requires module:application.business.constants
  * @requires module:application.constants
  * @requires module:application.message.constants
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.word1.constants
- * @requires module:haystacks.system.constants
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/08
@@ -23,15 +20,13 @@ import * as apc from '../../constants/application.constants.js';
 import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let msg = haystacks.msg;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.businessRules.clientRules.clientStringParsing.
-const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cbusiness + wrd.cRules + bas.cDot + wrd.cclient + wrd.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEcho

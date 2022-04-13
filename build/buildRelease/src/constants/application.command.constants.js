@@ -3,29 +3,26 @@
  * @module application.command.constants
  * @description A file to hold all of the client application command constants.
  * So non of the constants in this file should be generic/system/framework constants.
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.word1.constants
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @author Seth Hollingsead
  * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
 // External imports
-import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
+const {bas, wrd} = hayConst;
 
 // ********************************
 // Client Commands in order
 // ********************************
-export const ccustomEchoCommand = wr1.ccustom + wr1.cEcho + wr1.cCommand; // customEchoCommand
-export const cdeployMetaData = wr1.cdeploy + wr1.cMetaData; // deployMetaData
-export const cdeployApplication = wr1.cdeploy + wr1.cApplication; // deployApplication
-export const creleaseApplication = wr1.crelease + wr1.cApplication; // releaseApplication
+export const ccustomEchoCommand = wrd.ccustom + wrd.cEcho + wrd.cCommand; // customEchoCommand
+export const cdeployMetaData = wrd.cdeploy + wrd.cMetaData; // deployMetaData
+export const cdeployApplication = wrd.cdeploy + wrd.cApplication; // deployApplication
+export const creleaseApplication = wrd.crelease + wrd.cApplication; // releaseApplication
 
 // ********************************
 // Client Workflows in order
 // ********************************
-export const cBuildWorkflow = wr1.cWorkflow + bas.cSpace + wr1.cbuild; // Workflow build
-export const cReleaseWorkflow = wr1.cWorkflow + bas.cSpace + wr1.crelease; // Workflow release
+export const cBuildWorkflow = wrd.cWorkflow + bas.cSpace + wrd.cbuild; // Workflow build
+export const cReleaseWorkflow = wrd.cWorkflow + bas.cSpace + wrd.crelease; // Workflow release

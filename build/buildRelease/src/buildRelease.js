@@ -13,14 +13,8 @@
  * @requires module:application.function.constants
  * @requires module:application.message.constants
  * @requires module:allApplicationConstantsValidationMetadata
- * @requires module:haystacks
- * @requires module:haystacks.constants.basic
- * @requires module:haystacks.constants.configuration
- * @requires module:haystacks.constants.generic
- * @requires module:haystacks.constants.message
- * @requires module:haystacks.constants.phonic
- * @requires module:haystacks.constants.system
- * @requires module:haystacks.constants.word1
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/url|url}
  * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -40,19 +34,12 @@ import * as app_msg from './constants/application.message.constants.js';
 import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
 import haystacks from 'haystacks';
-// const {bas, cfg, } = haystacks;
-let bas = haystacks.bas;
-let cmd = haystacks.cmd;
-let cfg = haystacks.cfg;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let phn = haystacks.phn;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
 import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
+const {bas, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.
@@ -76,7 +63,7 @@ function bootStrapApplication() {
   rootPathArray.pop(); // remove any bin or src folder from the path.
   rootPath = rootPathArray.join(bas.cBackSlash);
   let appConfig = {};
-  if (NODE_ENV === wr1.cdevelopment) {
+  if (NODE_ENV === wrd.cdevelopment) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
@@ -89,7 +76,7 @@ function bootStrapApplication() {
       clientBusinessRules: {},
       clientCommands: {}
     };
-  } else if (NODE_ENV === wr1.cproduction) {
+  } else if (NODE_ENV === wrd.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResouresPath: rootPath + apc.cFullProdResourcesPath,
@@ -140,13 +127,16 @@ function deployApplication() {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   let copyResult;
   try {
-    // fse.copySync('/src/Application/NodeJS-App/Resources/*', '/bin/Application/NodeJS-App/Resources/*');
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.creleaseCompleted, false);
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation, false);
-    haystacks.setConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
-    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
-    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath, apc.cAppProdPath);
-    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.creleasePath, apc.cReleasePath);
+    // fse.copySync('/src/*', '/bin/*');
+    haystacks.setConfigurationSetting(wrd.csystem, cfg.creleaseCompleted, false);
+    haystacks.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, false);
+    haystacks.setConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
+    let frameworkRootPath = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath);
+    haystacks.setConfigurationSetting(wrd.csystem, app_cfg.csourcePath, apc.cAppDevPath);
+    haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdestinationPath, apc.cAppProdPath);
+    haystacks.setConfigurationSetting(wrd.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
+    haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdestinationResourcesPath, apc.cAppProdPath);
+    haystacks.setConfigurationSetting(wrd.csystem, app_cfg.creleasePath, apc.cReleasePath);
     // NOTE: We could use a similar process to deploy an application that is based on the haystacks framework.
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
@@ -178,18 +168,18 @@ function deployApplication() {
       commandResult = true;
       commandResult = haystacks.processCommandQueue();
     }
-    let deploymentResult = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted);
+    let deploymentResult = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted);
     if (deploymentResult) {
       // Deployment was completed:
       console.log(app_msg.cBuildMessage1 + deploymentResult);
     } else {
       console.log(app_msg.cBuildMessage1 + gen.cFalse);
-      haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, false);
+      haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, false);
     }
   } catch (err) {
     console.error(err);
     // deploymentCompleted
-    haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, false);
+    haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, false);
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
 };

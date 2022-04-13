@@ -6,15 +6,8 @@
  * @requires module:application.configuration.constants
  * @requires module:application.constants
  * @requires module:application.message.constants
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.business.constants
- * @requires module:haystacks.configuration.constants
- * @requires module:haystacks.generaic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.numeric.constants
- * @requires module:haystacks.system.constants
- * @requires module:haystacks.word1.constants
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -29,20 +22,14 @@ import * as apc from '../../constants/application.constants.js';
 import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let biz = haystacks.biz;
-let cfg = haystacks.cfg;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let num = haystacks.num;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
+const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.commands.cientCommands.clientCommands.
-const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.ccommands + bas.cDot + wr1.cclient + wr1.cCommands + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.ccommands + bas.cDot + wrd.cclient + wrd.cCommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEchoCommand
@@ -85,13 +72,13 @@ const deployMetaData = function(inputData, inputMetaData) {
 
   // inputData.shift(); // Remove the first element of the array, because that is what is used to call this command.
   // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
-  let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath);
+  let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
   let frameworkMetaData = haystacks.executeBusinessRule(biz.cloadDataFile, frameworkMetaDataPathAndFilename, false);
-  let frameworkName = frameworkMetaData[wr1.cname];
-  let frameworkVersion = frameworkMetaData[wr1.cversion];
-  let frameworkDescription = frameworkMetaData[wr1.cdescription];
+  let frameworkName = frameworkMetaData[wrd.cname];
+  let frameworkVersion = frameworkMetaData[wrd.cversion];
+  let frameworkDescription = frameworkMetaData[wrd.cdescription];
   let metaDataOutput = {};
   metaDataOutput = {
     Name: frameworkName,
@@ -105,16 +92,16 @@ const deployMetaData = function(inputData, inputMetaData) {
   // The application deployment process will try to generate a zip package for the previous version.
   // That would fail the process because the previous version would have already been released.
   // Which would mean that the release process would have to be run twice for every release, and we want to avoid that.
-  let currentFrameworkVersion = haystacks.getConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber);
+  let currentFrameworkVersion = haystacks.getConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber);
   if (currentFrameworkVersion != frameworkVersion) {
     // The current version number is out dated. We need to update it with the new version number.
     // Update all these generic fields that come from the metaData.json file.
-    haystacks.setConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber, frameworkVersion);
-    haystacks.setConfigurationSetting(wr1.csystem, sys.cFrameworkName, frameworkName);
-    haystacks.setConfigurationSetting(wr1.csystem, sys.cFrameworkDescription, frameworkDescription);
+    haystacks.setConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber, frameworkVersion);
+    haystacks.setConfigurationSetting(wrd.csystem, sys.cFrameworkName, frameworkName);
+    haystacks.setConfigurationSetting(wrd.csystem, sys.cFrameworkDescription, frameworkDescription);
   }
 
-  let metaDataPathAndFilename = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkResourcesPath);
+  let metaDataPathAndFilename = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkResourcesPath);
   metaDataPathAndFilename = path.resolve(metaDataPathAndFilename + sys.cmetaDatadotJson);
   // metaDataPathAndFilename is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
@@ -142,22 +129,22 @@ const deployApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let passAllConstantsValidation = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation);
-  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
+  let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
+  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
   if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
     // DEPLOY APPLICATION
     console.log(msg.cDEPLOY_APPLICATION);
-    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)
-    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.csourceResourcesPath);
-    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath);
+    let frameworkRootPath = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath)
+    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wrd.csystem, app_cfg.csourcePath);
+    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cdestinationPath);
     // sourcePath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-    let deploymentStatus = haystacks.executeBusinessRule(biz.ccopyAllFilesAndFoldersFromFolderToFolder, [sourcePath, destinationPath], [[gen.cDotenv, gen.cDotjs],[gen.cDotjson]]);
+    let deploymentStatus = haystacks.executeBusinessRule(biz.ccopyAllFilesAndFoldersFromFolderToFolder, [sourcePath, destinationPath], []);
     if (deploymentStatus === true) {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentWasCompleted + true);
-      haystacks.setConfigurationSetting(wr1.csystem, app_cfg.cdeploymentCompleted, true);
+      haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, true);
     } else {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentFailed);
     }
@@ -194,15 +181,15 @@ const releaseApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let passAllConstantsValidation = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassAllConstantsValidation);
-  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wr1.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
+  let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
+  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
   if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
     // RELEASE APPLICATION
     console.log(msg.cRELEASE_APPLICATION);
-    let frameworkRootPath = haystacks.getConfigurationSetting(wr1.csystem, cfg.cframeworkRootPath)
+    let frameworkRootPath = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath)
     // NOTE: The destinationResourcesPath works out to be the root/bin of the framework, for this next operation that will be our source path.
-    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cdestinationResourcesPath);
-    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wr1.csystem, app_cfg.creleasePath);
+    let sourcePath = frameworkRootPath + haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cdestinationResourcesPath);
+    let destinationPath = frameworkRootPath + haystacks.getConfigurationSetting(wrd.csystem, app_cfg.creleasePath);
     // sourcePath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:

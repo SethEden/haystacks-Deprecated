@@ -5,13 +5,8 @@
  * values of all kinds, with various operations.
  * @requires module:application.busienss.constants
  * @requires module:application.constants
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.business.constants
- * @requires module:haystacks.generic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.word1.constants
- * @requires module:haystacks.system.constants
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/03/13
@@ -23,17 +18,13 @@ import * as app_biz from '../../constants/application.business.constants.js';
 import * as apc from '../../constants/application.constants.js';
 // External imports
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let biz = haystacks.biz;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.busienssRules.clientRules.clientStringParsing.
-const namespacePrefix = apc.cApplicationName + bas.cDot + wr1.cbusiness + wr1.cRules + bas.cDot + wr1.cclient + wr1.cRules + bas.cDot + baseFileName + bas.cDot;
+const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cbusiness + wrd.cRules + bas.cDot + wrd.cclient + wrd.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEcho
@@ -76,8 +67,8 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   let returnData = false;
   let releaseFiles = [];
   let releasedArchiveFiles = [];
-  let currentVersion = haystacks.getConfigurationSetting(wr1.csystem, sys.cFrameworkVersionNumber);
-  let frameworkName = haystacks.getConfigurationSetting(wr1.csystem, sys.cFrameworkName);
+  let currentVersion = haystacks.getConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber);
+  let frameworkName = haystacks.getConfigurationSetting(wrd.csystem, sys.cFrameworkName);
   let currentVersionReleased = false;
   let releaseDateTimeStamp;
   let originalSource, originalDestination;
@@ -106,7 +97,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   if (currentVersionReleased === false) {
     // release Files list is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = haystacks.executeBusinessRule(biz.cgetNowMoment, haystacks.getConfigurationSetting(wr1.csystem, sys.cdateTimeStamp), '');
+    releaseDateTimeStamp = haystacks.executeBusinessRule(biz.cgetNowMoment, haystacks.getConfigurationSetting(wrd.csystem, sys.cdateTimeStamp), '');
     // release date-time stamp is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + frameworkName;
