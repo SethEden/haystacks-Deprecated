@@ -4,15 +4,9 @@
  * @description Implements the various functions of a stack data structure,
  * using the specified namespace on the D-data structure.
  * @requires module:ruleBroker
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:function.constants
- * @requires module:message.constants
- * @requires module:numeric.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:loggers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/01
@@ -21,18 +15,13 @@
 
 // Internal imports
 import ruleBroker from '../brokers/ruleBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as num from '../constants/numeric.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from './data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, fnc, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // structures.stack.
 const namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;

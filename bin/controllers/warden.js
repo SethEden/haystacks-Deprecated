@@ -5,14 +5,6 @@
  * Also provides an interface to easily manage all the framework features & various functionality from a single entry point.
  * @requires module:dataBroker
  * @requires module:ruleBroker
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:chiefCommander
  * @requires module:chiefConfiguration
  * @requires module:chiefData
@@ -21,6 +13,7 @@
  * @requires module:fileOperations
  * @requires module:loggers
  * @requires module:timers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/15
@@ -30,14 +23,6 @@
 // Internal imports
 import dataBroker from '../brokers/dataBroker.js';
 import ruleBroker from '../brokers/ruleBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import chiefCommander from './chiefCommander.js';
 import chiefConfiguration from './chiefConfiguration.js';
 import chiefData from './chiefData.js';
@@ -48,8 +33,10 @@ import loggers from '../executrix/loggers.js';
 import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.warden.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;

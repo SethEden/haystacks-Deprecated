@@ -2,11 +2,8 @@
  * @file mathOperations
  * @module mathOperations
  * @description Contains all of the business rule functions for ding math operations and conversions.
- * @requires module:basic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -16,15 +13,13 @@
 
 // Internal imports
 import stringParsingUtilities from './stringParsingUtilities.js';
-import * as bas from '../../constants/basic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
 import path from 'path';
 
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.mathOperations.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;

@@ -8,11 +8,8 @@
  * @requires module:stringGeneration
  * @requires module:stringParsing
  * @requires module:stringParsingUtilities
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:function.constants
- * @requires module:system.constants
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/27
@@ -26,14 +23,12 @@ import mathOperations from './rules/mathOperations.js';
 import stringGeneration from './rules/stringGeneration.js';
 import stringParsing from './rules/stringParsing.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as sys from '../constants/system.constants.js';
 import D from '../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, fnc, sys} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rulesLibrary.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;

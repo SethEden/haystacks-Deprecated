@@ -3,16 +3,9 @@
  * @module lexical
  * @descriptionContains all functions used for parsing command arguments and/or business rule arguments.
  * @requires module:ruleBroker
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/03
@@ -21,19 +14,13 @@
 
 // Internal imports
 import ruleBroker from '../brokers/ruleBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import configurator from './configurator.js';
 import loggers from './loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.lexical.
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;

@@ -4,14 +4,9 @@
  * @description Contains all the functions to manage the loading and processing of data,
  * such as XML files, CSV files or JSON files. Additional file type processing should be added in this module.
  * @requires module:dataBroker
- * @requires module:basic.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/13
@@ -20,17 +15,13 @@
 
 // Internal imports
 import dataBroker from '../brokers/dataBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, cfg, fnc, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefData.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;

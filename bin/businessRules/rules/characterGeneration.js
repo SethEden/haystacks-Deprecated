@@ -3,14 +3,8 @@
  * @module characterGeneration
  * @description Contains all business rules for randomly generating characters of all kinds.
  * @requires module:stringParsingUtilities
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:numeric.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/01/25
@@ -19,17 +13,12 @@
 
 // Internal imports
 import stringParsingUtilities from './stringParsingUtilities.js';
-import * as bas from '../../constants/basic.constants.js';
-import * as biz from '../../constants/business.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as num from '../../constants/numeric.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.characterGeneration.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;

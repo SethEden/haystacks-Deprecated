@@ -2,12 +2,8 @@
  * @file prompt.js
  * @module prompt
  * @description A simple prompt module to get input from the user using process.stdin.
- * @requires module:basic.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:word.constants
  * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -15,16 +11,13 @@
  */
 
 // Internal imports
-import * as bas from '../constants/basic.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import loggers from './loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import fs from 'fs';
 import path from 'path';
 
+const {bas, fnc, gen, msg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.prompt.
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;

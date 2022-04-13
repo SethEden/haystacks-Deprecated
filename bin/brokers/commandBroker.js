@@ -5,21 +5,14 @@
  * which will actually be stored functions on the D-Data structure.
  * @requires module:ruleBroker
  * @requires module:commandsLibrary
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:numeric.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:lexical
  * @requires module:loggers
  * @requires module:timers
  * @requires module:data
  * @requires module:stack
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/02
@@ -29,15 +22,6 @@
 // Internal imports
 import ruleBroker from './ruleBroker.js';
 import commandsLibrary from '../commandsBlob/commandsLibrary.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as num from '../constants/numeric.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import lexical from '../executrix/lexical.js';
 import loggers from '../executrix/loggers.js';
@@ -45,8 +29,10 @@ import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
 import stack from '../structures/stack.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, cfg, fnc, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.commandBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;

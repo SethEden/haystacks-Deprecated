@@ -3,14 +3,9 @@
  * @module colorizer
  * @description Contains all of the functions needed to manage, aprse and control font styles and font colors.
  * @requires module:ruleBroker
- * @requires module:basic.constants
- * @requires module:color.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -20,18 +15,14 @@
 
 // Internal imports
 import ruleBroker from '../brokers/ruleBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as clr from '../constants/color.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import configurator from '../executrix/configurator.js';
 import D from '../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
+const {bas, clr, cfg, fnc, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.colorizer.
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
