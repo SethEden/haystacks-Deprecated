@@ -6,20 +6,12 @@
  * Additional logic is in place to allow the configuration file to define which
  * modules/files & functions should participate in logging operations.
  * @requires module:ruleBroker
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:color.constants
- * @requires module:configuration.constants
- * @requires module:function.constants
- * @requires module:system.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:word.constants
  * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:timers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -29,24 +21,17 @@
 
 // Internal imports
 import ruleBroker from '../brokers/ruleBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as biz from '../constants/business.constants.js';
-import * as clr from '../constants/color.constants.js';
-import * as cfg from '../constants/configuration.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as gen from '../constants/generic.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import colorizer from './colorizer.js';
 import configurator from './configurator.js';
 import fileOperations from './fileOperations.js';
 import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
+const {bas, biz, clr, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.loggers.
 const namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;

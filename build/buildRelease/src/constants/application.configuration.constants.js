@@ -2,18 +2,15 @@
  * @file application.configuration.constants.js
  * @module application.configuration.constants
  * @description A file to hold all of the cient configuration constants.
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.word.constants
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @author Seth Hollingsead
  * @date 2022/03/13
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
 // External imports
-import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let wrd = haystacks.wrd;
+import hayConst from '@haystacks/constants';
+const {bas, wrd} = hayConst;
 
 export const cargumentDrivenInterface = wrd.cargument + wrd.cDriven + wrd.cInterface; // argumentDrivenInterface
 export const csourcePath = wrd.csource + wrd.cPath; // sourcePath

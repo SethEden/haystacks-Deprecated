@@ -4,15 +4,10 @@
  * @description Contains all system defined business rules for parsing arrays with various operations.
  * @requires module:stringParsing
  * @requires module:stringParsingUtilities
- * @requires module:basic.constants
- * @requires module:configuration.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/lodash|lodash}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
@@ -25,21 +20,17 @@
 // Internal imports
 import stringParsing from './stringParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
-import * as bas from '../../constants/basic.constants.js';
-import * as cfg from '../../constants/configuration.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import _ from 'lodash';
 import * as math from 'mathjs';
 import chalk from 'chalk';
 import path from 'path';
 
+const {bas, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;

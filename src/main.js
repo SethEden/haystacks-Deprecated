@@ -4,25 +4,14 @@
  * @file main.js
  * @module main
  * @description Contains all customer facing functions to are used to interface with the rest of the application framework.
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:configuration.constants
- * @requires module:country.constants
- * @requires module:function.constants
- * @requires module:generic.constants
- * @requires module:language.constants
- * @requires module:message.constants
- * @requires module:numeric.constants
- * @requires module:phonic.constants
- * @requires module:system.constants
- * @requires module:unit.constants
- * @requires module:word.constants
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
  * @requires module:timers
  * @requires module:allConstantsValidationMetadata
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/url|url}
  * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -32,20 +21,6 @@
  */
 
 // Internal imports
-import * as bas from './constants/basic.constants.js';
-import * as biz from './constants/business.constants.js';
-import * as cmd from './constants/command.constants.js';
-import * as cfg from './constants/configuration.constants.js';
-import * as ctr from './constants/country.constants.js';
-import * as fnc from './constants/function.constants.js';
-import * as gen from './constants/generic.constants.js';
-import * as lng from './constants/language.constants.js';
-import * as msg from './constants/message.constants.js';
-import * as num from './constants/numeric.constants.js';
-import * as phn from './constants/phonic.constants.js';
-import * as sys from './constants/system.constants.js';
-import * as unt from './constants/unit.constants.js';
-import * as wrd from './constants/word.constants.js';
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
@@ -53,10 +28,12 @@ import timers from './executrix/timers.js';
 import allSysCV from './resources/constantsValidation/allConstantsValidationMetadata.js';
 import D from './structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
+const {bas, cfg, fnc, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // main.
 const namespacePrefix = baseFileName + bas.cDot;
@@ -99,7 +76,7 @@ function initFramework(clientConfiguration) {
  frameworkWorkflowsPath = frameworkCodeRootPath + sys.cframeworkResourcesWorkflowsPath;
 
  clientConfiguration[cfg.cframeworkRootPath] = path.resolve(frameworkRootPath);
- clientConfiguration[cfg.cframeworkConstantsPath] = frameworkCodeRootPath + sys.cframeworkConstantsPath;
+ clientConfiguration[cfg.cframeworkConstantsPath] = hayConst.constantsPath; // frameworkCodeRootPath + sys.cframeworkConstantsPath;
  clientConfiguration[cfg.cappConfigPath] = clientConfiguration[cfg.cappConfigReferencePath];
  clientConfiguration[cfg.cframeworkResourcesPath] = frameworkCodeRootPath + sys.cframeworkResourcesPath;
  clientConfiguration[cfg.cclientMetaDataPath] = path.resolve(clientConfiguration[cfg.cclientRootPath] + clientConfiguration[cfg.cclientMetaDataPath]);
@@ -382,19 +359,5 @@ export default {
   [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
   [fnc.cconsoleLog]: (theNamespacePrefix, theFunctionName, message) => consoleLog(theNamespacePrefix, theFunctionName, message),
   [fnc.csleep]: (sleepTime) => sleep(sleepTime),
-  [fnc.cprompt]: (ask) => prompt.prompt(ask),
-  [gen.cbas]: bas,
-  [gen.cbiz]: biz,
-  [gen.ccmd]: cmd,
-  [gen.ccfg]: cfg,
-  [gen.cctr]: ctr,
-  [gen.cfnc]: fnc,
-  [gen.cgen]: gen,
-  [gen.clng]: lng,
-  [gen.cmsg]: msg,
-  [gen.cnum]: num,
-  [gen.cphn]: phn,
-  [gen.csys]: sys,
-  [gen.cunt]: unt,
-  [gen.cwrd]: wrd
+  [fnc.cprompt]: (ask) => prompt.prompt(ask)
 };

@@ -3,13 +3,9 @@
  * @module queue
  * @description Implements the various functions of a queue data structure,
  * using the specified name-space on the D-data structure.
- * @requires module:basic.constants
- * @requires module:function.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:loggers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/13
@@ -17,16 +13,13 @@
  */
 
 // Internal imports
-import * as bas from '../constants/basic.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import loggers from '../executrix/loggers.js';
 import D from './data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, fnc, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // structures.queue.
 const namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;

@@ -3,20 +3,15 @@
  * @module application.business.constants
  * @description A file to hold all of the client application business rules constants.
  * So none of the constants in this file should be generic/system/framework constants.
- * @requires module:haystacks
- * @requires module:haystacks.generic.constants
- * @requires module:haystacks.numeric.constants
- * @requires module:haystacks.word.constants
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @author Seth Hollingsead
  * @date 2022/02/08
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */
 
 // External imports
-import haystacks from 'haystacks';
-let gen = haystacks.gen;
-let num = haystacks.num;
-let wrd = haystacks.wrd;
+import hayConst from '@haystacks/constants';
+const {gen, num, wrd} = hayConst;
 
 // Client Business Rules
 export const cclientEcho = wrd.cclient + wrd.cEcho; // clientEcho

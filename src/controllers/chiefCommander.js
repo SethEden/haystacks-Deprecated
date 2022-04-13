@@ -4,16 +4,11 @@
  * @description Holds all of the functions that manage the command queue, and allows commands to be enqueued and dequeued from the command queue.
  * Also executes the command queue ultimately by making calls to the commandBroker to execute individual commands.
  * @requires module:commandBroker
- *
- * @requires module:basic.constants
- * @requires module:function.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:chiefData
  * @requires module:loggers
  * @requires module:data
  * @requires module:queue
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/01
@@ -22,18 +17,15 @@
 
 // Internal imports
 import commandBroker from '../brokers/commandBroker.js';
-import * as bas from '../constants/basic.constants.js';
-import * as fnc from '../constants/function.constants.js';
-import * as msg from '../constants/message.constants.js';
-import * as sys from '../constants/system.constants.js';
-import * as wrd from '../constants/word.constants.js';
 import chiefData from '../controllers/chiefData.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 import queue from '../structures/queue.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, fnc, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefCommander.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;

@@ -2,30 +2,9 @@
  * @file allConstantsValidationMetadata.js
  * @module allConstantsValidationMetadata
  * @description Contains initialization for all constants validation meta-data.
- * @requires module:basic.constants
- * @requires module:configuration.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:loggers
- * @requires module:basic.constants.validation
- * @requires module:business.constants.validation
- * @requires module:color.constants.validation
- * @requires module:command.constants.validation
- * @requires module:configuration.constants.validation
- * @requires module:country.constants.validation
- * @requires module:function.constants.validation
- * @requires module:generic.constants.validation
- * @requires module:language.constants.validation
- * @requires module:message.constants.validation
- * @requires module:numeric.constants.validation
- * @requires module:phonic.constants.validation
- * @requires module:system.constants.validation
- * @requires module:unit.constants.validation
- * @requires module:word.constants.validation
- * @requires module:word2.constants.validation
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/03/22
@@ -33,32 +12,13 @@
  */
 
 // Internal imports
-import * as bas from '../../constants/basic.constants.js';
-import * as cfg from '../../constants/configuration.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
-import * as bas_cv from './basic.constants.validation.js';
-import * as biz_cv from './business.constants.validation.js';
-import * as clr_cv from './color.constants.validation.js';
-import * as cmd_cv from './command.constants.validation.js';
-import * as cfg_cv from './configuration.constants.validation.js';
-import * as ctr_cv from './country.constants.validation.js';
-import * as fnc_cv from './function.constants.validation.js';
-import * as gen_cv from './generic.constants.validation.js';
-import * as lng_cv from './language.constants.validation.js';
-import * as msg_cv from './message.constants.validation.js';
-import * as num_cv from './numeric.constants.validation.js';
-import * as phn_cv from './phonic.constants.validation.js';
-import * as sys_cv from './system.constants.validation.js';
-import * as unt_cv from './unit.constants.validation.js';
-import * as wrd_cv from './word.constants.validation.js';
 
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
+const {bas, cfg, gen, msg, sys, wrd, bas_cv, biz_cv, clr_cv, cmd_cv, cfg_cv, ctr_cv, fnc_cv, gen_cv, lng_cv, msg_cv, num_cv, phn_cv, sys_cv, unt_cv, wrd_cv} = hayConst;
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // resources.constantsValidation.allConstantsValidationMetaData.

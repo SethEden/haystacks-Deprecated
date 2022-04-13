@@ -25,17 +25,18 @@
   "author": "Seth Hollingsead <iceversaka@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "haystacks": "^0.0.1",
+    "@haystacks/constants": "^0.0.5",
     "adm-zip": "^0.5.9",
     "chalk": "5.0.1",
     "dotenv": "^16.0.0",
     "figlet": "^1.5.2",
-    "haystacks": "^0.0.1",
     "mathjs": "10.1.0",
+    "minimist": "1.2.6",
     "moment": "2.29.2",
     "n-readlines": "^1.0.1",
     "papaparse": "5.3.1",
-    "xml2js": "^0.4.23",
-    "minimist": "1.2.6"
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@babel/cli": "7.15.7",

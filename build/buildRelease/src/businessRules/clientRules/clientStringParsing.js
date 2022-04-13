@@ -5,13 +5,8 @@
  * values of all kinds, with various operations.
  * @requires module:application.busienss.constants
  * @requires module:application.constants
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.business.constants
- * @requires module:haystacks.generic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.system.constants
- * @requires module:haystacks.word.constants
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/03/13
@@ -23,14 +18,10 @@ import * as app_biz from '../../constants/application.business.constants.js';
 import * as apc from '../../constants/application.constants.js';
 // External imports
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let biz = haystacks.biz;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let sys = haystacks.sys;
-let wrd = haystacks.wrd;
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, biz, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.busienssRules.clientRules.clientStringParsing.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cbusiness + wrd.cRules + bas.cDot + wrd.cclient + wrd.cRules + bas.cDot + baseFileName + bas.cDot;

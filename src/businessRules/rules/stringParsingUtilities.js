@@ -4,11 +4,7 @@
  * @description Contains all system defined business rules for parsing strings,
  * with values of all kinds, and various parsing operations.
  * Excluding functions that use the loggers.
- * @requires module:basic.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/12/28
@@ -16,14 +12,12 @@
  */
 
 // Internal imports
-import * as bas from '../../constants/basic.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
+
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsingUtilities.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;

@@ -9,20 +9,13 @@
  * Excluding functions that cannot use the loggers.
  * @requires module:arrayParsing
  * @requires module:stringParsingUtilities
- * @requires module:basic.constants
- * @requires module:color.constants
- * @requires module:configuration.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:numeric.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:colorizer
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:loggers
  * @requires module:timers
  * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/n-readlines|n-readlines}
  * @requires {@link https://mathjs.org/index.html|math}
@@ -35,14 +28,6 @@
 // Internal imports
 import arrayParsing from './arrayParsing.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
-import * as bas from '../../constants/basic.constants.js';
-import * as clr from '../../constants/color.constants.js';
-import * as cfg from '../../constants/configuration.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as num from '../../constants/numeric.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
 import colorizer from '../../executrix/colorizer.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
@@ -50,11 +35,13 @@ import loggers from '../../executrix/loggers.js';
 import timers from '../../executrix/timers.js';
 import D from '../../structures/data.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import lineByLine from 'n-readlines';
 import * as math from 'mathjs';
 import path from 'path';
 
+const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;

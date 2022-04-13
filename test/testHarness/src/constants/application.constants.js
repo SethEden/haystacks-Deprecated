@@ -2,22 +2,15 @@
  * @file application.constants.js
  * @module application.constants
  * @description Contains many re-usable application constants.
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.configuration.constants
- * @requires module:haystacks.system.constants
- * @requires module:haystacks.word.constants
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @author Seth Hollingsead
  * @date 2021/12/27
  * @copyright Copyright © 2021-… by Seth Hollingsead. All rights reserved
  */
 
 // External imports
-import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let cfg = haystacks.cfg;
-let sys = haystacks.sys;
-let wrd = haystacks.wrd;
+import hayConst from '@haystacks/constants';
+const {bas, cfg, sys, wrd} = hayConst;
 
 export const cApplicationName = wrd.ctest + wrd.cHarness; // testHarness
 export const cAppDevPath = bas.cForwardSlash + wrd.csrc + bas.cForwardSlash; // /src/

@@ -3,15 +3,8 @@
  * @module clientCommands
  * @description Contains all client defined commands for execution client actions with various operations.
  * @requires module:application.command.constants
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.business.constants
- * @requires module:haystacks.configuration.constants
- * @requires module:haystacks.generic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.numeric.constants
- * @requires module:haystacks.system.constants
- * @requires module:haystacks.word.constants
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -23,17 +16,11 @@
 import * as apc from '../../constants/application.constants.js';
 // External imports
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let biz = haystacks.biz;
-let cfg = haystacks.cfg;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let num = haystacks.num;
-let sys = haystacks.sys;
-let wrd = haystacks.wrd;
+import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
+const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.commands.clientCommands.clientCommands.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.ccommands + bas.cDot + wrd.cclient + wrd.cCommands + bas.cDot + baseFileName + bas.cDot;

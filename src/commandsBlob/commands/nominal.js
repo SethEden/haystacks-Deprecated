@@ -6,14 +6,6 @@
  * @requires module:dataBroker
  * @requires module:ruleBroker
  * @requires module:workflowBroker
- * @requires module:basic.constants
- * @requires module:business.constants
- * @requires module:command.constants
- * @requires module:configuration.constants
- * @requires module:generic.constants
- * @requires module:message.constants
- * @requires module:system.constants
- * @requires module:word.constants
  * @requires module:configurator
  * @requires module:fileOperations
  * @requires module:lexical
@@ -24,6 +16,7 @@
  * @requires module:queue
  * @requires module:stack
  * @requires {@link https://www.npmjs.com/package/prompt-sync|prompt-sync}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/figlet|figlet}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -37,15 +30,6 @@ import commandBroker from '../../brokers/commandBroker.js';
 import dataBroker from '../../brokers/dataBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
 import workflowBroker from '../../brokers/workflowBroker.js';
-import * as bas from '../../constants/basic.constants.js';
-import * as biz from '../../constants/business.constants.js';
-import * as cmd from '../../constants/command.constants.js';
-import * as cfg from '../../constants/configuration.constants.js';
-import * as fnc from '../../constants/function.constants.js';
-import * as gen from '../../constants/generic.constants.js';
-import * as msg from '../../constants/message.constants.js';
-import * as sys from '../../constants/system.constants.js';
-import * as wrd from '../../constants/word.constants.js';
 import configurator from '../../executrix/configurator.js';
 import fileOperations from '../../executrix/fileOperations.js';
 import lexical from '../../executrix/lexical.js';
@@ -57,10 +41,12 @@ import queue from '../../structures/queue.js';
 import stack from '../../structures/stack.js';
 // External imports
 // import prompt from 'prompt-sync';
+import hayConst from '@haystacks/constants';
 import figlet from 'figlet';
 import * as math from 'mathjs';
 import path from 'path';
 
+const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.nominal.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;

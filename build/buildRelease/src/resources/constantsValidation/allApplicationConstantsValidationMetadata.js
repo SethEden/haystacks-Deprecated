@@ -4,13 +4,16 @@
  * @description Contains all validation data for all client application constants.
  * @requires module:application.constants
  * @requires module:application.message.constants
- * @requires module:haystacks
- * @requires module:haystacks.basic.constants
- * @requires module:haystacks.configuration.constants
- * @requires module:haystacks.generic.constants
- * @requires module:haystacks.message.constants
- * @requires module:haystacks.system.constants
- * @requires module:haystacks.word.constants
+ * @requires module:application.system.constants
+ * @requires module:application.business.constants.validation
+ * @requires module:application.command.constants.validation
+ * @requires module:application.configuration.constants.validation
+ * @requires module:application.constants.validation
+ * @requires module:application.function.constants.validation
+ * @requires module:application.message.constants.validation
+ * @requires module:application.system.constants.validation
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/04/05
@@ -31,14 +34,10 @@ import * as app_sys_cv from './application.system.constants.validation.js';
 
 // External imports
 import haystacks from 'haystacks';
-let bas = haystacks.bas;
-let cfg = haystacks.cfg;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let sys = haystacks.sys;
-let wrd = haystacks.wrd;
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
+const {bas, cfg, gen, msg, sys, wrd} = hayConst;
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.resources.constantsVaidation.allApplicationConstantsValidation.
 let namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cresources + bas.cDot + wrd.cconstants + wrd.cValidation + bas.cDot + baseFileName + bas.cDot;
