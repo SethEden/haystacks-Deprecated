@@ -2,8 +2,14 @@
  * @file commandsLibrary.js
  * @module commandsLibrary
  * @description Contains all of the ssytem defined commands as a map between function names and function calls.
- * @requires module:nominal
+ * @requires module:advanced
+ * @requires module:auxiliary
+ * @requires module:configuration
+ * @requires module:constants
+ * @requires module:dataDirectorate
  * @requires module:integrationTests
+ * @requires module:performanceMetric
+ * @requires module:system
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -14,10 +20,14 @@
  */
 
 // Internal imports
+import advancedCommands from './commands/advanced.js';
+import auxiliaryCommands from './commands/auxiliary.js';
+import configurationCommands from './commands/configuration.js';
+import constantsCommands from './commands/constants.js';
+import dataDirectorate from './commands/dataDirectorate.js';
 import integrationTestCommands from './commands/integrationTests.js';
-import nominalCommands from './commands/nominal.js';
+import performanceMetricCommands from './commands/performanceMetric.js';
 import systemCommands from './commands/system.js';
-// import integrationTests from './commands/integrationTests.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
@@ -49,35 +59,35 @@ function initCommandsLibrary() {
     // ***********************************************
     // Advanced commands in order
     // ***********************************************
-    [cmd.ccommandSequencer]: (inputData, inputMetaData) => nominalCommands.commandSequencer(inputData, inputMetaData),
-    [wrd.cworkflow]: (inputData, inputMetaData) => nominalCommands.workflow(inputData, inputMetaData),
-    [cmd.cbusinessRule]: (inputData, inputMetaData) => nominalCommands.businessRule(inputData, inputMetaData),
-    [cmd.ccommandGenerator]: (inputData, inputMetaData) => nominalCommands.commandGenerator(inputData, inputMetaData),
-    [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => nominalCommands.commandAliasGenerator(inputData, inputMetaData),
+    [cmd.ccommandSequencer]: (inputData, inputMetaData) => advancedCommands.commandSequencer(inputData, inputMetaData),
+    [wrd.cworkflow]: (inputData, inputMetaData) => advancedCommands.workflow(inputData, inputMetaData),
+    [cmd.cbusinessRule]: (inputData, inputMetaData) => advancedCommands.businessRule(inputData, inputMetaData),
+    [cmd.ccommandGenerator]: (inputData, inputMetaData) => advancedCommands.commandGenerator(inputData, inputMetaData),
+    [cmd.ccommandAliasGenerator]: (inputData, inputMetaData) => advancedCommands.commandAliasGenerator(inputData, inputMetaData),
 
     // ***********************************************
     // Auxiliary commands in order
     // ***********************************************
-    [cmd.cconvertColors]: (inputData, inputMetaData) => nominalCommands.convertColors(inputData, inputMetaData),
+    [cmd.cconvertColors]: (inputData, inputMetaData) => auxiliaryCommands.convertColors(inputData, inputMetaData),
 
     // ***********************************************
     // Configuration commands in order
     // ***********************************************
-    [cmd.csaveConfiguration]: (inputData, inputMetaData) => nominalCommands.saveConfiguration(inputData, inputMetaData),
+    [cmd.csaveConfiguration]: (inputData, inputMetaData) => configurationCommands.saveConfiguration(inputData, inputMetaData),
 
     // ***********************************************
     // Constant commands in order
     // ***********************************************
-    [cmd.cconstantsGenerator]: (inputData, inputMetaData) => nominalCommands.constantsGenerator(inputData, inputMetaData),
-    [cmd.cconstantsGeneratorList]: (inputData, inputMetaData) => nominalCommands.constantsGeneratorList(inputData, inputMetaData),
-    [cmd.cconstantsPatternRecognizer]: (inputData, inputMetaData) => nominalCommands.constantsPatternRecognizer(inputData, inputMetaData),
+    [cmd.cconstantsGenerator]: (inputData, inputMetaData) => constantsCommands.constantsGenerator(inputData, inputMetaData),
+    [cmd.cconstantsGeneratorList]: (inputData, inputMetaData) => constantsCommands.constantsGeneratorList(inputData, inputMetaData),
+    [cmd.cconstantsPatternRecognizer]: (inputData, inputMetaData) => constantsCommands.constantsPatternRecognizer(inputData, inputMetaData),
 
     // ***********************************************
     // Data Directorate commands in order
     // ***********************************************
-    [cmd.cprintDataHive]: (inputData, inputMetaData) => nominalCommands.printDataHive(inputData, inputMetaData),
-    [cmd.cprintDataHiveAttributes]: (inputData, inputMetaData) => nominalCommands.printDataHiveAttributes(inputData,inputMetaData),
-    [cmd.cclearDataStorage]: (inputData, inputMetaData) => nominalCommands.clearDataStorage(inputData, inputMetaData),
+    [cmd.cprintDataHive]: (inputData, inputMetaData) => dataDirectorate.printDataHive(inputData, inputMetaData),
+    [cmd.cprintDataHiveAttributes]: (inputData, inputMetaData) => dataDirectorate.printDataHiveAttributes(inputData,inputMetaData),
+    [cmd.cclearDataStorage]: (inputData, inputMetaData) => dataDirectorate.clearDataStorage(inputData, inputMetaData),
 
     // ***********************************************
     // Integration Test commands in order
@@ -88,20 +98,20 @@ function initCommandsLibrary() {
     // ***********************************************
     // Performance Metrics commands in order
     // ***********************************************
-    [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => nominalCommands.businessRulesMetrics(inputData, inputMetaData),
-    [cmd.ccommandMetrics]: (inputData, inputMetaData) => nominalCommands.commandMetrics(inputData, inputMetaData),
+    [cmd.cbusinessRulesMetrics]: (inputData, inputMetaData) => performanceMetricCommands.businessRulesMetrics(inputData, inputMetaData),
+    [cmd.ccommandMetrics]: (inputData, inputMetaData) => performanceMetricCommands.commandMetrics(inputData, inputMetaData),
 
     // ***********************************************
     // System commands in order
     // ***********************************************
-    [cmd.cechoCommand]: (inputData, inputMetaData) => nominalCommands.echoCommand(inputData, inputMetaData),
-    [wrd.cexit]: (inputData, inputMetData) => nominalCommands.exit(inputData, inputMetData),
-    [wrd.cversion]: (inputData, inputMetaData) => nominalCommands.version(inputData, inputMetaData),
-    [wrd.cabout]: (inputData, inputMetaData) => nominalCommands.about(inputData, inputMetaData),
-    [wrd.cname]: (inputData, inputMetaData) => nominalCommands.name(inputData, inputMetaData),
-    [cmd.cclearScreen]: (inputData, inputMetaData) => nominalCommands.clearScreen(inputData, inputMetaData),
-    [wrd.chelp]: (inputData, inputMetaData) => nominalCommands.help(inputData, inputMetaData),
-    [cmd.cworkflowHelp]: (inputData, inputMetaData) => nominalCommands.workflowHelp(inputData, inputMetaData),
+    [cmd.cechoCommand]: (inputData, inputMetaData) => systemCommands.echoCommand(inputData, inputMetaData),
+    [wrd.cexit]: (inputData, inputMetData) => systemCommands.exit(inputData, inputMetData),
+    [wrd.cversion]: (inputData, inputMetaData) => systemCommands.version(inputData, inputMetaData),
+    [wrd.cabout]: (inputData, inputMetaData) => systemCommands.about(inputData, inputMetaData),
+    [wrd.cname]: (inputData, inputMetaData) => systemCommands.name(inputData, inputMetaData),
+    [cmd.cclearScreen]: (inputData, inputMetaData) => systemCommands.clearScreen(inputData, inputMetaData),
+    [wrd.chelp]: (inputData, inputMetaData) => systemCommands.help(inputData, inputMetaData),
+    [cmd.cworkflowHelp]: (inputData, inputMetaData) => systemCommands.workflowHelp(inputData, inputMetaData),
   };
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
