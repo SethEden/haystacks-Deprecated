@@ -35,6 +35,54 @@ const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url
 // businessRules.rules.arrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
+// Refactoring Guide:
+
+// Character related rules:
+// replaceCharacterWithCharacter
+// doesArrayContainCharacter
+// removeCharacterFromArray
+// replaceCharacterAtIndex
+
+// Word related rules:
+// convertCamelCaseStringToArray
+// getWordsArrayFromString
+// recombineStringArrayWithSpaces
+// convertArrayToCamelCaseString
+// doesArrayContainLowerCaseConsoidatedString
+// ascertainMatchingElements
+
+// Path related rules:
+// doesArrayContainFilename
+// readDirectoryContents
+// getFileAndPathListForPath
+
+// Constant related rules:
+// getLengthOfLongestStringInArray
+// searchForPatternsInStringArray
+// validatePatternsThatNeedImplementation
+
+// Data related rules:
+// arraysAreEqual
+// storeData
+// getStoredData
+// isObjectEmpty
+// isArrayEmpty
+// isObject
+// isArray
+// isArrayOrObject
+// isNonZeroLengthArray
+// arrayDeepClone
+
+// Command related rules:
+// solveLehmerCode
+// recursiveArrayExpansion
+// getLehmerCodeValue
+// generateCommandAliases
+// aggregateCommandArguments
+
+// Utility related rules:
+// parseColorRangeInputs
+
 /**
  * @function replaceCharacterWithCharacter
  * @description Replaces all of the specified character in the inputData with another specified character.

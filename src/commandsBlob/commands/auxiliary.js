@@ -22,7 +22,7 @@ import path from 'path';
 
 const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// commandsBlob.commands.nominal.
+// commandsBlob.commands.auxiliary.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
