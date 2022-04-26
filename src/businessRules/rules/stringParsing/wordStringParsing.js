@@ -1,7 +1,7 @@
 /**
- * @file word.js
- * @module word
- * @description Contains all system defned business rules for parsing words and lists.
+ * @file wordStringParsing.js
+ * @module wordStringParsing
+ * @description Contains all system defined business rules for parsing words and lists.
  * @requires module:stringParsingUtilities
  * @requires module:configurator
  * @requires module:loggers
@@ -14,9 +14,9 @@
  */
 
 // Internal imports
-import stringParsingUtilities from './stringParsingUtilities.js';
-import configurator from '../../executrix/configurator.js';
-import loggers from '../../executrix/loggers.js';
+import stringParsingUtilities from '../stringParsingUtilities.js';
+import configurator from '../../../executrix/configurator.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';

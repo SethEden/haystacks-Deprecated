@@ -1,6 +1,6 @@
 /**
- * @file command.js
- * @module command
+ * @file commandStringParsing.js
+ * @module commandStringParsing
  * @description Contains all system defined business rules for parsing strings
  * with specific focus on command string parsing.
  * @requires module:arrayParsing
@@ -15,8 +15,8 @@
 
 // Internal imports
 import arrayParsing from './arrayParsing.js';
-import colorizer from '../../executrix/colorizer.js';
-import loggers from '../../executrix/loggers.js';
+import colorizer from '../../../executrix/colorizer.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';

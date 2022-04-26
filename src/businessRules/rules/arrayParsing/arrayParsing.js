@@ -80,7 +80,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 // generateCommandAliases
 // aggregateCommandArguments
 
-// Utility related rules:
+// Auxiliary related rules:
 // parseColorRangeInputs
 
 /**

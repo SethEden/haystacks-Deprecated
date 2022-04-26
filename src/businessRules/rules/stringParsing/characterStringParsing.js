@@ -1,6 +1,6 @@
 /**
- * @file character.js
- * @module character
+ * @file characterStringParsing.js
+ * @module characterStringParsing
  * @description Contains all system defined business rules for parsing characters in strings.
  * @requires module:arrayParsing
  * @requires module:loggers
@@ -13,7 +13,7 @@
 
 // Internal imports
 import arrayParsing from './arrayParsing.js';
-import loggers from '../../executrix/loggers.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
