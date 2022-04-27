@@ -38,7 +38,6 @@ import constantArrayParsing from './rules/arrayParsing/constantArrayParsing.js';
 import dataArrayParsing from './rules/arrayParsing/dataArrayParsing.js';
 import pathArrayParsing from './rules/arrayParsing/pathArrayParsing.js';
 import wordArrayParsing from './rules/arrayParsing/wordArrayParsing.js';
-
 import auxiliaryStringParsing from './rules/stringParsing/auxiliaryStringParsing.js';
 import characterStringParsing from './rules/stringParsing/characterStringParsing.js';
 import commandStringParsing from './rules/stringParsing/commandStringParsing.js';
@@ -46,7 +45,6 @@ import constantStringParsing from './rules/stringParsing/constantStringParsing.j
 import dataStringParsing from './rules/stringParsing/dataStringParsing.js';
 import fileStringParsing from './rules/stringParsing/fileStringParsing.js';
 import wordStringParsing from './rules/stringParsing/wordStringParsing.js';
-
 import characterGeneration from './rules/characterGeneration.js';
 import mathOperations from './rules/mathOperations.js';
 import stringGeneration from './rules/stringGeneration.js';
