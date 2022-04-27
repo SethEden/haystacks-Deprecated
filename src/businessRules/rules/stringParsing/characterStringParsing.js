@@ -420,6 +420,8 @@ const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
 /**
  * @function replaceCharacterAtIndexOfString
  * @description Replaces the character at a specified index with another character.
+ * @NOTE Do not call this function from the rulesLibrary as it doesn't follow the business rule pattern.
+ * This function is strictly a supporting function to aid the business rules, for use internal to the business rules only.
  * @param {string} originalString The string where the replacement should be made.
  * @param {integer} index The index of the character where the replacement should be made.
  * @param {string} replacement The character or string that should be inserted at the specified index.

@@ -48,6 +48,9 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 
 // Refactoring Guide:
 
+// Auxiliary related rules:
+// getNowMoment
+
 // Character related rules:
 // singleQuoteSwapAfterEquals
 // swapForwardSlashToBackSlash
@@ -65,66 +68,60 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 // isFirstCharacterUpperCase
 // replaceCharacterAtIndexOfString
 
-// Word related rules:
-// isStringCamelCase
-// countCamelCaseWords
-// countDelimiterInString
-// getWordCountInString
-// isStringList
-// aggregateNumericalDifferenceBetweenTwoStrings
-// doesStringContainAcronym
-// determineWordDelimiter
-// mapWordToCamelCaseWord
-// simplifyAndConsolidateString
-// compareSimplifiedAndConsolidatedStrings
-
 // Command related rules:
 // cleanCommandInput
 // isValidCommandNameString
 // countDuplicateCommandAliases
 
-// File related rules:
-// getFileNameFromPath
-// getFileExtension
-// removeDotFromFileExtension
-// removeFileExtensionFromFileName
-// ascertainMatchingFilenames
-// supportedFileFormatsAre
-// createZipArchive
-// removeXnumberOfFoldersFromEndOfPath
-// getFirstTopLevelFolderFromPath
-// copyAllFilesAndFoldersFromFolderToFolder
+// Constant related rules:
+// validateConstantsDataValidation
+// determineConstantsContextQualifiedPrefix
+// determineSuggestedConstantsValidationLineOfCode
+// validateConstantsDataValidationLineItemName
+// doesConstantExist
+// getConstantType
+// getConstantActualValue
+// getConstantName
+// findConstantName
+// isConstantTypeValid
+// convertConstantTypeToConstantPrefix
+// constantsOptimizedFulfillmentSystem
+// constantsFulfillmentSystem
+// validateConstantsDataValues
+// isConstantValid
 
 // Data related rules:
 // getAttributeName
 // getAttributeValue
 // getValueFromAssignmentOperationString
-// loadDataFile
-// saveDataFile
 // getDataCatagoryFromDataContextName
 // getDataCatagoryDetailNameFromDataContextName
 // getKeywordNameFromDataContextName
+// loadDataFile
+// saveDataFile
 // getUserNameFromEmail
 
-// Constant related rules:
-// getConstantName
-// findConstantName
-// isConstantTypeValid
-// doesConstantExist
-// getConstantType
-// isConstantValid
-// validateConstantsDataValidation
-// determineConstantsContextQualifiedPrefix
-// determineSuggestedConstantsValidationLineOfCode
-// validateConstantsDataValidationLineItemName
-// getConstantActualValue
-// convertConstantTypeToConstantPrefix
-// constantsOptimizedFulfillmentSystem
-// validateConstantsDataValues
+// File related rules:
+// getFileNameFromPath,
+// getFileExtension,
+// removeDotFromFileExtension,
+// removeFileExtensionFromFileName,
+// ascertainMatchingFilenames,
+// supportedFileFormatsAre,
+// copyAllFilesAndFoldersFromFolderToFolder,
+// removeXnumberOfFoldersFromEndOfPath,
+// getFirstTopLevelFolderFromPath,
+// createZipArchive
 
-// Auxiliary related rules:
-// getNowMoment
-
-// ******************************************************
-// The following functions are more domain specific
-// ******************************************************
+// Word related rules:
+// isStringCamelCase
+// mapWordToCamelCaseWord
+// simplifyAndConsolidateString
+// compareSimplifiedAndConsolidatedStrings
+// countCamelCaseWords
+// doesStringContainAcronym
+// determineWordDelimiter
+// countDelimiterInString
+// getWordCountInString
+// isStringList
+// aggregateNumericalDifferenceBetweenTwoStrings

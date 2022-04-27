@@ -2,6 +2,9 @@
  * @file characterArrayParsing.js
  * @module characterArrayParsing
  * @description Contains all system defined business rules for array parsing with a focus on characters.
+ * @requires module:stringParsingUtilities
+ * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/04/25
@@ -9,20 +12,16 @@
  */
 
 // Internal imports
-
+import stringParsingUtilities from '../stringParsingUtilities.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
 const {bas, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
-
-// Character related rules:
-// replaceCharacterWithCharacter
-// doesArrayContainCharacter
-// removeCharacterFromArray
-// replaceCharacterAtIndex
 
 /**
  * @function replaceCharacterWithCharacter
@@ -148,4 +147,11 @@ const replaceCharacterAtIndex = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+export default {
+  replaceCharacterWithCharacter,
+  doesArrayContainCharacter,
+  removeCharacterFromArray,
+  replaceCharacterAtIndex
 };
