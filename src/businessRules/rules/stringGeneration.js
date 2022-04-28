@@ -14,7 +14,7 @@
  */
 
 // Internal imports
-import arrayParsing from './arrayParsing.js';
+import auxiliaryArrayParsing from './arrayParsing/auxiliaryArrayParsing.js';
 import characterGeneration from './characterGeneration.js';
 import stringParsingUtilities from './stringParsingUtilities.js';
 import loggers from '../../executrix/loggers.js';
@@ -1146,7 +1146,7 @@ const generateRandomBrightColor = function(inputData, inputMetaData) {
   let parsedColorRangeArray = [];
   if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
     // Try to parse them as numbers for the range.
-    parsedColorRangeArray = arrayParsing.parseColorRangeInputs(inputData, inputMetaData);
+    parsedColorRangeArray = auxiliaryArrayParsing.parseColorRangeInputs(inputData, inputMetaData);
     minimumColorRange = parsedColorRangeArray[0];
     maximumColorRange = parsedColorRangeArray[1];
   } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
@@ -1180,7 +1180,7 @@ const generateRandomDarkColor = function(inputData, inputMetaData) {
   let parsedColorRangeArray = [];
   if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
     // Try to parse them as numbers for the range.
-    parsedColorRangeArray = arrayParsing.parseColorRangeInputs(inputData, inputMetaData);
+    parsedColorRangeArray = auxiliaryArrayParsing.parseColorRangeInputs(inputData, inputMetaData);
     minimumColorRange = parsedColorRangeArray[0];
     maximumColorRnage = parsedColorRangeArray[1];
   } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
@@ -1210,7 +1210,7 @@ const generateRandomColor = function(inputData, inputMetaData) {
   let parsedColorRangeArray = [];
   if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '') {
     // Try to parse them as numbers for the range.
-    parsedColorRangeArray = arrayParsing.parseColorRangeInputs(inputData, inputMetaData);
+    parsedColorRangeArray = auxiliaryArrayParsing.parseColorRangeInputs(inputData, inputMetaData);
     minimumColorRange = parsedColorRangeArray[0];
     maximumColorRange = parsedColorRangeArray[1];
   } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')

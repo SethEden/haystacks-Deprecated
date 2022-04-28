@@ -12,7 +12,7 @@
  */
 
 // Internal imports
-import arrayParsing from './arrayParsing.js';
+import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -89,7 +89,7 @@ const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, bas.cBackSlash]);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, bas.cBackSlash]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -120,7 +120,7 @@ const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -151,7 +151,7 @@ const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMeta
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -182,7 +182,7 @@ const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) 
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, bas.cBackSlash]);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, bas.cBackSlash]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -208,7 +208,7 @@ const replaceSpacesWithPlus = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/ /g, bas.cPlus);
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/ /g, bas.cPlus]);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/ /g, bas.cPlus]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -232,7 +232,7 @@ const replaceColonWithUnderscore = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/:/g, bas.cUnderscore);
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/:/g, bas.cUnderscore]);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/:/g, bas.cUnderscore]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -256,7 +256,7 @@ const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/\s+/g, bas.cSpace);
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]).trim();
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]).trim();
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

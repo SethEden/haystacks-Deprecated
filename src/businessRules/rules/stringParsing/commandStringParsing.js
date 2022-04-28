@@ -14,7 +14,8 @@
  */
 
 // Internal imports
-import arrayParsing from './arrayParsing.js';
+import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
+import wordArrayParsing from '../arrayParsing/wordArrayParsing.js';
 import colorizer from '../../../executrix/colorizer.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
@@ -43,9 +44,9 @@ const cleanCommandInput = function(inputData, inputMetaData) {
   let returnData = '';
   if (inputData) {
     returnData = inputData;
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/--/g, '']);
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\[/g, '']);
-    returnData = arrayParsing.replaceCharacterWithCharacter(inputData, [/\]/g, '']);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/--/g, '']);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\[/g, '']);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\]/g, '']);
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -75,7 +76,7 @@ const isValidCommandNameString = function(inputData, inputMetaData) {
     // It could actually be a single word, but of course we want to make sure it's more than 3 characters long.
     // Less than that, shouldn't really be considered a valid word, but could be appropriate as a command alias/abreviation.
     if (inputData.length > 3) {
-      let camelCaseArray = arrayParsing.convertCamelCaseStringToArray(inputData, '');
+      let camelCaseArray = wordArrayParsing.convertCamelCaseStringToArray(inputData, '');
       if (camelCaseArray.length === 1) {
         if (isFirstCharacterLowerCase(inputData, '') === true) { returnData = true; }
       } else if (camelCaseArray.length > 1) {

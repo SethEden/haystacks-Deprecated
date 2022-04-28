@@ -83,65 +83,65 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // BEGIN ArrayParsing catagory
      // ***********************************************************************
      // ***********************************************
-     // AuxiliaryArrayParsing rules in order
+     // auxiliaryArrayParsing rules in order
      // ***********************************************
-     [biz.cparseColorRangeInputs]: (inputData, inputMetaData) => arrayParsing.parseColorRangeInputs(inputData, inputMetaData),
+     [biz.cparseColorRangeInputs]: (inputData, inputMetaData) => auxiliaryArrayParsing.parseColorRangeInputs(inputData, inputMetaData),
      // doesArrayContainValue - Not exposed as a public business rule. This is a support function.
 
      // ***********************************************
-     // CharacterArrayParsing rules in order
+     // characterArrayParsing rules in order
      // ***********************************************
-     [biz.creplaceCharacterWithCharacter]: (inputData, inputMetaData) => arrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
-     [biz.cdoesArrayContainCharacter]: (inputData, inputMetaData) => arrayParsing.doesArrayContainCharacter(inputData, inputMetaData),
-     [biz.cremoveCharacterFromArray]: (inputData, inputMetaData) => arrayParsing.removeCharacterFromArray(inputData, inputMetaData),
-     [biz.creplaceCharacterAtIndex]: (inputData, inputMetaData) => arrayParsing.replaceCharacterAtIndex(inputData, inputMetaData),
+     [biz.creplaceCharacterWithCharacter]: (inputData, inputMetaData) => characterArrayParsing.replaceCharacterWithCharacter(inputData, inputMetaData),
+     [biz.cdoesArrayContainCharacter]: (inputData, inputMetaData) => characterArrayParsing.doesArrayContainCharacter(inputData, inputMetaData),
+     [biz.cremoveCharacterFromArray]: (inputData, inputMetaData) => characterArrayParsing.removeCharacterFromArray(inputData, inputMetaData),
+     [biz.creplaceCharacterAtIndex]: (inputData, inputMetaData) => characterArrayParsing.replaceCharacterAtIndex(inputData, inputMetaData),
 
      // ***********************************************
-     // CommandArrayParsing rules in order
+     // commandArrayParsing rules in order
      // ***********************************************
-     [biz.csolveLehmerCode]: (inputData, inputMetaData) => arrayParsing.solveLehmerCode(inputData, inputMetaData),
-     [biz.crecursiveArrayExpansion]: (inputData, inputMetaData) => arrayParsing.recursiveArrayExpansion(inputData, inputMetaData),
-     [biz.cgetLehmerCodeValue]: (inputData, inputMetaData) => arrayParsing.getLehmerCodeValue(inputData, inputMetaData),
-     [biz.cgenerateCommandAliases]: (inputData, inputMetaData) => arrayParsing.generateCommandAliases(inputData, inputMetaData),
-     [biz.caggregateCommandArguments]: (inputData, inputMetaData) => arrayParsing.aggregateCommandArguments(inputData, inputMetaData),
+     [biz.csolveLehmerCode]: (inputData, inputMetaData) => commandArrayParsing.solveLehmerCode(inputData, inputMetaData),
+     [biz.crecursiveArrayExpansion]: (inputData, inputMetaData) => commandArrayParsing.recursiveArrayExpansion(inputData, inputMetaData),
+     [biz.cgetLehmerCodeValue]: (inputData, inputMetaData) => commandArrayParsing.getLehmerCodeValue(inputData, inputMetaData),
+     [biz.cgenerateCommandAliases]: (inputData, inputMetaData) => commandArrayParsing.generateCommandAliases(inputData, inputMetaData),
+     [biz.caggregateCommandArguments]: (inputData, inputMetaData) => commandArrayParsing.aggregateCommandArguments(inputData, inputMetaData),
 
      // ***********************************************
-     // ConstantArrayParsing rules in order
+     // constantArrayParsing rules in order
      // ***********************************************
-     [biz.cgetLengthOfLongestStringInArray]: (inputData, inputMetaData) => arrayParsing.getLengthOfLongestStringInArray(inputData, inputMetaData),
-     [biz.csearchForPatternsInStringArray]: (inputData, inputMetaData) => arrayParsing.searchForPatternsInStringArray(inputData, inputMetaData),
-     [biz.cvalidatePatternsThatNeedImplementation]: (inputData, inputMetaData) => arrayParsing.validatePatternsThatNeedImplementation(inputData, inputMetaData),
+     [biz.cgetLengthOfLongestStringInArray]: (inputData, inputMetaData) => constantArrayParsing.getLengthOfLongestStringInArray(inputData, inputMetaData),
+     [biz.csearchForPatternsInStringArray]: (inputData, inputMetaData) => constantArrayParsing.searchForPatternsInStringArray(inputData, inputMetaData),
+     [biz.cvalidatePatternsThatNeedImplementation]: (inputData, inputMetaData) => constantArrayParsing.validatePatternsThatNeedImplementation(inputData, inputMetaData),
 
      // ***********************************************
-     // DataArrayParsing rules in order
+     // dataArrayParsing rules in order
      // ***********************************************
-     [biz.carraysAreEqual]: (inputData, inputMetaData) => arrayParsing.arraysAreEqual(inputData, inputMetaData),
-     [biz.cstoreData]: (inputData, inputMetaData) => arrayParsing.storeData(inputData, inputMetaData),
-     [biz.cgetStoredData]: (inputData, inputMetaData) => arrayParsing.getStoredData(inputData, inputMetaData),
-     [biz.cisObjectEmpty]: (inputData, inputMetaData) => arrayParsing.isObjectEmpty(inputData, inputMetaData),
-     [biz.cisArrayEmpty]: (inputData, inputMetaData) => arrayParsing.isArrayEmpty(inputData, inputMetaData),
-     [biz.cisObject]: (inputData, inputMetaData) => arrayParsing.isObject(inputData, inputMetaData),
-     [biz.cisArray]: (inputData, inputMetaData) => arrayParsing.isArray(inputData, inputMetaData),
-     [biz.cisArrayOrObject]: (inputData, inputMetaData) => arrayParsing.isArrayOrObject(inputData, inputMetaData),
-     [biz.cisNonZeroLengthArray]: (inputData, inputMetaData) => arrayParsing.isNonZeroLengthArray(inputData, inputMetaData),
-     [biz.carrayDeepClone]: (inputData, inputMetaData) => arrayParsing.arrayDeepClone(inputData, inputMetaData),
+     [biz.carraysAreEqual]: (inputData, inputMetaData) => dataArrayParsing.arraysAreEqual(inputData, inputMetaData),
+     [biz.cstoreData]: (inputData, inputMetaData) => dataArrayParsing.storeData(inputData, inputMetaData),
+     [biz.cgetStoredData]: (inputData, inputMetaData) => dataArrayParsing.getStoredData(inputData, inputMetaData),
+     [biz.cisObjectEmpty]: (inputData, inputMetaData) => dataArrayParsing.isObjectEmpty(inputData, inputMetaData),
+     [biz.cisArrayEmpty]: (inputData, inputMetaData) => dataArrayParsing.isArrayEmpty(inputData, inputMetaData),
+     [biz.cisObject]: (inputData, inputMetaData) => dataArrayParsing.isObject(inputData, inputMetaData),
+     [biz.cisArray]: (inputData, inputMetaData) => dataArrayParsing.isArray(inputData, inputMetaData),
+     [biz.cisArrayOrObject]: (inputData, inputMetaData) => dataArrayParsing.isArrayOrObject(inputData, inputMetaData),
+     [biz.cisNonZeroLengthArray]: (inputData, inputMetaData) => dataArrayParsing.isNonZeroLengthArray(inputData, inputMetaData),
+     [biz.carrayDeepClone]: (inputData, inputMetaData) => dataArrayParsing.arrayDeepClone(inputData, inputMetaData),
 
      // ***********************************************
-     // PathArrayParsing rules in order
+     // pathArrayParsing rules in order
      // ***********************************************
-     [biz.cdoesArrayContainFilename]: (inputData, inputMetaData) => arrayParsing.doesArrayContainFilename(inputData, inputMetaData),
-     [biz.creadDirectoryContents]: (inputData, inputMetaData) => arrayParsing.readDirectoryContents(inputData, inputMetaData),
-     [biz.cgetFileAndPathListForPath]: (inputData, inputMetaData) => arrayParsing.getFileAndPathListForPath(inputData, inputMetaData),
+     [biz.cdoesArrayContainFilename]: (inputData, inputMetaData) => pathArrayParsing.doesArrayContainFilename(inputData, inputMetaData),
+     [biz.creadDirectoryContents]: (inputData, inputMetaData) => pathArrayParsing.readDirectoryContents(inputData, inputMetaData),
+     [biz.cgetFileAndPathListForPath]: (inputData, inputMetaData) => pathArrayParsing.getFileAndPathListForPath(inputData, inputMetaData),
 
      // ***********************************************
-     // WordArrayParsing rules in order
+     // wordArrayParsing rules in order
      // ***********************************************
-     [biz.cconvertCamelCaseStringToArray]: (inputData, inputMetaData) => arrayParsing.convertCamelCaseStringToArray(inputData, inputMetaData),
-     [biz.cgetWordsArrayFromString]: (inputData, inputMetaData) => arrayParsing.getWordsArrayFromString(inputData, inputMetaData),
-     [biz.crecombineStringArrayWithSpaces]: (inputData, inputMetaData) => arrayParsing.recombineStringArrayWithSpaces(inputData, inputMetaData),
-     [biz.cconvertArrayToCamelCaseString]: (inputData, inputMetaData) => arrayParsing.convertArrayToCamelCaseString(inputData, inputMetaData),
-     [biz.cdoesArrayContainLowerCaseConsolidatedString]: (inputData, inputMetaData) => arrayParsing.doesArrayContainLowerCaseConsolidatedString(inputData, inputMetaData),
-     [biz.cascertainMatchingElements]: (inputData, inputMetaData) => arrayParsing.ascertainMatchingElements(inputData, inputMetaData),
+     [biz.cconvertCamelCaseStringToArray]: (inputData, inputMetaData) => wordArrayParsing.convertCamelCaseStringToArray(inputData, inputMetaData),
+     [biz.cgetWordsArrayFromString]: (inputData, inputMetaData) => wordArrayParsing.getWordsArrayFromString(inputData, inputMetaData),
+     [biz.crecombineStringArrayWithSpaces]: (inputData, inputMetaData) => wordArrayParsing.recombineStringArrayWithSpaces(inputData, inputMetaData),
+     [biz.cconvertArrayToCamelCaseString]: (inputData, inputMetaData) => wordArrayParsing.convertArrayToCamelCaseString(inputData, inputMetaData),
+     [biz.cdoesArrayContainLowerCaseConsolidatedString]: (inputData, inputMetaData) => wordArrayParsing.doesArrayContainLowerCaseConsolidatedString(inputData, inputMetaData),
+     [biz.cascertainMatchingElements]: (inputData, inputMetaData) => wordArrayParsing.ascertainMatchingElements(inputData, inputMetaData),
 
      // ***********************************************************************
      // END ArrayParsing catagory
@@ -151,96 +151,96 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // BEGIN StringParsing catagory
      // ***********************************************************************
      // ***********************************************
-     // AuxiliaryStringParsing rules in order
+     // auxiliaryStringParsing rules in order
      // ***********************************************
-     [biz.cgetNowMoment]: (inputData, inputMetaData) => stringParsing.getNowMoment(inputData, inputMetaData),
+     [biz.cgetNowMoment]: (inputData, inputMetaData) => auxiliaryStringParsing.getNowMoment(inputData, inputMetaData),
 
      // ***********************************************
-     // CharacterStringParsing rules in order
+     // characterStringParsing rules in order
      // ***********************************************
-     [biz.csingleQuoteSwapAfterEquals]: (inputData, inputMetaData) => stringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
-     [biz.cswapForwardSlashToBackSlash]: (inputData, inputMetaData) => stringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
-     [biz.cswapBackSlashToForwardSlash]: (inputData, inputMetaData) => stringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
-     [biz.cswapDoubleForwardSlashToSingleForwardSlash]: (inputData, inputMetaData) => stringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
-     [biz.cswapDoubleBackSlashToSingleBackSlash]: (inputData, inputMetaData) => stringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
-     [biz.creplaceSpacesWithPlus]: (inputData, inputMetaData) => stringParsing.replaceSpacesWithPlus(inputData, inputMetaData),
-     [biz.creplaceColonWithUnderscore]: (inputData, inputMetaData) => stringParsing.replaceColonWithUnderscore(inputData, inputMetaData),
-     [biz.ccleanCarriageReturnFromString]: (inputData, inputMetaData) => stringParsing.cleanCarriageReturnFromString(inputData, inputMetaData),
-     [biz.cconvertStringToLowerCase]: (inputData, inputMetaData) => stringParsing.convertStringToLowerCase(inputData, inputMetaData),
-     [biz.cconvertStringToUpperCase]: (inputData, inputMetaData) => stringParsing.convertStringToUpperCase(inputData, inputMetaData),
-     [biz.cdoesStringContainUpperCaseCharacter]: (inputData, inputMetaData) => stringParsing.doesStringContainUpperCaseCharacter(inputData, inputMetaData),
-     [biz.cdoesStringContainLowerCaseCharacter]: (inputData, inputMetaData) => stringParsing.doesStringContainLowerCaseCharacter(inputData, inputMetaData),
-     [biz.cisFirstCharacterLowerCase]: (inputData, inputMetaData) => stringParsing.isFirstCharacterLowerCase(inputData, inputMetaData),
-     [biz.cisFirstCharacterUpperCase]: (inputData, inputMetaData) => stringParsing.isFirstCharacterUpperCase(inputData, inputMetaData),
+     [biz.csingleQuoteSwapAfterEquals]: (inputData, inputMetaData) => characterStringParsing.singleQuoteSwapAfterEquals(inputData, inputMetaData),
+     [biz.cswapForwardSlashToBackSlash]: (inputData, inputMetaData) => characterStringParsing.swapForwardSlashToBackSlash(inputData, inputMetaData),
+     [biz.cswapBackSlashToForwardSlash]: (inputData, inputMetaData) => characterStringParsing.swapBackSlashToForwardSlash(inputData, inputMetaData),
+     [biz.cswapDoubleForwardSlashToSingleForwardSlash]: (inputData, inputMetaData) => characterStringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData),
+     [biz.cswapDoubleBackSlashToSingleBackSlash]: (inputData, inputMetaData) => characterStringParsing.swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData),
+     [biz.creplaceSpacesWithPlus]: (inputData, inputMetaData) => characterStringParsing.replaceSpacesWithPlus(inputData, inputMetaData),
+     [biz.creplaceColonWithUnderscore]: (inputData, inputMetaData) => characterStringParsing.replaceColonWithUnderscore(inputData, inputMetaData),
+     [biz.ccleanCarriageReturnFromString]: (inputData, inputMetaData) => characterStringParsing.cleanCarriageReturnFromString(inputData, inputMetaData),
+     [biz.cconvertStringToLowerCase]: (inputData, inputMetaData) => characterStringParsing.convertStringToLowerCase(inputData, inputMetaData),
+     [biz.cconvertStringToUpperCase]: (inputData, inputMetaData) => characterStringParsing.convertStringToUpperCase(inputData, inputMetaData),
+     [biz.cdoesStringContainUpperCaseCharacter]: (inputData, inputMetaData) => characterStringParsing.doesStringContainUpperCaseCharacter(inputData, inputMetaData),
+     [biz.cdoesStringContainLowerCaseCharacter]: (inputData, inputMetaData) => characterStringParsing.doesStringContainLowerCaseCharacter(inputData, inputMetaData),
+     [biz.cisFirstCharacterLowerCase]: (inputData, inputMetaData) => characterStringParsing.isFirstCharacterLowerCase(inputData, inputMetaData),
+     [biz.cisFirstCharacterUpperCase]: (inputData, inputMetaData) => characterStringParsing.isFirstCharacterUpperCase(inputData, inputMetaData),
      // replaceCharacterAtIndexOfString - Not exposed as a public business rule. This is a support function.
 
      // ***********************************************
-     // CommandStringParsing rules in order
+     // commandStringParsing rules in order
      // ***********************************************
-     [biz.ccleanCommandInput]: (inputData, inputMetaData) => stringParsing.cleanCommandInput(inputData, inputMetaData),
-     [biz.cisValidCommandNameString]: (inputData, inputMetaData) => stringParsing.isValidCommandNameString(inputData, inputMetaData),
-     [biz.ccountDuplicateCommandAliases]: (inputData, inputMetaData) => stringParsing.countDuplicateCommandAliases(inputData, inputMetaData),
+     [biz.ccleanCommandInput]: (inputData, inputMetaData) => commandStringParsing.cleanCommandInput(inputData, inputMetaData),
+     [biz.cisValidCommandNameString]: (inputData, inputMetaData) => commandStringParsing.isValidCommandNameString(inputData, inputMetaData),
+     [biz.ccountDuplicateCommandAliases]: (inputData, inputMetaData) => commandStringParsing.countDuplicateCommandAliases(inputData, inputMetaData),
 
      // ***********************************************
-     // ConstantStringParsing rules in order
+     // constantStringParsing rules in order
      // ***********************************************
-     [biz.cvalidateConstantsDataValidation]: (inputData, inputMetaData) => stringParsing.validateConstantsDataValidation(inputData, inputMetaData),
-     [biz.cdetermineConstantsContextQualifiedPrefix]: (inputData, inputMetaData) => stringParsing.determineConstantsContextQualifiedPrefix(inputData, inputMetaData),
-     [biz.cdetermineSuggestedConstantsValidationLineOfCode]: (inputData, inputMetaData) => stringParsing.determineSuggestedConstantsValidationLineOfCode(inputData, inputMetaData),
-     [biz.cvalidateConstantsDataValidationLineItemName]: (inputData, inputMetaData) => stringParsing.validateConstantsDataValidationLineItemName(inputData, inputMetaData),
-     [biz.cdoesConstantExist]: (inputData, inputMetaData) => stringParsing.doesConstantExist(inputData, inputMetaData),
-     [biz.cgetConstantType]: (inputData, inputMetaData) => stringParsing.getConstantType(inputData, inputMetaData),
-     [biz.cgetConstantActualValue]: (inputData, inputMetaData) => stringParsing.getConstantActualValue(inputData, inputMetaData),
-     [biz.cgetConstantName]: (inputData, inputMetaData) => stringParsing.getConstantName(inputData, inputMetaData),
-     [biz.cfindConstantName]: (inputData, inputMetaData) => stringParsing.findConstantName(inputData, inputMetaData),
-     [biz.cisConstantTypeValid]: (inputData, inputMetaData) => stringParsing.isConstantTypeValid(inputData, inputMetaData),
-     [biz.cconvertConstantTypeToConstantPrefix]: (inputData, inputMetaData) => stringParsing.convertConstantTypeToConstantPrefix(inputData, inputMetaData),
-     [biz.cconstantsOptimizedFulfillmentSystem]: (inputData, inputMetaData) => stringParsing.constantsOptimizedFulfillmentSystem(inputData, inputMetaData),
-     [biz.cconstantsFulfillmentSystem]: (inputData, inputMetaData) => stringParsing.constantsFulfillmentSystem(inputData, inputMetaData),
-     [biz.cvalidateConstantsDataValues]: (inputData, inputMetaData) => stringParsing.validateConstantsDataValues(inputData, inputMetaData),
-     [biz.cisConstantValid]: (inputData, inputMetaData) => stringParsing.isConstantValid(inputData, inputMetaData),
+     [biz.cvalidateConstantsDataValidation]: (inputData, inputMetaData) => constantStringParsing.validateConstantsDataValidation(inputData, inputMetaData),
+     [biz.cdetermineConstantsContextQualifiedPrefix]: (inputData, inputMetaData) => constantStringParsing.determineConstantsContextQualifiedPrefix(inputData, inputMetaData),
+     [biz.cdetermineSuggestedConstantsValidationLineOfCode]: (inputData, inputMetaData) => constantStringParsing.determineSuggestedConstantsValidationLineOfCode(inputData, inputMetaData),
+     [biz.cvalidateConstantsDataValidationLineItemName]: (inputData, inputMetaData) => constantStringParsing.validateConstantsDataValidationLineItemName(inputData, inputMetaData),
+     [biz.cdoesConstantExist]: (inputData, inputMetaData) => constantStringParsing.doesConstantExist(inputData, inputMetaData),
+     [biz.cgetConstantType]: (inputData, inputMetaData) => constantStringParsing.getConstantType(inputData, inputMetaData),
+     [biz.cgetConstantActualValue]: (inputData, inputMetaData) => constantStringParsing.getConstantActualValue(inputData, inputMetaData),
+     [biz.cgetConstantName]: (inputData, inputMetaData) => constantStringParsing.getConstantName(inputData, inputMetaData),
+     [biz.cfindConstantName]: (inputData, inputMetaData) => constantStringParsing.findConstantName(inputData, inputMetaData),
+     [biz.cisConstantTypeValid]: (inputData, inputMetaData) => constantStringParsing.isConstantTypeValid(inputData, inputMetaData),
+     [biz.cconvertConstantTypeToConstantPrefix]: (inputData, inputMetaData) => constantStringParsing.convertConstantTypeToConstantPrefix(inputData, inputMetaData),
+     [biz.cconstantsOptimizedFulfillmentSystem]: (inputData, inputMetaData) => constantStringParsing.constantsOptimizedFulfillmentSystem(inputData, inputMetaData),
+     [biz.cconstantsFulfillmentSystem]: (inputData, inputMetaData) => constantStringParsing.constantsFulfillmentSystem(inputData, inputMetaData),
+     [biz.cvalidateConstantsDataValues]: (inputData, inputMetaData) => constantStringParsing.validateConstantsDataValues(inputData, inputMetaData),
+     [biz.cisConstantValid]: (inputData, inputMetaData) => constantStringParsing.isConstantValid(inputData, inputMetaData),
 
      // ***********************************************
-     // DataStringParsing rules in order
+     // dataStringParsing rules in order
      // ***********************************************
-     [biz.cgetAttributeName]: (inputData, inputMetaData) => stringParsing.getAttributeName(inputData, inputMetaData),
-     [biz.cgetAttributeValue]: (inputData, inputMetaData) => stringParsing.getAttributeValue(inputData, inputMetaData),
-     [biz.cgetValueFromAssignmentOperationString]: (inputData, inputMetaData) => stringParsing.getValueFromAssignmentOperationString(inputData, inputMetaData),
-     [biz.cgetDataCatagoryFromDataContextName]: (inputData, inputMetaData) => stringParsing.getDataCatagoryFromDataContextName(inputData, inputMetaData),
-     [biz.cgetDataCatagoryDetailNameFromDataContextName]: (inputData, inputMetaData) => stringParsing.getDataCatagoryDetailNameFromDataContextName(inputData, inputMetaData),
-     [biz.cgetKeywordNameFromDataContextName]: (inputData, inputMetaData) => stringParsing.getKeywordNameFromDataContextName(inputData, inputMetaData),
-     [biz.cloadDataFile]: (inputData, inputMetaData) => stringParsing.loadDataFile(inputData, inputMetaData),
-     [biz.csaveDataFile]: (inputData, inputMetaData) => stringParsing.saveDataFile(inputData, inputMetaData),
-     [biz.cgetUserNameFromEmail]: (inputData, inputMetaData) => stringParsing.getUserNameFromEmail(inputData, inputMetaData),
+     [biz.cgetAttributeName]: (inputData, inputMetaData) => dataStringParsing.getAttributeName(inputData, inputMetaData),
+     [biz.cgetAttributeValue]: (inputData, inputMetaData) => dataStringParsing.getAttributeValue(inputData, inputMetaData),
+     [biz.cgetValueFromAssignmentOperationString]: (inputData, inputMetaData) => dataStringParsing.getValueFromAssignmentOperationString(inputData, inputMetaData),
+     [biz.cgetDataCatagoryFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getDataCatagoryFromDataContextName(inputData, inputMetaData),
+     [biz.cgetDataCatagoryDetailNameFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getDataCatagoryDetailNameFromDataContextName(inputData, inputMetaData),
+     [biz.cgetKeywordNameFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getKeywordNameFromDataContextName(inputData, inputMetaData),
+     [biz.cloadDataFile]: (inputData, inputMetaData) => dataStringParsing.loadDataFile(inputData, inputMetaData),
+     [biz.csaveDataFile]: (inputData, inputMetaData) => dataStringParsing.saveDataFile(inputData, inputMetaData),
+     [biz.cgetUserNameFromEmail]: (inputData, inputMetaData) => dataStringParsing.getUserNameFromEmail(inputData, inputMetaData),
 
      // ***********************************************
-     // FileStringParsing rules in order
+     // fileStringParsing rules in order
      // ***********************************************
-     [biz.cgetFileNameFromPath]: (inputData, inputMetaData) => stringParsing.getFileNameFromPath(inputData, inputMetaData),
-     [biz.cgetFileExtension]: (inputData, inputMetaData) => stringParsing.getFileExtension(inputData, inputMetaData),
-     [biz.cremoveDotFromFileExtension]: (inputData, inputMetaData) => stringParsing.removeDotFromFileExtension(inputData, inputMetaData),
-     [biz.cremoveFileExtensionFromFileName]: (inputData, inputMetaData) => stringParsing.removeFileExtensionFromFileName(inputData, inputMetaData),
-     [biz.cascertainMatchingFilenames]: (inputData, inputMetaData) => stringParsing.ascertainMatchingFilenames(inputData, inputMetaData),
-     [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => stringParsing.supportedFileFormatsAre(inputData, inputMetaData),
-     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => stringParsing.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
-     [biz.cremoveXnumberOfFoldersFromEndOfPath]: (inputData, inputMetaData) => stringParsing.removeXnumberOfFoldersFromEndOfPath(inputData, inputMetaData),
-     [biz.cgetFirstTopLevelFolderFromPath]: (inputData, inputMetaData) => stringParsing.getFirstTopLevelFolderFromPath(inputData, inputMetaData),
-     [biz.ccreateZipArchive]: (inputData, inputMetaData) => stringParsing.createZipArchive(inputData, inputMetaData),
+     [biz.cgetFileNameFromPath]: (inputData, inputMetaData) => fileStringParsing.getFileNameFromPath(inputData, inputMetaData),
+     [biz.cgetFileExtension]: (inputData, inputMetaData) => fileStringParsing.getFileExtension(inputData, inputMetaData),
+     [biz.cremoveDotFromFileExtension]: (inputData, inputMetaData) => fileStringParsing.removeDotFromFileExtension(inputData, inputMetaData),
+     [biz.cremoveFileExtensionFromFileName]: (inputData, inputMetaData) => fileStringParsing.removeFileExtensionFromFileName(inputData, inputMetaData),
+     [biz.cascertainMatchingFilenames]: (inputData, inputMetaData) => fileStringParsing.ascertainMatchingFilenames(inputData, inputMetaData),
+     [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => fileStringParsing.supportedFileFormatsAre(inputData, inputMetaData),
+     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
+     [biz.cremoveXnumberOfFoldersFromEndOfPath]: (inputData, inputMetaData) => fileStringParsing.removeXnumberOfFoldersFromEndOfPath(inputData, inputMetaData),
+     [biz.cgetFirstTopLevelFolderFromPath]: (inputData, inputMetaData) => fileStringParsing.getFirstTopLevelFolderFromPath(inputData, inputMetaData),
+     [biz.ccreateZipArchive]: (inputData, inputMetaData) => fileStringParsing.createZipArchive(inputData, inputMetaData),
 
      // ***********************************************
-     // WordStringParsing rules in order
+     // wordStringParsing rules in order
      // ***********************************************
-     [biz.cisStringCamelCase]: (inputData, inputMetaData) => stringParsing.isStringCamelCase(inputData, inputMetaData),
-     [biz.cmapWordToCamelCaseWord]: (inputData, inputMetaData) => stringParsing.mapWordToCamelCaseWord(inputData, inputMetaData),
-     [biz.csimplifyAndConsolidateString]: (inputData, inputMetaData) => stringParsing.simplifyAndConsolidateString(inputData, inputMetaData),
-     [biz.ccompareSimplifiedAndConsolidatedStrings]: (inputData, inputMetaData) => stringParsing.compareSimplifiedAndConsolidatedStrings(inputData, inputMetaData),
-     [biz.ccountCamelCaseWords]: (inputData, inputMetaData) => stringParsing.countCamelCaseWords(inputData, inputMetaData),
-     [biz.cdoesStringContainAcronym]: (inputData, inputMetaData) => stringParsing.doesStringContainAcronym(inputData, inputMetaData),
-     [biz.cdetermineWordDelimiter]: (inputData, inputMetaData) => stringParsing.determineWordDelimiter(inputData, inputMetaData),
-     [biz.ccountDelimiterInString]: (inputData, inputMetaData) => stringParsing.countDelimiterInString(inputData, inputMetaData),
-     [biz.cgetWordCountInString]: (inputData, inputMetaData) => stringParsing.getWordCountInString(inputData, inputMetaData),
-     [biz.cisStringList]: (inputData, inputMetaData) => stringParsing.isStringList(inputData, inputMetaData),
-     [biz.caggregateNumericalDifferenceBetweenTwoStrings]: (inputData, inputMetaData) => stringParsing.aggregateNumericalDifferenceBetweenTwoStrings(inputData, inputMetaData),
+     [biz.cisStringCamelCase]: (inputData, inputMetaData) => wordStringParsing.isStringCamelCase(inputData, inputMetaData),
+     [biz.cmapWordToCamelCaseWord]: (inputData, inputMetaData) => wordStringParsing.mapWordToCamelCaseWord(inputData, inputMetaData),
+     [biz.csimplifyAndConsolidateString]: (inputData, inputMetaData) => wordStringParsing.simplifyAndConsolidateString(inputData, inputMetaData),
+     [biz.ccompareSimplifiedAndConsolidatedStrings]: (inputData, inputMetaData) => wordStringParsing.compareSimplifiedAndConsolidatedStrings(inputData, inputMetaData),
+     [biz.ccountCamelCaseWords]: (inputData, inputMetaData) => wordStringParsing.countCamelCaseWords(inputData, inputMetaData),
+     [biz.cdoesStringContainAcronym]: (inputData, inputMetaData) => wordStringParsing.doesStringContainAcronym(inputData, inputMetaData),
+     [biz.cdetermineWordDelimiter]: (inputData, inputMetaData) => wordStringParsing.determineWordDelimiter(inputData, inputMetaData),
+     [biz.ccountDelimiterInString]: (inputData, inputMetaData) => wordStringParsing.countDelimiterInString(inputData, inputMetaData),
+     [biz.cgetWordCountInString]: (inputData, inputMetaData) => wordStringParsing.getWordCountInString(inputData, inputMetaData),
+     [biz.cisStringList]: (inputData, inputMetaData) => wordStringParsing.isStringList(inputData, inputMetaData),
+     [biz.caggregateNumericalDifferenceBetweenTwoStrings]: (inputData, inputMetaData) => wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings(inputData, inputMetaData),
      // ***********************************************************************
      // END StringParsing catagory
      // ***********************************************************************

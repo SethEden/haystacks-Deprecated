@@ -13,7 +13,7 @@
  */
 
 // Internal imports
-import loggers from '../../executrix/loggers.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import _ from 'lodash';

@@ -9,8 +9,14 @@
  */
 
 // Internal imports
-
+import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
+import dataArrayParsing from './dataArrayParsing.js';
+import wordArrayParsing from './wordArrayParsing.js';
+import characterStringParsing from '../stringParsing/characterStringParsing.js';
+import configurator from '../../../executrix/configurator.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
+import hayConst from '@haystacks/constants';
 import path from 'path';
 
 const {bas, cfg, gen, msg, sys, wrd} = hayConst;
@@ -47,7 +53,7 @@ const solveLehmerCode = function(inputData, inputMetaData) {
     let expandedLehmerCodeArray = [];
     let tempArray = [];
     let lehmerCodeArray = Array.from(Array(lengthOfInputData), () => 0);
-    expandedLehmerCodeArray = arrayDeepClone(recursiveArrayExpansion([0, lehmerCodeArray], inputData));
+    expandedLehmerCodeArray = dataArrayParsing.arrayDeepClone(recursiveArrayExpansion([0, lehmerCodeArray], inputData));
     // expandedLehmerCodeArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cexpandedLehmerCodeArrayIs + JSON.stringify(expandedLehmerCodeArray));
 
@@ -81,7 +87,7 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = [];
-  if (inputData && inputMetaData && isArray(inputData) === true && isArray(inputMetaData) === true && inputData.length > 0 && inputMetaData.length > 0) {
+  if (inputData && inputMetaData && dataArrayParsing.isArray(inputData) === true && dataArrayParsing.isArray(inputMetaData) === true && inputData.length > 0 && inputMetaData.length > 0) {
     // Setup & parse the inputData & inputMetaData into a format we can use to actually do recursive array expansion.
     let indexOfExpansion = inputData[0];
     let arrayToBeExpanded = inputData[1];
@@ -105,17 +111,17 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
 
     // First level array expansion.
     for (let i = 0; i <= limitOfExpansion; i++) {
-      let lehmerCodeArray1 = arrayDeepClone(arrayToBeExpanded, '');
+      let lehmerCodeArray1 = dataArrayParsing.arrayDeepClone(arrayToBeExpanded, '');
       // returnData is:
       loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
       lehmerCodeArray1[indexOfExpansion] = i;
-      if (doesArrayContainValue(returnData, lehmerCodeArray1, ascertainMatchingElements) === false) {
+      if (auxiliaryArrayParsing.doesArrayContainValue(returnData, lehmerCodeArray1, wordArrayParsing.ascertainMatchingElements) === false) {
         // pushing LehmerCodeArray1 to returnData value:
         loggers.consoleLog(namespacePrefix + functionName, msg.cpushingLehmerCodeArray1ToReturnDataValue + JSON.stringify(lehmerCodeArray1));
         returnData.push(lehmerCodeArray1);
         // returnData after push is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataAfterPushIs + JSON.stringify(returnData));
-      } // End-if (doesArrayContainValue(returnData, lehmerCodeArray1, ascertainMatchingElements) === false)
+      } // End-if (auxiliaryArrayParsing.doesArrayContainValue(returnData, lehmerCodeArray1, wordArrayParsing.ascertainMatchingElements) === false)
     } // End-for (let i = 0; i <= limitOfExpansion; i++)
     // returnData after level 1 is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataAfterLevel1Is + JSON.stringify(returnData));
@@ -135,16 +141,16 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
       // because otherwise we would be looping over the same array we are removing elements from,
       // which would mean that we would never visit all of the elements.
       // https://stackoverflow.com/questions/54081930/why-array-foreach-array-pop-would-not-empty-the-array
-      let returnDataTemp = arrayDeepClone(returnData, '');
+      let returnDataTemp = dataArrayParsing.arrayDeepClone(returnData, '');
       returnDataTemp.forEach(function(item) {
         // returnData BEFORE POP is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataBeforePopIs + JSON.stringify(returnData));
-        let lehmerCodeArray2 = arrayDeepClone(returnData.pop(), '');
+        let lehmerCodeArray2 = dataArrayParsing.arrayDeepClone(returnData.pop(), '');
         // returnData AFTER POP is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataAfterPopIs + JSON.stringify(returnData));
         // masterTempReturnData BEFORE recursie call is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cmasterTempReturnDataBeforeRecursiveCallIs + JSON.stringify(masterTempReturnData));
-        let tempReturnData1 = arrayDeepClone(recursiveArrayExpansion([indexOfExpansion + 1, lehmerCodeArray2], inputMetaData), '');
+        let tempReturnData1 = dataArrayParsing.arrayDeepClone(recursiveArrayExpansion([indexOfExpansion + 1, lehmerCodeArray2], inputMetaData), '');
         // tempReturnData1 is:
         loggers.consoleLog(namespacePrefix + functionName, msg.ctempReturnData1Is + JSON.stringify(tempReturnData1));
         // tempReturnData1.length is:
@@ -152,11 +158,11 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
         for (let k = 0; k <= tempReturnData1.length - 1; k++) {
           // BEGIN k-th iteration:
           loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_kthIteration + k);
-          if (doesArrayContainValue(masterTempReturnData, tempReturnData1[k], ascertainMatchingElements) === false) {
+          if (auxiliaryArrayParsing.doesArrayContainValue(masterTempReturnData, tempReturnData1[k], wordArrayParsing.ascertainMatchingElements) === false) {
             // pushing tempReturnData1[k] value:
             loggers.consoleLog(namespacePrefix + functionName, msg.cpushingTempReturnData1Kvalue + JSON.stringify(tempReturnData1[k]));
-            masterTempReturnData.push(arrayDeepClone(tempReturnData1[k], ''));
-          } // End-if (doesArrayContainValue(masterTempReturnData, tempReturnData1[k], ascertainMatchingElements) === false)
+            masterTempReturnData.push(dataArrayParsing.arrayDeepClone(tempReturnData1[k], ''));
+          } // End-if (auxiliaryArrayParsing.doesArrayContainValue(masterTempReturnData, tempReturnData1[k], wordArrayParsing.ascertainMatchingElements) === false)
           // END k-th iteration:
           loggers.consoleLog(namespacePrefix + functionName, msg.cEND_kthIteration + k);
         } // End-for (let k = 0; k <= tempReturnData1.length - 1; k++)
@@ -164,9 +170,9 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
         // masterTempReturnData AFTER recursive call is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cmasterTempReturnDataAfterRecursiveCallIs + JSON.stringify(masterTempReturnData));
       }); // End-for-each (returnDataTemp.forEach(function(item))
-      returnData = arrayDeepClone(masterTempReturnData, '');
+      returnData = dataArrayParsing.arrayDeepClone(masterTempReturnData, '');
     } // End-if (indexOfExpansion < arrayToBeExpanded.length - 1)
-  } // End-if (inputData && inputMetaData && isArray(inputData) === true && isArray(inputMetaData) === true && inputData.length > 0 && inputMetaData.length > 0)
+  } // End-if (inputData && inputMetaData && dataArrayParsing.isArray(inputData) === true && dataArrayParsing.isArray(inputMetaData) === true && inputData.length > 0 && inputMetaData.length > 0)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -263,9 +269,9 @@ const generateCommandAliases = function(inputData, inputMetaData) {
       masterArrayIndex[i] = commandWordAliasesArray.length - 1;
       for (let j = 0; j < commandWordAliasesArray.length; j++) {
         let commandAliasWord = commandWordAliasesArray[j];
-        if (stringParsing.isFirstCharacterLowerCase(commandAliasWord, '') === true) {
+        if (characterStringParsing.isFirstCharacterLowerCase(commandAliasWord, '') === true) {
           let firstLetterOfCommandAliasWord = commandAliasWord.charAt(0).toUpperCase();
-          commandAliasWord = stringParsing.replaceCharacterAtIndexOfString(commandAliasWord, 0, firstLetterOfCommandAliasWord);
+          commandAliasWord = characterStringParsing.replaceCharacterAtIndexOfString(commandAliasWord, 0, firstLetterOfCommandAliasWord);
           commandWordAliasesArray[j] = commandAliasWord; // Saved the changes back to array.
         }
       } // End-for (let j = 0; j < commandWordAliasesArray.length; j++)

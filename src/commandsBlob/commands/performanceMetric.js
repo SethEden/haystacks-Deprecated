@@ -11,6 +11,7 @@
 // Internal imports
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
+import D from '../../structures/data.js';
 import stack from '../../structures/stack.js';
 // External imports
 import hayConst from '@haystacks/constants';

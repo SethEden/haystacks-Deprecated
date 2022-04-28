@@ -9,9 +9,11 @@
  */
 
 // Internal imports
-import stringParsing from './stringParsing.js';
-import configurator from '../../executrix/configurator.js';
-import loggers from '../../executrix/loggers.js';
+import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
+import wordArrayParsing from './wordArrayParsing.js';
+import characterStringParsing from '../stringParsing/constantStringParsing.js';
+import configurator from '../../../executrix/configurator.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
@@ -121,9 +123,9 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
                     // console.log('FOUND A MATCH!!!! ' + stringToCompare);
                     // Here we have found a match amoung brothers. We need to see if this stringToCompare has already been added to the returnData array.
-                    if (doesArrayContainValue(returnData, stringToCompare, ascertainMatchingElements) === false) {
+                    if (auxiliaryArrayParsing.doesArrayContainValue(returnData, stringToCompare, wordArrayParsing.ascertainMatchingElements) === false) {
                       returnData.push(stringToCompare);
-                    } // End-if (doesArrayContanValue(returnData, stringToCompare, ascertainMatchingElements) === false)
+                    } // End-if (doesArrayContanValue(returnData, stringToCompare, wordArrayParsing.ascertainMatchingElements) === false)
                   } // End-if (otherStringToCompare.includes(stringToCompare))
                 } // End-if (d != a)
               } // End-for (let d = 0; d < inputData.length; d++)
@@ -165,7 +167,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
     for (let i = 0; i < inputData.length; i++) {
       let currentString = inputData[i];
-      if (stringParsing.doesConstantExist(currentString, '') === false) {
+      if (characterStringParsing.doesConstantExist(currentString, '') === false) {
         // Constant does NOT exist:
         passMessage = msg.cConstantDoesNotExist + currentString;
         if (colorizeLogsEnabled === true) {
@@ -183,7 +185,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
           returnData = returnData + bas.cComa + currentString;
         }
         j++;
-      } else { // Else-clause for if (stringParsing.doesConstantExist(currentString, '') === false)
+      } else { // Else-clause for if (characterStringParsing.doesConstantExist(currentString, '') === false)
         // Constant does exist:
         passMessage = msg.cConstantDoesExist + currentString;
         if (colorizeLogsEnabled === true) {

@@ -13,6 +13,7 @@
  */
 
 // Internal imports
+import characterStringParsing from './characterStringParsing.js';
 import stringParsingUtilities from '../stringParsingUtilities.js';
 import fileOperations from '../../../executrix/fileOperations.js';
 import loggers from '../../../executrix/loggers.js';
@@ -43,10 +44,10 @@ const getFileNameFromPath = function(inputData, inputMetaData) {
   if (inputData) {
     // Clean the path string for any double slashes.
     if (inputData.includes(bas.cDoubleForwardSlash)) {
-      inputData = swapDoubleForwardSlashToSingleForwardSlash(inputData, '');
+      inputData = characterStringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, '');
     }
     if (inputData.includes(bas.cForwardSlash)) {
-      inputData = swapForwardSlashToBackSlash(inputData, '');
+      inputData = characterStringParsing.swapForwardSlashToBackSlash(inputData, '');
     }
     // inputData right before processing is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataRightBeforeProcessingIs + inputData);

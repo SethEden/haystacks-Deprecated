@@ -13,8 +13,8 @@
  */
 
 // Internal imports
-import loggers from '../../executrix/loggers.js';
-import timers from '../../executrix/timers.js';
+import loggers from '../../../executrix/loggers.js';
+import timers from '../../../executrix/timers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';

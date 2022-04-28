@@ -9,8 +9,9 @@
  */
 
 // Internal imports
-import stringParsing from './stringParsing.js';
-import loggers from '../../executrix/loggers.js';
+import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
+import wordStringParsing from '../stringParsing/wordStringParsing.js';
+import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -76,14 +77,14 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    let wordCount = stringParsing.getWordCountInString(inputData, '');
+    let wordCount = wordStringParsing.getWordCountInString(inputData, '');
     // wordCount is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cwordCountIs + wordCount);
     if (wordCount > 0) {
-      let wordDelimiter = stringParsing.determineWordDelimiter(inputData, inputMetaData);
+      let wordDelimiter = wordStringParsing.determineWordDelimiter(inputData, inputMetaData);
       // wordDelimiter is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cwordDelimiterIs + wordDelimiter);
-      let stringContainsAcronym = stringParsing.doesStringContainAcronym(inputData, '');
+      let stringContainsAcronym = wordStringParsing.doesStringContainAcronym(inputData, '');
       // stringContainsAcronym is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cstringContainsAcronymIs + stringContainsAcronym);
       if (wordDelimiter === sys.cCamelCase && stringContainsAcronym === false) {
@@ -147,7 +148,7 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    returnData = inputData.map((key, index) => stringParsing.mapWordToCamelCaseWord(key, index));
+    returnData = inputData.map((key, index) => wordStringParsing.mapWordToCamelCaseWord(key, index));
     returnData = returnData.join('');
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -172,12 +173,12 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
   let returnData;
   if (inputData && inputMetaData) {
     // I'm not sure if value1 & value2 below should be referanced to inputData & inputMetaData?
-    // I get the arrow function is passign these values to the stringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
+    // I get the arrow function is passign these values to the wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
     // But I'm not sure how or what values are being passed for value1 & value2.
-    let stringDelta = (value1, value2) => stringParsing.aggregateNumericalDifferenceBetweenTwoStrings(value1, value2) < 2;
+    let stringDelta = (value1, value2) => wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings(value1, value2) < 2;
     // stringDelta value is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cstringDeltaValueIs + stringDelta);
-    returnData = doesArrayContainValue(inputData, inputMetaData, stringDelta);
+    returnData = auxiliaryArrayParsing.doesArrayContainValue(inputData, inputMetaData, stringDelta);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -185,7 +186,7 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
 };
 
 /**
- * @function acertainMatchingElements
+ * @function ascertainMatchingElements
  * @description Determines if to values are identical. Needed for completeness of comparison for nested arrays.
  * @param {array<string|boolean|integer|float|object>} inputData An array that should be compared for equality.
  * @param {array<string|boolean|integer|float|object>} inputMetaData Second array that should be compared for equality.

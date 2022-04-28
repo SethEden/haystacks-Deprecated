@@ -13,7 +13,7 @@
  */
 
 // Internal imports
-import arrayParsing from './arrayParsing.js';
+import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
 import fileOperations from '../../../executrix/fileOperations.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
@@ -46,7 +46,7 @@ const getAttributeName = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + JSON.stringify(attributeArray));
     // attributeArray[0] is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray0Is + attributeArray[0]);
-    returnData = arrayParsing.replaceCharacterWithCharacter(attributeArray[0], [/"/g, '']);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(attributeArray[0], [/"/g, '']);
     returnData = returnData.trim();
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -75,7 +75,7 @@ const getAttributeValue = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + attributeArray);
     // attributeArray[0] is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray1Is + attributeArray[1]);
-    returnData = arrayParsing.replaceCharacterWithCharacter(attributeArray[1], [/"/g, '']);
+    returnData = characterArrayParsing.replaceCharacterWithCharacter(attributeArray[1], [/"/g, '']);
     returnData = returnData.trim();
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
