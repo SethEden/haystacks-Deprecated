@@ -131,7 +131,7 @@ function getJsonData(pathAndFilename) {
   // Make sure to resolve the path on the local system,
   // just in case tehre are issues with the OS that the code is running on.
   pathAndFilename = path.resolve(pathAndFilename);
-  let rawData = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8});
+  let rawData = fs.readFileSync(pathAndFilename, { encoding: gen.cUTF8 });
   let parsedData = JSON.parse(rawData);
   // console.log(`DONE loading data from: ${pathAndFilename}`);
   // console.log(`loaded data is: ${JSON.stringify(parsedData)}`);

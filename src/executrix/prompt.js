@@ -17,7 +17,7 @@ import hayConst from '@haystacks/constants';
 import fs from 'fs';
 import path from 'path';
 
-const {bas, fnc, gen, msg, wrd} = hayConst;
+const {bas, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.prompt.
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;

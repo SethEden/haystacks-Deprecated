@@ -18,7 +18,7 @@ import loggers from '../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
-const {bas, cfg, gen, msg, sys, wrd, bas_cv, biz_cv, clr_cv, cmd_cv, cfg_cv, ctr_cv, fnc_cv, gen_cv, lng_cv, msg_cv, num_cv, phn_cv, sys_cv, unt_cv, wrd_cv} = hayConst;
+const {bas, cfg, gen, msg, sys, wrd, bas_cv, biz_cv, clr_cv, cmd_cv, cfg_cv, ctr_cv, elm_cv, fnc_cv, gen_cv, iso_cv, knt_cv, lng_cv, msg_cv, num_cv, phn_cv, sys_cv, unt_cv, wrd_cv} = hayConst;
 
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // resources.constantsValidation.allConstantsValidationMetaData.
@@ -52,8 +52,11 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cCommandConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConfigurationConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cCountryConstantsValidation] = [];
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cElementConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cFunctionConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cGenericConstantsValidation] = [];
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cIsotopeConstantsValidation] = [];
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cKnotConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cLanguageConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cMessageConstantsValidation] = [];
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cNumericConstantsValidation] = [];
@@ -68,8 +71,11 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cCommandConstantsValidation] = cmd_cv.commandConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConfigurationConstantsValidation] = cfg_cv.configurationConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cCountryConstantsValidation] = ctr_cv.countryConstantsValidation;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cElementConstantsValidation] = elm_cv.elementConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cFunctionConstantsValidation] = fnc_cv.functionConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cGenericConstantsValidation] = gen_cv.genericConstantsValidation;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cIsotopeConstantsValidation] = iso_cv.isotopeConstantsValidation;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cKnotConstantsValidation] = knt_cv.knotConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cLanguageConstantsValidation] = lng_cv.languageConstantsValidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cMessageConstantsValidation] = msg_cv.messageConstantsVaidation;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cNumericConstantsValidation] = num_cv.numericConstantsValidation;
@@ -85,8 +91,11 @@ function initiaizeAllSystemConstantsValidationData() {
   let resolvedConstantsPath_Command = path.resolve(constantsPath + bas.cForwardSlash + sys.ccommand_constants_js);
   let resolvedConstantsPath_Configuration = path.resolve(constantsPath + bas.cForwardSlash + sys.cconfiguration_constants_js);
   let resolvedConstantsPath_Country = path.resolve(constantsPath + bas.cForwardSlash + sys.ccountry_constants_js);
+  let resolvedConstantsPath_Element = path.resolve(constantsPath + bas.cForwardSlash + sys.celement_constants_js);
   let resolvedConstantsPath_Function = path.resolve(constantsPath + bas.cForwardSlash + sys.cfunction_constants_js);
   let resolvedConstantsPath_Generic = path.resolve(constantsPath + bas.cForwardSlash + sys.cgeneric_constants_js);
+  let resolvedConstantsPath_Isotope = path.resolve(constantsPath + bas.cForwardSlash + sys.cisotope_constants_js);
+  let resolvedConstantsPath_Knot = path.resolve(constantsPath + bas.cForwardSlash + sys.cknot_constants_js);
   let resolvedConstantsPath_Language = path.resolve(constantsPath + bas.cForwardSlash + sys.clanguage_constants_js);
   let resolvedConstantsPath_Message = path.resolve(constantsPath + bas.cForwardSlash + sys.cmessage_constants_js);
   let resolvedConstantsPath_Numeric = path.resolve(constantsPath + bas.cForwardSlash + sys.cnumeric_constants_js);
@@ -107,10 +116,16 @@ function initiaizeAllSystemConstantsValidationData() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_ConfigurationIs + resolvedConstantsPath_Configuration);
   // resolvedConstantsPath_Country is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_CountryIs + resolvedConstantsPath_Country);
+  // resolvedConstantsPath_Element is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_ElementIs + resolvedConstantsPath_Element);
   // resolvedConstantsPath_Function is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_FunctionIs + resolvedConstantsPath_Function);
   // resolvedConstantsPath_Generic is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_GenericIs + resolvedConstantsPath_Generic);
+  // resolvedConstantsPath_Isotope is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_IsotopeIs + resolvedConstantsPath_Isotope);
+  // resolvedConstantsPath_Knot is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_KnotIs + resolvedConstantsPath_Knot);
   // resolvedConstantsPath_Language is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedConstantsPath_LanguageIs + resolvedConstantsPath_Language);
   // resolvedConstantsPath_Message is:
@@ -132,8 +147,11 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cCommandConstantsValidation] = resolvedConstantsPath_Command;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cConfigurationConstantsValidation] = resolvedConstantsPath_Configuration;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cCountryConstantsValidation] = resolvedConstantsPath_Country;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cElementConstantsValidation] = resolvedConstantsPath_Element;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cFunctionConstantsValidation] = resolvedConstantsPath_Function;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cGenericConstantsValidation] = resolvedConstantsPath_Generic;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cIsotopeConstantsValidation] = resolvedConstantsPath_Isotope;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cKnotConstantsValidation] = resolvedConstantsPath_Knot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cLanguageConstantsValidation] = resolvedConstantsPath_Language;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cMessageConstantsValidation] = resolvedConstantsPath_Message;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][sys.cNumericConstantsValidation] = resolvedConstantsPath_Numeric;
@@ -154,10 +172,16 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cConfigurationConstantsValidation] = msg.cConfigurationConstantsPhase1Validation;
   // Country Constants Phase 1 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cCountryConstantsValidation] = msg.cCountryConstantsPhase1Validation;
+  // Element Constants Phase 1 Validation
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cElementConstantsValidation] = msg.cElementConstantsPhase1Validation;
   // Function Constants Phase 1 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cFunctionConstantsValidation] = msg.cFunctionConstantsPhase1Validation;
   // Generic Constants Phase 1 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cGenericConstantsValidation] = msg.cGenericConstantsPhase1Validation;
+  // Isotope Constants Phase 1 Validation
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cIsotopeConstantsValidation] = msg.cIsotopeConstantsPhase1Validation;
+  // Knot Constants Phase 1 Validation
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cKnotConstantsValidation] = msg.cKnotConstantsPhase1Validation;
   // Language Constants Phase 1 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages][sys.cLanguageConstantsValidation] = msg.cLanguageConstantsPhase1Validation;
   // Message Constants Phase 1 Validation
@@ -185,10 +209,16 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cConfigurationConstantsValidation] = msg.cConfigurationConstantsPhase2Validation;
   // Country Constants Phase 2 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cCountryConstantsValidation] = msg.cCountryConstantsPhase2Validation;
+  // Element Constants Phase 2 Validation
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cElementConstantsValidation] = msg.cElementConstantsPhase2Validation;
   // Function Constants Phase 2 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cFunctionConstantsValidation] = msg.cFunctionConstantsPhase2Validation;
   // Generic Constants Phase 2 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cGenericConstantsValidation] = msg.cGenericConstantsPhase2Validation;
+  // Isotope Constants Phase 2 Validation
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cIsotopeConstantsValidation] = msg.cIsotopeConstantsPhase2Validation;
+  // Knot Constants Phase 2 Validation
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cKnotConstantsValidation] = msg.cKnotConstantsPhase2Validation;
   // Language Constants Phase 2 Validation
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages][sys.cLanguageConstantsValidation] = msg.cLanguageConstantsPhase2Validation;
   // Message Constants Phase 2 Validation
@@ -210,8 +240,11 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cCommandConstantsValidation] = gen.ccmd;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cConfigurationConstantsValidation] = gen.ccfg;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cCountryConstantsValidation] = gen.cctr;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cElementConstantsValidation] = gen.celm;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cFunctionConstantsValidation] = gen.cfnc;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cGenericConstantsValidation] = gen.cgen;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cIsotopeConstantsValidation] = gen.ciso;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cKnotConstantsValidation] = gen.cknt;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cLanguageConstantsValidation] = gen.clng;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cMessageConstantsValidation] = gen.cmsg;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsShortNames][sys.cNumericConstantsValidation] = gen.cnum;
@@ -226,8 +259,11 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cCommandConstantsValidation] = sys.ccommand_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cConfigurationConstantsValidation] = sys.cconfiguration_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cCountryConstantsValidation] = sys.ccountry_constants_js;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cElementConstantsValidation] = sys.celement_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cFunctionConstantsValidation] = sys.cfunction_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cGenericConstantsValidation] = sys.cgeneric_constants_js;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cIsotopeConstantsValidation] = sys.cisotope_constants_js;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cKnotConstantsValidation] = sys.cknot_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cLanguageConstantsValidation] = sys.clanguage_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cMessageConstantsValidation] = sys.cmessage_constants_js;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFileNames][sys.cNumericConstantsValidation] = sys.cnumeric_constants_js;
@@ -242,8 +278,11 @@ function initiaizeAllSystemConstantsValidationData() {
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cCommandConstantsValidation] = gen.ccmd + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cConfigurationConstantsValidation] = gen.ccfg + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cCountryConstantsValidation] = gen.cctr + bas.cDot;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cElementConstantsValidation] = gen.celm + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cFunctionConstantsValidation] = gen.cfnc + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cGenericConstantsValidation] = gen.cgen + bas.cDot;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cIsotopeConstantsValidation] = gen.ciso + bas.cDot;
+  allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cKnotConstantsValidation] = gen.cknt + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cLanguageConstantsValidation] = gen.clng + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cMessageConstantsValidation] = gen.cmsg + bas.cDot;
   allSystemConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsPrefix][sys.cNumericConstantsValidation] = gen.cnum + bas.cDot;
