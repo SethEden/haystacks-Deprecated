@@ -268,6 +268,24 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cconvertNumberToLowerCaseLetter]: (inputData, inputMetaData) => characterGeneration.convertNumberToLowerCaseLetter(inputData, inputMetaData),
 
      // ***********************************************
+     // fileOperations rules in order
+     // ***********************************************
+     [biz.cgetXmlData]: (inputData, inputMetaData) => fileOperations.getXmlData(inputData, inputMetaData),
+     [biz.cgetCsvData]: (inputData, inputMetaData) => fileOperations.getCsvData(inputData, inputMetaData),
+     [biz.cgetJsonData]: (inputData, inputMetaData) => fileOperations.getJsonData(inputData, inputMetaData),
+     [biz.cwriteJsonData]: (inputData, inputMetaData) => fileOperations.writeJsonData(inputData, inputMetaData),
+     [biz.creadDirectoryContents]: (inputData, inputMetaData) => fileOperations.readDirectoryContents(inputData, inputMetaData),
+     [biz.cscanDirectoryContents]: (inputData, inputMetaData) => fileOperations.scanDirectoryContents(inputData, inputMetaData),
+     [biz.creadDirectorySynchronously]: (inputData, inputMetaData) => fileOperations.readDirectorySynchronously(inputData, inputMetaData),
+     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
+     [biz.cbuildReleasePackage]: (inputData, inputMetaData) => fileOperations.buildReleasePackage(inputData, inputMetaData),
+     [biz.ccreateZipArchive]: (inputData, inputMetaData) => fileOperations.createZipArchive(inputData, inputMetaData),
+     [biz.ccleanRootPath]: (inputData, inputMetaData) => fileOperations.cleanRootPath(inputData, inputMetaData),
+     [biz.ccopyFileSync]: (inputData, inputMetaData) => fileOperations.copyFileSync(inputData, inputMetaData),
+     [biz.ccopyFolderRecursiveSync]: (inputData, inputMetaData) => fileOperations.copyFolderRecursiveSync(inputData, inputMetaData),
+     [biz.cappendMessageToFile]: (inputData, inputMetaData) => fileOperations.appendMessageToFile(inputData, inputMetaData),
+
+     // ***********************************************
      // mathOperations rules in order
      // ***********************************************
      [biz.chex2rgbConversion]: (inputData, inputMetaData) => mathOperations.hex2rgbConversion(inputData, inputMetaData),
