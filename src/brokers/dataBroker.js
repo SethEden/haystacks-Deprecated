@@ -5,7 +5,6 @@
  * and also acts as an interface for calling the fileOperations.
  * @requires module:ruleBroker
  * @requires module:configurator
- * @requires module:fileOperations
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -18,7 +17,6 @@
 // Internal imports
 import ruleBroker from './ruleBroker.js';
 import configurator from '../executrix/configurator.js';
-import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
@@ -49,10 +47,9 @@ function scanDataPath(dataPath) {
   let rules = [];
   let filesFound = [];
   rules[0] = biz.cswapBackSlashToForwardSlash;
+  rules[1] = biz.creadDirectoryContents;
   // console.log(`execute business rules: ${JSON.stringify(rules)}`);
-  dataPath = ruleBroker.processRules(dataPath, '', rules);
-  // console.log(`dataPath after business rules processing is: ${dataPath}`);
-  filesFound = fileOperations.readDirectoryContents(dataPath);
+  filesFound = ruleBroker.processRules(dataPath, '', rules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundIs + JSON.stringify(filesFound));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
@@ -152,11 +149,13 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let rules = [];
   let fileExtensionRules = [];
+  let getDataRules = [];
   let parsedDataFile;
   rules[1] = biz.cgetFileNameFromPath;
   rules[2] = biz.cremoveFileExtensionFromFileName;
   fileExtensionRules[0] = biz.cgetFileExtension;
   fileExtensionRules[1] = biz.cremoveDotFromFileExtension;
+  getDataRules[0] = biz.cgetCsvData;
   for (let i = 0; i < filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
     // File to load is:
@@ -175,7 +174,7 @@ function loadAllCsvData(filesToLoad, contextName) {
 
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-      let dataFile = fileOperations.getCsvData(fileToLoad);
+      let dataFile = ruleBroker.processRules(fileToLoad, '', getDataRules);
       // loaded file data is:
       loggers.consoleLog(namespacePrefix + functionName , msg.cloadedFileDataIs + JSON.stringify(dataFile));
       parsedDataFile = processCsvData(dataFile, contextName);
@@ -210,11 +209,13 @@ function loadAllXmlData(filesToLoad, contextName) {
   let fileNameRules = [];
   let fileExtensionRules = [];
   let filePathRules = [];
+  let getDataRules = [];
   fileNameRules[0] = biz.cgetFileNameFromPath;
   fileNameRules[1] = biz.cremoveFileExtensionFromFileName;
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
   fileExtensionRules[0] = biz.cgetFileExtension;
   fileExtensionRules[1] = biz.cremoveDotFromFileExtension;
+  getDataRules[0] = biz.cgetXmlData;
   for (let i = 0; i < filesToLoad.length; i++) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
     let fileToLoad = filesToLoad[i];
@@ -235,7 +236,7 @@ function loadAllXmlData(filesToLoad, contextName) {
       contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', fileNameRules);
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-      let dataFile = fileOperations.getXmlData(fileToLoad);
+      let dataFile = ruleBroker.processRules(fileToLoad, '', getDataRules);
       // loaded file data is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedFileDataIs + JSON.stringify(dataFile));
       // BEGIN PROCESSING ADDITIONAL DATA
@@ -444,10 +445,10 @@ function preprocessJsonFile(fileToLoad) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToLoadIs + JSON.stringify(fileToLoad));
   let filePathRules = [];
   filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
+  filePathRules[1] = biz.cgetJsonData;
   // console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRules + JSON.stringify(filePathRules));
-  let finalFileToLoad = ruleBroker.processRules(fileToLoad, '', filePathRules);
-  let dataFile = fileOperations.getJsonData(finalFileToLoad);
+  let dataFile = ruleBroker.processRules(fileToLoad, '', filePathRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataFileIs + JSON.stringify(dataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
@@ -457,7 +458,7 @@ function preprocessJsonFile(fileToLoad) {
 
 /**
  * @function writeJsonDataToFile
- * @description This is a wrapper function for fileOperations.writeJsonData.
+ * @description This is a wrapper function for businessRules.rules.fileOperations.writeJsonData.
  * @param {string} fileToSaveTo The full path to the file that should have the data written to it.
  * @param {object} dataToWriteOut The JSON data that should be written out to the specified JSON file.
  * @return {void}
@@ -469,7 +470,9 @@ function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
-  fileOperations.writeJsonData(path.resolve(fileToSaveTo), dataToWriteOut);
+  let fileWriteRules = [];
+  fileWriteRules[0] = biz.cwriteJsonData;
+  let writeSuccess = ruleBroker.processRules(path.resolve(fileToSaveTo), dataToWriteOut, fileWriteRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

@@ -18,6 +18,7 @@
  * @requires module:fileStringParsing
  * @requires module:wordStringParsing
  * @requires module:characterGeneration
+ * @requires module:fileOperations
  * @requires module:mathOperations
  * @requires module:stringGeneration
  * @requires module:stringParsingUtilities
@@ -46,9 +47,9 @@ import dataStringParsing from './rules/stringParsing/dataStringParsing.js';
 import fileStringParsing from './rules/stringParsing/fileStringParsing.js';
 import wordStringParsing from './rules/stringParsing/wordStringParsing.js';
 import characterGeneration from './rules/characterGeneration.js';
+import fileOperations from './rules/fileOperations.js';
 import mathOperations from './rules/mathOperations.js';
 import stringGeneration from './rules/stringGeneration.js';
-// import stringParsing from './rules/stringParsing.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
 import D from '../structures/data.js';
 // External imports
@@ -130,7 +131,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // pathArrayParsing rules in order
      // ***********************************************
      [biz.cdoesArrayContainFilename]: (inputData, inputMetaData) => pathArrayParsing.doesArrayContainFilename(inputData, inputMetaData),
-     [biz.creadDirectoryContents]: (inputData, inputMetaData) => pathArrayParsing.readDirectoryContents(inputData, inputMetaData),
      [biz.cgetFileAndPathListForPath]: (inputData, inputMetaData) => pathArrayParsing.getFileAndPathListForPath(inputData, inputMetaData),
 
      // ***********************************************
@@ -222,10 +222,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cremoveFileExtensionFromFileName]: (inputData, inputMetaData) => fileStringParsing.removeFileExtensionFromFileName(inputData, inputMetaData),
      [biz.cascertainMatchingFilenames]: (inputData, inputMetaData) => fileStringParsing.ascertainMatchingFilenames(inputData, inputMetaData),
      [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => fileStringParsing.supportedFileFormatsAre(inputData, inputMetaData),
-     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
      [biz.cremoveXnumberOfFoldersFromEndOfPath]: (inputData, inputMetaData) => fileStringParsing.removeXnumberOfFoldersFromEndOfPath(inputData, inputMetaData),
      [biz.cgetFirstTopLevelFolderFromPath]: (inputData, inputMetaData) => fileStringParsing.getFirstTopLevelFolderFromPath(inputData, inputMetaData),
-     [biz.ccreateZipArchive]: (inputData, inputMetaData) => fileStringParsing.createZipArchive(inputData, inputMetaData),
 
      // ***********************************************
      // wordStringParsing rules in order

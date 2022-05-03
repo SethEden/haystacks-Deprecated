@@ -4,7 +4,6 @@
  * @description Contains all system defined business rules for parsing arrays specific to paths.
  * @requires module:stringParsing
  * @requires module:configurator
- * @requires module:fileOperations
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -17,7 +16,6 @@
 import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
 import fileStringParsing from '../stringParsing/fileStringParsing.js';
 import configurator from '../../../executrix/configurator.js';
-import fileOperations from '../../../executrix/fileOperations.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -63,30 +61,6 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
 };
 
 /**
- * @function readDiretoryContents
- * @description Scans an input folder path recursively and
- * returns all of the contents of all files and folders and their paths in an array.
- * This is a wrapper function to expose the fileOperations function readDirectoryContents,
- * out to client applications that will need this functionality.
- * @param {string} inputData The path for the folder that should be scanned recursively.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {array<string>} The array of the files & folders contained within the input path.
- * @author Seth Hollingsead
- * @date 2022/04/08
- */
-const readDirectoryContents = function(inputData, inputMetaData) {
-  let functionName = readDirectoryContents.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = false;
-  returnData = fileOperations.readDirectoryContents(inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
-/**
  * @function getFileAndPathListForPath
  * @description Scans all files and folders recursively given an input path and
  * returns a list of all files and their full paths fournd under the specified input path.
@@ -122,6 +96,5 @@ const getFileAndPathListForPath = function(inputData, inputMetaData) {
 
 export default {
   doesArrayContainFilename,
-  readDirectoryContents,
   getFileAndPathListForPath
 };

@@ -3,7 +3,6 @@
  * @module dataStringParsing
  * @description Contains all system defined business rules for parsing strings as related to data.
  * @requires module:arrayParsing
- * @requires module:fileOperations
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -14,7 +13,6 @@
 
 // Internal imports
 import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
-import fileOperations from '../../../executrix/fileOperations.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -204,6 +202,12 @@ const loadDataFile = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
+  let getXmlRule = [];
+  let getCsvRule = [];
+  let getJsonRule = [];
+  getXmlRule[0] = biz.cgetXmlData;
+  getCsvRule[0] = biz.cgetCsvData;
+  getJsonRule[0] = biz.cgetJsonData;
   if (!inputData) {
     // WARNING: No data to load, please specify a valid path & filename!
     loggers.consoleLog(namespacePrefix + functionName, msg.cLoadDataFileMessage1 + msg.cloadDataFileMessage2);
@@ -213,15 +217,15 @@ const loadDataFile = function(inputData, inputMetaData) {
     if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
       // Attempting to load XML data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadXmlData);
-      loadedData = fileOperations.getXmlData(inputData);
+      loadedData = ruleBroker.processRules(inputData, '', getXmlRule);
     } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
       // Attempting to load CSV data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadCsvData);
-      loadedData = fileOperations.getCsvData(inputData);
+      loadedData = ruleBroker.processRules(inputData, '', getCsvRule);
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
       // Attempting to load JSON data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadJsonData);
-      loadedData = fileOperations.getJsonData(inputData);
+      loadedData = ruleBroker.processRules(inputData, '', getJsonRule);
     } else {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
@@ -253,6 +257,8 @@ const saveDataFile = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
+  let writeJsonRule = [];
+  writeJsonRule[0] = biz.cwriteJsonData;
   if (!inputData) {
     // WARNING: No data to save, please specify a valid path & filename!
     loggers.consoleLog(namespacePrefix + functionName, msg.csaveDataFileMessage1 + msg.cloadDataFileMessage2);
@@ -265,8 +271,7 @@ const saveDataFile = function(inputData, inputMetaData) {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
-      fileOperations.writeJsonData(inputData, inputMetaData);
-      returnData = true;
+      returnData = ruleBroker.processRules(inputData, inputMetaData, writeJsonRule); // Should return true if the write is successful.
     } else {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());

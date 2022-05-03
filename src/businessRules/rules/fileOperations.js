@@ -20,8 +20,8 @@
  */
 
 // Internal imports
-import loggers from '../../../executrix/loggers.js';
-import D from '../../../structures/data.js';
+import loggers from '../../executrix/loggers.js';
+import D from '../../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import admZip from 'adm-zip';
@@ -32,8 +32,8 @@ import path from 'path';
 
 const {bas, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// executrix.fileOperations.
-const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.fileOperations.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 const directoriesToSkip = ['browser_components', 'node_modules', 'www', 'platforms', 'Release', 'Documentation', 'Recycle', 'Trash', 'config.json'];
 let filesCollection = [];
 let enableFilesListLimit = false;
@@ -189,7 +189,7 @@ const readDirectoryContents = function(inputData, inputMetaData) {
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${inputMetaData}`);
-  let returnData [];
+  let returnData = [];
   // Make sure to resolve the path on the local system,
   // just in case there are issues with the OS that the code is running on.
   let directory = path.resolve(inputData);
@@ -408,7 +408,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
     releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, dfg.cdateTimeStamp));
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
-    let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName);
+    let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;
     // release fileName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFileNameIs + releaseFileName);
     let fullReleasePath = path.resolve(destinationFolder + bas.cForwardSlash + releaseFileName + gen.cDotzip);
@@ -693,9 +693,9 @@ const appendMessageToFile = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     try {
       // console.log('open the file sync');
-      fd = fs.openSync(file, bas.ca);
+      fd = fs.openSync(inputData, bas.ca);
       // console.log('append to the file sync');
-      fs.appendFileSync(fd.message + bas.cCarriageReturn + bas.cNewLine, gen.cUTF8);
+      fs.appendFileSync(fd, inputMetaData + bas.cCarriageReturn + bas.cNewLine, gen.cUTF8);
       // console.log('DONE appending to the file');
     } catch (err) {
       return console.log(err);

@@ -8,7 +8,6 @@
  * @requires module:ruleBroker
  * @requires module:colorizer
  * @requires module:configurator
- * @requires module:fileOperations
  * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -23,7 +22,6 @@
 import ruleBroker from '../brokers/ruleBroker.js';
 import colorizer from './colorizer.js';
 import configurator from './configurator.js';
-import fileOperations from './fileOperations.js';
 import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
@@ -369,6 +367,8 @@ function printMessageToFile(file, message) {
     // console.log(msg.cprintMessageToFile01);
     if (configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
+      let writeJsonRule = [];
+      writeJsonRule[0] = biz.cappendMessageToFile;
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
@@ -378,7 +378,7 @@ function printMessageToFile(file, message) {
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
-      fileOperations.appendMessageToFile(file, message);
+      ruleBroker.processRules(file, message, writeJsonRule);
     } else {
       // 'ERROR: Failure to log to file: '
       console.log(msg.cprintMessageToFile02 + file);

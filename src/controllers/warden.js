@@ -10,7 +10,6 @@
  * @requires module:chiefData
  * @requires module:chiefWorkflow
  * @requires module:configurator
- * @requires module:fileOperations
  * @requires module:loggers
  * @requires module:timers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -28,7 +27,6 @@ import chiefConfiguration from './chiefConfiguration.js';
 import chiefData from './chiefData.js';
 import chiefWorkflow from './chiefWorkflow.js';
 import configurator from '../executrix/configurator.js';
-import fileOperations from '../executrix/fileOperations.js';
 import loggers from '../executrix/loggers.js';
 import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
@@ -91,12 +89,14 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + JSON.stringify(configData));
 
+  let getJsonRule = [];
+  getJsonRule[0] = biz.cgetJsonData;
   let applicationMetaDataPathAndFilename = configData[cfg.cclientMetaDataPath];
   let frameworkMetaDataPathAndFilename = configData[cfg.cframeworkFullMetaDataPath];
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataPathAndFilenameIs + applicationMetaDataPathAndFilename);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataPathAndFilenameIs + frameworkMetaDataPathAndFilename);
-  let applicationMetaData = fileOperations.getJsonData(applicationMetaDataPathAndFilename);
-  let frameworkMetaData = fileOperations.getJsonData(frameworkMetaDataPathAndFilename);
+  let applicationMetaData = ruleBroker.processRules(applicationMetaDataPathAndFilename, '', getJsonRule);
+  let frameworkMetaData = ruleBroker.processRules(frameworkMetaDataPathAndFilename, '', getJsonRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataIs + JSON.stringify(applicationMetaData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataIs + JSON.stringify(frameworkMetaData));
 
