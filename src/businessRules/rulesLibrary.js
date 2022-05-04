@@ -21,6 +21,7 @@
  * @requires module:fileOperations
  * @requires module:lexicalAnalyzer
  * @requires module:mathOperations
+ * @requires module:promptOperations
  * @requires module:ruleParsing
  * @requires module:stringGeneration
  * @requires module:stringParsingUtilities
@@ -53,6 +54,7 @@ import characterGeneration from './rules/characterGeneration.js';
 import fileOperations from './rules/fileOperations.js';
 import lexicalAnalyzer from './rules/lexicalAnalyzer.js';
 import mathOperations from './rules/mathOperations.js';
+import promptOperations from './rules/promptOperations.js';
 import ruleParsing from './rules/ruleParsing.js';
 import stringGeneration from './rules/stringGeneration.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
@@ -306,6 +308,11 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.chex2rgbConversion]: (inputData, inputMetaData) => mathOperations.hex2rgbConversion(inputData, inputMetaData),
      [biz.cisOdd]: (inputData, inputMetaData) => mathOperations.isOdd(inputData, inputMetaData),
      [biz.cisEven]: (inputData, inputMetaData) => mathOperations.isEven(inputData, inputMetaData),
+
+     // ***********************************************
+     // promptOperations rules in order
+     // ***********************************************
+     [biz.cprompt]: (inputData, inputMetaData) => promptOperations.prompt(inputData, inputMetaData),
 
      // ***********************************************
      // ruleParsing rules in order

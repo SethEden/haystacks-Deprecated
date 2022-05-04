@@ -2,6 +2,7 @@
  * @file wordStringParsing.js
  * @module wordStringParsing
  * @description Contains all system defined business rules for parsing words and lists.
+ * @requires module:characterStringParsing
  * @requires module:stringParsingUtilities
  * @requires module:configurator
  * @requires module:loggers
@@ -14,6 +15,7 @@
  */
 
 // Internal imports
+import characterStringParsing from './characterStringParsing.js';
 import stringParsingUtilities from '../stringParsingUtilities.js';
 import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
@@ -24,7 +26,7 @@ import path from 'path';
 
 const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.stringParsing.word.
+// businessRules.rules.stringParsing.wordStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + baseFileName + bas.cDot;
 
 /**
@@ -57,9 +59,9 @@ const isStringCamelCase = function(inputData, inputMetaData) {
     // 2. Contains at least 1 lower case letter or more.
     // 3. Contains at least 1 upper case letter or more.
     // 4. Has a lower case or upper case first letter of the first word.
-    if (!inputData.match(/[\s_-]/g) && doesStringContainUpperCaseCharacter(inputData, '') &&
-    doesStringContainLowerCaseCharacter(inputData, '') &&
-    (isFirstCharacterLowerCase(inputData, '') || isFirstCharacterUpperCase(inputData, ''))) {
+    if (!inputData.match(/[\s_-]/g) && characterStringParsing.doesStringContainUpperCaseCharacter(inputData, '') &&
+    characterStringParsing.doesStringContainLowerCaseCharacter(inputData, '') &&
+    (characterStringParsing.isFirstCharacterLowerCase(inputData, '') || characterStringParsing.isFirstCharacterUpperCase(inputData, ''))) {
       for (let i = 1; i < inputData.length; i++) {
         // Now chck or the fnal qualification:
         // 3. Ensure that upper case letters are seperated by lower case letters
@@ -376,19 +378,22 @@ const getWordCountInString = function(inputData, inputMetaData) {
 const isStringList = function(inputData, inputMetaData) {
   let functionName = isStringList.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  console.log(msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  console.log(msg.cinputMetaDataIs + inputMetaData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cPrimaryCommandDelimiter);
-    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cSecondaryCommandDelimiter);
-    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cTertiaryCommandDelimiter);
-    if (inputData.ncludes(primaryCommandDelimiter) === true ||
+    let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
+    let secondaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
+    let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
+    if (inputData.includes(primaryCommandDelimiter) === true ||
     inputData.includes(secondaryCommandDelimiter) === true ||
     inputData.includes(tertiaryCommandDelimiter) === true) {
       returnData = true;
     }
   } // End-if (inputData)
+  console.log(msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

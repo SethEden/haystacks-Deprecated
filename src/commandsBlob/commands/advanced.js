@@ -37,7 +37,6 @@ const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.advanced.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
-// prompt();
 
 /**
  * @function commandSequencer
@@ -406,6 +405,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   commandNameParsingRule[0] = biz.cisValidCommandNameString;
   camelCaseToArrayRule[0] = biz.cconvertCamelCaseStringToArray;
   commandWordAliasListParsingRule[0] = biz.cisStringList;
+  console.log('biz.cisStringList resolves as: ' + biz.cisStringList);
   generateCommandAliasesRule[0] = biz.cgenerateCommandAliases;
   // Command can be called by passing parameters and bypass the prompt system.
   console.log(msg.ccommandAliasGeneratorMessage1);
@@ -419,7 +419,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
       console.log(msg.cCommandNamePrompt3);
       console.log(msg.cCommandNamePrompt4);
       console.log(msg.cCommandNamePrompt5);
-      commandName = prompt.prompt(bas.cGreaterThan);
+      commandName = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
       validCommandName = ruleBroker.processRules(commandName, '', commandNameParsingRule);
       if (validCommandName === false) {
         // INVALID INPUT: Please enter a valid camel-case command name.
@@ -442,9 +442,9 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
           console.log(msg.cCommandWordAliasPrompt1);
           console.log(msg.cCommandWordAliasPrompt2);
           console.log(msg.cCommandWordAliasPrompt3 + bas.cSpace + commandWord);
-          commandWordAliasList = prompt.prompt(bas.cGreaterThan);
+          commandWordAliasList = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
           validCommandWordAliasList = ruleBroker.processRules(commandWordAliasList, '', commandWordAliasListParsingRule);
-          if (vaidCommandWordAliasList === false) {
+          if (validCommandWordAliasList === false) {
             // INVALID INPUT: Please enter a valid command word alias list.
             console.log(msg.ccommandAliasGeneratorMessage4);
           } else if (commandWordAliasList !== '') { // As long as the user entered something we shoudl be able to proceed!

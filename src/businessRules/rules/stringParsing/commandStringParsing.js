@@ -16,6 +16,8 @@
 // Internal imports
 import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
 import wordArrayParsing from '../arrayParsing/wordArrayParsing.js';
+import commandStringParsing from './commandStringParsing.js';
+import wordStringParsing from './wordStringParsing.js';
 import colorizer from '../../../executrix/colorizer.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
@@ -78,9 +80,9 @@ const isValidCommandNameString = function(inputData, inputMetaData) {
     if (inputData.length > 3) {
       let camelCaseArray = wordArrayParsing.convertCamelCaseStringToArray(inputData, '');
       if (camelCaseArray.length === 1) {
-        if (isFirstCharacterLowerCase(inputData, '') === true) { returnData = true; }
+        if (characterStringParsing.isFirstCharacterLowerCase(inputData, '') === true) { returnData = true; }
       } else if (camelCaseArray.length > 1) {
-        if (isStringCamelCase(inputData, '') === true) { returnData = true; }
+        if (wordStringParsing.isStringCamelCase(inputData, '') === true) { returnData = true; }
       }
     } // End-if (inputData.length > 3)
   } // End-if (inputData)
