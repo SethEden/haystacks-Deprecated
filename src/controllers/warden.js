@@ -11,7 +11,6 @@
  * @requires module:chiefWorkflow
  * @requires module:configurator
  * @requires module:loggers
- * @requires module:timers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -28,7 +27,6 @@ import chiefData from './chiefData.js';
 import chiefWorkflow from './chiefWorkflow.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
-import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -165,7 +163,7 @@ function initFrameworkSchema(configData) {
   let enableLogFileOutputSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cCaptureSessionDateTimeStampLogFileName);
-    let sessionDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp));
+    let sessionDateTimeStamp = ruleBroker.processRules(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp), '', [biz.cgetNowMoment]);
     loggers.consoleLog(namespacePrefix + functionName, msg.csessionDateTimeStampIs + sessionDateTimeStamp);
     let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wrd.cVersion] + bas.cUnderscore + applicationMetaData[wrd.cName] + gen.cDotLog;
     loggers.consoleLog(namespacePrefix + functionName, msg.clogFileNameIs + logFileName);
@@ -461,7 +459,7 @@ function sleep(sleepTime) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // sleepTime is:
   loggers.consoleLog(namespacePrefix + functionName, msg.csleepTimeIs + sleepTime);
-  timers.sleep(sleepTime);
+  ruleBroker.processRules(sleepTime, '', [biz.csleep]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

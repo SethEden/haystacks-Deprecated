@@ -6,6 +6,7 @@
  * Including loading files, saving files, reoading files, resavng files,
  * copying files, moving files, copying folders including copying folders recursively,
  * zipping files and saving sip-packages as part of a deployment/release process.
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -20,6 +21,7 @@
  */
 
 // Internal imports
+import ruleParsing from './ruleParsing.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
 // External imports
@@ -405,7 +407,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   if (currentVersionReleased === false) {
     // release files list is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = timers.getNowMoment(configurator.getConfigurationSetting(wrd.csystem, dfg.cdateTimeStamp));
+    releaseDateTimeStamp = ruleParsing.processRulesInternal(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp), '', [biz.cgetNowMoment]);
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;

@@ -7,7 +7,6 @@
  * @requires module:warden
  * @requires module:loggers
  * @requires module:prompt
- * @requires module:timers
  * @requires module:allConstantsValidationMetadata
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
@@ -24,7 +23,6 @@
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
 import prompt from './executrix/prompt.js';
-import timers from './executrix/timers.js';
 import allSysCV from './resources/constantsValidation/allConstantsValidationMetadata.js';
 import D from './structures/data.js';
 // External imports
@@ -341,7 +339,7 @@ function sleep(sleepTime) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // sleepTime is:
   loggers.consoleLog(namespacePrefix + functionName, msg.csleepTimeIs + sleepTime);
-  timers.sleep(sleepTime);
+  warden.sleep(sleepTime);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

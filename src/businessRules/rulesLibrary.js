@@ -24,6 +24,7 @@
  * @requires module:ruleParsing
  * @requires module:stringGeneration
  * @requires module:stringParsingUtilities
+ * @requires module:timeComputation
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -55,6 +56,7 @@ import mathOperations from './rules/mathOperations.js';
 import ruleParsing from './rules/ruleParsing.js';
 import stringGeneration from './rules/stringGeneration.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
+import timeComputation from './rules/timeComputation.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -157,7 +159,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // ***********************************************
      // auxiliaryStringParsing rules in order
      // ***********************************************
-     [biz.cgetNowMoment]: (inputData, inputMetaData) => auxiliaryStringParsing.getNowMoment(inputData, inputMetaData),
+     // NONE - getNowMoment was here, but it was a wrapper function, so it was removed.
+     // I am going to leave this here as a landing place for future auxiliaryStringParsing utility business rules.
 
      // ***********************************************
      // characterStringParsing rules in order
@@ -347,6 +350,14 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cisString]: (inputData, inputMetaData) => stringParsingUtilities.isString(inputData, inputMetaData),
      [biz.creplaceDoublePercentWithMessage]: (inputData, inputMetaData) => stringParsingUtilities.replaceDoublePercentWithMessage(inputData, inputMetaData),
      [biz.cutilitiesReplaceCharacterWithCharacter]: (inputData, inputMetaData) => stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData),
+
+     // ***********************************************
+     // timeComputation rules in order
+     // ***********************************************
+     [biz.cgetNowMoment]: (inputData, inputMetaData) => timeComputation.getNowMoment(inputData, inputMetaData),
+     [biz.ccomputeDeltaTime]: (inputData, inputMetaData) => timeComputation.computeDeltaTime(inputData, inputMetaData),
+     [biz.creformatDeltaTime]: (inputData, inputMetaData) => timeComputation.reformatDeltaTime(inputData, inputMetaData),
+     [biz.csleep]: (inputData, inputMetaData) => timeComputation.sleep(inputData, inputMetaData),
    }
    // console.log(`END ${namespacePrefix}${functionName} function`);
 };

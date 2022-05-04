@@ -22,8 +22,8 @@ import path from 'path';
 
 const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// executrix.lexical.
-const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.lexicalAnalyzer.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function parseBusinessRuleArgument

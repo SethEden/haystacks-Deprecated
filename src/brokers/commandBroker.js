@@ -7,7 +7,6 @@
  * @requires module:commandsLibrary
  * @requires module:configurator
  * @requires module:loggers
- * @requires module:timers
  * @requires module:data
  * @requires module:stack
  * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
@@ -23,7 +22,6 @@ import ruleBroker from './ruleBroker.js';
 import commandsLibrary from '../commandsBlob/commandsLibrary.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
-import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
 import stack from '../structures/stack.js';
 // External imports
@@ -373,7 +371,7 @@ function executeCommand(commandString) {
     // Here we will capture the start time of the command we are about to execute.
     // After executing we wil capture the end time and then
     // compute the difference to determine how many milliseconds it took to run the command.
-    commandStartTime = timers.getNowMoment(gen.cYYYYMMDD_HHmmss_SSS);
+    commandStartTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
     // Cmmand Start time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandStartTimeIs + commandStartTime);
   } // End-if (commandMetricsEnabled === true)
@@ -392,11 +390,11 @@ function executeCommand(commandString) {
   }
   if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false) {
     let performanceTrackingObject = {};
-    commandEndTime = timers.getNowMoment(gen.cYYYYMMDD_HHmmss_SSS);
+    commandEndTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
     // Command End time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandEndTimeIs + commandEndTime);
     // Now compute the delta tme so we know how long it took to run that command.
-    commandDeltaTime = timers.computeDeltaTime(commandStartTime, commandEndTime);
+    commandDeltaTime = ruleBroker.processRules(commandStartTime, commandEndTime, [biz.ccomputeDeltaTime]);
     // Command run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandRunTimeIs + commandDeltaTime);
     // Check to make sure the command performance tracking stack exists or does not exist.

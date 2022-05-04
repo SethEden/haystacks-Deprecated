@@ -8,7 +8,6 @@
 * @requires module:configurator
 * @requires module:loggers
 * @requires module:prompt
-* @requires module:timers
 * @requires module:data
 * @requires module:queue
 * @requires module:stack
@@ -26,7 +25,6 @@ import workflowBroker from '../../brokers/workflowBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import prompt from '../../executrix/prompt.js';
-import timers from '../../executrix/timers.js';
 import D from '../../structures/data.js';
 import queue from '../../structures/queue.js';
 import stack from '../../structures/stack.js';
@@ -227,18 +225,18 @@ const businessRule = function(inputData, inputMetaData) {
     // Here we will capture the start time of the business rule we are about to execute.
     // After executing we will capture the end time and then
     // compare the difference to determine how many milliseconds it took to run the business rule.
-    businessRuleStartTime = timers.getNowMoment(gen.cYYYYMMDD_HHmmss_SSS);
+    businessRuleStartTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
     // Business Rule Start time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleStartTimeIs + businessRuleStartTime);
   } // End-if (businessRuleMetricsEnabled === true)
   ruleOutput = ruleBroker.processRules(ruleInputData, ruleInputMetaData, rules);
   if (businessRuleMetricsEnabled === true) {
     let performanceTrackingObject = {};
-    businessRuleEndTime = timers.getNowMoment(gen.cYYYYMMDD_HHmmss_SSS);
+    businessRuleEndTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
     // BusinessRule End time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleEndTimeIs + businessRuleEndTime);
     // Now compute the delta time so we know how long it took to run that busienss rule.
-    businessRuleDeltaTime = timers.computeDeltaTime(businessRuleStartTime, businessRuleEndTime);
+    businessRuleDeltaTime = ruleBroker.processRules(businessRuleStartTime, businessRuleEndTime, [biz.ccomputeDeltaTime]);
     // BusinessRule run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleRunTimeIs + businessRuleDeltaTime);
     // Check to make sure the business rule performance trackign stack exists or does not exist.

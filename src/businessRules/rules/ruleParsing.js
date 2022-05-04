@@ -21,8 +21,8 @@ import path from 'path';
 
 const {bas, fnc, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// brokers.ruleBroker.
-const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.ruleParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function doAllRulesExist
