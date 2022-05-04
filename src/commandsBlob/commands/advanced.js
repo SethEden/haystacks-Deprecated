@@ -6,7 +6,6 @@
 * @requires module:ruleBroker
 * @requires module:workflowBroker
 * @requires module:configurator
-* @requires module:lexical
 * @requires module:loggers
 * @requires module:prompt
 * @requires module:timers
@@ -25,7 +24,6 @@ import commandBroker from '../../brokers/commandBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
 import workflowBroker from '../../brokers/workflowBroker.js';
 import configurator from '../../executrix/configurator.js';
-import lexical from '../../executrix/lexical.js';
 import loggers from '../../executrix/loggers.js';
 import prompt from '../../executrix/prompt.js';
 import timers from '../../executrix/timers.js';
@@ -162,7 +160,7 @@ const workflow = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/24
  * @NOTE When executing the business rule: replaceCharacterWithCharacter with a regular expression such as: regEx:[+]:flags:g
- * Consider the following link that describes how the regEx & flags are parsed by the lexical.
+ * Consider the following link that describes how the regEx & flags are parsed by the lexicalAnalyzer.
  * {@link https://stackoverflow.com/questions/874709/converting-user-input-string-to-regular-expression}
  */
 const businessRule = function(inputData, inputMetaData) {
@@ -196,17 +194,21 @@ const businessRule = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentRuleIs + JSON.stringify(currentRuleArg));
     let ruleArgs = [];
     if (i === 1) {
-      rules = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+      // rules = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+      rules = ruleBroker.processRules(currentRuleArg, i, [biz.cparseBusinessRuleArgument]);
     } else if (i === 2) {
-      ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+      // ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+      ruleInputData = ruleBroker.processRules(currentRuleArg, i, [biz.cparseBusinessRuleArgument]);
     } else if (i === 3 && inputData.length <= 4) {
-      ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+      // ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
+      ruleInputMetaData = ruleBroker.processRules(currentRuleArg, i, [biz.cparseBusinessRuleArgument]);
     } else if (i === 3 && inputData.length > 4) {
       // // In this case all of the arguments will have been combined into a single array and added to the ruleInputData.
       ruleInputMetaData = [];
       for (let j = 3; j <= inputData.length - 1; j++) {
         let currentRuleArrayArg = inputData[j];
-        let tempArg = lexical.parseBusinessRuleArgument(currentRuleArrayArg, j);
+        // let tempArg = lexical.parseBusinessRuleArgument(currentRuleArrayArg, j);
+        let tempArg = ruleBroker.processRules(currentRuleArrayArg, j, [biz.cparseBusinessRuleArgument]);
         // console.log('tempArg is: ' + tempArg);
         if (tempArg) {
           ruleInputMetaData.push(tempArg);

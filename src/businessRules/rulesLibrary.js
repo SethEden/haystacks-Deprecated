@@ -19,7 +19,9 @@
  * @requires module:wordStringParsing
  * @requires module:characterGeneration
  * @requires module:fileOperations
+ * @requires module:lexicalAnalyzer
  * @requires module:mathOperations
+ * @requires module:ruleParsing
  * @requires module:stringGeneration
  * @requires module:stringParsingUtilities
  * @requires module:data
@@ -48,7 +50,9 @@ import fileStringParsing from './rules/stringParsing/fileStringParsing.js';
 import wordStringParsing from './rules/stringParsing/wordStringParsing.js';
 import characterGeneration from './rules/characterGeneration.js';
 import fileOperations from './rules/fileOperations.js';
+import lexicalAnalyzer from './rules/lexicalAnalyzer.js';
 import mathOperations from './rules/mathOperations.js';
+import ruleParsing from './rules/ruleParsing.js';
 import stringGeneration from './rules/stringGeneration.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
 import D from '../structures/data.js';
@@ -284,11 +288,28 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cappendMessageToFile]: (inputData, inputMetaData) => fileOperations.appendMessageToFile(inputData, inputMetaData),
 
      // ***********************************************
+     // lexicalAnalyzer rules in order
+     // ***********************************************
+     [biz.cparseBusinessRuleArgument]: (inputData, inputMetaData) => lexicalAnalyzer.parseBusinessRuleArgument(inputData, inputMetaData),
+     [biz.canalyzeArgument]: (inputData, inputMetaData) => lexicalAnalyzer.analyzeArgument(inputData, inputMetaData),
+     [biz.canalyzeForRegularExpression]: (inputData, inputMetaData) => lexicalAnalyzer.analyzeForRegularExpression(inputData, inputMetaData),
+     [biz.cparseArumentAsRegularExpression]: (inputData, inputMetaData) => lexicalAnalyzer.parseArumentAsRegularExpression(inputData, inputMetaData),
+     [biz.cparseArgumentAsArray]: (inputData, inputMetaData) => lexicalAnalyzer.parseArgumentAsArray(inputData, inputMetaData),
+     [biz.cremoveStringLiteralTagsFromArray]: (inputData, inputMetaData) => lexicalAnalyzer.removeStringLiteralTagsFromArray(inputData, inputMetaData),
+
+     // ***********************************************
      // mathOperations rules in order
      // ***********************************************
      [biz.chex2rgbConversion]: (inputData, inputMetaData) => mathOperations.hex2rgbConversion(inputData, inputMetaData),
      [biz.cisOdd]: (inputData, inputMetaData) => mathOperations.isOdd(inputData, inputMetaData),
      [biz.cisEven]: (inputData, inputMetaData) => mathOperations.isEven(inputData, inputMetaData),
+
+     // ***********************************************
+     // ruleParsing rules in order
+     // ***********************************************
+     [biz.cdoAllRulesExist]: (inputData, inputMetaData) => ruleParsing.doAllRulesExist(inputData, inputMetaData),
+     [biz.cdoesRuleExist]: (inputData, inputMetaData) => ruleParsing.doesRuleExist(inputData, inputMetaData),
+     [biz.cprocessRulesInternal]: (inputData, inputMetaData) => ruleParsing.processRulesInternal(inputData, inputMetaData),
 
      // ***********************************************
      // stringGeneration rules in order

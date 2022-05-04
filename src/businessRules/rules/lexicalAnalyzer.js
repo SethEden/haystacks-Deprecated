@@ -14,8 +14,8 @@
 
 // Internal imports
 import ruleParsing from './ruleParsing.js';
-import configurator from './configurator.js';
-import loggers from './logers.js';
+import configurator from '../../executrix/configurator.js';
+import loggers from '../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -36,41 +36,41 @@ const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @date 2022/05/03
  */
 const parseBusinessRuleArgument = function(inputData, inputMetaData) {
-  let functionName = parseBusnessRuleArument.name;
+  let functionName = parseBusinessRuleArgument.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
 
-  if (index === 1) {
-    // Pushing the argumentValue to the returnData as an array element
+  if (inputMetaData === 1) {
+    // Pushing the inputData to the returnData as an array element
     loggers.consoleLog(namespacePrefix + functionName, msg.cPushingArgumentValueToReturnDataAsArrayElement);
     returnData = [];
-    returnData.push(argumentValue);
+    returnData.push(inputData);
   } else {
     // Calling analyzeArgument for ndex = 2, consolidatedArgumentMode = false
-    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArumentIndexIs + index);
-    returnData = analyzeArgument(argumentValue);
-    // } else if (index === 2 && consolidatedArgumentMode === true) {
-    //   // Calling analyzeArgument for index = 2, consolidatedArgumentMode = true
+    loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArumentIndexIs + inputMetaData);
+    returnData = analyzeArgument(inputData);
+    // } else if (inputMetaData === 2 && consolidatedArgumentMode === true) {
+    //   // Calling analyzeArgument for inputMetaData = 2, consolidatedArgumentMode = true
     //   loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex2ConsolidatedArgumentModeTrue);
-    //   if (argumentValue.length > 0) {
+    //   if (inputData.length > 0) {
     //     returnData = [];
-    //     // argumentValue.length > 0
+    //     // inputData.length > 0
     //     loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueLengthGreaterThanZero);
-    //     for (let i = 1; i < argumentValue.length; i++) {
+    //     for (let i = 1; i < inputData.length; i++) {
     //       // Combine all arguments into a single array on the returnData
-    //       returnData.push(argumentValue[i]);
-    //     } // End-for (let i = 1; i < argumentValue.length; i++)
+    //       returnData.push(inputData[i]);
+    //     } // End-for (let i = 1; i < inputData.length; i++)
     //   } else {
-    //     // Return the argumentValue the same as it was passed in.
+    //     // Return the inputData the same as it was passed in.
     //     loggers.consoleLog(namespacePrefix + functionName, msg.cReturnArgumentValueSameAsItWasPassedIn);
-    //     returnData = argumentValue;
+    //     returnData = inputData;
     //   }
-    // } else if (index === 3 && consolidatedArgumentMode === false) {
-    //   // Calling analyzeArgument for index = 3, consolidatedArgumentMode = false
+    // } else if (inputMetaData === 3 && consolidatedArgumentMode === false) {
+    //   // Calling analyzeArgument for inputMetaData = 3, consolidatedArgumentMode = false
     //   loggers.consoleLog(namespacePrefix + functionName, msg.cCallingAnalyzeArgumentIndex3ConsolidatedArgumentModeFalse);
-    //   returnData = analyzeArgument(argumentValue);
+    //   returnData = analyzeArgument(inputData);
     // } else {
     //   // WARNING: lexical.parseBusinessRuleArgument: invalid combination of inputs to the lexical.parseBusinessRuleArgument function! Pleae adjust inputs and try again.
     //   console.log(msg.cparseBusinessRuleArgumentMessage1 + msg.cparseBusinessRuleArgumentMessage2);
@@ -104,10 +104,10 @@ const analyzeArgument = function(inputData, inputMetaData) {
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
   removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
 
-  let secondaryComandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
-  let tertiaryCommandArgsDeimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
+  let tertiaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
   if (inputData.includes(secondaryCommandArgsDelimiter) === true ||
-  inputData.includes(tertiaryCmmandArgsDelimiter) === true) {
+  inputData.includes(tertiaryCommandArgsDelimiter) === true) {
     // Check if there are brackets or no brackets.
     loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereAreBracketsOrNoBrackets);
     let argsArrayContainsOpenBracket = ruleParsing.processRulesInternal(bas.cOpenBracket, inputData, argsArrayContainsCharacterRule);
@@ -138,7 +138,7 @@ const analyzeArgument = function(inputData, inputMetaData) {
     // Check if there is any regular expession or no regular expression.
     // Check if there is a Regular Expression or not.
     loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereIsRegularExpressionOrNot);
-    if (analyzeForRegularExpression(argumntValue) === true) {
+    if (analyzeForRegularExpression(inputData) === true) {
       // A regular expression was found!
       loggers.consoleLog(namespacePrefix + functionName, msg.cRegularExpressionWasFound);
       returnData = parseArgumentAsRegularExpression(inputData);
@@ -193,7 +193,7 @@ const analyzeForRegularExpression = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const parseArumentAsRegularExpression = function(inputData, inputMetaData) {
+const parseArgumentAsRegularExpression = function(inputData, inputMetaData) {
   let functionName = parseArgumentAsRegularExpression.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -209,13 +209,13 @@ const parseArumentAsRegularExpression = function(inputData, inputMetaData) {
       regExValue = regExArray[k];
       // regExValue is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cregExValueIs + regExValue);
-    } else if (regExAray[k] === wrd.cflags || regExArray[k] === wrd.cFlags) {
+    } else if (regExArray[k] === wrd.cflags || regExArray[k] === wrd.cFlags) {
       k++;
       // regular expression flags are:
-      loggers.consoleLog(namespacePrefix + functionName, smg.cregularExpressionFlagsAre + regExArray[k]);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cregularExpressionFlagsAre + regExArray[k]);
       regExFlags = regExArray[k];
       // regExFlags is:
-      oggers.consoleLog(namespacePrefix + functionName, mg.cregExFlagsIs + regExFlags);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cregExFlagsIs + regExFlags);
     }
   } // End-for (let k = 0; k < regExArray.lenth; k++)
   let regularExpression;
@@ -270,12 +270,12 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
   if (isArray === false) {
     if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
       // argumentValue contains the delimiter, lets split it!
-      loggers.consoleLog(namespacePrefix + functionName, msg.cargumetnValueContainsTheDelimiterLetsSplitIt);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
       argumentValue = argumentValue.split(secondaryCommandArgsDelimiter);
     } // End-if (argumentValue.includes(secondaryCmmandArgsDelimiter) === true)
   } // End-if (isArray === false)
   if (argsArrayContainsOpenBracket === true) {
-    argumetnValue = ruleParsing.processRulesInternal(bas.cOpenBracket, argumentValue, removeBracketsFromArgsArrayRule);
+    argumentValue = ruleParsing.processRulesInternal(bas.cOpenBracket, argumentValue, removeBracketsFromArgsArrayRule);
     // argumentValue after attempting to remoe a open bracket from all array elements is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueAfterAttemptingToRemoveOpenBracketFromAllArrayElementsIs + JSON.stringify(argumentValue));
   } // End-if (argsArrayContainsOpenBracket === true)
@@ -310,20 +310,25 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const reoeStringLiteralTagsFromArray = function(inputData, inputMetaData) {
-  let functionNaem = removeStringLiteralTagsFromArray.name;
+const removeStringLiteralTagsFromArray = function(inputData, inputMetaData) {
+  let functionName = removeStringLiteralTagsFromArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   let removeCharacterRule = [];
-  reoveCharacterRule[0] = biz.cremoveCharacterFromArray;
-  returnData = ruleParsing.processRulesInternal(bas.cTilde, arumentAray, reoveCharacterRule);
+  removeCharacterRule[0] = biz.cremoveCharacterFromArray;
+  returnData = ruleParsing.processRulesInternal(bas.cTilde, inputData, removeCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
 
 export default {
-
+  parseBusinessRuleArgument,
+  analyzeArgument,
+  analyzeForRegularExpression,
+  parseArgumentAsRegularExpression,
+  parseArgumentAsArray,
+  removeStringLiteralTagsFromArray
 };

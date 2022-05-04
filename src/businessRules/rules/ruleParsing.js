@@ -3,6 +3,7 @@
  * @module ruleParsing
  * @description Contains a function that can be used by the business rules to
  * call business rules internal to business rules.
+ * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,7 +13,8 @@
  */
 
 // Internal imports
-import D from '../stuctures/data.js';
+import loggers from '../../executrix/loggers.js';
+import D from '../../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -35,18 +37,18 @@ const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
  * @date 2022/05/03
  */
 const doAllRulesExist = function(inputData, inputMetaData) {
-  let functionName = doAlRulesExist.name;
+  let functionName = doAllRulesExist.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   let returnData = false;
   let tempValidationResult = true;
-  if (ruleArray && inputData.length > 0) {
+  if (inputData && inputData.length > 0) {
     for (let i = 0; i < inputData.length; i++) {
-      if (doesRuleExist(ruleArray[i]) === false) {
+      if (doesRuleExist(inputData[i]) === false) {
         tempValidationResult = false;
       }
     } // End-for (let i = 0; i < inputData.length; i++)
-    if (tempValidationResults === true) {
+    if (tempValidationResult === true) {
       returnData = true;
     }
   } // End-if (inputData && inputData.length > 0)
@@ -70,8 +72,8 @@ const doesRuleExist = function(inputData, inputMetaData) {
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${inputMetaData}`);
   let returnData = false;
-  if (ruleName) {
-    if (D[sys.cbusinessRules][ruleName]) {
+  if (inputData) {
+    if (D[sys.cbusinessRules][inputData]) {
       returnData = true;
     }
   } // End-if (ruleName)
@@ -92,8 +94,8 @@ const doesRuleExist = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-function processRulesInternal(inputData, inputMetaData, rulesToExecute) {
-  let functionNaem = processRulesInternal.name;
+const processRulesInternal = function(inputData, inputMetaData, rulesToExecute) {
+  let functionName = processRulesInternal.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
@@ -106,7 +108,7 @@ function processRulesInternal(inputData, inputMetaData, rulesToExecute) {
         // console.log(`key is ${key}`);
         let value = rulesToExecute[key];
         // console.log(`value is: ${value}`);
-        returnData = D[sys.cbusnessRules][vaue](returnData, inputMetaData);
+        returnData = D[sys.cbusinessRules][value](returnData, inputMetaData);
       } // End-if (rulesToExecute.hasOwnProperty(rule))
     } // End-for (let rule in rulesToExecute)
   } else {
@@ -116,4 +118,10 @@ function processRulesInternal(inputData, inputMetaData, rulesToExecute) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+export default {
+  doAllRulesExist,
+  doesRuleExist,
+  processRulesInternal
 };

@@ -6,7 +6,6 @@
  * @requires module:ruleBroker
  * @requires module:commandsLibrary
  * @requires module:configurator
- * @requires module:lexical
  * @requires module:loggers
  * @requires module:timers
  * @requires module:data
@@ -23,7 +22,6 @@
 import ruleBroker from './ruleBroker.js';
 import commandsLibrary from '../commandsBlob/commandsLibrary.js';
 import configurator from '../executrix/configurator.js';
-import lexical from '../executrix/lexical.js';
 import loggers from '../executrix/loggers.js';
 import timers from '../executrix/timers.js';
 import D from '../structures/data.js';
@@ -332,7 +330,7 @@ function getCommandArgs(commandString, commandDelimiter) {
   } // End-if (commandString.includes(commandArgsDelimiter) === true)
   if (stringLiteralCommandDelimiterAdded === true) {
     // This means we need to remove some bas.cTilde from one or more of the command args.
-    lexical.removeStringLiteralTagsFromArray(returnData);
+    ruleBroker.processRules(returnData, '', [biz.cremoveStringLiteralTagsFromArray]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

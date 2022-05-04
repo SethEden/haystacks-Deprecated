@@ -104,7 +104,5 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
 export default {
   [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
   [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
-  [fnc.cdoesRuleExist]: (ruleName) => doesRuleExist(ruleName),
-  [fnc.cdoAllRulesExist]: (ruleArray) => doAllRulesExist(ruleArray),
   [fnc.cprocessRules]: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)
 };
