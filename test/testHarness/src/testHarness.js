@@ -40,7 +40,7 @@ import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
-const {bas, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
+const {bas, biz, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.
@@ -172,7 +172,9 @@ async function application() {
 
     while(programRunning === true) {
       if (haystacks.isCommandQueueEmpty() === true) {
-        commandInput = haystacks.prompt(bas.cGreaterThan);
+        // biz.cprompt is some how undefined here, although other biz.c<something-else> do still work.
+        // We will use wrd.cprompt here because it is working. No idea what the issue is with biz.prompt.
+        commandInput = haystacks.executeBusinessRules(bas.cGreaterThan, '', [wrd.cprompt]);
         haystacks.enqueueCommand(commandInput);
       }
       commandResult = haystacks.processCommandQueue();

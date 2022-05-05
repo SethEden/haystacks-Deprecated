@@ -22,7 +22,6 @@
 // Internal imports
 import warden from './controllers/warden.js';
 import loggers from './executrix/loggers.js';
-import prompt from './executrix/prompt.js';
 import allSysCV from './resources/constantsValidation/allConstantsValidationMetadata.js';
 import D from './structures/data.js';
 // External imports
@@ -167,28 +166,25 @@ function loadCommandWorkflows(workflowPath, contextName) {
 };
 
 /**
- * @function executeBusinessRule
- * @description A wrapper call to a business rule from the warden.executeBusinessRule.
- * @NOTE It would be good to implement another function like this: executeBusinessRules,
- * since the ruleBroker supports executing multiple sequential business rules.
- * It would be good to pass that feature along to the customer, if/when there is ever a business need.
- * @param {string} businessRule The name of the business rule that should execute.
+ * @function executeBusinessRules
+ * @description A wrapper call to a business rule from the warden.executeBusinessRules.
  * @param {string} ruleInput The input to the rule that is being called.
  * @param {string} ruleMetaData Additional data to input to the rule.
+ * @param {array<string>} businessRules The array of rule name(s) that should be executed.
  * @return {string} The value that is returned from the rule is also returned.
  * @author Seth Hollingsead
  * @date 2022/02/18
  */
-function executeBusinessRule(businessRule, ruleInput, ruleMetaData) {
-  let functionName = executeBusinessRule.name;
+function executeBusinessRules(ruleInput, ruleMetaData, businessRules) {
+  let functionName = executeBusinessRules.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // businessRule is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRuleIs + JSON.stringify(businessRule));
   // ruleInput is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cruleInputIs + JSON.stringify(ruleInput));
   // ruleMetaData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cruleMetaDataIs + JSON.stringify(ruleMetaData));
-  let returnData = warden.executeBusinessRule(businessRule, ruleInput, ruleMetaData);
+  // businessRules is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulesIs + JSON.stringify(businessRules));
+  let returnData = warden.executeBusinessRules(ruleInput, ruleMetaData, businessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -325,37 +321,17 @@ function consoleLog(theNamespacePrefix, theFunctionName, message) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-/**
- * @function sleep
- * @description Causes the entire application to sleep for a set time.
- * This is a wrapper for the warden.sleep function.
- * @param {integer} sleepTime The time that the application should sleep in milliseconds.
- * @return {void}
- * @author Seth Hollingsead
- * @date 2022/02/18
- */
-function sleep(sleepTime) {
-  let functionName = sleep.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // sleepTime is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.csleepTimeIs + sleepTime);
-  warden.sleep(sleepTime);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
-
 export default {
   [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
   [fnc.cmergeClientBusinessRules]: (clientBusinessRules) => mergeClientBusinessRules(clientBusinessRules),
   [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
   [fnc.cloadCommandAliases]: (commandAliasesPath, contextName) => loadCommandAliases(commandAliasesPath, contextName),
   [fnc.cloadCommandWorkflows]: (workflowPath, contextName) => loadCommandWorkflows(workflowPath, contextName),
-  [fnc.cexecuteBusinessRule]: (businessRule, ruleInput, ruleMetaData) => executeBusinessRule(businessRule, ruleInput, ruleMetaData),
+  [fnc.cexecuteBusinessRules]: (ruleInput, ruleMetaData, businessRules) => executeBusinessRules(ruleInput, ruleMetaData, businessRules),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
   [fnc.cprocessCommandQueue]: () => processCommandQueue(),
   [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) => setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
   [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cconsoleLog]: (theNamespacePrefix, theFunctionName, message) => consoleLog(theNamespacePrefix, theFunctionName, message),
-  [fnc.csleep]: (sleepTime) => sleep(sleepTime),
-  [fnc.cprompt]: (ask) => prompt.prompt(ask)
+  [fnc.cconsoleLog]: (theNamespacePrefix, theFunctionName, message) => consoleLog(theNamespacePrefix, theFunctionName, message)
 };

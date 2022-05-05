@@ -27,7 +27,7 @@ import path from 'path';
 const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.wordStringParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + baseFileName + bas.cDot;
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
 * @function isStringCamelCase
@@ -377,6 +377,8 @@ const getWordCountInString = function(inputData, inputMetaData) {
 */
 const isStringList = function(inputData, inputMetaData) {
   let functionName = isStringList.name;
+  console.log('isStringParsing namespacePrefix is: ' + namespacePrefix);
+  console.log('functionName is: ' + functionName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   console.log(msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);

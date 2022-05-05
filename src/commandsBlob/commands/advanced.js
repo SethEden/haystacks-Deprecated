@@ -7,7 +7,6 @@
 * @requires module:workflowBroker
 * @requires module:configurator
 * @requires module:loggers
-* @requires module:prompt
 * @requires module:data
 * @requires module:queue
 * @requires module:stack
@@ -24,7 +23,6 @@ import ruleBroker from '../../brokers/ruleBroker.js';
 import workflowBroker from '../../brokers/workflowBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
-import prompt from '../../executrix/prompt.js';
 import D from '../../structures/data.js';
 import queue from '../../structures/queue.js';
 import stack from '../../structures/stack.js';
@@ -405,7 +403,6 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   commandNameParsingRule[0] = biz.cisValidCommandNameString;
   camelCaseToArrayRule[0] = biz.cconvertCamelCaseStringToArray;
   commandWordAliasListParsingRule[0] = biz.cisStringList;
-  console.log('biz.cisStringList resolves as: ' + biz.cisStringList);
   generateCommandAliasesRule[0] = biz.cgenerateCommandAliases;
   // Command can be called by passing parameters and bypass the prompt system.
   console.log(msg.ccommandAliasGeneratorMessage1);

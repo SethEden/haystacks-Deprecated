@@ -70,7 +70,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
          console.log(msg.cConstantPrompt1);
          console.log(msg.cConstantPrompt2);
          console.log(msg.cConstantPrompt3);
-         userDefinedConstant = prompt.prompt(bas.cGreaterThan);
+         userDefinedConstant = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
          validEntry = ruleBroker.processRules(userDefinedConstant, '', validConstantRule);
          if (validEntry === false) {
            // INVALID INPUT: Please enter a valid constant value that contains more than 4 characters.
@@ -153,7 +153,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
          console.log(msg.cConstantsListPrompt1);
          console.log(msg.cConstantsListPrompt2);
          console.log(msg.cConstantsListPrompt3);
-         userDefinedConstantList = prompt.prompt(bas.cGreaterThan);
+         userDefinedConstantList = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
          validEntry = ruleBroker.processRules(userDefinedConstantList, '', validConstantRule);
          if (validEntry === false) {
            // INVALID INPUT: Please enter a valid constant list.

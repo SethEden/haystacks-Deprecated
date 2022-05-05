@@ -287,28 +287,27 @@ function loadCommandWorkflows(workflowPathConfigName) {
 };
 
 /**
- * @function executeBusinessRule
+ * @function executeBusinessRules
  * @description A wrapper to call a business rule from the application level code.
- * @param {string} businessRule The name of the business rule that should execute.
  * @param {string} ruleInput The input to the rule that is being called.
  * @param {string} ruleMetaData Additional data to input to the rule.
+ * @param {array<string>} businessRules The array that contains the name(s) of the business rule that should be executed.
  * @return {string} The value that is returned from the rule is also returned.
  * @author Seth Hollingsead
  * @date 2022/02/16
  */
-function executeBusinessRule(businessRule, ruleInput, ruleMetaData) {
-  let functionName = executeBusinessRule.name;
+function executeBusinessRules(ruleInput, ruleMetaData, businessRules) {
+  let functionName = executeBusinessRules.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // businessRule is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRuleIs + JSON.stringify(businessRule));
   // ruleInput is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cruleInputIs + JSON.stringify(ruleInput));
   // ruleMetaData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cruleMetaDataIs + JSON.stringify(ruleMetaData));
+  // businessRules is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulesIs + JSON.stringify(businessRules));
   let rules = [];
   let returnData;
-  rules[0] = businessRule;
-  returnData = ruleBroker.processRules(ruleInput, ruleMetaData, rules);
+  returnData = ruleBroker.processRules(ruleInput, ruleMetaData, businessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -446,23 +445,6 @@ function consoleLog(classPath, message) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };
 
-/**
- * @function sleep
- * @description Causes the entire application to sleep for a set time.
- * @param {integer} sleepTime The time that the application should sleep in milliseconds.
- * @return {void}
- * @author Seth Hollingsead
- * @date 2022/02/16
- */
-function sleep(sleepTime) {
-  let functionName = sleep.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // sleepTime is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.csleepTimeIs + sleepTime);
-  ruleBroker.processRules(sleepTime, '', [biz.csleep]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
-
 export default {
   [fnc.cprocessRootPath]: (inputPath) => processRootPath(inputPath),
   [fnc.cinitFrameworkSchema]: (configData) => initFrameworkSchema(configData),
@@ -470,12 +452,11 @@ export default {
   [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
   [fnc.cloadCommandAliases]: (commandAliasesPathConfigName) => loadCommandAliases(commandAliasesPathConfigName),
   [fnc.cloadCommandWorkflows]: (workflowPathConfigName) => loadCommandWorkflows(workflowPathConfigName),
-  [fnc.cexecuteBusinessRule]: (businessRule, ruleInput, ruleMetaData) => executeBusinessRule(businessRule, ruleInput, ruleMetaData),
+  [fnc.cexecuteBusinessRules]: (ruleInput, ruleMetaData, businessRules) => executeBusinessRules(ruleInput, ruleMetaData, businessRules),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
   [fnc.cprocessCommandQueue]: () => processCommandQueue(),
   [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) => setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
   [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
-  [fnc.csleep]: (sleepTime) => sleep(sleepTime)
+  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
 };
