@@ -28,7 +28,6 @@ const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.system.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
-// prompt();
 
 /**
 * @function echoCommand
@@ -178,8 +177,7 @@ const name = function(inputData, inputMetaData) {
   let figletFont = '';
   let appContext = '';
   let useFancyFont = false;
-  let rules = [];
-  rules[0] = biz.cstringToDataType;
+  let rules = [biz.cstringToDataType];
   if (inputData.length === 2) {
     appContext = inputData[1];
   }

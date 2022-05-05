@@ -41,9 +41,7 @@ const convertColors = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let colorConversionRule = [];
-  colorConversionRule[0] = biz.creplaceCharacterWithCharacter;
-  colorConversionRule[1] = biz.chex2rgbConversion;
+  let colorConversionRule = [biz.creplaceCharacterWithCharacter, biz.chex2rgbConversion];
 
   let colorKeys = Object.keys(D[wrd.ccolors][sys.cColorData]);
   // colorKeys is:

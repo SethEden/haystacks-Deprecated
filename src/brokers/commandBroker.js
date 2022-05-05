@@ -200,14 +200,11 @@ function getCommandArgs(commandString, commandDelimiter) {
   let returnData = false;
   let foundValidCommand = false;
   let commandArgsDelimiter = commandDelimiter;
-  let isOddRule = [];
-  let replaceCharacterAtIndexRule = [];
-  let replaceTildesWithSingleQuoteRule = [];
+  let isOddRule = [biz.cisOdd];
+  let replaceCharacterAtIndexRule = [biz.creplaceCharacterAtIndex];
+  let replaceTildesWithSingleQuoteRule = [biz.creplaceCharacterWithCharacter];
   let stringLiteralCommandDelimiterAdded = false;
-  isOddRule[0] = biz.cisOdd;
-  replaceCharacterAtIndexRule[0] = biz.creplaceCharacterAtIndex;
-  replaceTildesWithSingleQuoteRule[0] = biz.creplaceCharacterWithCharacter;
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cSecondaryCommandDelimiter);
+  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
   if (commandDelimiter === null || commandDelimiter !== commandDelimiter || commandDelimiter === undefined) {
     commandArgsDelimiter = bas.cSpace;
   }

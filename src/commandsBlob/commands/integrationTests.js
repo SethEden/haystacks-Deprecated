@@ -18,7 +18,6 @@ import ruleBroker from '../../brokers/ruleBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
-
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -52,10 +51,8 @@ const validateConstants = function(inputData, inputMetaData) {
     let phase2Results = {};
     let phase1ResultsKeysArray = [];
     let phase2ResultsKeysArray = [];
-    let rulesPhase1 = [];
-    let rulesPhase2 = [];
-    rulesPhase1[0] = biz.cvalidateConstantsDataValidation;
-    rulesPhase2[0] = biz.cvalidateConstantsDataValues;
+    let rulesPhase1 = [biz.cvalidateConstantsDataValidation];
+    let rulesPhase2 = [biz.cvalidateConstantsDataValues];
 
     // Phase1 Constants Validation
     // BEGIN Phase 1 Constants Validation
@@ -126,8 +123,7 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   let returnData = true;
   let allCommandAliases = D[sys.cCommandsAliases][wrd.cCommands];
   let passedAllCommandAliasesDuplicateCheck = true;
-  let rules = [];
-  rules[0] = biz.ccountDuplicateCommandAliases;
+  let rules = [biz.ccountDuplicateCommandAliases];
 loop1:
   for (let key1 in allCommandAliases) {
     // key1 is:

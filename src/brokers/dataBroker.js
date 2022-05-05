@@ -44,10 +44,8 @@ function scanDataPath(dataPath) {
   // console.log(`dataPath is: ${dataPath}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + dataPath);
-  let rules = [];
+  let rules = [biz.cswapBackSlashToForwardSlash, biz.creadDirectoryContents];
   let filesFound = [];
-  rules[0] = biz.cswapBackSlashToForwardSlash;
-  rules[1] = biz.creadDirectoryContents;
   // console.log(`execute business rules: ${JSON.stringify(rules)}`);
   filesFound = ruleBroker.processRules(dataPath, '', rules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundIs + JSON.stringify(filesFound));
@@ -147,15 +145,10 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesToLoadIs + JSON.stringify(filesToLoad));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = [];
-  let fileExtensionRules = [];
-  let getDataRules = [];
+  let rules = [biz.cgetFileNameFromPath, biz.cremoveFileExtensionFromFileName];
+  let fileExtensionRules = [biz.cgetFileExtension, biz.cremoveDotFromFileExtension];
+  let getDataRules = [biz.cgetCsvData];
   let parsedDataFile;
-  rules[1] = biz.cgetFileNameFromPath;
-  rules[2] = biz.cremoveFileExtensionFromFileName;
-  fileExtensionRules[0] = biz.cgetFileExtension;
-  fileExtensionRules[1] = biz.cremoveDotFromFileExtension;
-  getDataRules[0] = biz.cgetCsvData;
   for (let i = 0; i < filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
     // File to load is:
@@ -206,16 +199,10 @@ function loadAllXmlData(filesToLoad, contextName) {
   let j = 0;
   let multiMergedData = {};
   let parsedDataFile = {};
-  let fileNameRules = [];
-  let fileExtensionRules = [];
-  let filePathRules = [];
-  let getDataRules = [];
-  fileNameRules[0] = biz.cgetFileNameFromPath;
-  fileNameRules[1] = biz.cremoveFileExtensionFromFileName;
-  filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
-  fileExtensionRules[0] = biz.cgetFileExtension;
-  fileExtensionRules[1] = biz.cremoveDotFromFileExtension;
-  getDataRules[0] = biz.cgetXmlData;
+  let fileNameRules = [biz.cgetFileNameFromPath, biz.cremoveFileExtensionFromFileName];
+  let fileExtensionRules = [biz.cgetFileExtension, biz.cremoveDotFromFileExtension];
+  let filePathRules = [biz.cswapDoubleForwardSlashToSingleForwardSlash];
+  let getDataRules = [biz.cgetXmlData];
   for (let i = 0; i < filesToLoad.length; i++) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
     let fileToLoad = filesToLoad[i];
@@ -443,9 +430,7 @@ function preprocessJsonFile(fileToLoad) {
   // console.log(`fileToLoad is: ${JSON.stringify(fileToLoad)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToLoadIs + JSON.stringify(fileToLoad));
-  let filePathRules = [];
-  filePathRules[0] = biz.cswapDoubleForwardSlashToSingleForwardSlash;
-  filePathRules[1] = biz.cgetJsonData;
+  let filePathRules = [biz.cswapDoubleForwardSlashToSingleForwardSlash, biz.cgetJsonData];
   // console.log(`execute business rules: ${JSON.stringify(filePathRules)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRules + JSON.stringify(filePathRules));
   let dataFile = ruleBroker.processRules(fileToLoad, '', filePathRules);
@@ -470,8 +455,7 @@ function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
-  let fileWriteRules = [];
-  fileWriteRules[0] = biz.cwriteJsonData;
+  let fileWriteRules = [biz.cwriteJsonData];
   let writeSuccess = ruleBroker.processRules(path.resolve(fileToSaveTo), dataToWriteOut, fileWriteRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
@@ -651,9 +635,8 @@ function getDataCatagoryFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = [];
+  let rules = [biz.cgetDataCatagoryFromDataContextName];
   let dataCatagory = '';
-  rules[0] = biz.cgetDataCatagoryFromDataContextName;
   // execute business rules:
   loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
   dataCatagory = ruleBroker.processRules(contextName, '', rules);
@@ -676,9 +659,8 @@ function getDataCatagoryDetailNameFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = [];
+  let rules = [biz.cgetDataCatagoryDetailNameFromDataContextName];
   let dataCatagoryDetailName = '';
-  rules[0] = biz.cgetDataCatagoryDetailNameFromDataContextName;
   // execute busienss rules:
   loggers.consoleLog(namesapcePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
   dataCatagoryDetailName = ruleBroker.processRules(contextName, '', rules);
@@ -704,7 +686,7 @@ function extractDataFromPapaParseObject(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let cleanKeysRules = [];
+  let cleanKeysRules = [biz.ccleanCarriageReturnFromString];
   let tempData = {};
   let validDataAdded = false;
   if (contextName === wrd.ccolors) {
@@ -713,7 +695,6 @@ function extractDataFromPapaParseObject(data, contextName) {
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   tempData[contextName] = {};
-  cleanKeysRules[0] = biz.ccleanCarriageReturnFromString;
   let highLevelDataCount = Object.keys(data[wrd.cdata]).length;
   for (let i = 0; i <= highLevelDataCount; i++) {
     validDataAdded = false;
@@ -863,8 +844,7 @@ function getDataElement(dataObject, pageName, elementName) {
   // elementName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.celementNameIs + elementName);
   let returnData = dataObject[pageName][elementName];
-  let rules = [];
-  rules[0] = biz.ccleanCarriageReturnFromString;
+  let rules = [biz.ccleanCarriageReturnFromString];
   // execute business rules:
   loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
   returnData = ruleBroker.processRules(returnData, '', rules);

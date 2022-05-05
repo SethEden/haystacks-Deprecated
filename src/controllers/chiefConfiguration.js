@@ -47,8 +47,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigPathIs + appConfigPath);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + frameworkConfigPath);
-  let rules = [];
-  rules[0] = biz.cswapBackSlashToForwardSlash;
+  let rules = [biz.cswapBackSlashToForwardSlash];
   appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
   // console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
   frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
@@ -86,7 +85,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log(`allConfigurationData is: ${JSON.stringify(allConfigurationData)}`);
   let highLevelSystemConfigurationContainer = {};
   let highLevelDebugConfigurationContainer = {};
-  let rules = [];
+  let rules = [biz.cstringToDataType];
   let configurationElement;
   let configurationSubElement;
   let fullyQualifiedName;
@@ -96,7 +95,6 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let value;
   let version;
   let advancedDebugSettingPrefix;
-  rules[0] = biz.cstringToDataType;
 
   highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));

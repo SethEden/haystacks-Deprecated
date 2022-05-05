@@ -54,8 +54,7 @@ function processRootPath(inputPath) {
   let functionName = processRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputPath is: ${inputPath}`);
-  let rules = [];
-  rules[0] = biz.cparseSystemRootPath;
+  let rules = [biz.cparseSystemRootPath];
   ruleBroker.bootStrapBusinessRules();
   chiefCommander.bootStrapCommands();
   let resolvedPath = ruleBroker.processRules(inputPath, sys.cActualFrameworkName, rules);
@@ -87,8 +86,7 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cconfigDataIs + JSON.stringify(configData));
 
-  let getJsonRule = [];
-  getJsonRule[0] = biz.cgetJsonData;
+  let getJsonRule = [biz.cgetJsonData];
   let applicationMetaDataPathAndFilename = configData[cfg.cclientMetaDataPath];
   let frameworkMetaDataPathAndFilename = configData[cfg.cframeworkFullMetaDataPath];
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataPathAndFilenameIs + applicationMetaDataPathAndFilename);

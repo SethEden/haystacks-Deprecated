@@ -174,10 +174,8 @@ const businessRule = function(inputData, inputMetaData) {
   let businessRuleStartTime = '';
   let businessRuleEndTime = '';
   let businessRuleDeltaTime = '';
-  let argsArrayContainsCharacterRule = [];
-  let removeBracketsFromArgsArrayRule = [];
-  argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
-  removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
+  let argsArrayContainsCharacterRule = [biz.cdoesArrayContainCharacter];
+  let removeBracketsFromArgsArrayRule = [biz.cremoveCharacterFromArray];
 
   // First go through each rule that should be executed and determine if
   // there are any inputs that need to be passed into the business rule.
@@ -286,8 +284,7 @@ const commandGenerator = function(inputData, inputMetaData) {
   let returnData = true;
   let foundLegitNumber = false;
   let legitNumberIndex = -1;
-  let replaceCharacterWithCharacterRule = [];
-  replaceCharacterWithCharacterRule[0] = biz.creplaceCharacterWithCharacter;
+  let replaceCharacterWithCharacterRule = [biz.creplaceCharacterWithCharacter];
   let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cPrimaryCommandDelimiter);
   if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
     primaryCommandDelimiter = bas.cSpace;
@@ -396,14 +393,10 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   let validCommandWordAliasList = false;
   let validCommandInput = false;
   let commandAliasDataStructure = {};
-  let commandNameParsingRule = [];
-  let camelCaseToArrayRule = [];
-  let commandWordAliasListParsingRule = [];
-  let generateCommandAliasesRule = [];
-  commandNameParsingRule[0] = biz.cisValidCommandNameString;
-  camelCaseToArrayRule[0] = biz.cconvertCamelCaseStringToArray;
-  commandWordAliasListParsingRule[0] = biz.cisStringList;
-  generateCommandAliasesRule[0] = biz.cgenerateCommandAliases;
+  let commandNameParsingRule = [biz.cisValidCommandNameString];
+  let camelCaseToArrayRule = [biz.cconvertCamelCaseStringToArray];
+  let commandWordAliasListParsingRule = [biz.cisStringList];
+  let generateCommandAliasesRule = [biz.cgenerateCommandAliases];
   // Command can be called by passing parameters and bypass the prompt system.
   console.log(msg.ccommandAliasGeneratorMessage1);
   // EXAMPLE: {"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"}
