@@ -51,8 +51,6 @@ const validateConstants = function(inputData, inputMetaData) {
     let phase2Results = {};
     let phase1ResultsKeysArray = [];
     let phase2ResultsKeysArray = [];
-    let rulesPhase1 = [biz.cvalidateConstantsDataValidation];
-    let rulesPhase2 = [biz.cvalidateConstantsDataValues];
 
     // Phase1 Constants Validation
     // BEGIN Phase 1 Constants Validation
@@ -60,7 +58,7 @@ const validateConstants = function(inputData, inputMetaData) {
     // First scan through each file and vaidate that the constants defined in the constants code file are also contained in the validation file.
     for (let key1 in validationArray) {
       let path = validationArray[key1];
-      phase1Results[key1] = ruleBroker.processRules(path, key1, rulesPhase1);
+      phase1Results[key1] = ruleBroker.processRules(path, key1, [biz.cvalidateConstantsDataValidation]);
     }
     phase1ResultsKeysArray = phase1Results.keys;
     // END Phase 1 Constants Validation
@@ -71,7 +69,7 @@ const validateConstants = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase2ConstantsValidation);
     // Now verify that the values of the constants are what they are expected to be by using the constants validation data to validate.
     for (let key2 in validationArray) {
-      phase2Results[key2] = ruleBroker.processRules(key2, '', rulesPhase2);
+      phase2Results[key2] = ruleBroker.processRules(key2, '', [biz.cvalidateConstantsDataValues]);
     }
     phase2ResultsKeysArray = phase2Results.keys;
     // END Phase 2 Constants Vaidation
@@ -123,7 +121,6 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   let returnData = true;
   let allCommandAliases = D[sys.cCommandsAliases][wrd.cCommands];
   let passedAllCommandAliasesDuplicateCheck = true;
-  let rules = [biz.ccountDuplicateCommandAliases];
 loop1:
   for (let key1 in allCommandAliases) {
     // key1 is:
@@ -142,7 +139,7 @@ loop2:
       let currentAlias = arrayOfAliases[j];
       // currentAlias is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
-      let duplicateAliasCount = ruleBroker.processRules(currentAlias, allCommandAliases, rules);
+      let duplicateAliasCount = ruleBroker.processRules(currentAlias, allCommandAliases, [biz.ccountDuplicateCommandAliases]);
       if (duplicateAliasCount > 1) {
         passedAllCommandAliasesDuplicateCheck = false;
       }

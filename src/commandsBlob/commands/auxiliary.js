@@ -41,8 +41,6 @@ const convertColors = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let colorConversionRule = [biz.creplaceCharacterWithCharacter, biz.chex2rgbConversion];
-
   let colorKeys = Object.keys(D[wrd.ccolors][sys.cColorData]);
   // colorKeys is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccolorKeysIs + JSON.stringify(colorKeys));
@@ -56,7 +54,7 @@ const convertColors = function(inputData, inputMetaData) {
     let currentColorHexValue = currentColorObject[sys.cHexValue];
     // currentColorHexValue is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorHexValueIs + currentColorHexValue);
-    let ruleOutput = ruleBroker.processRules(currentColorHexValue, [bas.cHash, ''], colorConversionRule);
+    let ruleOutput = ruleBroker.processRules(currentColorHexValue, [bas.cHash, ''], [biz.creplaceCharacterWithCharacter, biz.chex2rgbConversion]);
     // ruleOutput is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cruleOutputIs + ruleOutput);
     console.log(currentColorName + bas.cComa + currentColorHexValue + bas.cComa + ruleOutput[0] + bas.cComa + ruleOutput[1] + bas.cComa + ruleOutput[2]);

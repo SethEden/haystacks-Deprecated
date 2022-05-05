@@ -54,10 +54,9 @@ function processRootPath(inputPath) {
   let functionName = processRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputPath is: ${inputPath}`);
-  let rules = [biz.cparseSystemRootPath];
   ruleBroker.bootStrapBusinessRules();
   chiefCommander.bootStrapCommands();
-  let resolvedPath = ruleBroker.processRules(inputPath, sys.cActualFrameworkName, rules);
+  let resolvedPath = ruleBroker.processRules(inputPath, sys.cActualFrameworkName, [biz.cparseSystemRootPath]);
   dataBroker.setupDataStorage();
   let rootPath = path.resolve(resolvedPath);
   // console.log(`rootPath is: ${rootPath}`);
@@ -303,7 +302,6 @@ function executeBusinessRules(ruleInput, ruleMetaData, businessRules) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cruleMetaDataIs + JSON.stringify(ruleMetaData));
   // businessRules is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulesIs + JSON.stringify(businessRules));
-  let rules = [];
   let returnData;
   returnData = ruleBroker.processRules(ruleInput, ruleMetaData, businessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

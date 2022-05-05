@@ -177,13 +177,12 @@ const name = function(inputData, inputMetaData) {
   let figletFont = '';
   let appContext = '';
   let useFancyFont = false;
-  let rules = [biz.cstringToDataType];
   if (inputData.length === 2) {
     appContext = inputData[1];
   }
   if (inputData.length === 3) {
     appContext = inputData[1];
-    useFancyFont = ruleBroker.processRules(inputData[2], '', rules);
+    useFancyFont = ruleBroker.processRules(inputData[2], '', [biz.cstringToDataType]);
   }
   if (appContext !== '') {
     if (appContext.toUpperCase() === wrd.cAPPLICATION) {

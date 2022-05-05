@@ -192,10 +192,8 @@ function contains(stackNameSpace, value) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cstackNameSpaceIs + stackNameSpace);
   let returnData = false;
-  let containsRule = [];
-  containsRule[0] = biz.cdoesArrayContainCharacter;
   if (D[stackNameSpace] !== undefined) {
-    returnData = ruleBroker.processRules(value, D[stackNameSpace], containsRule);
+    returnData = ruleBroker.processRules(value, D[stackNameSpace], [biz.cdoesArrayContainCharacter]);
   } else {
     // WARNING: Stack:
     // does not exists!

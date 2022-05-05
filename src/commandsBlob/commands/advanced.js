@@ -174,8 +174,6 @@ const businessRule = function(inputData, inputMetaData) {
   let businessRuleStartTime = '';
   let businessRuleEndTime = '';
   let businessRuleDeltaTime = '';
-  let argsArrayContainsCharacterRule = [biz.cdoesArrayContainCharacter];
-  let removeBracketsFromArgsArrayRule = [biz.cremoveCharacterFromArray];
 
   // First go through each rule that should be executed and determine if
   // there are any inputs that need to be passed into the business rule.
@@ -393,10 +391,6 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   let validCommandWordAliasList = false;
   let validCommandInput = false;
   let commandAliasDataStructure = {};
-  let commandNameParsingRule = [biz.cisValidCommandNameString];
-  let camelCaseToArrayRule = [biz.cconvertCamelCaseStringToArray];
-  let commandWordAliasListParsingRule = [biz.cisStringList];
-  let generateCommandAliasesRule = [biz.cgenerateCommandAliases];
   // Command can be called by passing parameters and bypass the prompt system.
   console.log(msg.ccommandAliasGeneratorMessage1);
   // EXAMPLE: {"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"}
@@ -410,14 +404,14 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
       console.log(msg.cCommandNamePrompt4);
       console.log(msg.cCommandNamePrompt5);
       commandName = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
-      validCommandName = ruleBroker.processRules(commandName, '', commandNameParsingRule);
+      validCommandName = ruleBroker.processRules(commandName, '', [biz.cisValidCommandNameString]);
       if (validCommandName === false) {
         // INVALID INPUT: Please enter a valid camel-case command name.
         console.log(msg.ccommandAliasGeneratorMessage3);
       } // End-if (validCommandName === false)
     } // End-while (validCommandName === false)
 
-    let camelCaseCommandNameArray = ruleBroker.processRules(commandName, '', camelCaseToArrayRule);
+    let camelCaseCommandNameArray = ruleBroker.processRules(commandName, '', [biz.cconvertCamelCaseStringToArray]);
     // camelCaseCommandNameArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccamelCaseCommandNameArrayIs + JSON.stringify(camelCaseCommandNameArray));
 
@@ -433,7 +427,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
           console.log(msg.cCommandWordAliasPrompt2);
           console.log(msg.cCommandWordAliasPrompt3 + bas.cSpace + commandWord);
           commandWordAliasList = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
-          validCommandWordAliasList = ruleBroker.processRules(commandWordAliasList, '', commandWordAliasListParsingRule);
+          validCommandWordAliasList = ruleBroker.processRules(commandWordAliasList, '', [biz.cisStringList]);
           if (validCommandWordAliasList === false) {
             // INVALID INPUT: Please enter a valid command word alias list.
             console.log(msg.ccommandAliasGeneratorMessage4);
@@ -470,7 +464,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
     // At this point the user should have entered all valid data and we should be ready to proceed.
     // TODO: Start generating all the possible combinations of the command words and command word aliases.
     // Pass the data object to a business rule to do the above task.
-    let commandAliases = ruleBroker.processRules(commandAliasDataStructure, '', generateCommandAliasesRule);
+    let commandAliases = ruleBroker.processRules(commandAliasDataStructure, '', [biz.cgenerateCommandAliases]);
   } // End-if (validCommandInput === true)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

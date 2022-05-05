@@ -365,8 +365,6 @@ function printMessageToFile(file, message) {
     // console.log(msg.cprintMessageToFile01);
     if (configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
-      let writeJsonRule = [];
-      writeJsonRule[0] = biz.cappendMessageToFile;
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
       }
@@ -376,7 +374,7 @@ function printMessageToFile(file, message) {
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
-      ruleBroker.processRules(file, message, writeJsonRule);
+      ruleBroker.processRules(file, message, [biz.cappendMessageToFile]);
     } else {
       // 'ERROR: Failure to log to file: '
       console.log(msg.cprintMessageToFile02 + file);

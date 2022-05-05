@@ -300,7 +300,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               // then we need to just append our string to that array element, after we remove the tilde string tags,
               // and replace them with our signle quotes again.
               if (returnData[returnData.length - 1].slice(-1) === secondaryCommandArgsDelimiter) {
-                preSplitCommandStringElement = ruleBroker.processRules(preSpitCommandStringElement, [/~/g, bas.cBackTickQuote], replaceTildesWithSingleQuoteRule);
+                preSplitCommandStringElement = ruleBroker.processRules(preSplitCommandStringElement, [/~/g, bas.cBackTickQuote], replaceTildesWithSingleQuoteRule);
                 returnData[returnData.length - 1] = returnData[returnData.length - 1] + preSplitCommandStringElement;
               } else {
                 // preSplitCommandSringElement is:

@@ -145,9 +145,7 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesToLoadIs + JSON.stringify(filesToLoad));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = [biz.cgetFileNameFromPath, biz.cremoveFileExtensionFromFileName];
-  let fileExtensionRules = [biz.cgetFileExtension, biz.cremoveDotFromFileExtension];
-  let getDataRules = [biz.cgetCsvData];
+  // let rules = [biz.cgetFileNameFromPath, biz.cremoveFileExtensionFromFileName];
   let parsedDataFile;
   for (let i = 0; i < filesToLoad.length; i++) {
     let fileToLoad = filesToLoad[i];
@@ -156,18 +154,18 @@ function loadAllCsvData(filesToLoad, contextName) {
     // NOTE: We still need a filename to use as a context for the page data that we just loaded.
     // A context name will be composed of the input context name wtih the file name we are processing
     // which tells us where we will put the data in the D[contextName] sub-structure.
-    let fileExtension = ruleBroker.processRules(fileToLoad, '', fileExtensionRules);
+    let fileExtension = ruleBroker.processRules(fileToLoad, '', [biz.cgetFileExtension, biz.cremoveDotFromFileExtension]);
     // fileExtension is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cfileExtensionIs + fileExtension);
     if (fileExtension === gen.ccsv || fileExtension === gen.cCsv || fileExtension === gen.cCSV) {
       // execute business rules:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusienssRulesColon + JSON.stringify(rules));
+      // loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusienssRulesColon + JSON.stringify(rules));
       // This next line is commented out because it was resulting in colors_colors, which didn't make any sense.
       // contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', rules);
 
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-      let dataFile = ruleBroker.processRules(fileToLoad, '', getDataRules);
+      let dataFile = ruleBroker.processRules(fileToLoad, '', [biz.cgetCsvData]);
       // loaded file data is:
       loggers.consoleLog(namespacePrefix + functionName , msg.cloadedFileDataIs + JSON.stringify(dataFile));
       parsedDataFile = processCsvData(dataFile, contextName);
@@ -200,21 +198,16 @@ function loadAllXmlData(filesToLoad, contextName) {
   let multiMergedData = {};
   let parsedDataFile = {};
   let fileNameRules = [biz.cgetFileNameFromPath, biz.cremoveFileExtensionFromFileName];
-  let fileExtensionRules = [biz.cgetFileExtension, biz.cremoveDotFromFileExtension];
-  let filePathRules = [biz.cswapDoubleForwardSlashToSingleForwardSlash];
-  let getDataRules = [biz.cgetXmlData];
   for (let i = 0; i < filesToLoad.length; i++) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
     let fileToLoad = filesToLoad[i];
-    // execute busienss rules:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(filePathRules));
-    fileToLoad = ruleBroker.processRules(fileToLoad, '', filePathRules);
+    fileToLoad = ruleBroker.processRules(fileToLoad, '', [biz.cswapDoubleForwardSlashToSingleForwardSlash]);
     // File to load is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cFileToLoadIs + fileToLoad);
     // NOTE: We still need a filename to use as a cotnext for the page data that we just loaded.
     // A context name will be composed of the input context name with the file name we are processing
     // wich tells us where we wll ptu the data in the D[contextName] sub-structure.
-    let fileExtension = ruleBroker.processRules(fileToLoad, '', fileExtensionRules);
+    let fileExtension = ruleBroker.processRules(fileToLoad, '', [biz.cgetFileExtension, biz.cremoveDotFromFileExtension]);
     // fileExtension is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cfileExtensionIs + fileExtension);
     if (fileExtension === gen.cxml || fileExtension === gen.cXml || fileExtension === gen.cXML) {
@@ -223,7 +216,7 @@ function loadAllXmlData(filesToLoad, contextName) {
       contextName = contextName + bas.cUnderscore + ruleBroker.processRules(fileToLoad, '', fileNameRules);
       // contextName is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-      let dataFile = ruleBroker.processRules(fileToLoad, '', getDataRules);
+      let dataFile = ruleBroker.processRules(fileToLoad, '', [biz.cgetXmlData]);
       // loaded file data is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedFileDataIs + JSON.stringify(dataFile));
       // BEGIN PROCESSING ADDITIONAL DATA
@@ -635,11 +628,8 @@ function getDataCatagoryFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = [biz.cgetDataCatagoryFromDataContextName];
   let dataCatagory = '';
-  // execute business rules:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
-  dataCatagory = ruleBroker.processRules(contextName, '', rules);
+  dataCatagory = ruleBroker.processRules(contextName, '', [biz.cgetDataCatagoryFromDataContextName]);
   // dataCatagory is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -659,11 +649,8 @@ function getDataCatagoryDetailNameFromContextName(contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let rules = [biz.cgetDataCatagoryDetailNameFromDataContextName];
   let dataCatagoryDetailName = '';
-  // execute busienss rules:
-  loggers.consoleLog(namesapcePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
-  dataCatagoryDetailName = ruleBroker.processRules(contextName, '', rules);
+  dataCatagoryDetailName = ruleBroker.processRules(contextName, '', [biz.cgetDataCatagoryDetailNameFromDataContextName]);
   // dataCatagoryDetailsName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryDetailsNameIs + dataCatagoryDetailName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
