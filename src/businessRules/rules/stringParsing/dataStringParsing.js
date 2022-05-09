@@ -2,7 +2,7 @@
  * @file dataStringParsing.js
  * @module dataStringParsing
  * @description Contains all system defined business rules for parsing strings as related to data.
- * @requires module:arrayParsing
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,7 +12,7 @@
  */
 
 // Internal imports
-import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
+import ruleParsing from '../ruleParsing.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -44,7 +44,7 @@ const getAttributeName = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + JSON.stringify(attributeArray));
     // attributeArray[0] is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray0Is + attributeArray[0]);
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(attributeArray[0], [/"/g, '']);
+    returnData = ruleParsing.processRulesInternal(attributeArray[0], [/"/g, ''], [biz.creplaceCharacterWithCharacter]);
     returnData = returnData.trim();
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -73,7 +73,7 @@ const getAttributeValue = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + attributeArray);
     // attributeArray[0] is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray1Is + attributeArray[1]);
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(attributeArray[1], [/"/g, '']);
+    returnData = ruleParsing.processRulesInternal(attributeArray[1], [/"/g, ''], [biz.creplaceCharacterWithCharacter]);
     returnData = returnData.trim();
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));

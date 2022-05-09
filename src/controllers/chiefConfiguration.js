@@ -63,6 +63,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter, ' ');
   // console.log('ALL DATA IS: ' + JSON.stringify(D));
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));

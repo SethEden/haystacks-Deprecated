@@ -2,7 +2,7 @@
  * @file characterArrayParsing.js
  * @module characterArrayParsing
  * @description Contains all system defined business rules for array parsing with a focus on characters.
- * @requires module:stringParsingUtilities
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,13 +12,13 @@
  */
 
 // Internal imports
-import stringParsingUtilities from '../stringParsingUtilities.js';
+import ruleParsing from '../ruleParsing.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.characterArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -48,7 +48,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
   if (!inputData && !inputMetaData) {
     returnData = false;
   } else {
-    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData);
+    returnData = ruleParsing.processRulesInternal(inputData, inputMetaData, [biz.cutilitiesReplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

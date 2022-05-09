@@ -95,7 +95,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // auxiliaryArrayParsing rules in order
      // ***********************************************
      [biz.cparseColorRangeInputs]: (inputData, inputMetaData) => auxiliaryArrayParsing.parseColorRangeInputs(inputData, inputMetaData),
-     // doesArrayContainValue - Not exposed as a public business rule. This is a support function.
+     [biz.cdoesArrayContainValue]: (inputData, inputMetaData) => auxiliaryArrayParsing.doesArrayContainValue(inputData, inputMetaData),
 
      // ***********************************************
      // characterArrayParsing rules in order
@@ -181,9 +181,9 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cdoesStringContainLowerCaseCharacter]: (inputData, inputMetaData) => characterStringParsing.doesStringContainLowerCaseCharacter(inputData, inputMetaData),
      [biz.cisFirstCharacterLowerCase]: (inputData, inputMetaData) => characterStringParsing.isFirstCharacterLowerCase(inputData, inputMetaData),
      [biz.cisFirstCharacterUpperCase]: (inputData, inputMetaData) => characterStringParsing.isFirstCharacterUpperCase(inputData, inputMetaData),
-     // replaceCharacterAtIndexOfString - Not exposed as a public business rule. This is a support function.
+     [biz.creplaceCharacterAtIndexOfString]: (inputData, inputMetaData) => characterStringParsing.replaceCharacterAtIndexOfString(inputData, inputMetaData),
 
-     // ***********************************************
+      // ***********************************************
      // commandStringParsing rules in order
      // ***********************************************
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => commandStringParsing.cleanCommandInput(inputData, inputMetaData),
@@ -319,6 +319,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // ***********************************************
      [biz.cdoAllRulesExist]: (inputData, inputMetaData) => ruleParsing.doAllRulesExist(inputData, inputMetaData),
      [biz.cdoesRuleExist]: (inputData, inputMetaData) => ruleParsing.doesRuleExist(inputData, inputMetaData),
+     [biz.cgetRule]: (inputData, inputMetaData) => ruleParsing.getRule(inputData, inputMetaData),
      [biz.cprocessRulesInternal]: (inputData, inputMetaData) => ruleParsing.processRulesInternal(inputData, inputMetaData),
 
      // ***********************************************

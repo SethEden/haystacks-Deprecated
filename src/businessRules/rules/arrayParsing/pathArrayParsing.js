@@ -13,15 +13,14 @@
  */
 
 // Internal imports
-import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
-import fileStringParsing from '../stringParsing/fileStringParsing.js';
+import ruleParsing from '../ruleParsing.js';
 import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.pathArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -45,12 +44,12 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   // And I'm not going to spend the time trying to figure out why,
   // when it will be much simpler to ust call that same funtion in a loop to figure out the result.
   // Can solve this when we build unit tests.
-  returnData = auxiliaryArrayParsing.doesArrayContainValue(inputData, inputMetaData, fileStringParsing.ascertainMatchingFilenames);
+  returnData = ruleParsing.processRulesInternal([inputData, inputMetaData], ruleParsing.getRule(biz.cascertainMatchingElements), [biz.cdoesArrayContainValue]);
 
   // NOTE: The beow code also orks, I am going to attempt to re-enable the above code and see if it alo works.
   // YES! This is a second way of doing the same thing. If the above code ever has a problem, we can fall back to this method.
   // for (let i = 0; i < inputData.Length; i++) {
-  //   if (fileStringParsing.ascertainMatchingFilenames(inputData[i], inputMetaData) === true) {
+  //   if (ruleParsing.processRulesInternal(inputData[i], inputMetaData, [biz.cascertainMatchingFilenames]) {
   //     returnData = true;
   //     break;
   //   }

@@ -83,6 +83,32 @@ const doesRuleExist = function(inputData, inputMetaData) {
 };
 
 /**
+ * @function getRule
+ * @description If the rule is a real rule, then return the function object,
+ * so it can be used as a call-back function.
+ * @param {string} inputData The name of the rule that should be returned if it exists as a valid rule name.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {function} The function that was found if it exists or False if no rule is found.
+ * @author Seth Hollingsead
+ * @date 2022/05/09
+ */
+const getRule = function(inputData, inputMetaData) {
+  let functionName = getRule.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  if (inputData && inputData != '') {
+    if (doesRuleExist(inputData, '') === true) {
+      returnData = D[sys.cbusinessRules][inputData];
+    }
+  } // End-if (inputData && inputData != '')
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
  * @function processRulesInternal
  * @descriptionParse the given input Object/String/Integer/Data/Function through a set of business rules,
  * (Some rules do not support chaining); where the rules are defined in the input rules array.
@@ -113,7 +139,7 @@ const processRulesInternal = function(inputData, inputMetaData, rulesToExecute) 
     } // End-for (let rule in rulesToExecute)
   } else {
     // WARNING: Some rules do not exist:
-    console.log(msg.cProcessRulesWarnngSomeRulesDoNotExist + JSON.stringify(rulesToExeute));
+    console.log(msg.cProcessRulesWarnngSomeRulesDoNotExist + JSON.stringify(rulesToExecute));
   } // End-if (rulesToExecute && doAllRulesExist(rulesToExecute))
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -123,5 +149,6 @@ const processRulesInternal = function(inputData, inputMetaData, rulesToExecute) 
 export default {
   doAllRulesExist,
   doesRuleExist,
+  getRule,
   processRulesInternal
 };

@@ -283,7 +283,7 @@ const commandGenerator = function(inputData, inputMetaData) {
   let foundLegitNumber = false;
   let legitNumberIndex = -1;
   let replaceCharacterWithCharacterRule = [biz.creplaceCharacterWithCharacter];
-  let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cPrimaryCommandDelimiter);
+  let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
   if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
     primaryCommandDelimiter = bas.cSpace;
   }

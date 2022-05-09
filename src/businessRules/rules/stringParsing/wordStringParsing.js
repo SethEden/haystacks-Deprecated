@@ -2,8 +2,7 @@
  * @file wordStringParsing.js
  * @module wordStringParsing
  * @description Contains all system defined business rules for parsing words and lists.
- * @requires module:characterStringParsing
- * @requires module:stringParsingUtilities
+ * @requires module:ruleParsing
  * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -15,8 +14,7 @@
  */
 
 // Internal imports
-import characterStringParsing from './characterStringParsing.js';
-import stringParsingUtilities from '../stringParsingUtilities.js';
+import ruleParsing from '../ruleParsing.js';
 import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
@@ -24,7 +22,7 @@ import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
 import path from 'path';
 
-const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.wordStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -59,9 +57,12 @@ const isStringCamelCase = function(inputData, inputMetaData) {
     // 2. Contains at least 1 lower case letter or more.
     // 3. Contains at least 1 upper case letter or more.
     // 4. Has a lower case or upper case first letter of the first word.
-    if (!inputData.match(/[\s_-]/g) && characterStringParsing.doesStringContainUpperCaseCharacter(inputData, '') &&
-    characterStringParsing.doesStringContainLowerCaseCharacter(inputData, '') &&
-    (characterStringParsing.isFirstCharacterLowerCase(inputData, '') || characterStringParsing.isFirstCharacterUpperCase(inputData, ''))) {
+    let doesContainUpperCaseCharacter = ruleParsing.processRulesInternal(inputData, '', [biz.cdoesStringContainUpperCaseCharacter]);
+    let doesContainLowerCaseCharacter = ruleParsing.processRulesInternal(inputData, '', [biz.cdoesStringContainLowerCaseCharacter]);
+    let isFirstCharUpperCase = ruleParsing.processRulesInternal(inputData, '', [biz.cisFirstCharacterUpperCase]);
+    let isFirstCharLowerCase = ruleParsing.processRulesInternal(inputData, '', [biz.cisFirstCharacterLowerCase]);
+    if (!inputData.match(/[\s_-]/g) && doesContainUpperCaseCharacter &&
+    doesContainLowerCaseCharacter && (isFirstCharUpperCase || isFirstCharLowerCase)) {
       for (let i = 1; i < inputData.length; i++) {
         // Now chck or the fnal qualification:
         // 3. Ensure that upper case letters are seperated by lower case letters
@@ -132,8 +133,8 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   let returnData = '';
   if (inputData) {
     // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
-    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData.toLowerCase().trim(), [/[^\w\s]/g, '']);
-    returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(returnData, [/[\0-9]/g, '']);
+    returnData = ruleParsing.processRulesInternal(inputData.toLowerCase().trim(), [/[^\w\s]/g, ''], [biz.cutilitiesReplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal(returnData, [/[\0-9]/g, ''], [biz.cutilitiesReplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -377,8 +378,6 @@ const getWordCountInString = function(inputData, inputMetaData) {
 */
 const isStringList = function(inputData, inputMetaData) {
   let functionName = isStringList.name;
-  console.log('isStringParsing namespacePrefix is: ' + namespacePrefix);
-  console.log('functionName is: ' + functionName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   console.log(msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);

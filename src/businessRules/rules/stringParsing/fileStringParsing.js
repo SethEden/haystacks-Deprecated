@@ -2,7 +2,7 @@
  * @file fileStringParsing.js
  * @module fileStringParsing
  * @description Contains all system defined business rules for parsing strings, specific to file names.
- * @requires module:stringParsingUtilities
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,14 +12,13 @@
  */
 
 // Internal imports
-import characterStringParsing from './characterStringParsing.js';
-import stringParsingUtilities from '../stringParsingUtilities.js';
+import ruleParsing from '../ruleParsing.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.fileStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -42,10 +41,10 @@ const getFileNameFromPath = function(inputData, inputMetaData) {
   if (inputData) {
     // Clean the path string for any double slashes.
     if (inputData.includes(bas.cDoubleForwardSlash)) {
-      inputData = characterStringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, '');
+      inputData = ruleParsing.processRulesInternal(inputData, '', [biz.cswapDoubleForwardSlashToSingleForwardSlash]);
     }
     if (inputData.includes(bas.cForwardSlash)) {
-      inputData = characterStringParsing.swapForwardSlashToBackSlash(inputData, '');
+      inputData = ruleParsing.processRulesInternal(inputData, '', [biz.cswapForwardSlashToBackSlash]);
     }
     // inputData right before processing is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataRightBeforeProcessingIs + inputData);
@@ -194,7 +193,7 @@ const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = inputData; // assign it to something so it shouldn't resolve as false, unless it gets set to false.
-  if (inputData && stringParsingUtilities.isInteger(inputMetaData) === true) {
+  if (inputData && ruleParsing.processRulesInternal(inputMetaData, '', [biz.cisInteger]) === true) {
     let pathArray;
     let pathAsForwardSlash;
     if (inputData.includes(bas.cForwardSlash) === true) {
