@@ -405,7 +405,8 @@ function getFontStyleSettingsFromSetting(settingValue) {
         // aggregateModuleFontStyleBold = true;
         fontStyles[false, true];
       } else {
-        console.log('ERROR: Did not find any matching style logic pattern!');
+        // ERROR: Did not find any matching style logic pattern!
+        console.log(msg.cDidNotFindAnyMatchingStyleLogicPattern);
       }
     } else if (settingValue === wrd.cUnderline) {
       // aggregateModuleFontStyleUnderline = true;

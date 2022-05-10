@@ -2,7 +2,9 @@
  * @file characterStringParsing.js
  * @module characterStringParsing
  * @description Contains all system defined business rules for parsing characters in strings.
- * @requires module:arrayParsing
+ * @requires module:characterArrayParsing
+ * @requires module:ruleParsing
+ * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -13,14 +15,16 @@
 
 // Internal imports
 import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
+import ruleParsing from '../ruleParsing.js';
+import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.stringParsing.character
+// businessRules.rules.stringParsing.characterStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -89,7 +93,7 @@ const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\//g, bas.cBackSlash]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/\//g, bas.cBackSlash]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -120,7 +124,11 @@ const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      returnData = ruleParsing.processRulesInternal([inputData, [/\\/g, bas.cForwardSlash]], [biz.creplaceCharacterWithCharacter]);
+    } else {
+      returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -151,7 +159,11 @@ const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMeta
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      returnData = ruleParsing.processRulesInternal([inputData, [/\/\//g, bas.cForwardSlash]], [biz.creplaceCharacterWithCharacter]);
+    } else {
+      returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -182,7 +194,7 @@ const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) 
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\\\\/g, bas.cBackSlash]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/\\\\/g, bas.cBackSlash]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -208,7 +220,7 @@ const replaceSpacesWithPlus = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/ /g, bas.cPlus);
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/ /g, bas.cPlus]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/ /g, bas.cPlus]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -232,7 +244,7 @@ const replaceColonWithUnderscore = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/:/g, bas.cUnderscore);
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/:/g, bas.cUnderscore]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/:/g, bas.cUnderscore]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -255,8 +267,12 @@ const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    // returnData = inputData.replace(/\s+/g, bas.cSpace);
-    returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]).trim();
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      // returnData = inputData.replace(/\s+/g, bas.cSpace);
+      returnData = ruleParsing.processRulesInternal([inputData, [/\s+/g, bas.cSpace]], [biz.creplaceCharacterWithCharacter]).trim();
+    } else {
+      returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -413,34 +429,35 @@ const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
   return returnData;
 };
 
-// ******************************************************
-// Internal functions
-// ******************************************************
-
 /**
  * @function replaceCharacterAtIndexOfString
  * @description Replaces the character at a specified index with another character.
  * @NOTE Do not call this function from the rulesLibrary as it doesn't follow the business rule pattern.
  * This function is strictly a supporting function to aid the business rules, for use internal to the business rules only.
- * @param {string} originalString The string where the replacement should be made.
- * @param {integer} index The index of the character where the replacement should be made.
- * @param {string} replacement The character or string that should be inserted at the specified index.
+ * @param {array<string,integer>} inputData An array that contains the original string and the index of the character that should be replaced.
+ * inputData[0] = originalString - The string where the replacement should be made.
+ * inputData[1] = index - The index of the character where the replacement should be made.
+ * @param {string} inputMetaData The character or string that should be used to make the replacement, inserted at the specified index.
  * @return {string} The string after the replacement has been made.
  * @author Seth Hollingsead
  * @date 2021/10/28
  * @NOTE: https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const replaceCharacterAtIndexOfString = function(originalString, index, replacement) {
+const replaceCharacterAtIndexOfString = function(inputData, inputMetaData) {
   let functionName = replaceCharacterAtIndexOfString.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`originalString is: ${originalString}`);
   // console.log(`index is: ${index}`);
   // console.log(`replacement is: ${replacement}`);
   let returnData;
-  if (originalString != '' && index >= 0 && replacement != '') {
-    returnData = originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
-  }
+  if (inputData && inputMetaData) {
+    let originalString = inputData[0];
+    let index = inputData[1];
+    if (originalString != '' && index >= 0 && inputMetaData != '') {
+      returnData = originalString.substr(0, index) + inputMetaData + originalString.substr(index + inputMetaData.length);
+    }
+  } // End-if (inputData && inputMetaData)
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

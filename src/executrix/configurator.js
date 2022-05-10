@@ -2,7 +2,7 @@
  * @file configurator.js
  * @module configurator
  * @description Contains the functions necessary to set and get configuration settings from the shared data structure.
- * @requires module:timers
+ * @requires module:ruleBroker
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -14,13 +14,13 @@
  */
 
 // Internal imports
-import timers from './timers.js';
+import ruleBroker from '../brokers/ruleBroker.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, fnc, wrd} = hayConst;
+const {bas, biz, cfg, fnc, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.configurator.
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
@@ -160,7 +160,7 @@ function processConfigurationValueRules(name, value) {
     case cfg.cdateTimeStamp: case cfg.cdateStamp: case cfg.ctimeStamp:
       // NOTE: All of these three configurations are processed exactly the same way.
       // As long as what is stored in the configuration file is correct, then they should be processed correctly here.
-      returnValue = timers.getNowMoment(value);
+      returnValue = ruleBroker.processRules([value, ''], [biz.cgetNowMoment]);
       break;
     default: // We don't know what the value is.
       // We have to just return the value as it was passed in, no processing.

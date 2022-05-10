@@ -47,11 +47,10 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cappConfigPathIs + appConfigPath);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + frameworkConfigPath);
-  let rules = [];
-  rules[0] = biz.cswapBackSlashToForwardSlash;
-  appConfigPath = ruleBroker.processRules(appConfigPath, '', rules);
+  let rules = [biz.cswapBackSlashToForwardSlash];
+  appConfigPath = ruleBroker.processRules([appConfigPath, ''], rules);
   // console.log(`appConfigPath after rule processing is: ${appConfigPath}`);
-  frameworkConfigPath = ruleBroker.processRules(frameworkConfigPath, '', rules);
+  frameworkConfigPath = ruleBroker.processRules([frameworkConfigPath, ''], rules);
   // console.log(`frameworkConfigPath after rule processing is: ${frameworkConfigPath}`);
   configurator.setConfigurationSetting(wrd.csystem, sys.cappConfigPath, appConfigPath);
   configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
@@ -64,6 +63,8 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   allAppConfigData = chiefData.setupAllJsonConfigData(sys.cappConfigPath, wrd.cconfiguration);
   parseLoadedConfigurationData(allFrameworkConfigData);
   parseLoadedConfigurationData(allAppConfigData);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter, ' ');
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized, true);
   // console.log('ALL DATA IS: ' + JSON.stringify(D));
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));
@@ -86,7 +87,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log(`allConfigurationData is: ${JSON.stringify(allConfigurationData)}`);
   let highLevelSystemConfigurationContainer = {};
   let highLevelDebugConfigurationContainer = {};
-  let rules = [];
+  let rules = [biz.cstringToDataType];
   let configurationElement;
   let configurationSubElement;
   let fullyQualifiedName;
@@ -96,7 +97,6 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let value;
   let version;
   let advancedDebugSettingPrefix;
-  rules[0] = biz.cstringToDataType;
 
   highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
@@ -120,7 +120,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
       // console.log('namespace is: ' + namespace);
       value = configurator.processConfigurationValueRules(name, value);
       // console.log('value BEFORE rule processing is: ' + value);
-      value = ruleBroker.processRules(value, '', rules);
+      value = ruleBroker.processRules([value, ''], rules);
       // console.log('value AFTER rule processing is: ' + value);
       if ((namespace === wrd.csystem && name === cfg.cdebugSettings) &&
       configurator.getConfigurationSetting(namespace, name) === true) {
@@ -151,7 +151,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
       // console.log('namespace is: ' + namespace);
       value = configurator.processConfigurationValueRules(name, value);
       // console.log('value BEFORE rule processing is: ' + value);
-      value = ruleBroker.processRules(value, '', rules);
+      value = ruleBroker.processRules([value, ''], rules);
       // console.log('value AFTER rule processing is: ' + value);
 
       configurator.setConfigurationSetting(namespace, name, value);

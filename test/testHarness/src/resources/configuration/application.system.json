@@ -23,5 +23,6 @@
   "system.displayIndividualConstantsValidationFailMessages": true,
   "system.displaySummaryConstantsValidationPassMessages": true,
   "system.displaySummaryConstantsValidationFailMessages": true,
+  "system.configurationInitialized": false,
   "system.AppSetting": "TrunkMonkey"
 }

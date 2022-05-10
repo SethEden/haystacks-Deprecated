@@ -22,8 +22,8 @@ import path from 'path';
 
 const {bas, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.arrayParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.arrayParsing.auxiliaryArrayParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
  /**
   * @function parseColorRangeInputs
@@ -93,37 +93,41 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
   * @description Checks if an array contains a value, checking equality by function(val, arr[i]).
   * @NOTE Do not call this function from the rulesLibrary as it doesn't follow the business rule pattern.
   * This function is strictly a supporting function to aid the business rules, for use internal to the business rules only.
-  * @param {array<string|integer|boolean|float|object>} array the input array that should be searched for the given input value.
-  * @param {string|integer|boolean|float|object} value The value that should be searched for in the input array.
-  * @param {function} myFunction The function that should be used to do the search.
+  * @param {array<array<string|integer|boolean|float|object>,string|integer|boolean|float|object>} inputData
+  * An array that contains the array that should be searched and the value that should be searched for in the array.
+  * inputData[0] = Array to be searched.
+  * inputData[1] = Value to be searched for in the array.
+  * the input array that should be searched for the given input value.
+  * @param {function} inputMetaData The function that should be used to do the search.
   * @return {boolean} A True or False to indicate if the value was found in the array or not found.
   * @author Seth Hollingsead
   * @date 2022/01/21
   */
- function doesArrayContainValue(array, value, myFunction) {
+ // function doesArrayContainValue(array, value, myFunction) {
+ const doesArrayContainValue = function(inputData, inputMetaData) {
    let functionName = doesArrayContainValue.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-   // array is:
-   loggers.consoleLog(namespacePrefix + functionName, msg.carrayIs + JSON.stringify(array));
-   // value is:
-   loggers.consoleLog(namespacePrefix + functionName, msg.cvalueIs + value);
+   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
    // Not sure how this will output, would be good to also put some type checing on this input variable.
-   // myFunction is:
-   loggers.consoleLog(namespacePrefix + functionName, msg.cmyFunctionIs + JSON.stringify(myFunction));
+   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
    let returnData = false;
-   if (_.isArray(array) === false) {
-     // array input object is not an array.
-     loggers.consoleLog(namespacePrefix + functionName, msg.carrayInputObjectIsNotAnArray);
-     returnData = false;
-   }
-   if (!!array.find(i => myFunction(i, value))) {
-     // The value was found in the array.
-     loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
-     returnData = true;
-   } else {
-     // The value was NOT found in the array.
-     loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
-     returnData = false;
+   if (inputData && inputMetaData) {
+     let array = inputData[0];
+     let value = inputData[1];
+     if (_.isArray(array) === false) {
+       // array input object is not an array.
+       loggers.consoleLog(namespacePrefix + functionName, msg.carrayInputObjectIsNotAnArray);
+       returnData = false;
+     }
+     if (!!array.find(i => inputMetaData(i, value))) {
+       // The value was found in the array.
+       loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
+       returnData = true;
+     } else {
+       // The value was NOT found in the array.
+       loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
+       returnData = false;
+     }
    }
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

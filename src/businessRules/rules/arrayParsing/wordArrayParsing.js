@@ -2,6 +2,7 @@
  * @file wordArrayParsing.js
  * @module wordArrayParsing
  * @description Contains all system defined business rules for parsing arrays specific to words.
+ * @requires module:ruleParsing
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/04/26
@@ -9,17 +10,16 @@
  */
 
 // Internal imports
-import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
-import wordStringParsing from '../stringParsing/wordStringParsing.js';
+import ruleParsing from '../ruleParsing.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.arrayParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.arrayParsing.wordArrayParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function convertCamelCaseStringToArray
@@ -77,14 +77,14 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    let wordCount = wordStringParsing.getWordCountInString(inputData, '');
+    let wordCount = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetWordCountInString]);
     // wordCount is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cwordCountIs + wordCount);
     if (wordCount > 0) {
-      let wordDelimiter = wordStringParsing.determineWordDelimiter(inputData, inputMetaData);
+      let wordDelimiter = ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.cdetermineWordDelimiter]);
       // wordDelimiter is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cwordDelimiterIs + wordDelimiter);
-      let stringContainsAcronym = wordStringParsing.doesStringContainAcronym(inputData, '');
+      let stringContainsAcronym = ruleParsing.processRulesInternal([inputData, ''], [biz.cdoesStringContainAcronym]);
       // stringContainsAcronym is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cstringContainsAcronymIs + stringContainsAcronym);
       if (wordDelimiter === sys.cCamelCase && stringContainsAcronym === false) {
@@ -148,7 +148,7 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData) {
-    returnData = inputData.map((key, index) => wordStringParsing.mapWordToCamelCaseWord(key, index));
+    returnData = inputData.map((key, index) => ruleParsing.processRulesInternal([key, index], [biz.cmapWordToCamelCaseWord]));
     returnData = returnData.join('');
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -173,12 +173,12 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
   let returnData;
   if (inputData && inputMetaData) {
     // I'm not sure if value1 & value2 below should be referanced to inputData & inputMetaData?
-    // I get the arrow function is passign these values to the wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
+    // I get the arrow function is pass in these values to the wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
     // But I'm not sure how or what values are being passed for value1 & value2.
-    let stringDelta = (value1, value2) => wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings(value1, value2) < 2;
+    let stringDelta = (value1, value2) => ruleParsing.processRulesInternal([value1, value2], [biz.caggregateNumericalDifferenceBetweenTwoStrings]) < 2;
     // stringDelta value is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cstringDeltaValueIs + stringDelta);
-    returnData = auxiliaryArrayParsing.doesArrayContainValue(inputData, inputMetaData, stringDelta);
+    returnData = ruleParsing.processRulesInternal([[inputData, inputMetaData], stringDelta], [biz.cdoesArrayContainValue]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
