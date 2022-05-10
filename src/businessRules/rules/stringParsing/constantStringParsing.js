@@ -14,7 +14,7 @@
  */
 
 // Internal imports
-import fileStringParsing from './fileStringParsing.js';
+import ruleParsing from '../ruleParsing.js';
 import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
 import D from '../../../structures/data.js';
@@ -24,10 +24,10 @@ import chalk from 'chalk';
 import lineByLine from 'n-readlines';
 import path from 'path';
 
-const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.stringParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.stringParsing.constantStringParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function validateConstantsDataValidation
@@ -62,7 +62,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
         // lineArray[2] is
         loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
         foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
-        let qualifiedConstantsFilename = fileStringParsing.getFileNameFromPath(inputData, '');
+        let qualifiedConstantsFilename = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetFileNameFromPath]);
         if (foundConstant === true) {
           if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;

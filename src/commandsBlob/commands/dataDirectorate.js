@@ -13,7 +13,6 @@ import dataBroker from '../../brokers/dataBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
-
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -22,7 +21,6 @@ const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.dataDirectorate.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
-// prompt();
 
 /**
  * @function printDataHive

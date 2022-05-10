@@ -18,9 +18,14 @@
  * @requires module:fileStringParsing
  * @requires module:wordStringParsing
  * @requires module:characterGeneration
+ * @requires module:fileOperations
+ * @requires module:lexicalAnalyzer
  * @requires module:mathOperations
+ * @requires module:promptOperations
+ * @requires module:ruleParsing
  * @requires module:stringGeneration
  * @requires module:stringParsingUtilities
+ * @requires module:timeComputation
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -46,10 +51,14 @@ import dataStringParsing from './rules/stringParsing/dataStringParsing.js';
 import fileStringParsing from './rules/stringParsing/fileStringParsing.js';
 import wordStringParsing from './rules/stringParsing/wordStringParsing.js';
 import characterGeneration from './rules/characterGeneration.js';
+import fileOperations from './rules/fileOperations.js';
+import lexicalAnalyzer from './rules/lexicalAnalyzer.js';
 import mathOperations from './rules/mathOperations.js';
+import promptOperations from './rules/promptOperations.js';
+import ruleParsing from './rules/ruleParsing.js';
 import stringGeneration from './rules/stringGeneration.js';
-// import stringParsing from './rules/stringParsing.js';
 import stringParsingUtilities from './rules/stringParsingUtilities.js';
+import timeComputation from './rules/timeComputation.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -86,7 +95,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // auxiliaryArrayParsing rules in order
      // ***********************************************
      [biz.cparseColorRangeInputs]: (inputData, inputMetaData) => auxiliaryArrayParsing.parseColorRangeInputs(inputData, inputMetaData),
-     // doesArrayContainValue - Not exposed as a public business rule. This is a support function.
+     [biz.cdoesArrayContainValue]: (inputData, inputMetaData) => auxiliaryArrayParsing.doesArrayContainValue(inputData, inputMetaData),
 
      // ***********************************************
      // characterArrayParsing rules in order
@@ -130,7 +139,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // pathArrayParsing rules in order
      // ***********************************************
      [biz.cdoesArrayContainFilename]: (inputData, inputMetaData) => pathArrayParsing.doesArrayContainFilename(inputData, inputMetaData),
-     [biz.creadDirectoryContents]: (inputData, inputMetaData) => pathArrayParsing.readDirectoryContents(inputData, inputMetaData),
      [biz.cgetFileAndPathListForPath]: (inputData, inputMetaData) => pathArrayParsing.getFileAndPathListForPath(inputData, inputMetaData),
 
      // ***********************************************
@@ -153,7 +161,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // ***********************************************
      // auxiliaryStringParsing rules in order
      // ***********************************************
-     [biz.cgetNowMoment]: (inputData, inputMetaData) => auxiliaryStringParsing.getNowMoment(inputData, inputMetaData),
+     // NONE - getNowMoment was here, but it was a wrapper function, so it was removed.
+     // I am going to leave this here as a landing place for future auxiliaryStringParsing utility business rules.
 
      // ***********************************************
      // characterStringParsing rules in order
@@ -172,9 +181,9 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cdoesStringContainLowerCaseCharacter]: (inputData, inputMetaData) => characterStringParsing.doesStringContainLowerCaseCharacter(inputData, inputMetaData),
      [biz.cisFirstCharacterLowerCase]: (inputData, inputMetaData) => characterStringParsing.isFirstCharacterLowerCase(inputData, inputMetaData),
      [biz.cisFirstCharacterUpperCase]: (inputData, inputMetaData) => characterStringParsing.isFirstCharacterUpperCase(inputData, inputMetaData),
-     // replaceCharacterAtIndexOfString - Not exposed as a public business rule. This is a support function.
+     [biz.creplaceCharacterAtIndexOfString]: (inputData, inputMetaData) => characterStringParsing.replaceCharacterAtIndexOfString(inputData, inputMetaData),
 
-     // ***********************************************
+      // ***********************************************
      // commandStringParsing rules in order
      // ***********************************************
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => commandStringParsing.cleanCommandInput(inputData, inputMetaData),
@@ -222,10 +231,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cremoveFileExtensionFromFileName]: (inputData, inputMetaData) => fileStringParsing.removeFileExtensionFromFileName(inputData, inputMetaData),
      [biz.cascertainMatchingFilenames]: (inputData, inputMetaData) => fileStringParsing.ascertainMatchingFilenames(inputData, inputMetaData),
      [biz.csupportedFileFormatsAre]: (inputData, inputMetaData) => fileStringParsing.supportedFileFormatsAre(inputData, inputMetaData),
-     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
      [biz.cremoveXnumberOfFoldersFromEndOfPath]: (inputData, inputMetaData) => fileStringParsing.removeXnumberOfFoldersFromEndOfPath(inputData, inputMetaData),
      [biz.cgetFirstTopLevelFolderFromPath]: (inputData, inputMetaData) => fileStringParsing.getFirstTopLevelFolderFromPath(inputData, inputMetaData),
-     [biz.ccreateZipArchive]: (inputData, inputMetaData) => fileStringParsing.createZipArchive(inputData, inputMetaData),
 
      // ***********************************************
      // wordStringParsing rules in order
@@ -268,11 +275,52 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cconvertNumberToLowerCaseLetter]: (inputData, inputMetaData) => characterGeneration.convertNumberToLowerCaseLetter(inputData, inputMetaData),
 
      // ***********************************************
+     // fileOperations rules in order
+     // ***********************************************
+     [biz.cgetXmlData]: (inputData, inputMetaData) => fileOperations.getXmlData(inputData, inputMetaData),
+     [biz.cgetCsvData]: (inputData, inputMetaData) => fileOperations.getCsvData(inputData, inputMetaData),
+     [biz.cgetJsonData]: (inputData, inputMetaData) => fileOperations.getJsonData(inputData, inputMetaData),
+     [biz.cwriteJsonData]: (inputData, inputMetaData) => fileOperations.writeJsonData(inputData, inputMetaData),
+     [biz.creadDirectoryContents]: (inputData, inputMetaData) => fileOperations.readDirectoryContents(inputData, inputMetaData),
+     [biz.cscanDirectoryContents]: (inputData, inputMetaData) => fileOperations.scanDirectoryContents(inputData, inputMetaData),
+     [biz.creadDirectorySynchronously]: (inputData, inputMetaData) => fileOperations.readDirectorySynchronously(inputData, inputMetaData),
+     [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
+     [biz.cbuildReleasePackage]: (inputData, inputMetaData) => fileOperations.buildReleasePackage(inputData, inputMetaData),
+     [biz.ccreateZipArchive]: (inputData, inputMetaData) => fileOperations.createZipArchive(inputData, inputMetaData),
+     [biz.ccleanRootPath]: (inputData, inputMetaData) => fileOperations.cleanRootPath(inputData, inputMetaData),
+     [biz.ccopyFileSync]: (inputData, inputMetaData) => fileOperations.copyFileSync(inputData, inputMetaData),
+     [biz.ccopyFolderRecursiveSync]: (inputData, inputMetaData) => fileOperations.copyFolderRecursiveSync(inputData, inputMetaData),
+     [biz.cappendMessageToFile]: (inputData, inputMetaData) => fileOperations.appendMessageToFile(inputData, inputMetaData),
+
+     // ***********************************************
+     // lexicalAnalyzer rules in order
+     // ***********************************************
+     [biz.cparseBusinessRuleArgument]: (inputData, inputMetaData) => lexicalAnalyzer.parseBusinessRuleArgument(inputData, inputMetaData),
+     [biz.canalyzeArgument]: (inputData, inputMetaData) => lexicalAnalyzer.analyzeArgument(inputData, inputMetaData),
+     [biz.canalyzeForRegularExpression]: (inputData, inputMetaData) => lexicalAnalyzer.analyzeForRegularExpression(inputData, inputMetaData),
+     [biz.cparseArumentAsRegularExpression]: (inputData, inputMetaData) => lexicalAnalyzer.parseArumentAsRegularExpression(inputData, inputMetaData),
+     [biz.cparseArgumentAsArray]: (inputData, inputMetaData) => lexicalAnalyzer.parseArgumentAsArray(inputData, inputMetaData),
+     [biz.cremoveStringLiteralTagsFromArray]: (inputData, inputMetaData) => lexicalAnalyzer.removeStringLiteralTagsFromArray(inputData, inputMetaData),
+
+     // ***********************************************
      // mathOperations rules in order
      // ***********************************************
      [biz.chex2rgbConversion]: (inputData, inputMetaData) => mathOperations.hex2rgbConversion(inputData, inputMetaData),
      [biz.cisOdd]: (inputData, inputMetaData) => mathOperations.isOdd(inputData, inputMetaData),
      [biz.cisEven]: (inputData, inputMetaData) => mathOperations.isEven(inputData, inputMetaData),
+
+     // ***********************************************
+     // promptOperations rules in order
+     // ***********************************************
+     [biz.cprompt]: (inputData, inputMetaData) => promptOperations.prompt(inputData, inputMetaData),
+
+     // ***********************************************
+     // ruleParsing rules in order
+     // ***********************************************
+     [biz.cdoAllRulesExist]: (inputData, inputMetaData) => ruleParsing.doAllRulesExist(inputData, inputMetaData),
+     [biz.cdoesRuleExist]: (inputData, inputMetaData) => ruleParsing.doesRuleExist(inputData, inputMetaData),
+     [biz.cgetRule]: (inputData, inputMetaData) => ruleParsing.getRule(inputData, inputMetaData),
+     [biz.cprocessRulesInternal]: (inputData, inputMetaData) => ruleParsing.processRulesInternal(inputData, inputMetaData),
 
      // ***********************************************
      // stringGeneration rules in order
@@ -310,6 +358,14 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cisString]: (inputData, inputMetaData) => stringParsingUtilities.isString(inputData, inputMetaData),
      [biz.creplaceDoublePercentWithMessage]: (inputData, inputMetaData) => stringParsingUtilities.replaceDoublePercentWithMessage(inputData, inputMetaData),
      [biz.cutilitiesReplaceCharacterWithCharacter]: (inputData, inputMetaData) => stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData),
+
+     // ***********************************************
+     // timeComputation rules in order
+     // ***********************************************
+     [biz.cgetNowMoment]: (inputData, inputMetaData) => timeComputation.getNowMoment(inputData, inputMetaData),
+     [biz.ccomputeDeltaTime]: (inputData, inputMetaData) => timeComputation.computeDeltaTime(inputData, inputMetaData),
+     [biz.creformatDeltaTime]: (inputData, inputMetaData) => timeComputation.reformatDeltaTime(inputData, inputMetaData),
+     [biz.csleep]: (inputData, inputMetaData) => timeComputation.sleep(inputData, inputMetaData),
    }
    // console.log(`END ${namespacePrefix}${functionName} function`);
 };

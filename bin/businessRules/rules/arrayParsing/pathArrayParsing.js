@@ -4,7 +4,6 @@
  * @description Contains all system defined business rules for parsing arrays specific to paths.
  * @requires module:stringParsing
  * @requires module:configurator
- * @requires module:fileOperations
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -14,19 +13,17 @@
  */
 
 // Internal imports
-import auxiliaryArrayParsing from './auxiliaryArrayParsing.js';
-import fileStringParsing from '../stringParsing/fileStringParsing.js';
+import ruleParsing from '../ruleParsing.js';
 import configurator from '../../../executrix/configurator.js';
-import fileOperations from '../../../executrix/fileOperations.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.arrayParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.arrayParsing.pathArrayParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function doesArrayContainFilename
@@ -47,40 +44,16 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   // And I'm not going to spend the time trying to figure out why,
   // when it will be much simpler to ust call that same funtion in a loop to figure out the result.
   // Can solve this when we build unit tests.
-  returnData = auxiliaryArrayParsing.doesArrayContainValue(inputData, inputMetaData, fileStringParsing.ascertainMatchingFilenames);
+  returnData = ruleParsing.processRulesInternal([[inputData, inputMetaData], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]);
 
   // NOTE: The beow code also orks, I am going to attempt to re-enable the above code and see if it alo works.
   // YES! This is a second way of doing the same thing. If the above code ever has a problem, we can fall back to this method.
   // for (let i = 0; i < inputData.Length; i++) {
-  //   if (fileStringParsing.ascertainMatchingFilenames(inputData[i], inputMetaData) === true) {
+  //   if (ruleParsing.processRulesInternal([inputData[i], inputMetaData], [biz.cascertainMatchingFilenames]) {
   //     returnData = true;
   //     break;
   //   }
   // }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
-/**
- * @function readDiretoryContents
- * @description Scans an input folder path recursively and
- * returns all of the contents of all files and folders and their paths in an array.
- * This is a wrapper function to expose the fileOperations function readDirectoryContents,
- * out to client applications that will need this functionality.
- * @param {string} inputData The path for the folder that should be scanned recursively.
- * @param {string} inputMetaData Not used for this business rule.
- * @return {array<string>} The array of the files & folders contained within the input path.
- * @author Seth Hollingsead
- * @date 2022/04/08
- */
-const readDirectoryContents = function(inputData, inputMetaData) {
-  let functionName = readDirectoryContents.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = false;
-  returnData = fileOperations.readDirectoryContents(inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -122,6 +95,5 @@ const getFileAndPathListForPath = function(inputData, inputMetaData) {
 
 export default {
   doesArrayContainFilename,
-  readDirectoryContents,
   getFileAndPathListForPath
 };

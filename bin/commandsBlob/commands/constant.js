@@ -5,7 +5,6 @@
 * @requires module:ruleBroker
 * @requires module:configurator
 * @requires module:loggers
-* @requires module:prompt
 * @requires module:queue
 * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
 * @requires {@link https://www.npmjs.com/package/path|path}
@@ -18,7 +17,6 @@
 import ruleBroker from '../../brokers/ruleBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
-import prompt from '../../executrix/prompt.js';
 import queue from '../../structures/queue.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -28,7 +26,6 @@ const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.constant.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
-// prompt();
 
 /**
 * @function constantsGenerator
@@ -50,28 +47,16 @@ const constantsGenerator = function(inputData, inputMetaData) {
    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
      let validEntry = false;
      let userDefinedConstant = '';
-     let validConstantRule = [];
-     let doesConstantExistRule = [];
-     let getConstantTypeRule = [];
-     let constantsFulfillmentSystemRule = [];
-     let wordsCountRule = [];
-     let wordsArrayRule = [];
-     let recombineArrayInputRule = [];
-     validConstantRule[0] = biz.cisConstantValid;
-     doesConstantExistRule[0] = biz.cdoesConstantExist;
-     getConstantTypeRule[0] = biz.cgetConstantType;
-     constantsFulfillmentSystemRule[0] = biz.cconstantsFulfillmentSystem;
-     wordsCountRule[0] = biz.cgetWordCountInString;
-     wordsArrayRule[0] = biz.cgetWordsArrayFromString;
-     recombineArrayInputRule[0] = biz.crecombineStringArrayWithSpaces;
+     let constantsFulfillmentSystemRule = [biz.cconstantsFulfillmentSystem];
+     let recombineArrayInputRule = [biz.crecombineStringArrayWithSpaces];
 
      if (inputData.length === 0) {
        while (validEntry === false) {
          console.log(msg.cConstantPrompt1);
          console.log(msg.cConstantPrompt2);
          console.log(msg.cConstantPrompt3);
-         userDefinedConstant = prompt.prompt(bas.cGreaterThan);
-         validEntry = ruleBroker.processRules(userDefinedConstant, '', validConstantRule);
+         userDefinedConstant = ruleBroker.processRules([bas.cGreaterThan, ''], [biz.cprompt]);
+         validEntry = ruleBroker.processRules([userDefinedConstant, ''], [biz.cisConstantValid]);
          if (validEntry === false) {
            // INVALID INPUT: Please enter a valid constant value that contains more than 4 characters.
            console.log(msg.cconstantsGeneratorMessage1);
@@ -81,7 +66,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
        userDefinedConstant = inputData[1];
      } else {
        // We need to recombine all of the array elements after the 0-th element into a single string with spaces inbetween.
-       userDefinedConstant = ruleBroker.processRules(inputData, '', recombineArrayInputRule);
+       userDefinedConstant = ruleBroker.processRules([inputData, ''], recombineArrayInputRule);
      }
      // userDefinedConstant is:
      loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantIs + userDefinedConstant);
@@ -89,29 +74,29 @@ const constantsGenerator = function(inputData, inputMetaData) {
      // First lets check if the constant is already defined, so we can warn the user.
      // NOTE: It could be that the developer is just lookng to optimize the existing constant,
      // but if not, a warning to the user would be a good idea!
-     let doesConstantExist = ruleBroker.processRules(userDefinedConstant, '', doesConstantExistRule);
+     let doesConstantExist = ruleBroker.processRules([userDefinedConstant, ''], [biz.cdoesConstantExist]);
      if (doesConstantExist === true) {
-       let constantType = ruleBroker.processRules(userDefinedConstant, '', getConstantTypeRule);
+       let constantType = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetConstantType]);
        // WARNING: The constant has already been defined in the following library(ies):
        console.log(msg.cconstantsGeneratorMessage2 + constantType);
      }
      userDefinedConstant = userDefinedConstant.trim();
-     let wordCount = ruleBroker.processRules(userDefinedConstant, '', wordsCountRule);
+     let wordCount = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetWordCountInString]);
      // wordCount is:
      loggers.consoleLog(namespacePrefix + functionName, msg.cwordCountIs + wordCount);
      // Now begin the fulfillment algorithm.
      if (wordCount > 1) {
-       let wordsArray = ruleBroker.processRules(userDefinedConstant, '', wordsArrayRule);
+       let wordsArray = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetWordsArrayFromString]);
        for (let j = 0; j < wordsArray.length; j++) {
          // Optimized constant definition for word:
          console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + wordsArray[j] + bas.cSpace + bas.cEqual + bas.cSpace +
-         ruleBroker.processRules(wordsArray[j].trim(), wordsArray[j].trim(), constantsFulfillmentSystemRule));
+         ruleBroker.processRules([wordsArray[j].trim(), wordsArray[j].trim()], constantsFulfillmentSystemRule));
        } // End-for (let j = 0; j < wordsArray.length; j++)
      } else { // There is only a single word to process.
        // output a proper line of code:
        // export const csomething = wrd.csome + wrd.cthing; // something
        console.log(wrd.cexport + bas.cSpace + gen.cconst + bas.cSpace + bas.cc + userDefinedConstant + bas.cSpace + bas.cEqual + bas.cSpace +
-       ruleBroker.processRules(userDefinedConstant, userDefinedConstant, constantsFulfillmentSystemRule) +
+       ruleBroker.processRules([userDefinedConstant, userDefinedConstant], constantsFulfillmentSystemRule) +
        bas.cSemiColon + bas.cSpace + bas.cDoubleForwardSlash + bas.cSpace + userDefinedConstant);
      }
    } else {
@@ -144,17 +129,13 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
      let validEntry = false;
      let userDefinedConstantList = '';
-     let validConstantRule = [];
-     let recombineArrayInputRule = [];
-     validConstantRule[0] = biz.cisConstantValid;
-     recombineArrayInputRule[0] = biz.crecombineStringArrayWithSpaces;
      if (inputData.length === 0) {
        while (validEntry === false) {
          console.log(msg.cConstantsListPrompt1);
          console.log(msg.cConstantsListPrompt2);
          console.log(msg.cConstantsListPrompt3);
-         userDefinedConstantList = prompt.prompt(bas.cGreaterThan);
-         validEntry = ruleBroker.processRules(userDefinedConstantList, '', validConstantRule);
+         userDefinedConstantList = ruleBroker.processRules([bas.cGreaterThan, ''], [biz.cprompt]);
+         validEntry = ruleBroker.processRules([userDefinedConstantList, ''], [biz.cisConstantValid]);
          if (validEntry === false) {
            // INVALID INPUT: Please enter a valid constant list.
            console.log(msg.cconstantsGeneratorListMessage1);
@@ -165,7 +146,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
      } else {
        // Combine all of the input parameters back into a single string then we will parse it for coma's into an array.
        // The array elements will then be used to enqueue the command constantsGenerator.
-       userDefinedConstantList = ruleBroker.processRules(inputData, '', recombineArrayInputRule);
+       userDefinedConstantList = ruleBroker.processRules([inputData, ''], [biz.crecombineStringArrayWithSpaces]);
      }
      // userDefinedConstantList is:
      loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantListIs + userDefinedConstantList);
@@ -216,25 +197,15 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
   if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let validEntry = false;
     let userDefinedConstantList = '';
-    let validConstantRule = [];
-    let recombineArrayInputRule = [];
-    let wordsArrayFromStringRule = [];
-    let searchForPatternsInStringArrayRule = [];
-    let validatePatternsNeedImplementationRule = [];
     let wordsArray = [];
     let commonPatternsArray = [];
-    validConstantRule[0] = biz.cisConstantValid;
-    recombineArrayInputRule[0] = biz.crecombineStringArrayWithSpaces
-    wordsArrayFromStringRule[0] = biz.cgetWordsArrayFromString;
-    searchForPatternsInStringArrayRule[0] = biz.csearchForPatternsInStringArray;
-    validatePatternsNeedImplementationRule[0] = biz.cvalidatePatternsThatNeedImplementation;
     if (inputData.length === 0) {
       while (validEntry === false) {
         console.log(msg.cConstantsListPatternSearchPrompt1);
         console.log(msg.cConstantsListPatternSearchPrompt2);
         console.log(msg.cConstantsListPatternSearchPrompt3);
-        userDefinedConstantList = prompt.prompt(bas.cGreaterThan);
-        validEntry = ruleBroker.processRules(userDefinedConstantList, '', validConstantRule);
+        userDefinedConstantList = ruleBroker.processRules([bas.cGreaterThan, ''], [biz.cprompt]);
+        validEntry = ruleBroker.processRules([userDefinedConstantList, ''], [biz.cisConstantValid]);
         if (validEntry === false) {
           // INVALID INPUT: Please enter a valid constant list.
           console.log(msg.cconstantsGeneratorListMessage1);
@@ -245,7 +216,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
     } else {
       // Combine all of the input parameters back into a single string then we will parse it for coma's into an array.
       // The array elements will then be used to enqueue the command constantsGenerator.
-      userDefinedConstantList = ruleBroker.processRules(inputData, '', recombineArrayInputRule);
+      userDefinedConstantList = ruleBroker.processRules([inputData, ''], [biz.crecombineStringArrayWithSpaces]);
     }
     // userDefinedConstantLiset is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantListIs + userDefinedConstantList);
@@ -256,15 +227,15 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantsListDoesNotContainComas);
       // Check and see if there is another delimiter we can use to break up the string into an array,
       // such as a space character, Maybe the user entered a sentence and would like all the words of the sentence to be optimized.
-      wordsArray = ruleBroker.processRules(userDefinedConstantList, '' , wordsArrayFromStringRule);
+      wordsArray = ruleBroker.processRules([userDefinedConstantList, ''], [biz.cgetWordsArrayFromString]);
     }
     // wordsArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cwordsArrayIs + JSON.stringify(wordsArray));
-    commonPatternsArray = ruleBroker.processRules(wordsArray, '', searchForPatternsInStringArrayRule);
+    commonPatternsArray = ruleBroker.processRules([wordsArray, ''], [biz.csearchForPatternsInStringArray]);
     // commonPatternsArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccommonPatternsArrayIs + JSON.stringify(commonPatternsArray));
     // This next call will compare the identified string patterns with existing constants, and highlight which ones are not yet implemented.
-    let newConstantsList = ruleBroker.processRules(commonPatternsArray, '', validatePatternsNeedImplementationRule);
+    let newConstantsList = ruleBroker.processRules([commonPatternsArray, ''], [biz.cvalidatePatternsThatNeedImplementation]);
     let constantsPatternGenerationSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsPatternGeneration);
     if (constantsPatternGenerationSetting === true) {
       queue.enqueue(sys.cCommandQueue, cmd.cconstantsGeneratorList + bas.cSpace + newConstantsList);
