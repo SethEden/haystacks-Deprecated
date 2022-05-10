@@ -75,7 +75,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
-  let frameworkMetaData = haystacks.executeBusinessRule([frameworkMetaDataPathAndFilename, false], [biz.cloadDataFile]);
+  let frameworkMetaData = haystacks.executeBusinessRules([frameworkMetaDataPathAndFilename, false], [biz.cloadDataFile]);
   let frameworkName = frameworkMetaData[wrd.cname];
   let frameworkVersion = frameworkMetaData[wrd.cversion];
   let frameworkDescription = frameworkMetaData[wrd.cdescription];
@@ -107,7 +107,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
   // metaDataOutput is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
-  haystacks.executeBusinessRule([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
+  haystacks.executeBusinessRules([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
@@ -141,7 +141,7 @@ const deployApplication = function(inputData, inputMetaData) {
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-    let deploymentStatus = haystacks.executeBusinessRule(biz.ccopyAllFilesAndFoldersFromFolderToFolder, [sourcePath, destinationPath], []);
+    let deploymentStatus = haystacks.executeBusinessRules([[sourcePath, destinationPath], []], [biz.ccopyAllFilesAndFoldersFromFolderToFolder]);
     if (deploymentStatus === true) {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentWasCompleted + true);
       haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, true);
@@ -194,7 +194,7 @@ const releaseApplication = function(inputData, inputMetaData) {
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-    let releaseResult = haystacks.executeBusinessRule(app_biz.cbuildReleasePackage, sourcePath, destinationPath);
+    let releaseResult = haystacks.executeBusinessRules([sourcePath, destinationPath], [app_biz.cbuildReleasePackage]);
   } else {
     // Technically it should never even get here, because this same conditino is caught at the deployApplication command.
     // The deployApplication command should be executing before this comand.

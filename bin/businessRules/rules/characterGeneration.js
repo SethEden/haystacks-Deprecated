@@ -2,7 +2,7 @@
  * @file characterGeneration.js
  * @module characterGeneration
  * @description Contains all business rules for randomly generating characters of all kinds.
- * @requires module:stringParsingUtilities
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,7 +12,7 @@
  */
 
 // Internal imports
-import stringParsingUtilities from './stringParsingUtilities.js';
+import ruleParsing from './ruleParsing.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -295,8 +295,8 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     let minimum = parseInt(inputData);
     let maximum = parseInt(inputMetaData[0]);
-    let addOne = stringParsingUtilities.stringToBoolean(inputMetaData[1]);
-    let addMinimum = stringParsingUtilities.stringToBoolean(inputMetaData[2]);
+    let addOne = ruleParsing.processRulesInternal([inputMetaData[1], ''], [biz.cstringToBoolean]);
+    let addMinimum = ruleParsing.processRulesInternal([inputMetaData[2], ''], [biz.cstringToBoolean]);
     if (addOne === true) {
       if (addMinimum === true) {
         returnData = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;

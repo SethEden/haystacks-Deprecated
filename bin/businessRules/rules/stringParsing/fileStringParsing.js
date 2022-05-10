@@ -2,8 +2,7 @@
  * @file fileStringParsing.js
  * @module fileStringParsing
  * @description Contains all system defined business rules for parsing strings, specific to file names.
- * @requires module:stringParsingUtilities
- * @requires module:fileOperations
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -13,18 +12,16 @@
  */
 
 // Internal imports
-import characterStringParsing from './characterStringParsing.js';
-import stringParsingUtilities from '../stringParsingUtilities.js';
-import fileOperations from '../../../executrix/fileOperations.js';
+import ruleParsing from '../ruleParsing.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// businessRules.rules.stringParsing.
-const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
+// businessRules.rules.stringParsing.fileStringParsing.
+const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function getFileNameFromPath
@@ -44,10 +41,10 @@ const getFileNameFromPath = function(inputData, inputMetaData) {
   if (inputData) {
     // Clean the path string for any double slashes.
     if (inputData.includes(bas.cDoubleForwardSlash)) {
-      inputData = characterStringParsing.swapDoubleForwardSlashToSingleForwardSlash(inputData, '');
+      inputData = ruleParsing.processRulesInternal([inputData, ''], [biz.cswapDoubleForwardSlashToSingleForwardSlash]);
     }
     if (inputData.includes(bas.cForwardSlash)) {
-      inputData = characterStringParsing.swapForwardSlashToBackSlash(inputData, '');
+      inputData = ruleParsing.processRulesInternal([inputData, ''], [biz.cswapForwardSlashToBackSlash]);
     }
     // inputData right before processing is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataRightBeforeProcessingIs + inputData);
@@ -182,40 +179,6 @@ const supportedFileFormatsAre = function(inputData, inputMetaData) {
 };
 
 /**
- * @function copyAllFilesAndFoldersFromFolderToFolder
- * @description This is the wrapper for the fileOperations function of the same name.
- * Copies all of the files and folders recursively from the source folder to the destination folder.
- * Takes a second array of file filters that should be avoided.
- * Example: [source, destination], [metaData.json, .js]
- * @param {array<string>} inputData An array containing the source and destination paths.
- * Example:
- * inputData[0] = source path
- * inputData[1] = destination path
- * @param {array<array<string>>} inputMetaData two array's of strings that are exclusions and inclusions file filters,
- * that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
- * Example:
- * inputMetaData[0] = exclusionArray
- * inputMetaData[1] = inclusionArray
- * @return {boolean} A True or False to indicate if the full copy process is successful or not.
- * @author Seth Hollingsead
- * @date 2022/04/06
- * @NOTE This is mainly used by the build system to execute a copy process for the
- * non-code fils from the source folder to the bin folder.
- * It could also be used by a self-installer system, to copy code from an execution path to an installed path.
- */
-const copyAllFilesAndFoldersFromFolderToFolder = function(inputData, inputMetaData) {
-  let functionName = copyAllFilesAndFoldersFromFolderToFolder.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
-  let returnData = false;
-  returnData = fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
-/**
  * @function removeXnumberOfFoldersFromEndOfPath
  * @description Removes X number of folders from the end of a path and returns the newly modified path.
  * @param {string} inputData The path that should have the number of folders removed.
@@ -230,7 +193,7 @@ const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = inputData; // assign it to something so it shouldn't resolve as false, unless it gets set to false.
-  if (inputData && stringParsingUtilities.isInteger(inputMetaData) === true) {
+  if (inputData && ruleParsing.processRulesInternal([inputMetaData, ''], [biz.cisInteger]) === true) {
     let pathArray;
     let pathAsForwardSlash;
     if (inputData.includes(bas.cForwardSlash) === true) {
@@ -312,28 +275,6 @@ const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
   return returnData;
 };
 
-/**
- * @function createZipArchive
- * @description Creates a zip archive of all the files from an input specified path,
- * and saves the zip file to the specified destination location.
- * @param {array<string>} inputData An array of paths to pass to be used to create the zip archive package.
- * @param {string} inputMetaData The full path and file name where the zip archive should be saved.
- * @return {boolean} A True or False value to indicate if the zip archive process completed successfully or not.
- * @author Seth Hollingsead
- * @date 2022/04/08
- */
-const createZipArchive = function(inputData, inputMetaData) {
-  let functionName = createZipArchive.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = false;
-  returnData = fileOperations.createZipArchive(inputData, inputMetaData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
 export default {
   getFileNameFromPath,
   getFileExtension,
@@ -341,8 +282,6 @@ export default {
   removeFileExtensionFromFileName,
   ascertainMatchingFilenames,
   supportedFileFormatsAre,
-  copyAllFilesAndFoldersFromFolderToFolder,
   removeXnumberOfFoldersFromEndOfPath,
-  getFirstTopLevelFolderFromPath,
-  createZipArchive
+  getFirstTopLevelFolderFromPath
 };

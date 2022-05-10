@@ -76,8 +76,8 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.ccurrentVersionIs + currentVersion);
   originalSource = path.resolve(inputData);
   originalDestination = path.resolve(inputMetaData);
-  releaseFiles = haystacks.executeBusinessRule([originalSource, ''], [biz.creadDirectoryContents]);
-  releasedArchiveFiles = haystacks.executeBusinessRule([originalDestination, ''], [biz.creadDirectoryContents]);
+  releaseFiles = haystacks.executeBusinessRules([originalSource, ''], [biz.creadDirectoryContents]);
+  releasedArchiveFiles = haystacks.executeBusinessRules([originalDestination, ''], [biz.creadDirectoryContents]);
   // released archive files list is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.creleasedArchiveFilesListIs + JSON.stringify(releasedArchiveFiles));
   // Check if the current version number has already een released as a zip file in the Release folder.
@@ -86,8 +86,8 @@ const buildReleasePackage = function(inputData, inputMetaData) {
     // file is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.cfileIs + releasedArchiveFiles[i]);
     let pathAndFileName = releasedArchiveFiles[i];
-    let fileName = haystacks.executeBusinessRule([pathAndFileName, ''], [biz.cgetFileNameFromPath]);
-    fileName = haystacks.executeBusinessRule([fileName, ''], [biz.cremoveFileExtensionFromFileName]);
+    let fileName = haystacks.executeBusinessRules([pathAndFileName, ''], [biz.cgetFileNameFromPath]);
+    fileName = haystacks.executeBusinessRules([fileName, ''], [biz.cremoveFileExtensionFromFileName]);
     // fileName is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.cfileNameIs + fileName);
     if (fileName.includes(currentVersion) === true) {
@@ -97,14 +97,14 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   if (currentVersionReleased === false) {
     // release Files list is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = haystacks.executeBusinessRule([haystacks.getConfigurationSetting(wrd.csystem, sys.cdateTimeStamp), ''], [biz.cgetNowMoment]);
+    releaseDateTimeStamp = haystacks.executeBusinessRules([haystacks.getConfigurationSetting(wrd.csystem, sys.cdateTimeStamp), ''], [biz.cgetNowMoment]);
     // release date-time stamp is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + frameworkName;
     // release fileName is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.creleaseFileNameIs + releaseFileName);
     let fullReleasePath = path.resolve(originalDestination + bas.cForwardSlash + releaseFileName + gen.cDotzip);
-    returnData = haystacks.executeBusinessRule([originalSource, fullReleasePath], [biz.ccreateZipArchive]);
+    returnData = haystacks.executeBusinessRules([originalSource, fullReleasePath], [biz.ccreateZipArchive]);
     if (returnData) {
       // Set the return package success flag to True.
       haystacks.consoleLog(namespacePrefix, functionName, msg.cSetTheReturnPackageSuccessFlagToTrue);

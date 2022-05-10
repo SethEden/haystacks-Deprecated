@@ -18,7 +18,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.dataStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -217,15 +217,15 @@ const loadDataFile = function(inputData, inputMetaData) {
     if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
       // Attempting to load XML data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadXmlData);
-      loadedData = ruleBroker.processRules(inputData, '', getXmlRule);
+      loadedData = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetXmlData]);
     } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
       // Attempting to load CSV data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadCsvData);
-      loadedData = ruleBroker.processRules(inputData, '', getCsvRule);
+      loadedData = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetCsvData]);
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
       // Attempting to load JSON data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cAttemptingToLoadJsonData);
-      loadedData = ruleBroker.processRules(inputData, '', getJsonRule);
+      loadedData = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetJsonData]);
     } else {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
@@ -271,7 +271,7 @@ const saveDataFile = function(inputData, inputMetaData) {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
-      returnData = ruleBroker.processRules(inputData, inputMetaData, writeJsonRule); // Should return true if the write is successful.
+      returnData = ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.cwriteJsonData]); // Should return true if the write is successful.
     } else {
       // WARNING: Invalid file format, file formats supported are:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());

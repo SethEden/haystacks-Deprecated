@@ -8,8 +8,6 @@
  * @requires module:ruleBroker
  * @requires module:colorizer
  * @requires module:configurator
- * @requires module:fileOperations
- * @requires module:timers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
@@ -23,8 +21,6 @@
 import ruleBroker from '../brokers/ruleBroker.js';
 import colorizer from './colorizer.js';
 import configurator from './configurator.js';
-import fileOperations from './fileOperations.js';
-import timers from './timers.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -301,7 +297,7 @@ function parseClassPath(logFile, classPath, message) {
     //   // We will need to refactor the business rules to accept a callback function that does the logging.
     //   // Essentially we will need to use a dependency injection design pattern to prevent the chance of a circular dependency.
     //   // message = stringParsingUtilities.replaceDoublePercentWithMessage(message, [bas.cDoublePercent, myNameSpace]);
-    //   message = ruleBroker.processRules(message, [bas.cDoublePercent, myNameSpace], rules);
+    //   message = ruleBroker.processRules([message, [bas.cDoublePercent, myNameSpace]], rules);
     // }
     // console.log('setting the returnData to the message: ' + message);
     returnData = message;
@@ -374,11 +370,11 @@ function printMessageToFile(file, message) {
       }
       if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
-        dateTimeStamp = timers.getNowMoment(gen.cYYYY_MM_DD_HH_mm_ss_SSS);
+        dateTimeStamp = ruleBroker.processRules([gen.cYYYY_MM_DD_HH_mm_ss_SSS, ''], [biz.cgetNowMoment]);
         // console.log(`dateTimeStamp is: ${dateTimeStamp}`);
         message = `${dateTimeStamp}: ${message}`;
       }
-      fileOperations.appendMessageToFile(file, message);
+      ruleBroker.processRules([file, message], [biz.cappendMessageToFile]);
     } else {
       // 'ERROR: Failure to log to file: '
       console.log(msg.cprintMessageToFile02 + file);
