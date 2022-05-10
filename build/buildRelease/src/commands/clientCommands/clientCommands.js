@@ -75,7 +75,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   let frameworkMetaDataPathAndFilename = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath);
   frameworkMetaDataPathAndFilename = frameworkMetaDataPathAndFilename + bas.cForwardSlash + sys.cpackageDotJson;
   frameworkMetaDataPathAndFilename = path.resolve(frameworkMetaDataPathAndFilename);
-  let frameworkMetaData = haystacks.executeBusinessRule(biz.cloadDataFile, frameworkMetaDataPathAndFilename, false);
+  let frameworkMetaData = haystacks.executeBusinessRule([frameworkMetaDataPathAndFilename, false], [biz.cloadDataFile]);
   let frameworkName = frameworkMetaData[wrd.cname];
   let frameworkVersion = frameworkMetaData[wrd.cversion];
   let frameworkDescription = frameworkMetaData[wrd.cdescription];
@@ -107,7 +107,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
   // metaDataOutput is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
-  haystacks.executeBusinessRule(biz.csaveDataFile, metaDataPathAndFilename, metaDataOutput);
+  haystacks.executeBusinessRule([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;

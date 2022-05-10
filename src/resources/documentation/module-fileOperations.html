@@ -39,10 +39,10 @@
     
         
             <div class="description"><p>Contains all of the functions required to do file operations
-on a physical/virtual hard drive and/or mounted volume.
-Including loading files, saving files, reloading files, resaving files,
+on a physical/virtaul hard drive and/or mounted volume.
+Including loading files, saving files, reoading files, resavng files,
 copying files, moving files, copying folders including copying folders recursively,
-zipping files and saving zip-packages as part of a deployment/release process.</p></div>
+zipping files and saving sip-packages as part of a deployment/release process.</p></div>
         
 
         
@@ -91,7 +91,7 @@ zipping files and saving zip-packages as part of a deployment/release process.</
 
     
     <dt class="tag-copyright">Copyright:</dt>
-    <dd class="tag-copyright"><ul class="dummy"><li>Copyright © 2021-… by Seth Hollingsead. All rights reserved</li></ul></dd>
+    <dd class="tag-copyright"><ul class="dummy"><li>Copyright © 2022-… by Seth Hollingsead. All rights reserved</li></ul></dd>
     
 
     
@@ -101,7 +101,7 @@ zipping files and saving zip-packages as part of a deployment/release process.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line1">line 1</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -141,6 +141,8 @@ zipping files and saving zip-packages as part of a deployment/release process.</
         <h3 class="subsection-title">Requires</h3>
 
         <ul>
+            <li><a href="module-ruleParsing.html">module:ruleParsing</a></li>
+        
             <li><a href="module-loggers.html">module:loggers</a></li>
         
             <li><a href="module-data.html">module:data</a></li>
@@ -178,7 +180,7 @@ zipping files and saving zip-packages as part of a deployment/release process.</
     
 
     
-    <h4 class="name" id="~appendMessageToFile"><span class="type-signature">(inner) </span>appendMessageToFile<span class="signature">(file, message)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~appendMessageToFile"><span class="type-signature">(inner) </span>appendMessageToFile<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -222,7 +224,7 @@ zipping files and saving zip-packages as part of a deployment/release process.</
 
         <tr>
             
-                <td class="name"><code>file</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -238,15 +240,14 @@ zipping files and saving zip-packages as part of a deployment/release process.</
 
             
 
-            <td class="description last"><p>The fully qualified path and file name for the file that
-should be opened, appended and saved.</p></td>
+            <td class="description last"><p>The fully qualified path and file name for the file that should be opened, appended and saved.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>message</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -310,7 +311,7 @@ should be opened, appended and saved.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line679">line 679</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line671">line 671</a>
     </li></ul></dd>
     
 
@@ -339,7 +340,7 @@ should be opened, appended and saved.</p></td>
 
         
 <div class="param-desc">
-    <p>A TRUE or FALSE to indicate if the append happened successfully or not.</p>
+    <p>A True or False to indicate if the append happened successfully or not.</p>
 </div>
 
 
@@ -368,7 +369,7 @@ should be opened, appended and saved.</p></td>
     
 
     
-    <h4 class="name" id="~buildReleasePackage"><span class="type-signature">(inner) </span>buildReleasePackage<span class="signature">(sourceFolder, destinationFolder)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~buildReleasePackage"><span class="type-signature">(inner) </span>buildReleasePackage<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -376,8 +377,8 @@ should be opened, appended and saved.</p></td>
 
 
 <div class="description">
-    <p>Add all the files from the sourceFolder into a zip file and
-give a name to the file for the current date-time and release version, savng to the destination folder.</p>
+    <p>Add all the files from the source folder into a zip file and
+give a name to the file for the current date-time and release version, saving to the destination folder.</p>
 </div>
 
 
@@ -413,7 +414,7 @@ give a name to the file for the current date-time and release version, savng to 
 
         <tr>
             
-                <td class="name"><code>sourceFolder</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -436,7 +437,7 @@ give a name to the file for the current date-time and release version, savng to 
 
         <tr>
             
-                <td class="name"><code>destinationFolder</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -452,7 +453,7 @@ give a name to the file for the current date-time and release version, savng to 
 
             
 
-            <td class="description last"><p>The folder where teh zip file release package should be saved.</p></td>
+            <td class="description last"><p>The folder where the zip file release package should be saved.</p></td>
         </tr>
 
     
@@ -500,7 +501,7 @@ give a name to the file for the current date-time and release version, savng to 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line336">line 336</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line349">line 349</a>
     </li></ul></dd>
     
 
@@ -558,7 +559,7 @@ give a name to the file for the current date-time and release version, savng to 
     
 
     
-    <h4 class="name" id="~cleanRootPath"><span class="type-signature">(inner) </span>cleanRootPath<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="~cleanRootPath"><span class="type-signature">(inner) </span>cleanRootPath<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -566,7 +567,7 @@ give a name to the file for the current date-time and release version, savng to 
 
 
 <div class="description">
-    <p>Takes the application root path and cleans it to give a real root path,
+    <p>Takes the application  root path and cleans it to give a real root path.
 or top-level folder path for the application.</p>
 </div>
 
@@ -576,6 +577,78 @@ or top-level folder path for the application.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>inputData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -601,13 +674,6 @@ or top-level folder path for the application.</p>
     
 
     
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Seth Hollingsead</li>
-        </ul>
-    </dd>
-    
 
     
 
@@ -618,7 +684,7 @@ or top-level folder path for the application.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line465">line 465</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line468">line 468</a>
     </li></ul></dd>
     
 
@@ -647,7 +713,7 @@ or top-level folder path for the application.</p>
 
         
 <div class="param-desc">
-    <p>The real root path or top-level path for the application.</p>
+    <p>The real rot path or top-level path for the application.</p>
 </div>
 
 
@@ -676,7 +742,7 @@ or top-level folder path for the application.</p>
     
 
     
-    <h4 class="name" id="~copyAllFilesAndFoldersFromFolderToFolder"><span class="type-signature">(inner) </span>copyAllFilesAndFoldersFromFolderToFolder<span class="signature">(sourceDestinationArray, filterArray)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~copyAllFilesAndFoldersFromFolderToFolder"><span class="type-signature">(inner) </span>copyAllFilesAndFoldersFromFolderToFolder<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -720,7 +786,7 @@ or top-level folder path for the application.</p>
 
         <tr>
             
-                <td class="name"><code>sourceDestinationArray</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -738,15 +804,15 @@ or top-level folder path for the application.</p>
 
             <td class="description last"><p>An array containing the source and destination paths.
 Example:
-sourceDestinationArray[0] = source path
-sourceDestinationArray[1] = destination path</p></td>
+inputData[0] = source path
+inputData[1] = destination path</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>filterArray</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -762,11 +828,11 @@ sourceDestinationArray[1] = destination path</p></td>
 
             
 
-            <td class="description last"><p>two array's of strings that are exclusions and inclusions,
+            <td class="description last"><p>Two array's of strings that are exclusions and inclusions,
 file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
 Example:
-filterArray[0] = exclusionArray
-filterArray[1] = inclusionArray</p></td>
+filterArray[0] = exclusion array
+filterArray[1] = inclusion array</p></td>
         </tr>
 
     
@@ -814,7 +880,7 @@ filterArray[1] = inclusionArray</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line302">line 302</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line317">line 317</a>
     </li></ul></dd>
     
 
@@ -843,7 +909,7 @@ filterArray[1] = inclusionArray</p></td>
 
         
 <div class="param-desc">
-    <p>A True or False value to indicate if the fully copy process is successful or not.</p>
+    <p>A True or False value to indicate if the full copy process is successful or not.</p>
 </div>
 
 
@@ -872,7 +938,7 @@ filterArray[1] = inclusionArray</p></td>
     
 
     
-    <h4 class="name" id="~copyFileSync"><span class="type-signature">(inner) </span>copyFileSync<span class="signature">(sourceDestinationArray, filterArray)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~copyFileSync"><span class="type-signature">(inner) </span>copyFileSync<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -917,7 +983,7 @@ ignoring any files that match with any of the contents of the exclusionArray.</p
 
         <tr>
             
-                <td class="name"><code>sourceDestinationArray</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -935,15 +1001,15 @@ ignoring any files that match with any of the contents of the exclusionArray.</p
 
             <td class="description last"><p>An array containing the source and destination paths.
 Example:
-sourceDestinationArray[0] = source path
-sourceDestinationArray[1] = destination path</p></td>
+inputData[0] = source path
+inputData[1] = destination path</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>filterArray</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -959,11 +1025,11 @@ sourceDestinationArray[1] = destination path</p></td>
 
             
 
-            <td class="description last"><p>two array's of strings that are exclusions and inclusions,
-file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+            <td class="description last"><p>Two array's of strings that are exlusions and inclusions,
+file filters that should be avoided during the copy process, the inclusing array over-rides the exclusion array.
 Example:
-filterArray[0] = exclusionArray
-filterArray[1] = inclusionArray</p></td>
+inputMetaData[0] = exclusionArray
+inputMetaData[1] = inclusionArray</p></td>
         </tr>
 
     
@@ -1011,7 +1077,7 @@ filterArray[1] = inclusionArray</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line495">line 495</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line493">line 493</a>
     </li></ul></dd>
     
 
@@ -1069,7 +1135,7 @@ filterArray[1] = inclusionArray</p></td>
     
 
     
-    <h4 class="name" id="~copyFolderRecursiveSync"><span class="type-signature">(inner) </span>copyFolderRecursiveSync<span class="signature">(sourceDestinationArray, filterArray)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~copyFolderRecursiveSync"><span class="type-signature">(inner) </span>copyFolderRecursiveSync<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -1113,7 +1179,7 @@ filterArray[1] = inclusionArray</p></td>
 
         <tr>
             
-                <td class="name"><code>sourceDestinationArray</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -1131,15 +1197,15 @@ filterArray[1] = inclusionArray</p></td>
 
             <td class="description last"><p>An array containing the source and destination paths.
 Example:
-sourceDestinationArray[0] = source path
-sourceDestinationArray[1] = destination path</p></td>
+inputData[0] = source path
+inputData[1] = destination path</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>filterArray</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -1155,11 +1221,11 @@ sourceDestinationArray[1] = destination path</p></td>
 
             
 
-            <td class="description last"><p>two array's of strings that are exclusions and inclusions,
-file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
+            <td class="description last"><p>Two array's of strings that are exclusions and inclusions,
+file filters that should be avoided during the copy process, the incusion array over-rides the exclusion array.
 Example:
-filterArray[0] = exclusionArray
-filterArray[1] = inclusionArray</p></td>
+inputMetaData[0] = exclusionArray
+inputMetaData[1] = inclusionArray</p></td>
         </tr>
 
     
@@ -1207,7 +1273,7 @@ filterArray[1] = inclusionArray</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line575">line 575</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line570">line 570</a>
     </li></ul></dd>
     
 
@@ -1265,7 +1331,7 @@ filterArray[1] = inclusionArray</p></td>
     
 
     
-    <h4 class="name" id="~createZipArchive"><span class="type-signature">(inner) </span>createZipArchive<span class="signature">(folderPaths, destinationPathFileName)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~createZipArchive"><span class="type-signature">(inner) </span>createZipArchive<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -1310,7 +1376,7 @@ and saves the file to the specified file path and name.</p>
 
         <tr>
             
-                <td class="name"><code>folderPaths</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -1333,7 +1399,7 @@ and saves the file to the specified file path and name.</p>
 
         <tr>
             
-                <td class="name"><code>destinationPathFileName</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -1398,7 +1464,7 @@ destination where the zip file should be saved.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line429">line 429</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line433">line 433</a>
     </li></ul></dd>
     
 
@@ -1456,7 +1522,7 @@ destination where the zip file should be saved.</p></td>
     
 
     
-    <h4 class="name" id="~getCsvData"><span class="type-signature">(inner) </span>getCsvData<span class="signature">(pathAndFilename)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="~getCsvData"><span class="type-signature">(inner) </span>getCsvData<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -1464,7 +1530,7 @@ destination where the zip file should be saved.</p></td>
 
 
 <div class="description">
-    <p>loads the specified file and parses it into JSON objects.</p>
+    <p>Loads the specified file and parses it into JSON objects.</p>
 </div>
 
 
@@ -1500,7 +1566,7 @@ destination where the zip file should be saved.</p></td>
 
         <tr>
             
-                <td class="name"><code>pathAndFilename</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -1517,6 +1583,29 @@ destination where the zip file should be saved.</p></td>
             
 
             <td class="description last"><p>The path and file name of the CSV file that should be loaded and parsed into JSON objects.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
         </tr>
 
     
@@ -1564,7 +1653,7 @@ destination where the zip file should be saved.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line84">line 84</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line87">line 87</a>
     </li></ul></dd>
     
 
@@ -1593,7 +1682,7 @@ destination where the zip file should be saved.</p></td>
 
         
 <div class="param-desc">
-    <p>The JSON object as it was loaded from the file with minimal to no additional processing.</p>
+    <p>The JSON object as it was loaded from the file with minimal to no additional processin.</p>
 </div>
 
 
@@ -1622,7 +1711,7 @@ destination where the zip file should be saved.</p></td>
     
 
     
-    <h4 class="name" id="~getJsonData"><span class="type-signature">(inner) </span>getJsonData<span class="signature">(pathAndFilename)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="~getJsonData"><span class="type-signature">(inner) </span>getJsonData<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -1666,7 +1755,7 @@ destination where the zip file should be saved.</p></td>
 
         <tr>
             
-                <td class="name"><code>pathAndFilename</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -1684,6 +1773,29 @@ destination where the zip file should be saved.</p></td>
 
             <td class="description last"><p>The path and file name of the JSON file that
 should be loaded and parsed into JSON objects.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
         </tr>
 
     
@@ -1731,7 +1843,7 @@ should be loaded and parsed into JSON objects.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line117">line 117</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -1789,7 +1901,7 @@ should be loaded and parsed into JSON objects.</p></td>
     
 
     
-    <h4 class="name" id="~getXmlData"><span class="type-signature">(inner) </span>getXmlData<span class="signature">(pathAndFilename)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="~getXmlData"><span class="type-signature">(inner) </span>getXmlData<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -1833,7 +1945,7 @@ should be loaded and parsed into JSON objects.</p></td>
 
         <tr>
             
-                <td class="name"><code>pathAndFilename</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -1850,6 +1962,29 @@ should be loaded and parsed into JSON objects.</p></td>
             
 
             <td class="description last"><p>The path and file name of the XML file that should be loaded and parsed into JSON objects.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
         </tr>
 
     
@@ -1897,7 +2032,7 @@ should be loaded and parsed into JSON objects.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line49">line 49</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -1956,7 +2091,7 @@ values and attributes that were stored  in the specified XML file.</p>
     
 
     
-    <h4 class="name" id="~readDirectoryContents"><span class="type-signature">(inner) </span>readDirectoryContents<span class="signature">(directory)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="~readDirectoryContents"><span class="type-signature">(inner) </span>readDirectoryContents<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -1965,7 +2100,7 @@ values and attributes that were stored  in the specified XML file.</p>
 
 <div class="description">
     <p>This function acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
-Also taht function doesn't technically return anything, it works with a global variable that
+Also that function doesn't technically return anything, it works with a global variable that
 needs to be reset after the work is done with it. So these are the things that this wrapper function can do.</p>
 </div>
 
@@ -2002,7 +2137,7 @@ needs to be reset after the work is done with it. So these are the things that t
 
         <tr>
             
-                <td class="name"><code>directory</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -2019,6 +2154,29 @@ needs to be reset after the work is done with it. So these are the things that t
             
 
             <td class="description last"><p>The path that needs to be scanned.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
         </tr>
 
     
@@ -2066,7 +2224,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line171">line 171</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -2124,7 +2282,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
 
     
-    <h4 class="name" id="~readDirectorySynchronously"><span class="type-signature">(inner) </span>readDirectorySynchronously<span class="signature">(directory)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="~readDirectorySynchronously"><span class="type-signature">(inner) </span>readDirectorySynchronously<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -2168,7 +2326,7 @@ needs to be reset after the work is done with it. So these are the things that t
 
         <tr>
             
-                <td class="name"><code>directory</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -2184,7 +2342,30 @@ needs to be reset after the work is done with it. So these are the things that t
 
             
 
-            <td class="description last"><p>The system path that should be scanned recursively for files.</p></td>
+            <td class="description last"><p>The system path that should be scaned recursiely for files.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this busienss rule.</p></td>
         </tr>
 
     
@@ -2232,7 +2413,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line239">line 239</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line252">line 252</a>
     </li></ul></dd>
     
 
@@ -2290,7 +2471,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
 
     
-    <h4 class="name" id="~scanDirectoryContents"><span class="type-signature">(inner) </span>scanDirectoryContents<span class="signature">(directory, enableLimit, filesLimit)</span><span class="type-signature"> &rarr; {array.&lt;string>}</span></h4>
+    <h4 class="name" id="~scanDirectoryContents"><span class="type-signature">(inner) </span>scanDirectoryContents<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {array.&lt;string>}</span></h4>
     
 
     
@@ -2299,7 +2480,7 @@ needs to be reset after the work is done with it. So these are the things that t
 
 <div class="description">
     <p>This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
-The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
+The difference between this function and the readDirectoryContents is that this function has an optinoal limit on the number of files to return.
 Really this is used for scanning large volumes of data such as the entire C-Drive.
 This way the user can control the number of files that are returned by the system.
 The user might only want 10,000 files or just the first million files found. etc...</p>
@@ -2338,13 +2519,13 @@ The user might only want 10,000 files or just the first million files found. etc
 
         <tr>
             
-                <td class="name"><code>directory</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">sring</span>
+<span class="param-type">string</span>
 
 
             
@@ -2361,13 +2542,13 @@ The user might only want 10,000 files or just the first million files found. etc
 
         <tr>
             
-                <td class="name"><code>enableLimit</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">array.&lt;boolean, integer></span>
 
 
             
@@ -2377,30 +2558,9 @@ The user might only want 10,000 files or just the first million files found. etc
 
             
 
-            <td class="description last"><p>True or False to indicate if the boolean limit should be enabled or not.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filesLimit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">integer</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of files that should be limited when scanning, if the enableLimit is set to True.</p></td>
+            <td class="description last"><p>An array that contains a boolean flag for enable the limit and an integer for what the limit should be:
+inputMetaData[0] = enableLimit - True or False to indicate if the boolean imit should be enabled or not.
+inputMetaData[1] = filesLimit - The number of files that should be limited when scanning, if the enableLimit is set to True.</p></td>
         </tr>
 
     
@@ -2448,7 +2608,7 @@ The user might only want 10,000 files or just the first million files found. etc
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line199">line 199</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line208">line 208</a>
     </li></ul></dd>
     
 
@@ -2506,7 +2666,7 @@ The user might only want 10,000 files or just the first million files found. etc
     
 
     
-    <h4 class="name" id="~writeJsonData"><span class="type-signature">(inner) </span>writeJsonData<span class="signature">(pathAndFilename, dataToWrite)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="~writeJsonData"><span class="type-signature">(inner) </span>writeJsonData<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -2550,7 +2710,7 @@ The user might only want 10,000 files or just the first million files found. etc
 
         <tr>
             
-                <td class="name"><code>pathAndFilename</code></td>
+                <td class="name"><code>inputData</code></td>
             
 
             <td class="type">
@@ -2573,7 +2733,7 @@ The user might only want 10,000 files or just the first million files found. etc
 
         <tr>
             
-                <td class="name"><code>dataToWrite</code></td>
+                <td class="name"><code>inputMetaData</code></td>
             
 
             <td class="type">
@@ -2637,7 +2797,7 @@ The user might only want 10,000 files or just the first million files found. etc
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_fileOperations.js.html">executrix/fileOperations.js</a>, <a href="executrix_fileOperations.js.html#line142">line 142</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line148">line 148</a>
     </li></ul></dd>
     
 
@@ -2666,7 +2826,7 @@ The user might only want 10,000 files or just the first million files found. etc
 
         
 <div class="param-desc">
-    <p>True or False to indicate if the file was written out successfully or not.</p>
+    <p>True of False to indicate if the file was written out successfully or not.</p>
 </div>
 
 
@@ -2705,13 +2865,13 @@ The user might only want 10,000 files or just the first million files found. etc
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-advanced.html">advanced</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-auxiliary.html">auxiliary</a></li><li><a href="module-auxiliaryArrayParsing.html">auxiliaryArrayParsing</a></li><li><a href="module-auxiliaryStringParsing.html">auxiliaryStringParsing</a></li><li><a href="module-characterArrayParsing.html">characterArrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-characterStringParsing.html">characterStringParsing</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandArrayParsing.html">commandArrayParsing</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-commandStringParsing.html">commandStringParsing</a></li><li><a href="module-configuration.html">configuration</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-constant.html">constant</a></li><li><a href="module-constantArrayParsing.html">constantArrayParsing</a></li><li><a href="module-constantStringParsing.html">constantStringParsing</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataArrayParsing.html">dataArrayParsing</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-dataDirectorate.html">dataDirectorate</a></li><li><a href="module-dataStringParsing.html">dataStringParsing</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-fileStringParsing.html">fileStringParsing</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexical.html">lexical</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-pathArrayParsing.html">pathArrayParsing</a></li><li><a href="module-performanceMetric.html">performanceMetric</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-wordArrayParsing.html">wordArrayParsing</a></li><li><a href="module-wordStringParsing.html">wordStringParsing</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-advanced.html">advanced</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-auxiliary.html">auxiliary</a></li><li><a href="module-auxiliaryArrayParsing.html">auxiliaryArrayParsing</a></li><li><a href="module-auxiliaryStringParsing.html">auxiliaryStringParsing</a></li><li><a href="module-characterArrayParsing.html">characterArrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-characterStringParsing.html">characterStringParsing</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandArrayParsing.html">commandArrayParsing</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-commandStringParsing.html">commandStringParsing</a></li><li><a href="module-configuration.html">configuration</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-constant.html">constant</a></li><li><a href="module-constantArrayParsing.html">constantArrayParsing</a></li><li><a href="module-constantStringParsing.html">constantStringParsing</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataArrayParsing.html">dataArrayParsing</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-dataDirectorate.html">dataDirectorate</a></li><li><a href="module-dataStringParsing.html">dataStringParsing</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-fileStringParsing.html">fileStringParsing</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexicalAnalyzer.html">lexicalAnalyzer</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-pathArrayParsing.html">pathArrayParsing</a></li><li><a href="module-performanceMetric.html">performanceMetric</a></li><li><a href="module-promptOperations.html">promptOperations</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-ruleParsing.html">ruleParsing</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timeComputation.html">timeComputation</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-wordArrayParsing.html">wordArrayParsing</a></li><li><a href="module-wordStringParsing.html">wordStringParsing</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Apr 28 2022 13:21:18 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue May 10 2022 10:54:32 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
