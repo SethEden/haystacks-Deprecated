@@ -44,7 +44,7 @@ const getAttributeName = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + JSON.stringify(attributeArray));
     // attributeArray[0] is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray0Is + attributeArray[0]);
-    returnData = ruleParsing.processRulesInternal(attributeArray[0], [/"/g, ''], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([attributeArray[0], [/"/g, '']], [biz.creplaceCharacterWithCharacter]);
     returnData = returnData.trim();
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -73,7 +73,7 @@ const getAttributeValue = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArrayIs + attributeArray);
     // attributeArray[0] is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cattributeArray1Is + attributeArray[1]);
-    returnData = ruleParsing.processRulesInternal(attributeArray[1], [/"/g, ''], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([attributeArray[1], [/"/g, '']], [biz.creplaceCharacterWithCharacter]);
     returnData = returnData.trim();
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));

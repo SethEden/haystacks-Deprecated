@@ -400,7 +400,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   if (currentVersionReleased === false) {
     // release files list is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseFilesListIs + JSON.stringify(releaseFiles));
-    releaseDateTimeStamp = ruleParsing.processRulesInternal(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp), '', [biz.cgetNowMoment]);
+    releaseDateTimeStamp = ruleParsing.processRulesInternal([configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp), ''], [biz.cgetNowMoment]);
     // release date-time stamp is:
     loggers.consoleLog(namespacePrefix + functionName, msg.creleaseDateTimeStampIs + releaseDateTimeStamp);
     let releaseFileName = releaseDateTimeStamp + bas.cUnderscore + currentVersion + bas.cUnderscore + applicationName;

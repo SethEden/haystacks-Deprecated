@@ -110,17 +110,17 @@ const analyzeArgument = function(inputData, inputMetaData) {
   inputData.includes(tertiaryCommandArgsDelimiter) === true) {
     // Check if there are brackets or no brackets.
     loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereAreBracketsOrNoBrackets);
-    let argsArrayContainsOpenBracket = ruleParsing.processRulesInternal(bas.cOpenBracket, inputData, argsArrayContainsCharacterRule);
-    let argsArrayContainsCloseBracket = ruleParsing.processRulesInternal(bas.cCloseBracket, inputData, argsArrayContainsCharacterRule);
+    let argsArrayContainsOpenBracket = ruleParsing.processRulesInternal([bas.cOpenBracket, inputData], argsArrayContainsCharacterRule);
+    let argsArrayContainsCloseBracket = ruleParsing.processRulesInternal([bas.cCloseBracket, inputData], argsArrayContainsCharacterRule);
     if (argsArrayContainsOpenBracket === false || argsArrayContainsCloseBracket === false) {
       // Brackets were found
       loggers.consoleLog(namespacePrefix + functionName, msg.cBracketsWereFound);
       // Check if there is a regular expression or not.
       loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereIsRegularExpressionOrNot);
-      if (analyzeForRegularExpression(inputData) === true) {
+      if (analyzeForRegularExpression(inputData, '') === true) {
         // A regular expression was found!
         loggers.consoleLog(namespacePrefix + functionName, msg.cRegularExpressionWasFound);
-        returnData = parseArgumentAsRegularExpression(inputData);
+        returnData = parseArgumentAsRegularExpression(inputData, '');
       } else { // No regular expression, just return the argumetn as it was passed in, no additional processing required.
         // No RegExp found!
         loggers.consoleLog(namespacePrefix + functionName, msg.cNoRegExpFound);
@@ -130,7 +130,7 @@ const analyzeArgument = function(inputData, inputMetaData) {
       // There are Brackets, so treat the argument as an array.
       // Brackets ARE found!
       loggers.consoleLog(namespacePrefix + functionName, msg.cBracketsAreFound);
-      returnData = parseArgumentAsArray(inputData);
+      returnData = parseArgumentAsArray(inputData, '');
     }
   } else { // The inputData does not contain a secondaryCommandArgsDelimiter
     // NO secondary command argument delimiters.
@@ -138,10 +138,10 @@ const analyzeArgument = function(inputData, inputMetaData) {
     // Check if there is any regular expession or no regular expression.
     // Check if there is a Regular Expression or not.
     loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfThereIsRegularExpressionOrNot);
-    if (analyzeForRegularExpression(inputData) === true) {
+    if (analyzeForRegularExpression(inputData, '') === true) {
       // A regular expression was found!
       loggers.consoleLog(namespacePrefix + functionName, msg.cRegularExpressionWasFound);
-      returnData = parseArgumentAsRegularExpression(inputData);
+      returnData = parseArgumentAsRegularExpression(inputData, '');
     } else { // No regular expression, just return the argument as it was passed in, no additional processing required.
       // NO RegExp found!
       loggers.consoleLog(namespacePrefix + functionName, msg.cNoRegExpFound);
@@ -170,11 +170,11 @@ const analyzeForRegularExpression = function(inputData, inputMetaData) {
   let returnData = false;
   let argsArrayContainsCharacterRule = [];
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
-  let argsArrayContainsRegEx1 = ruleParsing.processRulesInternal(wrd.cregEx, [inputData], argsArrayContainsCharacterRule);
+  let argsArrayContainsRegEx1 = ruleParsing.processRulesInternal([wrd.cregEx, [inputData]], argsArrayContainsCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsRegEx1Is + argsArrayContainsRegEx1);
-  let argsArrayContainsRegEx2 = ruleParsing.processRulesInternal(wrd.cRegEx, [inputData], argsArrayContainsCharacterRule);
+  let argsArrayContainsRegEx2 = ruleParsing.processRulesInternal([wrd.cRegEx, [inputData]], argsArrayContainsCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsRegEx2Is + argsArrayContainsRegEx2);
-  let argsArrayContainsColon = ruleParsing.processRulesInternal(bas.cColon, [inputData], argsArrayContainsCharacterRule);
+  let argsArrayContainsColon = ruleParsing.processRulesInternal([bas.cColon, [inputData]], argsArrayContainsCharacterRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.cargsArrayContainsColonIs + argsArrayContainsColon);
   if ((argsArrayContainsRegEx1 === true || argsArrayContainsRegEx2 === true) && argsArrayContainsColon === true) {
     returnData = true;
@@ -258,8 +258,8 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
   let argsArrayContainsOpenBracket = false;
   let argsArrayContainsCloseBracket = false;
   if (Array.isArray(argumentValue) === true) {
-    argsArrayContainsOpenBracket = ruleParsing.processRulesInternal(bas.cOpenBracket, argumentValue, argsArrayContainsCharacterRule);
-    argsArrayContainsCloseBracket = ruleParsing.processRulesInternal(bas.cCloseBracket, argumentValue, argsArrayContainsCharacterRule);
+    argsArrayContainsOpenBracket = ruleParsing.processRulesInternal([bas.cOpenBracket, argumentValue], argsArrayContainsCharacterRule);
+    argsArrayContainsCloseBracket = ruleParsing.processRulesInternal([bas.cCloseBracket, argumentValue], argsArrayContainsCharacterRule);
     isArray = true;
   } else {
     argsArrayContainsOpenBracket = argumentValue.includes(bas.cOpenBracket);
@@ -275,12 +275,12 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
     } // End-if (argumentValue.includes(secondaryCmmandArgsDelimiter) === true)
   } // End-if (isArray === false)
   if (argsArrayContainsOpenBracket === true) {
-    argumentValue = ruleParsing.processRulesInternal(bas.cOpenBracket, argumentValue, removeBracketsFromArgsArrayRule);
+    argumentValue = ruleParsing.processRulesInternal([bas.cOpenBracket, argumentValue], removeBracketsFromArgsArrayRule);
     // argumentValue after attempting to remoe a open bracket from all array elements is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueAfterAttemptingToRemoveOpenBracketFromAllArrayElementsIs + JSON.stringify(argumentValue));
   } // End-if (argsArrayContainsOpenBracket === true)
   if (argsArrayContainsCloseBracket === true) {
-    argumentValue = ruleParsing.processRulesInternal(bas.cCloseBracket, argumentValue, removeBracketsFromArgsArrayRule);
+    argumentValue = ruleParsing.processRulesInternal([bas.cCloseBracket, argumentValue], removeBracketsFromArgsArrayRule);
     // argumentValue after attempting to remoe a close bracket from al array elements is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueAfterAttemptngToRemoveCloseBracketFromAllArrayElementsIs + JSON.stringify(argumentValue));
   } // End-if (argsArrayContainsCloseBracket === true)
@@ -316,9 +316,7 @@ const removeStringLiteralTagsFromArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
-  let removeCharacterRule = [];
-  removeCharacterRule[0] = biz.cremoveCharacterFromArray;
-  returnData = ruleParsing.processRulesInternal(bas.cTilde, inputData, removeCharacterRule);
+  returnData = ruleParsing.processRulesInternal([bas.cTilde, inputData], [biz.cremoveCharacterFromArray]);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

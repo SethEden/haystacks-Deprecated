@@ -91,7 +91,7 @@ const isOdd = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // if (math.isNumeric(inputData) === true) {
-    if (ruleParsing.processRulesInternal(inputData, '', [biz.cisInteger]) === true) {
+    if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisInteger]) === true) {
       let inputValue = parseInt(inputData);
       let result = inputValue % 2;
       if (result === 1) {
@@ -126,7 +126,7 @@ const isEven = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // if (math.isNumeric(inputData) === true)
-    if (ruleParsing.processRulesInternal(inputData, '', [biz.cisInteger]) === true) {
+    if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisInteger]) === true) {
       let inputValue = parseInt(inputData);
       let result = inputValue % 2;
       if (result === 0) {

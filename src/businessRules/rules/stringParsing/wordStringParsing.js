@@ -57,10 +57,10 @@ const isStringCamelCase = function(inputData, inputMetaData) {
     // 2. Contains at least 1 lower case letter or more.
     // 3. Contains at least 1 upper case letter or more.
     // 4. Has a lower case or upper case first letter of the first word.
-    let doesContainUpperCaseCharacter = ruleParsing.processRulesInternal(inputData, '', [biz.cdoesStringContainUpperCaseCharacter]);
-    let doesContainLowerCaseCharacter = ruleParsing.processRulesInternal(inputData, '', [biz.cdoesStringContainLowerCaseCharacter]);
-    let isFirstCharUpperCase = ruleParsing.processRulesInternal(inputData, '', [biz.cisFirstCharacterUpperCase]);
-    let isFirstCharLowerCase = ruleParsing.processRulesInternal(inputData, '', [biz.cisFirstCharacterLowerCase]);
+    let doesContainUpperCaseCharacter = ruleParsing.processRulesInternal([inputData, ''], [biz.cdoesStringContainUpperCaseCharacter]);
+    let doesContainLowerCaseCharacter = ruleParsing.processRulesInternal([inputData, ''], [biz.cdoesStringContainLowerCaseCharacter]);
+    let isFirstCharUpperCase = ruleParsing.processRulesInternal([inputData, ''], [biz.cisFirstCharacterUpperCase]);
+    let isFirstCharLowerCase = ruleParsing.processRulesInternal([inputData, ''], [biz.cisFirstCharacterLowerCase]);
     if (!inputData.match(/[\s_-]/g) && doesContainUpperCaseCharacter &&
     doesContainLowerCaseCharacter && (isFirstCharUpperCase || isFirstCharLowerCase)) {
       for (let i = 1; i < inputData.length; i++) {
@@ -133,8 +133,8 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
   let returnData = '';
   if (inputData) {
     // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
-    returnData = ruleParsing.processRulesInternal(inputData.toLowerCase().trim(), [/[^\w\s]/g, ''], [biz.cutilitiesReplaceCharacterWithCharacter]);
-    returnData = ruleParsing.processRulesInternal(returnData, [/[\0-9]/g, ''], [biz.cutilitiesReplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([inputData.toLowerCase().trim(), [/[^\w\s]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([returnData, [/[\0-9]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

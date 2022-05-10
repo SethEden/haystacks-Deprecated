@@ -168,23 +168,22 @@ function loadCommandWorkflows(workflowPath, contextName) {
 /**
  * @function executeBusinessRules
  * @description A wrapper call to a business rule from the warden.executeBusinessRules.
- * @param {string} ruleInput The input to the rule that is being called.
- * @param {string} ruleMetaData Additional data to input to the rule.
+ * @param {array<string|integer|boolean|object|function,string|integer|boolean|object|function>} inputs The array of inputs:
+ * inputs[0] = inputData - The input to the rule that is being called.
+ * inputs[1] = inputMetaData - Additional data the input to the rule.
  * @param {array<string>} businessRules The array of rule name(s) that should be executed.
  * @return {string} The value that is returned from the rule is also returned.
  * @author Seth Hollingsead
  * @date 2022/02/18
  */
-function executeBusinessRules(ruleInput, ruleMetaData, businessRules) {
+function executeBusinessRules(inputs, businessRules) {
   let functionName = executeBusinessRules.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // ruleInput is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cruleInputIs + JSON.stringify(ruleInput));
-  // ruleMetaData is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cruleMetaDataIs + JSON.stringify(ruleMetaData));
+  // inputs is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputsIs + JSON.stringify(inputs));
   // businessRules is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulesIs + JSON.stringify(businessRules));
-  let returnData = warden.executeBusinessRules(ruleInput, ruleMetaData, businessRules);
+  let returnData = warden.executeBusinessRules(inputs, businessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -327,7 +326,7 @@ export default {
   [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
   [fnc.cloadCommandAliases]: (commandAliasesPath, contextName) => loadCommandAliases(commandAliasesPath, contextName),
   [fnc.cloadCommandWorkflows]: (workflowPath, contextName) => loadCommandWorkflows(workflowPath, contextName),
-  [fnc.cexecuteBusinessRules]: (ruleInput, ruleMetaData, businessRules) => executeBusinessRules(ruleInput, ruleMetaData, businessRules),
+  [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
   [fnc.cprocessCommandQueue]: () => processCommandQueue(),

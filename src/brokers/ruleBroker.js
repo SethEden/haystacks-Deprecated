@@ -20,7 +20,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, fnc, msg, sys, wrd} = hayConst;
+const {bas, biz, fnc, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.ruleBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -66,8 +66,10 @@ function addClientRules(clientRules) {
  * @function processRules
  * @description Parse the given input Object/String/Integer/Data/Function through a set of business rules,
  * (Some rules do not support chaining); where the rules are defined in the input rules array.
- * @param {string|integer|boolean|object|function} inputData The primary input data that should be processed by the business rule.
- * @param {string|integer|boolean|object|function} inputMetaData Additional meta-data that should be used when processing the business rule.
+ * @param {array<string|integer|boolean|object|function,string|integer|boolean|object|function>} inputs
+ * An array of inputs, inputData & inputMetaData.
+ * inputs[0] = inputData - The primary input data that should be processed by the business rule.
+ * inputs[1] = inputMetaData - Additional meta-data that should be used when processing the business rule.
  * @param {array<string>} rulesToExecute The name(s) of the rule(s) that should be executed for modding the input data.
  * @return {string|integer|boolean|object|function} A modified data Object/String/Integer/Boolean/Function
  * where the data has been modified based on the input data, input meta-data, and business rule that was executed.
@@ -75,16 +77,21 @@ function addClientRules(clientRules) {
  * @date 2021/10/27
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-function processRules(inputData, inputMetaData, rulesToExecute) {
+function processRules(inputs, rulesToExecute) {
   let functionName = processRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`inputData is: ${JSON.stringify(inputData)}`);
-  // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
+  // console.log(`inputs is: ${JSON.stringify(inputsData)}`);
   // console.log(`rulesToExecute is: ${JSON.stringify(rulesToExecute)}`);
-  let returnData = inputData;
+  let returnData;
+  let inputMetaData;
   if (rulesToExecute && ruleParsing.doAllRulesExist(rulesToExecute)) {
+    if (inputs) {
+      returnData = inputs[0];
+      inputMetaData = inputs[1];
+    }
     for (let rule in rulesToExecute) {
-      if (rulesToExecute.hasOwnProperty(rule)) {
+      // Make sure we don't call the internal rule processor, directly from the public interface.
+      if (rulesToExecute.hasOwnProperty(rule) && rule != biz.cprocessRulesInternal) {
         let key = rule;
         // console.log(`key is: ${key}`);
         let value = rulesToExecute[key];
@@ -104,5 +111,5 @@ function processRules(inputData, inputMetaData, rulesToExecute) {
 export default {
   [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
   [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
-  [fnc.cprocessRules]: (inputData, inputMetaData, rulesToExecute) => processRules(inputData, inputMetaData, rulesToExecute)
+  [fnc.cprocessRules]: (inputs, rulesToExecute) => processRules(inputs, rulesToExecute)
 };

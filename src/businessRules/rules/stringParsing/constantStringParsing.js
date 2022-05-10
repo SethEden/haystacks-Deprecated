@@ -62,7 +62,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
         // lineArray[2] is
         loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
         foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
-        let qualifiedConstantsFilename = ruleParsing.processRulesInternal(inputData, '', [biz.cgetFileNameFromPath]);
+        let qualifiedConstantsFilename = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetFileNameFromPath]);
         if (foundConstant === true) {
           if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
             let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;

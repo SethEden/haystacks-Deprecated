@@ -2,7 +2,9 @@
  * @file characterArrayParsing.js
  * @module characterArrayParsing
  * @description Contains all system defined business rules for array parsing with a focus on characters.
+ * @requires module:stringParsingUtilities
  * @requires module:ruleParsing
+ * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,7 +14,9 @@
  */
 
 // Internal imports
+import stringParsingUtilities from '../stringParsingUtilities.js';
 import ruleParsing from '../ruleParsing.js';
+import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -48,7 +52,11 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
   if (!inputData && !inputMetaData) {
     returnData = false;
   } else {
-    returnData = ruleParsing.processRulesInternal(inputData, inputMetaData, [biz.cutilitiesReplaceCharacterWithCharacter]);
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      returnData = ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.cutilitiesReplaceCharacterWithCharacter]);
+    } else {
+      returnData = stringParsingUtilities.utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

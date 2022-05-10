@@ -186,20 +186,20 @@ const businessRule = function(inputData, inputMetaData) {
     let ruleArgs = [];
     if (i === 1) {
       // rules = lexical.parseBusinessRuleArgument(currentRuleArg, i);
-      rules = ruleBroker.processRules(currentRuleArg, i, [biz.cparseBusinessRuleArgument]);
+      rules = ruleBroker.processRules([currentRuleArg, i], [biz.cparseBusinessRuleArgument]);
     } else if (i === 2) {
       // ruleInputData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
-      ruleInputData = ruleBroker.processRules(currentRuleArg, i, [biz.cparseBusinessRuleArgument]);
+      ruleInputData = ruleBroker.processRules([currentRuleArg, i], [biz.cparseBusinessRuleArgument]);
     } else if (i === 3 && inputData.length <= 4) {
       // ruleInputMetaData = lexical.parseBusinessRuleArgument(currentRuleArg, i);
-      ruleInputMetaData = ruleBroker.processRules(currentRuleArg, i, [biz.cparseBusinessRuleArgument]);
+      ruleInputMetaData = ruleBroker.processRules([currentRuleArg, i], [biz.cparseBusinessRuleArgument]);
     } else if (i === 3 && inputData.length > 4) {
       // // In this case all of the arguments will have been combined into a single array and added to the ruleInputData.
       ruleInputMetaData = [];
       for (let j = 3; j <= inputData.length - 1; j++) {
         let currentRuleArrayArg = inputData[j];
         // let tempArg = lexical.parseBusinessRuleArgument(currentRuleArrayArg, j);
-        let tempArg = ruleBroker.processRules(currentRuleArrayArg, j, [biz.cparseBusinessRuleArgument]);
+        let tempArg = ruleBroker.processRules([currentRuleArrayArg, j], [biz.cparseBusinessRuleArgument]);
         // console.log('tempArg is: ' + tempArg);
         if (tempArg) {
           ruleInputMetaData.push(tempArg);
@@ -218,18 +218,18 @@ const businessRule = function(inputData, inputMetaData) {
     // Here we will capture the start time of the business rule we are about to execute.
     // After executing we will capture the end time and then
     // compare the difference to determine how many milliseconds it took to run the business rule.
-    businessRuleStartTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
+    businessRuleStartTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // Business Rule Start time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleStartTimeIs + businessRuleStartTime);
   } // End-if (businessRuleMetricsEnabled === true)
-  ruleOutput = ruleBroker.processRules(ruleInputData, ruleInputMetaData, rules);
+  ruleOutput = ruleBroker.processRules([ruleInputData, ruleInputMetaData], rules);
   if (businessRuleMetricsEnabled === true) {
     let performanceTrackingObject = {};
-    businessRuleEndTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
+    businessRuleEndTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // BusinessRule End time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleEndTimeIs + businessRuleEndTime);
     // Now compute the delta time so we know how long it took to run that busienss rule.
-    businessRuleDeltaTime = ruleBroker.processRules(businessRuleStartTime, businessRuleEndTime, [biz.ccomputeDeltaTime]);
+    businessRuleDeltaTime = ruleBroker.processRules([businessRuleStartTime, businessRuleEndTime], [biz.ccomputeDeltaTime]);
     // BusinessRule run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleRunTimeIs + businessRuleDeltaTime);
     // Check to make sure the business rule performance trackign stack exists or does not exist.
@@ -315,12 +315,12 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creplaceCharacterWithCharacterRuleIs + JSON.stringify(replaceCharacterWithCharacterRule));
   // let secondaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + secondaryCommandArgsDelimiter, bas.cg);
   let secondaryCommandDelimiterRegEx = new RegExp(`[${secondaryCommandArgsDelimiter}]`, bas.cg);
-  commandString = ruleBroker.processRules(commandString, [secondaryCommandArgsDelimiter, primaryCommandDelimiter], replaceCharacterWithCharacterRule);
+  commandString = ruleBroker.processRules([commandString, [secondaryCommandArgsDelimiter, primaryCommandDelimiter]], replaceCharacterWithCharacterRule);
   // After attempting to replace the secondaryCommandArgsDelimiter with the primaryCommandDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage1 + commandString);
   // let tertiaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + tertiaryCommandDelimiter, bas.cg);
   let tertiaryCommandDelimiterRegEx = new RegExp(`[${tertiaryCommandDelimiter}]`, bas.cg);
-  commandString = ruleBroker.processRules(commandString, [tertiaryCommandDelimiter, secondaryCommandArgsDelimiter], replaceCharacterWithCharacterRule);
+  commandString = ruleBroker.processRules([commandString, [tertiaryCommandDelimiter, secondaryCommandArgsDelimiter]], replaceCharacterWithCharacterRule);
   // After attempting to replace the teriaryCommandDelimiter with the secondaryCommandArgsDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage2 + commandString);
   let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
@@ -403,15 +403,15 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
       console.log(msg.cCommandNamePrompt3);
       console.log(msg.cCommandNamePrompt4);
       console.log(msg.cCommandNamePrompt5);
-      commandName = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
-      validCommandName = ruleBroker.processRules(commandName, '', [biz.cisValidCommandNameString]);
+      commandName = ruleBroker.processRules([bas.cGreaterThan, ''], [biz.cprompt]);
+      validCommandName = ruleBroker.processRules([commandName, ''], [biz.cisValidCommandNameString]);
       if (validCommandName === false) {
         // INVALID INPUT: Please enter a valid camel-case command name.
         console.log(msg.ccommandAliasGeneratorMessage3);
       } // End-if (validCommandName === false)
     } // End-while (validCommandName === false)
 
-    let camelCaseCommandNameArray = ruleBroker.processRules(commandName, '', [biz.cconvertCamelCaseStringToArray]);
+    let camelCaseCommandNameArray = ruleBroker.processRules([commandName, ''], [biz.cconvertCamelCaseStringToArray]);
     // camelCaseCommandNameArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccamelCaseCommandNameArrayIs + JSON.stringify(camelCaseCommandNameArray));
 
@@ -426,8 +426,8 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
           console.log(msg.cCommandWordAliasPrompt1);
           console.log(msg.cCommandWordAliasPrompt2);
           console.log(msg.cCommandWordAliasPrompt3 + bas.cSpace + commandWord);
-          commandWordAliasList = ruleBroker.processRules(bas.cGreaterThan, '', [biz.cprompt]);
-          validCommandWordAliasList = ruleBroker.processRules(commandWordAliasList, '', [biz.cisStringList]);
+          commandWordAliasList = ruleBroker.processRules([bas.cGreaterThan, ''], [biz.cprompt]);
+          validCommandWordAliasList = ruleBroker.processRules([commandWordAliasList, ''], [biz.cisStringList]);
           if (validCommandWordAliasList === false) {
             // INVALID INPUT: Please enter a valid command word alias list.
             console.log(msg.ccommandAliasGeneratorMessage4);
@@ -464,7 +464,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
     // At this point the user should have entered all valid data and we should be ready to proceed.
     // TODO: Start generating all the possible combinations of the command words and command word aliases.
     // Pass the data object to a business rule to do the above task.
-    let commandAliases = ruleBroker.processRules(commandAliasDataStructure, '', [biz.cgenerateCommandAliases]);
+    let commandAliases = ruleBroker.processRules([commandAliasDataStructure, ''], [biz.cgenerateCommandAliases]);
   } // End-if (validCommandInput === true)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

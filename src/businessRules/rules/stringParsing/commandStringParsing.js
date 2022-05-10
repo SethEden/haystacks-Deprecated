@@ -43,9 +43,9 @@ const cleanCommandInput = function(inputData, inputMetaData) {
   let returnData = '';
   if (inputData) {
     returnData = inputData;
-    returnData = ruleParsing.processRulesInternal(inputData, [/--/g, ''], [biz.creplaceCharacterWithCharacter]);
-    returnData = ruleParsing.processRulesInternal(returnData, [/\[/g, ''], [biz.creplaceCharacterWithCharacter]);
-    returnData = ruleParsing.processRulesInternal(returnData, [/\]/g, ''], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/--/g, '']], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([returnData, [/\[/g, '']], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([returnData, [/\]/g, '']], [biz.creplaceCharacterWithCharacter]);
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -75,11 +75,11 @@ const isValidCommandNameString = function(inputData, inputMetaData) {
     // It could actually be a single word, but of course we want to make sure it's more than 3 characters long.
     // Less than that, shouldn't really be considered a valid word, but could be appropriate as a command alias/abreviation.
     if (inputData.length > 3) {
-      let camelCaseArray = ruleParsing.processRulesInternal(inputData, '', [biz.cconvertCamelCaseStringToArray]);
+      let camelCaseArray = ruleParsing.processRulesInternal([inputData, ''], [biz.cconvertCamelCaseStringToArray]);
       if (camelCaseArray.length === 1) {
         if (characterStringParsing.isFirstCharacterLowerCase(inputData, '') === true) { returnData = true; }
       } else if (camelCaseArray.length > 1) {
-        if (ruleParsing.processRulesInternal(inputData, '', [biz.cisStringCamelCase]) === true) { returnData = true; }
+        if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisStringCamelCase]) === true) { returnData = true; }
       }
     } // End-if (inputData.length > 3)
   } // End-if (inputData)

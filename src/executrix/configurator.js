@@ -160,7 +160,7 @@ function processConfigurationValueRules(name, value) {
     case cfg.cdateTimeStamp: case cfg.cdateStamp: case cfg.ctimeStamp:
       // NOTE: All of these three configurations are processed exactly the same way.
       // As long as what is stored in the configuration file is correct, then they should be processed correctly here.
-      returnValue = ruleBroker.processRules(value, '', [biz.cgetNowMoment]);
+      returnValue = ruleBroker.processRules([value, ''], [biz.cgetNowMoment]);
       break;
     default: // We don't know what the value is.
       // We have to just return the value as it was passed in, no processing.

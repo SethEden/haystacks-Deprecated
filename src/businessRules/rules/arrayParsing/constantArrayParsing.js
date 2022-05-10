@@ -122,9 +122,9 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
                     // console.log('FOUND A MATCH!!!! ' + stringToCompare);
                     // Here we have found a match amoung brothers. We need to see if this stringToCompare has already been added to the returnData array.
-                    if (ruleParsing.processRulesInternal([returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements), [biz.cdoesArrayContainValue]) === false) {
+                    if (ruleParsing.processRulesInternal([[returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === false) {
                       returnData.push(stringToCompare);
-                    } // End-if (ruleParsing.processRulesInternal([returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements), [biz.cdoesArrayContainValue]) === false)
+                    } // End-if (ruleParsing.processRulesInternal([[returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === false)
                   } // End-if (otherStringToCompare.includes(stringToCompare))
                 } // End-if (d != a)
               } // End-for (let d = 0; d < inputData.length; d++)
@@ -166,7 +166,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
     for (let i = 0; i < inputData.length; i++) {
       let currentString = inputData[i];
-      if (ruleParsing.processRulesInternal(currentString, '', [biz.cdoesConstantExist]) === false) {
+      if (ruleParsing.processRulesInternal([currentString, ''], [biz.cdoesConstantExist]) === false) {
         // Constant does NOT exist:
         passMessage = msg.cConstantDoesNotExist + currentString;
         if (colorizeLogsEnabled === true) {
@@ -184,7 +184,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
           returnData = returnData + bas.cComa + currentString;
         }
         j++;
-      } else { // Else-clause for if (ruleParsing.processRulesInternal(currentString, '', [biz.cdoesConstantExist]) === false)
+      } else { // Else-clause for if (ruleParsing.processRulesInternal([currentString, ''], [biz.cdoesConstantExist]) === false)
         // Constant does exist:
         passMessage = msg.cConstantDoesExist + currentString;
         if (colorizeLogsEnabled === true) {

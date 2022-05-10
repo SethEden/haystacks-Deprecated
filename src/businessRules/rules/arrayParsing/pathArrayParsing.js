@@ -44,12 +44,12 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   // And I'm not going to spend the time trying to figure out why,
   // when it will be much simpler to ust call that same funtion in a loop to figure out the result.
   // Can solve this when we build unit tests.
-  returnData = ruleParsing.processRulesInternal([inputData, inputMetaData], ruleParsing.getRule(biz.cascertainMatchingElements), [biz.cdoesArrayContainValue]);
+  returnData = ruleParsing.processRulesInternal([[inputData, inputMetaData], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]);
 
   // NOTE: The beow code also orks, I am going to attempt to re-enable the above code and see if it alo works.
   // YES! This is a second way of doing the same thing. If the above code ever has a problem, we can fall back to this method.
   // for (let i = 0; i < inputData.Length; i++) {
-  //   if (ruleParsing.processRulesInternal(inputData[i], inputMetaData, [biz.cascertainMatchingFilenames]) {
+  //   if (ruleParsing.processRulesInternal([inputData[i], inputMetaData], [biz.cascertainMatchingFilenames]) {
   //     returnData = true;
   //     break;
   //   }

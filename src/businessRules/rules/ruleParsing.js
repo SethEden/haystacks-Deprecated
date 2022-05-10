@@ -112,34 +112,36 @@ const getRule = function(inputData, inputMetaData) {
  * @function processRulesInternal
  * @descriptionParse the given input Object/String/Integer/Data/Function through a set of business rules,
  * (Some rules do not support chaining); where the rules are defined in the input rules array.
- * @param {string|integer|boolean|object|function} inputData The prmary input data that should be processed by the business rule.
- * @param {string|integer|boolean|object|function} inputMetaData Additional meta-data that should be used when processing the business rule.
- * @param {array<string>} rulesToExecute The name(s) of the rule(s) that should be executed for moding the input data.
+ * @param {array<string|integer|boolean|object|function,string|integer|boolean|object|function>} inputData
+ * An array of inputs, inputData & inputMetaData.
+ * inputData[0] = inputData - The primary input data that should be processed by the business rule.
+ * inputData[1] = inputMetaData - Additional meta-data that should be used when processing the business rule.
+ * @param {array<string>} inputMetaData The name(s) of the rule(s) that should be executed for moding the input data.
  * @return {string|integer|boolean|object|function} A modified data Object/String/Integer/Boolean/Function
  * where the data has been modified based on the input data, input meta-data, and business rule that was executed.
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const processRulesInternal = function(inputData, inputMetaData, rulesToExecute) {
+const processRulesInternal = function(inputData, inputMetaData) {
   let functionName = processRulesInternal.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.crulesToExecuteIs + JSON.stringify(rulesToExecute));
-  let returnData = inputData;
-  if (rulesToExecute && doAllRulesExist(rulesToExecute)) {
-    for (let rule in rulesToExecute) {
-      if (rulesToExecute.hasOwnProperty(rule)) {
+  let returnData = inputData[0];
+  if (inputMetaData && doAllRulesExist(inputMetaData)) {
+    for (let rule in inputMetaData) {
+      let inputLocalMetaData = inputData[1];
+      if (inputMetaData.hasOwnProperty(rule)) {
         let key = rule;
         // console.log(`key is ${key}`);
-        let value = rulesToExecute[key];
+        let value = inputMetaData[key];
         // console.log(`value is: ${value}`);
-        returnData = D[sys.cbusinessRules][value](returnData, inputMetaData);
+        returnData = D[sys.cbusinessRules][value](returnData, inputLocalMetaData);
       } // End-if (rulesToExecute.hasOwnProperty(rule))
     } // End-for (let rule in rulesToExecute)
   } else {
     // WARNING: Some rules do not exist:
-    console.log(msg.cProcessRulesWarnngSomeRulesDoNotExist + JSON.stringify(rulesToExecute));
+    console.log(msg.cProcessRulesWarnngSomeRulesDoNotExist + JSON.stringify(inputMetaData));
   } // End-if (rulesToExecute && doAllRulesExist(rulesToExecute))
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

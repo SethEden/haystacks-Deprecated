@@ -152,7 +152,7 @@ async function application() {
     if (process.argv[2].includes(bas.cDash) === true ||
     process.argv[2].includes(bas.cForwardSlash) === true ||
     process.argv[2].includes(bas.cBackSlash) === true) {
-      commandToExecute = warden.executeBusinessRule(biz.caggregateCommandArguments, process.argv, '');
+      commandToExecute = warden.executeBusinessRule([process.argv, ''], [biz.caggregateCommandArguments]);
     }
     if (commandToExecute !== '') {
       warden.enqueueCommand(commandToExecute);
@@ -174,7 +174,7 @@ async function application() {
       if (haystacks.isCommandQueueEmpty() === true) {
         // biz.cprompt is some how undefined here, although other biz.c<something-else> do still work.
         // We will use wrd.cprompt here because it is working. No idea what the issue is with biz.prompt.
-        commandInput = haystacks.executeBusinessRules(bas.cGreaterThan, '', [wrd.cprompt]);
+        commandInput = haystacks.executeBusinessRules([bas.cGreaterThan, ''], [wrd.cprompt]);
         haystacks.enqueueCommand(commandInput);
       }
       commandResult = haystacks.processCommandQueue();

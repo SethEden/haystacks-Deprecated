@@ -2,7 +2,9 @@
  * @file characterStringParsing.js
  * @module characterStringParsing
  * @description Contains all system defined business rules for parsing characters in strings.
+ * @requires module:characterArrayParsing
  * @requires module:ruleParsing
+ * @requires module:configurator
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -12,7 +14,9 @@
  */
 
 // Internal imports
+import characterArrayParsing from '../arrayParsing/characterArrayParsing.js';
 import ruleParsing from '../ruleParsing.js';
+import configurator from '../../../executrix/configurator.js';
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
@@ -89,7 +93,7 @@ const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = ruleParsing.processRulesInternal(inputData, [/\//g, bas.cBackSlash], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/\//g, bas.cBackSlash]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -120,7 +124,11 @@ const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = ruleParsing.processRulesInternal(inputData, [/\\/g, bas.cForwardSlash], [biz.creplaceCharacterWithCharacter]);
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      returnData = ruleParsing.processRulesInternal([inputData, [/\\/g, bas.cForwardSlash]], [biz.creplaceCharacterWithCharacter]);
+    } else {
+      returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\\/g, bas.cForwardSlash]);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -151,7 +159,11 @@ const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMeta
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = ruleParsing.processRulesInternal(inputData, [/\/\//g, bas.cForwardSlash], [biz.creplaceCharacterWithCharacter]);
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      returnData = ruleParsing.processRulesInternal([inputData, [/\/\//g, bas.cForwardSlash]], [biz.creplaceCharacterWithCharacter]);
+    } else {
+      returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\/\//g, bas.cForwardSlash]);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -182,7 +194,7 @@ const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) 
   if (!inputData) {
     returnData = false;
   } else {
-    returnData = ruleParsing.processRulesInternal(inputData, [/\\\\/g, bas.cBackSlash], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/\\\\/g, bas.cBackSlash]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -208,7 +220,7 @@ const replaceSpacesWithPlus = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/ /g, bas.cPlus);
-    returnData = ruleParsing.processRulesInternal(inputData, [/ /g, bas.cPlus], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/ /g, bas.cPlus]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -232,7 +244,7 @@ const replaceColonWithUnderscore = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     // returnData = inputData.replace(/:/g, bas.cUnderscore);
-    returnData = ruleParsing.processRulesInternal(inputData, [/:/g, bas.cUnderscore], [biz.creplaceCharacterWithCharacter]);
+    returnData = ruleParsing.processRulesInternal([inputData, [/:/g, bas.cUnderscore]], [biz.creplaceCharacterWithCharacter]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -255,8 +267,12 @@ const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    // returnData = inputData.replace(/\s+/g, bas.cSpace);
-    returnData = ruleParsing.processRulesInternal(inputData, [/\s+/g, bas.cSpace], [biz.creplaceCharacterWithCharacter]).trim();
+    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cconfigurationInitialized) === true) {
+      // returnData = inputData.replace(/\s+/g, bas.cSpace);
+      returnData = ruleParsing.processRulesInternal([inputData, [/\s+/g, bas.cSpace]], [biz.creplaceCharacterWithCharacter]).trim();
+    } else {
+      returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]);
+    }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -412,10 +428,6 @@ const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
-
-// ******************************************************
-// Internal functions
-// ******************************************************
 
 /**
  * @function replaceCharacterAtIndexOfString

@@ -227,7 +227,7 @@ function getCommandArgs(commandString, commandDelimiter) {
         // Determine if the number of single quotes is odd or even?
         // About to call the rule broker to process on the number of single quotes and determien if it-be even or odd.
         loggers.consoleLog(namespacePrefix + functionName, msg.cgetCommandArgsMessage1 + sys.cgetCommandArgsMessage2);
-        if (numberOfSingleQuotes >= 2 && ruleBroker.processRules(numberOfSingleQuotes, '', isOddRule) === false) {
+        if (numberOfSingleQuotes >= 2 && ruleBroker.processRules([numberOfSingleQuotes, ''], isOddRule) === false) {
           // numberOfSingleQuotes is >= 2 & the numberOfSingleQuotes is EVEN! YAY!
           loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfSingleQuotesIsEven);
           let indexOfStringDelimiter;
@@ -240,7 +240,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               loggers.consoleLog(namespacePrefix + functionName, msg.cFirstIndexIs + indexOfStringDelimiter);
               // commandString.replace(bas.cBackTickQuote, bas.cBackTickQuote + bas.cTilde);
               // Rather than use the above, we will make a business rule o replace at index, the above replaces all isntances and we don't want that!
-              commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
+              commandString = ruleBroker.processRules([commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde]], replaceCharacterAtIndexRule);
               stringLiteralCommandDelimiterAdded = true;
               // commandString after taggng the first string delimiter:
               loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingTheFirstStringDelimiter + commandString);
@@ -251,11 +251,11 @@ function getCommandArgs(commandString, commandDelimiter) {
               // Determine if it is odd or even.
               // NOTE: We start our count with 0 which would technically be our odd, then 1 should be even, but 1 is an odd number, so the logic here should actually be backwards.
               // an even value for "i" would be the odd i-th delimier value.
-              if (ruleBroker.processRules(i.toString(), '', isOddRule) === true) {
+              if (ruleBroker.processRules([i.toString(), ''], isOddRule) === true) {
                 // We are on the odd index, 1, 3, 5, etc...
                 // odd index
                 loggers.consoleLog(namespacePrefix + functionName, msg.coddIndex);
-                commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cTilde + bas.cBackTickQuote], replaceCharacterAtIndexRule);
+                commandString = ruleBroker.processRules([commandString, [indexOfStringDelimiter, bas.cTilde + bas.cBackTickQuote]], replaceCharacterAtIndexRule);
                 stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an odd string delimiter:
                 loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnOddStringDelimiter + commandString);
@@ -263,7 +263,7 @@ function getCommandArgs(commandString, commandDelimiter) {
                 // We are on the even index 2, 4, 6, etc...
                 // even index
                 loggers.consoleLog(namespacePrefix + functionName, msg.cevenIndex);
-                commandString = ruleBroker.processRules(commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde], replaceCharacterAtIndexRule);
+                commandString = ruleBroker.processRules([commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde]], replaceCharacterAtIndexRule);
                 stringLiteralCommandDelimiterAdded = true;
                 // commandString after tagging an even string delimiter:
                 loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingAnEvenStringDelimiter + commandString);
@@ -300,7 +300,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               // then we need to just append our string to that array element, after we remove the tilde string tags,
               // and replace them with our signle quotes again.
               if (returnData[returnData.length - 1].slice(-1) === secondaryCommandArgsDelimiter) {
-                preSplitCommandStringElement = ruleBroker.processRules(preSplitCommandStringElement, [/~/g, bas.cBackTickQuote], replaceTildesWithSingleQuoteRule);
+                preSplitCommandStringElement = ruleBroker.processRules([preSplitCommandStringElement, [/~/g, bas.cBackTickQuote]], replaceTildesWithSingleQuoteRule);
                 returnData[returnData.length - 1] = returnData[returnData.length - 1] + preSplitCommandStringElement;
               } else {
                 // preSplitCommandSringElement is:
@@ -325,7 +325,7 @@ function getCommandArgs(commandString, commandDelimiter) {
   } // End-if (commandString.includes(commandArgsDelimiter) === true)
   if (stringLiteralCommandDelimiterAdded === true) {
     // This means we need to remove some bas.cTilde from one or more of the command args.
-    ruleBroker.processRules(returnData, '', [biz.cremoveStringLiteralTagsFromArray]);
+    ruleBroker.processRules([returnData, ''], [biz.cremoveStringLiteralTagsFromArray]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -368,7 +368,7 @@ function executeCommand(commandString) {
     // Here we will capture the start time of the command we are about to execute.
     // After executing we wil capture the end time and then
     // compute the difference to determine how many milliseconds it took to run the command.
-    commandStartTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
+    commandStartTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // Cmmand Start time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandStartTimeIs + commandStartTime);
   } // End-if (commandMetricsEnabled === true)
@@ -387,11 +387,11 @@ function executeCommand(commandString) {
   }
   if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false) {
     let performanceTrackingObject = {};
-    commandEndTime = ruleBroker.processRules(gen.cYYYYMMDD_HHmmss_SSS, '', [biz.cgetNowMoment]);
+    commandEndTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // Command End time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandEndTimeIs + commandEndTime);
     // Now compute the delta tme so we know how long it took to run that command.
-    commandDeltaTime = ruleBroker.processRules(commandStartTime, commandEndTime, [biz.ccomputeDeltaTime]);
+    commandDeltaTime = ruleBroker.processRules([commandStartTime, commandEndTime], [biz.ccomputeDeltaTime]);
     // Command run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandRunTimeIs + commandDeltaTime);
     // Check to make sure the command performance tracking stack exists or does not exist.

@@ -56,7 +56,7 @@ function processRootPath(inputPath) {
   // console.log(`inputPath is: ${inputPath}`);
   ruleBroker.bootStrapBusinessRules();
   chiefCommander.bootStrapCommands();
-  let resolvedPath = ruleBroker.processRules(inputPath, sys.cActualFrameworkName, [biz.cparseSystemRootPath]);
+  let resolvedPath = ruleBroker.processRules([inputPath, sys.cActualFrameworkName], [biz.cparseSystemRootPath]);
   dataBroker.setupDataStorage();
   let rootPath = path.resolve(resolvedPath);
   // console.log(`rootPath is: ${rootPath}`);
@@ -90,8 +90,8 @@ function initFrameworkSchema(configData) {
   let frameworkMetaDataPathAndFilename = configData[cfg.cframeworkFullMetaDataPath];
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataPathAndFilenameIs + applicationMetaDataPathAndFilename);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataPathAndFilenameIs + frameworkMetaDataPathAndFilename);
-  let applicationMetaData = ruleBroker.processRules(applicationMetaDataPathAndFilename, '', getJsonRule);
-  let frameworkMetaData = ruleBroker.processRules(frameworkMetaDataPathAndFilename, '', getJsonRule);
+  let applicationMetaData = ruleBroker.processRules([applicationMetaDataPathAndFilename, ''], getJsonRule);
+  let frameworkMetaData = ruleBroker.processRules([frameworkMetaDataPathAndFilename, ''], getJsonRule);
   loggers.consoleLog(namespacePrefix + functionName, msg.capplicationMetaDataIs + JSON.stringify(applicationMetaData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkMetaDataIs + JSON.stringify(frameworkMetaData));
 
@@ -160,7 +160,7 @@ function initFrameworkSchema(configData) {
   let enableLogFileOutputSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cCaptureSessionDateTimeStampLogFileName);
-    let sessionDateTimeStamp = ruleBroker.processRules(configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp), '', [biz.cgetNowMoment]);
+    let sessionDateTimeStamp = ruleBroker.processRules([configurator.getConfigurationSetting(wrd.csystem, cfg.cdateTimeStamp), ''], [biz.cgetNowMoment]);
     loggers.consoleLog(namespacePrefix + functionName, msg.csessionDateTimeStampIs + sessionDateTimeStamp);
     let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wrd.cVersion] + bas.cUnderscore + applicationMetaData[wrd.cName] + gen.cDotLog;
     loggers.consoleLog(namespacePrefix + functionName, msg.clogFileNameIs + logFileName);
@@ -286,24 +286,23 @@ function loadCommandWorkflows(workflowPathConfigName) {
 /**
  * @function executeBusinessRules
  * @description A wrapper to call a business rule from the application level code.
- * @param {string} ruleInput The input to the rule that is being called.
- * @param {string} ruleMetaData Additional data to input to the rule.
+ * @param {array<string|integer|boolean|object|function,string|integer|boolean|object|function>} inputs The array of inputs:
+ * inputs[0] = inputData - The input to the rule that is being called.
+ * inputs[1] = inputMetaData - Additional data the input to the rule.
  * @param {array<string>} businessRules The array that contains the name(s) of the business rule that should be executed.
  * @return {string} The value that is returned from the rule is also returned.
  * @author Seth Hollingsead
  * @date 2022/02/16
  */
-function executeBusinessRules(ruleInput, ruleMetaData, businessRules) {
+function executeBusinessRules(inputs, businessRules) {
   let functionName = executeBusinessRules.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // ruleInput is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cruleInputIs + JSON.stringify(ruleInput));
-  // ruleMetaData is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cruleMetaDataIs + JSON.stringify(ruleMetaData));
+  // inputs is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputsIs + JSON.stringify(inputs));
   // businessRules is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cbusinessRulesIs + JSON.stringify(businessRules));
   let returnData;
-  returnData = ruleBroker.processRules(ruleInput, ruleMetaData, businessRules);
+  returnData = ruleBroker.processRules(inputs, businessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -448,7 +447,7 @@ export default {
   [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
   [fnc.cloadCommandAliases]: (commandAliasesPathConfigName) => loadCommandAliases(commandAliasesPathConfigName),
   [fnc.cloadCommandWorkflows]: (workflowPathConfigName) => loadCommandWorkflows(workflowPathConfigName),
-  [fnc.cexecuteBusinessRules]: (ruleInput, ruleMetaData, businessRules) => executeBusinessRules(ruleInput, ruleMetaData, businessRules),
+  [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
   [fnc.cprocessCommandQueue]: () => processCommandQueue(),
