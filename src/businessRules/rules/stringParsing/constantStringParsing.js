@@ -2,8 +2,10 @@
  * @file constantStringParsing.js
  * @module constantStringParsing
  * @description Contains all system defined business rules for parsing strings related to constants.
+ * @requires module:ruleParsing
  * @requires module:configurator
  * @requires module:loggers
+ * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/n-readlines|n-readlines}

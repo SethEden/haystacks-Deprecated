@@ -210,8 +210,39 @@ const clearDataStorage = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function changeSetting
+ * @description This command changes a setting in the D data structure, given a namespace, property name and value.
+ * @param {array<string>} inputData An array that contains
+ * the fully qualified path to the setting that should be changed and
+ * the data that should be assigned to it.
+ * inputData[0] = changeSetting
+ * inputData[1] = fully.Qualified.Path
+ * inputData[2] = value to assign to the data property
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/05/10
+ */
+const changeSetting = function(inputData, inputMetaData) {
+  let functionName = changeSetting.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData && inputData.length === 3) {
+
+  } else {
+    
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   printDataHive,
   printDataHiveAttributes,
-  clearDataStorage
+  clearDataStorage,
+  changeSetting
 };

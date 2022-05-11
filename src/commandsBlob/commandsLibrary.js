@@ -88,6 +88,7 @@ function initCommandsLibrary() {
     [cmd.cprintDataHive]: (inputData, inputMetaData) => dataDirectorate.printDataHive(inputData, inputMetaData),
     [cmd.cprintDataHiveAttributes]: (inputData, inputMetaData) => dataDirectorate.printDataHiveAttributes(inputData,inputMetaData),
     [cmd.cclearDataStorage]: (inputData, inputMetaData) => dataDirectorate.clearDataStorage(inputData, inputMetaData),
+    [cmd.cchangeSetting]: (inputData, inputMetaData) => dataDirectorate.changeSetting(inputData, inputMetaData),
 
     // ***********************************************
     // Integration Test commands in order

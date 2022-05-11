@@ -381,6 +381,9 @@ const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData
   } else {
     // console.log(`character2Find is: ${JSON.stringify(character2Find)}`);
     // console.log(`character2Replace is: ${JSON.stringify(character2Replace)}`);
+    if (Array.isArray(inputData) === true) {
+      inputData = inputData[0];
+    }
     returnData = inputData.replaceAll(character2Find, character2Replace);
   }
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);

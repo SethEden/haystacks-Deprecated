@@ -3,6 +3,9 @@
  * @module commandArrayParsing
  * @description Contains all system defined business rules for parsing arrays specific to commands.
  * @requires module:ruleParsing
+ * @requires module:configurator
+ * @requires module:loggers
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/04/26

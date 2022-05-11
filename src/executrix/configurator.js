@@ -219,12 +219,13 @@ function getParentConfigurationNamespaceObject(configurationNamespace, optionalF
  * @author Seth Hollingsead
  * @date 2021/10/26
  * @NOTE Cannot use the loggers here, because of a circular dependency.
+ * @NOTE See note below about the business rule: biz.cgetNamespacedDataObject!
  */
 function getConfigurationNamespaceObject(configurationNamespace) {
   // let functionName = getConfigurationNamespaceObject.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configurationNamespace is: ${configurationNamespace}`);
-  let returnValue = true; // Assume there will be a return value.
+  let returnValue = true; // DO NOT CHANGE! It will break the boot-strap protection mechanisms.
   let configurationDataRoot = D[wrd.cconfiguration];
   let configurationPathObject = configurationDataRoot;
   if (!configurationPathObject) { // Need to handle the case that the configuration data object doesn't even exist at all!
@@ -242,6 +243,11 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   if (returnValue) {
     returnValue = configurationPathObject;
   }
+  // NOTE: The getConfigurationNamespaceObject is called before the configuration bootstrap process is complete.
+  // So therefore trying to call the above functionality from a business rule will not work EVER!
+  // The above code will need to remain in place even though,
+  // it is duplicate code to the new functionality in the busienss rule: biz.cgetNamespacedDataObject
+  // returnValue = ruleBroker.processRules([configurationNamespace.unshift(wrd.cconfiguration), ''], [biz.cgetNamespacedDataObject]);
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
