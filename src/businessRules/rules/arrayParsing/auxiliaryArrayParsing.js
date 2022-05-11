@@ -82,10 +82,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
    return returnData;
  };
 
- // ******************************************************
- // Internal functions
- // ******************************************************
-
  /**
   * @function doesArrayContainValue
   * @description Checks if an array contains a value, checking equality by function(val, arr[i]).

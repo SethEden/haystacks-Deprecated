@@ -348,7 +348,13 @@ const setNamespacedDataObject = function(inputData, inputMetaData) {
       processingValidData = true;
       namespaceDataObject = namespaceDataObject[inputData[i]];
       if (i === inputData.length - 2) {
-        namespaceDataObject[inputData[i + 1]] = inputMetaData;
+        console.log('namespaceDataObject is: ' + JSON.stringify(namespaceDataObject));
+        let fullyQualifiedKey = namespaceDataObject.join(bas.cDot);
+        if (ruleParsing.processRulesInternal([[namespaceDataObject, cfg.cdebugSetting], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === true) {
+          namespaceDataObject[fullyQualifiedKey] = inputMetaData;
+        } else {
+          namespaceDataObject[inputData[i + 1]] = inputMetaData;
+        }
         returnData = true;
       }
     } // End for-loop (let i = 0; i < configurationNamespace.length; i++)

@@ -239,7 +239,6 @@ const changeSetting = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   if (inputData && inputData.length === 3) {
-    // Call dataArrayParsing.getNamespacedDataObject business rule to get the data that should be mutated.
     let dataPath = inputData[1];
     dataPath = ruleBroker.processRules([dataPath, ''], [biz.cgetWordsArrayFromString]);
     // dataPath is:
@@ -247,6 +246,7 @@ const changeSetting = function(inputData, inputMetaData) {
     let newValue = inputData[2];
     // newValue is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnewValueIs + JSON.stringify(newValue));
+    // Call dataArrayParsing.getNamespacedDataObject business rule to get the data that should be mutated.
     let parentDataObject = ruleBroker.processRules([dataPath, ''], [biz.cgetNamespacedDataObject]);
     // parentDataObject BEFORE mutation is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectBeforeMutationIs)
