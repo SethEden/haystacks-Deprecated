@@ -18,7 +18,6 @@ import dataBroker from '../../brokers/dataBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
-
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -50,6 +49,37 @@ const saveConfiguration = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function changeConfigurationSetting
+ * @description Persists a change to a user specified configuration setting.
+ * This enables the user to enable or disable console log flags to use for run-time debugging.
+ * This is useful also for automating changes to how and what is logged during execution.
+ * Further it is useful for when a test fails, it can be automatically re-run with a more detailed log.
+ * @param {array<string>} inputData An array that contains
+ * the fully qualified path to the configuration setting that should be changed and
+ * the data that should be assigned to it.
+ * inputData[0] = changeConfigurationSetting
+ * inputData[1] = fully.Qualified.Configuration.Path
+ * inputData[2] = value to assign to the configuration setting property
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/05/11
+ * @NOTE Test String: changeConfigurationSetting configuration.debugSetting.commandsBlob.commands.system true
+ */
+const changeConfigurationSetting = function(inputData, inputMetaData) {
+  let functionName = changeConfigurationSetting.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
-  saveConfiguration
+  saveConfiguration,
+  changeConfigurationSetting
 };

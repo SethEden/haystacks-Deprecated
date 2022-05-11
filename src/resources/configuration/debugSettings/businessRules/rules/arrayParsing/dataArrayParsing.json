@@ -143,5 +143,17 @@
   "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getNamespacedDataObject@ModuleFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getNamespacedDataObject@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getNamespacedDataObject@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getNamespacedDataObject@DataFontBackgroundColor": "Default"
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getNamespacedDataObject@DataFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject": true,
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@ModuleFontColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@FunctionFontColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@MessageFontColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@DataFontColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@ModuleFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@FunctionFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@MessageFontBackgroundColor": "Default",
+  "debugFunctions|debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.setNamespacedDataObject@DataFontBackgroundColor": "Default"
 }

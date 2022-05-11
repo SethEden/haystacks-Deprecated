@@ -2,6 +2,12 @@
  * @file dataDirectorate.js
  * @module dataDirectorate
  * @description Contains all of the data directorate commands.
+ * @requires module:dataBroker
+ * @requires module:ruleBroker
+ * @requires module:configurator
+ * @requires module:loggers
+ * @requires module:data
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/02/04
@@ -10,6 +16,7 @@
 
 // Internal imports
 import dataBroker from '../../brokers/dataBroker.js';
+import ruleBroker from '../../brokers/ruleBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
@@ -219,10 +226,11 @@ const clearDataStorage = function(inputData, inputMetaData) {
  * inputData[0] = changeSetting
  * inputData[1] = fully.Qualified.Path
  * inputData[2] = value to assign to the data property
- * @param {string} inputMetaData Not used for this business rule.
+ * @param {string} inputMetaData Not used for this command.
  * @return {boolean} True to indicate that the application should not exit.
  * @author Seth Hollingsead
  * @date 2022/05/10
+ * @NOTE Test String: changeSetting colors.ColorData.Red.ColorName removeRed
  */
 const changeSetting = function(inputData, inputMetaData) {
   let functionName = changeSetting.name;
@@ -231,9 +239,30 @@ const changeSetting = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   if (inputData && inputData.length === 3) {
-
+    // Call dataArrayParsing.getNamespacedDataObject business rule to get the data that should be mutated.
+    let dataPath = inputData[1];
+    dataPath = ruleBroker.processRules([dataPath, ''], [biz.cgetWordsArrayFromString]);
+    // dataPath is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + JSON.stringify(dataPath));
+    let newValue = inputData[2];
+    // newValue is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnewValueIs + JSON.stringify(newValue));
+    let parentDataObject = ruleBroker.processRules([dataPath, ''], [biz.cgetNamespacedDataObject]);
+    // parentDataObject BEFORE mutation is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectBeforeMutationIs)
+    // Now mutate the object.
+    parentDataObject = newValue;
+    // parentDataObject AFTER mutation is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectAfterMutationIs)
+    // Persist the change back to the D-data structure.
+    ruleBroker.processRules([dataPath, parentDataObject], [biz.csetNamespacedDataObject]);
   } else {
-    
+    // ERROR: changeSetting command, invalid entry:
+    console.log(msg.cchangeSettingError01 + JSON.stringify(inputData));
+    // Please enter a fully qualified path to a data property in the system,
+    console.log(msg.cchangeSettingError02);
+    // and a value that you would like to assign to that data property.
+    console.log(msg.cchangeSettingError03);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

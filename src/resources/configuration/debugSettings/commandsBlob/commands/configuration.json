@@ -24,5 +24,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.saveConfiguration@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.saveConfiguration@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.saveConfiguration@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.configuration.saveConfiguration@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.saveConfiguration@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@DataFontBackgroundColor": "Black"
 }

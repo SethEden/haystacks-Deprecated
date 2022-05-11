@@ -319,7 +319,40 @@ const getNamespacedDataObject = function(inputData, inputMetaData) {
     if (processingValidData === true) {
       returnData = namespaceDataObject;
     }
-  } // End-if (inputData)
+  } // End-if (inputData && inputData.length > 0)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function setNamespacedDataObject
+ * @description Persists a change to the data structure.
+ * @param {array<string>} inputData The path in the data JSON object where the
+ * setting should be persisted.
+ * @param {object} inputMetaData The data to be persisted on the D-data structure.
+ * @return {boolean} True or False to indicate if the data was persisted correctly or not.
+ * @author Seth Hollingsead
+ * @date 2022/05/11
+ */
+const setNamespacedDataObject = function(inputData, inputMetaData) {
+  let functionName = setNamespacedDataObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  let processingValidData = false;
+  let namespaceDataObject = D;
+  if (inputData && inputData.length > 0) {
+    for (let i = 0; i < inputData.length - 1; i++) {
+      processingValidData = true;
+      namespaceDataObject = namespaceDataObject[inputData[i]];
+      if (i === inputData.length - 2) {
+        namespaceDataObject[inputData[i + 1]] = inputMetaData;
+        returnData = true;
+      }
+    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+  } // End-if (inputData && inputData.length > 0)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -336,5 +369,6 @@ export default {
   isArrayOrObject,
   isNonZeroLengthArray,
   arrayDeepClone,
-  getNamespacedDataObject
+  getNamespacedDataObject,
+  setNamespacedDataObject
 };
