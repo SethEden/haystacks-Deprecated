@@ -82,6 +82,7 @@ function initCommandsLibrary() {
     [cmd.cconstantsGenerator]: (inputData, inputMetaData) => constantsCommands.constantsGenerator(inputData, inputMetaData),
     [cmd.cconstantsGeneratorList]: (inputData, inputMetaData) => constantsCommands.constantsGeneratorList(inputData, inputMetaData),
     [cmd.cconstantsPatternRecognizer]: (inputData, inputMetaData) => constantsCommands.constantsPatternRecognizer(inputData, inputMetaData),
+    [cmd.cevaluateConstant]: (inputData, inputMetaData) => constantsCommands.evaluateConstant(inputData, inputMetaData),
 
     // ***********************************************
     // Data Directorate commands in order

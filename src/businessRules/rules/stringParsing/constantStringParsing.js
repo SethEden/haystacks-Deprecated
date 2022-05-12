@@ -255,7 +255,7 @@ loop2:
         let constantActualValue = constantTypeValues[constantKey];
         // constantActualValue is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantActualValueIs + JSON.stringify(constantActualValue));
-        if (inputData === constantActualValue.Actual) {
+        if (inputData === constantActualValue.Actual || inputData === constantActualValue.Name) {
           returnData = true;
           break loop1;
         }
@@ -387,7 +387,7 @@ loop3:
           let constantActualValue1 = constantTypeValues2[constantKey2];
           // 1 constantActualValue is:
           loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantActualValueIs + JSON.stringify(constantActualValue1));
-          if (inputData === constantActualValue1.Name) {
+          if (inputData === constantActualValue1.Name || inputData === constantActualValue1.Actual) {
             returnData = constantActualValue1.Actual;
           }
         } // End-for (let k = 0; k < constantsKeys2.length; k++)
