@@ -74,6 +74,7 @@ function initCommandsLibrary() {
     // Configuration commands in order
     // ***********************************************
     [cmd.csaveConfiguration]: (inputData, inputMetaData) => configurationCommands.saveConfiguration(inputData, inputMetaData),
+    [cmd.cchangeConfigurationSetting]: (inputData, inputMetaData) => configurationCommands.changeConfigurationSetting(inputData, inputMetaData),
 
     // ***********************************************
     // Constant commands in order
@@ -81,6 +82,7 @@ function initCommandsLibrary() {
     [cmd.cconstantsGenerator]: (inputData, inputMetaData) => constantsCommands.constantsGenerator(inputData, inputMetaData),
     [cmd.cconstantsGeneratorList]: (inputData, inputMetaData) => constantsCommands.constantsGeneratorList(inputData, inputMetaData),
     [cmd.cconstantsPatternRecognizer]: (inputData, inputMetaData) => constantsCommands.constantsPatternRecognizer(inputData, inputMetaData),
+    [cmd.cevaluateConstant]: (inputData, inputMetaData) => constantsCommands.evaluateConstant(inputData, inputMetaData),
 
     // ***********************************************
     // Data Directorate commands in order
@@ -88,6 +90,7 @@ function initCommandsLibrary() {
     [cmd.cprintDataHive]: (inputData, inputMetaData) => dataDirectorate.printDataHive(inputData, inputMetaData),
     [cmd.cprintDataHiveAttributes]: (inputData, inputMetaData) => dataDirectorate.printDataHiveAttributes(inputData,inputMetaData),
     [cmd.cclearDataStorage]: (inputData, inputMetaData) => dataDirectorate.clearDataStorage(inputData, inputMetaData),
+    [cmd.cchangeSetting]: (inputData, inputMetaData) => dataDirectorate.changeSetting(inputData, inputMetaData),
 
     // ***********************************************
     // Integration Test commands in order

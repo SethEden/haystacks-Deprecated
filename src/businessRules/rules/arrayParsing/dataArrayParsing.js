@@ -3,6 +3,7 @@
  * @module dataArrayParsing
  * @description Contains all system defined business rules for parsing arrays specific to data.
  * @requires module:loggers
+ * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -12,6 +13,7 @@
 
 // Internal imports
 import loggers from '../../../executrix/loggers.js';
+import D from '../../../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
@@ -274,6 +276,94 @@ const arrayDeepClone = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function getNamespacedDataObject
+ * @description Navigates the D data structure JSON data object tree to find the namespace of data settings.
+ * @param {array<string>} inputData The path in the data JSON object where the
+ * setting should be returned.
+ * @param {boolean} inputMetaData True or False value to indicate if
+ * the path elements should be created or not it they are not found.
+ * @return {object|boolean} The object found at the specified namespace address in the data object,
+ * or False if nothing was found.
+ * @author Seth Hollingsead
+ * @date 2022/05/10
+ * @NOTE This function contains duplicate code from the configurator.js,
+ * however, we cannot call this business rule from the configurator because
+ * the configurator gets called before the business rules are bootstrapped.
+ * And there are protections in place, but rules cannot be called if they are not yet bootstrapped.
+ * So therefore this code will need to remain duplicated.
+ * And by the time this gets called everything should be effectively bootstrapped.
+ * Therefore we can use the loggers here.
+ */
+const getNamespacedDataObject = function(inputData, inputMetaData) {
+  let functionName = getNamespacedDataObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = false;
+  let processingValidData = false;
+  let namespaceDataObject = D;
+  if (inputData && inputData.length > 0) {
+    for (let i = 0; i < inputData.length; i++) {
+      processingValidData = true;
+      if (!namespaceDataObject[inputData[i]] && inputMetaData === true) {
+        // It doesn't exist yet, so lets make it.
+        namespaceDataObject[inputData[i]] = {};
+      } else if (!namespaceDataObject[inputData[i]]) {
+        console.log(msg.cnamespaceDataObjectPathNotFound + JSON.stringify(inputData[i]));
+        processingValidData = false;
+        break;
+      }
+      namespaceDataObject = namespaceDataObject[inputData[i]];
+    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+    if (processingValidData === true) {
+      returnData = namespaceDataObject;
+    }
+  } // End-if (inputData && inputData.length > 0)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function setNamespacedDataObject
+ * @description Persists a change to the data structure.
+ * @param {array<string>} inputData The path in the data JSON object where the
+ * setting should be persisted.
+ * @param {object} inputMetaData The data to be persisted on the D-data structure.
+ * @return {boolean} True or False to indicate if the data was persisted correctly or not.
+ * @author Seth Hollingsead
+ * @date 2022/05/11
+ */
+const setNamespacedDataObject = function(inputData, inputMetaData) {
+  let functionName = setNamespacedDataObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  let processingValidData = false;
+  let namespaceDataObject = D;
+  if (inputData && inputData.length > 0) {
+    for (let i = 0; i < inputData.length - 1; i++) {
+      processingValidData = true;
+      namespaceDataObject = namespaceDataObject[inputData[i]];
+      if (i === inputData.length - 2) {
+        console.log('namespaceDataObject is: ' + JSON.stringify(namespaceDataObject));
+        let fullyQualifiedKey = namespaceDataObject.join(bas.cDot);
+        if (ruleParsing.processRulesInternal([[namespaceDataObject, cfg.cdebugSetting], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === true) {
+          namespaceDataObject[fullyQualifiedKey] = inputMetaData;
+        } else {
+          namespaceDataObject[inputData[i + 1]] = inputMetaData;
+        }
+        returnData = true;
+      }
+    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+  } // End-if (inputData && inputData.length > 0)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   arraysAreEqual,
   storeData,
@@ -284,5 +374,7 @@ export default {
   isArray,
   isArrayOrObject,
   isNonZeroLengthArray,
-  arrayDeepClone
+  arrayDeepClone,
+  getNamespacedDataObject,
+  setNamespacedDataObject
 };

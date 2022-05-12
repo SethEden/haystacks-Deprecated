@@ -50,5 +50,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.clearDataStorage@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.clearDataStorage@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.clearDataStorage@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.clearDataStorage@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.clearDataStorage@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.dataDirectorate.changeSetting@DataFontBackgroundColor": "Black"
 }

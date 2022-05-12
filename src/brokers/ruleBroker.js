@@ -80,7 +80,7 @@ function addClientRules(clientRules) {
 function processRules(inputs, rulesToExecute) {
   let functionName = processRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`inputs is: ${JSON.stringify(inputsData)}`);
+  // console.log(`inputs is: ${JSON.stringify(inputs)}`);
   // console.log(`rulesToExecute is: ${JSON.stringify(rulesToExecute)}`);
   let returnData;
   let inputMetaData;

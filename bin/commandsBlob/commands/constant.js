@@ -249,8 +249,42 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function evaluateConstant
+ * @description Resolves a constant and prints the output of the constant value.
+ * @param {array<string>} inputData A string array that contains the name of the constant that should be resolved and printed.
+ * inputData[0] = evaluateConstant
+ * inputData[1] = constantToBeEvaluated - The constant that should be resolved and printed to the output if it exists.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/05/11
+ */
+const evaluateConstant = function(inputData, inputMetaData) {
+  let functionName = evaluateConstant.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData && inputData.length > 1) {
+    if (ruleBroker.processRules([inputData[1], ''], [biz.cdoesConstantExist]) === true) {
+      console.log(inputData[1] + bas.cSpace + bas.cEqual + bas.cSpace + ruleBroker.processRules([inputData[1], ''], [biz.cgetConstantActualValue]));
+    } else {
+      console.log('The constant does not exist: ' + inputData[1]);
+    }
+  } else {
+    console.log('ERROR: No constant value entered, please enter a constant name to evaluate.')
+  }
+  // doesConstantExist
+  // getConstantActualValue
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   constantsGenerator,
   constantsGeneratorList,
-  constantsPatternRecognizer
+  constantsPatternRecognizer,
+  evaluateConstant
 };
