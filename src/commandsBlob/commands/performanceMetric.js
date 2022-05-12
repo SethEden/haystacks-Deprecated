@@ -2,6 +2,12 @@
 * @file performanceMetric.js
 * @module performanceMetric
 * @description Contains all of the performance metric commands.
+* @requires module:configurator
+* @requires module:loggers
+* @requires module:data
+* @requires module:stack
+* @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
+* @requires {@link https://mathjs.org/index.html|math}
 * @requires {@link https://www.npmjs.com/package/path|path}
 * @author Seth Hollingsead
 * @date 2022/02/04

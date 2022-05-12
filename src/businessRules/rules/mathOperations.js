@@ -2,6 +2,7 @@
  * @file mathOperations
  * @module mathOperations
  * @description Contains all of the business rule functions for ding math operations and conversions.
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://mathjs.org/index.html|math}

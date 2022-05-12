@@ -4,7 +4,6 @@
  * @description Contains all system defined business rules for parsing arrays specific to auxiliary capabilities.
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
- * @requires {@link https://www.npmjs.com/package/lodash|lodash}
  * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -16,7 +15,6 @@
 import loggers from '../../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
-import _ from 'lodash';
 import * as math from 'mathjs';
 import path from 'path';
 
@@ -84,10 +82,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
    return returnData;
  };
 
- // ******************************************************
- // Internal functions
- // ******************************************************
-
  /**
   * @function doesArrayContainValue
   * @description Checks if an array contains a value, checking equality by function(val, arr[i]).
@@ -103,7 +97,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
   * @author Seth Hollingsead
   * @date 2022/01/21
   */
- // function doesArrayContainValue(array, value, myFunction) {
  const doesArrayContainValue = function(inputData, inputMetaData) {
    let functionName = doesArrayContainValue.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
@@ -114,21 +107,20 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
    if (inputData && inputMetaData) {
      let array = inputData[0];
      let value = inputData[1];
-     if (_.isArray(array) === false) {
+     if (Array.isArray(array) === false) {
        // array input object is not an array.
        loggers.consoleLog(namespacePrefix + functionName, msg.carrayInputObjectIsNotAnArray);
-       returnData = false;
-     }
-     if (!!array.find(i => inputMetaData(i, value))) {
-       // The value was found in the array.
-       loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
-       returnData = true;
      } else {
-       // The value was NOT found in the array.
-       loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
-       returnData = false;
+       if (!!array.find(i => inputMetaData(i, value))) {
+         // The value was found in the array.
+         loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
+         returnData = true;
+       } else {
+         // The value was NOT found in the array.
+         loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
+       }
      }
-   }
+   } // End-if (inputData && inputMetaData)
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
