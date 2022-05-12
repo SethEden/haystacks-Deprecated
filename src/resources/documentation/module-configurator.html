@@ -137,7 +137,11 @@
         <h3 class="subsection-title">Requires</h3>
 
         <ul>
+            <li><a href="module-ruleBroker.html">module:ruleBroker</a></li>
+        
             <li><a href="module-data.html">module:data</a></li>
+        
+            <li><a href="https://www.npmjs.com/package/@haystacks/constants">@haystacks/constants</a></li>
         
             <li><a href="https://www.npmjs.com/package/path">path</a></li>
         </ul>
@@ -271,7 +275,7 @@ configuration setting should be set, or returned.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line202">line 202</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line212">line 212</a>
     </li></ul></dd>
     
 
@@ -383,7 +387,7 @@ or False if nothing was found.</p>
             <td class="type">
             
                 
-<span class="param-type">array.&lt;string></span>
+<span class="param-type">string</span>
 
 
             
@@ -465,7 +469,7 @@ where the configuration setting should be found.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line43">line 43</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -619,8 +623,8 @@ where the configuration setting should be found.</p></td>
             
 
             <td class="description last"><p>An optional function name appendix that could
-poentially be added to the end of the function name.
-Ex: @ModuleFondBackgroundColor</p></td>
+potentially be added to the end of the function name.
+Ex: @ModuleFontBackgroundColor</p></td>
         </tr>
 
     
@@ -668,7 +672,7 @@ Ex: @ModuleFondBackgroundColor</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line166">line 166</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line176">line 176</a>
     </li></ul></dd>
     
 
@@ -738,7 +742,7 @@ or False if nothing was found.</p>
 
 
 <div class="description">
-    <p>Processes a fully qualified name and extracts the configuration anme without the namespace.</p>
+    <p>Processes a fully qualified name and extracts the configuration name without the namespace.</p>
 </div>
 
 
@@ -838,7 +842,7 @@ or False if nothing was found.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line82">line 82</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -1004,7 +1008,7 @@ or False if nothing was found.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line103">line 103</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line110">line 110</a>
     </li></ul></dd>
     
 
@@ -1033,7 +1037,7 @@ or False if nothing was found.</p>
 
         
 <div class="param-desc">
-    <p>The namespace of the configuration setting, wthout the configuration name.</p>
+    <p>The namespace of the configuration setting, without the configuration name.</p>
 </div>
 
 
@@ -1194,7 +1198,7 @@ to actual data objects needed by the configuration system.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line132">line 132</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -1264,7 +1268,7 @@ to actual data objects needed by the configuration system.</p>
     
 
     
-    <h4 class="name" id="~setConfigurationSetting"><span class="type-signature">(inner) </span>setConfigurationSetting<span class="signature">(configurationNamespace, configurationName, configurationValue)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~setConfigurationSetting"><span class="type-signature">(inner) </span>setConfigurationSetting<span class="signature">(configurationNamespace, configurationName, configurationValue)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -1314,7 +1318,7 @@ to actual data objects needed by the configuration system.</p>
             <td class="type">
             
                 
-<span class="param-type">array.&lt;string></span>
+<span class="param-type">string</span>
 
 
             
@@ -1324,7 +1328,9 @@ to actual data objects needed by the configuration system.</p>
 
             
 
-            <td class="description last"><p>The path in the configurationJSON object where the configuration setting should be set.</p></td>
+            <td class="description last"><p>The path in the configuration JSON object
+where the configuration setting should be set.
+Ex: businessRules.rules.stringParsing.countCamelCaseWords</p></td>
         </tr>
 
     
@@ -1427,7 +1433,7 @@ to actual data objects needed by the configuration system.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line20">line 20</a>
+        <a href="executrix_configurator.js.html">executrix/configurator.js</a>, <a href="executrix_configurator.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -1452,6 +1458,24 @@ to actual data objects needed by the configuration system.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1473,13 +1497,13 @@ to actual data objects needed by the configuration system.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-timers.html">timers</a></li><li><a href="module-warden.html">warden</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-advanced.html">advanced</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-auxiliary.html">auxiliary</a></li><li><a href="module-auxiliaryArrayParsing.html">auxiliaryArrayParsing</a></li><li><a href="module-auxiliaryStringParsing.html">auxiliaryStringParsing</a></li><li><a href="module-characterArrayParsing.html">characterArrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-characterStringParsing.html">characterStringParsing</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandArrayParsing.html">commandArrayParsing</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-commandStringParsing.html">commandStringParsing</a></li><li><a href="module-configuration.html">configuration</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-constant.html">constant</a></li><li><a href="module-constantArrayParsing.html">constantArrayParsing</a></li><li><a href="module-constantStringParsing.html">constantStringParsing</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataArrayParsing.html">dataArrayParsing</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-dataDirectorate.html">dataDirectorate</a></li><li><a href="module-dataStringParsing.html">dataStringParsing</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-fileStringParsing.html">fileStringParsing</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexicalAnalyzer.html">lexicalAnalyzer</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-pathArrayParsing.html">pathArrayParsing</a></li><li><a href="module-performanceMetric.html">performanceMetric</a></li><li><a href="module-promptOperations.html">promptOperations</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-ruleParsing.html">ruleParsing</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timeComputation.html">timeComputation</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-wordArrayParsing.html">wordArrayParsing</a></li><li><a href="module-wordStringParsing.html">wordStringParsing</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Oct 27 2021 12:17:16 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed May 11 2022 21:26:38 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

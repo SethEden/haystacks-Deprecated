@@ -8,7 +8,7 @@
   "system.consoleLogEnabled": true,
   "system.logFileEnabled": true,
   "system.includeDateTimeStampInLogFiles": true,
-  "system.enableColorizedConsoleLogs": false,
+  "system.enableColorizedConsoleLogs": true,
   "system.primaryCommandDelimiter": null,
   "system.secondaryCommandDelimiter": ",",
   "system.tertiaryCommandDelimiter": "|",
@@ -18,5 +18,11 @@
   "system.clearBusinessRulesPerformanceDataAfterAnalysis": true,
   "system.clearCommandPerformanceDataAfterAnalysis": true,
   "system.printDataHiveToLogFile": true,
+  "system.enableConstantsValidation": true,
+  "system.displayIndividualConstantsValidationPassMessages": false,
+  "system.displayIndividualConstantsValidationFailMessages": true,
+  "system.displaySummaryConstantsValidationPassMessages": true,
+  "system.displaySummaryConstantsValidationFailMessages": true,
+  "system.configurationInitialized": false,
   "system.AppSetting": "TrunkMonkey"
 }

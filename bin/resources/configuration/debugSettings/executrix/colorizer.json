@@ -1,0 +1,13 @@
+{
+  "debugFiles|debugSetting.executrix.colorizer": false,
+  "debugFunctions|debugSetting.executrix.colorizer.colorizeMessage": false,
+  "debugFunctions|debugSetting.executrix.colorizer.aggregateStyleSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.getFontStyleSettingsFromSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.getColorStyleSettingFromSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.getNamedColorData": false,
+  "debugFunctions|debugSetting.executrix.colorizer.setUnderlineFontStyleOnMessageComponentAccordingToSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.setBoldFontStyleOnMessageComponentAccordingToSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.setFontForegroundColorOnMessageComponentAccordingToSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.setFontBackgroundColorOnMessageComponentAccordingToSetting": false,
+  "debugFunctions|debugSetting.executrix.colorizer.removeFontStyles": false
+}

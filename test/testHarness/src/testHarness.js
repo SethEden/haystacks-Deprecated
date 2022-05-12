@@ -4,21 +4,18 @@
  * @file testHarness.js
  * @module testHarness
  * @description This is the main init for the testHarness application.
- * It contains just enough of the main program loop and/or basic argument parsing to effectively test the framework.
- *
+ * It contains just enough of the main program loop and/or basic argument parsing to
+ * effectively test the framework.
  * @requires module:clientRules
  * @requires module:clientCommands
+ * @requires module:application.command.constants
+ * @requires module:application.configuration.constants
  * @requires module:application.constants
  * @requires module:application.function.constants
  * @requires module:application.message.constants
- * @requires module:haystacks
- * @requires module:haystacks.constants.basic
- * @requires module:haystacks.constants.configuration
- * @requires module:haystacks.constants.generic
- * @requires module:haystacks.constants.message
- * @requires module:haystacks.constants.phonic
- * @requires module:haystacks.constants.system
- * @requires module:haystacks.constants.word1
+ * @requires module:allApplicationConstantsValidationMetadata
+ * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
+ * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/url|url}
  * @requires {@link https://www.npmjs.com/package/dotenv|dotenv}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -30,30 +27,25 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
+import * as app_cmd from './constants/application.command.constants.js';
 import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
 import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
+import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
 import haystacks from 'haystacks';
-// const {bas, cfg, } = haystacks
-let bas = haystacks.bas;
-let cmd = haystacks.cmd;
-let cfg = haystacks.cfg;
-let gen = haystacks.gen;
-let msg = haystacks.msg;
-let phn = haystacks.phn;
-let sys = haystacks.sys;
-let wr1 = haystacks.wr1;
+import hayConst from '@haystacks/constants';
 import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
+const {bas, biz, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.
 let namespacePrefix = baseFileName + bas.cDot;
-global.appRot = path.resolve(process.cwd());
+global.appRoot = path.resolve(process.cwd());
 dotenv.config();
 const {NODE_ENV} = process.env;
 
@@ -72,28 +64,32 @@ function bootstrapApplication() {
   rootPathArray.pop(); // remove any bin or src folder from the path.
   rootPath = rootPathArray.join(bas.cBackSlash);
   let appConfig = {};
-  if (NODE_ENV === wr1.cdevelopment) {
+  if (NODE_ENV === wrd.cdevelopment) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullDevResourcesPath,
       appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
-    }
-  } else if (NODE_ENV === wr1.cproduction) {
+    };
+  } else if (NODE_ENV === wrd.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
       appConfigResourcesPath: rootPath + apc.cFullProdResourcesPath,
       appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
       clientMetaDataPath: apc.cmetaDataProdPath,
       clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   } else {
     // WARNING: No .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
     console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
@@ -103,10 +99,12 @@ function bootstrapApplication() {
       appConfigReferencePath: rootPath + apc.cFullDevConfigurationPath,
       clientMetaDataPath: apc.cmetaDataDevPath,
       clientCommandAliasesPath: rootPath + apc.cFullDevCommandsPath,
+      clientConstantsPath: rootPath + apc.cFullDevConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullDevWorkflowsPath,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
-    }
+    };
   }
   appConfig[sys.cclientBusinessRules] = clientRules.initClientRulesLibrary();
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
@@ -128,7 +126,7 @@ async function application() {
   let commandInput;
   let commandResult;
 
-  argumentDrivenInterface = haystacks.getConfigurationSetting(wr1.csystem, app_cfg.cargumentDrivenInterface);
+  argumentDrivenInterface = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cargumentDrivenInterface);
   if (argumentDrivenInterface === undefined) {
     argumentDrivenInterface = false;
   }
@@ -154,7 +152,7 @@ async function application() {
     if (process.argv[2].includes(bas.cDash) === true ||
     process.argv[2].includes(bas.cForwardSlash) === true ||
     process.argv[2].includes(bas.cBackSlash) === true) {
-      commandToExecute = warden.executeBusinessRule(biz.caggregateCommandArguments, process.argv, '');
+      commandToExecute = warden.executeBusinessRule([process.argv, ''], [biz.caggregateCommandArguments]);
     }
     if (commandToExecute !== '') {
       warden.enqueueCommand(commandToExecute);
@@ -174,7 +172,9 @@ async function application() {
 
     while(programRunning === true) {
       if (haystacks.isCommandQueueEmpty() === true) {
-        commandInput = haystacks.prompt(bas.cGreaterThan);
+        // biz.cprompt is some how undefined here, although other biz.c<something-else> do still work.
+        // We will use wrd.cprompt here because it is working. No idea what the issue is with biz.prompt.
+        commandInput = haystacks.executeBusinessRules([bas.cGreaterThan, ''], [wrd.cprompt]);
         haystacks.enqueueCommand(commandInput);
       }
       commandResult = haystacks.processCommandQueue();
