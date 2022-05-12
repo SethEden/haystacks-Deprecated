@@ -140,8 +140,8 @@ const replaceCharacterAtIndex = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
-  let returnData = false;
-  if (inputData) {
+  let returnData = inputData;
+  if (inputData && inputMetaData) {
     let indexOfReplacement;
     let stringToReplaceWith;
     if (inputMetaData.length === 2) {

@@ -50,5 +50,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.constant.constantsPatternRecognizer@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.constant.constantsPatternRecognizer@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.constant.constantsPatternRecognizer@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.constant.constantsPatternRecognizer@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.constantsPatternRecognizer@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.constant.evaluateConstant@DataFontBackgroundColor": "Black"
 }
