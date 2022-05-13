@@ -30,6 +30,7 @@ import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
+import url from 'url';
 import path from 'path';
 
 const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
@@ -284,6 +285,142 @@ function loadCommandWorkflows(workflowPathConfigName) {
 };
 
 /**
+ * @function loadPlugin
+ * @description Calls the plugin initializePlugin function to get the plugin data:
+ * Business rules, Commands, Workflows, Constants, Configurations, dependencies list (dependant plugins), etc...
+ * @param {string} pluginPath The fully qualified path where to load the plugin from.
+ * @return {boolean} True or False to indicate if the plugin was loaded or not.
+ * @author Seth Hollingsead
+ * @date 2022/05/12
+ */
+function loadPlugin(pluginPath) {
+  let functionName = loadPlugin.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // pluginPath is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpluginPathIs + pluginPath);
+  let returnData = false;
+
+
+  // ****************************************************************************************
+  // Possible solution:
+  // https://stackoverflow.com/questions/2879509/dynamically-loading-javascript-synchronously
+  // Jaggler3
+  // 2016-08-08
+  // ****************************************************************************************
+  // The most Node.js-like implementation I could come up with was able to load JS files synchonously, and use them as objects/modules
+  // var scriptCache = [];
+  // var paths = [];
+  // function Import(path)
+  // {
+  //     var index = 0;
+  //     if((index = paths.indexOf(path)) != -1) //If we already imported this module
+  //     {
+  //         return scriptCache [index];
+  //     }
+  //
+  //     var request, script, source;
+  //     var fullPath = window.location.protocol + '//' + window.location.host + '/' + path;
+  //
+  //     request = new XMLHttpRequest();
+  //     request.open('GET', fullPath, false);
+  //     request.send();
+  //
+  //     source = request.responseText;
+  //
+  //     var module = (function concealedEval() {
+  //         eval(source);
+  //         return exports;
+  //     })();
+  //
+  //     scriptCache.push(module);
+  //     paths.push(path);
+  //
+  //     return module;
+  // }
+  //
+  // An example source (addobjects.js):
+  //
+  // function AddTwoObjects(a, b)
+  // {
+  //     return a + b;
+  // }
+  //
+  // this.exports = AddTwoObjects;
+  //
+  // And use it like this:
+  //
+  // var AddTwoObjects = Import('addobjects.js');
+  // alert(AddTwoObjects(3, 4)); //7
+  // // or even like this:
+  // alert(Import('addobjects.js')(3, 4)); //7
+  // ****************************************************************************************
+  // Possible solution:
+  // https://stackoverflow.com/questions/2879509/dynamically-loading-javascript-synchronously
+  // ****************************************************************************************
+
+
+  let resolvedPluginPath = path.resolve(pluginPath + bas.cForwardSlash + sys.cpackageDotJson);
+  console.log('resolvedPluginPath is: ' + resolvedPluginPath);
+  let pluginMetaData = ruleBroker.processRules([resolvedPluginPath, ''], [biz.cgetJsonData]);
+  console.log('pluginMetaData is: ' + JSON.stringify(pluginMetaData));
+  let pluginMainPath = pluginMetaData[wrd.cmain];
+  console.log('pluginMainPath is: ' + pluginMainPath);
+  pluginMainPath = path.join(pluginPath, pluginMainPath);
+  console.log('pluginMainPath is: ' + pluginMainPath);
+  // pluginMainPath = url.pathToFileURL(pluginMainPath);
+  // console.log('pluginMainPath is: ' + pluginMainPath);
+  // let importedModule;
+  // import(pluginMainPath).then((module) => {
+  //   console.log('Attempted the import');
+  //   let pluginData = module.initializePlugin();
+  //   console.log('pluginData: ' + pluginData);
+  // });
+
+  let pluginData = haystacksImport(pluginMainPath);
+  console.log('pluginData is: ' + pluginData);
+
+  // Every plugin will be required to have a function "initializePlugin",
+  // that returns all of the plugin data,
+  // functions, rules, commands, constants, configurations, dependencies list, etc...
+
+  // Now destructure the plugin data and delegate to the various D-data structures of the framework.
+
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+var scriptCache = [];
+var paths = [];
+
+function haystacksImport(fullPath) {
+      var index = 0;
+      // if((index = paths.indexOf(path)) != -1) //If we already imported this module
+      // {
+      //     return scriptCache [index];
+      // }
+
+      var request, script, source;
+      // var fullPath = window.location.protocol + '//' + window.location.host + '/' + path;
+
+      request = new XMLHttpRequest();
+      request.open('GET', fullPath, false);
+      request.send();
+
+      source = request.responseText;
+
+      var module = (function concealedEval() {
+          eval(source);
+          return exports;
+      })();
+
+      scriptCache.push(module);
+      paths.push(path);
+
+      return module;
+};
+
+/**
  * @function executeBusinessRules
  * @description A wrapper to call a business rule from the application level code.
  * @param {array<string|integer|boolean|object|function,string|integer|boolean|object|function>} inputs The array of inputs:
@@ -447,6 +584,7 @@ export default {
   [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
   [fnc.cloadCommandAliases]: (commandAliasesPathConfigName) => loadCommandAliases(commandAliasesPathConfigName),
   [fnc.cloadCommandWorkflows]: (workflowPathConfigName) => loadCommandWorkflows(workflowPathConfigName),
+  [fnc.cloadPlugin]: (pluginPath) => loadPlugin(pluginPath),
   [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),

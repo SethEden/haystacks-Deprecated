@@ -166,6 +166,28 @@ function loadCommandWorkflows(workflowPath, contextName) {
 };
 
 /**
+ * @function loadPlugin
+ * @description A wrapper call to the warden.loadPlugin function.
+ * Calls the plugin initializePlugin function to get the plugin data:
+ * Business rules, Commands, Workflows, Constants, Configurations, dependencies list (dependant plugins), etc...
+ * @param {string} pluginPath The fully qualified path where to load the plugin from.
+ * @return {boolean} True or False to indicate if the plugin was loaded or not.
+ * @author Seth Hollingsead
+ * @date 2022/05/12
+ */
+function loadPlugin(pluginPath) {
+  let functionName = loadPlugin.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // pluginPath is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cpluginPathIs + pluginPath);
+  let returnData = false;
+  returnData = warden.loadPlugin(pluginPath);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
  * @function executeBusinessRules
  * @description A wrapper call to a business rule from the warden.executeBusinessRules.
  * @param {array<string|integer|boolean|object|function,string|integer|boolean|object|function>} inputs The array of inputs:
@@ -326,6 +348,7 @@ export default {
   [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
   [fnc.cloadCommandAliases]: (commandAliasesPath, contextName) => loadCommandAliases(commandAliasesPath, contextName),
   [fnc.cloadCommandWorkflows]: (workflowPath, contextName) => loadCommandWorkflows(workflowPath, contextName),
+  [fnc.cloadPlugin]: (pluginPath) => loadPlugin(pluginPath),
   [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),

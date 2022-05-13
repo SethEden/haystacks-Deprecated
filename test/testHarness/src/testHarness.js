@@ -162,6 +162,8 @@ async function application() {
     }
   } // End-if (!process.argv && process.argv.length > 0)
 
+  haystacks.loadPlugin('C:/haystacks-plugins/pluginOne/');
+
   // NOW the application can continue with the interactive interface fi the flag was set to false.
   if (argumentDrivenInterface === false) {
     // BEGIN main program loop
