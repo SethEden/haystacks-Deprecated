@@ -30,6 +30,8 @@ import loggers from '../executrix/loggers.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
+import requireModule from 'require-module';
+import requirejs from 'requirejs';
 import url from 'url';
 import path from 'path';
 
@@ -300,65 +302,6 @@ function loadPlugin(pluginPath) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cpluginPathIs + pluginPath);
   let returnData = false;
 
-
-  // ****************************************************************************************
-  // Possible solution:
-  // https://stackoverflow.com/questions/2879509/dynamically-loading-javascript-synchronously
-  // Jaggler3
-  // 2016-08-08
-  // ****************************************************************************************
-  // The most Node.js-like implementation I could come up with was able to load JS files synchonously, and use them as objects/modules
-  // var scriptCache = [];
-  // var paths = [];
-  // function Import(path)
-  // {
-  //     var index = 0;
-  //     if((index = paths.indexOf(path)) != -1) //If we already imported this module
-  //     {
-  //         return scriptCache [index];
-  //     }
-  //
-  //     var request, script, source;
-  //     var fullPath = window.location.protocol + '//' + window.location.host + '/' + path;
-  //
-  //     request = new XMLHttpRequest();
-  //     request.open('GET', fullPath, false);
-  //     request.send();
-  //
-  //     source = request.responseText;
-  //
-  //     var module = (function concealedEval() {
-  //         eval(source);
-  //         return exports;
-  //     })();
-  //
-  //     scriptCache.push(module);
-  //     paths.push(path);
-  //
-  //     return module;
-  // }
-  //
-  // An example source (addobjects.js):
-  //
-  // function AddTwoObjects(a, b)
-  // {
-  //     return a + b;
-  // }
-  //
-  // this.exports = AddTwoObjects;
-  //
-  // And use it like this:
-  //
-  // var AddTwoObjects = Import('addobjects.js');
-  // alert(AddTwoObjects(3, 4)); //7
-  // // or even like this:
-  // alert(Import('addobjects.js')(3, 4)); //7
-  // ****************************************************************************************
-  // Possible solution:
-  // https://stackoverflow.com/questions/2879509/dynamically-loading-javascript-synchronously
-  // ****************************************************************************************
-
-
   let resolvedPluginPath = path.resolve(pluginPath + bas.cForwardSlash + sys.cpackageDotJson);
   console.log('resolvedPluginPath is: ' + resolvedPluginPath);
   let pluginMetaData = ruleBroker.processRules([resolvedPluginPath, ''], [biz.cgetJsonData]);
@@ -367,17 +310,65 @@ function loadPlugin(pluginPath) {
   console.log('pluginMainPath is: ' + pluginMainPath);
   pluginMainPath = path.join(pluginPath, pluginMainPath);
   console.log('pluginMainPath is: ' + pluginMainPath);
-  // pluginMainPath = url.pathToFileURL(pluginMainPath);
-  // console.log('pluginMainPath is: ' + pluginMainPath);
-  // let importedModule;
-  // import(pluginMainPath).then((module) => {
-  //   console.log('Attempted the import');
-  //   let pluginData = module.initializePlugin();
-  //   console.log('pluginData: ' + pluginData);
-  // });
+  pluginMainPath = url.pathToFileURL(pluginMainPath);
+  console.log('pluginMainPath is: ' + pluginMainPath);
+  let importedModule;
+  let pluginData;
 
-  let pluginData = haystacksImport(pluginMainPath);
-  console.log('pluginData is: ' + pluginData);
+  // ***********************************
+  // require-module solution
+  // ***********************************
+  // let myPlugin = requireModule(pluginMainPath);
+  // pluginData = myPlugin.initializePlugin();
+  // console.log('pluginData OUTSIDE: ' + pluginData);
+  // ***********************************
+  // require-module solution
+  // ***********************************
+
+  // ***********************************
+  // requirejs solution
+  // ***********************************
+  // requirejs.config({
+  //   // nodeRequire: require
+  // });
+  //
+  // let myPlugin = requirejs(pluginMainPath);
+  // pluginData = myPlugin.initializePlugin();
+  // console.log('pluginData OUTSIDE: ' + pluginData);
+  // ***********************************
+  // requirejs solution
+  // ***********************************
+
+  // let myPlugin = require(pluginMainPath);
+  // pluginData = myPlugin.initializePlugin();
+  // console.log('pluginData OUTSIDE: ' + pluginData);
+
+  const loadAsyncImport = () => {
+    const asyncImport = async () => {
+      return await myDynamicImport(pluginMainPath);
+    };
+
+    return asyncImport().then((result) => {
+      return result;
+    });
+  };
+
+  const myDynamicImport = async (path) => {
+    return await import(path);
+  };
+  loadAsyncImport().then(value => {
+    pluginData = value['default'].initializePlugin();
+    console.log('dataLoaded is: ' + pluginData);
+  });
+
+  // let write = sys.stdout.write('flushing the data');
+  // if (!write) {
+  //   sys.stdout.once('drain', () => {
+  //     console.log('The data buffer has been drained!');
+  //   });
+  // }
+
+
 
   // Every plugin will be required to have a function "initializePlugin",
   // that returns all of the plugin data,
@@ -390,35 +381,35 @@ function loadPlugin(pluginPath) {
   return returnData;
 };
 
-var scriptCache = [];
-var paths = [];
-
-function haystacksImport(fullPath) {
-      var index = 0;
-      // if((index = paths.indexOf(path)) != -1) //If we already imported this module
-      // {
-      //     return scriptCache [index];
-      // }
-
-      var request, script, source;
-      // var fullPath = window.location.protocol + '//' + window.location.host + '/' + path;
-
-      request = new XMLHttpRequest();
-      request.open('GET', fullPath, false);
-      request.send();
-
-      source = request.responseText;
-
-      var module = (function concealedEval() {
-          eval(source);
-          return exports;
-      })();
-
-      scriptCache.push(module);
-      paths.push(path);
-
-      return module;
-};
+// var scriptCache = [];
+// var paths = [];
+//
+// function haystacksImport(fullPath) {
+//       var index = 0;
+//       // if((index = paths.indexOf(path)) != -1) //If we already imported this module
+//       // {
+//       //     return scriptCache [index];
+//       // }
+//
+//       var request, script, source;
+//       // var fullPath = window.location.protocol + '//' + window.location.host + '/' + path;
+//
+//       request = new XMLHttpRequest();
+//       request.open('GET', fullPath, false);
+//       request.send();
+//
+//       source = request.responseText;
+//
+//       var module = (function concealedEval() {
+//           eval(source);
+//           return exports;
+//       })();
+//
+//       scriptCache.push(module);
+//       paths.push(path);
+//
+//       return module;
+// };
 
 /**
  * @function executeBusinessRules

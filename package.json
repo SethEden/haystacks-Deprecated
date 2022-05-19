@@ -5,6 +5,10 @@
   "main": "./src/main.js",
   "bin": "./bin/main.js",
   "type": "module",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "build": "babel src --out-dir bin",
     "deploy": "babel-node ./build/buildRelease/src/buildRelease.js",
@@ -35,6 +39,8 @@
     "moment": "2.29.2",
     "n-readlines": "^1.0.1",
     "papaparse": "5.3.1",
+    "require-module": "^0.1.0",
+    "requirejs": "^2.3.6",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
