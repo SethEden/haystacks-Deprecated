@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><CommandWorkflows>
+  <businessRules>
+    <characterStringParsing>
+      <Workflow Name="getUserNameFromEmail" Value="cmdgen bizrul,getUserNameFromEmail,Iceversaka@hotmail.com 4"/>
+    </characterStringParsing>
+  </businessRules>
+</CommandWorkflows>

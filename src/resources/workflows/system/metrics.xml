@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><CommandWorkflows>
+  <system>
+    <Workflow Name="businessRulesMetrics" Value="cmdSeq brm"/>
+    <Workflow Name="commandMetrics" Value="cmdSeq cmdMet"/>
+  </system>
+</CommandWorkflows>

@@ -249,7 +249,7 @@ function loadCommandAliases(commandAliasesPathConfigName) {
 
 /**
  * @function loadCommandWorkflows
- * @description Loads and merges both the ssytem defined command workflows XML file and
+ * @description Loads and merges both the system defined command workflows XML file and
  * client defined command workflows XML file, or an optional user defined workflow path.
  * @param {string} workflowPathConfigName The configuration name of the configuration setting where
  * the path to the workflows XML file is stored, that should be loaded (OPTIONAL).
