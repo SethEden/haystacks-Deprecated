@@ -277,6 +277,100 @@ const arrayDeepClone = function(inputData, inputMetaData) {
 };
 
 /**
+ * @function objectDeepMerge
+ * @description Recursively deeply merges two objects that may or may not contains nested arrays.
+ * @param {object} inputData The target data to be merged with.
+ * @param {object} inputMetaData The data that should be merged.
+ * @return {object} The merged data after the merge is complete.
+ * @author Pery Mimon
+ * @date 2020/04/23
+ * @reference: https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge
+ */
+const objectDeepMerge = function(inputData, inputMetaData) {
+  let functionName = objectDeepMerge.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  if (typeof inputData !== wrd.cobject || typeof inputMetaData !== wrd.cobject) {
+    // inputData or inputMetaData or both ain't objets, merging doesn't make sense.
+    returnData = false;
+  } else {
+    for (let prop in inputMetaData) {
+      if (!inputMetaData.hasOwnProperty(prop)) {
+        continue; // Take into consideration only object's own properties.
+      }
+      if (prop in inputData) {
+        // Handling merging of two properties with equal names.
+        if (typeof inputData[prop] !== wrd.cobject) {
+          inputData[prop] = inputMetaData[prop];
+        } else {
+          if (typeof inputMetaData[prop] !== wrd.cobject) {
+            inputData[prop] = inputMetaData[prop];
+          } else {
+            if (inputData[prop].concat && inputMetaData[prop].concat) {
+              // Two arrays get concatenated
+              inputData[prop] = inputData[prop].concat(inputMetaData[prop]);
+            } else {
+              // Two objects et merged recursively
+              inputData[prop] = objectDeepMerge(inputData[prop], inputMetaData[prop]);
+            }
+          }
+        }
+      } else {
+        inputData[prop] = inputMetaData[prop];
+      }
+    } // End-for (let prop in inputMetaData)
+    returnData = inputData;
+  }
+
+  // NOTE: This implementation from Vincent on the reference: Dated: 2019/11/19
+  // https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge
+  // Did not work:
+  // inputData was: {"CommandWorkflows":{"businessRules":[{"arrayParsing":[{"characterArrayParsing":[{"Workflow":[{"$":{"Name":"doesArrayContainCharacter","Value":"cmdgen bizRul,doesArrayContainCharacter,$,[the|answer|to|life|the|universe|and|everything|is|$42] 4"}},{"$":{"Name":"removeCharacterFromArray","Value":"cmdgen bizRul,removeCharacterFromArray,$,[the|answer|to|life|the|universe|and|everything|is|$42] 4"}},{"$":{"Name":"replaceCharacterAtIndex","Value":"cmdgen bizRul,replaceCharacterAtIndex,aggregateNumericalDifferenceBetweenTwoStrings,[10|$] 4"}},{"$":{"Name":"characterArrayParsing","Value":"cmdSeq wrkflo,doesArrayContainCharacter wrkflo,removeCharacterFromArray wrkflo,replaceCharacterAtIndex"}}]}]}]}]}}
+  //
+  // inputMetaData was: {"CommandWorkflows":{"businessRules":[{"arrayParsing":[{"pathArrayParsing":[{"Workflow":[{"$":{"Name":"doesArrayContainFilename","Value":"cmdgen bizRul,doesArrayContainFilename,[20200603-142834-763_0.3.2_haystacks.zip|20200603-144529-749_0.3.3_haystacks.zip|20200604-133509-704_0.4.0_haystacks.zip|20200604-133546-749_0.4.1_haystacks.zip|20200604-160655-262_0.4.2_haystacks.zip|20200604-161819-191_0.4.3_haystacks.zip|20200604-173727-348_0.4.4_haystacks.zip|20200604-193551-258_0.5.0_haystacks.zip|20200604-193629-853_0.5.1_haystacks.zip|20200605-083055-193_0.5.2_haystacks.zip|20200610-170634-141_0.5.3_haystacks.zip|20200615-162658-576_0.5.4_haystacks.zip|20200617-150430-416_0.5.5_haystacks.zip|20200618-134424-575_0.5.6_haystacks.zip],20200604-193551-258_0.5.0_haystacks.zip 4"}},{"$":{"Name":"pathArrayParsing","Value":"cmdSeq wrkflo,doesArrayContainFilename"}}]}]}]}]}}
+  //
+  // returnData was: {"CommandWorkflows":{"businessRules":[{"arrayParsing":[{"characterArrayParsing":[{"Workflow":[{"$":{"Name":"doesArrayContainCharacter","Value":"cmdgen bizRul,doesArrayContainCharacter,$,[the|answer|to|life|the|universe|and|everything|is|$42] 4"}},{"$":{"Name":"removeCharacterFromArray","Value":"cmdgen bizRul,removeCharacterFromArray,$,[the|answer|to|life|the|universe|and|everything|is|$42] 4"}},{"$":{"Name":"replaceCharacterAtIndex","Value":"cmdgen bizRul,replaceCharacterAtIndex,aggregateNumericalDifferenceBetweenTwoStrings,[10|$] 4"}},{"$":{"Name":"characterArrayParsing","Value":"cmdSeq wrkflo,doesArrayContainCharacter wrkflo,removeCharacterFromArray wrkflo,replaceCharacterAtIndex"}}]}]}]}]}}
+  //
+  // Clearly it didn't do it's job!!
+  // **************************************************
+  // if (inputData && inputMetaData) {
+  //   for (let key of Object.entries(inputMetaData)) {
+  //     if (!inputData.hasOwnProperty(key) || typeof inputMetaData[key] !== wrd.cobject) { inputData[key] = inputMetaData[key]; }
+  //     else if (inputData[key] instanceof Array && inputMetaData[key] instanceof Array) {inputData[key] = inputData[key].concat(inputMetaData[key]); }
+  //     else { objectDeepMerge(inputData[key], inputMetaData[key]); }
+  //   } // End-for (key of Object.keys(inputMetaData))
+  //   returnData = inputData;
+  // } // End-if (inputData && inputMetaData)
+  // ***************************************************
+
+  // NOTE: This implementation from Pery Mimon on the reference: Dated 2020/04/23
+  // https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge
+  // Did not work:
+  // Throws an error: inputMetaData is not iterable
+  // **************************************************
+  // if (inputData && inputMetaData) {
+  //   for (source of inputMetaData) {
+  //     for (let k in source) {
+  //       let vs = source[k], vt = inputData[k];
+  //       if (Object(vs) === vs && Object(vt) === vt) {
+  //         inputData[k] = objectDeepMerge(vt, vs);
+  //         continue;
+  //       }
+  //       inputData[k] = source[k];
+  //     } // End-for (let k in source)
+  //   } // End-for (source of inputMetaData)
+  //   returnData = inputData;
+  // } // End-if (inputData && inputMetaData)
+  // **************************************************
+
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
  * @function getNamespacedDataObject
  * @description Navigates the D data structure JSON data object tree to find the namespace of data settings.
  * @param {array<string>} inputData The path in the data JSON object where the
@@ -375,6 +469,7 @@ export default {
   isArrayOrObject,
   isNonZeroLengthArray,
   arrayDeepClone,
+  objectDeepMerge,
   getNamespacedDataObject,
   setNamespacedDataObject
 };

@@ -10,7 +10,8 @@
       <Workflow Name="isString" Value="cmdgen bizrul,isString,2 4"/>
       <Workflow Name="replaceDoublePercentWithMessage" Value="cmdgen bizRul,replaceDoublePercentWithMessage,BEGIN-%%-function.,DUMMYstringParsingDUMMY.DUMMYreplaceDoublePercentWithMessageDUMMY 4"/>
       <Workflow Name="replaceCharacterWithCharacter" Value="cmdgen bizRul,replaceCharacterWithCharacter,What+is+the+answer+to+life+the+universe+and+everything,regEx:[+]:flags:g,= 4"/>
-      <Workflow Name="stringParsingUtilities" Value="cmdSeq wrkflo,stringToBoolean wrkflo,stringToDataType wrkflo,determineObjectDataType wrkflo,isBoolean wrkflo,isInteger wrkflo,isFloat wrkflo,isString wrkflo,replaceDoublePercentWithMessage wrkflo,replaceCharacterWithCharacter"/>
+      <Workflow Name="parseSystemRootPath" Value="cmdgen bizRul,parseSystemRootPath,C:\haystacks\src\commandsBlob\commands\,haystacks 4"/>
+      <Workflow Name="stringParsingUtilities" Value="cmdSeq wrkflo,stringToBoolean wrkflo,stringToDataType wrkflo,determineObjectDataType wrkflo,isBoolean wrkflo,isInteger wrkflo,isFloat wrkflo,isString wrkflo,replaceDoublePercentWithMessage wrkflo,replaceCharacterWithCharacter wrkflo,parseSystemRootPath"/>
     </stringParsingUtilities>
   </businessRules>
 </CommandWorkflows>

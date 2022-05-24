@@ -23,7 +23,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, fnc, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.dataBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -226,7 +226,16 @@ function loadAllXmlData(filesToLoad, contextName) {
         multiMergedData = dataFile;
       } else {
         j++;
-        multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
+        console.log('multiMergedData is: ' + JSON.stringify(multiMergedData));
+        console.log('dataFile is: ' + JSON.stringify(dataFile));
+        let mergeTargetNamespace = determineMergeTarget(multiMergedData, dataFile);
+        mergeTargetNamespace = mergeTargetNamespace.join(bas.cDot);
+        multiMergedData = mergeWorkflowData(multiMergedData, dataFile, mergeTargetNamespace);
+
+        // multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
+        // multiMergedData = mergeData(multiMergedData, 'CommandWorkflows', '', dataFile);
+        // multiMergedData = mergeData(multiMergedData, '', '', dataFile);
+        // multiMergedData = Object.assign(multiMergedData, dataFile);
       }
       // DONE PROCESSING ADDITIONAL DATA
       loggers.consoleLog(namespacePrefix + functionName, msg.cDONE_PROCESSING_ADDITIONAL_DATA);
@@ -724,6 +733,125 @@ function extractDataFromPapaParseObject(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + JSON.stringify(tempData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return tempData;
+};
+
+/**
+ * @function determineMergeTarget
+ * @description Scans the target and source data objects recursively and determines what level of the target the source should be merged at.
+ * @param {object} targetData The target data object where the data should in theory be merged with for the purpose of this simulated merge.
+ * @param {object} dataToMerge The data that should be merged in this simulated merge scenario.
+ * @return {string} The string of the namespace where the dataToMerge should be merged wtih the target data object.
+ * @author Seth Hollingsead
+ * @date 2022/05/23
+ */
+function determineMergeTarget(targetData, dataToMerge) {
+  let functionName = determineMergeTarget.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // targetData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIs + JSON.stringify(targetData));
+  // data to Merge is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
+  let returnData = [];
+  if (targetData && dataToMerge && targetData != dataToMerge && (targetData != 0 || targetData != '0')) {
+    let targetDataKeys = Object.keys(targetData);
+    let dataToMergeKeys = Object.keys(dataToMerge);
+  loop1:
+    for (let i = 0; i < targetDataKeys.length; i++) {
+      if (typeof dataToMergeKeys === wrd.cstring) {
+        if (targetDataKeys[i] === dataToMergeKeys) {
+          if (dataToMergeKeys[i] != num.c0) {
+            returnData.push(dataToMergeKeys);
+          }
+          let recursiveData1 = determineMergeTarget(targetData[targetDataKeys[i]], dataToMerge[dataToMergeKeys]);
+          if (recursiveData1.length != 0) {
+            returnData = returnData.concat(recursiveData1);
+          } // End-if (recursiveData1.length != 0)
+          break;
+        } // End-if (targetDataKeys[i] === dataToMergeKeys)
+      } else if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true) {
+  loop2:
+        for (let j = 0; j < dataToMergeKeys.length; j++) {
+          // console.log(`dataToMergeKeys[${j}] is: ${dataToMergeKeys[j]}`);
+          if (targetDataKeys[i] === dataToMergeKeys[j]) {
+            if (dataToMergeKeys[i] != num.c0) {
+              returnData.push(dataToMergeKeys[j]);
+            }
+            let recursiveData2 = determineMergeTarget(targetData[targetDataKeys[i]], dataToMerge[dataToMergeKeys[j]]);
+            if (recursiveData2.length != 0) {
+              returnData = returnData.concat(recursiveData2);
+            }
+            break loop1;
+          }
+        } // End-for (let j = 0; j < dataToMergeKeys.length; j++)
+      } // End-else-if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true)
+    } // End-for (let i = 0; i < targetDataKeys.length; i++)
+  } // End-if (targetData && dataToMerge && (targetData != 0 || targetData != '0'))
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function mergeWorkflowData
+ * @description Merges the data from the dataToMerge to the targetData using the commonNamespace discovered between them.
+ * @param {object} targetData The data where the data to be merged should land.
+ * @param {object} dataToMerge The data to be merged.
+ * @param {string} commonNamespace The path to the common namespace between these two data structures,
+ * should be used as part of the merge process to make sure the data to be merged lands at the right location in the target data.
+ * @return {object} The object after the merge has been completed.
+ * @author Seth Hollingsead
+ * @date 2022/05/23
+ */
+function mergeWorkflowData(targetData, dataToMerge, commonNamespace) {
+  let functionName = mergeWorkflowData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // targetData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIs + JSON.stringify(targetData));
+  // data to Merge is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
+  // commonNamespace is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commonNamespace is: ' + commonNamespace);
+  let returnData;
+  // let commonNamespaceArray = commonNamespace.split(bas.cDot);
+  // console.log('commonNamespaceArray is: ' + JSON.stringify(commonNamespaceArray));
+  // let newTargetData, newDataToMerge;
+  // for (let i = 0; i < commonNamespaceArray.length; i++) {
+  //   console.log('BEGIN i-th loop: ' + i);
+  //   if (i === 0) {
+  //     console.log('0-th loop logic');
+  //     console.log('commonNamespaceArray[i] is: ' + commonNamespaceArray[i]);
+  //     newTargetData = targetData[commonNamespaceArray[i]];
+  //     newDataToMerge = dataToMerge[commonNamespaceArray[i]];
+  //     console.log('newTargetData is: ' + JSON.stringify(newTargetData));
+  //     console.log('newDataToMerge is: ' + JSON.stringify(newDataToMerge));
+  //   } else {
+  //     console.log('n-th loop logic');
+  //     console.log('commonNamespaceArray[i] is: ' + commonNamespaceArray[i]);
+  //     if (Array.isArray(newTargetData) === true) {
+  //       console.log('newTargetData is an array now');
+  //       newTargetData = newTargetData[0];
+  //       console.log('After array index 0, newTargetData is: ' + JSON.stringify(newTargetData));
+  //     }
+  //     if (Array.isArray(newDataToMerge) === true) {
+  //       console.log('newDataToMerge is an array now');
+  //       newDataToMerge = newDataToMerge[0];
+  //       console.log('After array index 0, newDataToMerge is: ' + JSON.stringify(newDataToMerge));
+  //     }
+  //     newTargetData = newTargetData[commonNamespaceArray[i]];
+  //     newDataToMerge = newDataToMerge[commonNamespaceArray[i]];
+  //     console.log('newTargetData is: ' + JSON.stringify(newTargetData));
+  //     console.log('newDataToMerge is: ' + JSON.stringify(newDataToMerge));
+  //   }
+  //   console.log('END i-th loop: ' + i);
+  // } // End-for (let i = 0; i < commonNamespaceArray.length; i++)
+  // console.log('newTargetData is: ' + JSON.stringify(newTargetData));
+  // console.log('newDataToMerge is: ' + JSON.stringify(newDataToMerge));
+  // returnData = Object.assign(targetData, newDataToMerge);
+  // returnData = Object.assign(targetData, dataToMerge);
+  returnData = ruleBroker.processRules([targetData, dataToMerge], [biz.cobjectDeepMerge]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 /**
