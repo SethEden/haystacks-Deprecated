@@ -42,14 +42,9 @@ function getWorkflow(workflowName) {
   let workflowValue = false;
   let currentWorkflow = searchWorkflow(D[sys.cCommandWorkflows], workflowName);
   loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentWorkflowIs + JSON.stringify(currentWorkflow));
-  // if (currentWorkflow[wrd.cName] === workflowName) {
-  //   workflowValue = currentWorkflow[wrd.cValue];
-  //   // workflowValue is:
-  //   loggers.consoleLog(namespacePrefix + functionName, msg.cwokflowValueIs + JSON.stringify(workflowValue));
-  // }
   workflowValue = currentWorkflow;
   // workflowValue is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowValueIs + workflowValue);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowValueIs + JSON.stringify(workflowValue));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowValue;
 };
@@ -123,12 +118,14 @@ function searchWorkflow(workflowData, workflowName) {
     for (let workflowEntity in workflowData) {
       // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
       // console.log('workflow is: ' + JSON.stringify(workflowData[workflowEntity]));
-      if (workflowEntity != workflowName) {
-        workflowObject = searchWorkflow(workflowData[workflowEntity], workflowName);
-        if (workflowObject != false) {
+      if (workflowEntity != workflowName || (workflowEntity === workflowName && typeof workflowData[workflowEntity] === wrd.cobject)) {
+        let workflowObjectTemp = searchWorkflow(workflowData[workflowEntity], workflowName);
+        if (workflowObjectTemp != false && typeof workflowObjectTemp != wrd.cobject) {
+          workflowObject = workflowObjectTemp;
           break;
         }
-      } else {
+      } else if (typeof workflowData[workflowEntity] != wrd.cobject) {
+        // Needed to make sure it's not a parent entity of the same name.
         workflowObject = workflowData[workflowEntity];
         break;
       }
@@ -141,16 +138,102 @@ function searchWorkflow(workflowData, workflowName) {
 };
 
 /**
- * @function
- * @return {[type]} [description]
+ * @function getAllWorkflows
+ * @description Recursively gets all of the workflows from all levels and flattens them into a single array for printing out to the workflow help command.
+ * @param workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
+ * If the input is undefined then the main CommandWorkflows data structure will be used at the root of the workflows data hive.
+ * @return {array<string>|boolean} An array of all the workflows currently loaded into the D-data structure under the CommandWorkflows data hive or
+ * a boolean True or False to indicate that a leaf-node has been found by the recursive caller.
+ * @author Seth Hollingsead
+ * @date 2022/05/25
  */
-function getAllWorkflows() {
+function getAllWorkflows(workflowDataStructure) {
+  let functionName = getAllWorkflows.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // workflowDataStructure is:
+  loggers.consoleLog(namespacePrefix + functionName, 'workflowDataStructure is: ' + JSON.stringify(workflowDataStructure));
+  let allWorkflows = false;
+  if (workflowDataStructure === undefined) {
+    workflowDataStructure = D[sys.cCommandWorkflows];
+  }
+  if (typeof workflowDataStructure === wrd.cobject) {
+    allWorkflows = [];
+    for (let workflowEntity in workflowDataStructure) {
+      // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
+      // console.log('workflowDataStructure[workflowEntity] is: ' + JSON.stringify(workflowDataStructure[workflowEntity]));
+      if (typeof workflowDataStructure[workflowEntity] === wrd.cobject) {
+        // console.log('workflowDataStructure[workflowEntity] is of type object!');
+        let allWorkflowsTemp;
+        allWorkflowsTemp = getAllWorkflows(workflowDataStructure[workflowEntity]);
+        // console.log('allWorkflowsTemp returned from the recursive call is: ' + JSON.stringify(allWorkflowsTemp));
+        if (allWorkflowsTemp === false) {
+          // console.log('The recursive call returned false, so push the current entity to the output array!');
+          allWorkflows.push(workflowEntity);
+          // console.log('allWorkflows after pushing to the array 1 is: ' + JSON.stringify(allWorkflows));
+        } else {
+          allWorkflows = allWorkflows.concat(allWorkflowsTemp);
+        }
+      } else {
+        // console.log('workflowEntity is NOT an object type, so push it to the output array!');
+        allWorkflows.push(workflowEntity);
+        // console.log('allWorkflows after pushing to the array 2 is: ' + JSON.stringify(allWorkflows));
+      }
+    } // End-for (workflowEntity in workflowData)
+  }
+  loggers.consoleLog(namespacePrefix + functionName, 'allWorkflows is: ' + JSON.stringify(allWorkflows));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return allWorkflows;
+};
 
+/**
+ * @function getWorkflowNamespaceDataObject
+ * @description Recursively scans through the entire workflow metaData data structure looking for an object that matches the input namespace name.
+ * When that namespace is found, the entire object is returned.
+ * @param workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
+ * If the input is undefined then the main CommandWorkflows data structure will be used at the root of the workflows data hive.
+ * @param {string} namespaceToFind The namespace to look for in the workflow metaData data structure.
+ * @return {object|boolean} The namespace object if it is found, or False if the namespace object was not found.
+ * @author Seth Hollingsead
+ * @date 2022/05/25
+ */
+function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) {
+  let functionName = getWorkflowNamespaceDataObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // workflowDataStructure is:
+  loggers.consoleLog(namespacePrefix + functionName, 'workflowDataStructure is: ' + workflowDataStructure);
+  // namespaceToFind is:
+  loggers.consoleLog(namespacePrefix + functionName, 'namespaceToFind is: ' + namespaceToFind);
+  let workflowNamespaceObject = false;
+  if (workflowDataStructure === undefined) {
+    workflowDataStructure = D[sys.cCommandWorkflows];
+  }
+  for (let workflowEntity in workflowDataStructure) {
+    // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
+    // console.log('workflowDataStructure[workflowEntity] is: ' + JSON.stringify(workflowDataStructure[workflowEntity]));
+    if (workflowEntity === namespaceToFind) {
+      workflowNamespaceObject = workflowDataStructure[workflowEntity];
+      break;
+    } else if (typeof workflowDataStructure[workflowEntity] === wrd.cobject) {
+      // Search recursively
+      let workflowTempObject = getWorkflowNamespaceDataObject(workflowDataStructure[workflowEntity], namespaceToFind);
+      if (workflowTempObject != false) {
+        // Then we must have found the namespace object we were looking for in the recursion call.
+        // Just return it, and skip out of the loop.
+        workflowNamespaceObject = workflowTempObject;
+        break;
+      }
+    }
+  } // End-for (let workflowEntity in workflowDataStructure)
+  loggers.consoleLog(namespacePrefix + functionName, 'workflowNamespaceObject is: ' + JSON.stringify(workflowNamespaceObject));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return workflowNamespaceObject;
 };
 
 export default {
   [fnc.cgetWorkflow]: (workflowName) => getWorkflow(workflowName),
   doesWorkflowExist,
   doesWorkflowExistInWorkflowData,
-  searchWorkflow
+  searchWorkflow,
+  getAllWorkflows,
+  getWorkflowNamespaceDataObject
 };

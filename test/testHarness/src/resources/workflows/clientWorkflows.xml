@@ -12,5 +12,5 @@
   <Workflow Name="threePointAverage" Value="businessRule threePointAverage [1,1] [2,2] [3,3]"/>
   <Workflow Name="arrayCounter" Value="businessRule arrayCounter 3 [1,2,3,3,2]"/>
   <Workflow Name="allClientBusinessRules" Value="commandSequencer workflow,mostPopularNumber workflow,isAlmostPalindrome workflow,threePointAverage workflow,arrayCounter"/>
-  <Workflow Name="allClientAndFrameworkBusinessRules" Value="commandSequencer workflow,stringParsingCharacterAndStringGeneration workflow,allClientBusinessRules"/>
+  <Workflow Name="allClientAndFrameworkBusinessRules" Value="commandSequencer workflow,allSystemWorkflows workflow,allClientBusinessRules"/>
 </CommandWorkflows>
