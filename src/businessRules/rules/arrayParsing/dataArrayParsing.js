@@ -300,24 +300,44 @@ const objectDeepMerge = function(inputData, inputMetaData) {
       if (!inputMetaData.hasOwnProperty(prop)) {
         continue; // Take into consideration only object's own properties.
       }
+      // console.log('prop is: ' + JSON.stringify(prop));
       if (prop in inputData) {
+        // console.log('prop is in inputData');
+        // console.log('inputData[prop] is ' + JSON.stringify(inputData[prop]));
         // Handling merging of two properties with equal names.
         if (typeof inputData[prop] !== wrd.cobject) {
+          // console.log('inputData[prop] is not an object! Assign it directly');
           inputData[prop] = inputMetaData[prop];
         } else {
+          // console.log('inputData[prop] is an object!');
+          // console.log('inputMetaData[prop] is: ' + JSON.stringify(inputMetaData[prop]));
           if (typeof inputMetaData[prop] !== wrd.cobject) {
+            // console.log('inputMetaData[prop] is not an object, Assign it directly');
             inputData[prop] = inputMetaData[prop];
           } else {
+            // console.log('inputMetaData[prop] is an object');
             if (inputData[prop].concat && inputMetaData[prop].concat) {
-              // Two arrays get concatenated
-              inputData[prop] = inputData[prop].concat(inputMetaData[prop]);
+              // Are the arrays length 1 or greater?
+              if (inputData[prop].length === 1 && inputMetaData[prop].length === 1) {
+                // console.log('array lengths are the same at this level.');
+                // We should deeply merge the contents of the arrays.
+                inputData[prop] = objectDeepMerge(inputData[prop], inputMetaData[prop]);
+              } else {
+                // console.log('two arrays get concatenated');
+                // Two arrays get concatenated
+                inputData[prop] = inputData[prop].concat(inputMetaData[prop]);
+                // console.log('AFTER concatenating two arrays: inputData[prop] is: ' + JSON.stringify(inputData[prop]));
+              }
             } else {
-              // Two objects et merged recursively
+              // console.log('two objects get merged recursively');
+              // Two objects get merged recursively
               inputData[prop] = objectDeepMerge(inputData[prop], inputMetaData[prop]);
+              // console.log('AFTER recursive merge: inputData[prop] is: ' + JSON.stringify(inputData[prop]));
             }
           }
         }
       } else {
+        // console.log('prop is not in inputData, so add it directly');
         inputData[prop] = inputMetaData[prop];
       }
     } // End-for (let prop in inputMetaData)

@@ -269,7 +269,7 @@ function loadCommandWorkflows(workflowPathConfigName) {
     resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, workflowPathConfigName));
     // resolvedCustomWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomWorkflowsPathIs + resolvedSystemWorkflowsPath);
-    chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName);
+    chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName, wrd.cPlugin);
   } else {
     resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath);
     resolvedClientWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientWorkflowsPath);
@@ -277,8 +277,8 @@ function loadCommandWorkflows(workflowPathConfigName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemWorkflowsPathIs + resolvedSystemWorkflowsPath);
     // resolvedClientWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientWorkflowsPathIs + resolvedClientWorkflowsPath);
-    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cframeworkWorkflowsPath);
-    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cclientWorkflowsPath);
+    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cframeworkWorkflowsPath, sys.cFramework);
+    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cclientWorkflowsPath, wrd.cApplication);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };

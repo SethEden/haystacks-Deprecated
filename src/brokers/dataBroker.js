@@ -226,11 +226,11 @@ function loadAllXmlData(filesToLoad, contextName) {
         multiMergedData = dataFile;
       } else {
         j++;
-        console.log('multiMergedData is: ' + JSON.stringify(multiMergedData));
-        console.log('dataFile is: ' + JSON.stringify(dataFile));
-        let mergeTargetNamespace = determineMergeTarget(multiMergedData, dataFile);
-        mergeTargetNamespace = mergeTargetNamespace.join(bas.cDot);
-        multiMergedData = mergeWorkflowData(multiMergedData, dataFile, mergeTargetNamespace);
+        // console.log('multiMergedData is: ' + JSON.stringi`fy(multiMergedData));
+        // console.log('dataFile is: ' + JSON.stringify(dataFile));
+        // let mergeTargetNamespace = determineMergeTarget(multiMergedData, dataFile);
+        // mergeTargetNamespace = mergeTargetNamespace.join(bas.cDot);
+        multiMergedData = ruleBroker.processRules([multiMergedData, dataFile], [biz.cobjectDeepMerge]);
 
         // multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
         // multiMergedData = mergeData(multiMergedData, 'CommandWorkflows', '', dataFile);
@@ -385,11 +385,11 @@ function processCsvData(data, contextName) {
  * @author Seth Hollingsead
  * @date 2022/02/22
  */
-function processXmlData(data, contextName) {
+function processXmlData(inputData, contextName) {
   let functionName = processXmlData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // input data is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
+  // inputData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let dataCatagory = getDataCatagoryFromContextName(contextName);
@@ -399,23 +399,82 @@ function processXmlData(data, contextName) {
   if (dataCatagory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
     parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
-    for (let i = 0; i < data[sys.cCommandsAliases][wrd.cCommand].length; i++) {
-      let command = data[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
+    for (let i = 0; i < inputData[sys.cCommandsAliases][wrd.cCommand].length; i++) {
+      let command = inputData[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
       parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
-    } // End-for (let i = 0; i < data[sys.cCommandAliases][wrd.cCommand].length; i++)
+    } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
-    parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows] = {};
-    for (let j = 0; j < data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++) {
-      let workflow = data[sys.cCommandWorkflows][wrd.cWorkflow][j][bas.cDollar];
-      parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows][workflow.Name] = workflow;
-    } // End-for (let j = 0; j < data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
+    for (let j = 0; j < Object.keys(inputData[sys.cCommandWorkflows]).length; j++) {
+      inputData[sys.cCommandWorkflows] = processXmlLeafNode(inputData[sys.cCommandWorkflows], wrd.cWorkflows);
+    } // End-for (let j = 0; j < inputData[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
+    parsedDataFile = inputData[sys.cCommandWorkflows];
   } // End-else-if (dataCatagory === sys.cCommandWorkflows)
-
   // parsedDataFile is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
+};
+
+/**
+ * @function processXmlLeafNode
+ * @description Recursively looks for the leaf node and restructures it from an array with a
+ * "$" child object to a single object entity with the name of the entity.
+ * @param {object} inputData The data that should be recursively mutated to the correct data structure and returned.
+ * @param {string} leafNodeName The leaf node name that we are looking for.
+ * @return {object} The mutated object with the correct data structure.
+ * @author Seth Hollingsead
+ * @date 2022/05/24
+ * @NOTE: The solution to this at the leaf-node level is:
+ * let workflow = data[sys.cCommandWorkflows][wrd.cWorkflow][j][bas.cDollar];
+ * parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows][workflow.Name] = workflow;
+ */
+function processXmlLeafNode(inputData, leafNodeName) {
+  let functionName = processXmlLeafNode.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // input data is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  // leafNodeName is:
+  loggers.consoleLog(namespacePrefix + functionName, 'leafNodeName is: ' + leafNodeName);
+  let returnData = {};
+  if (typeof inputData !== wrd.cobject) {
+    // inputData ain't an objet.
+    returnData = inputData;
+  } else {
+    for (let prop in inputData) {
+      if (!inputData.hasOwnProperty(prop)) {
+        continue; // Take into consideration only object's own properties.
+      }
+      // console.log('prop is: ' + JSON.stringify(prop));
+      // console.log('inputData[prop] is: ' + JSON.stringify(inputData[prop]));
+      if (prop === wrd.cWorkflow) {
+        let workflowParent = inputData[prop];
+        for (let i = 0; i < workflowParent.length; i++) {
+          // console.log('BEGIN i-th iteration: ' + i);
+          let workflowEntity = workflowParent[i][bas.cDollar];
+          // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
+          // console.log('workflowEntity[Value] is: ' + JSON.stringify(workflowEntity.Value));
+          returnData[workflowEntity.Name] = workflowEntity.Value;
+          // console.log('workflowParent is: ' + JSON.stringify(workflowParent));
+          // console.log('END i-th iteration: ' + i);
+        }
+        // console.log('Done with the for-loop, assigning workflowParent back to returnData[prop] which is: ' + JSON.stringify(workflowParent));
+        // returnData[prop] = workflowParent;
+      } else {
+        // console.log('prop is not Workflow, so call processXmlLeafNode() recursively!');
+        if (prop === num.c0) {
+          returnData = [processXmlLeafNode(inputData[prop], leafNodeName)];
+        } else {
+          returnData[prop] = processXmlLeafNode(inputData[prop], leafNodeName);
+        }
+        // console.log('AFTER recursive call returnData[prop] is: ' + JSON.stringify(returnData[prop]));
+      }
+      // ToDo: Recursively parse....etc...
+    } // End-for (let prop in inputData)
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 /**
@@ -786,69 +845,6 @@ function determineMergeTarget(targetData, dataToMerge) {
       } // End-else-if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true)
     } // End-for (let i = 0; i < targetDataKeys.length; i++)
   } // End-if (targetData && dataToMerge && (targetData != 0 || targetData != '0'))
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
-/**
- * @function mergeWorkflowData
- * @description Merges the data from the dataToMerge to the targetData using the commonNamespace discovered between them.
- * @param {object} targetData The data where the data to be merged should land.
- * @param {object} dataToMerge The data to be merged.
- * @param {string} commonNamespace The path to the common namespace between these two data structures,
- * should be used as part of the merge process to make sure the data to be merged lands at the right location in the target data.
- * @return {object} The object after the merge has been completed.
- * @author Seth Hollingsead
- * @date 2022/05/23
- */
-function mergeWorkflowData(targetData, dataToMerge, commonNamespace) {
-  let functionName = mergeWorkflowData.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // targetData is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIs + JSON.stringify(targetData));
-  // data to Merge is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
-  // commonNamespace is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commonNamespace is: ' + commonNamespace);
-  let returnData;
-  // let commonNamespaceArray = commonNamespace.split(bas.cDot);
-  // console.log('commonNamespaceArray is: ' + JSON.stringify(commonNamespaceArray));
-  // let newTargetData, newDataToMerge;
-  // for (let i = 0; i < commonNamespaceArray.length; i++) {
-  //   console.log('BEGIN i-th loop: ' + i);
-  //   if (i === 0) {
-  //     console.log('0-th loop logic');
-  //     console.log('commonNamespaceArray[i] is: ' + commonNamespaceArray[i]);
-  //     newTargetData = targetData[commonNamespaceArray[i]];
-  //     newDataToMerge = dataToMerge[commonNamespaceArray[i]];
-  //     console.log('newTargetData is: ' + JSON.stringify(newTargetData));
-  //     console.log('newDataToMerge is: ' + JSON.stringify(newDataToMerge));
-  //   } else {
-  //     console.log('n-th loop logic');
-  //     console.log('commonNamespaceArray[i] is: ' + commonNamespaceArray[i]);
-  //     if (Array.isArray(newTargetData) === true) {
-  //       console.log('newTargetData is an array now');
-  //       newTargetData = newTargetData[0];
-  //       console.log('After array index 0, newTargetData is: ' + JSON.stringify(newTargetData));
-  //     }
-  //     if (Array.isArray(newDataToMerge) === true) {
-  //       console.log('newDataToMerge is an array now');
-  //       newDataToMerge = newDataToMerge[0];
-  //       console.log('After array index 0, newDataToMerge is: ' + JSON.stringify(newDataToMerge));
-  //     }
-  //     newTargetData = newTargetData[commonNamespaceArray[i]];
-  //     newDataToMerge = newDataToMerge[commonNamespaceArray[i]];
-  //     console.log('newTargetData is: ' + JSON.stringify(newTargetData));
-  //     console.log('newDataToMerge is: ' + JSON.stringify(newDataToMerge));
-  //   }
-  //   console.log('END i-th loop: ' + i);
-  // } // End-for (let i = 0; i < commonNamespaceArray.length; i++)
-  // console.log('newTargetData is: ' + JSON.stringify(newTargetData));
-  // console.log('newDataToMerge is: ' + JSON.stringify(newDataToMerge));
-  // returnData = Object.assign(targetData, newDataToMerge);
-  // returnData = Object.assign(targetData, dataToMerge);
-  returnData = ruleBroker.processRules([targetData, dataToMerge], [biz.cobjectDeepMerge]);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
