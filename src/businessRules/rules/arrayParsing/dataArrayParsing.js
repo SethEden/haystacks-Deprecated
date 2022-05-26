@@ -166,7 +166,7 @@ const isObject = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    if (typeof inputData === 'object') {
+    if (typeof inputData === wrd.cobject) {
       returnData = true;
     }
   }
@@ -304,45 +304,45 @@ const objectDeepMerge = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cpropertyIs + JSON.stringify(property));
       if (property in inputData) {
         // property is in inputData
-        loggers.consoleLog(namespacePrefix + functionName, 'property is in inputData');
+        loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage01);
         // inputData[property] is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataPropertyIs + JSON.stringify(inputData[property]));
         // Handling merging of two properties with equal names.
         if (typeof inputData[property] !== wrd.cobject) {
-          // inputData[property] is not an object! Assign it directly
-          loggers.consoleLog(namespacePrefix + functionName, 'inputData[property] is not an object! Assign it directly');
+          // inputData[property] is not an object!
+          // Assign it directly.
+          loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage02 + bas.cSpace + msg.cobjectDeepMergeMessage03);
           inputData[property] = inputMetaData[property];
         } else {
           // inputData[property] is an object!
-          loggers.consoleLog(namespacePrefix + functionName, 'inputData[property] is an object!');
+          loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage04);
           // inputMetaData[property] is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataPropertyIs + JSON.stringify(inputMetaData[property]));
           if (typeof inputMetaData[property] !== wrd.cobject) {
-            // inputMetaData[property] is not an object, Assign it directly
-            loggers.consoleLog(namespacePrefix + functionName, 'inputMetaData[property] is not an object, Assign it directly');
+            // inputMetaData[property] is not an object,
+            // Assign it directly.
+            loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage05 + msg.cobjectDeepMergeMessage03);
             inputData[property] = inputMetaData[property];
           } else {
-            // inputMetaData[property] is an object
-            loggers.consoleLog(namespacePrefix + functionName, 'inputMetaData[property] is an object');
+            // inputMetaData[property] is an object.
+            loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage06);
             if (inputData[property].concat && inputMetaData[property].concat) {
               // Are the arrays length 1 or greater?
               if (inputData[property].length === 1 && inputMetaData[property].length === 1) {
-                // array lengths are the same at this level.
-                loggers.consoleLog(namespacePrefix + functionName, 'array lengths are the same at this level.');
+                // Array lengths are the same at this level.
+                loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage07);
                 // We should deeply merge the contents of the arrays.
                 inputData[property] = objectDeepMerge(inputData[property], inputMetaData[property]);
               } else {
-                // two arrays get concatenated
-                loggers.consoleLog(namespacePrefix + functionName, 'two arrays get concatenated');
-                // Two arrays get concatenated
+                // Two arrays get concatenated.
+                loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage08);
                 inputData[property] = inputData[property].concat(inputMetaData[property]);
                 // AFTER concatenating two arrays: inputData[property] is:
                 loggers.consoleLog(namespacePrefix + functionName, msg.cAfterConcatenating2ArraysInputDataPropertyIs + JSON.stringify(inputData[property]));
               }
             } else {
               // Two objects get merged recursively.
-              loggers.consoleLog(namespacePrefix + functionName, 'Two objects get merged recursively.');
-              // Two objects get merged recursively
+              loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage09);
               inputData[property] = objectDeepMerge(inputData[property], inputMetaData[property]);
               // AFTER recursive merge: inputData[property] is:
               loggers.consoleLog(namespacePrefix + functionName, msg.cAfterRecursiveMergeInputDataPropertyIs + JSON.stringify(inputData[property]));
@@ -350,8 +350,9 @@ const objectDeepMerge = function(inputData, inputMetaData) {
           }
         }
       } else {
-        // property is not in inputData, so add it directly.
-        loggers.consoleLog(namespacePrefix + functionName, 'property is not in inputData, so add it directly.');
+        // property is not in inputData,
+        // so add it directly.
+        loggers.consoleLog(namespacePrefix + functionName, msg.cobjectDeepMergeMessage10 + msg.cobjectDeepMergeMessage11);
         inputData[property] = inputMetaData[property];
       }
     } // End-for (let property in inputMetaData)

@@ -174,7 +174,7 @@ function getAllWorkflows(workflowDataStructure) {
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsTempReturnedFromRecursiveCallIs + JSON.stringify(allWorkflowsTemp));
         if (allWorkflowsTemp === false) {
           // The recursive call returned false, so push the current entity to the output array!
-          loggers.consoleLog(namespacePrefix + functionName, 'The recursive call returned false, so push the current entity to the output array!');
+          loggers.consoleLog(namespacePrefix + functionName, msg.cgetAllWorkflowsMessage01 + msg.cgetAllWorkflowsMessage02);
           allWorkflows.push(workflowEntity);
           // allWorkflows after pushing to the array 1 is:
           loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray1Is + JSON.stringify(allWorkflows));
@@ -183,7 +183,7 @@ function getAllWorkflows(workflowDataStructure) {
         }
       } else {
         // workflowEntity is NOT an object type, so push it to the output array!
-        loggers.consoleLog(namespacePrefix + functionName, 'workflowEntity is NOT an object type, so push it to the output array!');
+        loggers.consoleLog(namespacePrefix + functionName, msg.cgetAllWorkflowsMessage03 + msg.cgetAllWorkflowsMessage04);
         allWorkflows.push(workflowEntity);
         // allWorkflows after pushing to the array 2 is:
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray2Is + JSON.stringify(allWorkflows));
