@@ -23,7 +23,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, fnc, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.dataBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -226,7 +226,16 @@ function loadAllXmlData(filesToLoad, contextName) {
         multiMergedData = dataFile;
       } else {
         j++;
-        multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
+        // console.log('multiMergedData is: ' + JSON.stringi`fy(multiMergedData));
+        // console.log('dataFile is: ' + JSON.stringify(dataFile));
+        // let mergeTargetNamespace = determineMergeTarget(multiMergedData, dataFile);
+        // mergeTargetNamespace = mergeTargetNamespace.join(bas.cDot);
+        multiMergedData = ruleBroker.processRules([multiMergedData, dataFile], [biz.cobjectDeepMerge]);
+
+        // multiMergedData = mergeData(multiMergedData, wrd.cPage, '', dataFile);
+        // multiMergedData = mergeData(multiMergedData, 'CommandWorkflows', '', dataFile);
+        // multiMergedData = mergeData(multiMergedData, '', '', dataFile);
+        // multiMergedData = Object.assign(multiMergedData, dataFile);
       }
       // DONE PROCESSING ADDITIONAL DATA
       loggers.consoleLog(namespacePrefix + functionName, msg.cDONE_PROCESSING_ADDITIONAL_DATA);
@@ -376,11 +385,11 @@ function processCsvData(data, contextName) {
  * @author Seth Hollingsead
  * @date 2022/02/22
  */
-function processXmlData(data, contextName) {
+function processXmlData(inputData, contextName) {
   let functionName = processXmlData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // input data is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(data));
+  // inputData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let dataCatagory = getDataCatagoryFromContextName(contextName);
@@ -390,23 +399,91 @@ function processXmlData(data, contextName) {
   if (dataCatagory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
     parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
-    for (let i = 0; i < data[sys.cCommandsAliases][wrd.cCommand].length; i++) {
-      let command = data[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
+    for (let i = 0; i < inputData[sys.cCommandsAliases][wrd.cCommand].length; i++) {
+      let command = inputData[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
       parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
-    } // End-for (let i = 0; i < data[sys.cCommandAliases][wrd.cCommand].length; i++)
+    } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
-    parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows] = {};
-    for (let j = 0; j < data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++) {
-      let workflow = data[sys.cCommandWorkflows][wrd.cWorkflow][j][bas.cDollar];
-      parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows][workflow.Name] = workflow;
-    } // End-for (let j = 0; j < data[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
+    for (let j = 0; j < Object.keys(inputData[sys.cCommandWorkflows]).length; j++) {
+      inputData[sys.cCommandWorkflows] = processXmlLeafNode(inputData[sys.cCommandWorkflows], wrd.cWorkflows);
+    } // End-for (let j = 0; j < inputData[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
+    parsedDataFile = inputData[sys.cCommandWorkflows];
   } // End-else-if (dataCatagory === sys.cCommandWorkflows)
-
   // parsedDataFile is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
+};
+
+/**
+ * @function processXmlLeafNode
+ * @description Recursively looks for the leaf node and restructures it from an array with a
+ * "$" child object to a single object entity with the name of the entity.
+ * @param {object} inputData The data that should be recursively mutated to the correct data structure and returned.
+ * @param {string} leafNodeName The leaf node name that we are looking for.
+ * @return {object} The mutated object with the correct data structure.
+ * @author Seth Hollingsead
+ * @date 2022/05/24
+ * @NOTE: The solution to this at the leaf-node level is:
+ * let workflow = data[sys.cCommandWorkflows][wrd.cWorkflow][j][bas.cDollar];
+ * parsedDataFile[sys.cCommandWorkflows][wrd.cWorkflows][workflow.Name] = workflow;
+ */
+function processXmlLeafNode(inputData, leafNodeName) {
+  let functionName = processXmlLeafNode.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // input data is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  // leafNodeName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cleafNodeNameIs + leafNodeName);
+  let returnData = {};
+  if (typeof inputData !== wrd.cobject) {
+    // inputData ain't an objet.
+    returnData = inputData;
+  } else {
+    for (let property in inputData) {
+      if (!inputData.hasOwnProperty(property)) {
+        continue; // Take into consideration only object's own properties.
+      }
+      // property is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpropertyIs + JSON.stringify(property));
+      // inputData[property] is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataPropertyIs + JSON.stringify(inputData[property]));
+      if (property === wrd.cWorkflow) {
+        let workflowParent = inputData[property];
+        // workflowParent is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowParentIs + JSON.stringify(workflowParent));
+        for (let i = 0; i < workflowParent.length; i++) {
+          // BEGIN i-th loop:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
+          let workflowEntity = workflowParent[i][bas.cDollar];
+          // workflowEntity is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
+          // workflowEntity[Value] is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityValueIs + JSON.stringify(workflowEntity.Value));
+          returnData[workflowEntity.Name] = workflowEntity.Value;
+          // END i-th Loop:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
+        }
+        // Done with the for-loop, returnData is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWithForLoopReturnDataIs + JSON.stringify(returnData));
+      } else {
+        // property is not a Workflow,
+        // so call processXmlLeafNode() recursively!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cprocessXmlLeafNodeMessage01 + msg.cprocessXmlLeafNodeMessage02);
+        if (property === num.c0) {
+          returnData = [processXmlLeafNode(inputData[property], leafNodeName)];
+        } else {
+          returnData[property] = processXmlLeafNode(inputData[property], leafNodeName);
+        }
+        // AFTER recursive call returnData[property] is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cAfterRecursiveCallReturnDataPropertyIs + JSON.stringify(returnData[property]));
+      }
+    } // End-for (let property in inputData)
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 /**
@@ -604,7 +681,6 @@ function addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   // deeplyNestedData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdeeplyNestedDataIs + JSON.stringify(deeplyNestedData));
-
   let d_dataStructureConstantsFilePaths = D[sys.cConstantsValidationData][contextName];
   for (let key2 in deeplyNestedData) {
     if (deeplyNestedData.hasOwnProperty(key2)) {
@@ -724,6 +800,66 @@ function extractDataFromPapaParseObject(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + JSON.stringify(tempData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return tempData;
+};
+
+/**
+ * @function determineMergeTarget
+ * @description Scans the target and source data objects recursively and determines what level of the target the source should be merged at.
+ * @param {object} targetData The target data object where the data should in theory be merged with for the purpose of this simulated merge.
+ * @param {object} dataToMerge The data that should be merged in this simulated merge scenario.
+ * @return {string} The string of the namespace where the dataToMerge should be merged wtih the target data object.
+ * @author Seth Hollingsead
+ * @date 2022/05/23
+ */
+function determineMergeTarget(targetData, dataToMerge) {
+  let functionName = determineMergeTarget.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // targetData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIs + JSON.stringify(targetData));
+  // data to Merge is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
+  let returnData = [];
+  if (targetData && dataToMerge && targetData != dataToMerge && (targetData != 0 || targetData != '0')) {
+    let targetDataKeys = Object.keys(targetData);
+    let dataToMergeKeys = Object.keys(dataToMerge);
+  loop1:
+    for (let i = 0; i < targetDataKeys.length; i++) {
+      if (typeof dataToMergeKeys === wrd.cstring) {
+        if (targetDataKeys[i] === dataToMergeKeys) {
+          if (dataToMergeKeys[i] != num.c0) {
+            returnData.push(dataToMergeKeys);
+          }
+          let recursiveData1 = determineMergeTarget(targetData[targetDataKeys[i]], dataToMerge[dataToMergeKeys]);
+          if (recursiveData1.length != 0) {
+            returnData = returnData.concat(recursiveData1);
+          } // End-if (recursiveData1.length != 0)
+          break;
+        } // End-if (targetDataKeys[i] === dataToMergeKeys)
+      } else if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true) {
+  loop2:
+        for (let j = 0; j < dataToMergeKeys.length; j++) {
+          // BEGIN j-th loop:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
+          // dataToMergeKeys[j] is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeKeysJis + dataToMergeKeys[j]);
+          if (targetDataKeys[i] === dataToMergeKeys[j]) {
+            if (dataToMergeKeys[i] != num.c0) {
+              returnData.push(dataToMergeKeys[j]);
+            }
+            let recursiveData2 = determineMergeTarget(targetData[targetDataKeys[i]], dataToMerge[dataToMergeKeys[j]]);
+            if (recursiveData2.length != 0) {
+              returnData = returnData.concat(recursiveData2);
+            }
+            break loop1;
+          }
+          loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
+        } // End-for (let j = 0; j < dataToMergeKeys.length; j++)
+      } // End-else-if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true)
+    } // End-for (let i = 0; i < targetDataKeys.length; i++)
+  } // End-if (targetData && dataToMerge && (targetData != 0 || targetData != '0'))
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 /**

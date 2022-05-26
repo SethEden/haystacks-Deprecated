@@ -249,7 +249,7 @@ function loadCommandAliases(commandAliasesPathConfigName) {
 
 /**
  * @function loadCommandWorkflows
- * @description Loads and merges both the ssytem defined command workflows XML file and
+ * @description Loads and merges both the system defined command workflows XML file and
  * client defined command workflows XML file, or an optional user defined workflow path.
  * @param {string} workflowPathConfigName The configuration name of the configuration setting where
  * the path to the workflows XML file is stored, that should be loaded (OPTIONAL).
@@ -269,7 +269,7 @@ function loadCommandWorkflows(workflowPathConfigName) {
     resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, workflowPathConfigName));
     // resolvedCustomWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomWorkflowsPathIs + resolvedSystemWorkflowsPath);
-    chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName);
+    chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName, wrd.cPlugin);
   } else {
     resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath);
     resolvedClientWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientWorkflowsPath);
@@ -277,8 +277,8 @@ function loadCommandWorkflows(workflowPathConfigName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemWorkflowsPathIs + resolvedSystemWorkflowsPath);
     // resolvedClientWorkflowsPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientWorkflowsPathIs + resolvedClientWorkflowsPath);
-    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cframeworkWorkflowsPath);
-    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cclientWorkflowsPath);
+    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cframeworkWorkflowsPath, sys.cFramework);
+    chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cclientWorkflowsPath, wrd.cApplication);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
