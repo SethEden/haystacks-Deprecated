@@ -134,6 +134,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cisArrayOrObject]: (inputData, inputMetaData) => dataArrayParsing.isArrayOrObject(inputData, inputMetaData),
      [biz.cisNonZeroLengthArray]: (inputData, inputMetaData) => dataArrayParsing.isNonZeroLengthArray(inputData, inputMetaData),
      [biz.carrayDeepClone]: (inputData, inputMetaData) => dataArrayParsing.arrayDeepClone(inputData, inputMetaData),
+     [biz.cobjectDeepMerge]: (inputData, inputMetaData) => dataArrayParsing.objectDeepMerge(inputData, inputMetaData),
      [biz.cgetNamespacedDataObject]: (inputData, inputMetaData) => dataArrayParsing.getNamespacedDataObject(inputData, inputMetaData),
      [biz.csetNamespacedDataObject]: (inputData, inputMetaData) => dataArrayParsing.setNamespacedDataObject(inputData, inputMetaData),
 
