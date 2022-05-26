@@ -435,42 +435,51 @@ function processXmlLeafNode(inputData, leafNodeName) {
   // input data is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   // leafNodeName is:
-  loggers.consoleLog(namespacePrefix + functionName, 'leafNodeName is: ' + leafNodeName);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cleafNodeNameIs + leafNodeName);
   let returnData = {};
   if (typeof inputData !== wrd.cobject) {
     // inputData ain't an objet.
     returnData = inputData;
   } else {
-    for (let prop in inputData) {
-      if (!inputData.hasOwnProperty(prop)) {
+    for (let property in inputData) {
+      if (!inputData.hasOwnProperty(property)) {
         continue; // Take into consideration only object's own properties.
       }
-      // console.log('prop is: ' + JSON.stringify(prop));
-      // console.log('inputData[prop] is: ' + JSON.stringify(inputData[prop]));
-      if (prop === wrd.cWorkflow) {
-        let workflowParent = inputData[prop];
+      // property is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpropertyIs + JSON.stringify(property));
+      // inputData[property] is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataPropertyIs + JSON.stringify(inputData[property]));
+      if (property === wrd.cWorkflow) {
+        let workflowParent = inputData[property];
+        // workflowParent is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowParentIs + JSON.stringify(workflowParent));
         for (let i = 0; i < workflowParent.length; i++) {
-          // console.log('BEGIN i-th iteration: ' + i);
+          // BEGIN i-th loop:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithLoop + i);
           let workflowEntity = workflowParent[i][bas.cDollar];
-          // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
-          // console.log('workflowEntity[Value] is: ' + JSON.stringify(workflowEntity.Value));
+          // workflowEntity is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
+          // workflowEntity[Value] is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityValueIs + JSON.stringify(workflowEntity.Value)));
           returnData[workflowEntity.Name] = workflowEntity.Value;
-          // console.log('workflowParent is: ' + JSON.stringify(workflowParent));
-          // console.log('END i-th iteration: ' + i);
+          // END i-th Loop:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
         }
-        // console.log('Done with the for-loop, assigning workflowParent back to returnData[prop] which is: ' + JSON.stringify(workflowParent));
-        // returnData[prop] = workflowParent;
+        // Done with the for-loop, returnData is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWithForLoopReturnDataIs + JSON.stringify(returnData));
       } else {
-        // console.log('prop is not Workflow, so call processXmlLeafNode() recursively!');
-        if (prop === num.c0) {
-          returnData = [processXmlLeafNode(inputData[prop], leafNodeName)];
+        // property is not Workflow, so call processXmlLeafNode() recursively!
+        loggers.consoleLog(namespacePrefix + functionName, 'property is not Workflow, so call processXmlLeafNode() recursively!');
+        if (property === num.c0) {
+          returnData = [processXmlLeafNode(inputData[property], leafNodeName)];
         } else {
-          returnData[prop] = processXmlLeafNode(inputData[prop], leafNodeName);
+          returnData[property] = processXmlLeafNode(inputData[property], leafNodeName);
         }
-        // console.log('AFTER recursive call returnData[prop] is: ' + JSON.stringify(returnData[prop]));
+        // AFTER recursive call returnData[property] is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cAfterRecursiveCallReturnDataPropertyIs + JSON.stringify(returnData[property]));
       }
       // ToDo: Recursively parse....etc...
-    } // End-for (let prop in inputData)
+    } // End-for (let property in inputData)
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -672,7 +681,6 @@ function addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   // deeplyNestedData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdeeplyNestedDataIs + JSON.stringify(deeplyNestedData));
-
   let d_dataStructureConstantsFilePaths = D[sys.cConstantsValidationData][contextName];
   for (let key2 in deeplyNestedData) {
     if (deeplyNestedData.hasOwnProperty(key2)) {
@@ -830,7 +838,10 @@ function determineMergeTarget(targetData, dataToMerge) {
       } else if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true) {
   loop2:
         for (let j = 0; j < dataToMergeKeys.length; j++) {
-          // console.log(`dataToMergeKeys[${j}] is: ${dataToMergeKeys[j]}`);
+          // BEGIN j-th loop:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
+          // dataToMergeKeys[j] is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeKeysJis + dataToMergeKeys[j]);
           if (targetDataKeys[i] === dataToMergeKeys[j]) {
             if (dataToMergeKeys[i] != num.c0) {
               returnData.push(dataToMergeKeys[j]);
@@ -841,6 +852,7 @@ function determineMergeTarget(targetData, dataToMerge) {
             }
             break loop1;
           }
+          loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
         } // End-for (let j = 0; j < dataToMergeKeys.length; j++)
       } // End-else-if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true)
     } // End-for (let i = 0; i < targetDataKeys.length; i++)

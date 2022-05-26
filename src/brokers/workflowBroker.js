@@ -110,14 +110,16 @@ function searchWorkflow(workflowData, workflowName) {
   let functionName = searchWorkflow.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // workflowData is:
-  loggers.consoleLog(namespacePrefix + functionName, 'workflowData is: ' + JSON.stringify(workflowData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataIs + JSON.stringify(workflowData));
   // workflowName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowNameIs + workflowName);
   let workflowObject = false;
   if (typeof workflowData === wrd.cobject) {
     for (let workflowEntity in workflowData) {
-      // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
-      // console.log('workflow is: ' + JSON.stringify(workflowData[workflowEntity]));
+      // workflowEntity is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
+      // workflow is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowIs + JSON.stringify(workflowData[workflowEntity]));
       if (workflowEntity != workflowName || (workflowEntity === workflowName && typeof workflowData[workflowEntity] === wrd.cobject)) {
         let workflowObjectTemp = searchWorkflow(workflowData[workflowEntity], workflowName);
         if (workflowObjectTemp != false && typeof workflowObjectTemp != wrd.cobject) {
@@ -132,7 +134,7 @@ function searchWorkflow(workflowData, workflowName) {
     } // End-for (workflowEntity in workflowData)
   } // End-if (typeof workflowData === wrd.cobject)
   // workflowObject is:
-  loggers.consoleLog(namespacePrefix + functionName, 'workflowObject is: ' + workflowObject);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowObjectIs + workflowObject);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowObject;
 };
@@ -151,7 +153,7 @@ function getAllWorkflows(workflowDataStructure) {
   let functionName = getAllWorkflows.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // workflowDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, 'workflowDataStructure is: ' + JSON.stringify(workflowDataStructure));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
   let allWorkflows = false;
   if (workflowDataStructure === undefined) {
     workflowDataStructure = D[sys.cCommandWorkflows];
@@ -159,28 +161,37 @@ function getAllWorkflows(workflowDataStructure) {
   if (typeof workflowDataStructure === wrd.cobject) {
     allWorkflows = [];
     for (let workflowEntity in workflowDataStructure) {
-      // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
-      // console.log('workflowDataStructure[workflowEntity] is: ' + JSON.stringify(workflowDataStructure[workflowEntity]));
+      // workflowEntity is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
+      // workflowDataStructure[workflowEntity] is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIs + JSON.stringify(workflowDataStructure[workflowEntity]));
       if (typeof workflowDataStructure[workflowEntity] === wrd.cobject) {
-        // console.log('workflowDataStructure[workflowEntity] is of type object!');
+        // workflowDataStructure[workflowEntity] is of type object!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIsOfTypeObject);
         let allWorkflowsTemp;
         allWorkflowsTemp = getAllWorkflows(workflowDataStructure[workflowEntity]);
-        // console.log('allWorkflowsTemp returned from the recursive call is: ' + JSON.stringify(allWorkflowsTemp));
+        // allWorkflowsTemp returned from the recursive call is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsTempReturnedFromRecursiveCallIs + JSON.stringify(allWorkflowsTemp));
         if (allWorkflowsTemp === false) {
-          // console.log('The recursive call returned false, so push the current entity to the output array!');
+          // The recursive call returned false, so push the current entity to the output array!
+          loggers.consoleLog(namespacePrefix + functionName, 'The recursive call returned false, so push the current entity to the output array!');
           allWorkflows.push(workflowEntity);
-          // console.log('allWorkflows after pushing to the array 1 is: ' + JSON.stringify(allWorkflows));
+          // allWorkflows after pushing to the array 1 is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray1Is + JSON.stringify(allWorkflows));
         } else {
           allWorkflows = allWorkflows.concat(allWorkflowsTemp);
         }
       } else {
-        // console.log('workflowEntity is NOT an object type, so push it to the output array!');
+        // workflowEntity is NOT an object type, so push it to the output array!
+        loggers.consoleLog(namespacePrefix + functionName, 'workflowEntity is NOT an object type, so push it to the output array!');
         allWorkflows.push(workflowEntity);
-        // console.log('allWorkflows after pushing to the array 2 is: ' + JSON.stringify(allWorkflows));
+        // allWorkflows after pushing to the array 2 is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray2Is + JSON.stringify(allWorkflows));
       }
     } // End-for (workflowEntity in workflowData)
   }
-  loggers.consoleLog(namespacePrefix + functionName, 'allWorkflows is: ' + JSON.stringify(allWorkflows));
+  // workflow is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowIs + JSON.stringify(allWorkflows));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allWorkflows;
 };
@@ -200,16 +211,18 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
   let functionName = getWorkflowNamespaceDataObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // workflowDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, 'workflowDataStructure is: ' + workflowDataStructure);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
   // namespaceToFind is:
-  loggers.consoleLog(namespacePrefix + functionName, 'namespaceToFind is: ' + namespaceToFind);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceToFindIs + namespaceToFind);
   let workflowNamespaceObject = false;
   if (workflowDataStructure === undefined) {
     workflowDataStructure = D[sys.cCommandWorkflows];
   }
   for (let workflowEntity in workflowDataStructure) {
-    // console.log('workflowEntity is: ' + JSON.stringify(workflowEntity));
-    // console.log('workflowDataStructure[workflowEntity] is: ' + JSON.stringify(workflowDataStructure[workflowEntity]));
+    // workflowEntity is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
+    // workflowDataStructure[workflowEntity] is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIs + JSON.stringify(workflowDataStructure[workflowEntity]));
     if (workflowEntity === namespaceToFind) {
       workflowNamespaceObject = workflowDataStructure[workflowEntity];
       break;
@@ -224,7 +237,8 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
       }
     }
   } // End-for (let workflowEntity in workflowDataStructure)
-  loggers.consoleLog(namespacePrefix + functionName, 'workflowNamespaceObject is: ' + JSON.stringify(workflowNamespaceObject));
+  // workflowNamespaceObject is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowNamespaceObjectIs + JSON.stringify(workflowNamespaceObject));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowNamespaceObject;
 };

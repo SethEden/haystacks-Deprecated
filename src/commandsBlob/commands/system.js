@@ -272,16 +272,23 @@ const workflowHelp = function(inputData, inputMetaData) {
   // The old way of printing out all the workflows, when it was a flat data structure.
   // loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wrd.cWorkflows], [wrd.cName]);
   if (inputData.length > 1) {
-    // console.log('calling getWorkflowNamespaceDataObject() function, because the user entered some namespace we should look for!');
+    // calling getWorkflowNamespaceDataObject() function,
+    // because the user entered some namespace we should look for!
+    loggers.consoleLog(namespacePrefix + functionName, 'calling getWorkflowNamespaceDataObject() function, because the user entered some namespace we should look for!');
     let namespacedWorkflowData = workflowBroker.getWorkflowNamespaceDataObject(undefined, inputData[1]);
-    // console.log('namespacedWorkflowData is: ' + JSON.stringify(namespacedWorkflowData));
-    // console.log('NOW call getAllWorkflows with the above found data!');
+    // namespacedWorkflowData is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnamespacedWorkflowDataIs + JSON.stringify(namespacedWorkflowData));
+    // NOW call getAllWorkflows with the above found data!
+    loggers.consoleLog(namespacePrefix + functionName, 'NOW call getAllWorkflows with the above found data!');
     let flattenedNamespacedWorkflowData = workflowBroker.getAllWorkflows(namespacedWorkflowData);
     loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespacedWorkflowData);
   } else {
-    // console.log('user did not enter any parameters, just call getAllWorkflows function with no input, will return all and print all.');
+    // User did not enter any parameters,
+    // just call getAllWorkflows functions with no input,
+    // will return all and print all.
+    loggers.consoleLog(namespacePrefix + functionName, 'User did not enter any parameters, just call getAllWorkflows function with no input, will return all and print all.');
     let allWorkflowData = workflowBroker.getAllWorkflows();
-    loggers.consoleLog(namespacePrefix + functionName, 'allWorkflowData is: ' + JSON.stringify(allWorkflowData));
+    loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowDataIs + JSON.stringify(allWorkflowData));
     loggers.consoleTableLog(baseFileName + bas.cDot + functionName, allWorkflowData);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

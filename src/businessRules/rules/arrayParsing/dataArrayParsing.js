@@ -296,51 +296,65 @@ const objectDeepMerge = function(inputData, inputMetaData) {
     // inputData or inputMetaData or both ain't objets, merging doesn't make sense.
     returnData = false;
   } else {
-    for (let prop in inputMetaData) {
-      if (!inputMetaData.hasOwnProperty(prop)) {
+    for (let property in inputMetaData) {
+      if (!inputMetaData.hasOwnProperty(property)) {
         continue; // Take into consideration only object's own properties.
       }
-      // console.log('prop is: ' + JSON.stringify(prop));
-      if (prop in inputData) {
-        // console.log('prop is in inputData');
-        // console.log('inputData[prop] is ' + JSON.stringify(inputData[prop]));
+      // property is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cpropertyIs + JSON.stringify(property));
+      if (property in inputData) {
+        // property is in inputData
+        loggers.consoleLog(namespacePrefix + functionName, 'property is in inputData');
+        // inputData[property] is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataPropertyIs + JSON.stringify(inputData[property]));
         // Handling merging of two properties with equal names.
-        if (typeof inputData[prop] !== wrd.cobject) {
-          // console.log('inputData[prop] is not an object! Assign it directly');
-          inputData[prop] = inputMetaData[prop];
+        if (typeof inputData[property] !== wrd.cobject) {
+          // inputData[property] is not an object! Assign it directly
+          loggers.consoleLog(namespacePrefix + functionName, 'inputData[property] is not an object! Assign it directly');
+          inputData[property] = inputMetaData[property];
         } else {
-          // console.log('inputData[prop] is an object!');
-          // console.log('inputMetaData[prop] is: ' + JSON.stringify(inputMetaData[prop]));
-          if (typeof inputMetaData[prop] !== wrd.cobject) {
-            // console.log('inputMetaData[prop] is not an object, Assign it directly');
-            inputData[prop] = inputMetaData[prop];
+          // inputData[property] is an object!
+          loggers.consoleLog(namespacePrefix + functionName, 'inputData[property] is an object!');
+          // inputMetaData[property] is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataPropertyIs + JSON.stringify(inputMetaData[property]));
+          if (typeof inputMetaData[property] !== wrd.cobject) {
+            // inputMetaData[property] is not an object, Assign it directly
+            loggers.consoleLog(namespacePrefix + functionName, 'inputMetaData[property] is not an object, Assign it directly');
+            inputData[property] = inputMetaData[property];
           } else {
-            // console.log('inputMetaData[prop] is an object');
-            if (inputData[prop].concat && inputMetaData[prop].concat) {
+            // inputMetaData[property] is an object
+            loggers.consoleLog(namespacePrefix + functionName, 'inputMetaData[property] is an object');
+            if (inputData[property].concat && inputMetaData[property].concat) {
               // Are the arrays length 1 or greater?
-              if (inputData[prop].length === 1 && inputMetaData[prop].length === 1) {
-                // console.log('array lengths are the same at this level.');
+              if (inputData[property].length === 1 && inputMetaData[property].length === 1) {
+                // array lengths are the same at this level.
+                loggers.consoleLog(namespacePrefix + functionName, 'array lengths are the same at this level.');
                 // We should deeply merge the contents of the arrays.
-                inputData[prop] = objectDeepMerge(inputData[prop], inputMetaData[prop]);
+                inputData[property] = objectDeepMerge(inputData[property], inputMetaData[property]);
               } else {
-                // console.log('two arrays get concatenated');
+                // two arrays get concatenated
+                loggers.consoleLog(namespacePrefix + functionName, 'two arrays get concatenated');
                 // Two arrays get concatenated
-                inputData[prop] = inputData[prop].concat(inputMetaData[prop]);
-                // console.log('AFTER concatenating two arrays: inputData[prop] is: ' + JSON.stringify(inputData[prop]));
+                inputData[property] = inputData[property].concat(inputMetaData[property]);
+                // AFTER concatenating two arrays: inputData[property] is:
+                loggers.consoleLog(namespacePrefix + functionName, msg.cAfterConcatenating2ArraysInputDataPropertyIs + JSON.stringify(inputData[property]));
               }
             } else {
-              // console.log('two objects get merged recursively');
+              // Two objects get merged recursively.
+              loggers.consoleLog(namespacePrefix + functionName, 'Two objects get merged recursively.');
               // Two objects get merged recursively
-              inputData[prop] = objectDeepMerge(inputData[prop], inputMetaData[prop]);
-              // console.log('AFTER recursive merge: inputData[prop] is: ' + JSON.stringify(inputData[prop]));
+              inputData[property] = objectDeepMerge(inputData[property], inputMetaData[property]);
+              // AFTER recursive merge: inputData[property] is:
+              loggers.consoleLog(namespacePrefix + functionName, msg.cAfterRecursiveMergeInputDataPropertyIs + JSON.stringify(inputData[property]));
             }
           }
         }
       } else {
-        // console.log('prop is not in inputData, so add it directly');
-        inputData[prop] = inputMetaData[prop];
+        // property is not in inputData, so add it directly.
+        loggers.consoleLog(namespacePrefix + functionName, 'property is not in inputData, so add it directly.');
+        inputData[property] = inputMetaData[property];
       }
-    } // End-for (let prop in inputMetaData)
+    } // End-for (let property in inputMetaData)
     returnData = inputData;
   }
 
@@ -462,7 +476,8 @@ const setNamespacedDataObject = function(inputData, inputMetaData) {
       processingValidData = true;
       namespaceDataObject = namespaceDataObject[inputData[i]];
       if (i === inputData.length - 2) {
-        console.log('namespaceDataObject is: ' + JSON.stringify(namespaceDataObject));
+        // namespaceDataObject is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceDataObjectIs + JSON.stringify(namespaceDataObject));
         let fullyQualifiedKey = namespaceDataObject.join(bas.cDot);
         if (ruleParsing.processRulesInternal([[namespaceDataObject, cfg.cdebugSetting], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === true) {
           namespaceDataObject[fullyQualifiedKey] = inputMetaData;
