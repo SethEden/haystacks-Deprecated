@@ -120,7 +120,7 @@ const workflow = function(inputData, inputMetaData) {
   let returnData = true;
   let workflowName = inputData[1];
   let workflowValue = workflowBroker.getWorkflow(workflowName);
-  if (workflowValue !== false) {
+  if (workflowValue !== false && typeof workflowValue != wrd.cobject) {
     queue.enqueue(sys.cCommandQueue, workflowValue);
   } else {
     // WARNING: nominal.workflow: The specified workflow:

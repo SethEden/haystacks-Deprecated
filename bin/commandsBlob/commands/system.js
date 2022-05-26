@@ -3,6 +3,7 @@
 * @module system
 * @description Contains all of the system level commands.
 * @requires module:ruleBroker
+* @requires module:workflowBroker
 * @requires module:configurator
 * @requires module:loggers
 * @requires module:data
@@ -16,6 +17,7 @@
 
 // Internal imports
 import ruleBroker from '../../brokers/ruleBroker.js';
+import workflowBroker from '../../brokers/workflowBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
@@ -264,8 +266,31 @@ const help = function(inputData, inputMetaData) {
 const workflowHelp = function(inputData, inputMetaData) {
   let functionName = workflowHelp.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wrd.cWorkflows], [wrd.cName]);
+  // The old way of printing out all the workflows, when it was a flat data structure.
+  // loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wrd.cWorkflows], [wrd.cName]);
+  if (inputData.length > 1) {
+    // calling getWorkflowNamespaceDataObject() function,
+    // because the user entered some namespace we should look for!
+    loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage01 + msg.cworkfowHelpMessage02);
+    let namespaceWorkflowData = workflowBroker.getWorkflowNamespaceDataObject(undefined, inputData[1]);
+    // namespaceWorkflowData is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceWorkflowDataIs + JSON.stringify(namespaceWorkflowData));
+    // NOW call getAllWorkflows with the above found data!
+    loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage03);
+    let flattenedNamespaceWorkflowData = workflowBroker.getAllWorkflows(namespaceWorkflowData);
+    loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceWorkflowData);
+  } else {
+    // User did not enter any parameters,
+    // just call getAllWorkflows functions with no input,
+    // will return all and print all.
+    loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage04 + msg.cworkfowHelpMessage05 + msg.cworkfowHelpMessage06);
+    let allWorkflowData = workflowBroker.getAllWorkflows();
+    loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowDataIs + JSON.stringify(allWorkflowData));
+    loggers.consoleTableLog(baseFileName + bas.cDot + functionName, allWorkflowData);
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
