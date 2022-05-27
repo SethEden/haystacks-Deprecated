@@ -398,11 +398,15 @@ function processXmlData(inputData, contextName) {
   let parsedDataFile = {};
   if (dataCatagory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
-    parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
-    for (let i = 0; i < inputData[sys.cCommandsAliases][wrd.cCommand].length; i++) {
-      let command = inputData[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
-      parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
-    } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
+    for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++) {
+      inputData[sys.cCommandsAliases] = processXmlLeafNode(inputData[sys.cCommandsAliases], wrd.cCommand);
+    } //End-for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++)
+    parsedDataFile = inputData[sys.cCommandsAliases];
+    // parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
+    // for (let i = 0; i < inputData[sys.cCommandsAliases][wrd.cCommand].length; i++) {
+    //   let command = inputData[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
+    //   parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
+    // } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
     for (let j = 0; j < Object.keys(inputData[sys.cCommandWorkflows]).length; j++) {
@@ -449,7 +453,7 @@ function processXmlLeafNode(inputData, leafNodeName) {
       loggers.consoleLog(namespacePrefix + functionName, msg.cpropertyIs + JSON.stringify(property));
       // inputData[property] is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataPropertyIs + JSON.stringify(inputData[property]));
-      if (property === wrd.cWorkflow) {
+      if (property === wrd.cWorkflow || property === wrd.cCommand) {
         let workflowParent = inputData[property];
         // workflowParent is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowParentIs + JSON.stringify(workflowParent));
@@ -459,16 +463,23 @@ function processXmlLeafNode(inputData, leafNodeName) {
           let workflowEntity = workflowParent[i][bas.cDollar];
           // workflowEntity is:
           loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
-          // workflowEntity[Value] is:
-          loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityValueIs + JSON.stringify(workflowEntity.Value));
-          returnData[workflowEntity.Name] = workflowEntity.Value;
+          if (property === wrd.cWorkflow) {
+            // workflowEntity[Value] is:
+            loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityValueIs + JSON.stringify(workflowEntity.Value));
+            returnData[workflowEntity.Name] = workflowEntity.Value;
+          } else if (property === wrd.cCommand) {
+            returnData[workflowEntity.Name] = {};
+            returnData[workflowEntity.Name][wrd.cName] = workflowEntity.Name;
+            returnData[workflowEntity.Name][wrd.cAliases] = workflowEntity.Aliases;
+            returnData[workflowEntity.Name][wrd.cDescription] = workflowEntity.Description;
+          }
           // END i-th Loop:
           loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
         }
         // Done with the for-loop, returnData is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWithForLoopReturnDataIs + JSON.stringify(returnData));
       } else {
-        // property is not a Workflow,
+        // property is not a Workflow or a Command,
         // so call processXmlLeafNode() recursively!
         loggers.consoleLog(namespacePrefix + functionName, msg.cprocessXmlLeafNodeMessage01 + msg.cprocessXmlLeafNodeMessage02);
         if (property === num.c0) {
