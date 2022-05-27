@@ -117,57 +117,21 @@ function getValidCommand(commandString, commandDelimiter) {
       loggers.consoleLog(namespacePrefix + functionName, msg.celseClauseLookingForCommandAliases);
       // NOTE: It could be that the user entered a command alias, so we will need to search through all of the command aliases,
       // to see if we can find a match, then get the actual command that should be executed.
-      let allCommandAliases = D[sys.cCommandsAliases][wrd.cCommands];
+      let allCommandAliases = D[sys.cCommandsAliases];
       // allCommandAliases is:
       loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesIs + JSON.stringify(allCommandAliases));
-loop1:
-      for (const [key, value] of Object.entries(allCommandAliases)) {
-        // Iterate through all of the command aliases and see if we can find a
-        // command alias that matches the command the user is trying to execute.
-        let currentCommand = value
-        loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
-        let aliasList = currentCommand[wrd.cAliases];
-        let arrayOfAliases = aliasList.split(bas.cComa);
-loop2:
-        for (let j = 0; j < arrayOfAliases.length; j++) {
-          let currentAlias = arrayOfAliases[j];
-          if (commandToExecute === currentAlias ||
-          commandToExecute === bas.cDash + currentAlias ||
-          commandToExecute === bas.cDoubleDash + currentAlias ||
-          commandToExecute === bas.cForwardSlash + currentAlias ||
-          commandToExecute === bas.cBackSlash + currentAlias ||
-          commandToExecute.toUpperCase() === currentAlias.toUpperCase() ||
-          commandToExecute.toUpperCase() === bas.cDash + currentAlias.toUpperCase() ||
-          commandToExecute.toUpperCase() === bas.cDoubleDash + currentAlias.toUpperCase() ||
-          commandToExecute.toUpperCase() === bas.cForwardSlash + currentAlias.toUpperCase() ||
-          commandToExecute.toUpperCase() === bas.cBackSlash + currentAlias.toUpperCase() ||
-          commandToExecute.toLowerCase() === currentAlias.toLowerCase() ||
-          commandToExecute.toLowerCase() === bas.cDash + currentAlias.toLowerCase() ||
-          commandToExecute.toLowerCase() === bas.cdoubleDash + currentAlias.toLowerCase() ||
-          commandToExecute.toLowerCase() === bas.cForwardSlash + currentAlias.toLowerCase() ||
-          commandToExecute.toLowerCase() === bas.cBackSlash + currentAlias.toLowerCase()) {
-            foundValidCommand = true;
-            // commandToExecute before the Alias is:
-            loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteBeforeTheAliasIs + commandToExecute);
-            commandToExecute = currentCommand[wrd.cName];
-            // commandToExecute after the Alias is:
-            loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteAfterTheAliasIs + commandToExecute);
-            break loop1;
-          }
-        } // End-for (let j = 0; j < arrayOfAliases.length; j++)
-      } // End-for (let i = 0; i < allCmmandAliases.length; i++)
-      if (foundValidCommand === true) {
-        if (D[wrd.cCommands][commandToExecute] !== undefined) {
-          returnData = commandToExecute;
-        } else {
-          // WARNING: The specified command:
-          // does not exist, please try again!
-          console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace + num.c1);
-        }
+      // Search through the data structure recursively to see if we can find the command or command alias.
+      foundValidCommand = searchCommandAlias(allCommandAliases, commandToExecute);
+      // foundValidCommand is:
+      loggers.consoleLog(namespacePrefix + functionName, 'foundValidCommand is: ' + JSON.stringify(foundValidCommand));
+      // Check if we found a valid command and return it if we did,
+      // or pop a message to indicate the command was not found.
+      if (foundValidCommand === false) {
+            // WARNING: The specified command:
+            // does not exist, please try again!
+            console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace + num.c1);
       } else {
-        // WARNING: The specified command:
-        // does not exist, please try again!
-        console.log(msg.cWarningTheSpecifiedCommand + commandToExecute + msg.cdoesNotExistPleaseTryAgain + bas.cSpace + num.c2);
+        returnData = foundValidCommand[wrd.cName];
       }
     } // End-else
   } else {
@@ -179,6 +143,181 @@ loop2:
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+/**
+ * @function searchCommandAlias
+ * @description This is a recursive fnction that searches through all the command aliases
+ * data structures and returns the one command data object that matches the input name.
+ * @param {object} commandAliasData The command alias data that should be searched recursively for the specified command alias.
+ * @param {string} commandAliasName The command alias name/string that should be found.
+ * @return {object} The command object that corrosponds to the input command alias name.
+ * @author Seth Hollingsead
+ * @date 2022/05/27
+ */
+function searchCommandAlias(commandAliasData, commandAliasName) {
+  let functionName = searchCommandAlias.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // commandAliasData is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasData is: ' + JSON.stringify(commandAliasData));
+  // commandAliasName is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasName is: ' + commandAliasName);
+  let commandAliasObject = false;
+  if (typeof commandAliasData === wrd.cobject) {
+    for (let commandAliasEntity in commandAliasData) {
+      // commandAliasEntity is:
+      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+      // commandAliasEntityValue is:
+      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntityValue is: ' + JSON.stringify(commandAliasData[commandAliasEntity]));
+      if (commandAliasEntity.toUpperCase() != commandAliasName.toUpperCase()) {
+        if (commandAliasData[commandAliasEntity][wrd.cAliases] != undefined) {
+          let aliasList = commandAliasData[commandAliasEntity][wrd.cAliases];
+          let arrayOfAliases = aliasList.split(bas.cComa);
+          for (let i = 0; i < arrayOfAliases.length; i++) {
+            let currentAlias = arrayOfAliases[i];
+            if (commandAliasName === currentAlias ||
+            commandAliasName === bas.cDash + currentAlias ||
+            commandAliasName === bas.cDoubleDash + currentAlias ||
+            commandAliasName === bas.cForwardSlash + currentAlias ||
+            commandAliasName === bas.cBackSlash + currentAlias ||
+            commandAliasName.toUpperCase() === currentAlias.toUpperCase() ||
+            commandAliasName.toUpperCase() === bas.cDash + currentAlias.toUpperCase() ||
+            commandAliasName.toUpperCase() === bas.cDoubleDash + currentAlias.toUpperCase() ||
+            commandAliasName.toUpperCase() === bas.cForwardSlash + currentAlias.toUpperCase() ||
+            commandAliasName.toUpperCase() === bas.cBackSlash + currentAlias.toUpperCase() ||
+            commandAliasName.toLowerCase() === currentAlias.toLowerCase() ||
+            commandAliasName.toLowerCase() === bas.cDash + currentAlias.toLowerCase() ||
+            commandAliasName.toLowerCase() === bas.cDoubleDash + currentAlias.toLowerCase() ||
+            commandAliasName.toLowerCase() === bas.cForwardSlash + currentAlias.toLowerCase() ||
+            commandAliasName.toLowerCase() === bas.cBackSlash + currentAlias.toLowerCase()) {
+              // Found a matching alias entry!
+              loggers.consoleLog(namespacePrefix + functionName, 'Found a matching alias entry!');
+              commandAliasObject = commandAliasData[commandAliasEntity];
+              break;
+            }
+          } // End-for (let i = 0; i < arrayOfAliases.length; i++)
+        } else {
+          let commandAliasesObjectTemp = searchCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
+          // commandAliasesObjectTemp is:
+          loggers.consoleLog(namespacePrefix + functionName, 'commandAliasesObjectTemp is: ' + JSON.stringify(commandAliasesObjectTemp));
+          if (commandAliasesObjectTemp != false) {
+            commandAliasObject = commandAliasesObjectTemp;
+            break;
+          }
+        }
+      } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
+        // Found a matching entry!
+        loggers.consoleLog(namespacePrefix + functionName, 'Found a matching entry!')
+        commandAliasObject = commandAliasData[commandAliasEntity];
+        break;
+      }
+    } // End-for (let commandAliasEntity in commandAliasData)
+  } // End-if (typeof commandAliasData === wrd.cobject)
+  // commandAliasObject is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasObject is: ' + JSON.stringify(commandAliasObject));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return commandAliasObject;
+};
+
+/**
+ * @function getAllCommandAliasData
+ * @description Recursively gets all of the commands alias data from all levels and flattens them into a singel array for printing out to the help command.
+ * @param {object} commandAliasDataStructure The command alias data structure that should be recursively flatened into a single array for output.
+ * If the input is undefined then the main CommandsAliases data structure will be used at the root of the command aliases data hive.
+ * @return {array<string>|boolean} An array of all the command aliases currently needing to be flattened or
+ * a boolean True or False to indicate that a leaf-node has been found by the recursive caller.
+ * @author Seth Hollingsead
+ * @date 2022/05/27
+ */
+function getAllCommandAliasData(commandAliasDataStructure) {
+  let functionName = getAllCommandAliasData.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // commandAliasDataStructure is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure is: ' + JSON.stringify(commandAliasDataStructure));
+  let allCommandsData = false;
+  if (commandAliasDataStructure === undefined) {
+    commandAliasDataStructure === D[sys.cCommandsAliases];
+  }
+  if (typeof commandAliasDataStructure === wrd.cobject) {
+    allCommandsData = [];
+    for (let commandAliasEntity in commandAliasDataStructure) {
+      // commandAliasEntity is:
+      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+      // commandAliasDataStructure[commandAliasEntity] is:
+      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure[commandAliasEntity] is: ' + JSON.stringify(commandAliasDataStructure[commandAliasEntity]));
+      if (typeof commandAliasDataStructure[commandAliasEntity] === wrd.cobject) {
+        // commandAliasDataStructure[commandAliasEntity] is of type object!
+        loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure[commandAliasEntity] is of type object!');
+        let allCommandAliasesTemp;
+        allCommandAliasesTemp = getAllCommandAliasData(commandAliasDataStructure[commandAliasEntity]);
+        // allCommandAliasesTemp returned from the recursive call is:
+        loggers.consoleLog(namespacePrefix + functionName, 'allCommandAliasesTemp returned from the recursive call is: ' + JSON.stringify(allCommandAliasesTemp));
+        if (allCommandAliasesTemp === false) {
+          // The recursive call returned false, so push the current entity to the output array!
+          loggers.consoleLog(namespacePrefix + functionName, 'The recursive call returned false, so push the current entity to the output array!');
+          allCommandsData.push(commandAliasDataStructure);
+          // allCommandsData after pushing to the aray 1 is:
+          loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData after pushing to the aray 1 is: ' + JSON.stringify(allCommandsData));
+          break;
+        } else {
+          allCommandsData = ruleBroker.processRules([allCommandsData, allCommandAliasesTemp], [biz.cobjectDeepMerge]);
+        }
+      } else {
+        allCommandsData = false; // Reset it, because it was reinitalized to an array.
+      }
+    } // End-for (let commandAliasEntity in commandAliasDataStructure)
+  } // End-if (typeof commandAliasDataStructure === wrd.cobject)
+  // allCommandsData is:
+  loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData is: ' + JSON.stringify(allCommandsData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return allCommandsData;
+};
+
+/**
+ * @function getCommandNamespaceDataObject
+ * @description Recursively scans through the entire command alias data structure looking for an object that matches the input namespace name.
+ * When that namespace is found, the entire object is returned.
+ * @param {object} commandAliasDataStructure The command alias data structure that should be recursively searched for the namespace specified.
+ * if the input is undefined then the main cCommandsAliases data structure will be used at the root of the CommandAliases data hive.
+ * @param {string} namespaceToFind The namespace to look for in the command alias metaData data structure.
+ * @return {object|boolean} The namespace object if it is found, or False if the namespace object was not found.
+ * @author Seth Hollingsead
+ * @date 2022/05/27
+ */
+function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFind) {
+  let functionName = getCommandNamespaceDataObject.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // commandAliasDataStructure is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure is: ' + JSON.stringify(commandAliasDataStructure));
+  // namespaceToFind is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceToFindIs + namespaceToFind);
+  let namespaceCommandsObject = false;
+  if (commandAliasDataStructure === undefined) {
+    commandAliasDataStructure = D[sys.cCommandsAliases];
+  }
+  for (let commandAliasEntity in commandAliasDataStructure) {
+    // commandAliasEntity is:
+    loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+    // commandAliasDataStructure[commandAliasEntity] is:
+    loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure[commandAliasEntity] is: ' + JSON.stringify(commandAliasDataStructure[commandAliasEntity]));
+    if (commandAliasEntity === namespaceToFind) {
+      namespaceCommandsObject = commandAliasDataStructure[commandAliasEntity];
+      break;
+    } else if (typeof commandAliasDataStructure[commandAliasEntity] === wrd.cobject) {
+      // Search recursively
+      let namespaceCommandsTempObject = getCommandNamespaceDataObject(commandAliasDataStructure[commandAliasEntity], namespaceToFind);
+      if (namespaceCommandsTempObject != false) {
+        // Then we must have found the namespace object we were looking for in the recursion call.
+        // Just return it, and skip out of the loop.
+        namespaceCommandsObject = namespaceCommandsTempObject;
+        break;
+      }
+    }
+  } // End-for (let commandAliasEntity in commandAliasDataStructure)
+  // namespaceCommandsObject is:
+  loggers.consoleLog(namespacePrefix + functionName, 'namespaceCommandsObject is: ' + JSON.stringify(namespaceCommandsObject));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return namespaceCommandsObject;
 };
 
 /**
@@ -418,6 +557,9 @@ export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
   [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
   [fnc.cgetValidCommand]: (commandString, commandDelimiter) => getValidCommand(commandString, commandDelimiter),
+  searchCommandAlias,
+  getAllCommandAliasData,
+  getCommandNamespaceDataObject,
   [fnc.cgetCommandArgs]: (commandString, commandDelimiter) => getCommandArgs(commandString, commandDelimiter),
   [fnc.cexecuteCommand]: (commandString) => executeCommand(commandString)
 };

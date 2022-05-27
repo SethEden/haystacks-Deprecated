@@ -131,7 +131,7 @@ function searchWorkflow(workflowData, workflowName) {
         workflowObject = workflowData[workflowEntity];
         break;
       }
-    } // End-for (workflowEntity in workflowData)
+    } // End-for (let workflowEntity in workflowData)
   } // End-if (typeof workflowData === wrd.cobject)
   // workflowObject is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowObjectIs + workflowObject);
@@ -142,7 +142,7 @@ function searchWorkflow(workflowData, workflowName) {
 /**
  * @function getAllWorkflows
  * @description Recursively gets all of the workflows from all levels and flattens them into a single array for printing out to the workflow help command.
- * @param workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
+ * @param {object} workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
  * If the input is undefined then the main CommandWorkflows data structure will be used at the root of the workflows data hive.
  * @return {array<string>|boolean} An array of all the workflows currently loaded into the D-data structure under the CommandWorkflows data hive or
  * a boolean True or False to indicate that a leaf-node has been found by the recursive caller.
@@ -189,7 +189,7 @@ function getAllWorkflows(workflowDataStructure) {
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray2Is + JSON.stringify(allWorkflows));
       }
     } // End-for (workflowEntity in workflowData)
-  }
+  } // End-if (typeof workflowDataStructure === wrd.cobject)
   // workflow is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowIs + JSON.stringify(allWorkflows));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -200,7 +200,7 @@ function getAllWorkflows(workflowDataStructure) {
  * @function getWorkflowNamespaceDataObject
  * @description Recursively scans through the entire workflow metaData data structure looking for an object that matches the input namespace name.
  * When that namespace is found, the entire object is returned.
- * @param workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
+ * @param {object} workflowDataStructure The workflow data structure that should be recursively searched for the namespace specified.
  * If the input is undefined then the main CommandWorkflows data structure will be used at the root of the workflows data hive.
  * @param {string} namespaceToFind The namespace to look for in the workflow metaData data structure.
  * @return {object|boolean} The namespace object if it is found, or False if the namespace object was not found.

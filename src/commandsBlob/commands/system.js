@@ -2,6 +2,7 @@
 * @file system.js
 * @module system
 * @description Contains all of the system level commands.
+* @requires module:commandBroker
 * @requires module:ruleBroker
 * @requires module:workflowBroker
 * @requires module:configurator
@@ -16,6 +17,7 @@
 */
 
 // Internal imports
+import commandBroker from '../../brokers/commandBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
 import workflowBroker from '../../brokers/workflowBroker.js';
 import configurator from '../../executrix/configurator.js';
@@ -246,7 +248,27 @@ const help = function(inputData, inputMetaData) {
   let functionName = help.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = true;
-  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandsAliases][wrd.cCommands], [wrd.cName, wrd.cDescription]);
+  if (inputData.length > 1) {
+    // calling getCommandNamespaceDataObject() function,
+    // because the user entered some namespace we should look for!
+    let namespaceCommandsData = commandBroker.getCommandNamespaceDataObject(undefined, inputData[1]);
+    // namespaceCommandsData is:
+    loggers.consoleLog(namespacePrefix + functionName, 'namespaceCommandsData is: ' + JSON.stringify(namespaceCommandsData));
+    if (namespaceCommandsData === false) {
+      // ERROR: The command namespace was not found.
+      // Please make sure you have entered the correct name and try again.
+      console.log('ERROR: The command namespace was not found.' + bas.cSpace + 'Please make sure you have entered the correct name and try again.');
+    } else {
+      // NOW call getAllCommandAliasData wtih the above found data!
+      loggers.consoleLog(namespacePrefix + functionName, 'NOW call getAllCommandAliasData wtih the above found data!');
+      let flattenedNamespaceCommandAliasData = commandBroker.getAllCommandAliasData(namespaceCommandsData);
+      loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceCommandAliasData[0], [wrd.cName, wrd.cDescription]);
+    }
+  } else {
+    let allCommandAliasFlatData = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]);
+    loggers.consoleLog(namespacePrefix + functionName, 'allCommandAliasFlatData is: ' + JSON.stringify(allCommandAliasFlatData[0]));
+    loggers.consoleTableLog(baseFileName + bas.cDot + functionName, allCommandAliasFlatData[0], [wrd.cName, wrd.cDescription]);
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -278,10 +300,16 @@ const workflowHelp = function(inputData, inputMetaData) {
     let namespaceWorkflowData = workflowBroker.getWorkflowNamespaceDataObject(undefined, inputData[1]);
     // namespaceWorkflowData is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceWorkflowDataIs + JSON.stringify(namespaceWorkflowData));
-    // NOW call getAllWorkflows with the above found data!
-    loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage03);
-    let flattenedNamespaceWorkflowData = workflowBroker.getAllWorkflows(namespaceWorkflowData);
-    loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceWorkflowData);
+    if (namespaceWorkflowData === false) {
+      // ERROR: The workflow namespace was not found.
+      // Please make sure you have entered the correct name and try again.
+      console.log('ERROR: The workflow namespace was not found.' + bas.cSpace + 'Please make sure you have entered the correct name and try again.');
+    } else {
+      // NOW call getAllWorkflows with the above found data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage03);
+      let flattenedNamespaceWorkflowData = workflowBroker.getAllWorkflows(namespaceWorkflowData);
+      loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceWorkflowData);
+    }
   } else {
     // User did not enter any parameters,
     // just call getAllWorkflows functions with no input,
