@@ -2,6 +2,7 @@
  * @file integrationTests.js
  * @module integrationTests
  * @description Contains all of the commands to test various components of the system.
+ * @requires module:commandBroker
  * @requires module:ruleBroker
  * @requires module:configurator
  * @requires module:loggers
@@ -14,6 +15,7 @@
  */
 
 // Internal imports
+import commandBroker from '../../brokers/commandBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
@@ -119,13 +121,13 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let allCommandAliases = D[sys.cCommandsAliases][wrd.cCommands];
+  let allCommandAliases = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]); // D[sys.cCommandsAliases][wrd.cCommands];
   let passedAllCommandAliasesDuplicateCheck = true;
 loop1:
-  for (let key1 in allCommandAliases) {
+  for (let key1 in allCommandAliases[0]) {
     // key1 is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ckey1Is + key1);
-    let currentCommand = allCommandAliases[key1];
+    let currentCommand = allCommandAliases[0][key1];
     // currentCommand is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
     let aliasList = currentCommand[wrd.cAliases];
@@ -139,10 +141,12 @@ loop2:
       let currentAlias = arrayOfAliases[j];
       // currentAlias is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
-      let duplicateAliasCount = ruleBroker.processRules([currentAlias, allCommandAliases], [biz.ccountDuplicateCommandAliases]);
-      if (duplicateAliasCount > 1) {
-        passedAllCommandAliasesDuplicateCheck = false;
-      }
+      // TODO: Call the CommandBroker here to get a count of the number of command aliases that match the current command alias.
+      
+      // let duplicateAliasCount = ruleBroker.processRules([currentAlias, allCommandAliases], [biz.ccountDuplicateCommandAliases]);
+      // if (duplicateAliasCount > 1) {
+      //   passedAllCommandAliasesDuplicateCheck = false;
+      // }
       // END j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
     } // End-for (let j = 0; j < arrayOfAliases.length; j++)

@@ -147,7 +147,7 @@ function getValidCommand(commandString, commandDelimiter) {
 
 /**
  * @function searchCommandAlias
- * @description This is a recursive fnction that searches through all the command aliases
+ * @description This is a recursive function that searches through all the command aliases
  * data structures and returns the one command data object that matches the input name.
  * @param {object} commandAliasData The command alias data that should be searched recursively for the specified command alias.
  * @param {string} commandAliasName The command alias name/string that should be found.
