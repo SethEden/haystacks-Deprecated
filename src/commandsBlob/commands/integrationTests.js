@@ -4,6 +4,7 @@
  * @description Contains all of the commands to test various components of the system.
  * @requires module:commandBroker
  * @requires module:ruleBroker
+ * @requires module:workflowBroker
  * @requires module:colorizer
  * @requires module:configurator
  * @requires module:loggers
@@ -18,6 +19,7 @@
 // Internal imports
 import commandBroker from '../../brokers/commandBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
+import workflowBroker from '../../brokers/workflowBroker.js';
 import colorizer from '../../executrix/colorizer.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
@@ -177,7 +179,67 @@ loop2:
   return returnData;
 };
 
+/**
+ * @function validateWorkflows
+ * @description Validates all the workflows ahve no duplicates.
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/06/08
+ */
+const validateWorkflows = function(inputData, inputMetaData) {
+  let functionName = validateWorkflows.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let numberOfDuplicatesFound = 0;
+  let passedAllWorkflowDuplicateCheck = true;
+  let allWorkflowsData = workflowBroker.getAllWorkflows(D[sys.cCommandWorkflows]);
+  let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
+  let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
+  // allWorkflowsData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsDataIs + JSON.stringify(allWorkflowsData));
+  for (let workflowKey in allWorkflowsData) {
+    numberOfDuplicatesFound = 0;
+    let workflowName = allWorkflowsData[workflowKey];
+    for (let i = 0; i < allWorkflowsData.length; i++) {
+      let secondTierWorkflowName = allWorkflowsData[i];
+      // console.log('workflowName is: ' + workflowName);
+      // console.log('secondTierWorkflowName is: ' + secondTierWorkflowName);
+      if (workflowName === secondTierWorkflowName) {
+        numberOfDuplicatesFound = numberOfDuplicatesFound + 1;
+      }
+    } // End-for (let i = 0; i < allWorkflowsData.length; i++)
+    if (numberOfDuplicatesFound > 1) {
+      // Duplicate workflow count is:
+      let duplicateWorkflowCountMessage = msg.cDuplicateWorkflowCountIs + numberOfDuplicatesFound;
+      duplicateWorkflowCountMessage = colorizer.colorizeMessageSimple(duplicateWorkflowCountMessage, blackColorArray, true);
+      duplicateWorkflowCountMessage = colorizer.colorizeMessageSimple(duplicateWorkflowCountMessage, redColorArray, false);
+      console.log(duplicateWorkflowCountMessage);
+
+      // Duplicate workflow name is:
+      let duplicateWorkflowMessage = msg.cDuplicateWorkflowNameIs + workflowName;
+      duplicateWorkflowMessage = colorizer.colorizeMessageSimple(duplicateWorkflowMessage, blackColorArray, true);
+      duplicateWorkflowMessage = colorizer.colorizeMessageSimple(duplicateWorkflowMessage, redColorArray, false);
+      console.log(duplicateWorkflowMessage);
+
+      passedAllWorkflowDuplicateCheck = false;
+    }
+  } // End-for (let workflowName in allWorkflowsData)
+  if (passedAllWorkflowDuplicateCheck === true) {
+    // PASSED: All duplicate workflow validation tests!
+    console.log(msg.cvalidateWorkflowsMessage01);
+  }
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks, passedAllWorkflowDuplicateCheck);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   validateConstants,
-  validateCommandAliases
+  validateCommandAliases,
+  validateWorkflows
 }

@@ -155,8 +155,11 @@ function getAllWorkflows(workflowDataStructure) {
   // workflowDataStructure is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
   let allWorkflows = false;
+  let internalWorkflowDataStructure;
   if (workflowDataStructure === undefined) {
-    workflowDataStructure = D[sys.cCommandWorkflows];
+    internalWorkflowDataStructure = JSON.parse(JSON.stringify(D[sys.cCommandWorkflows]));
+  } else {
+    internalWorkflowDataStructure = JSON.parse(JSON.stringify(workflowDataStructure));
   }
   if (typeof workflowDataStructure === wrd.cobject) {
     allWorkflows = [];
