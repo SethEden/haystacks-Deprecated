@@ -37,5 +37,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateCommandAliases@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows": false,
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.integrationTests.validateWorkflows@DataFontBackgroundColor": "Black"
 }

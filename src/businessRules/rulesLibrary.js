@@ -191,7 +191,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // ***********************************************
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => commandStringParsing.cleanCommandInput(inputData, inputMetaData),
      [biz.cisValidCommandNameString]: (inputData, inputMetaData) => commandStringParsing.isValidCommandNameString(inputData, inputMetaData),
-     [biz.ccountDuplicateCommandAliases]: (inputData, inputMetaData) => commandStringParsing.countDuplicateCommandAliases(inputData, inputMetaData),
 
      // ***********************************************
      // constantStringParsing rules in order
