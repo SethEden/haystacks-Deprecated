@@ -4,6 +4,7 @@
  * @description Contains all of the commands to test various components of the system.
  * @requires module:commandBroker
  * @requires module:ruleBroker
+ * @requires module:colorizer
  * @requires module:configurator
  * @requires module:loggers
  * @requires module:data
@@ -17,6 +18,7 @@
 // Internal imports
 import commandBroker from '../../brokers/commandBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
+import colorizer from '../../executrix/colorizer.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
@@ -24,7 +26,7 @@ import D from '../../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, msg, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.integrationTests.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -121,8 +123,11 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
-  let allCommandAliases = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]); // D[sys.cCommandsAliases][wrd.cCommands];
+  let allCommandAliases = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]);
   let passedAllCommandAliasesDuplicateCheck = true;
+  let duplicateAliasCount = 0
+  let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
+  let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
 loop1:
   for (let key1 in allCommandAliases[0]) {
     // key1 is:
@@ -140,13 +145,26 @@ loop2:
       loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
       let currentAlias = arrayOfAliases[j];
       // currentAlias is:
+      // console.log('currentAlias is: ' + currentAlias);
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
-      // TODO: Call the CommandBroker here to get a count of the number of command aliases that match the current command alias.
-      
-      // let duplicateAliasCount = ruleBroker.processRules([currentAlias, allCommandAliases], [biz.ccountDuplicateCommandAliases]);
-      // if (duplicateAliasCount > 1) {
-      //   passedAllCommandAliasesDuplicateCheck = false;
-      // }
+      duplicateAliasCount = 0
+      duplicateAliasCount = commandBroker.countMatchingCommandAlias(D[sys.cCommandsAliases], currentAlias);
+      // console.log('duplicateAliasCount is: ' + duplicateAliasCount);
+      if (duplicateAliasCount > 1) {
+
+        // duplicateAliasCount is:
+        let duplicateAliasCountMessage = msg.cduplicateAliasCountIs + duplicateAliasCount;
+        duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, blackColorArray, true);
+        duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, redColorArray, false);
+        console.log(duplicateAliasCountMessage);
+        // duplicate command alias is:
+        let duplicateAliasCommandMessage = msg.cduplicateCommandAliasIs + currentAlias;
+        duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, blackColorArray, true);
+        duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, redColorArray, false);
+        console.log(duplicateAliasCommandMessage);
+
+        passedAllCommandAliasesDuplicateCheck = false;
+      }
       // END j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
     } // End-for (let j = 0; j < arrayOfAliases.length; j++)

@@ -146,6 +146,70 @@ function getValidCommand(commandString, commandDelimiter) {
 };
 
 /**
+ * @function countMatchingCommandAlias
+ * @description This is a recursive function that searches through all teh command aliases
+ * data structures and counts the number of command aliases that match the input alias.
+ * @param {object} commandAliasData The command alias data that should be searched recursively for the specified command alias.
+ * @param {string} commandAliasName The command alias name/string that should be searched for and counted when matches are found.
+ * @return {integer} The count of the number of command aliases that match the given input alias.
+ * @author Seth Hollingsead
+ * @date 2022/06/06
+ */
+function countMatchingCommandAlias(commandAliasData, commandAliasName) {
+  let functionName = countMatchingCommandAlias.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // commandAliasData is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasData is: ' + JSON.stringify(commandAliasData));
+  // commandAliasName is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasName is: ' + commandAliasName);
+  let commandAliasCount = 0;
+  if (typeof commandAliasData === wrd.cobject) {
+    for (let commandAliasEntity in commandAliasData) {
+      // commandAliasEntity is:
+      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+      // commandAliasEntityValue is:
+      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntityValue is: ' + JSON.stringify(commandAliasData[commandAliasEntity]));
+      if (commandAliasEntity.toUpperCase() != commandAliasName.toUpperCase()) {
+        if (commandAliasData[commandAliasEntity][wrd.cAliases] != undefined) {
+          let aliasList = commandAliasData[commandAliasEntity][wrd.cAliases];
+          let arrayOfAliases = aliasList.split(bas.cComa);
+          for (let i = 0; i < arrayOfAliases.length; i++) {
+            let currentAlias = arrayOfAliases[i];
+            loggers.consoleLog(namespacePrefix + functionName, 'currentAlias is: ' + currentAlias);
+            loggers.consoleLog(namespacePrefix + functionName, 'commandAliasName is: ' + commandAliasName);
+            if (commandAliasName === currentAlias) {
+              // Found a matching alias entry!
+              loggers.consoleLog(namespacePrefix + functionName, 'Found a matching alias entry! 1');
+              commandAliasCount = commandAliasCount + 1;
+              // Don't break, continue searching, so we get a full count of any duplicates found.
+            }
+          } // End-for (let i = 0; i < arrayOfAliases.length; i++)
+        } else {
+          let tempCommandAliasCount = countMatchingCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
+          // tempCommandAliasCount is:
+          loggers.consoleLog(namespacePrefix + functionName, 'tempCommandAliasCount is: ' + tempCommandAliasCount);
+          if (tempCommandAliasCount > 0) {
+            loggers.consoleLog(namespacePrefix + functionName, 'adding commandAliasCount: ' + commandAliasCount);
+            commandAliasCount = commandAliasCount + tempCommandAliasCount;
+            loggers.consoleLog(namespacePrefix + functionName, 'After adding commandAliasCount and tempCommandAliasCount: ' + commandAliasCount);
+            // Don't break, continue searching, so we get a full count of any duplicates found.
+          }
+        }
+      } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
+        // Found a matching entry!
+        loggers.consoleLog(namespacePrefix + functionName, 'Found a matching alias entry! 2');
+        commandAliasCount = commandAliasCount + 1;
+        // Don't break, continue searching, so we get a full count of any duplicates found.
+      }
+    } // End-for (let commandAliasEntity in commandAliasData)
+  } // End-if (typeof commandAliasData === wrd.cobject)
+  // commandAliasCount is:
+  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasCount is: ' + JSON.stringify(commandAliasCount));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return commandAliasCount;
+};
+
+/**
  * @function searchCommandAlias
  * @description This is a recursive function that searches through all the command aliases
  * data structures and returns the one command data object that matches the input name.
@@ -207,7 +271,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
         // Found a matching entry!
-        loggers.consoleLog(namespacePrefix + functionName, 'Found a matching entry!')
+        loggers.consoleLog(namespacePrefix + functionName, 'Found a matching entry!');
         commandAliasObject = commandAliasData[commandAliasEntity];
         break;
       }
@@ -557,6 +621,7 @@ export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
   [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
   [fnc.cgetValidCommand]: (commandString, commandDelimiter) => getValidCommand(commandString, commandDelimiter),
+  countMatchingCommandAlias,
   searchCommandAlias,
   getAllCommandAliasData,
   getCommandNamespaceDataObject,

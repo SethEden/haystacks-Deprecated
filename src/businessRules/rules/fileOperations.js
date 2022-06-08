@@ -683,7 +683,7 @@ const copyFolderRecursiveSync = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const appendMessageToFile = function(inputData, inputMetaData) {
-  let functionName = appendMessageToFile.name;
+  // let functionName = appendMessageToFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(msg.cinputDataIs + inputData);
   // console.log(msg.cinputMetaDataIs + inputMetaData);
