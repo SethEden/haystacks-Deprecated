@@ -130,8 +130,10 @@ const deployApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
-  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
-  if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
+  let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks);
+  let passAllWorkflowDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks);
+
+  if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true && passAllWorkflowDuplicateChecks === true) {
     // DEPLOY APPLICATION
     console.log(msg.cDEPLOY_APPLICATION);
     let frameworkRootPath = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath)
