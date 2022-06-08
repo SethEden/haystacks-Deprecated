@@ -51,7 +51,7 @@
   "debugFunctions|debugSetting.brokers.commandBroker.getValidCommand@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.brokers.commandBroker.getValidCommand@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.brokers.commandBroker.getValidCommand@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.brokers.commandBroker.countMatchingCommandAlias": true,
+  "debugFunctions|debugSetting.brokers.commandBroker.countMatchingCommandAlias": false,
   "debugFunctions|debugSetting.brokers.commandBroker.countMatchingCommandAlias@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.brokers.commandBroker.countMatchingCommandAlias@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.brokers.commandBroker.countMatchingCommandAlias@MessageFontStyle": "Default",

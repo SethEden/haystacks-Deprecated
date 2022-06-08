@@ -299,29 +299,34 @@ function getAllCommandAliasData(commandAliasDataStructure) {
   // commandAliasDataStructure is:
   loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure is: ' + JSON.stringify(commandAliasDataStructure));
   let allCommandsData = false;
+  let internalCommandAliasDataStructure;
   if (commandAliasDataStructure === undefined) {
-    commandAliasDataStructure === D[sys.cCommandsAliases];
+    internalCommandAliasDataStructure = JSON.parse(JSON.stringify(D[sys.cCommandsAliases]));
+  } else {
+    internalCommandAliasDataStructure = JSON.parse(JSON.stringify(commandAliasDataStructure));
   }
-  if (typeof commandAliasDataStructure === wrd.cobject) {
+  // internalCommandAliasDataStructure is:
+  loggers.consoleLog(namespacePrefix + functionName, 'internalCommandAliasDataStructure is: ' + JSON.stringify(internalCommandAliasDataStructure));
+  if (typeof internalCommandAliasDataStructure === wrd.cobject) {
     allCommandsData = [];
-    for (let commandAliasEntity in commandAliasDataStructure) {
+    for (let commandAliasEntity in internalCommandAliasDataStructure) {
       // commandAliasEntity is:
       loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
-      // commandAliasDataStructure[commandAliasEntity] is:
-      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure[commandAliasEntity] is: ' + JSON.stringify(commandAliasDataStructure[commandAliasEntity]));
-      if (typeof commandAliasDataStructure[commandAliasEntity] === wrd.cobject) {
-        // commandAliasDataStructure[commandAliasEntity] is of type object!
-        loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure[commandAliasEntity] is of type object!');
+      // internalCommandAliasDataStructure[commandAliasEntity] is:
+      loggers.consoleLog(namespacePrefix + functionName, 'internalCommandAliasDataStructure[commandAliasEntity] is: ' + JSON.stringify(internalCommandAliasDataStructure[commandAliasEntity]));
+      if (typeof internalCommandAliasDataStructure[commandAliasEntity] === wrd.cobject) {
+        // internalCommandAliasDataStructure[commandAliasEntity] is of type object!
+        loggers.consoleLog(namespacePrefix + functionName, 'internalCommandAliasDataStructure[commandAliasEntity] is of type object!');
         let allCommandAliasesTemp;
-        allCommandAliasesTemp = getAllCommandAliasData(commandAliasDataStructure[commandAliasEntity]);
+        allCommandAliasesTemp = getAllCommandAliasData(internalCommandAliasDataStructure[commandAliasEntity]);
         // allCommandAliasesTemp returned from the recursive call is:
         loggers.consoleLog(namespacePrefix + functionName, 'allCommandAliasesTemp returned from the recursive call is: ' + JSON.stringify(allCommandAliasesTemp));
         if (allCommandAliasesTemp === false) {
           // The recursive call returned false, so push the current entity to the output array!
           loggers.consoleLog(namespacePrefix + functionName, 'The recursive call returned false, so push the current entity to the output array!');
-          allCommandsData.push(commandAliasDataStructure);
-          // allCommandsData after pushing to the aray 1 is:
-          loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData after pushing to the aray 1 is: ' + JSON.stringify(allCommandsData));
+          allCommandsData.push(internalCommandAliasDataStructure);
+          // allCommandsData after pushing to the array 1 is:
+          loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData after pushing to the array 1 is: ' + JSON.stringify(allCommandsData));
           break;
         } else {
           allCommandsData = ruleBroker.processRules([allCommandsData, allCommandAliasesTemp], [biz.cobjectDeepMerge]);
@@ -329,8 +334,8 @@ function getAllCommandAliasData(commandAliasDataStructure) {
       } else {
         allCommandsData = false; // Reset it, because it was reinitalized to an array.
       }
-    } // End-for (let commandAliasEntity in commandAliasDataStructure)
-  } // End-if (typeof commandAliasDataStructure === wrd.cobject)
+    } // End-for (let commandAliasEntity in internalCommandAliasDataStructure)
+  } // End-if (typeof internalCommandAliasDataStructure === wrd.cobject)
   // allCommandsData is:
   loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData is: ' + JSON.stringify(allCommandsData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
