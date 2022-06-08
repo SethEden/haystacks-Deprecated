@@ -123,7 +123,7 @@ function getValidCommand(commandString, commandDelimiter) {
       // Search through the data structure recursively to see if we can find the command or command alias.
       foundValidCommand = searchCommandAlias(allCommandAliases, commandToExecute);
       // foundValidCommand is:
-      loggers.consoleLog(namespacePrefix + functionName, 'foundValidCommand is: ' + JSON.stringify(foundValidCommand));
+      loggers.consoleLog(namespacePrefix + functionName, msg.cfoundValidCommandIs + JSON.stringify(foundValidCommand));
       // Check if we found a valid command and return it if we did,
       // or pop a message to indicate the command was not found.
       if (foundValidCommand === false) {
@@ -159,27 +159,27 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
   let functionName = countMatchingCommandAlias.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandAliasData is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasData is: ' + JSON.stringify(commandAliasData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasDataIs + JSON.stringify(commandAliasData));
   // commandAliasName is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasName is: ' + commandAliasName);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasNameIs + commandAliasName);
   let commandAliasCount = 0;
   if (typeof commandAliasData === wrd.cobject) {
     for (let commandAliasEntity in commandAliasData) {
       // commandAliasEntity is:
-      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasEntityIs + JSON.stringify(commandAliasEntity));
       // commandAliasEntityValue is:
-      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntityValue is: ' + JSON.stringify(commandAliasData[commandAliasEntity]));
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasEntityValueIs + JSON.stringify(commandAliasData[commandAliasEntity]));
       if (commandAliasEntity.toUpperCase() != commandAliasName.toUpperCase()) {
         if (commandAliasData[commandAliasEntity][wrd.cAliases] != undefined) {
           let aliasList = commandAliasData[commandAliasEntity][wrd.cAliases];
           let arrayOfAliases = aliasList.split(bas.cComa);
           for (let i = 0; i < arrayOfAliases.length; i++) {
             let currentAlias = arrayOfAliases[i];
-            loggers.consoleLog(namespacePrefix + functionName, 'currentAlias is: ' + currentAlias);
-            loggers.consoleLog(namespacePrefix + functionName, 'commandAliasName is: ' + commandAliasName);
+            loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
+            loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasNameIs + commandAliasName);
             if (commandAliasName === currentAlias) {
-              // Found a matching alias entry!
-              loggers.consoleLog(namespacePrefix + functionName, 'Found a matching alias entry! 1');
+              // Found a matching alias entry! 1
+              loggers.consoleLog(namespacePrefix + functionName, msg.cFoundMatchingAliasEntry1);
               commandAliasCount = commandAliasCount + 1;
               // Don't break, continue searching, so we get a full count of any duplicates found.
             }
@@ -187,24 +187,26 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
         } else {
           let tempCommandAliasCount = countMatchingCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // tempCommandAliasCount is:
-          loggers.consoleLog(namespacePrefix + functionName, 'tempCommandAliasCount is: ' + tempCommandAliasCount);
+          loggers.consoleLog(namespacePrefix + functionName, msg.ctempCommandAliasCountIs + tempCommandAliasCount);
           if (tempCommandAliasCount > 0) {
-            loggers.consoleLog(namespacePrefix + functionName, 'adding commandAliasCount: ' + commandAliasCount);
+            // adding commandAliasCount:
+            loggers.consoleLog(namespacePrefix + functionName, msg.caddingCommandAliasCount + commandAliasCount);
             commandAliasCount = commandAliasCount + tempCommandAliasCount;
-            loggers.consoleLog(namespacePrefix + functionName, 'After adding commandAliasCount and tempCommandAliasCount: ' + commandAliasCount);
+            // After adding commandAliasCount and tempCommandAliasCount:
+            loggers.consoleLog(namespacePrefix + functionName, msg.cAfterAddingCommandAliasCountAndTempCommandAliasCount + commandAliasCount);
             // Don't break, continue searching, so we get a full count of any duplicates found.
           }
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
-        // Found a matching entry!
-        loggers.consoleLog(namespacePrefix + functionName, 'Found a matching alias entry! 2');
+        // Found a matching entry! 2
+        loggers.consoleLog(namespacePrefix + functionName, msg.cFoundMatchingAliasEntry2);
         commandAliasCount = commandAliasCount + 1;
         // Don't break, continue searching, so we get a full count of any duplicates found.
       }
     } // End-for (let commandAliasEntity in commandAliasData)
   } // End-if (typeof commandAliasData === wrd.cobject)
   // commandAliasCount is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasCount is: ' + JSON.stringify(commandAliasCount));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasCountIs + JSON.stringify(commandAliasCount));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return commandAliasCount;
 };
@@ -223,16 +225,16 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
   let functionName = searchCommandAlias.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandAliasData is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasData is: ' + JSON.stringify(commandAliasData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasDataIs + JSON.stringify(commandAliasData));
   // commandAliasName is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasName is: ' + commandAliasName);
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasNameIs + commandAliasName);
   let commandAliasObject = false;
   if (typeof commandAliasData === wrd.cobject) {
     for (let commandAliasEntity in commandAliasData) {
       // commandAliasEntity is:
-      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasEntityIs + JSON.stringify(commandAliasEntity));
       // commandAliasEntityValue is:
-      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntityValue is: ' + JSON.stringify(commandAliasData[commandAliasEntity]));
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasEntityValueIs + JSON.stringify(commandAliasData[commandAliasEntity]));
       if (commandAliasEntity.toUpperCase() != commandAliasName.toUpperCase()) {
         if (commandAliasData[commandAliasEntity][wrd.cAliases] != undefined) {
           let aliasList = commandAliasData[commandAliasEntity][wrd.cAliases];
@@ -255,7 +257,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
             commandAliasName.toLowerCase() === bas.cForwardSlash + currentAlias.toLowerCase() ||
             commandAliasName.toLowerCase() === bas.cBackSlash + currentAlias.toLowerCase()) {
               // Found a matching alias entry!
-              loggers.consoleLog(namespacePrefix + functionName, 'Found a matching alias entry!');
+              loggers.consoleLog(namespacePrefix + functionName, msg.cFoundMatchingAliasEntry1);
               commandAliasObject = commandAliasData[commandAliasEntity];
               break;
             }
@@ -263,7 +265,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
         } else {
           let commandAliasesObjectTemp = searchCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // commandAliasesObjectTemp is:
-          loggers.consoleLog(namespacePrefix + functionName, 'commandAliasesObjectTemp is: ' + JSON.stringify(commandAliasesObjectTemp));
+          loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesObjectTempIs + JSON.stringify(commandAliasesObjectTemp));
           if (commandAliasesObjectTemp != false) {
             commandAliasObject = commandAliasesObjectTemp;
             break;
@@ -271,14 +273,14 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
         // Found a matching entry!
-        loggers.consoleLog(namespacePrefix + functionName, 'Found a matching entry!');
+        loggers.consoleLog(namespacePrefix + functionName, msg.cFoundMatchingAliasEntry2);
         commandAliasObject = commandAliasData[commandAliasEntity];
         break;
       }
     } // End-for (let commandAliasEntity in commandAliasData)
   } // End-if (typeof commandAliasData === wrd.cobject)
   // commandAliasObject is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasObject is: ' + JSON.stringify(commandAliasObject));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasObjectIs + JSON.stringify(commandAliasObject));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return commandAliasObject;
 };
@@ -297,7 +299,7 @@ function getAllCommandAliasData(commandAliasDataStructure) {
   let functionName = getAllCommandAliasData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandAliasDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure is: ' + JSON.stringify(commandAliasDataStructure));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasDataStructureIs + JSON.stringify(commandAliasDataStructure));
   let allCommandsData = false;
   let internalCommandAliasDataStructure;
   if (commandAliasDataStructure === undefined) {
@@ -306,27 +308,27 @@ function getAllCommandAliasData(commandAliasDataStructure) {
     internalCommandAliasDataStructure = JSON.parse(JSON.stringify(commandAliasDataStructure));
   }
   // internalCommandAliasDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, 'internalCommandAliasDataStructure is: ' + JSON.stringify(internalCommandAliasDataStructure));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinternalCommandAliasDataStructureIs + JSON.stringify(internalCommandAliasDataStructure));
   if (typeof internalCommandAliasDataStructure === wrd.cobject) {
     allCommandsData = [];
     for (let commandAliasEntity in internalCommandAliasDataStructure) {
       // commandAliasEntity is:
-      loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+      loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasEntityIs + JSON.stringify(commandAliasEntity));
       // internalCommandAliasDataStructure[commandAliasEntity] is:
-      loggers.consoleLog(namespacePrefix + functionName, 'internalCommandAliasDataStructure[commandAliasEntity] is: ' + JSON.stringify(internalCommandAliasDataStructure[commandAliasEntity]));
+      loggers.consoleLog(namespacePrefix + functionName, msg.cinternalCommandAliasDataStructureCommandAliasEntityIs + JSON.stringify(internalCommandAliasDataStructure[commandAliasEntity]));
       if (typeof internalCommandAliasDataStructure[commandAliasEntity] === wrd.cobject) {
         // internalCommandAliasDataStructure[commandAliasEntity] is of type object!
-        loggers.consoleLog(namespacePrefix + functionName, 'internalCommandAliasDataStructure[commandAliasEntity] is of type object!');
+        loggers.consoleLog(namespacePrefix + functionName, msg.cgetAllCommandAliasDataMessage01);
         let allCommandAliasesTemp;
         allCommandAliasesTemp = getAllCommandAliasData(internalCommandAliasDataStructure[commandAliasEntity]);
         // allCommandAliasesTemp returned from the recursive call is:
-        loggers.consoleLog(namespacePrefix + functionName, 'allCommandAliasesTemp returned from the recursive call is: ' + JSON.stringify(allCommandAliasesTemp));
+        loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesTempReturnedFromRecursiveCallIs + JSON.stringify(allCommandAliasesTemp));
         if (allCommandAliasesTemp === false) {
           // The recursive call returned false, so push the current entity to the output array!
-          loggers.consoleLog(namespacePrefix + functionName, 'The recursive call returned false, so push the current entity to the output array!');
+          loggers.consoleLog(namespacePrefix + functionName, msg.cgetAllCommandAliasDataMessage02);
           allCommandsData.push(internalCommandAliasDataStructure);
-          // allCommandsData after pushing to the array 1 is:
-          loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData after pushing to the array 1 is: ' + JSON.stringify(allCommandsData));
+          // allCommandsData after pushing to the array is:
+          loggers.consoleLog(namespacePrefix + functionName, msg.callCommandsDataAfterPushingToTheArrayIs + JSON.stringify(allCommandsData));
           break;
         } else {
           allCommandsData = ruleBroker.processRules([allCommandsData, allCommandAliasesTemp], [biz.cobjectDeepMerge]);
@@ -337,7 +339,7 @@ function getAllCommandAliasData(commandAliasDataStructure) {
     } // End-for (let commandAliasEntity in internalCommandAliasDataStructure)
   } // End-if (typeof internalCommandAliasDataStructure === wrd.cobject)
   // allCommandsData is:
-  loggers.consoleLog(namespacePrefix + functionName, 'allCommandsData is: ' + JSON.stringify(allCommandsData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.callCommandsDataIs + JSON.stringify(allCommandsData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allCommandsData;
 };
@@ -357,7 +359,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
   let functionName = getCommandNamespaceDataObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandAliasDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure is: ' + JSON.stringify(commandAliasDataStructure));
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasDataStructureIs + JSON.stringify(commandAliasDataStructure));
   // namespaceToFind is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceToFindIs + namespaceToFind);
   let namespaceCommandsObject = false;
@@ -366,9 +368,9 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
   }
   for (let commandAliasEntity in commandAliasDataStructure) {
     // commandAliasEntity is:
-    loggers.consoleLog(namespacePrefix + functionName, 'commandAliasEntity is: ' + JSON.stringify(commandAliasEntity));
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasEntityIs + JSON.stringify(commandAliasEntity));
     // commandAliasDataStructure[commandAliasEntity] is:
-    loggers.consoleLog(namespacePrefix + functionName, 'commandAliasDataStructure[commandAliasEntity] is: ' + JSON.stringify(commandAliasDataStructure[commandAliasEntity]));
+    loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasDataStructureCommandAliasEntityIs + JSON.stringify(commandAliasDataStructure[commandAliasEntity]));
     if (commandAliasEntity === namespaceToFind) {
       namespaceCommandsObject = commandAliasDataStructure[commandAliasEntity];
       break;
@@ -384,7 +386,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
     }
   } // End-for (let commandAliasEntity in commandAliasDataStructure)
   // namespaceCommandsObject is:
-  loggers.consoleLog(namespacePrefix + functionName, 'namespaceCommandsObject is: ' + JSON.stringify(namespaceCommandsObject));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceCommandsObjectIs + JSON.stringify(namespaceCommandsObject));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return namespaceCommandsObject;
 };

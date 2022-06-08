@@ -270,10 +270,12 @@ const evaluateConstant = function(inputData, inputMetaData) {
     if (ruleBroker.processRules([inputData[1], ''], [biz.cdoesConstantExist]) === true) {
       console.log(inputData[1] + bas.cSpace + bas.cEqual + bas.cSpace + ruleBroker.processRules([inputData[1], ''], [biz.cgetConstantActualValue]));
     } else {
-      console.log('The constant does not exist: ' + inputData[1]);
+      // The constant does not exist:
+      console.log(msg.cTheConstantDoesNotExist + inputData[1]);
     }
   } else {
-    console.log('ERROR: No constant value entered, please enter a constant name to evaluate.')
+    // ERROR: No constant value entered, please enter a constant name to evaluate.
+    console.log(msg.cevaluateConstantMessage01)
   }
   // doesConstantExist
   // getConstantActualValue

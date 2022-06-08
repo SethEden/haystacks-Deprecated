@@ -145,11 +145,9 @@ loop2:
       loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
       let currentAlias = arrayOfAliases[j];
       // currentAlias is:
-      // console.log('currentAlias is: ' + currentAlias);
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
       duplicateAliasCount = 0
       duplicateAliasCount = commandBroker.countMatchingCommandAlias(D[sys.cCommandsAliases], currentAlias);
-      // console.log('duplicateAliasCount is: ' + duplicateAliasCount);
       if (duplicateAliasCount > 1) {
 
         // duplicateAliasCount is:

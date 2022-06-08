@@ -253,20 +253,21 @@ const help = function(inputData, inputMetaData) {
     // because the user entered some namespace we should look for!
     let namespaceCommandsData = commandBroker.getCommandNamespaceDataObject(undefined, inputData[1]);
     // namespaceCommandsData is:
-    loggers.consoleLog(namespacePrefix + functionName, 'namespaceCommandsData is: ' + JSON.stringify(namespaceCommandsData));
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceCommandsDataIs + JSON.stringify(namespaceCommandsData));
     if (namespaceCommandsData === false) {
       // ERROR: The command namespace was not found.
       // Please make sure you have entered the correct name and try again.
-      console.log('ERROR: The command namespace was not found.' + bas.cSpace + 'Please make sure you have entered the correct name and try again.');
+      console.log(msg.chelpCommandMessage01 + bas.cSpace + msg.chelpCommandMessage02);
     } else {
-      // NOW call getAllCommandAliasData wtih the above found data!
-      loggers.consoleLog(namespacePrefix + functionName, 'NOW call getAllCommandAliasData wtih the above found data!');
+      // NOW call getAllCommandAliasData with the above found data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.chelpCommandMessage03);
       let flattenedNamespaceCommandAliasData = commandBroker.getAllCommandAliasData(namespaceCommandsData);
       loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceCommandAliasData[0], [wrd.cName, wrd.cDescription]);
     }
   } else {
     let allCommandAliasFlatData = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]);
-    loggers.consoleLog(namespacePrefix + functionName, 'allCommandAliasFlatData is: ' + JSON.stringify(allCommandAliasFlatData[0]));
+    // allCommandAliasFlatData is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasFlatDataIs + JSON.stringify(allCommandAliasFlatData[0]));
     loggers.consoleTableLog(baseFileName + bas.cDot + functionName, allCommandAliasFlatData[0], [wrd.cName, wrd.cDescription]);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -303,7 +304,7 @@ const workflowHelp = function(inputData, inputMetaData) {
     if (namespaceWorkflowData === false) {
       // ERROR: The workflow namespace was not found.
       // Please make sure you have entered the correct name and try again.
-      console.log('ERROR: The workflow namespace was not found.' + bas.cSpace + 'Please make sure you have entered the correct name and try again.');
+      console.log(msg.cworkflowHelpCommandMessage01 + bas.cSpace + msg.chelpCommandMessage02);
     } else {
       // NOW call getAllWorkflows with the above found data!
       loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage03);
