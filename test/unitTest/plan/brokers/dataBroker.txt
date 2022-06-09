@@ -1,0 +1,600 @@
+/**
+ * /description: Test plan for dataBroker.js
+ */
+
+
+testName: scanDataPath_validData
+input dataPath: C:\haystacks\src\resources\configuration\debugSettings
+output: [array of files & paths]
+
+testName: scanDataPath_inValidString
+input: string (464gsdsfae8f46)
+output: empty array
+
+testName: scanDataPath_inValidNumber
+input: integer (546)
+output: empty array
+
+testName: scanDataPath_inValidBoolean
+input: boolean (false)
+output: empty array
+--------------------------------------------------------------------------------
+testName: findUniversalDebugConfigSetting_validData
+input appConfigFilesToLoad: array [C:\haystacks\test\unitTest\testData\application.system.json]
+input frameworkConfigFilesToLoad: array [C:\haystacks\test\unitTest\testData\framework.system.json]
+output: true
+
+testName: findUniversalDebugConfigSetting_inValidString
+input appConfigFilesToLoad: string (464gsdsfae8f46)
+input frameworkConfigFilesToLoad: string (  - space)
+output: false
+
+testName: findUniversalDebugConfigSetting_inValidFrameworkConfigFilesToLoadString
+input appConfigFilesToLoad: array [C:\haystacks\test\unitTest\testData\application.system.json]
+input frameworkConfigFilesToLoad: string (&)
+output: false?
+
+testName: findUniversalDebugConfigSetting_inValidNumber
+input appConfigFilesToLoad: integer (546)
+input frameworkConfigFilesToLoad: string (  - space)
+output: false
+
+testName: findUniversalDebugConfigSetting_inValidBoolean
+input appConfigFilesToLoad: boolean (false)
+input frameworkConfigFilesToLoad: string (  - space)
+output: false
+--------------------------------------------------------------------------------
+testName: findIndividualDebugConfigSetting_validData
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\config.json]
+output: true
+
+testName: findIndividualDebugConfigSetting_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+output: false
+
+testName: findIndividualDebugConfigSetting_inValidNumber
+input filesToLoad: integer (546)
+output: false
+
+testName: findIndividualDebugConfigSetting_inValidBoolean
+input filesToLoad: boolean (false)
+output: false
+--------------------------------------------------------------------------------
+testName: loadAllCsvData_validData
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\test.csv]
+input contextName: string (  - space)
+output: object (the JSON data from test.csv)
+
+testName: loadAllCsvData_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+input contextName: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\test.csv]
+input contextName: string (&)
+output: false?
+
+testName: loadAllCsvData_inValidNumber
+input filesToLoad: integer (546)
+input contextName: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidBoolean
+input filesToLoad: boolean (false)
+input contextName: string (  - space)
+output: false
+--------------------------------------------------------------------------------
+testName: loadedAllXmlData_validData
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\system.xml]
+input contextName: string (  - space)
+output: object (the JSON data from system.xml)
+
+testName: loadedAllXmlData_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+input contextName: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\system.xml]
+input contextName: string (&)
+output: false?
+
+testName: loadedAllXmlData_inValidNumber
+input filesToLoad: integer (546)
+input contextName: string (  - space)
+output: false
+
+testName: loadedAllXmlData_inValidBoolean
+input filesToLoad: boolean (false)
+input contextName: string (  - space)
+output: false
+--------------------------------------------------------------------------------
+testName: loadAllJsonData_validData
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\config.json]
+input contextName: string (  - space)
+output: object (the JSON data from testHarness.json)
+
+testName: loadAllJsonData_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+input contextName: string (  - space)
+output: false
+
+testName: loadAllJsonData_inValidContextNameString
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\config.json]
+input contextName: string (&)
+output: false?
+
+testName: loadAllJsonData_inValidNumber
+input filesToLoad: integer (546)
+input contextName: string (  - space)
+output: false
+
+testName: loadAllJsonData_inValidBoolean
+input filesToLoad: boolean (false)
+input contextName: string (  - space)
+output: false
+--------------------------------------------------------------------------------
+testName: processCsvData_validData
+input data: object [C:\haystacks\test\unitTest\testData\test.csv]
+input contextName: string (pageData)
+output: object (the clean and ready to go JSON data from test.csv)
+
+testName: processCsvData_inValidString
+input data: string (464gsdsfae8f46)
+input contextName: string (pageData)
+output: false
+
+testName: processCsvData_inValidContextNameString
+input data: object [C:\haystacks\test\unitTest\testData\test.csv]
+input contextName: string (&)
+output: false?
+
+testName: processCsvData_inValidNumber
+input data: integer (546)
+input contextName: string (pageData)
+output: false
+
+testName: processCsvData_inValidBoolean
+input data: boolean (false)
+input contextName: string (pageData)
+output: false
+--------------------------------------------------------------------------------
+testName: processXmlData_validData
+input data: JSON object
+input contextName: string (configuration)
+output: object (the JSON data from testHarness.json)
+
+testName: processXmlData_inValidString
+input data: string (464gsdsfae8f46)
+input contextName: string (configuration)
+output: false
+
+testName: processXmlData_inValidContextNameString
+input data: JSON object
+input contextName: string (&)
+output: false?
+
+testName: processXmlData_inValidNumber
+input data: integer (546)
+input contextName: string (configuration)
+output: false
+
+testName: processXmlData_inValidBoolean
+input data: boolean (false)
+input contextName: string (configuration)
+output: false
+--------------------------------------------------------------------------------
+testName: processXmlLeafNode_validData
+input inputData: JSON object
+input leafNodeName: string (?)
+output: object (the parsed JSON data)
+
+testName: processXmlLeafNode_inValidString
+input inputData: string (464gsdsfae8f46)
+input leafNodeName: string (?)
+output: ?
+
+testName: processXmlLeafNode_inValidLeafNodeNameString
+input inputData: JSON object
+input leafNodeName: string (&)
+output: ?
+
+testName: processXmlLeafNode_inValidNumber
+input inputData: integer (546)
+input leafNodeName: string (?)
+output: ?
+
+testName: processXmlLeafNode_inValidBoolean
+input inputData: boolean (false)
+input leafNodeName: string (?)
+output: ?
+--------------------------------------------------------------------------------
+testName: preprocessJsonFile_validData
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\config.json]
+output: object (JSON)
+
+testName: preprocessJsonFile_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+output: false
+
+testName: preprocessJsonFile_inValidNumber
+input filesToLoad: integer (546)
+output: false
+
+testName: preprocessJsonFile_inValidBoolean
+input filesToLoad: boolean (false)
+output: false
+--------------------------------------------------------------------------------
+testName: writeJsonDataToFile_validData
+input fileToSaveTo: string (C:\haystacks\test\unitTest\testData\writeJsonDataToFile_validData.json)
+input dataToWriteOut: object
+output: file written to disk
+
+testName: writeJsonDataToFile_inValidString
+input fileToSaveTo: string (464gsdsfae8f46)
+input dataToWriteOut: object
+output: ?
+
+testName: writeJsonDataToFile_inValidDataToWrite
+input fileToSaveTo: string (C:\haystacks\test\unitTest\testData\writeJsonDataToFile_validData.json)
+input dataToWriteOut: object (&)
+output: ?
+
+testName: writeJsonDataToFile_inValidNumber
+input fileToSaveTo: integer (546)
+input dataToWriteOut: object
+output: ?
+
+testName: writeJsonDataToFile_inValidBoolean
+input fileToSaveTo: boolean (false)
+input dataToWriteOut: object
+output: ?
+--------------------------------------------------------------------------------
+testName: setupDataStorage_validData
+output: data storage exists on data hive.
+
+testName: setupDataStorage_inValidString
+input: string (464gsdsfae8f46)
+output: data storage exists on data hive.
+
+testName: setupDataStorage_inValidNumber
+input: integer (546)
+output: data storage exists on data hive.
+
+testName: setupDataStorage_inValidBoolean
+input: boolean (false)
+output: data storage exists on data hive.
+--------------------------------------------------------------------------------
+testName: storeData_validDataString
+input dataStorageContextName: string (testDataString)
+input dataToStore: string (dfxg24346dfg)
+output: true
+
+testName: storeData_validDataBoolean
+input dataStorageContextName: string (testDataBoolean)
+input dataToStore: boolean (false)
+output: true
+
+testName: storeData_validDataInteger
+input dataStorageContextName: string (testDataInteger)
+input dataToStore: integer (23456)
+output: true
+
+testName: storeData_validDataArray
+input dataStorageContextName: string (testDataArray)
+input dataToStore: array ([1,2,3,4,5])
+output: true
+
+testName: storeData_validDataObject
+input dataStorageContextName: string (testDataObject)
+input dataToStore: object ({"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"})
+output: true
+
+testName: storeData_inValidDataToStoreUndefined
+input dataStorageContextName: string (inValidDataToStoreUndefined)
+input dataToStore: undefined
+output: false
+
+testName: storeData_inValidDataToStoreNaN
+input dataStorageContextName: string (inValidDataToStoreNaN)
+input dataToStore: NaN
+output: false
+
+testName: storeData_inValidDataStorageContextNameInteger
+input dataStorageContextName: integer (4567)
+input dataToStore: array ([1,2,3,4,5])
+output: false
+
+testName: storeData_inValidDataStorageContextNameBoolean
+input dataStorageContextName: boolean (false)
+input dataToStore: array ([1,2,3,4,5])
+output: false
+--------------------------------------------------------------------------------getData
+testName: getData_validData
+input dataStorageContextName: string (testDataString)
+output: object
+
+testName: getData_inValidString
+input dataStorageContextName: string (464gsdsfae8f46)
+output: false
+
+testName: getData_inValidNumber
+input dataStorageContextName: integer (546)
+output: false
+
+testName: getData_inValidBoolean
+input dataStorageContextName: boolean (false)
+output: false
+--------------------------------------------------------------------------------clearData
+testName: clearData_validData
+input dataStorageContextName: string (testDataString)
+output: cleared hive storage (testDataString)
+
+testName: clearData_inValidUndefined
+input dataStorageContextName: undefined
+output: cleared hive storage
+
+testName: clearData_inValidNaN
+input dataStorageContextName: NaN
+output: ?
+
+testName: clearData_inValidNumber
+input dataStorageContextName: integer (546)
+output: cleared hive storage
+
+testName: clearData_inValidBoolean
+input dataStorageContextName: boolean (false)
+output: cleared hive storage
+--------------------------------------------------------------------------------initializeConstantsValidationData
+testName: initializeConstantsValidationData_validData
+output: Validate data is as follows.
+D[sys.cConstantsValidationData][sys.cConstantsShortNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFileNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPrefix] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFilePaths] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages] = {};
+
+testName: initializeConstantsValidationData_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+output: Validate data is as follows.
+D[sys.cConstantsValidationData][sys.cConstantsShortNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFileNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPrefix] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFilePaths] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages] = {};
+
+testName: initializeConstantsValidationData_inValidNumber
+input filesToLoad: integer (546)
+output: Validate data is as follows.
+D[sys.cConstantsValidationData][sys.cConstantsShortNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFileNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPrefix] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFilePaths] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages] = {};
+
+testName: initializeConstantsValidationData_inValidBoolean
+input filesToLoad: boolean (false)
+output: Validate data is as follows.
+D[sys.cConstantsValidationData][sys.cConstantsShortNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFileNames] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPrefix] = {};
+D[sys.cConstantsValidationData][sys.cConstantsFilePaths] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages] = {};
+D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages] = {};
+--------------------------------------------------------------------------------addConstantsValidationData
+testName: addConstantsValidationData_validData
+input constantLibraryData: array<array<string,object>>
+output: the array of data that was added to the validation data.
+
+testName: addConstantsValidationData_inValidString
+input constantLibraryData: string (464gsdsfae8f46)
+output: ?
+
+testName: addConstantsValidationData_inValidNumber
+input constantLibraryData: integer (546)
+output: ?
+
+testName: addConstantsValidationData_inValidBoolean
+input constantLibraryData: boolean (false)
+output: ?
+--------------------------------------------------------------------------------addDeeplyNestedConstantsValidationData
+testName: addDeeplyNestedConstantsValidationData_validData
+input contextName: string (testDataString)
+input deeplyNestedData: array<array<string,object>>
+output: data with a name that was added to the D-data structure. (testDataString)
+
+testName: addDeeplyNestedConstantsValidationData_inValidDeeplyNestedDataString
+input contextName: string (testDataString)
+input deeplyNestedData: string (&)
+output: ?
+
+testName: addDeeplyNestedConstantsValidationData_inValidDeeplyNestedDataNumber
+input contextName: string (testDataString)
+input deeplyNestedData: integer (654)
+output: ?
+
+testName: addDeeplyNestedConstantsValidationData_inValidDeeplyNestedDataBoolean
+input contextName: string (testDataString)
+input deeplyNestedData: boolean (false)
+output: ?
+
+testName: addDeeplyNestedConstantsValidationData_inValidContextNameUndefined
+input contextName: undefined
+input deeplyNestedData: array<array<string,object>>
+output: ?
+
+testName: addDeeplyNestedConstantsValidationData_inValidContextNameNaN
+input contextName: NaN
+input deeplyNestedData: array<array<string,object>>
+output: ?
+
+testName: addDeeplyNestedConstantsValidationData_inValidContextNameNumber
+input contextName: integer (654)
+input deeplyNestedData: array<array<string,object>>
+output: ?
+
+testName: addDeeplyNestedConstantsValidationData_inValidContextNameBoolean
+input contextName: boolean (false)
+input deeplyNestedData: array<array<string,object>>
+output: ?
+--------------------------------------------------------------------------------getDataCatagoryFromContextName
+testName: getDataCatagoryFromContextName_validData
+input contextName: string (example of this will be something like Application_xxxx)
+output: object (JSON)
+
+testName: getDataCatagoryFromContextName_inValidString
+input contextName: string (Application5xxxx)
+output: ?
+
+testName: getDataCatagoryFromContextName_inValidNumber
+input contextName: integer (546)
+output: ?
+
+testName: getDataCatagoryFromContextName_inValidBoolean
+input contextName: boolean (false)
+output: ?
+--------------------------------------------------------------------------------getDataCatagoryDtailNameFromContextName
+testName: preprocessJsonFile_validData
+input filesToLoad: array [C:\haystacks\test\unitTest\testData\config.json]
+output: object (JSON)
+
+testName: preprocessJsonFile_inValidString
+input filesToLoad: string (464gsdsfae8f46)
+output: false
+
+testName: preprocessJsonFile_inValidNumber
+input filesToLoad: integer (546)
+output: false
+
+testName: preprocessJsonFile_inValidBoolean
+input filesToLoad: boolean (false)
+output: false
+--------------------------------------------------------------------------------extractDataFromPapaParseObject
+testName: loadedAllXmlData_validData
+input dataStorageContextName: string
+input dataToStore: data should be stored in any format
+output: true
+
+testName: loadedAllXmlData_inValidString
+input dataStorageContextName: string (464gsdsfae8f46)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input dataStorageContextName: string
+input dataToStore: string (&)
+output: false?
+
+testName: loadedAllXmlData_inValidNumber
+input dataStorageContextName: integer (546)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadedAllXmlData_inValidBoolean
+input dataStorageContextName: boolean (false)
+input dataToStore: string (  - space)
+output: false
+--------------------------------------------------------------------------------determineMergeTarget
+testName: loadedAllXmlData_validData
+input dataStorageContextName: string
+input dataToStore: data should be stored in any format
+output: true
+
+testName: loadedAllXmlData_inValidString
+input dataStorageContextName: string (464gsdsfae8f46)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input dataStorageContextName: string
+input dataToStore: string (&)
+output: false?
+
+testName: loadedAllXmlData_inValidNumber
+input dataStorageContextName: integer (546)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadedAllXmlData_inValidBoolean
+input dataStorageContextName: boolean (false)
+input dataToStore: string (  - space)
+output: false
+--------------------------------------------------------------------------------mergeData
+testName: loadedAllXmlData_validData
+input dataStorageContextName: string
+input dataToStore: data should be stored in any format
+output: true
+
+testName: loadedAllXmlData_inValidString
+input dataStorageContextName: string (464gsdsfae8f46)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input dataStorageContextName: string
+input dataToStore: string (&)
+output: false?
+
+testName: loadedAllXmlData_inValidNumber
+input dataStorageContextName: integer (546)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadedAllXmlData_inValidBoolean
+input dataStorageContextName: boolean (false)
+input dataToStore: string (  - space)
+output: false
+--------------------------------------------------------------------------------getDataElement
+testName: loadedAllXmlData_validData
+input dataStorageContextName: string
+input dataToStore: data should be stored in any format
+output: true
+
+testName: loadedAllXmlData_inValidString
+input dataStorageContextName: string (464gsdsfae8f46)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input dataStorageContextName: string
+input dataToStore: string (&)
+output: false?
+
+testName: loadedAllXmlData_inValidNumber
+input dataStorageContextName: integer (546)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadedAllXmlData_inValidBoolean
+input dataStorageContextName: boolean (false)
+input dataToStore: string (  - space)
+output: false
+--------------------------------------------------------------------------------getDataElementCount
+testName: loadedAllXmlData_validData
+input dataStorageContextName: string
+input dataToStore: data should be stored in any format
+output: true
+
+testName: loadedAllXmlData_inValidString
+input dataStorageContextName: string (464gsdsfae8f46)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadAllCsvData_inValidContextNameString
+input dataStorageContextName: string
+input dataToStore: string (&)
+output: false?
+
+testName: loadedAllXmlData_inValidNumber
+input dataStorageContextName: integer (546)
+input dataToStore: string (  - space)
+output: false
+
+testName: loadedAllXmlData_inValidBoolean
+input dataStorageContextName: boolean (false)
+input dataToStore: string (  - space)
+output: false

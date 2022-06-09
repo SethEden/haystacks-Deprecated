@@ -636,7 +636,7 @@ function initializeConstantsValidationData() {
 /**
  * @function addConstantsValidationData
  * @description Adds a library of constants vaidation data to the existing constants vaidation data.
- * @param {array<array<string,object>>} constantLibraryData The array of data that should be added to the validation data et for the purpose of validation.
+ * @param {array<array<string,object>>} constantLibraryData The array of data that should be added to the validation data set for the purpose of validation.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
@@ -669,8 +669,9 @@ function addConstantsValidationData(constantLibraryData) {
  * @function addDeeplyNestedConstantsValidationData
  * @description Adds all the constants validation auxilary data that is deeply nested inside sub-data structures to the main D-data structure.
  * Such as file paths, and validation messages.
- * @param {string} contextName The name that should be used when accessing and alo adding the data to the D-data structure.
+ * @param {string} contextName The name that should be used when accessing and also adding the data to the D-data structure.
  * @param {array<array<string,object>>} deeplyNestedData The actual data that should be added.
+ * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
  */
@@ -694,7 +695,7 @@ function addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData) {
 /**
  * @function getDataCatagoryFromContextName
  * @description Gets the data catagory, given the context name.
- * @param {string} contextName The context name which will be something like Applicatino_xxxx or Script_nnnn or Command_yyyy
+ * @param {string} contextName The context name which will be something like Application_xxxx or Script_nnnn or Command_yyyy
  * @return {string} The string before the first cUnderscore (Application, Script, Command, etc).
  * @author Seth Hollingsead
  * @date 2022/01/27
