@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "haystacks": "0.0.13",
-    "@haystacks/constants": "0.0.11"
+    "@haystacks/constants": "0.0.12"
   },
   "bugs": {
     "url": "https://github.com/SethEden/haystacks/issues"
