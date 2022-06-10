@@ -161,18 +161,19 @@ function getAllWorkflows(workflowDataStructure) {
   } else {
     internalWorkflowDataStructure = JSON.parse(JSON.stringify(workflowDataStructure));
   }
-  if (typeof workflowDataStructure === wrd.cobject) {
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinternalWorkflowDataStructureIs + JSON.stringify(internalWorkflowDataStructure));
+  if (typeof internalWorkflowDataStructure === wrd.cobject) {
     allWorkflows = [];
-    for (let workflowEntity in workflowDataStructure) {
+    for (let workflowEntity in internalWorkflowDataStructure) {
       // workflowEntity is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
       // workflowDataStructure[workflowEntity] is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIs + JSON.stringify(workflowDataStructure[workflowEntity]));
-      if (typeof workflowDataStructure[workflowEntity] === wrd.cobject) {
-        // workflowDataStructure[workflowEntity] is of type object!
-        loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIsOfTypeObject);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cinternalWorkflowDataStructureWorkflowEntityIs + JSON.stringify(internalWorkflowDataStructure[workflowEntity]));
+      if (typeof internalWorkflowDataStructure[workflowEntity] === wrd.cobject) {
+        // internalWorkflowDataStructure[workflowEntity] is of type object!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cinternalWorkflowDataStructureWorkflowEntityIsOfTypeObject);
         let allWorkflowsTemp;
-        allWorkflowsTemp = getAllWorkflows(workflowDataStructure[workflowEntity]);
+        allWorkflowsTemp = getAllWorkflows(internalWorkflowDataStructure[workflowEntity]);
         // allWorkflowsTemp returned from the recursive call is:
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsTempReturnedFromRecursiveCallIs + JSON.stringify(allWorkflowsTemp));
         if (allWorkflowsTemp === false) {
@@ -214,7 +215,7 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
   let functionName = getWorkflowNamespaceDataObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // workflowDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.ccworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
   // namespaceToFind is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceToFindIs + namespaceToFind);
   let workflowNamespaceObject = false;
