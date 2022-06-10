@@ -233,7 +233,7 @@ function loadCommandAliases(commandAliasesPathConfigName) {
     resolvedCustomCommandsAliasesPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, commandAliasesPathConfigName));
     // resolvedCustomCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomCommandsAliasesPathIs + resolvedCustomCommandsAliasesPath);
-    chiefCommander.loadCommandAliasesFromPath(commandAliasesPathConfigName);
+    chiefCommander.loadCommandAliasesFromPath(commandAliasesPathConfigName, wrd.cPlugin);
   } else {
     resolvedSystemCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath);
     resolvedClientCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientCommandAliasesPath);
@@ -241,9 +241,10 @@ function loadCommandAliases(commandAliasesPathConfigName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemCommandsAliasesPathIs + resolvedSystemCommandsAliasesPath);
     // resolvedClientCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientCommandsAliasesPathIs + resolvedClientCommandsAliasesPath);
-    chiefCommander.loadCommandAliasesFromPath(cfg.cframeworkCommandAliasesPath);
-    chiefCommander.loadCommandAliasesFromPath(cfg.cclientCommandAliasesPath);
+    chiefCommander.loadCommandAliasesFromPath(cfg.cframeworkCommandAliasesPath, sys.cFramework);
+    chiefCommander.loadCommandAliasesFromPath(cfg.cclientCommandAliasesPath, wrd.cApplication);
   }
+  // console.log('ALL Loaded command aliases is: ' + JSON.stringify(D[sys.cCommandsAliases]));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 

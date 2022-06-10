@@ -65,28 +65,38 @@ function addClientCommands(clientCommands) {
  * The data is automatically saved on the D-data structure.
  * @param {string} commandAliasesFilePathConfigurationName The path and file name to the XML file that contains the command aliases definitions.
  * (Could be system command aliases or client command aliases)
+ * @param {string} contextName The context name defines what parent command alias namespace the loaded and merged data should be stored in.
+ * Example:
+ * contextName = "framework" => D['CommandsAliases']['Framework']
+ * contextName = "application" => D['CommandAliases']['Application']
+ * contextName = "plugin" => D['CommandAliases']['Plugins']['<pluginName>']
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/02
  */
-function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName) {
+function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName, contextName) {
   let functionName = loadCommandAliasesFromPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandAliasesFilePathConfigurationName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesFilePathConfigurationNameIs + commandAliasesFilePathConfigurationName);
+  // contextName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let allCommandAliasesData = {};
   allCommandAliasesData = chiefData.setupAllXmlData(commandAliasesFilePathConfigurationName, sys.cCommandsAliases);
   // allCommandAliasesData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasesDataIs + JSON.stringify(allCommandAliasesData));
   if (D[sys.cCommandsAliases] === undefined) { // Make sure we only do this if it's undefined, otherwise we might wipe out previously loaded data.
     D[sys.cCommandsAliases] = {};
-    D[sys.cCommandsAliases] = allCommandAliasesData[sys.cCommandsAliases];
-  } else {
-    let commandKeys = Object.keys(allCommandAliasesData[sys.cCommandsAliases][wrd.cCommands]);
-    for (let i = 0; i < commandKeys.length; i++) {
-      D[sys.cCommandsAliases][wrd.cCommands][commandKeys[i]] = allCommandAliasesData[sys.cCommandsAliases][wrd.cCommands][commandKeys[i]];
-    } // End-for (let i = 0; i < allCommandAliasesData[sys.cCommandsAliases][wrd.cCommand].length; i++)
+    D[sys.cCommandsAliases][sys.cFramework] = allCommandAliasesData;
+  } else if (contextName.toUpperCase() === wrd.cAPPLICATION) {
+    D[sys.cCommandsAliases][wrd.cApplication] = allCommandAliasesData;
+  } else if (contextName.toUpperCase().includes(wrd.cPLUGIN)) {
+    // TODO: Split the contextName by the "." so we can get a namespace and use that to define where the plugn workflow data should go.
+    // Also make sure the data hasn't been loaded to the same plugin name already!
+    // D[sys.cCommandsAliases][wrd.cPlugins][commandsAliasesFilePathConfigurationName] = allCommandAliasesData;
+    console.log('ERROR: ---- PLUGIN Command Aliases data not yet supported!!!!!!!!!!!!');
   }
+  // console.log('All loaded command aliases data is: ' + JSON.stringify(D[sys.cCommandsAliases]));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -152,7 +162,7 @@ function processCommandQueue() {
 export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
   [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
-  [fnc.cloadCommandAliasesFromPath]: (commandAliasesFilePathConfigurationName) => loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName),
+  [fnc.cloadCommandAliasesFromPath]: (commandAliasesFilePathConfigurationName, contextName) => loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName, contextName),
   [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
   [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
   [fnc.cprocessCommandQueue]: () => processCommandQueue()

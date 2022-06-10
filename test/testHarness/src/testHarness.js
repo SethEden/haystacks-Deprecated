@@ -169,7 +169,6 @@ async function application() {
 
     // BEGIN command parser
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage02);
-
     while(programRunning === true) {
       if (haystacks.isCommandQueueEmpty() === true) {
         // biz.cprompt is some how undefined here, although other biz.c<something-else> do still work.

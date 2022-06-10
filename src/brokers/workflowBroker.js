@@ -131,7 +131,7 @@ function searchWorkflow(workflowData, workflowName) {
         workflowObject = workflowData[workflowEntity];
         break;
       }
-    } // End-for (workflowEntity in workflowData)
+    } // End-for (let workflowEntity in workflowData)
   } // End-if (typeof workflowData === wrd.cobject)
   // workflowObject is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowObjectIs + workflowObject);
@@ -142,7 +142,7 @@ function searchWorkflow(workflowData, workflowName) {
 /**
  * @function getAllWorkflows
  * @description Recursively gets all of the workflows from all levels and flattens them into a single array for printing out to the workflow help command.
- * @param workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
+ * @param {object} workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
  * If the input is undefined then the main CommandWorkflows data structure will be used at the root of the workflows data hive.
  * @return {array<string>|boolean} An array of all the workflows currently loaded into the D-data structure under the CommandWorkflows data hive or
  * a boolean True or False to indicate that a leaf-node has been found by the recursive caller.
@@ -155,21 +155,25 @@ function getAllWorkflows(workflowDataStructure) {
   // workflowDataStructure is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
   let allWorkflows = false;
+  let internalWorkflowDataStructure;
   if (workflowDataStructure === undefined) {
-    workflowDataStructure = D[sys.cCommandWorkflows];
+    internalWorkflowDataStructure = JSON.parse(JSON.stringify(D[sys.cCommandWorkflows]));
+  } else {
+    internalWorkflowDataStructure = JSON.parse(JSON.stringify(workflowDataStructure));
   }
-  if (typeof workflowDataStructure === wrd.cobject) {
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinternalWorkflowDataStructureIs + JSON.stringify(internalWorkflowDataStructure));
+  if (typeof internalWorkflowDataStructure === wrd.cobject) {
     allWorkflows = [];
-    for (let workflowEntity in workflowDataStructure) {
+    for (let workflowEntity in internalWorkflowDataStructure) {
       // workflowEntity is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowEntityIs + JSON.stringify(workflowEntity));
       // workflowDataStructure[workflowEntity] is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIs + JSON.stringify(workflowDataStructure[workflowEntity]));
-      if (typeof workflowDataStructure[workflowEntity] === wrd.cobject) {
-        // workflowDataStructure[workflowEntity] is of type object!
-        loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureWorkflowEntityIsOfTypeObject);
+      loggers.consoleLog(namespacePrefix + functionName, msg.cinternalWorkflowDataStructureWorkflowEntityIs + JSON.stringify(internalWorkflowDataStructure[workflowEntity]));
+      if (typeof internalWorkflowDataStructure[workflowEntity] === wrd.cobject) {
+        // internalWorkflowDataStructure[workflowEntity] is of type object!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cinternalWorkflowDataStructureWorkflowEntityIsOfTypeObject);
         let allWorkflowsTemp;
-        allWorkflowsTemp = getAllWorkflows(workflowDataStructure[workflowEntity]);
+        allWorkflowsTemp = getAllWorkflows(internalWorkflowDataStructure[workflowEntity]);
         // allWorkflowsTemp returned from the recursive call is:
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsTempReturnedFromRecursiveCallIs + JSON.stringify(allWorkflowsTemp));
         if (allWorkflowsTemp === false) {
@@ -189,7 +193,7 @@ function getAllWorkflows(workflowDataStructure) {
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray2Is + JSON.stringify(allWorkflows));
       }
     } // End-for (workflowEntity in workflowData)
-  }
+  } // End-if (typeof workflowDataStructure === wrd.cobject)
   // workflow is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowIs + JSON.stringify(allWorkflows));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -200,7 +204,7 @@ function getAllWorkflows(workflowDataStructure) {
  * @function getWorkflowNamespaceDataObject
  * @description Recursively scans through the entire workflow metaData data structure looking for an object that matches the input namespace name.
  * When that namespace is found, the entire object is returned.
- * @param workflowDataStructure The workflow data structure that should be recursively flattened into a single array for output.
+ * @param {object} workflowDataStructure The workflow data structure that should be recursively searched for the namespace specified.
  * If the input is undefined then the main CommandWorkflows data structure will be used at the root of the workflows data hive.
  * @param {string} namespaceToFind The namespace to look for in the workflow metaData data structure.
  * @return {object|boolean} The namespace object if it is found, or False if the namespace object was not found.
@@ -211,7 +215,7 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
   let functionName = getWorkflowNamespaceDataObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // workflowDataStructure is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.ccworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowDataStructureIs + JSON.stringify(workflowDataStructure));
   // namespaceToFind is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceToFindIs + namespaceToFind);
   let workflowNamespaceObject = false;
