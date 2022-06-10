@@ -15,14 +15,14 @@
           <Workflow Name="writeJsonDataDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.writeJsonData false"/>
           <Workflow Name="scanDirectoryContentsEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.scanDirectoryContents true"/>
           <Workflow Name="scanDirectoryContentsDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.scanDirectoryContents false"/>
-          <Workflow Name="copyAllFilesAndFoldersFromFolderToFolderEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyAllFilesAndFoldersFromFolderToFolder true"/>
-          <Workflow Name="copyAllFilesAndFoldersFromFolderToFolderDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyAllFilesAndFoldersFromFolderToFolder false"/>
+          <Workflow Name="fileOperationsCopyAllFilesAndFoldersFromFolderToFolderEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyAllFilesAndFoldersFromFolderToFolder true"/>
+          <Workflow Name="fileOperationsCopyAllFilesAndFoldersFromFolderToFolderDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyAllFilesAndFoldersFromFolderToFolder false"/>
           <Workflow Name="buildReleasePackageEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.buildReleasePackage true"/>
           <Workflow Name="buildReleasePackageDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.buildReleasePackage false"/>
           <Workflow Name="cleanRootPathEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.cleanRootPath true"/>
           <Workflow Name="cleanRootPathDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.cleanRootPath false"/>
-          <Workflow Name="createZipArchiveEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.createZipArchive true"/>
-          <Workflow Name="createZipArchiveDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.createZipArchive false"/>
+          <Workflow Name="fileOperationsCreateZipArchiveEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.createZipArchive true"/>
+          <Workflow Name="fileOperationsCreateZipArchiveDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.createZipArchive false"/>
           <Workflow Name="copyFileSyncEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyFileSync true"/>
           <Workflow Name="copyFileSyncDisable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyFileSync false"/>
           <Workflow Name="copyFolderRecursiveSyncEnable" Value="changeConfigSetting debugSetting.businessRules.rules.fileOperations.copyFolderRecursiveSync true"/>

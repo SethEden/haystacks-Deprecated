@@ -9,8 +9,8 @@
           <Workflow Name="computeDeltaTimeDisable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.computeDeltaTime false"/>
           <Workflow Name="reformatDeltaTimeEnable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.reformatDeltaTime true"/>
           <Workflow Name="reformatDeltaTimeDisable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.reformatDeltaTime false"/>
-          <Workflow Name="sleepEnable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.sleep true"/>
-          <Workflow Name="sleepDisable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.sleep false"/>
+          <Workflow Name="timeComputationSleepEnable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.sleep true"/>
+          <Workflow Name="timeComputationSleepDisable" Value="changeConfigSetting debugSetting.businessRules.rules.timeComputation.sleep false"/>
         </timeComputation>
       </rules>
     </businessRules>

@@ -12,8 +12,8 @@
         <Workflow Name="pushDisable" Value="changeConfigSetting debugSetting.structures.stack.push false"/>
         <Workflow Name="popEnable" Value="changeConfigSetting debugSetting.structures.stack.pop true"/>
         <Workflow Name="popDisable" Value="changeConfigSetting debugSetting.structures.stack.pop false"/>
-        <Workflow Name="isEmptyEnable" Value="changeConfigSetting debugSetting.structures.stack.isEmpty true"/>
-        <Workflow Name="isEmptyDisable" Value="changeConfigSetting debugSetting.structures.stack.isEmpty false"/>
+        <Workflow Name="stackIsEmptyEnable" Value="changeConfigSetting debugSetting.structures.stack.isEmpty true"/>
+        <Workflow Name="stackIsEmptyDisable" Value="changeConfigSetting debugSetting.structures.stack.isEmpty false"/>
         <Workflow Name="lengthEnable" Value="changeConfigSetting debugSetting.structures.stack.length true"/>
         <Workflow Name="lengthDisable" Value="changeConfigSetting debugSetting.structures.stack.length false"/>
         <Workflow Name="containsEnable" Value="changeConfigSetting debugSetting.structures.stack.contains true"/>

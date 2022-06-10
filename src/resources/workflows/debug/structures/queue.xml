@@ -10,8 +10,8 @@
         <Workflow Name="dequeueDisable" Value="changeConfigSetting debugSetting.structures.queue.dequeue false"/>
         <Workflow Name="enqueueEnable" Value="changeConfigSetting debugSetting.structures.queue.enqueue true"/>
         <Workflow Name="enqueueDisable" Value="changeConfigSetting debugSetting.structures.queue.enqueue false"/>
-        <Workflow Name="isEmptyEnable" Value="changeConfigSetting debugSetting.structures.queue.isEmpty true"/>
-        <Workflow Name="isEmptyDisable" Value="changeConfigSetting debugSetting.structures.queue.isEmpty false"/>
+        <Workflow Name="queueIsEmptyEnable" Value="changeConfigSetting debugSetting.structures.queue.isEmpty true"/>
+        <Workflow Name="queueIsEmptyDisable" Value="changeConfigSetting debugSetting.structures.queue.isEmpty false"/>
         <Workflow Name="queueFrontEnable" Value="changeConfigSetting debugSetting.structures.queue.queueFront true"/>
         <Workflow Name="queueFrontDisable" Value="changeConfigSetting debugSetting.structures.queue.queueFront false"/>
         <Workflow Name="queueSizeEnable" Value="changeConfigSetting debugSetting.structures.queue.queueSize true"/>

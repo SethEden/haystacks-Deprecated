@@ -14,10 +14,10 @@
         <Workflow Name="setupAllXmlDataDisable" Value="changeConfigSetting debugSetting.controllers.chiefData.setupAllXmlData false"/>
         <Workflow Name="setupAllJsonConfigDataEnable" Value="changeConfigSetting debugSetting.controllers.chiefData.setupAllJsonConfigData true"/>
         <Workflow Name="setupAllJsonConfigDataDisable" Value="changeConfigSetting debugSetting.controllers.chiefData.setupAllJsonConfigData false"/>
-        <Workflow Name="initializeConstantsValidationDataEnable" Value="changeConfigSetting debugSetting.controllers.chiefData.initializeConstantsValidationData true"/>
-        <Workflow Name="initializeConstantsValidationDataDisable" Value="changeConfigSetting debugSetting.controllers.chiefData.initializeConstantsValidationData false"/>
-        <Workflow Name="addConstantsValidationDataEnable" Value="changeConfigSetting debugSetting.controllers.chiefData.addConstantsValidationData true"/>
-        <Workflow Name="addConstantsValidationDataDisable" Value="changeConfigSetting debugSetting.controllers.chiefData.addConstantsValidationData false"/>
+        <Workflow Name="chiefDataInitializeConstantsValidationDataEnable" Value="changeConfigSetting debugSetting.controllers.chiefData.initializeConstantsValidationData true"/>
+        <Workflow Name="chiefDataInitializeConstantsValidationDataDisable" Value="changeConfigSetting debugSetting.controllers.chiefData.initializeConstantsValidationData false"/>
+        <Workflow Name="chiefDataAddConstantsValidationDataEnable" Value="changeConfigSetting debugSetting.controllers.chiefData.addConstantsValidationData true"/>
+        <Workflow Name="chiefDataAddConstantsValidationDataDisable" Value="changeConfigSetting debugSetting.controllers.chiefData.addConstantsValidationData false"/>
       </chiefData>
     </controllers>
   </debug>

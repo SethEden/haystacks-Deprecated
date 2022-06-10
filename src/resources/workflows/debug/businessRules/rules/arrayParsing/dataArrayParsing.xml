@@ -8,8 +8,8 @@
             <Workflow Name="dataArrayParsingDisable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing false"/>
             <Workflow Name="arraysAreEqualEnable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.arraysAreEqual true"/>
             <Workflow Name="arraysAreEqualDisable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.arraysAreEqual false"/>
-            <Workflow Name="storeDataEnable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.storeData true"/>
-            <Workflow Name="storeDataDisable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.storeData false"/>
+            <Workflow Name="dataArrayParsingStoreDataEnable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.storeData true"/>
+            <Workflow Name="dataArrayParsingStoreDataDisable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.storeData false"/>
             <Workflow Name="getStoredDataEnable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getStoredData true"/>
             <Workflow Name="getStoredDataDisable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.getStoredData false"/>
             <Workflow Name="isObjectEmptyEnable" Value="changeConfigSetting debugSetting.businessRules.rules.arrayParsing.dataArrayParsing.isObjectEmpty true"/>

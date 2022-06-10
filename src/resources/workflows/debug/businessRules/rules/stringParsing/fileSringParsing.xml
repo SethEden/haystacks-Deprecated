@@ -18,14 +18,14 @@
             <Workflow Name="ascertainMatchingFilenamesDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.ascertainMatchingFilenames false"/>
             <Workflow Name="supportedFileFormatsAreEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.supportedFileFormatsAre true"/>
             <Workflow Name="supportedFileFormatsAreDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.supportedFileFormatsAre false"/>
-            <Workflow Name="copyAllFilesAndFoldersFromFolderToFolderEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder true"/>
-            <Workflow Name="copyAllFilesAndFoldersFromFolderToFolderDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder false"/>
+            <Workflow Name="fileStringParsingCopyAllFilesAndFoldersFromFolderToFolderEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder true"/>
+            <Workflow Name="fileStringParsingCopyAllFilesAndFoldersFromFolderToFolderDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.copyAllFilesAndFoldersFromFolderToFolder false"/>
             <Workflow Name="removeXnumberOfFoldersFromEndOfPathEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.removeXnumberOfFoldersFromEndOfPath true"/>
             <Workflow Name="removeXnumberOfFoldersFromEndOfPathDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.removeXnumberOfFoldersFromEndOfPath false"/>
             <Workflow Name="getFirstTopLevelFolderFromPathEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.getFirstTopLevelFolderFromPath true"/>
             <Workflow Name="getFirstTopLevelFolderFromPathDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.getFirstTopLevelFolderFromPath false"/>
-            <Workflow Name="createZipArchiveEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.createZipArchive true"/>
-            <Workflow Name="createZipArchiveDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.createZipArchive false"/>
+            <Workflow Name="fileStringParsingCreateZipArchiveEnable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.createZipArchive true"/>
+            <Workflow Name="fileStringParsingCreateZipArchiveDisable" Value="changeConfigSetting debugSetting.businessRules.rules.stringParsing.fileStringParsing.createZipArchive false"/>
           </fileStringParsing>
         </stringParsing>
       </rules>
