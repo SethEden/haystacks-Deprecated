@@ -1,6 +1,4 @@
-/**
- * /description: Test plan for commandBroker.js
- */
+description: Test plan for commandBroker.js
 
 
 testName: bootStrapCommands_validData

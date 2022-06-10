@@ -725,7 +725,7 @@ function getDataCatagoryFromContextName(contextName) {
 };
 
 /**
- * @function getDataCatagoryDtailNameFromContextName
+ * @function getDataCatagoryDetailNameFromContextName
  * @description Gets the data catagory detail name, given the context name.
  * @param {string} contextName The name which will be somethinglike Command_ApiPost or Script_ApiMacroX.
  * @return {string} The string afer the first cUnderscore (ApiPost or ApiMacroX).
@@ -748,7 +748,7 @@ function getDataCatagoryDetailNameFromContextName(contextName) {
 /**
  * @function extractDataFromPapaParseObject
  * @description Extracts the parsed data from the papa parse data object.
- * @param {object} data Contains the full contents of the papaparse data object, for which we need to get data out of.
+ * @param {object} data Contains the full contents of the papa parse data object, for which we need to get data out of.
  * @param {string} contextName The name of the context either Command, Macro from which data should be retrieved.
  * @return {object} The fully parsed data that we intend to use for the application.
  * @author Seth Hollingsead
@@ -819,7 +819,7 @@ function extractDataFromPapaParseObject(data, contextName) {
  * @description Scans the target and source data objects recursively and determines what level of the target the source should be merged at.
  * @param {object} targetData The target data object where the data should in theory be merged with for the purpose of this simulated merge.
  * @param {object} dataToMerge The data that should be merged in this simulated merge scenario.
- * @return {string} The string of the namespace where the dataToMerge should be merged wtih the target data object.
+ * @return {string} The string of the namespace where the dataToMerge should be merged with the target data object.
  * @author Seth Hollingsead
  * @date 2022/05/23
  */

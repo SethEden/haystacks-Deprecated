@@ -1,0 +1,84 @@
+description: Test plan for ruleBroker.js
+
+
+--------------------------------------------------------------------------------
+testName: bootStrapBusinessRules_validData
+output: Captures, call, and migrates business rule's data to data hive.
+
+testName: bootStrapBusinessRules_inValidString
+input: string (464gsdsfae8f46)
+output: Captures, call, and migrates business rule's data to data hive.
+
+testName: bootStrapBusinessRules_inValidNumber
+input: integer (546)
+output: Captures, call, and migrates business rule's data to data hive.
+
+testName: bootStrapBusinessRules_inValidBoolean
+input: boolean (false)
+output: Captures, call, and migrates business rule's data to data hive.
+--------------------------------------------------------------------------------
+testName: addClientRules_validData
+input clientRules: array<object>
+output: cient rules that merged with the system rules.
+
+testName: addClientRules_inValidString
+input clientRules: string (464gsdsfae8f46)
+output: ?
+
+testName: addClientRules_inValidNumber
+input clientRules: integer (546)
+output: ?
+
+testName: addClientRules_inValidBoolean
+input clientRules: boolean (false)
+output: ?
+--------------------------------------------------------------------------------
+testName: processRules_validDataString
+input inputs: array<string|integer|boolean|object|function,string|integer|boolean|object|function>
+input dataToStore: array<string>
+output: string|integer|boolean|object|function (modified data)
+
+testName: processRules_validDataString
+input inputs: string (testDataString)
+input dataToStore: string (dfxg24346dfg)
+output: ?
+
+testName: processRules_validDataInteger
+input inputs: string (testDataInteger)
+input dataToStore: integer (23456)
+output: true
+
+testName: processRules_validDataBoolean
+input inputs: string (testDataBoolean)
+input dataToStore: boolean (false)
+output: true
+
+testName: processRules_validDataObject
+input inputs: string (testDataObject)
+input dataToStore: object ({"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"})
+output: true
+
+testName: processRules_validDataArray
+input inputs: string (testDataFunction)
+input dataToStore: function ()
+output: true
+
+testName: processRules_inValidDataToStoreUndefined
+input inputs: string (inValidDataToStoreUndefined)
+input dataToStore: undefined
+output: false
+
+testName: processRules_inValidDataToStoreNaN
+input inputs: string (inValidDataToStoreNaN)
+input dataToStore: NaN
+output: false
+
+testName: processRules_inValidDataStorageContextNameInteger
+input inputs: integer (4567)
+input dataToStore: array ([1,2,3,4,5])
+output: false
+
+testName: processRules_inValidDataStorageContextNameBoolean
+input inputs: boolean (false)
+input dataToStore: array ([1,2,3,4,5])
+output: false
