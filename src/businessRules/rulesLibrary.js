@@ -285,6 +285,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cwriteJsonData]: (inputData, inputMetaData) => fileOperations.writeJsonData(inputData, inputMetaData),
      [biz.creadDirectoryContents]: (inputData, inputMetaData) => fileOperations.readDirectoryContents(inputData, inputMetaData),
      [biz.cscanDirectoryContents]: (inputData, inputMetaData) => fileOperations.scanDirectoryContents(inputData, inputMetaData),
+     [biz.cgetDirectoryList]: (inputData, inputMetaData) => fileOperations.getDirectoryList(inputData, inputMetaData),
      [biz.creadDirectorySynchronously]: (inputData, inputMetaData) => fileOperations.readDirectorySynchronously(inputData, inputMetaData),
      [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
      [biz.cbuildReleasePackage]: (inputData, inputMetaData) => fileOperations.buildReleasePackage(inputData, inputMetaData),

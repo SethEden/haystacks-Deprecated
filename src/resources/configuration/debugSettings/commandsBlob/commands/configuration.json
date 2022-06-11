@@ -37,5 +37,18 @@
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@ModuleFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@MessageFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@DataFontBackgroundColor": "Black"
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeConfigurationSetting@DataFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@ModuleFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@FunctionFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@MessageFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@DataFontStyle": "Default",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@ModuleFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@FunctionFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@MessageFontColor": "Blue",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@DataFontColor": "Yellow",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@ModuleFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@FunctionFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@MessageFontBackgroundColor": "Black",
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@DataFontBackgroundColor": "Black"
 }

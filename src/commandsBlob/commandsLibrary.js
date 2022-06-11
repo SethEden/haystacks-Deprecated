@@ -75,6 +75,7 @@ function initCommandsLibrary() {
     // ***********************************************
     [cmd.csaveConfiguration]: (inputData, inputMetaData) => configurationCommands.saveConfiguration(inputData, inputMetaData),
     [cmd.cchangeConfigurationSetting]: (inputData, inputMetaData) => configurationCommands.changeConfigurationSetting(inputData, inputMetaData),
+    [cmd.clistConfigurationThemes]: (inputData, inputMetaData) => configurationCommands.listConfigurationThemes(inputData, inputMetaData),
 
     // ***********************************************
     // Constant commands in order

@@ -4,6 +4,7 @@
  * @description Contains all of the configuration system commands.
  * @requires module:dataBroker
  * @requires module:ruleBroker
+ * @requires module:themeBroker
  * @requires module:configurator
  * @requires module:loggers
  * @requires module:data
@@ -18,6 +19,7 @@
 // Internal imports
 import dataBroker from '../../brokers/dataBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
+import themeBroker from '../../brokers/themeBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
@@ -100,7 +102,27 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
   return returnData;
 };
 
+/**
+ * @function listConfigurationThemes
+ * @description Lists all of the debug configuration themes currently installed in the resources/themes folder.
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean}
+ */
+const listConfigurationThemes = function(inputData, inputMetaData) {
+  let functionName = listConfigurationThemes.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let themesList = themeBroker.getNamedThemes();
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   saveConfiguration,
-  changeConfigurationSetting
+  changeConfigurationSetting,
+  listConfigurationThemes
 };

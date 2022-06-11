@@ -208,7 +208,7 @@ const readDirectoryContents = function(inputData, inputMetaData) {
 /**
  * @function scanDirectoryContents
  * @description This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
- * The difference between this function and the readDirectoryContents is that this function has an optinoal limit on the number of files to return.
+ * The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
  * Really this is used for scanning large volumes of data such as the entire C-Drive.
  * This way the user can control the number of files that are returned by the system.
  * The user might only want 10,000 files or just the first million files found. etc...
@@ -247,6 +247,29 @@ const scanDirectoryContents = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundAre + JSON.stringify(filesFound));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return filesFound;
+};
+
+/**
+ * @function getDirectoryList
+ * @description Scans the specified path and returns the list of folders at that level. Does not scan recursively.
+ * @param {string} inputData The path that should be scanned for getting a folder list at that folder level.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string>} The list of folders found at the specified path.
+ * @author Seth Hollingsead
+ * @date 2022/06/10
+ */
+const getDirectoryList = function(inputData, inputMetaData) {
+  let functionName = getDirectoryList.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  returnData = fs.readdirsync(inputData, { withFileTypes: true })
+    .filter((item) => item.isDirectory())
+    .map((item) => item.name);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 /**
@@ -716,6 +739,7 @@ export default {
   writeJsonData,
   readDirectoryContents,
   scanDirectoryContents,
+  getDirectoryList,
   readDirectorySynchronously,
   copyAllFilesAndFoldersFromFolderToFolder,
   buildReleasePackage,
