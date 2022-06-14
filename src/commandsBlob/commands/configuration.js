@@ -96,6 +96,10 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
     dataPath = dataPath.join(bas.cDot);
     newValue = ruleBroker.processRules([newValue, ''], [biz.cstringToDataType]);
     configurator.setConfigurationSetting(dataPath, configurationName, newValue);
+  } else {
+    console.log('ERROR: Invalid entry, please enter a valid configuration namespace to change, ');
+    console.log('and a value to assign to the configuration setting.');
+    console.log('EXAMPLE: changeConfigurationSetting debugSetting.businessRules.rules.arrayParsing.commandArrayParsing.solveLehmerCode true');
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -107,7 +111,9 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
  * @description Lists all of the debug configuration themes currently installed in the resources/themes folder.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean}
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/06/10
  */
 const listConfigurationThemes = function(inputData, inputMetaData) {
   let functionName = listConfigurationThemes.name;
@@ -116,6 +122,47 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   let themesList = themeBroker.getNamedThemes();
+  // themesList is:
+  console.log(msg.cthemesListIs + JSON.stringify(themesList));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function changeDebugConfigurationTheme
+ * @description Swaps out all of the debug settings with a different theme.
+ * @param {string} inputData An array that contains the name of the theme the user would like to switch to.
+ * inputData[0] = changeDebugConfigurationTheme
+ * inputData[1] = The name of the theme that the user would like to switch to.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/06/13
+ */
+const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
+  let functionName = changeDebugConfigurationTheme.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData && inputData.length === 2) {
+    let desiredThemeName = inputData[1];
+    loggers.consoleLog(namespacePrefix + functionName, 'desiredThemeName is: ' + desiredThemeName);
+    let namedThemePath = themeBroker.getNamedThemePath(desiredThemeName);
+    if (namedThemePath != false) {
+      loggers.consoleLog(namespacePrefix + functionName, 'namedThemePath is verified: ' + namedThemePath);
+      configurator.setConfigurationSetting(wrd.csystem, sys.cthemeConfigPath, namedThemePath);
+      let loadedThemeData = themeBroker.loadTheme(namedThemePath);
+    } else {
+      console.log('ERROR: The specified theme name was not found in the current list of supported themes.');
+      console.log('You can find the available themes at the following path location: ' +
+        configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkThemesPath));
+    }
+  } else {
+    console.log('ERROR: Invalid entry, please enter a theme name you would like the debug settings to switch to when logging debug statements.');
+    console.log('EXAMPLE: changeDebugConfigurationTheme Skywalker');
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -124,5 +171,6 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
 export default {
   saveConfiguration,
   changeConfigurationSetting,
-  listConfigurationThemes
+  listConfigurationThemes,
+  changeDebugConfigurationTheme
 };

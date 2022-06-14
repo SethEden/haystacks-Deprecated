@@ -34,24 +34,24 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * that has the path for the appConfigPath.
  * @param {string} frameworkConfigPathName The name of the configuration setting
  * that has the path for the frameworkConfigPath.
- * @param {string} contextName The context name that should be used when adding data to the D data structure.
  * @return {boolean} A True or False to indicate if the debugSettings was found to be
  * true in either of the configuration settings (appConfig Or frameworkConfig).
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
+ * @author Seth Hollingsead
+ * @date 2022/01/18
  */
-function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfigPathName, contextName) {
+function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfigPathName) {
   let functionName = searchForUniversalDebugConfigSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`appConfigPathName is: ${appConfigPathName}`);
   // console.log(`frameworkConfigPathName is: ${frameworkConfigPathName}`);
-  // console.log(`contextName is: ${contextName}`);
   let universalDebugConfigSetting = false;
   let appConfigDataPath = configurator.getConfigurationSetting(wrd.csystem, appConfigPathName);
   let frameworkConfigDataPath = configurator.getConfigurationSetting(wrd.csystem, frameworkConfigPathName);
   appConfigDataPath = path.resolve(appConfigDataPath);
   frameworkConfigDataPath = path.resolve(frameworkConfigDataPath);
-  let appConfigFilesToLoad = dataBroker.scanDataPath(appConfigDataPath, contextName);
-  let frameworkConfigFilesToLoad = dataBroker.scanDataPath(frameworkConfigDataPath, contextName);
+  let appConfigFilesToLoad = dataBroker.scanDataPath(appConfigDataPath);
+  let frameworkConfigFilesToLoad = dataBroker.scanDataPath(frameworkConfigDataPath);
   configurator.setConfigurationSetting(wrd.csystem, cfg.cappConfigFiles, appConfigFilesToLoad);
   configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConfigFiles, frameworkConfigFilesToLoad);
   universalDebugConfigSetting = dataBroker.findUniversalDebugConfigSetting(
@@ -61,6 +61,34 @@ function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfig
   // console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return universalDebugConfigSetting;
+};
+
+/**
+ * @function determineThemeDebugConfigFilesToLoad
+ * @description If the debugSettings flag is already set,
+ * then look up the specified path name and scan the path to determine all
+ * of the theme debug config files that should be loaded.
+ * @param {string} themeConfigPathName The configuration name of the path that should be looked up for scaning purposes.
+ * @return {array<string>} An array of file names and paths that should be used when loading the theme debug configuration files.
+ * @author Seth Hollingsead
+ * @date 2022/06/13
+ */
+function determineThemeDebugConfigFilesToLoad(themeConfigPathName) {
+  let functionName = determineThemeDebugConfigFilesToLoad.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // themeConfigPathName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cthemeConfigPathNameIs + themeConfigPathName);
+  let themeConfigFilesToLoad = false;
+  if (themeConfigPathName) {
+    let themeConfigDataPath = configurator.getConfigurationSetting(wrd.csystem, themeConfigPathName);
+    themeConfigDataPath = path.resolve(themeConfigDataPath);
+    themeConfigFilesToLoad = dataBroker.scanDataPath(themeConfigDataPath);
+    configurator.setConfigurationSetting(wrd.csystem, cfg.cthemeConfigFiles, themeConfigFilesToLoad);
+  } // End-if (themeConfigPathName)
+  // themeConfigFilesToLoad is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cthemeConfigFilesToLoadIs + JSON.stringify(themeConfigFilesToLoad));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return themeConfigFilesToLoad;
 };
 
 /**
@@ -75,7 +103,7 @@ function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfig
 function getAndProcessCsvData(pathAndFilename, contextName) {
   let functionName = getAndProcessCsvData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // cpathAndFilename is:
+  // pathAndFilename is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cpathAndFilenameIs + pathAndFilename);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
@@ -184,19 +212,21 @@ function setupAllXmlData(dataPathConfigurationName, contextName) {
  */
 function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   let functionName = setupAllJsonConfigData.name;
-  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  // console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
-  // console.log(`contextName is: ${contextName}`);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
+  console.log(`contextName is: ${contextName}`);
   let loadedAndMergedDataAllFiles = {};
   let filesToLoad = [];
   if (dataPathConfigurationName === sys.cappConfigPath) {
     filesToLoad = configurator.getConfigurationSetting(wrd.csystem, cfg.cappConfigFiles);
   } else if (dataPathConfigurationName === sys.cframeworkConfigPath) {
     filesToLoad = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkConfigFiles);
+  } else {
+    filesToLoad = configurator.getConfigurationSetting(wrd.csystem, cfg.cthemeConfigFiles);
   }
   loadedAndMergedDataAllFiles = dataBroker.loadAllJsonData(filesToLoad, contextName);
-  // console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
-  // console.log(`END ${namespacePrefix}${functionName} function`);
+  console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
+  console.log(`END ${namespacePrefix}${functionName} function`);
   return loadedAndMergedDataAllFiles;
 };
 
@@ -234,6 +264,7 @@ function addConstantsValidationData(arrayValidationData) {
 export default {
   [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName, contextName) => searchForUniversalDebugConfigSetting(
     appConfigPathName, frameworkConfigPathName, contextName),
+  determineThemeDebugConfigFilesToLoad,
   [fnc.cgetAndProcessCsvData]: (pathAndFilename, contextName) => getAndProcessCsvData(pathAndFilename, contextName),
   [fnc.cgetAndProcessXmlData]: (pathAndFilename) => getAndProcessXmlData(pathAndFilename),
   [fnc.csetupAllCsvData]: (dataPathConfigurationName, contextName) => setupAllCsvData(dataPathConfigurationName, contextName),

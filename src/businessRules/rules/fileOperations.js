@@ -264,9 +264,11 @@ const getDirectoryList = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
-  returnData = fs.readdirsync(inputData, { withFileTypes: true })
-    .filter((item) => item.isDirectory())
-    .map((item) => item.name);
+  if (inputData) {
+    returnData = fs.readdirSync(inputData, { withFileTypes: true })
+      .filter((item) => item.isDirectory())
+      .map((item) => item.name);
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

@@ -77,7 +77,7 @@
   "debugFunctions|debugSetting.businessRules.rules.fileOperations.scanDirectoryContents@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.fileOperations.scanDirectoryContents@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.fileOperations.scanDirectoryContents@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.fileOperations.getDirectoryList": true,
+  "debugFunctions|debugSetting.businessRules.rules.fileOperations.getDirectoryList": false,
   "debugFunctions|debugSetting.businessRules.rules.fileOperations.getDirectoryList@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.businessRules.rules.fileOperations.getDirectoryList@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.businessRules.rules.fileOperations.getDirectoryList@MessageFontStyle": "Default",
