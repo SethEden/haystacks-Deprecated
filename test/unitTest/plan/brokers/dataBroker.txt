@@ -299,12 +299,12 @@ input dataStorageContextName: string (inValidDataToStoreNaN)
 input dataToStore: NaN
 output: false
 
-testName: storeData_inValidDataStorageContextNameInteger
+testName: storeData_inValidDataStorageDataToStoreNumber
 input dataStorageContextName: integer (4567)
 input dataToStore: array ([1,2,3,4,5])
 output: false
 
-testName: storeData_inValidDataStorageContextNameBoolean
+testName: storeData_inValidDataStorageDataToStoreBoolean
 input dataStorageContextName: boolean (false)
 input dataToStore: array ([1,2,3,4,5])
 output: false
