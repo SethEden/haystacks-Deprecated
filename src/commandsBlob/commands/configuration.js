@@ -97,9 +97,11 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
     newValue = ruleBroker.processRules([newValue, ''], [biz.cstringToDataType]);
     configurator.setConfigurationSetting(dataPath, configurationName, newValue);
   } else {
-    console.log('ERROR: Invalid entry, please enter a valid configuration namespace to change, ');
-    console.log('and a value to assign to the configuration setting.');
-    console.log('EXAMPLE: changeConfigurationSetting debugSetting.businessRules.rules.arrayParsing.commandArrayParsing.solveLehmerCode true');
+    // ERROR: Invalid entry, please enter a valid configuration namespace to change,
+    // and a value to assign to the configuration setting.
+    console.log(msg.cchangeConfigurationSettingMessage01 + msg.cchangeConfigurationSettingMessage02);
+    // EXAMPLE: changeConfigurationSetting debugSetting.businessRules.rules.arrayParsing.commandArrayParsing.solveLehmerCode true
+    console.log(msg.cchangeConfigurationSettingMessage03);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -148,20 +150,33 @@ const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
   let returnData = true;
   if (inputData && inputData.length === 2) {
     let desiredThemeName = inputData[1];
-    loggers.consoleLog(namespacePrefix + functionName, 'desiredThemeName is: ' + desiredThemeName);
+    // desiredThemeName is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cdesiredThemeNameIs + desiredThemeName);
     let namedThemePath = themeBroker.getNamedThemePath(desiredThemeName);
     if (namedThemePath != false) {
-      loggers.consoleLog(namespacePrefix + functionName, 'namedThemePath is verified: ' + namedThemePath);
+      // namedThemePath is verified:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cnamedThemePathIsVerified + namedThemePath);
       configurator.setConfigurationSetting(wrd.csystem, sys.cthemeConfigPath, namedThemePath);
       let loadedThemeData = themeBroker.loadTheme(namedThemePath);
+      // loadedThemeData is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedThemeDataIs + JSON.stringify(loadedThemeData));
+      let themeLoadedSuccessfully = themeBroker.applyTheme(loadedThemeData);
+      if (themeLoadedSuccessfully === false) {
+        // ERROR: There was an error applying the selected theme to the active debug settings configuration.
+        console.log(msg.cchangeDebugConfigurationThemeMessage01);
+      }
     } else {
-      console.log('ERROR: The specified theme name was not found in the current list of supported themes.');
-      console.log('You can find the available themes at the following path location: ' +
+      // ERROR: The specified theme name was not found in the current list of supported themes.
+      console.log(msg.cchangeDebugConfigurationThemeMessage02);
+      // You can find the available themes at the following path location:
+      console.log(msg.cchangeDebugConfigurationThemeMessage03 +
         configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkThemesPath));
     }
   } else {
-    console.log('ERROR: Invalid entry, please enter a theme name you would like the debug settings to switch to when logging debug statements.');
-    console.log('EXAMPLE: changeDebugConfigurationTheme Skywalker');
+    // ERROR: Invalid entry, please enter a theme name you would like the debug settings to switch to when logging debug statements.
+    console.log(msg.cchangeDebugConfigurationThemeMessage04);
+    // EXAMPLE: changeDebugConfigurationTheme Skywalker
+    console.log(msg.cchangeDebugConfigurationThemeMessage05);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

@@ -76,7 +76,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
  * @description Parses through all of the configuration data that we just loaded from the XML files and
  * adds that data to the correct data-structures in the D.[configuration] data hive.
  * @param {object} allConfigurationData A JSON data structure object that contains all configuration meta-data.
- * @return {void}
+ * @return {boolean} True or False to indicate if the configuration data was applied successfully or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
@@ -97,6 +97,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let value;
   let version;
   let advancedDebugSettingPrefix;
+  let returnData = false;
 
   highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
@@ -158,10 +159,13 @@ function parseLoadedConfigurationData(allConfigurationData) {
         // console.log('value AFTER rule processing is: ' + value);
 
         configurator.setConfigurationSetting(namespace, name, value);
+        returnData = true;
       } // End-if (!!value || value === false)
     } // End-for (let key in highLevelDebugConfigurationContainer)
   } // End-if (highLevelDebugConfigurationContainer)
+  // console.log('returnData is: ' + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 export default {

@@ -212,9 +212,9 @@ function setupAllXmlData(dataPathConfigurationName, contextName) {
  */
 function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   let functionName = setupAllJsonConfigData.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
-  console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
-  console.log(`contextName is: ${contextName}`);
+  // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
+  // console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
+  // console.log(`contextName is: ${contextName}`);
   let loadedAndMergedDataAllFiles = {};
   let filesToLoad = [];
   if (dataPathConfigurationName === sys.cappConfigPath) {
@@ -225,8 +225,8 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
     filesToLoad = configurator.getConfigurationSetting(wrd.csystem, cfg.cthemeConfigFiles);
   }
   loadedAndMergedDataAllFiles = dataBroker.loadAllJsonData(filesToLoad, contextName);
-  console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
-  console.log(`END ${namespacePrefix}${functionName} function`);
+  // console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
+  // console.log(`END ${namespacePrefix}${functionName} function`);
   return loadedAndMergedDataAllFiles;
 };
 

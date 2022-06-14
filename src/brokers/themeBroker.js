@@ -3,6 +3,7 @@
  * @module themeBroker
  * @description Contains all the functions necessary to load and unload debugging themes.
  * @requires module:ruleBroker
+ * @requires module:chiefConfiguration
  * @requires module:chiefData
  * @requires module:configurator
  * @requires module:loggers
@@ -16,6 +17,7 @@
 
 // Internal imports
 import ruleBroker from './ruleBroker.js';
+import chiefConfiguration from '../controllers/chiefConfiguration.js';
 import chiefData from '../controllers/chiefData.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
@@ -95,7 +97,7 @@ function loadTheme(themePath) {
   // themePath is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemePathIs + themePath);
   let themeData = {};
-  let themeDataFilesToLoad = chiefData.determineThemeDebugConfigFilesToLoad()
+  let themeDataFilesToLoad = chiefData.determineThemeDebugConfigFilesToLoad(sys.cthemeConfigPath);
   themeData = chiefData.setupAllJsonConfigData(sys.cthemeConfigPath, wrd.cconfiguration);
   // themeData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemeDataIs + JSON.stringify(themeData));
@@ -103,8 +105,30 @@ function loadTheme(themePath) {
   return themeData;
 };
 
+/**
+ * @function applyTheme
+ * @description Takes theme data and applies it to the currently loaded
+ * debug configuration data set in the D-Data Structure configuration.debugSettings data hive.
+ * @param {object} themeData All the theme debug configuration settings data that control the debug log theme colors.
+ * @return {boolean} True or False to indicate if the theme data was applied successfully or not.
+ * @author Seth Hollingsead
+ * @date 2022/06/14
+ */
+function applyTheme(themeData) {
+  let functionName = applyTheme.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  // themeData is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cthemeDataIs + JSON.stringify(themeData));
+  let returnData = false;
+  returnData = chiefConfiguration.parseLoadedConfigurationData(themeData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
 export default {
   getNamedThemes,
   getNamedThemePath,
-  loadTheme
+  loadTheme,
+  applyTheme
 };

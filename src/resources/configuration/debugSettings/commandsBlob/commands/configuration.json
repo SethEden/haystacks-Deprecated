@@ -51,7 +51,7 @@
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@FunctionFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@MessageFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.listConfigurationThemes@DataFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeDebugConfigurationTheme": true,
+  "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeDebugConfigurationTheme": false,
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeDebugConfigurationTheme@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeDebugConfigurationTheme@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.commandsBlob.commands.configuration.changeDebugConfigurationTheme@MessageFontStyle": "Default",
