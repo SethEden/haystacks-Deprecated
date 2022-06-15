@@ -4,7 +4,7 @@ description: Test plan for workflowBroker.js
 --------------------------------------------------------------------------------
 testName: getWorkflow_validData
 input: string (the name of the workflow for which we are getting workflow data)
-output: string|boolean (the workflow value, which is a list of commands)|(false if no workflow by the specified name was found.)
+output: string (the workflow value, which is a list of commands)
 
 testName: getWorkflow_inValidString
 input: string (464gsdsfae8f46)
@@ -20,24 +20,24 @@ output: false?
 --------------------------------------------------------------------------------
 testName: doesWorkflowExist_validData
 input: string (the name of the workflow for which we are getting workflow data)
-output: boolean (True or False to indicate if the workflow already exists or not)
+output: true
 
 testName: doesWorkflowExist_inValidString
 input: string (464gsdsfae8f46)
-output: false?
+output: false
 
 testName: doesWorkflowExist_inValidNumber
 input: integer (546)
-output: false?
+output: false
 
 testName: doesWorkflowExist_inValidBoolean
 input: boolean (false)
-output: false?
+output: false
 --------------------------------------------------------------------------------
 testName: doesWorkflowExistInWorkflowData_validData
 input workflowData: object (the workflow data that searched recursively for the specified workflow)
 input workflowName: string (The name of the workflow)
-output: boolean (True or False to indicate if the workflow was found or not)
+output: true
 
 testName: doesWorkflowExistInWorkflowData_inValidWorkflowDataString
 input workflowData: string (464gsdsfae8f46)
@@ -47,7 +47,7 @@ output: false
 testName: doesWorkflowExistInWorkflowData_inValidWorkflowNameString
 input workflowData: object (the workflow data that searched recursively for the specified workflow)
 input workflowName: string (&)
-output: false?
+output: false
 
 testName: doesWorkflowExistInWorkflowData_inValidNumber
 input workflowData: integer (546)
@@ -62,7 +62,7 @@ output: false
 testName: searchWorkflow_validData
 input allWorkflows: object (the workflow data that searched recursively for the specified workflow)
 input workflowName: string (the name of the workflow)
-output: object (the workflow object that corresponds to the input workflow name)
+output: object (the workflow object that corresponds to the input workflow name) example: {"doesArrayContainCharacter": "cmdgen bizRul,doesArrayContainCharacter,$,[the|answer|to|life|the|universe|and|everything|is|$42] 4"}
 
 testName: searchWorkflow_inValidWorkflowDataString
 input allWorkflows: string (464gsdsfae8f46)
@@ -103,24 +103,24 @@ output: false?
 testName: searchWorkflow_validData
 input workflowDataStructure: object (the workflow data structure that should be recursively searched for the namespace specified)
 input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
-output: object|boolean (the namespace object if it is found)|(False if the namespace object was not found)
+output: object (the namespace object if it is found)
 
 testName: searchWorkflow_inValidWorkflowDataString
 input workflowDataStructure: string (464gsdsfae8f46)
 input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
-output: false?
+output: false
 
 testName: searchWorkflow_inValidWorkflowNameString
 input workflowDataStructure: object (the workflow data structure that should be recursively searched for the namespace specified)
 input namespaceToFind: string (&)
-output: false?
+output: false
 
 testName: searchWorkflow_inValidNumber
 input workflowDataStructure: integer (546)
 input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
-output: false?
+output: false
 
 testName: searchWorkflow_inValidBoolean
 input workflowDataStructure: boolean (false)
 input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
-output: false?
+output: false

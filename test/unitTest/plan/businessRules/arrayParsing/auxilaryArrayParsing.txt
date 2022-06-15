@@ -74,7 +74,7 @@ output: ?
 
 testName: doesArrayContainValue_validDataInputMetaDataFunction
 input inputData: array<array<string|integer|boolean|float|object>,string|integer|boolean|float|object> (testDataFunction)
-input inputMetaData: function **********************************************
+input inputMetaData: function ([C:\haystacks\test\unitTest\testData\functionTest.js - doesArrayContainValueTestFunction])
 output: ?
 
 testName: doesArrayContainValue_inValidInputDataUndefined

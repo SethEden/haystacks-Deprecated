@@ -33,52 +33,45 @@ testName: addClientRules_inValidBoolean
 input clientRules: boolean (false)
 output: ?
 --------------------------------------------------------------------------------
-testName: processRules_validDataString
-input inputs: array<string|integer|boolean|object|function,string|integer|boolean|object|function>
-input dataToStore: array<string>
-output: string|integer|boolean|object|function (modified data)
+testName: processRules_validData(ALL)
+NOTE: To be tested with integration testing.
 
-testName: processRules_validDataString
-input inputs: string (testDataString)
-input dataToStore: string (dfxg24346dfg)
+testName: processRules_inValidInputsUndefined
+input inputs: undefined
+input rulesToExecute: string (inValidInputsUndefined)
 output: ?
 
-testName: processRules_validDataInteger
-input inputs: string (testDataInteger)
-input dataToStore: integer (23456)
-output: true
+testName: processRules_inValidInputsNaN
+input inputs: NaN
+input rulesToExecute: string (inValidInputsUndefined)
+output: ?
 
-testName: processRules_validDataBoolean
-input inputs: string (testDataBoolean)
-input dataToStore: boolean (false)
-output: true
+testName: processRules_inValidRulesToExecuteUndefined
+input inputs: string (inValidRulesToExecuteUndefined)
+input rulesToExecute: undefined
+output: ?
 
-testName: processRules_validDataObject
-input inputs: string (testDataObject)
-input dataToStore: object ({"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"})
-output: true
+testName: processRules_inValidRulesToExecuteNaN
+input inputs: string (inValidRulesToExecuteNaN)
+input rulesToExecute: NaN
+output: ?
 
-testName: processRules_validDataArray
-input inputs: string (testDataFunction)
-input dataToStore: function ()
-output: true
-
-testName: processRules_inValidDataToStoreUndefined
-input inputs: string (inValidDataToStoreUndefined)
-input dataToStore: undefined
-output: false
-
-testName: processRules_inValidDataToStoreNaN
-input inputs: string (inValidDataToStoreNaN)
-input dataToStore: NaN
-output: false
-
-testName: processRules_inValidDataStorageContextNameInteger
+testName: processRules_inValidInputsInteger
 input inputs: integer (4567)
-input dataToStore: array ([1,2,3,4,5])
-output: false
+input rulesToExecute: array ([1,2,3,4,5])
+output: ?
 
-testName: processRules_inValidDataStorageContextNameBoolean
+testName: processRules_inValidInputsBoolean
 input inputs: boolean (false)
-input dataToStore: array ([1,2,3,4,5])
-output: false
+input rulesToExecute: array ([1,2,3,4,5])
+output: ?
+
+testName: processRules_inValidRulesToExecuteInteger
+input inputs: array ([1,2,3,4,5])
+input rulesToExecute: integer (4567)
+output: ?
+
+testName: processRules_inValidRulesToExecuteBoolean
+input inputs: array ([1,2,3,4,5])
+input rulesToExecute: boolean (false)
+output: ?
