@@ -559,15 +559,20 @@ function executeCommand(commandString) {
   // trackng & command results processing such as pass-fail,
   // so that when a chain of commands has completed execution we can evaluate command statistics and metrics.
   let functionName = executeCommand.name;
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandString is:
+  console.log(`commandString is: ${commandString}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   let returnData = false;
+  console.log(`commandQueue contains: ${JSON.stringify(D[sys.cCommandQueue])}`);
   let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter));
   // commandToExecute is:
+  console.log(`commandToExecute is: ${commandToExecute}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   let commandArgs = getCommandArgs(commandString, configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter));
   // commandArgs is:
+  console.log(`commandArgs is: ${JSON.stringify(commandArgs)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandArgsIs + commandArgs);
   let commandMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableCommandPerformanceMetrics);
   let commandStartTime = '';
@@ -579,7 +584,8 @@ function executeCommand(commandString) {
     // After executing we wil capture the end time and then
     // compute the difference to determine how many milliseconds it took to run the command.
     commandStartTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
-    // Cmmand Start time is:
+    // Command Start time is:
+    console.log(`Command Start tme is: ${commandStartTime}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandStartTimeIs + commandStartTime);
   } // End-if (commandMetricsEnabled === true)
   if (commandToExecute !== false && commandArgs !== false) {
@@ -599,10 +605,12 @@ function executeCommand(commandString) {
     let performanceTrackingObject = {};
     commandEndTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // Command End time is:
+    console.log(`Command End time is: ${commandEndTime}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandEndTimeIs + commandEndTime);
     // Now compute the delta tme so we know how long it took to run that command.
     commandDeltaTime = ruleBroker.processRules([commandStartTime, commandEndTime], [biz.ccomputeDeltaTime]);
     // Command run-time is:
+    console.log(`Command run-time is: ${commandDeltaTime}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandRunTimeIs + commandDeltaTime);
     // Check to make sure the command performance tracking stack exists or does not exist.
     if (D[cfg.ccommandsPerformanceTrackingStack] === undefined) {
@@ -619,7 +627,9 @@ function executeCommand(commandString) {
     // stack.print(cfg.ccommandNamesPerformanceTrackingStack);
     // stack.print(cfg.ccommandsPerformanceTrackingStack);
   } // End-if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false)
+  console.log(`returnData is: ${JSON.stringify(returnData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

@@ -55,28 +55,34 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 const commandSequencer = function(inputData, inputMetaData) {
   let functionName = commandSequencer.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  console.log(`inputData is: ${JSON.stringify(inputData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = true;
   for (let i = 1; i < inputData.length; i++) {
     let commandString = inputData[i];
     let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.cprimaryCommandDelimiterIs + primaryCommandDelimiter);
+    console.log(`primaryCommandDelimiter is: ${primaryCommandDelimiter}`);
     if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
       primaryCommandDelimiter = bas.cSpace;
     }
     let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
+    console.log(`secondaryCommandDelimiter is: ${secondaryCommandArgsDelimiter}`);
     let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
+    console.log(`tertiaryCommandDelimiter is: ${tertiaryCommandDelimiter}`);
     // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
     const regEx1 = new RegExp(secondaryCommandArgsDelimiter, bas.cg);
     commandString = commandString.replace(regEx1, primaryCommandDelimiter);
-    // console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
+    console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
     if (commandString.includes(tertiaryCommandDelimiter)) {
       const regEx2 = new RegExp(tertiaryCommandDelimiter, bas.cg);
       commandString = commandString.replace(regEx2, secondaryCommandArgsDelimiter);
-      // console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
+      console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
     }
     let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
     let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
@@ -86,9 +92,10 @@ const commandSequencer = function(inputData, inputMetaData) {
         currentCommand = currentCommand + primaryCommandDelimiter + commandArgs[j];
       } // End-for (let j = 1; j < commandArgs.length; j++)
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandSequencerCommandToEnqueueIs + currentCommand);
+      console.log(`commandSequencerCommandToEnqueue is: ${currentCommand}`);
       queue.enqueue(sys.cCommandQueue, currentCommand);
     } else { // End-if (currentCommand !== false)
-      // WARNING: nominal.commandSequencer: The specified command was not found, please enter a valid command and try again.
+      // WARNING: advanced.commandSequencer: The specified command was not found, please enter a valid command and try again.
       console.log(msg.ccommandSequencerMessage1 + msg.ccommandSequencerMessage2);
     }
   } // End-for (let i = 1; i < inputData.length; i++)
