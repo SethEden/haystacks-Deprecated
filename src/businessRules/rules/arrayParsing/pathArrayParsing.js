@@ -28,7 +28,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 /**
  * @function doesArrayContainFilename
  * @desription Checks if an array contains a filename, after stripping off the path.
- * @param {array<string>} inputData The array of file names that should be checkd for the input file name we are looking for.
+ * @param {array<string>} inputData The array of file names that should be checked for the input file name we are looking for.
  * @param {string} inputMetaData The file name we are looking for in the input array.
  * @return {boolean} A True or False value to indicate if the file name was found or not.
  * @author Seth Hollingsead
@@ -40,13 +40,13 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
-  // NOTE: This call doesn't actually work, it may have orked at one time, but it doesn't work now.
+  // NOTE: This call doesn't actually work, it may have worked at one time, but it doesn't work now.
   // And I'm not going to spend the time trying to figure out why,
   // when it will be much simpler to ust call that same funtion in a loop to figure out the result.
   // Can solve this when we build unit tests.
   returnData = ruleParsing.processRulesInternal([[inputData, inputMetaData], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]);
 
-  // NOTE: The beow code also orks, I am going to attempt to re-enable the above code and see if it alo works.
+  // NOTE: The below code also works, I am going to attempt to re-enable the above code and see if it also works.
   // YES! This is a second way of doing the same thing. If the above code ever has a problem, we can fall back to this method.
   // for (let i = 0; i < inputData.Length; i++) {
   //   if (ruleParsing.processRulesInternal([inputData[i], inputMetaData], [biz.cascertainMatchingFilenames]) {
