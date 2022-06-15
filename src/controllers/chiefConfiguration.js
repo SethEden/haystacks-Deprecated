@@ -76,7 +76,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
  * @description Parses through all of the configuration data that we just loaded from the XML files and
  * adds that data to the correct data-structures in the D.[configuration] data hive.
  * @param {object} allConfigurationData A JSON data structure object that contains all configuration meta-data.
- * @return {void}
+ * @return {boolean} True or False to indicate if the configuration data was applied successfully or not.
  * @author Seth Hollingsead
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
@@ -97,72 +97,80 @@ function parseLoadedConfigurationData(allConfigurationData) {
   let value;
   let version;
   let advancedDebugSettingPrefix;
+  let returnData = false;
 
   highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
   // console.log('highLevelSystemConfigurationContainer is: ' + JSON.stringify(highLevelSystemConfigurationContainer));
   highLevelDebugConfigurationContainer = allConfigurationData[cfg.cdebugSettings];
   // console.log('highLevelDebugConfigurationContainer is: ' + JSON.stringify(highLevelDebugConfigurationContainer));
 
-  for (let key in highLevelSystemConfigurationContainer) {
-    fullyQualifiedName = '';
-    namespace = '';
-    name = '';
-    value = '';
-    value = highLevelSystemConfigurationContainer[key];
-    // console.log('value is: ' + value);
-    if (!!value || value === false) {
-      fullyQualifiedName = key;
-      // console.log('fullyQualifiedName is: ' + fullyQualifiedName);
+  if (highLevelSystemConfigurationContainer) {
+    for (let key in highLevelSystemConfigurationContainer) {
+      fullyQualifiedName = '';
+      namespace = '';
+      name = '';
+      value = '';
+      value = highLevelSystemConfigurationContainer[key];
+      // console.log('value is: ' + value);
+      if (!!value || value === false) {
+        fullyQualifiedName = key;
+        // console.log('fullyQualifiedName is: ' + fullyQualifiedName);
 
-      name = configurator.processConfigurationNameRules(fullyQualifiedName);
-      // console.log('name is: ' + name);
-      namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
-      // console.log('namespace is: ' + namespace);
-      value = configurator.processConfigurationValueRules(name, value);
-      // console.log('value BEFORE rule processing is: ' + value);
-      value = ruleBroker.processRules([value, ''], rules);
-      // console.log('value AFTER rule processing is: ' + value);
-      if ((namespace === wrd.csystem && name === cfg.cdebugSettings) &&
-      configurator.getConfigurationSetting(namespace, name) === true) {
-        // console.log('CAUGHT THE CASE THAT WE ARE SETTING A FALSE VALUE FOR DEBUG-SETTINGS');
-        // NOTE: DO NOT over write the value because the base value is already saved as true.
-        // Over writing it with true, doesn't do anything, and over writing it with false
-        // destroys whatever setting the user may have set from the client application.
-      } else {
+        name = configurator.processConfigurationNameRules(fullyQualifiedName);
+        // console.log('name is: ' + name);
+        namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
+        // console.log('namespace is: ' + namespace);
+        value = configurator.processConfigurationValueRules(name, value);
+        // console.log('value BEFORE rule processing is: ' + value);
+        value = ruleBroker.processRules([value, ''], rules);
+        // console.log('value AFTER rule processing is: ' + value);
+        if ((namespace === wrd.csystem && name === cfg.cdebugSettings) &&
+        configurator.getConfigurationSetting(namespace, name) === true) {
+          // console.log('CAUGHT THE CASE THAT WE ARE SETTING A FALSE VALUE FOR DEBUG-SETTINGS');
+          // NOTE: DO NOT over write the value because the base value is already saved as true.
+          // Over writing it with true, doesn't do anything, and over writing it with false
+          // destroys whatever setting the user may have set from the client application.
+        } else {
+          configurator.setConfigurationSetting(namespace, name, value);
+        }
+      } // End-if (!!value || value === false)
+    } // End-for (let key in highLevelSystemConfigurationContainer)
+  } // End-if (highLevelSystemConfigurationContainer)
+
+  if (highLevelDebugConfigurationContainer) {
+    for (let key in highLevelDebugConfigurationContainer) {
+      fullyQualifiedName = '';
+      namespace = '';
+      name = '';
+      value = '';
+      value = highLevelDebugConfigurationContainer[key];
+      // console.log('value is: ' + value);
+      if (!!value || value === false) {
+        fullyQualifiedName = key;
+        // console.log('fullyQualifiedName is: ' + fullyQualifiedName);
+
+        name = configurator.processConfigurationNameRules(fullyQualifiedName);
+        // console.log('name is: ' + name);
+        namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
+        // console.log('namespace is: ' + namespace);
+        value = configurator.processConfigurationValueRules(name, value);
+        // console.log('value BEFORE rule processing is: ' + value);
+        value = ruleBroker.processRules([value, ''], rules);
+        // console.log('value AFTER rule processing is: ' + value);
+
         configurator.setConfigurationSetting(namespace, name, value);
-      }
-    }
-  }
-
-  for (let key in highLevelDebugConfigurationContainer) {
-    fullyQualifiedName = '';
-    namespace = '';
-    name = '';
-    value = '';
-    value = highLevelDebugConfigurationContainer[key];
-    // console.log('value is: ' + value);
-    if (!!value || value === false) {
-      fullyQualifiedName = key;
-      // console.log('fullyQualifiedName is: ' + fullyQualifiedName);
-
-      name = configurator.processConfigurationNameRules(fullyQualifiedName);
-      // console.log('name is: ' + name);
-      namespace = configurator.processConfigurationNamespaceRules(fullyQualifiedName);
-      // console.log('namespace is: ' + namespace);
-      value = configurator.processConfigurationValueRules(name, value);
-      // console.log('value BEFORE rule processing is: ' + value);
-      value = ruleBroker.processRules([value, ''], rules);
-      // console.log('value AFTER rule processing is: ' + value);
-
-      configurator.setConfigurationSetting(namespace, name, value);
-
-    }
-  }
+        returnData = true;
+      } // End-if (!!value || value === false)
+    } // End-for (let key in highLevelDebugConfigurationContainer)
+  } // End-if (highLevelDebugConfigurationContainer)
+  // console.log('returnData is: ' + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
+  return returnData;
 };
 
 export default {
   [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
     appConfigPath, frameworkConfigPath
-  )
+  ),
+  parseLoadedConfigurationData
 };

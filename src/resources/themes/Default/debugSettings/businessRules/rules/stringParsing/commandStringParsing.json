@@ -37,18 +37,5 @@
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.isValidCommandNameString@ModuleFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.isValidCommandNameString@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.isValidCommandNameString@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.isValidCommandNameString@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases": false,
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@ModuleFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@FunctionFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@MessageFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@DataFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@ModuleFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@FunctionFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@MessageFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@DataFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@ModuleFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@FunctionFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.countDuplicateCommandAliases@DataFontBackgroundColor": "Default"
+  "debugFunctions|debugSetting.businessRules.rules.stringParsing.commandStringParsing.isValidCommandNameString@DataFontBackgroundColor": "Default"
 }

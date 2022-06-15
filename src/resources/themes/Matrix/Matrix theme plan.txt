@@ -2,7 +2,8 @@ brokers (Function Background Color: "Black", Data Background Color: "Black", Fun
 	commandBroker (Module Color: "Black", Message Color: "Black",)
 	dataBroker (Module Color: "LightGray 211,211,211", Message Color: "LightGray 211,211,211",)
 	ruleBroker (Module Color: "Black", Message Color: "Black")
-	workflowBroker (Module Color: "LightGray 211,211,211", Message Color: "LightGray 211,211,211")
+	themeBroker (Module Color: "LightGray 211,211,211", Message Color: "LightGray 211,211,211")
+	workflowBroker (Module Color: "Black", Message Color: "Black")
 businessRules
 	rules
 		arrayParsing (Module Background Color: "SeaGreen 46,139,87", Message Background Color: "SeaGreen 46,139,87",)
