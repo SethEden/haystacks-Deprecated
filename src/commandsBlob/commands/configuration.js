@@ -4,6 +4,7 @@
  * @description Contains all of the configuration system commands.
  * @requires module:dataBroker
  * @requires module:ruleBroker
+ * @requires module:themeBroker
  * @requires module:configurator
  * @requires module:loggers
  * @requires module:data
@@ -18,6 +19,7 @@
 // Internal imports
 import dataBroker from '../../brokers/dataBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
+import themeBroker from '../../brokers/themeBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
@@ -94,6 +96,87 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
     dataPath = dataPath.join(bas.cDot);
     newValue = ruleBroker.processRules([newValue, ''], [biz.cstringToDataType]);
     configurator.setConfigurationSetting(dataPath, configurationName, newValue);
+  } else {
+    // ERROR: Invalid entry, please enter a valid configuration namespace to change,
+    // and a value to assign to the configuration setting.
+    console.log(msg.cchangeConfigurationSettingMessage01 + msg.cchangeConfigurationSettingMessage02);
+    // EXAMPLE: changeConfigurationSetting debugSetting.businessRules.rules.arrayParsing.commandArrayParsing.solveLehmerCode true
+    console.log(msg.cchangeConfigurationSettingMessage03);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function listConfigurationThemes
+ * @description Lists all of the debug configuration themes currently installed in the resources/themes folder.
+ * @param {string} inputData Not used for this command.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/06/10
+ */
+const listConfigurationThemes = function(inputData, inputMetaData) {
+  let functionName = listConfigurationThemes.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  let themesList = themeBroker.getNamedThemes();
+  // themesList is:
+  console.log(msg.cthemesListIs + JSON.stringify(themesList));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
+ * @function changeDebugConfigurationTheme
+ * @description Swaps out all of the debug settings with a different theme.
+ * @param {string} inputData An array that contains the name of the theme the user would like to switch to.
+ * inputData[0] = changeDebugConfigurationTheme
+ * inputData[1] = The name of the theme that the user would like to switch to.
+ * @param {string} inputMetaData Not used for this command.
+ * @return {boolean} True to indicate that the application should not exit.
+ * @author Seth Hollingsead
+ * @date 2022/06/13
+ */
+const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
+  let functionName = changeDebugConfigurationTheme.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
+  let returnData = true;
+  if (inputData && inputData.length === 2) {
+    let desiredThemeName = inputData[1];
+    // desiredThemeName is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cdesiredThemeNameIs + desiredThemeName);
+    let namedThemePath = themeBroker.getNamedThemePath(desiredThemeName);
+    if (namedThemePath != false) {
+      // namedThemePath is verified:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cnamedThemePathIsVerified + namedThemePath);
+      configurator.setConfigurationSetting(wrd.csystem, sys.cthemeConfigPath, namedThemePath);
+      let loadedThemeData = themeBroker.loadTheme(namedThemePath);
+      // loadedThemeData is:
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedThemeDataIs + JSON.stringify(loadedThemeData));
+      let themeLoadedSuccessfully = themeBroker.applyTheme(loadedThemeData);
+      if (themeLoadedSuccessfully === false) {
+        // ERROR: There was an error applying the selected theme to the active debug settings configuration.
+        console.log(msg.cchangeDebugConfigurationThemeMessage01);
+      }
+    } else {
+      // ERROR: The specified theme name was not found in the current list of supported themes.
+      console.log(msg.cchangeDebugConfigurationThemeMessage02);
+      // You can find the available themes at the following path location:
+      console.log(msg.cchangeDebugConfigurationThemeMessage03 +
+        configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkThemesPath));
+    }
+  } else {
+    // ERROR: Invalid entry, please enter a theme name you would like the debug settings to switch to when logging debug statements.
+    console.log(msg.cchangeDebugConfigurationThemeMessage04);
+    // EXAMPLE: changeDebugConfigurationTheme Skywalker
+    console.log(msg.cchangeDebugConfigurationThemeMessage05);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -102,5 +185,7 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
 
 export default {
   saveConfiguration,
-  changeConfigurationSetting
+  changeConfigurationSetting,
+  listConfigurationThemes,
+  changeDebugConfigurationTheme
 };

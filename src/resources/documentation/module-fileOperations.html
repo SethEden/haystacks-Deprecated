@@ -311,7 +311,7 @@ zipping files and saving sip-packages as part of a deployment/release process.</
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line675">line 675</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line700">line 700</a>
     </li></ul></dd>
     
 
@@ -501,7 +501,7 @@ give a name to the file for the current date-time and release version, saving to
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line349">line 349</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -684,7 +684,7 @@ or top-level folder path for the application.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line468">line 468</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line493">line 493</a>
     </li></ul></dd>
     
 
@@ -880,7 +880,7 @@ filterArray[1] = inclusion array</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line317">line 317</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line342">line 342</a>
     </li></ul></dd>
     
 
@@ -1077,7 +1077,7 @@ inputMetaData[1] = inclusionArray</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line493">line 493</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line518">line 518</a>
     </li></ul></dd>
     
 
@@ -1273,7 +1273,7 @@ inputMetaData[1] = inclusionArray</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line572">line 572</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line597">line 597</a>
     </li></ul></dd>
     
 
@@ -1464,7 +1464,7 @@ destination where the zip file should be saved.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line433">line 433</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line458">line 458</a>
     </li></ul></dd>
     
 
@@ -1694,6 +1694,195 @@ destination where the zip file should be saved.</p></td>
     <dd>
         
 <span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getDirectoryList"><span class="type-signature">(inner) </span>getDirectoryList<span class="signature">(inputData, inputMetaData)</span><span class="type-signature"> &rarr; {array.&lt;string>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Scans the specified path and returns the list of folders at that level. Does not scan recursively.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>inputData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path that should be scanned for getting a folder list at that folder level.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputMetaData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not used for this business rule.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line252">line 252</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The list of folders found at the specified path.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array.&lt;string></span>
 
 
     </dd>
@@ -2413,7 +2602,7 @@ needs to be reset after the work is done with it. So these are the things that t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line252">line 252</a>
+        <a href="businessRules_rules_fileOperations.js.html">businessRules/rules/fileOperations.js</a>, <a href="businessRules_rules_fileOperations.js.html#line277">line 277</a>
     </li></ul></dd>
     
 
@@ -2480,7 +2669,7 @@ needs to be reset after the work is done with it. So these are the things that t
 
 <div class="description">
     <p>This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
-The difference between this function and the readDirectoryContents is that this function has an optinoal limit on the number of files to return.
+The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
 Really this is used for scanning large volumes of data such as the entire C-Drive.
 This way the user can control the number of files that are returned by the system.
 The user might only want 10,000 files or just the first million files found. etc...</p>
@@ -2865,13 +3054,13 @@ inputMetaData[1] = filesLimit - The number of files that should be limited when 
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-advanced.html">advanced</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-auxiliary.html">auxiliary</a></li><li><a href="module-auxiliaryArrayParsing.html">auxiliaryArrayParsing</a></li><li><a href="module-auxiliaryStringParsing.html">auxiliaryStringParsing</a></li><li><a href="module-characterArrayParsing.html">characterArrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-characterStringParsing.html">characterStringParsing</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandArrayParsing.html">commandArrayParsing</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-commandStringParsing.html">commandStringParsing</a></li><li><a href="module-configuration.html">configuration</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-constant.html">constant</a></li><li><a href="module-constantArrayParsing.html">constantArrayParsing</a></li><li><a href="module-constantStringParsing.html">constantStringParsing</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataArrayParsing.html">dataArrayParsing</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-dataDirectorate.html">dataDirectorate</a></li><li><a href="module-dataStringParsing.html">dataStringParsing</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-fileStringParsing.html">fileStringParsing</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexicalAnalyzer.html">lexicalAnalyzer</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-pathArrayParsing.html">pathArrayParsing</a></li><li><a href="module-performanceMetric.html">performanceMetric</a></li><li><a href="module-promptOperations.html">promptOperations</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-ruleParsing.html">ruleParsing</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timeComputation.html">timeComputation</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-wordArrayParsing.html">wordArrayParsing</a></li><li><a href="module-wordStringParsing.html">wordStringParsing</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-advanced.html">advanced</a></li><li><a href="module-allConstantsValidationMetadata.html">allConstantsValidationMetadata</a></li><li><a href="module-auxiliary.html">auxiliary</a></li><li><a href="module-auxiliaryArrayParsing.html">auxiliaryArrayParsing</a></li><li><a href="module-auxiliaryStringParsing.html">auxiliaryStringParsing</a></li><li><a href="module-characterArrayParsing.html">characterArrayParsing</a></li><li><a href="module-characterGeneration.html">characterGeneration</a></li><li><a href="module-characterStringParsing.html">characterStringParsing</a></li><li><a href="module-chiefCommander.html">chiefCommander</a></li><li><a href="module-chiefConfiguration.html">chiefConfiguration</a></li><li><a href="module-chiefData.html">chiefData</a></li><li><a href="module-chiefWorkflow.html">chiefWorkflow</a></li><li><a href="module-colorizer.html">colorizer</a></li><li><a href="module-commandArrayParsing.html">commandArrayParsing</a></li><li><a href="module-commandBroker.html">commandBroker</a></li><li><a href="module-commandsLibrary.html">commandsLibrary</a></li><li><a href="module-commandStringParsing.html">commandStringParsing</a></li><li><a href="module-configuration.html">configuration</a></li><li><a href="module-configurator.html">configurator</a></li><li><a href="module-constant.html">constant</a></li><li><a href="module-constantArrayParsing.html">constantArrayParsing</a></li><li><a href="module-constantStringParsing.html">constantStringParsing</a></li><li><a href="module-data.html">data</a></li><li><a href="module-dataArrayParsing.html">dataArrayParsing</a></li><li><a href="module-dataBroker.html">dataBroker</a></li><li><a href="module-dataDirectorate.html">dataDirectorate</a></li><li><a href="module-dataStringParsing.html">dataStringParsing</a></li><li><a href="module-fileOperations.html">fileOperations</a></li><li><a href="module-fileStringParsing.html">fileStringParsing</a></li><li><a href="module-integrationTests.html">integrationTests</a></li><li><a href="module-lexicalAnalyzer.html">lexicalAnalyzer</a></li><li><a href="module-loggers.html">loggers</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mathOperations.html">mathOperations</a></li><li><a href="module-pathArrayParsing.html">pathArrayParsing</a></li><li><a href="module-performanceMetric.html">performanceMetric</a></li><li><a href="module-promptOperations.html">promptOperations</a></li><li><a href="module-queue.html">queue</a></li><li><a href="module-ruleBroker.html">ruleBroker</a></li><li><a href="module-ruleParsing.html">ruleParsing</a></li><li><a href="module-rulesLibrary.html">rulesLibrary</a></li><li><a href="module-stack.html">stack</a></li><li><a href="module-stringGeneration.html">stringGeneration</a></li><li><a href="module-stringParsingUtilities.html">stringParsingUtilities</a></li><li><a href="module-system.html">system</a></li><li><a href="module-themeBroker.html">themeBroker</a></li><li><a href="module-timeComputation.html">timeComputation</a></li><li><a href="module-warden.html">warden</a></li><li><a href="module-wordArrayParsing.html">wordArrayParsing</a></li><li><a href="module-wordStringParsing.html">wordStringParsing</a></li><li><a href="module-workflowBroker.html">workflowBroker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jun 10 2022 09:04:49 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Jun 15 2022 10:08:05 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

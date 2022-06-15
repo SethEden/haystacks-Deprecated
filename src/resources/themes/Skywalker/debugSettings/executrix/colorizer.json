@@ -11,7 +11,6 @@
   "debugFiles|debugSetting.executrix.colorizer@ModuleFontBackgroundColor": "0,71,171",
   "debugFiles|debugSetting.executrix.colorizer@FunctionFontBackgroundColor": "Black",
   "debugFiles|debugSetting.executrix.colorizer@MessageFontBackgroundColor": "0,71,171",
-  
   "debugFiles|debugSetting.executrix.colorizer@DataFontBackgroundColor": "Black",
   "debugFunctions|debugSetting.executrix.colorizer.colorizeMessage": false,
   "debugFunctions|debugSetting.executrix.colorizer.colorizeMessage@ModuleFontStyle": "Default",

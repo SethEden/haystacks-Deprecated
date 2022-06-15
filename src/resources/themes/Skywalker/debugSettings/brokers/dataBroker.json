@@ -116,7 +116,7 @@
   "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile@FunctionFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile@MessageFontBackgroundColor": "Default",
   "debugFunctions|debugSetting.brokers.dataBroker.preprocessJsonFile@DataFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.brokers.dataBroker.writeJsonDataToFile": true,
+  "debugFunctions|debugSetting.brokers.dataBroker.writeJsonDataToFile": false,
   "debugFunctions|debugSetting.brokers.dataBroker.writeJsonDataToFile@ModuleFontStyle": "Default",
   "debugFunctions|debugSetting.brokers.dataBroker.writeJsonDataToFile@FunctionFontStyle": "Default",
   "debugFunctions|debugSetting.brokers.dataBroker.writeJsonDataToFile@MessageFontStyle": "Default",

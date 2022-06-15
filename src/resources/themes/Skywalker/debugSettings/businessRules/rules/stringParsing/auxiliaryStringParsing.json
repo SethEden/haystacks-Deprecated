@@ -11,18 +11,5 @@
   "debugFiles|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing@ModuleFontBackgroundColor": "0,183,235",
   "debugFiles|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing@FunctionFontBackgroundColor": "Black",
   "debugFiles|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing@MessageFontBackgroundColor": "0,183,235",
-  "debugFiles|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing@DataFontBackgroundColor": "Black",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment": false,
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@ModuleFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@FunctionFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@MessageFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@DataFontStyle": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@ModuleFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@FunctionFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@MessageFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@DataFontColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@ModuleFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@FunctionFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@MessageFontBackgroundColor": "Default",
-  "debugFunctions|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing.getNowMoment@DataFontBackgroundColor": "Default"
+  "debugFiles|debugSetting.businessRules.rules.stringParsing.auxiliaryStringParsing@DataFontBackgroundColor": "Black"
 }
