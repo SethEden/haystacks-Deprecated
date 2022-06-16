@@ -55,34 +55,26 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 const commandSequencer = function(inputData, inputMetaData) {
   let functionName = commandSequencer.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
   let returnData = true;
   for (let i = 1; i < inputData.length; i++) {
     let commandString = inputData[i];
     let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.cprimaryCommandDelimiterIs + primaryCommandDelimiter);
-    console.log(`primaryCommandDelimiter is: ${primaryCommandDelimiter}`);
     if (primaryCommandDelimiter === null || primaryCommandDelimiter !== primaryCommandDelimiter || primaryCommandDelimiter === undefined) {
       primaryCommandDelimiter = bas.cSpace;
     }
     let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
-    console.log(`secondaryCommandDelimiter is: ${secondaryCommandArgsDelimiter}`);
     let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
-    console.log(`tertiaryCommandDelimiter is: ${tertiaryCommandDelimiter}`);
     // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
     const regEx1 = new RegExp(secondaryCommandArgsDelimiter, bas.cg);
     commandString = commandString.replace(regEx1, primaryCommandDelimiter);
-    console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
     if (commandString.includes(tertiaryCommandDelimiter)) {
       const regEx2 = new RegExp(tertiaryCommandDelimiter, bas.cg);
       commandString = commandString.replace(regEx2, secondaryCommandArgsDelimiter);
-      console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
     }
     let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
     let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
@@ -92,7 +84,6 @@ const commandSequencer = function(inputData, inputMetaData) {
         currentCommand = currentCommand + primaryCommandDelimiter + commandArgs[j];
       } // End-for (let j = 1; j < commandArgs.length; j++)
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandSequencerCommandToEnqueueIs + currentCommand);
-      console.log(`commandSequencerCommandToEnqueue is: ${currentCommand}`);
       queue.enqueue(sys.cCommandQueue, currentCommand);
     } else { // End-if (currentCommand !== false)
       // WARNING: advanced.commandSequencer: The specified command was not found, please enter a valid command and try again.
@@ -130,7 +121,7 @@ const workflow = function(inputData, inputMetaData) {
   if (workflowValue !== false && typeof workflowValue != wrd.cobject) {
     queue.enqueue(sys.cCommandQueue, workflowValue);
   } else {
-    // WARNING: nominal.workflow: The specified workflow:
+    // WARNING: advanced.workflow: The specified workflow:
     // was not found in either the system defined workflows, or client defined workflows.
     // Please enter a valid workflow name and try again.
     console.log(msg.cworkflowMessage1 + workflowName + bas.cComa + msg.cworkflowMessage2 + msg.cworkflowMessage3);
@@ -351,15 +342,15 @@ const commandGenerator = function(inputData, inputMetaData) {
           queue.enqueue(sys.cCommandQueue, commandString);
         }
       } else {
-        // WARNING: nominal.commandGenerator: Must enter a number greater than 0, number entered:
+        // WARNING: advanced.commandGenerator: Must enter a number greater than 0, number entered:
         console.log(mg.ccommandGeneratorMessage3 + numberOfCommands);
       }
     } else {
-      // WARNING: nominal.commandGenerator: Number entered for the number of commands to generate is not a number:
+      // WARNING: advanced.commandGenerator: Number entered for the number of commands to generate is not a number:
       console.log(msg.ccommandGeneratorMessage4 + inputData[2]);
     }
   } else {
-    // WARNING: nominal.commandGenerator: The specified command:
+    // WARNING: advanced.commandGenerator: The specified command:
     // was not found, please enter a valid command and try again.
     console.log(msg.ccommandGeneratorMessage5 + commandString + msg.ccommandGeneratorMessage6);
   }

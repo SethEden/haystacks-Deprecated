@@ -76,29 +76,23 @@ const saveConfiguration = function(inputData, inputMetaData) {
  */
 const changeConfigurationSetting = function(inputData, inputMetaData) {
   let functionName = changeConfigurationSetting.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  console.log(`inputMetaData is: ${inputMetaData}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   if (inputData && inputData.length === 3) {
     let dataPath = inputData[1];
     dataPath = ruleBroker.processRules([dataPath, ''], [biz.cgetWordsArrayFromString]);
     // dataPath is:
-    console.log(`dataPath is: ${JSON.stringify(dataPath)}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + JSON.stringify(dataPath));
     let newValue = inputData[2];
     // newValue is:
-    console.log(`newValue is: ${JSON.stringify(newValue)}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cnewValueIs + JSON.stringify(newValue));
     if (dataPath[0] === wrd.cconfiguration) {
       dataPath.shift(wrd.cconfiguration);
     }
     let configurationName = dataPath.pop();
     // dataPath is:
-    console.log(`dataPath is: ${JSON.stringify(dataPath)}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cdataPathIs + JSON.stringify(dataPath));
     dataPath = dataPath.join(bas.cDot);
     newValue = ruleBroker.processRules([newValue, ''], [biz.cstringToDataType]);
@@ -110,9 +104,7 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
     // EXAMPLE: changeConfigurationSetting debugSetting.businessRules.rules.arrayParsing.commandArrayParsing.solveLehmerCode true
     console.log(msg.cchangeConfigurationSettingMessage03);
   }
-  console.log(`returnData is: ${returnData}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
-  console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -153,27 +145,21 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
  */
 const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
   let functionName = changeDebugConfigurationTheme.name;
-  console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  console.log(`inputData is: ${JSON.stringify(inputData)}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
-  console.log(`inputMetaData is: ${inputMetaData}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = true;
   if (inputData && inputData.length === 2) {
     let desiredThemeName = inputData[1];
     // desiredThemeName is:
-    console.log(`desiredThemeName is: ${desiredThemeName}`);
     loggers.consoleLog(namespacePrefix + functionName, msg.cdesiredThemeNameIs + desiredThemeName);
     let namedThemePath = themeBroker.getNamedThemePath(desiredThemeName);
     if (namedThemePath != false) {
       // namedThemePath is verified:
-      console.log(`namedThemePath is verified: ${namedThemePath}`);
       loggers.consoleLog(namespacePrefix + functionName, msg.cnamedThemePathIsVerified + namedThemePath);
       configurator.setConfigurationSetting(wrd.csystem, sys.cthemeConfigPath, namedThemePath);
       let loadedThemeData = themeBroker.loadTheme(namedThemePath);
       // loadedThemeData is:
-      console.log(`loadedThemeData is: ${JSON.stringify(loadedThemeData)}`);
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedThemeDataIs + JSON.stringify(loadedThemeData));
       let themeLoadedSuccessfully = themeBroker.applyTheme(loadedThemeData);
       if (themeLoadedSuccessfully === false) {
@@ -193,9 +179,7 @@ const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
     // EXAMPLE: changeDebugConfigurationTheme Skywalker
     console.log(msg.cchangeDebugConfigurationThemeMessage05);
   }
-  console.log(`returnData is: ${returnData}`);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
-  console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
