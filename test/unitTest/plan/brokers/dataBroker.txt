@@ -209,19 +209,19 @@ input leafNodeName: string (?)
 output: ?
 --------------------------------------------------------------------------------
 testName: preprocessJsonFile_validData
-input filesToLoad: array [C:\haystacks\test\unitTest\testData\config.json]
+input: array [C:\haystacks\test\unitTest\testData\config.json]
 output: object (JSON)
 
 testName: preprocessJsonFile_inValidString
-input filesToLoad: string (464gsdsfae8f46)
+input: string (464gsdsfae8f46)
 output: false
 
 testName: preprocessJsonFile_inValidNumber
-input filesToLoad: integer (546)
+input: integer (546)
 output: false
 
 testName: preprocessJsonFile_inValidBoolean
-input filesToLoad: boolean (false)
+input: boolean (false)
 output: false
 --------------------------------------------------------------------------------
 testName: writeJsonDataToFile_validData
@@ -581,14 +581,14 @@ input pageName: string (valid string?)
 input dataToMerge: object (data to be merged)
 output: false?
 
-testName: clearData_inValidTargetDataUndefined
+testName: mergeData_inValidTargetDataUndefined
 input targetData: undefined
 input dataCatagory: string (valid string?)
 input pageName: string (valid string?)
 input dataToMerge: object (data to be merged)
 output: false?
 
-testName: clearData_inValidTargetDataNaN
+testName: mergeData_inValidTargetDataNaN
 input targetData: NaN
 input dataCatagory: string (valid string?)
 input pageName: string (valid string?)
@@ -609,14 +609,14 @@ input pageName: string (valid string?)
 input dataToMerge: object (data to be merged)
 output: false?
 
-testName: clearData_inValidDataCatagoryUndefined
+testName: mergeData_inValidDataCatagoryUndefined
 input targetData: object (data to be merged with dataToMerge)
 input dataCatagory: undefined
 input pageName: string (valid string?)
 input dataToMerge: object (data to be merged)
 output: false?
 
-testName: clearData_inValidDataCatagoryNaN
+testName: mergeData_inValidDataCatagoryNaN
 input targetData: object (data to be merged with dataToMerge)
 input dataCatagory: NaN
 input pageName: string (valid string?)
@@ -637,14 +637,14 @@ input pageName: boolean (false)
 input dataToMerge: object (data to be merged)
 output: false?
 
-testName: clearData_inValidPageNameUndefined
+testName: mergeData_inValidPageNameUndefined
 input targetData: object (data to be merged with dataToMerge)
 input dataCatagory: string (valid string?)
 input pageName: undefined
 input dataToMerge: object (data to be merged)
 output: false?
 
-testName: clearData_inValidPageNameNaN
+testName: mergeData_inValidPageNameNaN
 input targetData: object (data to be merged with dataToMerge)
 input dataCatagory: string (valid string?)
 input pageName: NaN
@@ -665,14 +665,14 @@ input pageName: string (valid string?)
 input dataToMerge: boolean (false)
 output: false?
 
-testName: clearData_inValidDataToMergeUndefined
+testName: mergeData_inValidDataToMergeUndefined
 input targetData: object (data to be merged with dataToMerge)
 input dataCatagory: string (valid string?)
 input pageName: string (valid string?)
 input dataToMerge: undefined
 output: false?
 
-testName: clearData_inValidDataToMergeNaN
+testName: mergeData_inValidDataToMergeNaN
 input targetData: object (data to be merged with dataToMerge)
 input dataCatagory: string (valid string?)
 input pageName: string (valid string?)

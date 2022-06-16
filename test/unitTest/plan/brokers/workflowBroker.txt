@@ -35,7 +35,7 @@ input: boolean (false)
 output: false
 --------------------------------------------------------------------------------
 testName: doesWorkflowExistInWorkflowData_validData
-input workflowData: object (the workflow data that searched recursively for the specified workflow)
+input workflowData: object (the workflow data that is searched recursively for the specified workflow)
 input workflowName: string (The name of the workflow)
 output: true
 
@@ -45,7 +45,7 @@ input workflowName: string (the name of the workflow)
 output: false
 
 testName: doesWorkflowExistInWorkflowData_inValidWorkflowNameString
-input workflowData: object (the workflow data that searched recursively for the specified workflow)
+input workflowData: object (the workflow data that is searched recursively for the specified workflow)
 input workflowName: string (&)
 output: false
 
@@ -60,7 +60,7 @@ input workflowName: string (the name of the workflow)
 output: false
 --------------------------------------------------------------------------------
 testName: searchWorkflow_validData
-input allWorkflows: object (the workflow data that searched recursively for the specified workflow)
+input allWorkflows: object (the workflow data that is searched recursively for the specified workflow)
 input workflowName: string (the name of the workflow)
 output: object (the workflow object that corresponds to the input workflow name) example: {"doesArrayContainCharacter": "cmdgen bizRul,doesArrayContainCharacter,$,[the|answer|to|life|the|universe|and|everything|is|$42] 4"}
 
@@ -70,7 +70,7 @@ input workflowName: string (the name of the workflow)
 output: false
 
 testName: searchWorkflow_inValidWorkflowNameString
-input allWorkflows: object (the workflow data that searched recursively for the specified workflow)
+input allWorkflows: object (the workflow data that is searched recursively for the specified workflow)
 input workflowName: string (&)
 output: false?
 
@@ -84,43 +84,43 @@ input allWorkflows: boolean (false)
 input workflowName: string (the name of the workflow)
 output: false
 --------------------------------------------------------------------------------
-testName: doesWorkflowExist_validData
-input: object (single array)
-output: array<string>|boolean (empty array)|(True or False to indicate that a leaf-node has been found by the recursive caller)
+testName: getAllWorkflows_validData
+input: object (The workflow data structure that is recursively flattened into a single array for output)
+output: array<string> (An array of all the workflows currently loaded into the D-data structure under the CommandWorkflows data hive)
 
-testName: doesWorkflowExist_inValidString
+testName: getAllWorkflows_inValidString
 input: string (464gsdsfae8f46)
-output: false?
-
-testName: doesWorkflowExist_inValidNumber
-input: integer (546)
-output: false?
-
-testName: doesWorkflowExist_inValidBoolean
-input: boolean (false)
-output: false?
---------------------------------------------------------------------------------
-testName: searchWorkflow_validData
-input workflowDataStructure: object (the workflow data structure that should be recursively searched for the namespace specified)
-input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
-output: object (the namespace object if it is found)
-
-testName: searchWorkflow_inValidWorkflowDataString
-input workflowDataStructure: string (464gsdsfae8f46)
-input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
 output: false
 
-testName: searchWorkflow_inValidWorkflowNameString
-input workflowDataStructure: object (the workflow data structure that should be recursively searched for the namespace specified)
+testName: getAllWorkflows_inValidNumber
+input: integer (546)
+output: false
+
+testName: getAllWorkflows_inValidBoolean
+input: boolean (false)
+output: false
+--------------------------------------------------------------------------------
+testName: getWorkflowNamespaceDataObject_validData
+input inputData:  object (The workflow data structure that is recursively searched for the namespace specified)
+input leafNodeName: string (The namespace to look for in the workflow metaData data structure)
+output: object (The namespace object if it is found)
+
+testName: getWorkflowNamespaceDataObject_inValidWorkflowDataStructureString
+input workflowDataStructure: string (464gsdsfae8f46)
+input namespaceToFind: string (The namespace to look for in the workflow metaData data structure)
+output: false
+
+testName: getWorkflowNamespaceDataObject_inValidNamespaceToFindString
+input workflowDataStructure:  object (The workflow data structure that is recursively searched for the namespace specified)
 input namespaceToFind: string (&)
 output: false
 
-testName: searchWorkflow_inValidNumber
+testName: getWorkflowNamespaceDataObject_inValidNumber
 input workflowDataStructure: integer (546)
-input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
+input namespaceToFind: string (The namespace to look for in the workflow metaData data structure)
 output: false
 
-testName: searchWorkflow_inValidBoolean
+testName: getWorkflowNamespaceDataObject_inValidBoolean
 input workflowDataStructure: boolean (false)
-input namespaceToFind: string (the namespace to look for in the workflow metadata data structure)
+input namespaceToFind: string (The namespace to look for in the workflow metaData data structure)
 output: false
