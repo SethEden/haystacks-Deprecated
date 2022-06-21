@@ -548,7 +548,8 @@ function getCommandArgs(commandString, commandDelimiter) {
  * This function will parse all of that out of the command lien variable that is passed in.
  * And finally pass all of that data on the execution of the actual command.
  * @param {string} commandString The command to execute along with all the associated command arguments, data & meta-data.
- * @return {boolean} A True or False value to indicate if the application should exit or not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/02
  */

@@ -527,7 +527,7 @@ function preprocessJsonFile(fileToLoad) {
  * @description This is a wrapper function for businessRules.rules.fileOperations.writeJsonData.
  * @param {string} fileToSaveTo The full path to the file that should have the data written to it.
  * @param {object} dataToWriteOut The JSON data that should be written out to the specified JSON file.
- * @return {void}
+ * @return {boolean} True or False to indicate if the file was saved successfully or not.
  * @author Seth Hollingsead
  * @date 2022/03/11
  */
@@ -537,8 +537,10 @@ function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
   let fileWriteRules = [biz.cwriteJsonData];
-  let writeSuccess = ruleBroker.processRules([path.resolve(fileToSaveTo), dataToWriteOut], fileWriteRules);
+  let returnData = ruleBroker.processRules([path.resolve(fileToSaveTo), dataToWriteOut], fileWriteRules);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
 };
 
 /**

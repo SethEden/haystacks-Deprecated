@@ -39,7 +39,8 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @description Saves out all of the configuration data to a JSON file so custom user settings can be persisted between sessions.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/03/11
  */
@@ -48,9 +49,9 @@ const saveConfiguration = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
-  dataBroker.writeJsonDataToFile(configurator.getConfigurationSetting(wrd.csystem, cfg.cappConfigPath) + wrd.cconfig + gen.cDotjson, JSON.stringify(D));
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  let returnData = [true, {}];
+  returnData[1] = dataBroker.writeJsonDataToFile(configurator.getConfigurationSetting(wrd.csystem, cfg.cappConfigPath) + wrd.cconfig + gen.cDotjson, JSON.stringify(D));
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -68,7 +69,8 @@ const saveConfiguration = function(inputData, inputMetaData) {
  * inputData[1] = fully.Qualified.Configuration.Path
  * inputData[2] = value to assign to the configuration setting property
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/05/11
  * @NOTE Test String 1: changeConfigurationSetting configuration.debugSetting.commandsBlob.commands.system true
@@ -79,7 +81,8 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
+  let errorMessage = '';
   if (inputData && inputData.length === 3) {
     let dataPath = inputData[1];
     dataPath = ruleBroker.processRules([dataPath, ''], [biz.cgetWordsArrayFromString]);
@@ -97,14 +100,17 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
     dataPath = dataPath.join(bas.cDot);
     newValue = ruleBroker.processRules([newValue, ''], [biz.cstringToDataType]);
     configurator.setConfigurationSetting(dataPath, configurationName, newValue);
+    returnData[1] = true;
   } else {
     // ERROR: Invalid entry, please enter a valid configuration namespace to change,
     // and a value to assign to the configuration setting.
-    console.log(msg.cchangeConfigurationSettingMessage01 + msg.cchangeConfigurationSettingMessage02);
+    errorMessage = msg.cchangeConfigurationSettingMessage01 + msg.cchangeConfigurationSettingMessage02;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
     // EXAMPLE: changeConfigurationSetting debugSetting.businessRules.rules.arrayParsing.commandArrayParsing.solveLehmerCode true
     console.log(msg.cchangeConfigurationSettingMessage03);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -114,7 +120,8 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
  * @description Lists all of the debug configuration themes currently installed in the resources/themes folder.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/06/10
  */
@@ -123,11 +130,12 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
   let themesList = themeBroker.getNamedThemes();
   // themesList is:
   console.log(msg.cthemesListIs + JSON.stringify(themesList));
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  returnData[1] = themesList;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -139,7 +147,8 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
  * inputData[0] = changeDebugConfigurationTheme
  * inputData[1] = The name of the theme that the user would like to switch to.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/06/13
  */
@@ -148,7 +157,8 @@ const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
+  let errorMessage = '';
   if (inputData && inputData.length === 2) {
     let desiredThemeName = inputData[1];
     // desiredThemeName is:
@@ -162,24 +172,31 @@ const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
       // loadedThemeData is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cloadedThemeDataIs + JSON.stringify(loadedThemeData));
       let themeLoadedSuccessfully = themeBroker.applyTheme(loadedThemeData);
+      returnData[1] = themeLoadedSuccessfully;
       if (themeLoadedSuccessfully === false) {
         // ERROR: There was an error applying the selected theme to the active debug settings configuration.
-        console.log(msg.cchangeDebugConfigurationThemeMessage01);
+        errorMessage = msg.cchangeDebugConfigurationThemeMessage01;
+        console.log(errorMessage);
+        returnData[1] = errorMessage;
       }
     } else {
       // ERROR: The specified theme name was not found in the current list of supported themes.
-      console.log(msg.cchangeDebugConfigurationThemeMessage02);
+      errorMessage = msg.cchangeDebugConfigurationThemeMessage02;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
       // You can find the available themes at the following path location:
       console.log(msg.cchangeDebugConfigurationThemeMessage03 +
         configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkThemesPath));
     }
   } else {
     // ERROR: Invalid entry, please enter a theme name you would like the debug settings to switch to when logging debug statements.
-    console.log(msg.cchangeDebugConfigurationThemeMessage04);
+    errorMessage = msg.cchangeDebugConfigurationThemeMessage04
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
     // EXAMPLE: changeDebugConfigurationTheme Skywalker
     console.log(msg.cchangeDebugConfigurationThemeMessage05);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

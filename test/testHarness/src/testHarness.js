@@ -48,6 +48,7 @@ let namespacePrefix = baseFileName + bas.cDot;
 global.appRoot = path.resolve(process.cwd());
 dotenv.config();
 const {NODE_ENV} = process.env;
+let exitConditionArrayIndex = 0;
 
 /**
  * @function bootstrapApplication
@@ -177,7 +178,7 @@ async function application() {
         haystacks.enqueueCommand(commandInput);
       }
       commandResult = haystacks.processCommandQueue();
-      if (commandResult === false) {
+      if (commandResult[exitConditionArrayIndex] === false) {
         // END command parser
         haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage03);
         programRunning = false;

@@ -38,7 +38,8 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @description Validates all constants with a 2-phase verification process.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/03/25
  */
@@ -47,7 +48,7 @@ const validateConstants = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
   if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     // Get the array of keys and values for all the constants that need to be validated.
     let validationArray = D[sys.cConstantsValidationData][sys.cConstantsFilePaths]; // This will return an object with all of the key-value pair attributes we need.
@@ -61,7 +62,7 @@ const validateConstants = function(inputData, inputMetaData) {
     // Phase1 Constants Validation
     // BEGIN Phase 1 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase1ConstantsValidation);
-    // First scan through each file and vaidate that the constants defined in the constants code file are also contained in the validation file.
+    // First scan through each file and validate that the constants defined in the constants code file are also contained in the validation file.
     for (let key1 in validationArray) {
       let path = validationArray[key1];
       phase1Results[key1] = ruleBroker.processRules([path, key1], [biz.cvalidateConstantsDataValidation]);
@@ -78,7 +79,7 @@ const validateConstants = function(inputData, inputMetaData) {
       phase2Results[key2] = ruleBroker.processRules([key2, ''], [biz.cvalidateConstantsDataValues]);
     }
     phase2ResultsKeysArray = phase2Results.keys;
-    // END Phase 2 Constants Vaidation
+    // END Phase 2 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase2ConstantsValidation);
 
     for (let key3 in phase1Results) {
@@ -97,15 +98,18 @@ const validateConstants = function(inputData, inputMetaData) {
 
     if (phase1FinalResult === true && phase2FinalResult === true) {
       configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, true);
+      returnData[1] = true;
     } else {
       configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, false);
+      returnData[1] = false;
     }
   } else {
     // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
     console.log(msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4);
     configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, false);
+    returnData[1] = false;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -115,7 +119,8 @@ const validateConstants = function(inputData, inputMetaData) {
  * @description Validates all command aliases have no duplicates within a command, but also between commands.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/03/30
  */
@@ -124,7 +129,7 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
   let allCommandAliases = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]);
   let passedAllCommandAliasesDuplicateCheck = true;
   let duplicateAliasCount = 0
@@ -164,6 +169,7 @@ loop2:
         console.log(duplicateAliasCommandMessage);
 
         passedAllCommandAliasesDuplicateCheck = false;
+        returnData[1] = false;
       }
       // END j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
@@ -172,9 +178,10 @@ loop2:
   if (passedAllCommandAliasesDuplicateCheck === true) {
     // PASSED: All duplicate command aliases validation tests!
     console.log(msg.cvalidateCommandAliasesMessage1);
+    returnData[1] = true;
   }
   configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, passedAllCommandAliasesDuplicateCheck);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -184,7 +191,8 @@ loop2:
  * @description Validates all the workflows ahve no duplicates.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/06/08
  */
@@ -193,7 +201,7 @@ const validateWorkflows = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
   let numberOfDuplicatesFound = 0;
   let passedAllWorkflowDuplicateCheck = true;
   let allWorkflowsData = workflowBroker.getAllWorkflows(D[sys.cCommandWorkflows]);
@@ -226,14 +234,16 @@ const validateWorkflows = function(inputData, inputMetaData) {
       console.log(duplicateWorkflowMessage);
 
       passedAllWorkflowDuplicateCheck = false;
+      returnData[1] = false;
     }
   } // End-for (let workflowName in allWorkflowsData)
   if (passedAllWorkflowDuplicateCheck === true) {
     // PASSED: All duplicate workflow validation tests!
     console.log(msg.cvalidateWorkflowsMessage01);
+    returnData[1] = true;
   }
   configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks, passedAllWorkflowDuplicateCheck);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

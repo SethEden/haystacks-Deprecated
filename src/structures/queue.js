@@ -118,7 +118,12 @@ function queueFront(queueNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cqueueNameSpaceIs + queueNameSpace);
   let returnData;
-  returnData = D[queueNameSpace][0];
+  if (D[queueNameSpace] !== undefined) {
+    returnData = D[queueNameSpace][0];
+  } else {
+    // WARNING: Queue:
+    // does not exist!
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -137,11 +142,38 @@ function queueSize(queueNameSpace) {
   let functionName = queueFront.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cqueueNameSpaceIs + queueNameSpace);
-  let returnData;
-  returnData = D[queueNameSpace].length;
+  let returnData = 0;
+  if (D[queueNameSpace] !== undefined) {
+    returnData = D[queueNameSpace].length;
+  } else {
+    // WARNING: Queue:
+    // does not exist!
+  }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
+};
+
+/**
+ * @function queuePrint
+ * @description Prints out the queue as specified by the namespace input parameter.
+ * @param {string} queueNameSpace The namespace that should be used to print out the contents of the queue on the D-data structure.
+ * @return {void}
+ * @author Seth Hollingsead
+ * @date 2022/06/21
+ */
+function queuePrint(queueNameSpace) {
+  let functionName = queuePrint.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cqueueNameSpaceIs + queueNameSpace);
+  if (D[queueNameSpace] !== undefined) {
+    // Contents of the queue namespace:
+    console.log(msg.cContentsOfTheQueueNamespace + queueNameSpace + sys.cSpaceIsColonSpace + JSON.stringify(D[queueNameSpace]));
+  } else {
+    // WARNING: Queue:
+    // does not exist!
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
 export default {
@@ -150,5 +182,6 @@ export default {
   [fnc.cenqueue]: (queueNameSpace, value) => enqueue(queueNameSpace, value),
   [fnc.cisEmpty]: (queueNameSpace) => isEmpty(queueNameSpace),
   [fnc.cqueueFront]: (queueNameSpace) => queueFront(queueNameSpace),
-  [fnc.cqueueSize]: (queueNameSpace) => queueSize(queueNameSpace)
+  [fnc.cqueueSize]: (queueNameSpace) => queueSize(queueNameSpace),
+  queuePrint
 };

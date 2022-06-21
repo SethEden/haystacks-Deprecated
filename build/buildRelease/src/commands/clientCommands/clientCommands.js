@@ -46,18 +46,18 @@ const customEchoCommand = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData;
-  returnData = inputData + app_msg.cclientStringParsingDotCustomEcho;
-  console.log(returnData);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  let returnData = [false, false];
+  returnData[1] = inputData + app_msg.cclientStringParsingDotCustomEcho;
+  console.log(returnData[1]);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
 
 /**
  * @function deployMetaData
- * @description Copies application meta-data from the soure to the destination.
- * @param {object} inputData The data that should be transfered to the output file & path.
+ * @description Copies application meta-data from the source to the destination.
+ * @param {object} inputData The data that should be transferred to the output file & path.
  * @param {string} inputMetaData The path the data should be written out to.
  * @return {boolean} A True or False value to indicate if the data was copied successfully or not.
  * @author Seth Hollingsead
@@ -68,7 +68,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
 
   // inputData.shift(); // Remove the first element of the array, because that is what is used to call this command.
   // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
@@ -107,8 +107,8 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
   // metaDataOutput is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
-  haystacks.executeBusinessRules([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  returnData[1] = haystacks.executeBusinessRules([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
@@ -128,7 +128,7 @@ const deployApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
   let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
   let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks);
   let passAllWorkflowDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks);
@@ -147,6 +147,7 @@ const deployApplication = function(inputData, inputMetaData) {
     if (deploymentStatus === true) {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentWasCompleted + true);
       haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, true);
+      returnData[1] = true;
     } else {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentFailed);
     }
@@ -160,7 +161,7 @@ const deployApplication = function(inputData, inputMetaData) {
       console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
     }
   }
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
@@ -182,7 +183,8 @@ const releaseApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
+  let errorMessage = '';
   let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
   let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
   if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
@@ -196,20 +198,24 @@ const releaseApplication = function(inputData, inputMetaData) {
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-    let releaseResult = haystacks.executeBusinessRules([sourcePath, destinationPath], [app_biz.cbuildReleasePackage]);
+    returnData[1] = haystacks.executeBusinessRules([sourcePath, destinationPath], [app_biz.cbuildReleasePackage]);
   } else {
-    // Technically it should never even get here, because this same conditino is caught at the deployApplication command.
-    // The deployApplication command should be executing before this comand.
+    // Technically it should never even get here, because this same condition is caught at the deployApplication command.
+    // The deployApplication command should be executing before this command.
     if (passAllConstantsValidation === false) {
       // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another deployment.
-      console.log(msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a);
+      errorMessage = msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
     if (passAllCommandAliasesDuplicateChecks === false) {
       // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
-      console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
+      errorMessage = msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
   }
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };

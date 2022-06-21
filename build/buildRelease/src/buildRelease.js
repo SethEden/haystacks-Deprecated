@@ -125,7 +125,6 @@ function bootStrapApplication() {
 function deployApplication() {
   let functionName = deployApplication.name;
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
-  let copyResult;
   try {
     // fse.copySync('/src/*', '/bin/*');
     haystacks.setConfigurationSetting(wrd.csystem, cfg.creleaseCompleted, false);
@@ -141,32 +140,24 @@ function deployApplication() {
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
     haystacks.enqueueCommand(cmd.cStartupWorkflow);
-    let commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
     // 2nd stage deploy-release process:
     console.log(app_msg.cReleasingFramework);
     haystacks.enqueueCommand(cmd.cFrameworkDetailsWorkflow);
-    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
     // 3rd stage deploy-release process:
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
-    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
 
     haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
-    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
     let deploymentResult = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted);
     if (deploymentResult) {

@@ -40,10 +40,10 @@ const customEchoCommand = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + inputData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData;
-  returnData = inputData + ' clientStringParsing.customEchoCommand';
-  console.log(returnData);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  let returnData = [false, false];
+  returnData[1] = inputData + ' clientStringParsing.customEchoCommand';
+  console.log(returnData[1]);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
@@ -78,7 +78,6 @@ const bossPanic = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + inputData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData;
   let stringLength = 0;
   let colorBreakPoint = 0;
   let stringToPrint = '';
@@ -103,7 +102,7 @@ const bossPanic = function(inputData, inputMetaData) {
 
   // Rather than doing the above, I'll just call the business rule to generate a random number between 1 and 100.
   // Then I can call the string generator to generate a random string of characters to match that length.
-  // And we can buidl up each line of code that way.
+  // And we can build up each line of code that way.
   // In such a way we can have much finer control over how strings are generated and colorized without going into scanning the hard drive,
   // and printing out file paths and file names.
 
@@ -199,9 +198,6 @@ const bossPanic = function(inputData, inputMetaData) {
     }
     haystacks.executeBusinessRules([performanceIndex, ''], [wrd.csleep]);
   } // End-while (true) // End of the infinite loop
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
-  return returnData;
 };
 
 export default {

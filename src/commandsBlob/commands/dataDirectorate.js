@@ -42,7 +42,8 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @NOTE This function is now going to support printing specific child data-hives.
  * Example: ConstantsValidationData.ColorConstantsValidation
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
@@ -51,21 +52,19 @@ const printDataHive = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
   let printDataHiveToLogFileConfigSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.cprintDataHiveToLogFile);
   let logFilePathAndName = '';
-  // if (printDataHiveToLogFileConfigSetting === true) {
-    logFilePathAndName = loggers.getLogFileNameAndPath();
-    // logFilePathAndName is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.clogFilePathAndNameIs + logFilePathAndName);
-  // }
+  logFilePathAndName = loggers.getLogFileNameAndPath();
+  // logFilePathAndName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.clogFilePathAndNameIs + logFilePathAndName);
   if (inputData && inputData[1].includes(bas.cDot) === true) {
     let dataHivePathArray = inputData[1].split(bas.cDot);
     let leafDataHiveElement = D;
     // dataHivePathArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cdataHivePathArrayIs + JSON.stringify(dataHivePathArray));
-    // This for-loop should let us drill down in the D-Data structure followign the path that was provided.
-    // This assumes the namespace style path provided is a valid heirarchy in the D-Data Structure.
+    // This for-loop should let us drill down in the D-Data structure following the path that was provided.
+    // This assumes the namespace style path provided is a valid hierarchy in the D-Data Structure.
     for (let i = 0; i < dataHivePathArray.length; i++) {
       // BEGIN i-th iteration:
       loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIteration + i);
@@ -79,6 +78,7 @@ const printDataHive = function(inputData, inputMetaData) {
     if (printDataHiveToLogFileConfigSetting === true) {
       loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
     }
+    returnData[1] = leafDataHiveElement;
   } else {
     if (D[inputData[1]] !== undefined) {
       // contents are:
@@ -86,15 +86,17 @@ const printDataHive = function(inputData, inputMetaData) {
       if (printDataHiveToLogFileConfigSetting === true) {
         loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(D[inputData[1]]));
       }
+      returnData[1] = D[inputData[1]];
     } else {
       // contents of D are:
       console.log(msg.ccontentsOfDare + JSON.stringify(D));
       if (printDataHiveToLogFileConfigSetting === true) {
         loggers.printMessageToFile(logFilePathAndName, msg.ccontentsOfDare + JSON.stringify(D));
       }
+      returnData[1] = D;
     }
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -110,7 +112,8 @@ const printDataHive = function(inputData, inputMetaData) {
  * inputData[0] === 'printDataHiveAttributes'
  * inputData[1] === ConstantsValidationData.ColorConstantsValidation.Actual
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
@@ -119,15 +122,16 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, []];
+  let errorMessage = '';
   if (inputData && inputData.length > 1) {
     if (inputData[1].includes(bas.cDot) === true) {
       let dataHivePathArray = inputData[1].split(bas.cDot);
       let leafDataHiveElement = D;
       // dataHivePathArray is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cdataHivePathArrayIs + JSON.stringify(dataHivePathArray));
-      // This for-loop should let us drill down in the D-Data structue following the path that was provided.
-      // This assumes the namespace style path provided is a valid heirarchy in the D-Data Structure.
+      // This for-loop should let us drill down in the D-Data structure following the path that was provided.
+      // This assumes the namespace style path provided is a valid hierarchy in the D-Data Structure.
       // Make sure we don't try to grab the very last term of the namespace. See note below.
       for (let i = 0; i < dataHivePathArray.length - 1; i++) {
         // BEGIN i-th iteration:
@@ -152,6 +156,7 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
               if (dataEntry[attributeName]) {
                 // attributeValue is:
                 console.log(msg.cattributeValueIs + dataEntry[attributeName]);
+                returnData[1].push(dataEntry[attributeName]);
               } // End-if (dataEntry[attributeName])
             }
           } // End-if (dataEntry)
@@ -170,6 +175,7 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
             if (dataEntry2) {
               // attributeValue is:
               console.log(msg.cattributeValueIs + dataEntry2[attributeName]);
+              returnData[1].push(dataEntry2[attributeName]);
             } // End-if (dataEntry2)
           }
         });
@@ -177,12 +183,17 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
     } else { // End-if (inputData[1].includes(bas.cDot) === true)
       // This is the case that the user has probably just specified a single data hive
       // that might not have specific attribute names such as the configuration data.
-      console.log(msg.cprintDataHiveAttributesMessage1 + msg.cprintDataHiveAttributesMessage2);
+      errorMessage = msg.cprintDataHiveAttributesMessage1 + msg.cprintDataHiveAttributesMessage2;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
   } else { // End-if (inputData && inputData.length > 1)
-    console.log(msg.cprintDataHiveAttributesMessage3);
+    // ERROR: Please enter a valid name.space.attributeName for the system to print out attribute data from.
+    errorMessage = msg.cprintDataHiveAttributesMessage3;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
   } // End-else condition if (inputData && inputData.length > 1)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -197,7 +208,8 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
  * inputData[0] === 'clearDataStorage'
  * inputData[1] === myDataStorage
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
@@ -206,13 +218,15 @@ const clearDataStorage = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
   if (inputData[1] !== undefined) {
     dataBroker.clearData(inputData[1]);
+    returnData[1] = true;
   } else {
     dataBroker.clearData('');
+    returnData[1] = true;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -227,7 +241,8 @@ const clearDataStorage = function(inputData, inputMetaData) {
  * inputData[1] = fully.Qualified.Path
  * inputData[2] = value to assign to the data property
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/05/10
  * @NOTE Test String: changeSetting colors.ColorData.Red.ColorName removeRed
@@ -237,7 +252,8 @@ const changeSetting = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
+  let errorMessage = '';
   if (inputData && inputData.length === 3) {
     let dataPath = inputData[1];
     dataPath = ruleBroker.processRules([dataPath, ''], [biz.cgetWordsArrayFromString]);
@@ -256,15 +272,18 @@ const changeSetting = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectAfterMutationIs)
     // Persist the change back to the D-data structure.
     ruleBroker.processRules([dataPath, parentDataObject], [biz.csetNamespacedDataObject]);
+    returnData[1] = true;
   } else {
     // ERROR: changeSetting command, invalid entry:
-    console.log(msg.cchangeSettingError01 + JSON.stringify(inputData));
+    errorMessage = msg.cchangeSettingError01 + JSON.stringify(inputData);
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
     // Please enter a fully qualified path to a data property in the system,
     console.log(msg.cchangeSettingError02);
     // and a value that you would like to assign to that data property.
     console.log(msg.cchangeSettingError03);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
