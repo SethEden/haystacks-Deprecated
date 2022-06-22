@@ -24,7 +24,7 @@ import D from '../../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.dataDirectorate.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -106,7 +106,7 @@ const printDataHive = function(inputData, inputMetaData) {
  * @description Prints out all of the attributes for a given specified data-set from the D-data structure.
  * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
- * extracts the case the user has entered a data hive or leaf data structure in the heirarchy and
+ * extracts the case the user has entered a data hive or leaf data structure in the hierarchy and
  * a name of an attribute where all values should be printed.
  * Examples ConstantsValidationData.ColorConstantsValidation.Actual
  * inputData[0] === 'printDataHiveAttributes'
@@ -145,9 +145,8 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
       let attributeName = dataHivePathArray[dataHivePathArray.length - 1];
       if (leafDataHiveElement && leafDataHiveElement.length > 0) {
-        let leafDataHiveElementKeys1 = Object.keys(leafDataHiveElement);
-        for (let j = 0; j < leafDataHiveElement.length; j++) {
-          let dataEntry = leafDataHiveElement[j];
+        for (const element of leafDataHiveElement) {
+          let dataEntry = element;
           if (dataEntry) {
             if (attributeName.toLowerCase() === wrd.centity) {
               // entity is:
@@ -265,11 +264,11 @@ const changeSetting = function(inputData, inputMetaData) {
     // Call dataArrayParsing.getNamespacedDataObject business rule to get the data that should be mutated.
     let parentDataObject = ruleBroker.processRules([dataPath, ''], [biz.cgetNamespacedDataObject]);
     // parentDataObject BEFORE mutation is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectBeforeMutationIs)
+    loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectBeforeMutationIs + JSON.stringify(parentDataObject))
     // Now mutate the object.
     parentDataObject = newValue;
     // parentDataObject AFTER mutation is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectAfterMutationIs)
+    loggers.consoleLog(namespacePrefix + functionName, msg.cparentDataObjectAfterMutationIs + JSON.stringify(parentDataObject))
     // Persist the change back to the D-data structure.
     ruleBroker.processRules([dataPath, parentDataObject], [biz.csetNamespacedDataObject]);
     returnData[1] = true;

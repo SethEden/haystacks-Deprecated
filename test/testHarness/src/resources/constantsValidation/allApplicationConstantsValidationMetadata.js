@@ -39,7 +39,7 @@ import path from 'path';
 
 const {bas, cfg, gen, msg, sys, wrd} = hayConst;
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// testHarness.resources.constantsVaidation.allApplicationConstantsValidation.
+// testHarness.resources.constantsValidation.allApplicationConstantsValidation.
 let namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cresources + bas.cDot + wrd.cconstants + wrd.cValidation + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -170,7 +170,7 @@ function initializeAllClientConstantsValidationData() {
   haystacks.consoleLog(namespacePrefix, functionName, app_msg.callClientConstantsValidationDataIs + JSON.stringify(allClientConstantsValidationData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return allClientConstantsValidationData;
-};
+}
 
 export default {
   initializeAllClientConstantsValidationData

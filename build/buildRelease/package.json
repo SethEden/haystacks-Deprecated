@@ -5,7 +5,7 @@
   "main": "build.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node ./src/buildRelease.js",
+    "start": "node ./src/buildRelease.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
   },

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-undef */
 
 /**
  * @file testHarness.js
@@ -27,10 +28,8 @@
 // Internal imports
 import clientRules from './businessRules/clientRulesLibrary.js';
 import clientCommands from './commands/clientCommandsLibrary.js';
-import * as app_cmd from './constants/application.command.constants.js';
 import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
-import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
 import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
@@ -40,13 +39,15 @@ import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
+const {bas, biz, cmd, msg, sys, wrd} = hayConst;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.
 let namespacePrefix = baseFileName + bas.cDot;
+// eslint-disable-next-line no-undef
 global.appRoot = path.resolve(process.cwd());
 dotenv.config();
+// eslint-disable-next-line no-undef
 const {NODE_ENV} = process.env;
 let exitConditionArrayIndex = 0;
 
@@ -58,7 +59,7 @@ let exitConditionArrayIndex = 0;
  * @date 2021/10/15
  */
 function bootstrapApplication() {
-  let functionName = bootstrapApplication.name;
+  // let functionName = bootstrapApplication.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = url.fileURLToPath(path.dirname(import.meta.url));
   let rootPathArray = rootPath.split(bas.cBackSlash);
@@ -111,7 +112,7 @@ function bootstrapApplication() {
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function application
@@ -138,7 +139,7 @@ async function application() {
   // NOTE: We are processing the argument driven interface first that way even if we are not in an argument driven interface,
   // arguments can still be passed in and they will be executed first, after the startup workflow is complete.
   //
-  // We need to strip off any preceeding "--" before we try to process it as an actual command.
+  // We need to strip off any preceding "--" before we try to process it as an actual command.
   // Also need to make sure that the command to execute actually contains the "--" or "/" or "\" or "-".
   let commandToExecute = '';
   // Make sure we execute any and all commands so the command queue is empty before
@@ -191,7 +192,7 @@ async function application() {
     } // End-while (programRunning === true)
   } // End-if (argumnentDrivenInterface === false)
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
-};
+}
 
 // Launch the Test Harness application!!
 let programRunning = false;

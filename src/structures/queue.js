@@ -39,7 +39,7 @@ function initQueue(queueNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cqueueNameSpaceIs + queueNameSpace);
   D[queueNameSpace] = [];
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function dequeue
@@ -59,7 +59,7 @@ function dequeue(queueNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function enqueue
@@ -78,7 +78,7 @@ function enqueue(queueNameSpace, value) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cvalueIs + value);
   D[queueNameSpace].push(value);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function isEmpty
@@ -102,7 +102,7 @@ function isEmpty(queueNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function queueFront
@@ -127,7 +127,7 @@ function queueFront(queueNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function queueSize
@@ -152,7 +152,7 @@ function queueSize(queueNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function queuePrint
@@ -174,7 +174,7 @@ function queuePrint(queueNameSpace) {
     // does not exist!
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 export default {
   [fnc.cinitQueue]: (queueNameSpace) => initQueue(queueNameSpace),

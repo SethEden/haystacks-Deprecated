@@ -18,7 +18,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.dataStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -84,9 +84,9 @@ const getAttributeValue = function(inputData, inputMetaData) {
 /**
  * @function getValueFromAssignmentOperationString
  * @description Parses the input string and finds the value on the right side of the '=' sign.
- * @param {string} inputData The string that should be parsed for the value on the right side of the assignmet operator.
+ * @param {string} inputData The string that should be parsed for the value on the right side of the assignment operator.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The string value of whatever is on the right side of the assinment operator.
+ * @return {string} The string value of whatever is on the right side of the assignment operator.
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
@@ -108,25 +108,25 @@ const getValueFromAssignmentOperationString = function(inputData, inputMetaData)
 };
 
 /**
- * @function getDataCatagoryFromDataContextName
- * @description Gets the data catagory from the context name, E.g. Input: Page_ProjectList, data catagory is 'Page'.
- * @param {string} inputData The data context name, which should also contain the data catagory seperated by underscore.
+ * @function getDataCategoryFromDataContextName
+ * @description Gets the data category from the context name, E.g. Input: Page_ProjectList, data category is 'Page'.
+ * @param {string} inputData The data context name, which should also contain the data category separated by underscore.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The data catagory, such as Page or Test.
+ * @return {string} The data category, such as Page or Test.
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getDataCatagoryFromDataContextName = function(inputData, inputMetaData) {
-  let functionName = getDataCatagoryFromDataContextName.name;
+const getDataCategoryFromDataContextName = function(inputData, inputMetaData) {
+  let functionName = getDataCategoryFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
-    let dataCatagory = inputData.split(bas.cUnderscore);
-    returnData = dataCatagory[0];
-    // Data Catagory should be:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cDataCatagoryShouldBe + dataCatagory[0]);
+    let dataCategory = inputData.split(bas.cUnderscore);
+    returnData = dataCategory[0];
+    // Data Category should be:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cDataCategoryShouldBe + dataCategory[0]);
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -134,26 +134,26 @@ const getDataCatagoryFromDataContextName = function(inputData, inputMetaData) {
 };
 
 /**
- * @function getDataCatagoryDetailNameFromDataContextName
- * @description Gets the data catagory detail name from the context name, E.G. Input: Page_ProjectList, data catagory is 'ProjectList'.
+ * @function getDataCategoryDetailNameFromDataContextName
+ * @description Gets the data category detail name from the context name, E.G. Input: Page_ProjectList, data category is 'ProjectList'.
  * @param {string} inputData The data context name, which should also contain the
- * data catagory and data catagory detail name seperated by an underscore.
+ * data category and data category detail name separated by an underscore.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} The data catagory detail name, such as ProjectDetails or ProjectList.
+ * @return {string} The data category detail name, such as ProjectDetails or ProjectList.
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getDataCatagoryDetailNameFromDataContextName = function(inputData, inputMetaData) {
-  let functionName = getDataCatagoryDetailNameFromDataContextName.name;
+const getDataCategoryDetailNameFromDataContextName = function(inputData, inputMetaData) {
+  let functionName = getDataCategoryDetailNameFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
-    let dataCatagoryDetailName = inputData.split(bas.cUnderscore);
-    returnData = dataCatagoryDetailName[1];
-    // Data Catagory Detail Name should be:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cDataCatagoryDetailNameShouldBe + dataCatagoryDetailName[1]);
+    let dataCategoryDetailName = inputData.split(bas.cUnderscore);
+    returnData = dataCategoryDetailName[1];
+    // Data Category Detail Name should be:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cDataCategoryDetailNameShouldBe + dataCategoryDetailName[1]);
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -164,7 +164,7 @@ const getDataCatagoryDetailNameFromDataContextName = function(inputData, inputMe
  * @function getKeywordNameFromDataContextName
  * @description Gets the keyword name from the context name, E.g. Input: Keywords_ProjectDetails_DeleteEntireProject, keyword is: 'DeleteEntireProject'.
  * @param {string} inputData The data context name, which should also contain the
- * data catagory and data catagory detail name and keyword name seperated by an underscore.
+ * data category and data category detail name and keyword name separated by an underscore.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The keyword name, such as DeleteEntireProject or EditProjectInfoClick.
  * @author Seth Hollingsead
@@ -177,10 +177,10 @@ const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData) {
-    let dataCatagoryKeywordName = inputData.split(bas.cUnderscore);
-    returnData = dataCatagoryKeywordName[2];
+    let dataCategoryKeywordName = inputData.split(bas.cUnderscore);
+    returnData = dataCategoryKeywordName[2];
     // Keyword Name should be:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cKeywordNameShouldBe + dataCatagoryKeywordName[2]);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cKeywordNameShouldBe + dataCategoryKeywordName[2]);
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -202,16 +202,9 @@ const loadDataFile = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
-  let getXmlRule = [];
-  let getCsvRule = [];
-  let getJsonRule = [];
-  getXmlRule[0] = biz.cgetXmlData;
-  getCsvRule[0] = biz.cgetCsvData;
-  getJsonRule[0] = biz.cgetJsonData;
   if (!inputData) {
     // WARNING: No data to load, please specify a valid path & filename!
     loggers.consoleLog(namespacePrefix + functionName, msg.cLoadDataFileMessage1 + msg.cloadDataFileMessage2);
-    returnData = false;
   } else { // Else-clause if (!inputData)
     let loadedData = {};
     if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
@@ -228,13 +221,13 @@ const loadDataFile = function(inputData, inputMetaData) {
       loadedData = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetJsonData]);
     } else {
       // WARNING: Invalid file format, file formats supported are:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + ruleParsing.processRulesInternal(['', ''], [biz.csupportedFileFormatsAre]));
     }
     // Loaded data is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cLoadedDataIs + JSON.stringify(loadedData));
     returnData = loadedData;
     if (loadedData !== null && loadedData && inputMetaData) {
-      dataBroker.storeData(inputMetaData, loadedData);
+      ruleParsing.processRulesInternal([inputMetaData, loadedData], [biz.cstoreData]);
     }
   } // End-else-clause if (!inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -257,24 +250,22 @@ const saveDataFile = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
-  let writeJsonRule = [];
-  writeJsonRule[0] = biz.cwriteJsonData;
   if (!inputData) {
     // WARNING: No data to save, please specify a valid path & filename!
     loggers.consoleLog(namespacePrefix + functionName, msg.csaveDataFileMessage1 + msg.cloadDataFileMessage2);
-    returnData = false;
   } else {
+    let supportedFileFormats = ruleParsing.processRulesInternal(['', ''], [biz.csupportedFileFormatsAre]);
     if (inputData.includes(gen.cDotxml) || inputData.includes(gen.cDotXml) || inputData.includes(gen.cDotXML)) {
       // WARNING: Invalid file format, file formats supported are:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormats);
     } else if (inputData.includes(gen.cDotcsv) || inputData.includes(gen.cDotCsv) || inputData.includes(gen.cDotCSV)) {
       // WARNING: Invalid file format, file formats supported are:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormats);
     } else if (inputData.includes(gen.cDotjson) || inputData.includes(gen.cDotJson) || inputData.includes(gen.cDotJSON)) {
       returnData = ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.cwriteJsonData]); // Should return true if the write is successful.
     } else {
       // WARNING: Invalid file format, file formats supported are:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormatsAre());
+      loggers.consoleLog(namespacePrefix + functionName, msg.cloadedDataFileMessage3 + supportedFileFormats);
     }
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -311,8 +302,8 @@ export default {
   getAttributeName,
   getAttributeValue,
   getValueFromAssignmentOperationString,
-  getDataCatagoryFromDataContextName,
-  getDataCatagoryDetailNameFromDataContextName,
+  getDataCategoryFromDataContextName,
+  getDataCategoryDetailNameFromDataContextName,
   getKeywordNameFromDataContextName,
   loadDataFile,
   saveDataFile,

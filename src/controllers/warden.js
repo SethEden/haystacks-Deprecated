@@ -125,8 +125,8 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkCommandAliasesPathIs + configData[cfg.cframeworkCommandAliasesPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
 
-  // Make sure the color data gets loaded as well! File: colors.csv (This is used by  the colorizer to colorize the fonts for the console output)
-  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wrd.ccolors);
+  // Make sure the color data gets loaded as well! File: colors.csv (This is used by the colorizer to colorize the fonts for the console output)
+  chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wrd.ccolors);
 
   configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationName, applicationMetaData[wrd.cName]);
   configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber, applicationMetaData[wrd.cVersion]);

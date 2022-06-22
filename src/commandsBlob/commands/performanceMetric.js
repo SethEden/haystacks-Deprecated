@@ -26,11 +26,10 @@ import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.performanceMetric.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
-// prompt();
 
 /**
 * @function businessRulesMetrics
@@ -139,7 +138,7 @@ const commandMetrics = function(inputData, inputMetaData) {
      let standardDev = 0;
      // Here we iterate over all of the commands that were added to the cfg.ccommandsPerformanceTrackingStack.
      for (let i = 0; i < stack.length(cfg.ccommandNamesPerformanceTrackingStack); i++) {
-       commandCounter - 0;
+       commandCounter = 0;
        commandPerformanceSum = 0;
        commandPerformanceStdSum = 0;
        average = 0;

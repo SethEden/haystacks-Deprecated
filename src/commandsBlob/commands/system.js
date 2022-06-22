@@ -28,7 +28,7 @@ import hayConst from '@haystacks/constants';
 import figlet from 'figlet';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.system.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -91,7 +91,7 @@ const exit = function(inputData, inputMetaData) {
 
 /**
 * @function version
-* @description Dispalys the current version number for the current application.
+* @description Displays the current version number for the current application.
 * @param {array<boolean|string|integer>} inputData Not used for this command.
 * inputData[0] = 'version'
 * inputData[1] === 'application|framework' (optional)
@@ -172,7 +172,7 @@ const about = function(inputData, inputMetaData) {
 * @description Displays the name of the current application in standard font format, nothing special.
 * Optional argument to output in figlet font.
 * @param {array<boolean|string|integer>} inputData An array that could really contain anything depending
-* on what the user entered, but the functino converts and filters out for a boolean
+* on what the user entered, but the function converts and filters out for a boolean
 * True or False value internally to the function.
 * inputData[0] === 'name'
 * inputData[1] === 'application|framework' (optional)
@@ -233,6 +233,7 @@ const name = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
+// eslint-disable-next-line no-unused-vars
 const clearScreen = function(inputData, inputMetaData) {
   let functionName = clearScreen.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
@@ -241,6 +242,7 @@ const clearScreen = function(inputData, inputMetaData) {
   let returnData = [true, {}];
   // console.clear(); // This will clear the screen, but not the cache, you can still scroll up and see the previous commands.
   // process.stdout.write('\u001B[2J\u-001B[0;0f'); // Same as above.
+  // eslint-disable-next-line no-undef
   process.stdout.write('\u001b[H\u001b[2J\u001b[3J');
   returnData[1] = true;
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
@@ -260,6 +262,7 @@ const clearScreen = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/22
 */
+// eslint-disable-next-line no-unused-vars
 const help = function(inputData, inputMetaData) {
   let functionName = help.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);

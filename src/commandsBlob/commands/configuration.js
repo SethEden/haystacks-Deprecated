@@ -8,7 +8,6 @@
  * @requires module:configurator
  * @requires module:loggers
  * @requires module:data
- * @requires module:queue
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
@@ -23,16 +22,14 @@ import themeBroker from '../../brokers/themeBroker.js';
 import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
 import D from '../../structures/data.js';
-import queue from '../../structures/queue.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.configuration.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
-// prompt();
 
 /**
  * @function saveConfiguration
@@ -164,7 +161,7 @@ const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
     // desiredThemeName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cdesiredThemeNameIs + desiredThemeName);
     let namedThemePath = themeBroker.getNamedThemePath(desiredThemeName);
-    if (namedThemePath != false) {
+    if (namedThemePath !== false) {
       // namedThemePath is verified:
       loggers.consoleLog(namespacePrefix + functionName, msg.cnamedThemePathIsVerified + namedThemePath);
       configurator.setConfigurationSetting(wrd.csystem, sys.cthemeConfigPath, namedThemePath);

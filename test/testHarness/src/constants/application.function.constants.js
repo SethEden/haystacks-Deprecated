@@ -10,7 +10,7 @@
 
 // External imports
 import hayConst from '@haystacks/constants';
-const {bas, gen, wrd} = hayConst;
+const {gen, wrd} = hayConst;
 
 // rulesLibrary
 export const cinitClientRulesLibrary = gen.cinit + wrd.cClient + wrd.cRules + wrd.cLibrary; // initClientRulesLibrary

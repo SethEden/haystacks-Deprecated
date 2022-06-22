@@ -31,7 +31,7 @@ import stack from '../../structures/stack.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.advanced.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -71,7 +71,7 @@ const commandSequencer = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
     let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
-    // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
+    // Replace 2nd & rd level delimiters and down-increment them so we are dealing with command strings that can actually be executed.
     const regEx1 = new RegExp(secondaryCommandArgsDelimiter, bas.cg);
     commandString = commandString.replace(regEx1, primaryCommandDelimiter);
     if (commandString.includes(tertiaryCommandDelimiter)) {
@@ -148,7 +148,7 @@ const workflow = function(inputData, inputMetaData) {
  * @description Executes a user specified business rule with some input.
  * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
- * extracts the case the user has entered a busienss rule name and perhpas some rule inputs.
+ * extracts the case the user has entered a business rule name and perhaps some rule inputs.
  * inputData[0] === 'businessRule'
  * inputData[1] === rule 1 (including arguments with secondary delimiter)
  * inputData[2] === rule 2 (including arguments with secondary delimiter)
@@ -159,7 +159,7 @@ const workflow = function(inputData, inputMetaData) {
  * pass the outputs as inputs as discussed above.
  * It is assumed if the user wanted to execute a sequence of business rules each with their own inputs,
  * then the user should use the command sequencer in combination with this function
- * to call a series of busienss rules each with their own inputs.
+ * to call a series of business rules each with their own inputs.
  * @param {string} inputMetaData Not used for this command.
  * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
  * indicate if the application should exit or not exit, followed by the command output.
@@ -175,11 +175,9 @@ const businessRule = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = [true, {}];
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
   let rules = [];
   let ruleInputData, ruleInputMetaData;
   let ruleOutput = '';
-  let addedARule = false;
   let businessRuleOutput = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRuleOutput);
   let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRulePerformanceMetrics);
   let businessRuleStartTime = '';
@@ -194,7 +192,6 @@ const businessRule = function(inputData, inputMetaData) {
     let currentRuleArg = inputData[i]; // Check to see if this rule has inputs separate from the rule name.
     // currentRule is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentRuleIs + JSON.stringify(currentRuleArg));
-    let ruleArgs = [];
     if (i === 1) {
       // rules = lexical.parseBusinessRuleArgument(currentRuleArg, i);
       rules = ruleBroker.processRules([currentRuleArg, i], [biz.cparseBusinessRuleArgument]);
@@ -240,11 +237,11 @@ const businessRule = function(inputData, inputMetaData) {
     businessRuleEndTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // BusinessRule End time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleEndTimeIs + businessRuleEndTime);
-    // Now compute the delta time so we know how long it took to run that busienss rule.
+    // Now compute the delta time so we know how long it took to run that business rule.
     businessRuleDeltaTime = ruleBroker.processRules([businessRuleStartTime, businessRuleEndTime], [biz.ccomputeDeltaTime]);
     // BusinessRule run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleRunTimeIs + businessRuleDeltaTime);
-    // Check to make sure the business rule performance trackign stack exists or does not exist.
+    // Check to make sure the business rule performance tracking stack exists or does not exist.
     if (D[cfg.cbusinessRulesPerformanceTrackingStack] === undefined) {
       stack.initStack(cfg.cbusinessRulesPerformanceTrackingStack);
     }
@@ -263,9 +260,6 @@ const businessRule = function(inputData, inputMetaData) {
     // Rule output is:
     console.log(msg.cRuleOutputIs + JSON.stringify(ruleOutput));
   }
-  businessRuleStartTime = '';
-  businessRuleEndTime = '';
-  businessRuleDeltaTime = '';
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -294,7 +288,6 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = [true, {}];
   let errorMessage = '';
-  let foundLegitNumber = false;
   let legitNumberIndex = -1;
   let replaceCharacterWithCharacterRule = [biz.creplaceCharacterWithCharacter];
   let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
@@ -328,12 +321,12 @@ const commandGenerator = function(inputData, inputMetaData) {
   // replaceCharacterWithCharacterRule is:
   loggers.consoleLog(namespacePrefix + functionName, msg.creplaceCharacterWithCharacterRuleIs + JSON.stringify(replaceCharacterWithCharacterRule));
   // let secondaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + secondaryCommandArgsDelimiter, bas.cg);
-  let secondaryCommandDelimiterRegEx = new RegExp(`[${secondaryCommandArgsDelimiter}]`, bas.cg);
+  // let secondaryCommandDelimiterRegEx = new RegExp(`[${secondaryCommandArgsDelimiter}]`, bas.cg);
   commandString = ruleBroker.processRules([commandString, [secondaryCommandArgsDelimiter, primaryCommandDelimiter]], replaceCharacterWithCharacterRule);
   // After attempting to replace the secondaryCommandArgsDelimiter with the primaryCommandDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage1 + commandString);
   // let tertiaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + tertiaryCommandDelimiter, bas.cg);
-  let tertiaryCommandDelimiterRegEx = new RegExp(`[${tertiaryCommandDelimiter}]`, bas.cg);
+  // let tertiaryCommandDelimiterRegEx = new RegExp(`[${tertiaryCommandDelimiter}]`, bas.cg);
   commandString = ruleBroker.processRules([commandString, [tertiaryCommandDelimiter, secondaryCommandArgsDelimiter]], replaceCharacterWithCharacterRule);
   // After attempting to replace the teriaryCommandDelimiter with the secondaryCommandArgsDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage2 + commandString);
@@ -345,7 +338,6 @@ const commandGenerator = function(inputData, inputMetaData) {
     if (inputData.length >= 3) {
       for (let j = 2; j <= inputData.length - 1; j++) {
         if (isNaN(inputData[j].trim()) === false) {
-          foundLegitNumber = true;
           legitNumberIndex = j;
           break;
         }
@@ -390,7 +382,7 @@ const commandGenerator = function(inputData, inputMetaData) {
  * possible combinations of command words and command word acronyms.
  * @param {array<object|boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
- * parses the data string object into a JSON object with values that are the command words and command word abreviations.
+ * parses the data string object into a JSON object with values that are the command words and command word abbreviations.
  * inputData[0] === 'commandAliasGenerator'
  * inputData[1] === A JSON object containing the data necessary for defining all command words and command aliases.
  * @NOTE Test string for argument driven interface for this command:
@@ -437,8 +429,8 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
     // camelCaseCommandNameArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccamelCaseCommandNameArrayIs + JSON.stringify(camelCaseCommandNameArray));
 
-    for (let i = 0; i < camelCaseCommandNameArray.length; i++) {
-      let commandWord = camelCaseCommandNameArray[i];
+    for (const element of camelCaseCommandNameArray) {
+      let commandWord = element;
       // current commandWord is:
       console.log(msg.ccurrentCommandWordIs + commandWord);
       validCommandWordAliasList = false;
@@ -453,7 +445,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
           if (validCommandWordAliasList === false) {
             // INVALID INPUT: Please enter a valid command word alias list.
             console.log(msg.ccommandAliasGeneratorMessage4);
-          } else if (commandWordAliasList !== '') { // As long as the user entered something we shoudl be able to proceed!
+          } else if (commandWordAliasList !== '') { // As long as the user entered something we should be able to proceed!
             validCommandWordAliasList = true;
           }
         } // End-while (validCommandWordAliasList === false)

@@ -56,18 +56,15 @@ const validateConstants = function(inputData, inputMetaData) {
     let phase2FinalResult = true;
     let phase1Results = {};
     let phase2Results = {};
-    let phase1ResultsKeysArray = [];
-    let phase2ResultsKeysArray = [];
 
     // Phase1 Constants Validation
     // BEGIN Phase 1 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cBeginPhase1ConstantsValidation);
     // First scan through each file and validate that the constants defined in the constants code file are also contained in the validation file.
     for (let key1 in validationArray) {
-      let path = validationArray[key1];
-      phase1Results[key1] = ruleBroker.processRules([path, key1], [biz.cvalidateConstantsDataValidation]);
+      let constantsPath = validationArray[key1];
+      phase1Results[key1] = ruleBroker.processRules([constantsPath, key1], [biz.cvalidateConstantsDataValidation]);
     }
-    phase1ResultsKeysArray = phase1Results.keys;
     // END Phase 1 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase1ConstantsValidation);
 
@@ -78,7 +75,6 @@ const validateConstants = function(inputData, inputMetaData) {
     for (let key2 in validationArray) {
       phase2Results[key2] = ruleBroker.processRules([key2, ''], [biz.cvalidateConstantsDataValues]);
     }
-    phase2ResultsKeysArray = phase2Results.keys;
     // END Phase 2 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase2ConstantsValidation);
 
@@ -135,7 +131,6 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   let duplicateAliasCount = 0
   let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
   let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
-loop1:
   for (let key1 in allCommandAliases[0]) {
     // key1 is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ckey1Is + key1);
@@ -146,14 +141,12 @@ loop1:
     // aliasList is:
     loggers.consoleLog(namespacePrefix + functionName, msg.caliasListIs + aliasList);
     let arrayOfAliases = aliasList.split(bas.cComa);
-loop2:
     for (let j = 0; j < arrayOfAliases.length; j++) {
       // BEGIN j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
       let currentAlias = arrayOfAliases[j];
       // currentAlias is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
-      duplicateAliasCount = 0
       duplicateAliasCount = commandBroker.countMatchingCommandAlias(D[sys.cCommandsAliases], currentAlias);
       if (duplicateAliasCount > 1) {
 
@@ -170,6 +163,7 @@ loop2:
 
         passedAllCommandAliasesDuplicateCheck = false;
         returnData[1] = false;
+        // DO NOT break out of any loops here, the command should scan all command aliases!
       }
       // END j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
@@ -188,7 +182,7 @@ loop2:
 
 /**
  * @function validateWorkflows
- * @description Validates all the workflows ahve no duplicates.
+ * @description Validates all the workflows have no duplicates.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
  * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
@@ -212,8 +206,8 @@ const validateWorkflows = function(inputData, inputMetaData) {
   for (let workflowKey in allWorkflowsData) {
     numberOfDuplicatesFound = 0;
     let workflowName = allWorkflowsData[workflowKey];
-    for (let i = 0; i < allWorkflowsData.length; i++) {
-      let secondTierWorkflowName = allWorkflowsData[i];
+    for (const element of allWorkflowsData) {
+      let secondTierWorkflowName = element;
       // console.log('workflowName is: ' + workflowName);
       // console.log('secondTierWorkflowName is: ' + secondTierWorkflowName);
       if (workflowName === secondTierWorkflowName) {

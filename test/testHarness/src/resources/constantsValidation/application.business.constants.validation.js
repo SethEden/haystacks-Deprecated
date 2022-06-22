@@ -19,7 +19,7 @@ import * as app_biz from '../../constants/application.business.constants.js';
  * @date 2022/03/22
  */
 export const applicationBusinessConstantsValidation = [
-  // Client Busienss Rules
+  // Client Business Rules
   {Name: 'cclientEcho', Actual: app_biz.cclientEcho, Expected: 'clientEcho'},
 
   // ********************************

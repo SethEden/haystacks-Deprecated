@@ -22,7 +22,7 @@ import queue from '../../structures/queue.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cmd, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.constant.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -89,10 +89,10 @@ const constantsGenerator = function(inputData, inputMetaData) {
      // Now begin the fulfillment algorithm.
      if (wordCount > 1) {
        let wordsArray = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetWordsArrayFromString]);
-       for (let j = 0; j < wordsArray.length; j++) {
-         let optimizedWordConstantDefinition = ruleBroker.processRules([wordsArray[j].trim(), wordsArray[j].trim()], constantsFulfillmentSystemRule);
+       for (const element of wordsArray) {
+         let optimizedWordConstantDefinition = ruleBroker.processRules([element.trim(), element.trim()], constantsFulfillmentSystemRule);
          // Optimized constant definition for word:
-         console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + wordsArray[j] + bas.cSpace + bas.cEqual + bas.cSpace +
+         console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + element + bas.cSpace + bas.cEqual + bas.cSpace +
           optimizedWordConstantDefinition);
           returnData[1].push(optimizedWordConstantDefinition);
        } // End-for (let j = 0; j < wordsArray.length; j++)
@@ -165,11 +165,11 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
        // userDefinedConstantsListArray is:
        loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantsListArrayIs + JSON.stringify(userDefinedConstantsListArray));
        if (userDefinedConstantsListArray.length > 1) {
-         for (let i = 0; i < userDefinedConstantsListArray.length; i++) {
-           queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + userDefinedConstantsListArray[i].trim());
+         for (const element of userDefinedConstantsListArray) {
+           queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + element.trim());
          }
          returnData[1] = true;
-       } else if (userDefinedConstantsLIsArray.length === 1) {
+       } else if (userDefinedConstantsListArray.length === 1) {
          // Just enqueue the constants Generator command with the input directly.
          queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + userDefinedConstantsListArray[0].trim());
          returnData[1] = true;
@@ -193,7 +193,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
 
 /**
  * @function constantsPatternRecognizer
- * @description Walks through a list of constants lookng for patterns internal to the strings.
+ * @description Walks through a list of constants looking for patterns internal to the strings.
  * @param {string} inputData Parameterized coma delimited list of constants to be
  * passed through pattern recognition to find common strings among them.
  * @param {string} inputMetaData Not used for this command.
@@ -302,8 +302,6 @@ const evaluateConstant = function(inputData, inputMetaData) {
     console.log(errorMessage);
     returnData[1] = errorMessage;
   }
-  // doesConstantExist
-  // getConstantActualValue
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

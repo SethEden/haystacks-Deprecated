@@ -20,14 +20,14 @@ import D from '../../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.auxiliary.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function convertColors
- * @description Converts all of the color hexidecimal values into RGB color values.
+ * @description Converts all of the color hexadecimal values into RGB color values.
  * @param {string} inputData Not used for this command.
  * @param {string} inputMetaData Not used for this command.
  * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
@@ -45,8 +45,8 @@ const convertColors = function(inputData, inputMetaData) {
   let colorKeys = Object.keys(D[wrd.ccolors][sys.cColorData]);
   // colorKeys is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccolorKeysIs + JSON.stringify(colorKeys));
-  for (let i = 0; i < colorKeys.length; i++) {
-    let currentColorName = colorKeys[i];
+  for (const element of colorKeys) {
+    let currentColorName = element;
     // currentColorName is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentColorNameIs + currentColorName);
     let currentColorObject = D[wrd.ccolors][sys.cColorData][currentColorName];

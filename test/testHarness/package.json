@@ -5,7 +5,7 @@
   "main": "./src/testHarness.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node ./src/testHarness.js",
+    "start": "node ./src/testHarness.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
   },
@@ -25,10 +25,6 @@
     "@haystacks/constants": "0.0.13"
   },
   "devDependencies": {
-    "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.8",
-    "@babel/node": "7.15.8",
-    "@babel/preset-env": "7.15.8",
     "jsdoc": "3.6.7",
     "standard-version": "9.3.2"
   },
