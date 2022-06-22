@@ -190,7 +190,7 @@ async function application() {
         break;
       }
     } // End-while (programRunning === true)
-  } // End-if (argumnentDrivenInterface === false)
+  } // End-if (argumentDrivenInterface === false)
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
 }
 

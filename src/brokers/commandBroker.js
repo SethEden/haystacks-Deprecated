@@ -400,7 +400,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
 function getCommandArgs(commandString, commandDelimiter) {
   let functionName = getCommandArgs.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // cmmandString is:
+  // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   // commandDelimiter is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandDelimiterIs + commandDelimiter);
@@ -418,20 +418,20 @@ function getCommandArgs(commandString, commandDelimiter) {
     // NOTE: All commands that enqueue or execute commands need to pass through this function.
     // There is a case where the user might pass a string with spaces or other code/syntax.
     // So we need to split first by single character string delimiters and parse the
-    // non-string array elements to parse command arguments without accidently parsing string literal values as command arguments.
+    // non-string array elements to parse command arguments without accidentally parsing string literal values as command arguments.
     if (commandString.includes(bas.cBackTickQuote) === true) {
       // commandString contains either a singleQuote or a backTickQuote
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringContainsEitherSingleQuoteOrBackTickQuote);
       let preSplitCommandString;
       if (commandString.includes(bas.cBackTickQuote) === true) {
-        // commandString contaisn a singleQuote!
+        // commandString contains a singleQuote!
         loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringContainsSingleQuote);
         // NOTE: We cannot actually just replace ach single quote, we need to tag each single quote in pairs of 2.
         // The first one should be post-tagged, i.e. replace "'" with "'~" and the second should be pre-tagged i.e. replace "'" with "~'".
         // Then if there are more single quotes, the thirst post-tagged, i.e. replace "'" with "'~", etc...
         let numberOfSingleQuotes = commandString.split(bas.cBackTickQuote).length - 1;
         // Determine if the number of single quotes is odd or even?
-        // About to call the rule broker to process on the number of single quotes and determien if it-be even or odd.
+        // About to call the rule broker to process on the number of single quotes and determine if it-be even or odd.
         loggers.consoleLog(namespacePrefix + functionName, msg.cgetCommandArgsMessage1 + sys.cgetCommandArgsMessage2);
         if (numberOfSingleQuotes >= 2 && ruleBroker.processRules([numberOfSingleQuotes, ''], isOddRule) === false) {
           // numberOfSingleQuotes is >= 2 & the numberOfSingleQuotes is EVEN! YAY!
@@ -448,7 +448,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               // Rather than use the above, we will make a business rule o replace at index, the above replaces all isntances and we don't want that!
               commandString = ruleBroker.processRules([commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde]], replaceCharacterAtIndexRule);
               stringLiteralCommandDelimiterAdded = true;
-              // commandString after taggng the first string delimiter:
+              // commandString after tagging the first string delimiter:
               loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingTheFirstStringDelimiter + commandString);
             } else {
               indexOfStringDelimiter = commandString.indexOf(bas.cBackTickQuote, indexOfStringDelimiter + 1);
@@ -456,7 +456,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               loggers.consoleLog(namespacePrefix + functionName, msg.cAdditionalIndexIs + indexOfStringDelimiter);
               // Determine if it is odd or even.
               // NOTE: We start our count with 0 which would technically be our odd, then 1 should be even, but 1 is an odd number, so the logic here should actually be backwards.
-              // an even value for "i" would be the odd i-th delimier value.
+              // an even value for "i" would be the odd i-th delimiter value.
               if (ruleBroker.processRules([i.toString(), ''], isOddRule) === true) {
                 // We are on the odd index, 1, 3, 5, etc...
                 // odd index
@@ -477,7 +477,7 @@ function getCommandArgs(commandString, commandDelimiter) {
             }
           } // End-for (let i = 0; i < numberOfSingleQuotes; i++)
           preSplitCommandString = commandString.split(bas.cBackTickQuote);
-          // Now we can check which segments of the array contain our Tilde character, since we used that to tag our signle quotes.
+          // Now we can check which segments of the array contain our Tilde character, since we used that to tag our single quotes.
           // And the array element that contains the Tilde tag we wil not split.
           // Ultimately everything needs to be returned as an array, make sure we trim the array elements so we don't get any empty array elements.
           // preSpitCommandString is:
@@ -550,15 +550,15 @@ function getCommandArgs(commandString, commandDelimiter) {
  */
 function executeCommand(commandString) {
   // Here we need to do all of the parsing for the command.
-  // Might be a good idea to rely on busness rules to do much of the parsing for us!
+  // Might be a good idea to rely on business rules to do much of the parsing for us!
   // Also don't forget this is where we will need to implement the command performance
-  // trackng & command results processing such as pass-fail,
+  // tracking & command results processing such as pass-fail,
   // so that when a chain of commands has completed execution we can evaluate command statistics and metrics.
   let functionName = executeCommand.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
-  let returnData = false;
+  let returnData = [];
   let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter));
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
@@ -583,13 +583,14 @@ function executeCommand(commandString) {
     returnData = D[wrd.cCommands][commandToExecute](commandArgs, '');
   } else if (commandToExecute !== false && commandArgs === false) {
     // This could be a command without any arguments.
+    // console.log('This could be a command without any arguments.');
     returnData = D[wrd.cCommands][commandToExecute]('', '');
   } else {
     // This command does not exist, nothing to execute, but we don't want the application to exit.
     // An error message should have already been thrown, but we should throw another one here.
     // WARNING: Command does not exist, please enter a valid command and try again!
     console.log(msg.cexecuteCommandMessage1);
-    returnData = true;
+    returnData = [true, false];
   }
   if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false) {
     let performanceTrackingObject = {};

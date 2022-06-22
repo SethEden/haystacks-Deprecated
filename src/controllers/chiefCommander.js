@@ -57,7 +57,7 @@ function addClientCommands(clientCommands) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   commandBroker.addClientCommands(clientCommands);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function loadCommandAliasesFromPath
@@ -98,7 +98,7 @@ function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName, con
   }
   // console.log('All loaded command aliases data is: ' + JSON.stringify(D[sys.cCommandsAliases]));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function enqueueCommand
@@ -119,11 +119,11 @@ function enqueueCommand(command) {
   }
   queue.enqueue(sys.cCommandQueue, command);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function isCommandQueueEmpty
- * @description Deterines if the command queue is empty or not empty.
+ * @description Determines if the command queue is empty or not empty.
  * @return {boolean} A True or False value to indicate if the command queue is empty or not empty.
  * @author Seth Hollingsead
  * @date 2022/02/02
@@ -136,12 +136,13 @@ function isCommandQueueEmpty() {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function processCommandQueue
- * @description Pulls the command from the front of the command queue and executes it using the commnad broker.
- * @return {boolean} A True or False value to indicate if the applicatino should exit or not exit.
+ * @description Pulls the command from the front of the command queue and executes it using the command broker.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/02
  */
@@ -157,7 +158,7 @@ function processCommandQueue() {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),
