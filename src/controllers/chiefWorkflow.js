@@ -36,7 +36,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * Example:
  * contextName = "framework" => D['CommandWorkflows']['Framework']
  * contextName = "application" => D['CommandWorkflows']['Application']
- * contextNaem = "plugin" => D['CommandWorkflows']['Plugins']['<pluginName>']
+ * contextName = "plugin" => D['CommandWorkflows']['Plugins']['<pluginName>']
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/04
@@ -52,7 +52,7 @@ function loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName, 
   allCommandWorkflowsData = chiefData.setupAllXmlData(commandWorkflowFilePathConfigurationName, sys.cCommandWorkflows);
   // allCommandWorkflowsData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.callCommandWorkflowsDataIs + JSON.stringify(allCommandWorkflowsData));
-  if (D[sys.cCommandWorkflows] === undefined) { // Make sure we only do this if it's undefined, otherwise we ight wipe out previously loaded data.
+  if (D[sys.cCommandWorkflows] === undefined) { // Make sure we only do this if it's undefined, otherwise we might wipe out previously loaded data.
     D[sys.cCommandWorkflows] = {};
     D[sys.cCommandWorkflows][sys.cFramework] = allCommandWorkflowsData;
   } else if (contextName.toUpperCase() === wrd.cAPPLICATION) {

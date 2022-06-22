@@ -19,7 +19,7 @@ import hayConst from '@haystacks/constants';
 import moment from 'moment';
 import path from 'path';
 
-const {bas, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.timeComputation.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
@@ -30,11 +30,12 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @param {string} inputData The formatting string, that tells moment in what format to
  * return the value for the day, month, year, hour, minute, second and millisecond.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A time stamp strng that has been formatted according to the input format.
+ * @return {string} A time stamp string that has been formatted according to the input format.
  * @author Seth Hollingsead
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
+// eslint-disable-next-line no-unused-vars
 const getNowMoment = function(inputData, inputMetaData) {
   // let functionName = getNowMoment.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);

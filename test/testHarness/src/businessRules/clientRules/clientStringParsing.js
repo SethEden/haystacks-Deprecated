@@ -15,7 +15,6 @@
  */
 
 // Internal imports
-import * as app_biz from '../../constants/application.business.constants.js';
 import * as apc from '../../constants/application.constants.js';
 import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
@@ -23,14 +22,14 @@ import haystacks from 'haystacks';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, msg, sys, wrd} = hayConst;
+const {bas, msg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.businessRules.clientRules.clientStringParsing.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cbusiness + wrd.cRules + bas.cDot + wrd.cclient + wrd.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function customEcho
- * @description A quick buisness rule to validate that the new dynamic data storage technique for business rules.
+ * @description A quick business rule to validate that the new dynamic data storage technique for business rules.
  * @param {string} inputData The string input data.
  * @param {string} inputMetaData The string of input meta-data.
  * @return {string} An echo of the inputData with some hard-coded modifier.
@@ -183,7 +182,7 @@ const mostPopularNumber = function(inputData, inputMetaData) {
 /**
  * @function isAlmostPalindrome
  * @description Determines if the input string is almost a Palindrome string or not.
- * @param {string} inputData The string that should be evaluated to determine if it is a Palindrome strng or not.
+ * @param {string} inputData The string that should be evaluated to determine if it is a Palindrome string or not.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the input string is a Palindrome or almost palindrome string or not.
  * @author Seth Hollingsead
@@ -202,9 +201,8 @@ const isAlmostPalindrome = function(inputData, inputMetaData) {
   // But if the mis-compare is at the beginning or the end of the string then it can throw off all the other comparisons resulting in a false positive result.
   // We actually need to check starting with the first character but also the first + 1 character and also,
   // we need to check ending with the last - 1 character.
-  // using a similar algorthim as below.
+  // using a similar algorithm as below.
   if (inputData) {
-loop1:
     for (let i = 0; i < 3; i++) {
       // Setup the different start point & end points to do the comparison.
       // comparison iteration is:
@@ -349,8 +347,8 @@ const threePointAverage = function(inputData, inputMetaData) {
 
 /**
  * @function arrayCounter
- * @description Receives an array and a value, counts the number of occurances of that value in the array.
- * @param {integer|string|object} inputData The isntance that should be counted in the array.
+ * @description Receives an array and a value, counts the number of occurrences of that value in the array.
+ * @param {integer|string|object} inputData The instance that should be counted in the array.
  * @param {array<integer|string|object>} inputMetaData The array which should have it's values counted.
  * @return {integer} The count of the objects/values that was found to match out of the array.
  * @author Seth Hollingsead

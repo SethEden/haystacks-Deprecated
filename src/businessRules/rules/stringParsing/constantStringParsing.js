@@ -26,7 +26,7 @@ import chalk from 'chalk';
 import lineByLine from 'n-readlines';
 import path from 'path';
 
-const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.constantStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -53,50 +53,54 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
     let line;
     let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
 
-    while (line = liner.next()) {
-      // constants line is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsLineIs + line.toString(gen.cascii));
-      let lineInCode = line.toString(gen.cascii);
-      let foundConstant = false;
-      // TODO: This logic will need to change!!
-      if (lineInCode.includes(sys.cexportconst) === true) {
-        let lineArray = lineInCode.split(bas.cSpace);
-        // lineArray[2] is
-        loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
-        foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
-        let qualifiedConstantsFilename = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetFileNameFromPath]);
-        if (foundConstant === true) {
-          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
-            let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;
-            if (colorizeLogsEnabled === true) {
-              passMessage = chalk.rgb(0,0,0)(passMessage);
-              passMessage = chalk.bgRgb(0,255,0)(passMessage);
-            }
-            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
-          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
-        } else { // Else-clause if (foundConstant === true)
-          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
-            let failMessage = wrd.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL;
-            if (colorizeLogsEnabled === true) {
-              failMessage = chalk.rgb(0,0,0)(failMessage);
-              failMessage = chalk.bgRgb(255,0,0)(failMessage);
-            }
-            let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
-            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
-            // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
-            let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
-            if (suggestedLineOfCode !== '') {
+    while (line === liner.next()) {
+      if (line) {
+        // constants line is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsLineIs + line.toString(gen.cascii));
+        let lineInCode = line.toString(gen.cascii);
+        let foundConstant = false;
+        if (lineInCode.includes(sys.cexportconst) === true) {
+          let lineArray = lineInCode.split(bas.cSpace);
+          // lineArray[2] is
+          loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
+          foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
+          let qualifiedConstantsFilename = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetFileNameFromPath]);
+          if (foundConstant === true) {
+            if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
+              let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;
               if (colorizeLogsEnabled === true) {
-                suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
-                suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
+                passMessage = chalk.rgb(0,0,0)(passMessage);
+                passMessage = chalk.bgRgb(0,255,0)(passMessage);
               }
-              // Suggested line of code is:
-              console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
-            } // End-if (suggestedLineOfCode !== '')
-          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
-          foundAFailure = true;
-        }
-      } // End-if (lineInCode.includes(sys.cexportconst) === true)
+              console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
+            } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
+          } else { // Else-clause if (foundConstant === true)
+            if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
+              let failMessage = wrd.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL;
+              if (colorizeLogsEnabled === true) {
+                failMessage = chalk.rgb(0,0,0)(failMessage);
+                failMessage = chalk.bgRgb(255,0,0)(failMessage);
+              }
+              let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
+              console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
+              // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
+              let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
+              if (suggestedLineOfCode !== '') {
+                if (colorizeLogsEnabled === true) {
+                  suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
+                  suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
+                }
+                // Suggested line of code is:
+                console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
+              } // End-if (suggestedLineOfCode !== '')
+            } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
+            foundAFailure = true;
+          }
+        } // End-if (lineInCode.includes(sys.cexportconst) === true)
+      } else {
+        // TODO: Replace this hard coded string with a constant defined error message for the up-coming release!
+        // console.log('ERROR: line is null or undefined: ' + line + ' file is: ' + inputData);
+      }      
     } // End-while (line = liner.next())
   } // End-if (inputData && inputMetaData)
   if (foundAFailure === false) {
@@ -110,11 +114,11 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
 /**
  * @function determineConstantsContextQualifiedPrefix
  * @description Takes the filename to a constants file and determines
- * The standard prefix that should be used in the code to referance that constants file.
+ * The standard prefix that should be used in the code to reference that constants file.
  * @param {string} inputData The filename of the constants file or
  * the full path and file name of the constants file. (Should work just the same with either one)
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A string code that represents the method to referance a constants file in the code.
+ * @return {string} A string code that represents the method to reference a constants file in the code.
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
@@ -126,7 +130,6 @@ const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaDa
   let returnData = '';
   if (inputData) {
     returnData = inputData;
-    let inputDataAsArray = inputData.split(bas.cDot);
     let constantsFileNames = D[sys.cConstantsValidationData][sys.cConstantsFileNames];
     let constantsShortNames = D[sys.cConstantsValidationData][sys.cConstantsShortNames];
     for (let key in constantsFileNames) {
@@ -142,10 +145,10 @@ const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaDa
 
 /**
  * @function determineSuggestedConstantsValidationLineOfCode
- * @description Takes the name of the missing constant and determines a suggested lin of code to ad to the appropriate constants vaidation file.
+ * @description Takes the name of the missing constant and determines a suggested lin of code to ad to the appropriate constants validation file.
  * This will make it really easy for developers to maintain the constants validation system.
  * @param {string} inputData The name of the constant file that is missing and should have a line of code generated for it.
- * @param {string} inputMetaData The prefix used to referance the constants file in the code.
+ * @param {string} inputMetaData The prefix used to reference the constants file in the code.
  * @return {string} The suggested line of code that should be added to the appropriate constants validation code file.
  * @author Seth Hollingsead
  * @date 2022/01/24
@@ -157,7 +160,6 @@ const determineSuggestedConstantsValidationLineOfCode = function(inputData, inpu
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   if (inputData && inputMetaData) {
-    returnData = inputData;
     // Input: cZZTopInternationalSuccess
     // Output: {Name: 'cZZTopInternationalSuccess', Actual: wrd.cZZTopInternationalSuccess, Expected: 'ZZTopInternationalSuccess'}
     if (inputData.charAt(0) === bas.cc) {
@@ -187,7 +189,7 @@ const determineSuggestedConstantsValidationLineOfCode = function(inputData, inpu
 
 /**
  * @function validateConstantsDataValidationLineItemName
- * @description Loops through all of the constants validation data and verifies if a matching constan definition can be found, or not found.
+ * @description Loops through all of the constants validation data and verifies if a matching constant definition can be found, or not found.
  * @param {string} inputData the constant definition that should be searched for.
  * @param {string} inputMetaData The name of the data hive that contains the appropriate matching constants validation data.
  * @return {boolean} True or False to indicate if a match was found or not found.
@@ -201,8 +203,8 @@ const validateConstantsDataValidationLineItemName = function(inputData, inputMet
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData && inputMetaData) {
-    for (let i = 0; i < D[sys.cConstantsValidationData][inputMetaData].length; i++) {
-      let validationLineItem = D[sys.cConstantsValidationData][inputMetaData][i];
+    for (const element of D[sys.cConstantsValidationData][inputMetaData]) {
+      let validationLineItem = element;
       if (validationLineItem) {
         if (inputData === validationLineItem.Name) {
           returnData = true;
@@ -237,8 +239,8 @@ const doesConstantExist = function(inputData, inputMetaData) {
     // constantsTypesKeys is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
 loop1:
-    for (let i = 0; i < constantsTypesKeys.length; i++) {
-      let constantTypeKey = constantsTypesKeys[i];
+    for (const element of constantsTypesKeys) {
+      let constantTypeKey = element;
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
       let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
@@ -247,9 +249,8 @@ loop1:
       let constantsKeys = Object.keys(constantTypeValues);
       // constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
-loop2:
-      for (let j = 0; j < constantsKeys.length; j++) {
-        let constantKey = constantsKeys[j];
+      for (const element of constantsKeys) {
+        let constantKey = element;
         // constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
         let constantActualValue = constantTypeValues[constantKey];
@@ -291,8 +292,8 @@ const getConstantType = function(inputData, inputMetaData) {
     // constantsTypesKeys is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
 loop1:
-    for (let i = 0; i < constantsTypesKeys.length; i++) {
-      let constantTypeKey = constantsTypesKeys[i];
+    for (const element1 of constantsTypesKeys) {
+      let constantTypeKey = element1;
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
       let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
@@ -301,9 +302,8 @@ loop1:
       let constantsKeys = Object.keys(constantTypeValues);
       // constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
-loop2:
-      for (let j = 0; j < constantsKeys.length; j++) {
-        let constantKey = constantsKeys[j];
+      for (const element2 of constantsKeys) {
+        let constantKey = element2;
         // constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
         let constantActualValue = constantTypeValues[constantKey];
@@ -352,9 +352,8 @@ const getConstantActualValue = function(inputData, inputMetaData) {
       let constantsKeys1 = Object.keys(constantTypeValues1);
       // 1 constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantsKeysIs + JSON.stringify(constantsKeys1));
-loop1:
-      for (let i = 0; i < constantsKeys1.length; i++) {
-        let constantKey1 = constantsKeys1[i];
+      for (const element1 of constantsKeys1) {
+        let constantKey1 = element1;
         // 1 constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, num.c1 + bas.cSpace + msg.cconstantKeyIs + JSON.stringify(constantKey1));
         let constantActualValue1 = constantTypeValues1[constantKey1];
@@ -368,9 +367,8 @@ loop1:
       let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
       // constantsTypesKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
-loop2:
-      for (let j = 0; j < constantsTypesKeys.length; j++) {
-        let constantTypeKey = constantsTypesKeys[j];
+      for (const element2 of constantsTypesKeys) {
+        let constantTypeKey = element2;
         // constantTypeKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
         let constantTypeValues2 = D[sys.cConstantsValidationData][constantTypeKey];
@@ -379,9 +377,8 @@ loop2:
         let constantsKeys2 = Object.keys(constantTypeValues2);
         // 2 constantsKeys is:
         loggers.consoleLog(namespacePrefix + functionName, num.c2 + bas.cSpace + msg.cconstantsKeysIs + JSON.stringify(constantsKeys2));
-loop3:
-        for (let k = 0; k < constantsKeys2.length; k++) {
-          let constantKey2 = constantsKeys2[k];
+        for (const element3 of constantsKeys2) {
+          let constantKey2 = element3;
           // 2 constantKey is:
           loggers.consoleLog(namespacePrefix + functionName, num.c2 + bas.cSpace + msg.cconstantKeyIs + JSON.stringify(constantKey2));
           let constantActualValue1 = constantTypeValues2[constantKey2];
@@ -420,8 +417,8 @@ const getConstantName = function(inputData, inputMetaData) {
     // constantsTypesKeys is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
 loop1:
-    for (let i = 0; i < constantsTypesKeys.length; i++) {
-      let constantTypeKey = constantsTypesKeys[i];
+    for (const element1 of constantsTypesKeys) {
+      let constantTypeKey = element1;
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
       let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
@@ -430,9 +427,8 @@ loop1:
       let constantsKeys = Object.keys(constantTypeValues);
       // constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
-loop2:
-      for (let j = 0; j < constantsKeys.length; j++) {
-        let constantKey = constantsKeys[j];
+      for (const element2 of constantsKeys) {
+        let constantKey = element2;
         // constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
         let constantActualValue = constantTypeValues[constantKey];
@@ -477,7 +473,7 @@ const findConstantName = function(inputData, inputMetaData) {
 
 /**
  * @function isConstantTypeValid
- * @description Determiens if a sring is a valid constant type/library or not.
+ * @description Determines if a string is a valid constant type/library or not.
  * @param {string} inputData The string that should be validated if it is a valid constant type or not.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the string is a
@@ -583,11 +579,10 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
   let constantName = '';
-  let constantType = '';
   if (inputData) {
     returnData = constantsOptimizedFulfillmentSystem(inputData, '');
     // We found the first part of the string, now lets continue processing the rest of the string!
-    // First determien how many characters are being returned so we can
+    // First determine how many characters are being returned so we can
     // determine what portion of the string we need to continue processing with.
     constantName = findConstantName(returnData, '');
     // constantName is:
@@ -632,9 +627,8 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
   let passMessage = '';
   if (inputData) {
     let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
-    for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++) {
-      passMessage = '';
-      let validationLineItem = D[sys.cConstantsValidationData][inputData][i];
+    for (const element of D[sys.cConstantsValidationData][inputData]) {
+      let validationLineItem = element;
       if (validationLineItem) {
         if (validationLineItem.Actual === validationLineItem.Expected) {
           // PASS
@@ -684,7 +678,7 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
  * @function isConstantValid
  * @description Determines if the user entered some valid input constant string or not. User must have entered more than 4 characters.
  * @param {string} inputData The value of the constant as a string.
- * @param {string} inputMetaData Not used for thsi business rule.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the user entered a valid constant or not.
  * @author Seth Hollingsead
  * @date 2022/01/24

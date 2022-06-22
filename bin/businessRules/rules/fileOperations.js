@@ -2,13 +2,13 @@
  * @file fileOperations.js
  * @module fileOperations
  * @description Contains all of the functions required to do file operations
- * on a physical/virtaul hard drive and/or mounted volume.
- * Including loading files, saving files, reoading files, resavng files,
+ * on a physical/virtual hard drive and/or mounted volume.
+ * Including loading files, saving files, reloading files, resaving files,
  * copying files, moving files, copying folders including copying folders recursively,
  * zipping files and saving sip-packages as part of a deployment/release process.
  * @requires module:ruleParsing
+ * @requires module:configurator
  * @requires module:loggers
- * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/adm-zip|adm-zip}
  * @requires {@link https://nodejs.dev/learn/the-nodejs-fs-module|fs}
@@ -22,8 +22,8 @@
 
 // Internal imports
 import ruleParsing from './ruleParsing.js';
+import configurator from '../../executrix/configurator.js';
 import loggers from '../../executrix/loggers.js';
-import D from '../../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import admZip from 'adm-zip';
@@ -32,7 +32,7 @@ import papa from 'papaparse';
 import xml2js from 'xml2js';
 import path from 'path';
 
-const {bas, biz, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.fileOperations.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
@@ -53,7 +53,7 @@ xml2js.Parser({
  * @description Loads the specified file and parses it into JSON objects, all strings.
  * @param {string} inputData The path and file name of the XML file that should be loaded and parsed into JSON objects.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {object} A parsed JSON object contianing all of the data, meta-data, objects,
+ * @return {object} A parsed JSON object containing all of the data, meta-data, objects,
  * values and attributes that were stored  in the specified XML file.
  * @author Seth Hollingsead
  * @date 2022/04/28
@@ -129,8 +129,9 @@ const getCsvData = function(inputData, inputMetaData) {
  * @date 2022/04/28
  * @NOTE Cannot use the loggers her, because of a circular dependency.
  */
+// eslint-disable-next-line no-unused-vars
 const getJsonData = function(inputData, inputMetaData) {
-  let functionName = getJsonData.name;
+  // let functionName = getJsonData.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${inputMetaData}`);
@@ -186,8 +187,9 @@ const writeJsonData = function(inputData, inputMetaData) {
  * @date 2022/04/28
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
+// eslint-disable-next-line no-unused-vars
 const readDirectoryContents = function(inputData, inputMetaData) {
-  let functionName = readDirectoryContents.name;
+  // let functionName = readDirectoryContents.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${inputMetaData}`);
@@ -196,7 +198,7 @@ const readDirectoryContents = function(inputData, inputMetaData) {
   // just in case there are issues with the OS that the code is running on.
   let directory = path.resolve(inputData);
   readDirectorySynchronously(directory);
-  returnData = filesCollection; // Copy the data into a ocal variable first.
+  returnData = filesCollection; // Copy the data into a local variable first.
   filesCollection = undefined; // Make sure to clear it so we don't have a chance of it corrupting any other file operations.
   filesCollection = [];
   // console.log(`DONE loading data from: ${inputData}`);
@@ -208,7 +210,7 @@ const readDirectoryContents = function(inputData, inputMetaData) {
 /**
  * @function scanDirectoryContents
  * @description This function also acts as a wrapper for calling readDirectorySynchronously since that function is recursive.
- * The difference between this function and the readDirectoryContents is that this function has an optinoal limit on the number of files to return.
+ * The difference between this function and the readDirectoryContents is that this function has an optional limit on the number of files to return.
  * Really this is used for scanning large volumes of data such as the entire C-Drive.
  * This way the user can control the number of files that are returned by the system.
  * The user might only want 10,000 files or just the first million files found. etc...
@@ -250,10 +252,35 @@ const scanDirectoryContents = function(inputData, inputMetaData) {
 };
 
 /**
+ * @function getDirectoryList
+ * @description Scans the specified path and returns the list of folders at that level. Does not scan recursively.
+ * @param {string} inputData The path that should be scanned for getting a folder list at that folder level.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {array<string>} The list of folders found at the specified path.
+ * @author Seth Hollingsead
+ * @date 2022/06/10
+ */
+const getDirectoryList = function(inputData, inputMetaData) {
+  let functionName = getDirectoryList.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  if (inputData) {
+    returnData = fs.readdirSync(inputData, { withFileTypes: true })
+      .filter((item) => item.isDirectory())
+      .map((item) => item.name);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+};
+
+/**
  * @function readDirectorySynchronously
  * @description Recursively parses through all the sub-folders in a given path and loads all of the files contained in each sub-folder into a map.
- * @param {string} inputData The system path that should be scaned recursiely for files.
- * @param {string} inputMetaData Not used for this busienss rule.
+ * @param {string} inputData The system path that should be scanned recursively for files.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {object} A map of all the files contained in all levels of the specified path in all the folders and sub-folders.
  * @NOTE The function doesn't actually return anything, all the file data is stored in an external data collection.
  * @author wn050
@@ -261,8 +288,9 @@ const scanDirectoryContents = function(inputData, inputMetaData) {
  * @date 2020/05/22
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
+// eslint-disable-next-line no-unused-vars
 const readDirectorySynchronously = function(inputData, inputMetaData) {
-  let functionName = readDirectorySynchronously.name;
+  // let functionName = readDirectorySynchronously.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${inputMetaData}`);
@@ -371,12 +399,11 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   let applicationName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);
   let currentVersionReleased = false;
   let releaseDateTimeStamp;
-  let originalSource, originalDestination;
+  let originalSource;
   let zip = new admZip();
   // current version is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentVersionIs + currentVersion);
   originalSource = bas.cDot + inputData;
-  originalDestination = inputMetaData;
   sourceFolder = path.resolve(rootPath + inputData);
   destinationFolder = path.resolve(rootPath + inputMetaData);
   releaseFiles = readDirectoryContents(sourceFolder);
@@ -389,10 +416,10 @@ const buildReleasePackage = function(inputData, inputMetaData) {
     // file is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cfileIs + releasedArchiveFiles[i]);
     let pathAndFileName = releasedArchiveFiles[i];
-    let fileName = getFileNameFromPath(pathAndFileName, '');
-    fileName = removeFileExtensionFromFileName(fileName, '');
+    let fileName = ruleParsing.processRulesInternal([pathAndFileName, ''], [biz.cgetFileNameFromPath]);
+    fileName = ruleParsing.processRulesInternal([fileName, ''], [biz.cremoveFileExtensionFromFileName]);
     // fileName is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cfileNameIs + filename);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cfileNameIs + fileName);
     if (fileName.includes(currentVersion) === true) {
       currentVersionReleased = true;
     }
@@ -413,12 +440,13 @@ const buildReleasePackage = function(inputData, inputMetaData) {
       // Done writing the zip file:
       loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWritingTheZipFile + fullReleasePath);
       // Set the return packageSuccess flag to True
-      loggers.consoleLog(namespacePrefix + functionName, msg.cSetTheReturnPackageSucessFlagToTrue);
-      packageSuccess = true;
+      loggers.consoleLog(namespacePrefix + functionName, msg.cSetTheReturnPackageSuccessFlagToTrue);
+      returnData = true;
     } catch (err) {
       // ERROR: Zip package release failed:
       console.log(msg.cErrorZipPackageReleaseFailed);
       console.error(err.stack);
+      // eslint-disable-next-line no-undef
       process.exit(1);
     }
   } else {
@@ -457,7 +485,8 @@ const createZipArchive = function(inputData, inputMetaData) {
   } catch (err) {
     // ERROR: Zip package release failed
     console.log(msg.cErrorZipPackageReleaseFailed);
-    console.error(rr.stack);
+    console.error(err.stack);
+    // eslint-disable-next-line no-undef
     process.exit(1);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -484,7 +513,7 @@ const cleanRootPath = function(inputData, inputMetaData) {
   returnData = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationRootPath);
   // RootPath before processing is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cRootPathBeforeProcessingIs + returnData);
-  returnData = removeXnumberOfFoldersFromEndOfPath(returnData, 3);
+  returnData = ruleParsing.processRulesInternal([returnData, 3], [biz.cremoveXnumberOfFoldersFromEndOfPath]);
   console.log(msg.creturnDataIs + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -498,8 +527,8 @@ const cleanRootPath = function(inputData, inputMetaData) {
  * Example:
  * inputData[0] = source path
  * inputData[1] = destination path
- * @param {array<array<string>>} inputMetaData Two array's of strings that are exlusions and inclusions,
- * file filters that should be avoided during the copy process, the inclusing array over-rides the exclusion array.
+ * @param {array<array<string>>} inputMetaData Two array's of strings that are exclusions and inclusions,
+ * file filters that should be avoided during the copy process, the inclusions array over-rides the exclusion array.
  * Example:
  * inputMetaData[0] = exclusionArray
  * inputMetaData[1] = inclusionArray
@@ -534,16 +563,16 @@ const copyFileSync = function(inputData, inputMetaData) {
     let foundExclusion = false;
     let foundInclusion = false;
     if (inclusionArray) {
-      for (let i = 0; i < inclusionArray.length; i++) {
-        if (source.includes(incusionArray[i])) {
+      for (const element of inclusionArray) {
+        if (source.includes(element)) {
           foundInclusion = true;
           break;
         }
       } // End-for (let i = 0; i < inclusionArray.length; i++)
     } // End-if (inclusionArray)
     if (exclusionArray) {
-      for (let j = 0; j < exclusionArray.length; j++) {
-        if (source.includes(exclusionArray[j])) {
+      for (const element of exclusionArray) {
+        if (source.includes(element)) {
           foundExclusion = true;
           break;
         }
@@ -577,7 +606,7 @@ const copyFileSync = function(inputData, inputMetaData) {
  * inputData[0] = source path
  * inputData[1] = destination path
  * @param {array<array<string>>} inputMetaData Two array's of strings that are exclusions and inclusions,
- * file filters that should be avoided during the copy process, the incusion array over-rides the exclusion array.
+ * file filters that should be avoided during the copy process, the inclusion array over-rides the exclusion array.
  * Example:
  * inputMetaData[0] = exclusionArray
  * inputMetaData[1] = inclusionArray
@@ -611,18 +640,17 @@ const copyFolderRecursiveSync = function(inputData, inputMetaData) {
     targetFolder = path.join(target, pathLeafNode);
   }
   targetFolder = path.resolve(targetFolder);
-  if (fs.existsSync(targetFolder) != true) {
+  if (fs.existsSync(targetFolder) !== true) {
     try {
       // console.log('making the path');
       fs.mkdirSync(targetFolder);
       // NOTE: Just because we complete the above code doesn't mean the entire copy process was a success.
-      // But atleast we haven't errored out, so it wasn't a failure YET.
+      // But at least we haven't errored out, so it wasn't a failure YET.
     } catch (err) {
       // ERROR: Could not create folder:
       console.log(msg.cErrorCouldNotCreateFolder + targetFolder);
       // ERROR:
       console.log(msg.cERROR_Colon + err);
-      returnData = false;
     }
   } else {
     // console.log('Supposedly the path exists!');
@@ -683,7 +711,7 @@ const copyFolderRecursiveSync = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const appendMessageToFile = function(inputData, inputMetaData) {
-  let functionName = appendMessageToFile.name;
+  // let functionName = appendMessageToFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(msg.cinputDataIs + inputData);
   // console.log(msg.cinputMetaDataIs + inputMetaData);
@@ -716,6 +744,7 @@ export default {
   writeJsonData,
   readDirectoryContents,
   scanDirectoryContents,
+  getDirectoryList,
   readDirectorySynchronously,
   copyAllFilesAndFoldersFromFolderToFolder,
   buildReleasePackage,

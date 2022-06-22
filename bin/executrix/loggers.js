@@ -355,7 +355,7 @@ function getLogFileNameAndPath() {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function printMessageToFile(file, message) {
-  let functionName = printMessageToFile.name;
+  // let functionName = printMessageToFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`file is: ${file}`);
   // console.log(`message is: ${message}`);
@@ -367,6 +367,7 @@ function printMessageToFile(file, message) {
       // console.log('LogFileEnabled = true');
       if (message) {
         // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
+        message = colorizer.removeFontStyles(message);
       }
       if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
         // Individual messages need to have a time stamp on them. So lets sign the message with a time stamp.
@@ -381,7 +382,7 @@ function printMessageToFile(file, message) {
     }
   } else {
     // 'ERROR: Log File includes undefined.'
-    // console.log(msg.cprintMessageToFile03);
+    console.log(msg.cprintMessageToFile03);
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
 };

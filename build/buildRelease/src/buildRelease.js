@@ -29,7 +29,6 @@ import clientCommands from './commands/clientCommandsLibrary.js';
 import * as app_cmd from './constants/application.command.constants.js';
 import * as app_cfg from './constants/application.configuration.constants.js';
 import * as apc from './constants/application.constants.js';
-import * as app_fnc from './constants/application.function.constants.js';
 import * as app_msg from './constants/application.message.constants.js';
 import allAppCV from './resources/constantsValidation/allApplicationConstantsValidationMetadata.js';
 // External imports
@@ -39,24 +38,26 @@ import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
-const {bas, cmd, cfg, gen, msg, phn, sys, wrd} = hayConst;
+const {bas, cmd, cfg, gen, msg, sys, wrd} = hayConst;
 let rootPath = '';
 let baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.
 let namespacePrefix = baseFileName + bas.cDot;
+// eslint-disable-next-line no-undef
 global.appRoot = path.resolve(process.cwd());
 dotenv.config();
+// eslint-disable-next-line no-undef
 const {NODE_ENV} = process.env;
 
 /**
  * @function bootStrapApplication
- * @description Setup all the buildRelease application data and configruation settings.
+ * @description Setup all the buildRelease application data and configuration settings.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/13
  */
 function bootStrapApplication() {
-  let functionName = bootStrapApplication.name;
+  // let functionName = bootStrapApplication.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rootPath = url.fileURLToPath(path.dirname(import.meta.url));
   let rootPathArray = rootPath.split(bas.cBackSlash);
@@ -79,18 +80,18 @@ function bootStrapApplication() {
   } else if (NODE_ENV === wrd.cproduction) {
     appConfig = {
       clientRootPath: rootPath,
-      appConfigResouresPath: rootPath + apc.cFullProdResourcesPath,
+      appConfigResourcesPath: rootPath + apc.cFullProdResourcesPath,
       appConfigReferencePath: rootPath + apc.cFullProdConfigurationPath,
       clientMetaDataPath: apc.cmetaDataProdPath,
       clientCommandAliasesPath: rootPath + apc.cFullProdCommandsPath,
       clientConstantsPath: rootPath + apc.cFullProdConstantsPath,
       clientWorkflowsPath: rootPath + apc.cFullProdWorkflowsPath,
-      applicaitonConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
+      applicationConstantsValidationData: allAppCV.initializeAllClientConstantsValidationData,
       clientBusinessRules: {},
       clientCommands: {}
     };
   } else {
-    // WARNING: NO .env file found! Going to defalt to the DEVELOPMENT ENVIRONMENT!
+    // WARNING: NO .env file found! Going to default to the DEVELOPMENT ENVIRONMENT!
     console.log(msg.cApplicationWarningMessage1a + msg.cApplicationWarningMessage1b);
     appConfig = {
       clientRootPath: rootPath,
@@ -109,14 +110,14 @@ function bootStrapApplication() {
   appConfig[sys.cclientCommands] = clientCommands.initClientCommandsLibrary();
   haystacks.initFramework(appConfig);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function deployApplication
  * @description This is the main function to deploy the application.
  * The function copies all non-code files from the src/application/<myAppName>/resources/ folder to the
  * bin/<myAppName>/resources/ folder.
- * Finaly all the transpiled code and non-code files are packaged togetehr nto a zip file,
+ * Finally all the transpiled code and non-code files are packaged together into a zip file,
  * with the date-time stamp and version number. This forms either a patch or a release.
  * @return {void}
  * @author Seth Hollingsead
@@ -125,13 +126,11 @@ function bootStrapApplication() {
 function deployApplication() {
   let functionName = deployApplication.name;
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
-  let copyResult;
   try {
     // fse.copySync('/src/*', '/bin/*');
     haystacks.setConfigurationSetting(wrd.csystem, cfg.creleaseCompleted, false);
     haystacks.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, false);
     haystacks.setConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, false);
-    let frameworkRootPath = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkRootPath);
     haystacks.setConfigurationSetting(wrd.csystem, app_cfg.csourcePath, apc.cAppDevPath);
     haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdestinationPath, apc.cAppProdPath);
     haystacks.setConfigurationSetting(wrd.csystem, app_cfg.csourceResourcesPath, apc.cFullDevResourcesPath);
@@ -141,32 +140,24 @@ function deployApplication() {
     // However, in this case we are only concerned with building & releasing the framework.
     // The test harness is not a concern for the release process, neither is the buildRelease application.
     haystacks.enqueueCommand(cmd.cStartupWorkflow);
-    let commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
     // 2nd stage deploy-release process:
     console.log(app_msg.cReleasingFramework);
     haystacks.enqueueCommand(cmd.cFrameworkDetailsWorkflow);
-    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
     // 3rd stage deploy-release process:
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
-    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
 
     haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
-    commandResult = true;
     while (haystacks.isCommandQueueEmpty() === false) {
-      commandResult = true;
-      commandResult = haystacks.processCommandQueue();
+      haystacks.processCommandQueue();
     }
     let deploymentResult = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted);
     if (deploymentResult) {
@@ -182,7 +173,7 @@ function deployApplication() {
     haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, false);
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
-};
+}
 
 bootStrapApplication();
 deployApplication();

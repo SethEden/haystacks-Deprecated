@@ -25,12 +25,12 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 
 /**
  * @function randomlyGenerateMixedCaseLetterOrSpecialCharacter
- * @description Randomly geenrates an english alphabetic letter from A-Z, a-z or
+ * @description Randomly generates an english alphabetic letter from A-Z, a-z or
  * a random special character from the input list of special characters.
  * @param {string} inputData the list of allowable special characters that should be used to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random mixed case letter of the english alphabet,
- * or a random special character from the list of alowable special characters.
+ * or a random special character from the list of allowable special characters.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
@@ -51,7 +51,7 @@ const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, in
  * @description Randomly generates an english alphabetic letter from A-Z or
  * a random special character from the input list of special characters.
  * @param {string} inputData The list of allowable special characters that should be used to randomly select from.
- * @param {string} inputMetaData Not used for this busienss rule.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random upper case letter of the english alphabet,
  * or a random special character from the ist of allowable special characters.
  * @author Seth Hollingsead
@@ -71,9 +71,9 @@ const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, in
 
 /**
  * @function randomlyGenerateLowerCaseLetterOrSpecialCharacter
- * @descriptiong Randomly generates an english alphabetic letter from a-z or
- * a random special character from the intpu list of special characters.
- * @param {string} inputData The list of allowable special characters that should be used  to ranomly select from.
+ * @description Randomly generates an english alphabetic letter from a-z or
+ * a random special character from the input list of special characters.
+ * @param {string} inputData The list of allowable special characters that should be used  to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random lower case letter of the english alphabet,
  * or a random special character from the list of allowable special characters.
@@ -95,7 +95,7 @@ const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, in
 /**
  * @function randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
  * @description Randomly generates an alphabetic letter from A-Z, a-z or a number 0-9 or
- * a random special character from the iput ist of special characters.
+ * a random special character from the input ist of special characters.
  * @param {string} inputData The list of allowable special characters that should be used to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random number, a random mixed case letter of the english alphabet,
@@ -121,7 +121,7 @@ const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function
  * a random special character from the input ist of special characters.
  * @param {string} inputData The list orf allowable special characters that should be used to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} Randomly returns a random number, a random upper case letter of the engish alphabet,
+ * @return {string} Randomly returns a random number, a random upper case letter of the english alphabet,
  * or a random special character from the list of allowable special characters.
  * @author Seth Hollingsead
  * @date 2022/01/25
@@ -260,8 +260,7 @@ const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
-  // NOTE Canot have a "." as part of a variable name in a {set}
-  let cTrue = gen.cTrue;
+  // NOTE Cannot have a "." as part of a variable name in a {set}
   if (inputData) {
     let inputDataLength = inputData.length.toString();
     let number = randomlyGenerateNumberInRange(num.c1, [inputDataLength, gen.cTrue, gen.cTrue]);
@@ -365,7 +364,7 @@ const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMe
  * @description Randomly generates a lower case english alphabetic letter from a-z.
  * @param {string} inputData Not used for this business rule.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A ranomly generated english alphabetic letter from a-z.
+ * @return {string} A randomly generated english alphabetic letter from a-z.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
@@ -405,7 +404,7 @@ const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
 /**
  * @function convertNumberToUpperCaseLetter
  * @description Converts a number from 1-26 into an upper case letter of the english alphabet A-Z.
- * @param {sring} inputData A string that contaisn a number in the range of 1-26 that
+ * @param {string} inputData A string that contains a number in the range of 1-26 that
  * should be converted to an upper case letter of the english alphabet.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A letter of the alphabet where 1-26 is converted in a letter A-Z.
@@ -438,7 +437,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
  * @function convertNumberToLowerCaseLetter
  * @description Converts a number from 1-26 into a lower case letter of the english alphabet a-z.
  * @param {string} inputData A string that contains a number in the range of 1-26 that
- * should be converted in a ower case letter of the english alphabet.
+ * should be converted in a lower case letter of the english alphabet.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A letter of the alphabet where 1-26 is converted to a letter a-z.
  * @author Seth Hollingsead
@@ -456,7 +455,7 @@ const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
     // number is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
     if (number > 25 || number < 0) {
-      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+      returnData = ''; // Shouldn't actually need to do this, but it's a good place holder.
     } else {
       returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toLowerCase();
     }

@@ -18,7 +18,7 @@ import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.auxiliaryArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -28,7 +28,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
   * @description Parses minimum and maximum range integer values to ensure they are in the range of 0 - 255.
   * @param {string|integer} inputData The number in either numeric or string format that
   * represents the minimum range that should be used to generate the random color.
-  * @param {string|integer} inputMetaData The nubmer in either numeric or string format that
+  * @param {string|integer} inputMetaData The number in either numeric or string format that
   * represents the maximum range that should be used to generate the random color.
   * @return {array<integer>} The minimum and maximum values returned in an array.
   * returnData[0] = minimum value.
@@ -67,12 +67,12 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
      }
    } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
    if (minimumColorRange < 0) {
-     minimumColorRange = Math.abs(minimumColorRange);
+     minimumColorRange = math.abs(minimumColorRange);
    } else if (minimumColorRange > 255) {
      minimumColorRange = 255;
    }
    if (maximumColorRange < 0) {
-     maximumColorRange = Math.abs(maximumColorRange);
+     maximumColorRange = math.abs(maximumColorRange);
    } else if (maximumColorRange > 255) {
      maximumColorRange = 255;
    }
