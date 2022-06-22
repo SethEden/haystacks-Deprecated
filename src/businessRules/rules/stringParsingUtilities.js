@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * @file stringParsingUtilities.js
  * @module stringParsingUtilities
@@ -17,7 +18,7 @@
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, gen, msg, sys, wrd} = hayConst;
+const {bas, gen, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsingUtilities.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
@@ -38,7 +39,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 const parseSystemRootPath = function(inputData, inputMetaData) {
-  let functionName = parseSystemRootPath.name;
+  // let functionName = parseSystemRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -85,7 +86,7 @@ const parseSystemRootPath = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const stringToDataType = function(inputData, inputMetaData) {
-  let functionName = stringToDataType.name;
+  // let functionName = stringToDataType.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -129,7 +130,7 @@ const stringToDataType = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const stringToBoolean = function(inputData, inputMetaData) {
-  let functionName = stringToBoolean.name;
+  // let functionName = stringToBoolean.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -168,7 +169,7 @@ const stringToBoolean = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const determineObjectDataType = function(inputData, inputMetaData) {
-  let functionName = determineObjectDataType.name;
+  // let functionName = determineObjectDataType.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -207,7 +208,7 @@ const determineObjectDataType = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const isBoolean = function(inputData, inputMetaData) {
-  let functionName = isBoolean.name;
+  // let functionName = isBoolean.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -241,7 +242,7 @@ const isBoolean = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const isInteger = function(inputData, inputMetaData) {
-  let functionName = isInteger.name;
+  // let functionName = isInteger.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -276,7 +277,7 @@ const isInteger = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const isFloat = function(inputData, inputMetaData) {
-  let functionName = isFloat.name;
+  // let functionName = isFloat.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -301,13 +302,13 @@ const isFloat = function(inputData, inputMetaData) {
  * @param {string} inputData The string that should be checked if it is a string and not a Boolean, Integer or Float.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A Boolean value of true or false to indicate if the input string is a string and
- * not a Boolean, Integer or Float; or not (meaning it would be one of those 3 data types, discuised as a string).
+ * not a Boolean, Integer or Float; or not (meaning it would be one of those 3 data types, disguised as a string).
  * @author Seth Hollingsead
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const isString = function(inputData, inputMetaData) {
-  let functionName = isString.name;
+  // let functionName = isString.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -339,7 +340,7 @@ const isString = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
-  let functionName = replaceDoublePercentWithMessage.name;
+  // let functionName = replaceDoublePercentWithMessage.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);
@@ -366,7 +367,7 @@ const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
  * @date 2021/12/28
  */
 const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData) {
-  let functionName = utilitiesReplaceCharacterWithCharacter.name;
+  // let functionName = utilitiesReplaceCharacterWithCharacter.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   // console.log(`inputMetaData is: ${JSON.stringify(inputMetaData)}`);

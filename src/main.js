@@ -35,6 +35,7 @@ const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url
 // main.
 const namespacePrefix = baseFileName + bas.cDot;
 dotenv.config();
+// eslint-disable-next-line no-undef
 const {NODE_ENV} = process.env;
 
 /**
@@ -88,11 +89,11 @@ function initFramework(clientConfiguration) {
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
  // console.log('All loaded data is: ' + JSON.stringify(D));
  // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function mergeClientBusinessRules
- * @description A wrapper function to expose the warden.mergeClientBusienssRules functionality.
+ * @description A wrapper function to expose the warden.mergeClientBusinessRules functionality.
  * @param {object} clientBusinessRules A map of client defined business rule names and client defined business rule function calls.
  * @return {void}
  * @author Seth Hollingsead
@@ -103,7 +104,7 @@ function mergeClientBusinessRules(clientBusinessRules) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   warden.mergeClientBusinessRules(clientBusinessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function mergeClientCommands
@@ -118,7 +119,7 @@ function mergeClientCommands(clientCommands) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   warden.mergeClientCommands(clientCommands);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function loadCommandAliases
@@ -141,7 +142,7 @@ function loadCommandAliases(commandAliasesPath, contextName) {
   warden.setConfigurationSetting(wrd.csystem, contextName, commandAliasesPath);
   warden.loadCommandAliases(contextName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function loadCommandWorkflows
@@ -164,7 +165,7 @@ function loadCommandWorkflows(workflowPath, contextName) {
   warden.setConfigurationSetting(wrd.csystem, contextName, workflowPath);
   warden.loadCommandWorkflows(contextName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function executeBusinessRules
@@ -188,7 +189,7 @@ function executeBusinessRules(inputs, businessRules) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function enqueueCommand
@@ -209,7 +210,7 @@ function enqueueCommand(command) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandIs + command);
   warden.enqueueCommand(command);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function isCommandQueueEmpty
@@ -228,7 +229,7 @@ function isCommandQueueEmpty() {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function processCommandQueue
@@ -249,7 +250,7 @@ function processCommandQueue() {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function setConfigurationSetting
@@ -275,7 +276,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
   // D[sys.cConfiguration][configurationName] = configurationValue;
   warden.setConfigurationSetting(configurationNamespace, configurationName, configurationValue);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function getConfigurationSetting
@@ -300,7 +301,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnConfiguraitonValueIs + returnConfigurationValue);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnConfigurationValue;
-};
+}
 
 /**
  * @function consoleLog
@@ -313,14 +314,14 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  * @date 2021/12/30
  */
 function consoleLog(theNamespacePrefix, theFunctionName, message) {
-  let functionName = consoleLog.name;
+  // let functionName = consoleLog.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`theNamespacePrefix is: ${theNamespacePrefix}`);
   // console.log(`theFunctionName is: ${theFunctionName}`);
   // console.log(`message is: ${JSON.stringify(message)}`);
   loggers.consoleLog(theNamespacePrefix + theFunctionName, message);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 export default {
   [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),

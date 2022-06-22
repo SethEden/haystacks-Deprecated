@@ -20,19 +20,19 @@ import loggers from '../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.lexicalAnalyzer.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function parseBusinessRuleArgument
- * @description Parses a snle busienss rule argument and returns it after cleaning it up or
+ * @description Parses a single business rule argument and returns it after cleaning it up or
  * doing required operations on it to convert it to valid input for a command as necessary.
- * @param {string|array<string|integer|boolean|object>} inputData The value of the argumnt, could be an array or a string.
+ * @param {string|array<string|integer|boolean|object>} inputData The value of the argument, could be an array or a string.
  * @param {integer} inputMetaData The index of the argument (1, 2, 3, 4).
- * @return {string|array<string|itneger|boolean|object>} The value of the argument as it should be passed into the business rule call.
- * @autor Seth Hollingsead
+ * @return {string|array<string|integer|boolean|object>} The value of the argument as it should be passed into the business rule call.
+ * @author Seth Hollingsead
  * @date 2022/05/03
  */
 const parseBusinessRuleArgument = function(inputData, inputMetaData) {
@@ -82,14 +82,14 @@ const parseBusinessRuleArgument = function(inputData, inputMetaData) {
 
 /**
  * @function analyzeArgument
- * @description Deos additional parsing of an individual argument.
+ * @description Does additional parsing of an individual argument.
  * Identifies the case that the argument needs to be treated as an array,
- * then the function will celan the array string tags and split the string into an array and return it.
+ * then the function will clean the array string tags and split the string into an array and return it.
  * This function can also identify the case that an argument contains a regular expression that must be formally created,
  * using the RegExp constructor, then the RegExp object will be returned as part of the return object.
  * @param {string} inputData The argument string that needs additional parsing.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string|aray<string|integer|boolean|object>} The argument that should be returned and sued by the system after all necessary parsing.
+ * @return {string|array<string|integer|boolean|object>} The argument that should be returned and sued by the system after all necessary parsing.
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
@@ -121,7 +121,7 @@ const analyzeArgument = function(inputData, inputMetaData) {
         // A regular expression was found!
         loggers.consoleLog(namespacePrefix + functionName, msg.cRegularExpressionWasFound);
         returnData = parseArgumentAsRegularExpression(inputData, '');
-      } else { // No regular expression, just return the argumetn as it was passed in, no additional processing required.
+      } else { // No regular expression, just return the argument as it was passed in, no additional processing required.
         // No RegExp found!
         loggers.consoleLog(namespacePrefix + functionName, msg.cNoRegExpFound);
         returnData = inputData;
@@ -163,10 +163,10 @@ const analyzeArgument = function(inputData, inputMetaData) {
 
 /**
  * @function analyzeForRegularExpression
- * @description Analyzes the argumetn value to determien if it incudes a regular expression or no regular expression.
- * @param {string} inputData The busienss rule argument that should be analyzed to etermien if it includes a regular expression or not regular expression.
+ * @description Analyzes the argument value to determine if it incudes a regular expression or no regular expression.
+ * @param {string} inputData The business rule argument that should be analyzed to determine if it includes a regular expression or not regular expression.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {boolean} True or False to indicate if the argumetn contains a regular expression or no regular expression.
+ * @return {boolean} True or False to indicate if the argument contains a regular expression or no regular expression.
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
@@ -225,7 +225,7 @@ const parseArgumentAsRegularExpression = function(inputData, inputMetaData) {
       // regExFlags is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cregExFlagsIs + regExFlags);
     }
-  } // End-for (let k = 0; k < regExArray.lenth; k++)
+  } // End-for (let k = 0; k < regExArray.length; k++)
   let regularExpression;
   if (regExValue !== undefined && regExFlags === undefined) {
     regularExpression = new RegExp(regExValue);
@@ -243,8 +243,8 @@ const parseArgumentAsRegularExpression = function(inputData, inputMetaData) {
 /**
  * @function parseArgumentAsArray
  * @description Parses teh argument as an array and return the array.
- * @param {string} inputData A string that contains an aray, we will use the
- * secondary comand delimiter to split the string into an array.
+ * @param {string} inputData A string that contains an array, we will use the
+ * secondary command delimiter to split the string into an array.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {array<string>} An array of strings.
  * @author Seth Hollingsead
@@ -282,11 +282,11 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
       // argumentValue contains the delimiter, lets split it!
       loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
       argumentValue = argumentValue.split(secondaryCommandArgsDelimiter);
-      // Re-evaluate to determine if additonal actions are necessary or not.
+      // Re-evaluate to determine if additional actions are necessary or not.
       argsArrayContainsOpenBracket = ruleParsing.processRulesInternal([bas.cOpenBracket, argumentValue], argsArrayContainsCharacterRule);
       argsArrayContainsCloseBracket = ruleParsing.processRulesInternal([bas.cCloseBracket, argumentValue], argsArrayContainsCharacterRule);
       isArray = true;
-    } // End-if (argumentValue.includes(secondaryCmmandArgsDelimiter) === true)
+    } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
   } // End-if (isArray === false)
   if (argsArrayContainsOpenBracket === true) {
     if (isArray === true) {
@@ -312,8 +312,8 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
     if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
       // argumentValue contains the delimiter, lets split it!
       loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
-      returnData = argumetnValue.split(secondaryCmmandArgsDelimiter);
-    } // End-if (argumetnValue.includes(secondaryCommandArgsDelimiter) === true)
+      returnData = argumentValue.split(secondaryCommandArgsDelimiter);
+    } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
     returnData = argumentValue;
   } else {
     returnData = [argumentValue];
@@ -325,11 +325,11 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
 
 /**
  * @function removeStringLiteralTagsFromArray
- * @description Removes all string iteral tags from all the argument array elements passed as input to the function.
- * @param {array<string>} inputData The argument array that should have the strign literal tags removed.
+ * @description Removes all string literal tags from all the argument array elements passed as input to the function.
+ * @param {array<string>} inputData The argument array that should have the string literal tags removed.
  * The string literal tag is the tilde character: "~"
  * @param {string} inputMetaData Not used for this business rule.
- * @return {array<string>} Teh same as the input, but just with the strign literal tags removed from all array elements.
+ * @return {array<string>} Teh same as the input, but just with the string literal tags removed from all array elements.
  * @author Seth Hollingsead
  * @date 2022/05/03
  */

@@ -15,7 +15,7 @@ import * as app_fnc from '../../constants/application.function.constants.js';
  * @function applicationFunctionConstantsValidation
  * @description Initializes the application function constants validation data objects array.
  * @return {void}
- * @autor Seth Hollingsead
+ * @author Seth Hollingsead
  * @date 2022/03/22
  */
 export const applicationFunctionConstantsValidation = [

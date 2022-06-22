@@ -88,7 +88,7 @@ const getXmlData = function(inputData, inputMetaData) {
  * @function getCsvData
  * @description Loads the specified file and parses it into JSON objects.
  * @NOTE This function only does the loading and preliminary parsing.
- * Some cients might need their own parsing business rules so this might need to be refactored according to business needs.
+ * Some clients might need their own parsing business rules so this might need to be refactored according to business needs.
  * We want to keep everything as modular as possible to allow for this future proofing flexibility.
  * @param {string} inputData The path and file name of the CSV file that should be loaded and parsed into JSON objects.
  * @param {string} inputMetaData Not used for this business rule.

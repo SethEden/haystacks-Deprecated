@@ -31,7 +31,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 
 /**
  * @function getLengthOfLongestStringInArray
- * @desription Deteriens what the longest string is in an array of strings.
+ * @description Determines what the longest string is in an array of strings.
  * @param {array<string>} inputData The array for which we should find the longest length string in.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {integer} The length of the longest string in the array.
@@ -55,12 +55,12 @@ const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
 
 /**
  * @function searchForPatternsInStringArray
- * @description Walks through sub-strings of each string in the input array of strings searchign or common patterns using a brute-force sequential array search.
+ * @description Walks through sub-strings of each string in the input array of strings searching or common patterns using a brute-force sequential array search.
  * Maximum string length to search is the maximum string length - 1 (basically the longest string in the array minus 1 character).
  * Minimum string length to search is 3 characters.
- * @param {array<string>} inputData The array of strigns that should be searched for matching patterns.
+ * @param {array<string>} inputData The array of strings that should be searched for matching patterns.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {array<string>} A string array of common strign values fund in more than 1 element of the array and 3 or more characters long.
+ * @return {array<string>} A string array of common string values fund in more than 1 element of the array and 3 or more characters long.
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
@@ -85,21 +85,21 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
       if (currentMasterStringArrayElement.includes(bas.cSpace) === false) {
         // currentMasterStringArrayElement does not contain a sapce character
         loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInStringArrayMessage1);
-        // NOTE Al of the other loggers.consoleLog beow this are not actually getting called for some reason.
+        // NOTE: All of the other loggers.consoleLog below this are not actually getting called for some reason.
         // That is why I have added the hard-coded console ogs, but really they only need to be enabled if this function needs to be debugged.
         // It's difficult to debug these because they really dump a LOT of data to the output.
         // The only real way to debug larger data sets would be to force the output to a log file.
         // A small data-set might be possible to debug.
         // Lop over the length of the string we need to compare.
-        for (let b = minStringLength; b <= maxStringLength; b++) { // b will now hold the lenthof the string we are using to compare.
+        for (let b = minStringLength; b <= maxStringLength; b++) { // b will now hold the length of the string we are using to compare.
           // loggers.consoleLog(namespacePrefix + functionName, 'length of string to compare is: ' + toString(b));
           // console.log('Length of string to compare is: ' + b);
           // First make sure that the length of our master string is less than or equal to the length of j, otherwise we will just skip to the next.
           if (currentMasterStringArrayElement.length <= b) {
             // loggers.consoleLog(namespacePrefix + functionName, 'currentMasterStringArrayElement.length is less than b');
             // console.log('currentMasterStringArrayElement.length is less than b');
-            // Loop agan for the length of the current string - 3 (minStringLength)
-            // Each loop will etermine our currentComparisonSrng (which will be used when we actually iterate over the array in ur search)
+            // Loop again for the length of the current string - 3 (minStringLength)
+            // Each loop will determine our currentComparisonString (which will be used when we actually iterate over the array in ur search)
             for (let c = 0; c <= currentMasterStringArrayElement.length - minStringLength; c++) { // Loop through each set of strings in the master comparison string.
               // loggers.consoleLog(namespacePrefix + functionName, 'c value is: ' + c);
               // console.log('c value is: ' + c);
@@ -121,7 +121,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                   // loggers.consoleLog(namespacePrefix + functionName, 'd != a');
                   // console.log('d != a');
                   let otherStringToCompare = inputData[d];
-                  // loggers.consoleLog(namespacePrefix + functionName, 'otherStrinToCompare is: ' + otherStringToCompare);
+                  // loggers.consoleLog(namespacePrefix + functionName, 'otherStringToCompare is: ' + otherStringToCompare);
                   // console.log('otherStringToCompare is: ' + otherStringToCompare);
                   if (otherStringToCompare.includes(stringToCompare)) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
@@ -133,7 +133,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                   } // End-if (otherStringToCompare.includes(stringToCompare))
                 } // End-if (d != a)
               } // End-for (let d = 0; d < inputData.length; d++)
-            } // End-for (let c = 0; c <= currentMasterStringArayElement.length - minStringLength; c++)
+            } // End-for (let c = 0; c <= currentMasterStringArrayElement.length - minStringLength; c++)
           } // End-if (currentMasterStringArrayElement.length <= b)
         } // End-for (let b = minStringLength; b <= maxStringLength; b++)
       } else { // Else-clause if (currentMaserStringArrayElement.includes(bas.cSpace) === false)
@@ -155,7 +155,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
  * @description Scans through an array of strings and determines which ones are not yet implemented in the constants system.
  * @param {array<string>} inputData The array of strings that should be checked if they are already implemented in the constants system or not.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A coma seperated list of constants that are not yet implemented.
+ * @return {string} A coma separated list of constants that are not yet implemented.
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
@@ -169,8 +169,8 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
     let passMessage = '';
     let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
     let j = 0; // We will use this as an iterator to count the number of times we add a string to the returnData coma-seperated list.
-    for (let i = 0; i < inputData.length; i++) {
-      let currentString = inputData[i];
+    for (const element of inputData) {
+      let currentString = element;
       if (ruleParsing.processRulesInternal([currentString, ''], [biz.cdoesConstantExist]) === false) {
         // Constant does NOT exist:
         passMessage = msg.cConstantDoesNotExist + currentString;
@@ -181,7 +181,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
         console.log(passMessage);
         // constant does NOT exist:
         loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesNotExist + currentString);
-        // Make sure we add all the strings that do not exist to a coma-seperated list,
+        // Make sure we add all the strings that do not exist to a coma-separated list,
         // so we can enqueue it to the constantsGeneratorList command and generate actual new constants lines of code.
         if (j === 0) {
           returnData = currentString;

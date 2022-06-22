@@ -23,6 +23,7 @@ import path from 'path';
 const {bas, biz, cfg, fnc, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.configurator.
+// eslint-disable-next-line no-unused-vars
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -49,7 +50,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
     namespaceConfigObject[`${configurationNamespace}.${configurationName}`] = configurationValue;
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function getConfigurationSetting
@@ -63,7 +64,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getConfigurationSetting(configurationNamespace, configurationName) {
-  let functionName = getConfigurationSetting.name;
+  // let functionName = getConfigurationSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configurationNamespace is: ${configurationNamespace}`);
   // console.log(`configurationName is: ${configurationName}`);
@@ -84,7 +85,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
   // console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnConfigurationValue;
-};
+}
 
 /**
  * @function processConfigurationNameRules
@@ -96,7 +97,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processConfigurationNameRules(fullyQualifiedName) {
-  let functionName = processConfigurationNameRules.name;
+  // let functionName = processConfigurationNameRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
@@ -105,7 +106,7 @@ function processConfigurationNameRules(fullyQualifiedName) {
   // console.log(`returnValue is: ${returnValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function processConfigurationNamespaceRules
@@ -117,7 +118,7 @@ function processConfigurationNameRules(fullyQualifiedName) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processConfigurationNamespaceRules(fullyQualifiedName) {
-  let functionName = processConfigurationNamespaceRules.name;
+  // let functionName = processConfigurationNamespaceRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
@@ -137,7 +138,7 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
   // console.log(`returnValue is: ${returnValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function processConfigurationValueRules
@@ -171,7 +172,7 @@ function processConfigurationValueRules(name, value) {
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function getParentConfigurationNamespaceObject
@@ -207,7 +208,7 @@ function getParentConfigurationNamespaceObject(configurationNamespace, optionalF
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function getConfigurationNamespaceObject
@@ -233,12 +234,12 @@ function getConfigurationNamespaceObject(configurationNamespace) {
     configurationDataRoot = D[wrd.cconfiguration];
     configurationPathObject = configurationDataRoot;
   }
-  for (let i = 0; i < configurationNamespace.length; i++) {
-    if (!configurationPathObject[configurationNamespace[i]]) {
+  for (const element of configurationNamespace) {
+    if (!configurationPathObject[element]) {
       // It doesn't exist yet, so lets make it.
-      configurationPathObject[configurationNamespace[i]] = {};
+      configurationPathObject[element] = {};
     }
-    configurationPathObject = configurationPathObject[configurationNamespace[i]];
+    configurationPathObject = configurationPathObject[element];
   } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
   if (returnValue) {
     returnValue = configurationPathObject;
@@ -251,7 +252,7 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 export default {
   [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>

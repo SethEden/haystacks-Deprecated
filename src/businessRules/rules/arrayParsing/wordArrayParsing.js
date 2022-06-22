@@ -18,7 +18,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.wordArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -48,9 +48,9 @@ const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
   if (caps.length > 0) {
     let last = 0;
     let decomposedString = [];
-    for (let j = 0; j < caps.length; j++) {
-      decomposedString.push(inputData.slice(last, caps[j]));
-      last = caps[j];
+    for (const element of caps) {
+      decomposedString.push(inputData.slice(last, element));
+      last = element;
     }
     decomposedString.push(inputData.slice(last));
     returnData = decomposedString;
@@ -108,9 +108,9 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
  * @function recombineStringArrayWithSpaces
  * @description Takes an array of strings and recombines them sequentially ith spaces between each array element.
  * This function is needed, because commands parse inputs by spaces ino an array,
- * and some commands need a single continuous strng that might be delimited by coma's.
- * So this function lets us recombine and teh re-parse the strng with another delimiter.
- * @param {array<string>} inputData The aray of strings that should be recombined.
+ * and some commands need a single continuous string that might be delimited by coma's.
+ * So this function lets us recombine and teh re-parse the string with another delimiter.
+ * @param {array<string>} inputData The array of strings that should be recombined.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The string array with spaces between array elements.
  * @author Seth Hollingsead
@@ -160,8 +160,8 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
 
 /**
  * @function doesArrayContainLowerCaseConsolidatedString
- * @description Checks if an array contains a string, comparison made by lowerCaseAndConsolidatedSring().
- * @param {array<string>} inputData The array of strigns that should be checked if it contains the specified string.
+ * @description Checks if an array contains a string, comparison made by lowerCaseAndConsolidatedString().
+ * @param {array<string>} inputData The array of strings that should be checked if it contains the specified string.
  * @param {string} inputMetaData The string we are looking for in the array.
  * @return {boolean} A Boolean to indicate if the string is found in the array or not.
  * @author Seth Hollingsead
@@ -174,7 +174,7 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData && inputMetaData) {
-    // I'm not sure if value1 & value2 below should be referanced to inputData & inputMetaData?
+    // I'm not sure if value1 & value2 below should be referenced to inputData & inputMetaData?
     // I get the arrow function is pass in these values to the wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
     // But I'm not sure how or what values are being passed for value1 & value2.
     let stringDelta = (value1, value2) => ruleParsing.processRulesInternal([value1, value2], [biz.caggregateNumericalDifferenceBetweenTwoStrings]) < 2;
