@@ -263,7 +263,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
           let commandAliasesObjectTemp = searchCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // commandAliasesObjectTemp is:
           loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesObjectTempIs + JSON.stringify(commandAliasesObjectTemp));
-          if (!commandAliasesObjectTemp) {
+          if (commandAliasesObjectTemp) {
             commandAliasObject = commandAliasesObjectTemp;
             break;
           }
