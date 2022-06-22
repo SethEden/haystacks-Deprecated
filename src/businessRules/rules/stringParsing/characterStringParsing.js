@@ -22,7 +22,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.characterStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -30,7 +30,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 /**
 * @function singleQuoteSwapAfterEquals
 * @description Swaps single quote characters in the middle of the string wih double quote characters n the middle of the string.
-* input: 'inut[name='emailAddress'][class='username']'
+* input: 'input[name='emailAddress'][class='username']'
 * output: 'input[name="emailAddress"][class="username"]'
 * @param {string} inputData A string that contains text with single quotes that should be swapped for double quotes.
 * @param {string} inputMetaData Not used for this business rule.
@@ -139,7 +139,7 @@ const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
 
 /**
 * @function swapDoubleForwardSlashToSingleForwardSlash
-* @description Swaps all double forward slash characters for sinle forward slash characters.
+* @description Swaps all double forward slash characters for single forward slash characters.
 * @param {string} inputData String that might contain some double forward slashes.
 * @param {string} inputMetaData Not used for this business rule.
 * @return {string} The same as the input string, just all double forward slash characters
@@ -177,7 +177,7 @@ const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMeta
 * @description Swaps all double back slash characters for single back slash characters.
 * @param {string} inputData String that might contain some double back slashes.
 * @param {string} inputMetaData Not used for this business rule.
-* @return {string} The same as the input string, just all duble back slash characters
+* @return {string} The same as the input string, just all double back slash characters
 * swapped for single back slash characters.
 * @author Seth Hollingsead
 * @date 2021/10/28
@@ -253,7 +253,7 @@ const replaceColonWithUnderscore = function(inputData, inputMetaData) {
 
 /**
  * @function cleanCarriageReturnFromString
- * @desription Cleans carriage return characters from the input data and trims off any leading or training spaces.
+ * @description Cleans carriage return characters from the input data and trims off any leading or training spaces.
  * @param {string} inputData The string that should be scrubbed for carriage returns.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The same as teh input string, but with all carriage return characters removed.
@@ -445,7 +445,7 @@ const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 const replaceCharacterAtIndexOfString = function(inputData, inputMetaData) {
-  let functionName = replaceCharacterAtIndexOfString.name;
+  // let functionName = replaceCharacterAtIndexOfString.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`originalString is: ${originalString}`);
   // console.log(`index is: ${index}`);

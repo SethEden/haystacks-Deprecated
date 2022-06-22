@@ -19,32 +19,33 @@ import D from '../../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, fnc, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.ruleParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function doAllRulesExist
- * @description Deterines if al the rules in an array of rule names all
+ * @description Determines if al the rules in an array of rule names all
  * exist in the runtime rules data structure or not.
- * @param {array<string>} inputData The array of rule names that shuld be
- * validated for existence in the runtme rules data structure.
+ * @param {array<string>} inputData The array of rule names that should be
+ * validated for existence in the runtime rules data structure.
  * @param {string} inputMetaData Not used by this business rule.
- * @return {boolean} A True or False vaue to indicate if all the rules in the
+ * @return {boolean} A True or False value to indicate if all the rules in the
  * input array exist or do not all exist.
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
+// eslint-disable-next-line no-unused-vars
 const doAllRulesExist = function(inputData, inputMetaData) {
-  let functionName = doAllRulesExist.name;
+  // let functionName = doAllRulesExist.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
   let returnData = false;
   let tempValidationResult = true;
   if (inputData && inputData.length > 0) {
-    for (let i = 0; i < inputData.length; i++) {
-      if (doesRuleExist(inputData[i]) === false) {
+    for (const element of inputData) {
+      if (doesRuleExist(element) === false) {
         tempValidationResult = false;
       }
     } // End-for (let i = 0; i < inputData.length; i++)
@@ -60,14 +61,15 @@ const doAllRulesExist = function(inputData, inputMetaData) {
 /**
  * @function doesRuleExist
  * @description Determines if a specified named rule exists in the rules system or not.
- * @param {string} inputData The rule name that should be validated as existng in the runtime rules data structure.
+ * @param {string} inputData The rule name that should be validated as existing in the runtime rules data structure.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} A True or False value to indicate if the rule exists or does not exist.
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
+// eslint-disable-next-line no-unused-vars
 const doesRuleExist = function(inputData, inputMetaData) {
-  let functionName = doesRuleExist.name;
+  // let functionName = doesRuleExist.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
   // console.log(`inputMetaData is: ${inputMetaData}`);
@@ -116,7 +118,7 @@ const getRule = function(inputData, inputMetaData) {
  * An array of inputs, inputData & inputMetaData.
  * inputData[0] = inputData - The primary input data that should be processed by the business rule.
  * inputData[1] = inputMetaData - Additional meta-data that should be used when processing the business rule.
- * @param {array<string>} inputMetaData The name(s) of the rule(s) that should be executed for moding the input data.
+ * @param {array<string>} inputMetaData The name(s) of the rule(s) that should be executed for modifying the input data.
  * @return {string|integer|boolean|object|function} A modified data Object/String/Integer/Boolean/Function
  * where the data has been modified based on the input data, input meta-data, and business rule that was executed.
  * @author Seth Hollingsead
@@ -131,7 +133,7 @@ const processRulesInternal = function(inputData, inputMetaData) {
   if (inputMetaData && doAllRulesExist(inputMetaData)) {
     for (let rule in inputMetaData) {
       let inputLocalMetaData = inputData[1];
-      if (inputMetaData.hasOwnProperty(rule)) {
+      if (Object.prototype.hasOwnProperty.call(inputMetaData, rule)) {
         let key = rule;
         // console.log(`key is ${key}`);
         let value = inputMetaData[key];

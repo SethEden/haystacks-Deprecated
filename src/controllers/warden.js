@@ -51,7 +51,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function processRootPath(inputPath) {
-  let functionName = processRootPath.name;
+  // let functionName = processRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputPath is: ${inputPath}`);
   ruleBroker.bootStrapBusinessRules();
@@ -180,7 +180,7 @@ function initFrameworkSchema(configData) {
 };
 
 /**
- * @function mergeClientBusienssRules
+ * @function mergeClientBusinessRules
  * @description Merges the map of client defined business rule names and client defined business rule function calls
  * with the existing D-data structure that should already have all of the system defined business rule.
  * @param {object} clientBusinessRules A map of client defined business rule names and client defined business rule function calls.
@@ -197,7 +197,7 @@ function mergeClientBusinessRules(clientBusinessRules) {
 };
 
 /**
- * @function mergeCientCommands
+ * @function mergeClientCommands
  * @description Merges the map of client defined command names and client defined command function calls
  * with the existing D-data structure that should already have all of the system defined commands.
  * @param {object} clientCommands A map of client defined command names and client defined command function calls.
@@ -337,7 +337,7 @@ function enqueueCommand(command) {
  * @description This is a wrapper for the chiefCommander.isCommandQueueEmpty function.
  * Determines if the command queue is empty or not,
  * which also determines if the application should continue executing commands from the command queue
- * in sequential order or prompt for another commnd or exit.
+ * in sequential order or prompt for another command or exit.
  * @return {boolean} True or False to indicate if command execution should continue or not.
  * @author Seth Hollingsead
  * @date 2022/02/16

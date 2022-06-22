@@ -20,7 +20,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.commandArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -52,7 +52,6 @@ const solveLehmerCode = function(inputData, inputMetaData) {
     // }
     let lengthOfInputData = inputData.length;
     let expandedLehmerCodeArray = [];
-    let tempArray = [];
     let lehmerCodeArray = Array.from(Array(lengthOfInputData), () => 0);
     expandedLehmerCodeArray = ruleParsing.processRulesInternal([recursiveArrayExpansion([0, lehmerCodeArray], inputData), ''], [biz.carrayDeepClone]);
     // expandedLehmerCodeArray is:
@@ -75,10 +74,10 @@ const solveLehmerCode = function(inputData, inputMetaData) {
 
 /**
  * @function recursiveArrayExpansion
- * @description Recursively expands all possible combinations of an input aray given an index of expansion andreturns the list of arrays.
+ * @description Recursively expands all possible combinations of an input array given an index of expansion and returns the list of arrays.
  * @param {array<integer,array<integer>>} inputData The index of expansion and the array to be expanded as an array object.
  * @param {array<integer>} inputMetaData The Lehmer Codex that should be used to set the limit of expansion based on the index of expansion.
- * @return {array<array<integer>>} The final list of arrays after the array expansion has completed sucessfully.
+ * @return {array<array<integer>>} The final list of arrays after the array expansion has completed successfully.
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
@@ -136,8 +135,8 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
     // arrayToBeExpanded.length is:
     loggers.consoleLog(namespacePrefix + functionName, msg.carrayToBeExpandedDotLengthIs + arrayToBeExpanded.length);
     if (indexOfExpansion < arrayToBeExpanded.length - 1) {
-      // We need to reove arrays from the returnData and recursiely call the recursiveArrayExpansion with each array we remove.
-      // The data we get back from each recursie call should be pushed back to masterTempReturnData array.
+      // We need to remove arrays from the returnData and recursively call the recursiveArrayExpansion with each array we remove.
+      // The data we get back from each recursive call should be pushed back to masterTempReturnData array.
       // returnData.length is:
       loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataDotLengthIs + returnData.length);
       // Make sure we clone the array we will be removing array elements from,
@@ -145,13 +144,13 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
       // which would mean that we would never visit all of the elements.
       // https://stackoverflow.com/questions/54081930/why-array-foreach-array-pop-would-not-empty-the-array
       let returnDataTemp = ruleParsing.processRulesInternal([returnData, ''], [biz.carrayDeepClone]);
-      returnDataTemp.forEach(function(item) {
+      returnDataTemp.forEach(function() {
         // returnData BEFORE POP is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataBeforePopIs + JSON.stringify(returnData));
         let lehmerCodeArray2 = ruleParsing.processRulesInternal([returnData.pop(), ''], [biz.carrayDeepClone]);
         // returnData AFTER POP is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataAfterPopIs + JSON.stringify(returnData));
-        // masterTempReturnData BEFORE recursie call is:
+        // masterTempReturnData BEFORE recursive call is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cmasterTempReturnDataBeforeRecursiveCallIs + JSON.stringify(masterTempReturnData));
         let tempReturnData1 = ruleParsing.processRulesInternal([recursiveArrayExpansion([indexOfExpansion + 1, lehmerCodeArray2], inputMetaData), ''], [biz.carrayDeepClone]);
         // tempReturnData1 is:
@@ -169,10 +168,9 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
           // END k-th iteration:
           loggers.consoleLog(namespacePrefix + functionName, msg.cEND_kthIteration + k);
         } // End-for (let k = 0; k <= tempReturnData1.length - 1; k++)
-        tempReturnData1 = null;
         // masterTempReturnData AFTER recursive call is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cmasterTempReturnDataAfterRecursiveCallIs + JSON.stringify(masterTempReturnData));
-      }); // End-for-each (returnDataTemp.forEach(function(item))
+      }); // End-for-each (returnDataTemp.forEach(function())
       returnData = ruleParsing.processRulesInternal([masterTempReturnData, ''], [biz.carrayDeepClone]);
     } // End-if (indexOfExpansion < arrayToBeExpanded.length - 1)
   } // End-if (inputData && inputMetaData && inputDataIsArray === true && inputMetaDataIsArray === true && inputData.length > 0 && inputMetaData.length > 0)
@@ -183,7 +181,7 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
 
 /**
  * @function getLehmerCodeValue
- * @description Takes a Lehmer code array and an array of arays and uses the Lehmer Code array to look up the corrosponding values in the array of arrays.
+ * @description Takes a Lehmer code array and an array of arrays and uses the Lehmer Code array to look up the corresponding values in the array of arrays.
  * @param {array<integer>} inputData The Lehmer code array with indices for values we should get & return.
  * @param {array<array<string>>} inputMetaData The nested array of arrays with the values we should get and combine then return as a single string.
  * @return {string} The joined string from each of the array element strings at the Lehmer code indices.
@@ -221,9 +219,9 @@ const getLehmerCodeValue = function(inputData, inputMetaData) {
 
 /**
  * @function generateCommandAliases
- * @description Generates all possible combinations of command aliases given a set of command words and command word abreviations.
+ * @description Generates all possible combinations of command aliases given a set of command words and command word abbreviations.
  * @param {object} inputData An object containing all of the meta-data needed for command words and
- * command word abreviations needed to generate every possible combination of command aliases.
+ * command word abbreviations needed to generate every possible combination of command aliases.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A coma-separated list of every possible combination of command aliases.
  * @author Seth Hollingsead
@@ -304,7 +302,7 @@ const generateCommandAliases = function(inputData, inputMetaData) {
     //
     // NOTE: The algorthim described above is called: Lehmer code
     // https://en.wikipedia.org/wiki/Lehmer_code
-    let returnData = solveLehmerCode(masterArrayIndex, masterCommandWordAliasesArray);
+    returnData = solveLehmerCode(masterArrayIndex, masterCommandWordAliasesArray);
     // Command Aliases are:
     console.log(msg.cCommandAliasesAre + returnData);
   } // End-if (inputData)
@@ -334,9 +332,9 @@ const aggregateCommandArguments = function(inputData, inputMetaData) {
         // BEGIN i-th iteration:
         loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_ithIteration + i);
         if (i === 2) {
-          returnData = stringParsing.cleanCommandInput(inputData[i]);
+          returnData = ruleParsing.processRulesInternal([inputData[i], '' ], [biz.ccleanCommandInput]);
         } else {
-          returnData = returnData + bas.cSpace + stringParsing.cleanCommandInput(inputData[i]);
+          returnData = returnData + bas.cSpace + ruleParsing.processRulesInternal([inputData[i], ''], [biz.ccleanCommandInput]);
         }
         // returnData is:
         loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -344,7 +342,7 @@ const aggregateCommandArguments = function(inputData, inputMetaData) {
         loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
       } // End-for (let i = 2; i < inputData.length; i++)
     } else { // else-clause if (inputData.length > 3)
-      returnData = stringParsing.cleanCommandInput(inputData[2], '');
+      returnData = ruleParsing.processRulesInternal([inputData[2], ''], [biz.ccleanCommandInput]);
     }
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);

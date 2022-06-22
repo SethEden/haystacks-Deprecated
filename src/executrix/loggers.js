@@ -10,7 +10,6 @@
  * @requires module:configurator
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
- * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2021/10/18
@@ -24,12 +23,12 @@ import configurator from './configurator.js';
 import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
-import chalk from 'chalk';
 import path from 'path';
 
-const {bas, biz, clr, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, clr, cfg, fnc, gen, msg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.loggers.
+// eslint-disable-next-line no-unused-vars
 const namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -39,7 +38,7 @@ const namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * Also can provisionally log to a log file as well since the console
  * is technically a transient data output.
  * @NOTE When it comes to dumping large amounts of data out of a script the console will not do,
- * And dumping data to an output log file is critical to debuggin certain tests and workflows.
+ * And dumping data to an output log file is critical to debugging certain tests and workflows.
  * @param {string} classPath The class path for the caller of this function file.function or class.method.
  * @param {string} message The message or data contents that should be dumped to the output.
  * @return {void}
@@ -48,7 +47,7 @@ const namespacePrefix =  wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function consoleLog(classPath, message) {
-  let functionName = consoleLog.name;
+  // let functionName = consoleLog.name;
   if (Object.keys(D).length !== 0 && message !== undefined) { // Make sure we don't log anything if we haven't yet loaded the configuration data.
     let consoleLogEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cconsoleLogEnabled);
     if (consoleLogEnabled === true) {
@@ -70,7 +69,6 @@ function consoleLog(classPath, message) {
       let debugFunctionSetting = false;
       let debugFileSetting = false;
       let debugSetting = false;
-      let outputMessage = '';
       let configurationName = '';
       let configurationNamespace = '';
 
@@ -99,7 +97,7 @@ function consoleLog(classPath, message) {
     console.log(msg.cWarningMessageIsUndefined);
     console.log(msg.cclassPathIs + classPath);
   }
-};
+}
 
 /**
  * @function consoleTableLog
@@ -112,26 +110,26 @@ function consoleLog(classPath, message) {
  * @date 2022/02/22
  */
 function consoleTableLog(classPath, tableData, columnNames) {
-  let functionName = consoleTableLog.name;
+  // let functionName = consoleTableLog.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`classPath is: ${classPath}`);
   // console.log(`tableData is: ${JSON.stringify(tableData)}`);
   // console.log(`columnNames is: ${JSON.stringify(columnNames)}`);
   console.table(tableData, columnNames);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function constantsValidationSummaryLog
  * @description Displays a constants log validation summary pass-fail results depending on the appropriate settings flag, which is passed in by the caller.
- * @param {string} message The message that should be displayed, if the setting determines taht it should be displayed.
+ * @param {string} message The message that should be displayed, if the setting determines that it should be displayed.
  * @param {boolean} passFail True or False to indicate if the pas or fail message should be displayed to the console log.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/29
  */
 function constantsValidationSummaryLog(message, passFail) {
-  let functionName = constantsValidationSummaryLog.name;
+  // let functionName = constantsValidationSummaryLog.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`message is: ${message}`);
   // console.log(`passFail is: ${passFail}`);
@@ -156,7 +154,7 @@ function constantsValidationSummaryLog(message, passFail) {
     }
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function consoleLogProcess
@@ -174,7 +172,7 @@ function constantsValidationSummaryLog(message, passFail) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToFileAndConsole) {
-  let functionName = consoleLogProcess.name;
+  // let functionName = consoleLogProcess.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`debugSetting is: ${debugSetting}`);
   // console.log(`logFile is: ${logFile}`);
@@ -211,7 +209,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
   }
   // console.log('Past all of the if-else-if-else blocks of code.');
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function validMessage
@@ -225,7 +223,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function validMessage(outputMessage, originalMessage) {
-  let functionName = validMessage.name;
+  // let functionName = validMessage.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`outputMessage is: ${outputMessage}`);
   // console.log(`originalMessage is: ${originalMessage}`);
@@ -247,7 +245,7 @@ function validMessage(outputMessage, originalMessage) {
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function parseClassPath
@@ -270,7 +268,6 @@ function parseClassPath(logFile, classPath, message) {
   let configurationNamespace = '';
   let debugFunctionsSetting = false;
   let debugFilesSetting = false;
-  let classPathArray = {};
   let returnData = '';
 
   configurationName = configurator.processConfigurationNameRules(classPath);
@@ -286,7 +283,6 @@ function parseClassPath(logFile, classPath, message) {
   // printMessageToFile(logFile, `debugFilesSetting is: ${debugFilesSetting}`);
   // console.log(`debugFilesSetting is: ${debugFilesSetting}`);
   if (debugFunctionsSetting || debugFilesSetting) {
-    // TODO: Implement the colorizing of the message here.
     message = colorizer.colorizeMessage(message, configurationNamespace, configurationName, debugFilesSetting, debugFunctionsSetting, false);
     // if (message.includes(bas.cDoublePercent)) {
     //   let myNameSpace = configurationNamespace + bas.cDot + configurationName;
@@ -308,14 +304,13 @@ function parseClassPath(logFile, classPath, message) {
     // console.log('Something is undefined && false or some combination of both, return false');
     returnData = false;
   } else {
-    // TODO: Implement the colorizing of the message here.
-    message = colorizer.colorizeMessage(message, className, functionName, undefined, undefined, true);
+    message = colorizer.colorizeMessage(message, classPath, functionName, undefined, undefined, true);
     returnData = message;
   }
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function getLogFileNameAndPath
@@ -325,7 +320,7 @@ function parseClassPath(logFile, classPath, message) {
  * @date 2022/03/11
  */
 function getLogFileNameAndPath() {
-  let functionName = getLogFileNameAndPath.name;
+  // let functionName = getLogFileNameAndPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   let returnData = '';
   let logFile = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientRootPath);
@@ -342,7 +337,7 @@ function getLogFileNameAndPath() {
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function printMessageToFile
@@ -366,7 +361,6 @@ function printMessageToFile(file, message) {
     if (configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled) === true) {
       // console.log('LogFileEnabled = true');
       if (message) {
-        // TODO: Once the colorizer is setup, remove the colorizer font styles from the string.
         message = colorizer.removeFontStyles(message);
       }
       if (configurator.getConfigurationSetting(wrd.csystem, cfg.cincludeDateTimeStampInLogFiles) === true) {
@@ -385,7 +379,7 @@ function printMessageToFile(file, message) {
     console.log(msg.cprintMessageToFile03);
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 export default {
   [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),

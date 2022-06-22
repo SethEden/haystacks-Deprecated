@@ -22,7 +22,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.characterArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -67,7 +67,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
 
 /**
  * @function doesArrayContainCharacter
- * @description Parses through all the elements of an array and determiens if any one of them contains the input character.
+ * @description Parses through all the elements of an array and determines if any one of them contains the input character.
  * @param {string|boolean|integer|object} inputData The character that should be searched for in the array of elements.
  * @param {array<string|boolean|integer|object>} inputMetaData The array that should be searched for the specified character/value/etc...
  * @return {boolean} True or False to indicate if the value was found or not found.
@@ -81,8 +81,8 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData && inputMetaData) {
-    for (let i = 0; i < inputMetaData.length; i++) {
-      let arrayElement = inputMetaData[i];
+    for (const element of inputMetaData) {
+      let arrayElement = element;
       if (arrayElement.includes(inputData) === true) {
         returnData = true;
         break;
@@ -98,8 +98,8 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
  * @function removeCharacterFromArray
  * @description Removes all instances of a character or value from all array elements.
  * @param {string|integer|boolean|float|object} inputData The character, integer, boolean, float or object
- * that should be reoved from all instances of the input array.
- * @param {array<string|boolean|integer|object>} inputMetaData Teh array from which all isntances of the input character, integer, etc...should be removed.
+ * that should be removed from all instances of the input array.
+ * @param {array<string|boolean|integer|object>} inputMetaData Teh array from which all instances of the input character, integer, etc...should be removed.
  * @return {array<string|boolean|integer|object>} The array after having the specified character removed from all elements of the input array.
  * @author Seth Hollingsead
  * @date 2022/01/19

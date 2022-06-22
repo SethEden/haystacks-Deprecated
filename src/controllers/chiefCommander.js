@@ -34,7 +34,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * @function bootStrapCommands
  * @description Initializes all of the commands and gets them added to the D-data structure.
  * @return {void}
- * @author Seth Holingsead
+ * @author Seth Hollingsead
  * @date 2022/02/01
  */
 function bootStrapCommands() {
@@ -42,7 +42,7 @@ function bootStrapCommands() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   commandBroker.bootStrapCommands();
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function addClientCommands
@@ -91,7 +91,7 @@ function loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName, con
   } else if (contextName.toUpperCase() === wrd.cAPPLICATION) {
     D[sys.cCommandsAliases][wrd.cApplication] = allCommandAliasesData;
   } else if (contextName.toUpperCase().includes(wrd.cPLUGIN)) {
-    // TODO: Split the contextName by the "." so we can get a namespace and use that to define where the plugn workflow data should go.
+    // TODO: Split the contextName by the "." so we can get a namespace and use that to define where the plugin workflow data should go.
     // Also make sure the data hasn't been loaded to the same plugin name already!
     // D[sys.cCommandsAliases][wrd.cPlugins][commandsAliasesFilePathConfigurationName] = allCommandAliasesData;
     console.log('ERROR: ---- PLUGIN Command Aliases data not yet supported!!!!!!!!!!!!');

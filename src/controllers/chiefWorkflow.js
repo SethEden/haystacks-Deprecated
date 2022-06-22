@@ -36,7 +36,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * Example:
  * contextName = "framework" => D['CommandWorkflows']['Framework']
  * contextName = "application" => D['CommandWorkflows']['Application']
- * contextNaem = "plugin" => D['CommandWorkflows']['Plugins']['<pluginName>']
+ * contextName = "plugin" => D['CommandWorkflows']['Plugins']['<pluginName>']
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/04
