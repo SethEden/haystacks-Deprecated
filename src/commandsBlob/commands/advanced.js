@@ -31,7 +31,7 @@ import stack from '../../structures/stack.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.advanced.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -48,7 +48,8 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * inputData[2] === command string 2
  * inputData[n] === command string n
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/22
  */
@@ -57,7 +58,8 @@ const commandSequencer = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
+  let commandSuccess = true;
   for (let i = 1; i < inputData.length; i++) {
     let commandString = inputData[i];
     let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
@@ -69,14 +71,12 @@ const commandSequencer = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.csecondaryCommandDelimiterIs + secondaryCommandArgsDelimiter);
     let tertiaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
     loggers.consoleLog(namespacePrefix + functionName, msg.ctertiaryCommandDelimiterIs + tertiaryCommandDelimiter);
-    // Replace 2nd & rd level delimiters and down-increemnt them so we are dealing with command strings that can actually be executed.
+    // Replace 2nd & rd level delimiters and down-increment them so we are dealing with command strings that can actually be executed.
     const regEx1 = new RegExp(secondaryCommandArgsDelimiter, bas.cg);
     commandString = commandString.replace(regEx1, primaryCommandDelimiter);
-    // console.log('commandString after secondaryCommandArgsDelimiter replace with primaryCommandDelimiter is: ' + commandString);
     if (commandString.includes(tertiaryCommandDelimiter)) {
       const regEx2 = new RegExp(tertiaryCommandDelimiter, bas.cg);
       commandString = commandString.replace(regEx2, secondaryCommandArgsDelimiter);
-      // console.log('commandString after tertiaryCommandDelimiter replace with secondaryCommandArgsDelimiter is: ' + commandString);
     }
     let currentCommand = commandBroker.getValidCommand(commandString, primaryCommandDelimiter);
     let commandArgs = commandBroker.getCommandArgs(commandString, primaryCommandDelimiter);
@@ -88,11 +88,17 @@ const commandSequencer = function(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandSequencerCommandToEnqueueIs + currentCommand);
       queue.enqueue(sys.cCommandQueue, currentCommand);
     } else { // End-if (currentCommand !== false)
-      // WARNING: nominal.commandSequencer: The specified command was not found, please enter a valid command and try again.
-      console.log(msg.ccommandSequencerMessage1 + msg.ccommandSequencerMessage2);
+      // WARNING: advanced.commandSequencer: The specified command was not found, please enter a valid command and try again. <commandString>
+      let errorMessage = msg.ccommandSequencerMessage1 + msg.ccommandSequencerMessage2 + bas.cSpace + commandString;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
+      commandSuccess = false;
     }
   } // End-for (let i = 1; i < inputData.length; i++)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  if (commandSuccess === true) {
+    returnData[1] = commandSuccess;
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -108,7 +114,8 @@ const commandSequencer = function(inputData, inputMetaData) {
  * inputData[0] === 'workflow'
  * inputData[1] === workflowName
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/2/24
  */
@@ -117,18 +124,21 @@ const workflow = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
   let workflowName = inputData[1];
   let workflowValue = workflowBroker.getWorkflow(workflowName);
   if (workflowValue !== false && typeof workflowValue != wrd.cobject) {
     queue.enqueue(sys.cCommandQueue, workflowValue);
+    returnData[1] = true;
   } else {
-    // WARNING: nominal.workflow: The specified workflow:
+    // WARNING: advanced.workflow: The specified workflow:
     // was not found in either the system defined workflows, or client defined workflows.
     // Please enter a valid workflow name and try again.
-    console.log(msg.cworkflowMessage1 + workflowName + bas.cComa + msg.cworkflowMessage2 + msg.cworkflowMessage3);
+    let errorMessage = msg.cworkflowMessage1 + workflowName + bas.cComa + msg.cworkflowMessage2 + msg.cworkflowMessage3;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -138,7 +148,7 @@ const workflow = function(inputData, inputMetaData) {
  * @description Executes a user specified business rule with some input.
  * @param {array<boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
- * extracts the case the user has entered a busienss rule name and perhpas some rule inputs.
+ * extracts the case the user has entered a business rule name and perhaps some rule inputs.
  * inputData[0] === 'businessRule'
  * inputData[1] === rule 1 (including arguments with secondary delimiter)
  * inputData[2] === rule 2 (including arguments with secondary delimiter)
@@ -149,9 +159,10 @@ const workflow = function(inputData, inputMetaData) {
  * pass the outputs as inputs as discussed above.
  * It is assumed if the user wanted to execute a sequence of business rules each with their own inputs,
  * then the user should use the command sequencer in combination with this function
- * to call a series of busienss rules each with their own inputs.
+ * to call a series of business rules each with their own inputs.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/24
  * @NOTE When executing the business rule: replaceCharacterWithCharacter with a regular expression such as: regEx:[+]:flags:g
@@ -163,12 +174,10 @@ const businessRule = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
-  let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
+  let returnData = [true, {}];
   let rules = [];
   let ruleInputData, ruleInputMetaData;
   let ruleOutput = '';
-  let addedARule = false;
   let businessRuleOutput = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRuleOutput);
   let businessRuleMetricsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableBusinessRulePerformanceMetrics);
   let businessRuleStartTime = '';
@@ -183,7 +192,6 @@ const businessRule = function(inputData, inputMetaData) {
     let currentRuleArg = inputData[i]; // Check to see if this rule has inputs separate from the rule name.
     // currentRule is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentRuleIs + JSON.stringify(currentRuleArg));
-    let ruleArgs = [];
     if (i === 1) {
       // rules = lexical.parseBusinessRuleArgument(currentRuleArg, i);
       rules = ruleBroker.processRules([currentRuleArg, i], [biz.cparseBusinessRuleArgument]);
@@ -223,16 +231,17 @@ const businessRule = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleStartTimeIs + businessRuleStartTime);
   } // End-if (businessRuleMetricsEnabled === true)
   ruleOutput = ruleBroker.processRules([ruleInputData, ruleInputMetaData], rules);
+  returnData[1] = ruleOutput;
   if (businessRuleMetricsEnabled === true) {
     let performanceTrackingObject = {};
     businessRuleEndTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
     // BusinessRule End time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleEndTimeIs + businessRuleEndTime);
-    // Now compute the delta time so we know how long it took to run that busienss rule.
+    // Now compute the delta time so we know how long it took to run that business rule.
     businessRuleDeltaTime = ruleBroker.processRules([businessRuleStartTime, businessRuleEndTime], [biz.ccomputeDeltaTime]);
     // BusinessRule run-time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cBusinessRuleRunTimeIs + businessRuleDeltaTime);
-    // Check to make sure the business rule performance trackign stack exists or does not exist.
+    // Check to make sure the business rule performance tracking stack exists or does not exist.
     if (D[cfg.cbusinessRulesPerformanceTrackingStack] === undefined) {
       stack.initStack(cfg.cbusinessRulesPerformanceTrackingStack);
     }
@@ -251,10 +260,7 @@ const businessRule = function(inputData, inputMetaData) {
     // Rule output is:
     console.log(msg.cRuleOutputIs + JSON.stringify(ruleOutput));
   }
-  businessRuleStartTime = '';
-  businessRuleEndTime = '';
-  businessRuleDeltaTime = '';
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -270,7 +276,8 @@ const businessRule = function(inputData, inputMetaData) {
  * inputData[1] === command string
  * inputData[2] === number of times to enqueue the above command string
  * @param {string} inputMetaData Not sued for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
@@ -279,8 +286,8 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
-  let foundLegitNumber = false;
+  let returnData = [true, {}];
+  let errorMessage = '';
   let legitNumberIndex = -1;
   let replaceCharacterWithCharacterRule = [biz.creplaceCharacterWithCharacter];
   let primaryCommandDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter);
@@ -314,12 +321,12 @@ const commandGenerator = function(inputData, inputMetaData) {
   // replaceCharacterWithCharacterRule is:
   loggers.consoleLog(namespacePrefix + functionName, msg.creplaceCharacterWithCharacterRuleIs + JSON.stringify(replaceCharacterWithCharacterRule));
   // let secondaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + secondaryCommandArgsDelimiter, bas.cg);
-  let secondaryCommandDelimiterRegEx = new RegExp(`[${secondaryCommandArgsDelimiter}]`, bas.cg);
+  // let secondaryCommandDelimiterRegEx = new RegExp(`[${secondaryCommandArgsDelimiter}]`, bas.cg);
   commandString = ruleBroker.processRules([commandString, [secondaryCommandArgsDelimiter, primaryCommandDelimiter]], replaceCharacterWithCharacterRule);
   // After attempting to replace the secondaryCommandArgsDelimiter with the primaryCommandDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage1 + commandString);
   // let tertiaryCommandDelimiterRegEx = new RegExp(bas.cBackSlash + tertiaryCommandDelimiter, bas.cg);
-  let tertiaryCommandDelimiterRegEx = new RegExp(`[${tertiaryCommandDelimiter}]`, bas.cg);
+  // let tertiaryCommandDelimiterRegEx = new RegExp(`[${tertiaryCommandDelimiter}]`, bas.cg);
   commandString = ruleBroker.processRules([commandString, [tertiaryCommandDelimiter, secondaryCommandArgsDelimiter]], replaceCharacterWithCharacterRule);
   // After attempting to replace the teriaryCommandDelimiter with the secondaryCommandArgsDelimiter commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandGeneratorMessage2 + commandString);
@@ -331,7 +338,6 @@ const commandGenerator = function(inputData, inputMetaData) {
     if (inputData.length >= 3) {
       for (let j = 2; j <= inputData.length - 1; j++) {
         if (isNaN(inputData[j].trim()) === false) {
-          foundLegitNumber = true;
           legitNumberIndex = j;
           break;
         }
@@ -343,20 +349,27 @@ const commandGenerator = function(inputData, inputMetaData) {
         for (let i = 0; i < numberOfCommands; i++) {
           queue.enqueue(sys.cCommandQueue, commandString);
         }
+        returnData[1] = true;
       } else {
-        // WARNING: nominal.commandGenerator: Must enter a number greater than 0, number entered:
-        console.log(mg.ccommandGeneratorMessage3 + numberOfCommands);
+        // WARNING: advanced.commandGenerator: Must enter a number greater than 0, number entered:
+        errorMessage = msg.ccommandGeneratorMessage3 + numberOfCommands;
+        console.log(errorMessage);
+        returnData[1] = errorMessage;
       }
     } else {
-      // WARNING: nominal.commandGenerator: Number entered for the number of commands to generate is not a number:
-      console.log(msg.ccommandGeneratorMessage4 + inputData[2]);
+      // WARNING: advanced.commandGenerator: Number entered for the number of commands to generate is not a number:
+      errorMessage = msg.ccommandGeneratorMessage4 + inputData[2];
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
   } else {
-    // WARNING: nominal.commandGenerator: The specified command:
+    // WARNING: advanced.commandGenerator: The specified command:
     // was not found, please enter a valid command and try again.
-    console.log(msg.ccommandGeneratorMessage5 + commandString + msg.ccommandGeneratorMessage6);
+    errorMessage = msg.ccommandGeneratorMessage5 + commandString + msg.ccommandGeneratorMessage6;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -369,13 +382,14 @@ const commandGenerator = function(inputData, inputMetaData) {
  * possible combinations of command words and command word acronyms.
  * @param {array<object|boolean|string|integer>} inputData An array that could actually contain anything,
  * depending on what the user entered. But the function filters all of that internally and
- * parses the data string object into a JSON object with values that are the command words and command word abreviations.
+ * parses the data string object into a JSON object with values that are the command words and command word abbreviations.
  * inputData[0] === 'commandAliasGenerator'
  * inputData[1] === A JSON object containing the data necessary for defining all command words and command aliases.
  * @NOTE Test string for argument driven interface for this command:
  * {"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"}
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/25
  */
@@ -384,7 +398,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
   let commandName = '';
   let commandWordAliasList = '';
   let validCommandName = false;
@@ -415,8 +429,8 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
     // camelCaseCommandNameArray is:
     loggers.consoleLog(namespacePrefix + functionName, msg.ccamelCaseCommandNameArrayIs + JSON.stringify(camelCaseCommandNameArray));
 
-    for (let i = 0; i < camelCaseCommandNameArray.length; i++) {
-      let commandWord = camelCaseCommandNameArray[i];
+    for (const element of camelCaseCommandNameArray) {
+      let commandWord = element;
       // current commandWord is:
       console.log(msg.ccurrentCommandWordIs + commandWord);
       validCommandWordAliasList = false;
@@ -431,7 +445,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
           if (validCommandWordAliasList === false) {
             // INVALID INPUT: Please enter a valid command word alias list.
             console.log(msg.ccommandAliasGeneratorMessage4);
-          } else if (commandWordAliasList !== '') { // As long as the user entered something we shoudl be able to proceed!
+          } else if (commandWordAliasList !== '') { // As long as the user entered something we should be able to proceed!
             validCommandWordAliasList = true;
           }
         } // End-while (validCommandWordAliasList === false)
@@ -448,12 +462,14 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
       console.log(msg.cPARSER_ERROR + err.message);
       // INVALID COMMAND INPUT: Please enter valid command data when trying to call with parameters.
       console.log(msg.ccommandAliasGeneratorMessage5);
+      returnData[1] = msg.ccommandAliasGeneratorMessage5;
       // EXAMPLE: {"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"}
       console.log(msg.ccommandAliasGeneratorMessage2);
     }
   } else {
     // INVALID COMMAND INPUT: Please enter valid command data when trying to call with parameters.
     console.log(msg.ccommandAliasGeneratorMessage5);
+    returnData[1] = msg.ccommandAliasGeneratorMessage5;
     // EXAMPLE: {"constants":"c,const","Generator":"g,gen,genrtr","List":"l,lst"}
     console.log(msg.ccommandAliasGeneratorMessage2);
   }
@@ -462,11 +478,10 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
     // commandAliasDataStructure is:
     loggers.consoleLog(namespacePrefix, functionName, msg.ccommandAliasDataStructureIs + JSON.stringify(commandAliasDataStructure));
     // At this point the user should have entered all valid data and we should be ready to proceed.
-    // TODO: Start generating all the possible combinations of the command words and command word aliases.
     // Pass the data object to a business rule to do the above task.
-    let commandAliases = ruleBroker.processRules([commandAliasDataStructure, ''], [biz.cgenerateCommandAliases]);
+    returnData[1] = ruleBroker.processRules([commandAliasDataStructure, ''], [biz.cgenerateCommandAliases]);
   } // End-if (validCommandInput === true)
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

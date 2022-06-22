@@ -10,7 +10,7 @@
 
 // External imports
 import hayConst from '@haystacks/constants';
-const {bas, cfg, sys, wrd} = hayConst;
+const {bas, sys, wrd} = hayConst;
 
 export const cApplicationName = wrd.ctest + wrd.cHarness; // testHarness
 export const cAppDevPath = bas.cForwardSlash + wrd.csrc + bas.cForwardSlash; // /src/

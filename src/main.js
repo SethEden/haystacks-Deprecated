@@ -235,8 +235,9 @@ function isCommandQueueEmpty() {
  * @description This is a wrapper function for the warden.processCommandQueue.
  * This leads to a call to the chiefCommander.processCommand to process an individual command.
  * This is because a command could actually invoke a command workflow that might enqueue a bunch of commands
- * to the command queue. All of them must be executed in sequence as part of the main appication loop.
- * @return {boolean} A True or False value to indicate if the command loop should termiante when it's done.
+ * to the command queue. All of them must be executed in sequence as part of the main application loop.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/18
  */
@@ -245,7 +246,7 @@ function processCommandQueue() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = false;
   returnData = warden.processCommandQueue();
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

@@ -49,7 +49,7 @@ function bootStrapCommands() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   commandsLibrary.initCommandsLibrary();
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function addClientCommands
@@ -69,7 +69,7 @@ function addClientCommands(clientCommands) {
     D[wrd.cCommands] = {...D[wrd.cCommands], [`${key}`]: value};
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function getValidCommand
@@ -85,20 +85,18 @@ function addClientCommands(clientCommands) {
 function getValidCommand(commandString, commandDelimiter) {
   let functionName = getValidCommand.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // cmmandString is:
+  // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   // commandDelimiter is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandDelimiterIs + commandDelimiter);
   let returnData = false;
   let foundValidCommand = false;
-  let foundSomeCommandArgs = false;
   let commandToExecute, commandArgs;
   let commandArgsDelimiter = commandDelimiter;
   if (commandDelimiter === null || commandDelimiter !== commandDelimiter || commandDelimiter === undefined) {
     commandArgsDelimiter = bas.cSpace;
   }
   if (commandString && commandString.includes(commandArgsDelimiter) === true) {
-    foundSomeCommandArgs = true;
     commandArgs = commandString.split(commandArgsDelimiter);
     commandToExecute = commandArgs[0];
   } else {
@@ -110,7 +108,6 @@ function getValidCommand(commandString, commandDelimiter) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
   if (commandString) {
     if (D[wrd.cCommands][commandToExecute] !== undefined) {
-      foundValidCommand = true;
       returnData = commandToExecute;
     } else { // else-clause if (D[wrd.cCommands][commandToExecute] !== undefined)
       // else-clause looking for command aliases.
@@ -143,7 +140,7 @@ function getValidCommand(commandString, commandDelimiter) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function countMatchingCommandAlias
@@ -173,8 +170,8 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
         if (commandAliasData[commandAliasEntity][wrd.cAliases] != undefined) {
           let aliasList = commandAliasData[commandAliasEntity][wrd.cAliases];
           let arrayOfAliases = aliasList.split(bas.cComa);
-          for (let i = 0; i < arrayOfAliases.length; i++) {
-            let currentAlias = arrayOfAliases[i];
+          for (const element of arrayOfAliases) {
+            let currentAlias = element;
             loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
             loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasNameIs + commandAliasName);
             if (commandAliasName === currentAlias) {
@@ -209,7 +206,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasCountIs + JSON.stringify(commandAliasCount));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return commandAliasCount;
-};
+}
 
 /**
  * @function searchCommandAlias
@@ -239,8 +236,8 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
         if (commandAliasData[commandAliasEntity][wrd.cAliases] != undefined) {
           let aliasList = commandAliasData[commandAliasEntity][wrd.cAliases];
           let arrayOfAliases = aliasList.split(bas.cComa);
-          for (let i = 0; i < arrayOfAliases.length; i++) {
-            let currentAlias = arrayOfAliases[i];
+          for (const element of arrayOfAliases) {
+            let currentAlias = element;
             if (commandAliasName === currentAlias ||
             commandAliasName === bas.cDash + currentAlias ||
             commandAliasName === bas.cDoubleDash + currentAlias ||
@@ -266,7 +263,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
           let commandAliasesObjectTemp = searchCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // commandAliasesObjectTemp is:
           loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasesObjectTempIs + JSON.stringify(commandAliasesObjectTemp));
-          if (commandAliasesObjectTemp != false) {
+          if (commandAliasesObjectTemp !== false) {
             commandAliasObject = commandAliasesObjectTemp;
             break;
           }
@@ -283,7 +280,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandAliasObjectIs + JSON.stringify(commandAliasObject));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return commandAliasObject;
-};
+}
 
 /**
  * @function getAllCommandAliasData
@@ -342,7 +339,7 @@ function getAllCommandAliasData(commandAliasDataStructure) {
   loggers.consoleLog(namespacePrefix + functionName, msg.callCommandsDataIs + JSON.stringify(allCommandsData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allCommandsData;
-};
+}
 
 /**
  * @function getCommandNamespaceDataObject
@@ -377,7 +374,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
     } else if (typeof commandAliasDataStructure[commandAliasEntity] === wrd.cobject) {
       // Search recursively
       let namespaceCommandsTempObject = getCommandNamespaceDataObject(commandAliasDataStructure[commandAliasEntity], namespaceToFind);
-      if (namespaceCommandsTempObject != false) {
+      if (namespaceCommandsTempObject !== false) {
         // Then we must have found the namespace object we were looking for in the recursion call.
         // Just return it, and skip out of the loop.
         namespaceCommandsObject = namespaceCommandsTempObject;
@@ -389,7 +386,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
   loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceCommandsObjectIs + JSON.stringify(namespaceCommandsObject));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return namespaceCommandsObject;
-};
+}
 
 /**
  * @function getCommandArgs
@@ -403,12 +400,11 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
 function getCommandArgs(commandString, commandDelimiter) {
   let functionName = getCommandArgs.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  // cmmandString is:
+  // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
   // commandDelimiter is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandDelimiterIs + commandDelimiter);
   let returnData = false;
-  let foundValidCommand = false;
   let commandArgsDelimiter = commandDelimiter;
   let isOddRule = [biz.cisOdd];
   let replaceCharacterAtIndexRule = [biz.creplaceCharacterAtIndex];
@@ -422,20 +418,20 @@ function getCommandArgs(commandString, commandDelimiter) {
     // NOTE: All commands that enqueue or execute commands need to pass through this function.
     // There is a case where the user might pass a string with spaces or other code/syntax.
     // So we need to split first by single character string delimiters and parse the
-    // non-string array elements to parse command arguments without accidently parsing string literal values as command arguments.
+    // non-string array elements to parse command arguments without accidentally parsing string literal values as command arguments.
     if (commandString.includes(bas.cBackTickQuote) === true) {
       // commandString contains either a singleQuote or a backTickQuote
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringContainsEitherSingleQuoteOrBackTickQuote);
       let preSplitCommandString;
       if (commandString.includes(bas.cBackTickQuote) === true) {
-        // commandString contaisn a singleQuote!
+        // commandString contains a singleQuote!
         loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringContainsSingleQuote);
         // NOTE: We cannot actually just replace ach single quote, we need to tag each single quote in pairs of 2.
         // The first one should be post-tagged, i.e. replace "'" with "'~" and the second should be pre-tagged i.e. replace "'" with "~'".
         // Then if there are more single quotes, the thirst post-tagged, i.e. replace "'" with "'~", etc...
         let numberOfSingleQuotes = commandString.split(bas.cBackTickQuote).length - 1;
         // Determine if the number of single quotes is odd or even?
-        // About to call the rule broker to process on the number of single quotes and determien if it-be even or odd.
+        // About to call the rule broker to process on the number of single quotes and determine if it-be even or odd.
         loggers.consoleLog(namespacePrefix + functionName, msg.cgetCommandArgsMessage1 + sys.cgetCommandArgsMessage2);
         if (numberOfSingleQuotes >= 2 && ruleBroker.processRules([numberOfSingleQuotes, ''], isOddRule) === false) {
           // numberOfSingleQuotes is >= 2 & the numberOfSingleQuotes is EVEN! YAY!
@@ -452,7 +448,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               // Rather than use the above, we will make a business rule o replace at index, the above replaces all isntances and we don't want that!
               commandString = ruleBroker.processRules([commandString, [indexOfStringDelimiter, bas.cBackTickQuote + bas.cTilde]], replaceCharacterAtIndexRule);
               stringLiteralCommandDelimiterAdded = true;
-              // commandString after taggng the first string delimiter:
+              // commandString after tagging the first string delimiter:
               loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringAfterTaggingTheFirstStringDelimiter + commandString);
             } else {
               indexOfStringDelimiter = commandString.indexOf(bas.cBackTickQuote, indexOfStringDelimiter + 1);
@@ -460,7 +456,7 @@ function getCommandArgs(commandString, commandDelimiter) {
               loggers.consoleLog(namespacePrefix + functionName, msg.cAdditionalIndexIs + indexOfStringDelimiter);
               // Determine if it is odd or even.
               // NOTE: We start our count with 0 which would technically be our odd, then 1 should be even, but 1 is an odd number, so the logic here should actually be backwards.
-              // an even value for "i" would be the odd i-th delimier value.
+              // an even value for "i" would be the odd i-th delimiter value.
               if (ruleBroker.processRules([i.toString(), ''], isOddRule) === true) {
                 // We are on the odd index, 1, 3, 5, etc...
                 // odd index
@@ -481,7 +477,7 @@ function getCommandArgs(commandString, commandDelimiter) {
             }
           } // End-for (let i = 0; i < numberOfSingleQuotes; i++)
           preSplitCommandString = commandString.split(bas.cBackTickQuote);
-          // Now we can check which segments of the array contain our Tilde character, since we used that to tag our signle quotes.
+          // Now we can check which segments of the array contain our Tilde character, since we used that to tag our single quotes.
           // And the array element that contains the Tilde tag we wil not split.
           // Ultimately everything needs to be returned as an array, make sure we trim the array elements so we don't get any empty array elements.
           // preSpitCommandString is:
@@ -495,20 +491,19 @@ function getCommandArgs(commandString, commandDelimiter) {
             }
             if (preSplitCommandStringElement.includes(bas.cTilde) === false) {
               postSplitCommandString = preSplitCommandStringElement.split(commandArgsDelimiter);
-              for (let k = 0; k < postSplitCommandString.length; k++) {
-                if (postSplitCommandString[k] !== '') {
+              for (const element of postSplitCommandString) {
+                if (element !== '') {
                   // postSplitCommandString[k] is:
-                  loggers.consoleLog(namespacePrefix + functionName, msg.cpostSplitCommandStringIs + JSON.stringify(postSplitCommandString[k]));
-                  returnData.push(postSplitCommandString[k]);
+                  loggers.consoleLog(namespacePrefix + functionName, msg.cpostSplitCommandStringIs + JSON.stringify(element));
+                  returnData.push(element);
                   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
                 } // End-if (postSplitCommandString[k] !== '')
               } // End-for (let k = 0; k < postSplitCommandString.length; k++)
-              postSplitCommandString = []; // Clear it for the next time around the loop.
             } else {
               // NOTE: We cannot just push the quoted string array back onto the array. Well we might be able to,
               // but if the last character on the last element of the returnData array is a secondaryCommandArgsDelimiter
               // then we need to just append our string to that array element, after we remove the tilde string tags,
-              // and replace them with our signle quotes again.
+              // and replace them with our single quotes again.
               if (returnData[returnData.length - 1].slice(-1) === secondaryCommandArgsDelimiter) {
                 preSplitCommandStringElement = ruleBroker.processRules([preSplitCommandStringElement, [/~/g, bas.cBackTickQuote]], replaceTildesWithSingleQuoteRule);
                 returnData[returnData.length - 1] = returnData[returnData.length - 1] + preSplitCommandStringElement;
@@ -540,7 +535,7 @@ function getCommandArgs(commandString, commandDelimiter) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function executeCommand
@@ -548,21 +543,22 @@ function getCommandArgs(commandString, commandDelimiter) {
  * This function will parse all of that out of the command lien variable that is passed in.
  * And finally pass all of that data on the execution of the actual command.
  * @param {string} commandString The command to execute along with all the associated command arguments, data & meta-data.
- * @return {boolean} A True or False value to indicate if the application should exit or not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/02
  */
 function executeCommand(commandString) {
   // Here we need to do all of the parsing for the command.
-  // Might be a good idea to rely on busness rules to do much of the parsing for us!
+  // Might be a good idea to rely on business rules to do much of the parsing for us!
   // Also don't forget this is where we will need to implement the command performance
-  // trackng & command results processing such as pass-fail,
+  // tracking & command results processing such as pass-fail,
   // so that when a chain of commands has completed execution we can evaluate command statistics and metrics.
   let functionName = executeCommand.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // commandString is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandStringIs + commandString);
-  let returnData = false;
+  let returnData = [];
   let commandToExecute = getValidCommand(commandString, configurator.getConfigurationSetting(wrd.csystem, cfg.cprimaryCommandDelimiter));
   // commandToExecute is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandToExecuteIs + commandToExecute);
@@ -579,7 +575,7 @@ function executeCommand(commandString) {
     // After executing we wil capture the end time and then
     // compute the difference to determine how many milliseconds it took to run the command.
     commandStartTime = ruleBroker.processRules([gen.cYYYYMMDD_HHmmss_SSS, ''], [biz.cgetNowMoment]);
-    // Cmmand Start time is:
+    // Command Start time is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cCommandStartTimeIs + commandStartTime);
   } // End-if (commandMetricsEnabled === true)
   if (commandToExecute !== false && commandArgs !== false) {
@@ -587,13 +583,14 @@ function executeCommand(commandString) {
     returnData = D[wrd.cCommands][commandToExecute](commandArgs, '');
   } else if (commandToExecute !== false && commandArgs === false) {
     // This could be a command without any arguments.
+    // console.log('This could be a command without any arguments.');
     returnData = D[wrd.cCommands][commandToExecute]('', '');
   } else {
     // This command does not exist, nothing to execute, but we don't want the application to exit.
     // An error message should have already been thrown, but we should throw another one here.
     // WARNING: Command does not exist, please enter a valid command and try again!
     console.log(msg.cexecuteCommandMessage1);
-    returnData = true;
+    returnData = [true, false];
   }
   if (commandMetricsEnabled === true && commandToExecute !== '' && commandToExecute !== false) {
     let performanceTrackingObject = {};
@@ -622,7 +619,7 @@ function executeCommand(commandString) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   [fnc.cbootStrapCommands]: () => bootStrapCommands(),

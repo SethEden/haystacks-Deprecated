@@ -22,7 +22,7 @@ import queue from '../../structures/queue.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cmd, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.constant.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -34,7 +34,8 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 * Also checks to see if that new constant is already defined in the constants system.
 * @param {string} inputData Parameterized constant to generate for.
 * @param {string} inputMetaData Not used for this business rule.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/03/30
 */
@@ -43,7 +44,8 @@ const constantsGenerator = function(inputData, inputMetaData) {
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-   let returnData = true;
+   let returnData = [true, []];
+   let errorMessage = '';
    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
      let validEntry = false;
      let userDefinedConstant = '';
@@ -65,14 +67,14 @@ const constantsGenerator = function(inputData, inputMetaData) {
      } else if (inputData.length === 2) {
        userDefinedConstant = inputData[1];
      } else {
-       // We need to recombine all of the array elements after the 0-th element into a single string with spaces inbetween.
+       // We need to recombine all of the array elements after the 0-th element into a single string with spaces in between.
        userDefinedConstant = ruleBroker.processRules([inputData, ''], recombineArrayInputRule);
      }
      // userDefinedConstant is:
      loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantIs + userDefinedConstant);
 
      // First lets check if the constant is already defined, so we can warn the user.
-     // NOTE: It could be that the developer is just lookng to optimize the existing constant,
+     // NOTE: It could be that the developer is just looking to optimize the existing constant,
      // but if not, a warning to the user would be a good idea!
      let doesConstantExist = ruleBroker.processRules([userDefinedConstant, ''], [biz.cdoesConstantExist]);
      if (doesConstantExist === true) {
@@ -87,23 +89,27 @@ const constantsGenerator = function(inputData, inputMetaData) {
      // Now begin the fulfillment algorithm.
      if (wordCount > 1) {
        let wordsArray = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetWordsArrayFromString]);
-       for (let j = 0; j < wordsArray.length; j++) {
+       for (const element of wordsArray) {
+         let optimizedWordConstantDefinition = ruleBroker.processRules([element.trim(), element.trim()], constantsFulfillmentSystemRule);
          // Optimized constant definition for word:
-         console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + wordsArray[j] + bas.cSpace + bas.cEqual + bas.cSpace +
-         ruleBroker.processRules([wordsArray[j].trim(), wordsArray[j].trim()], constantsFulfillmentSystemRule));
+         console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + element + bas.cSpace + bas.cEqual + bas.cSpace +
+          optimizedWordConstantDefinition);
+          returnData[1].push(optimizedWordConstantDefinition);
        } // End-for (let j = 0; j < wordsArray.length; j++)
      } else { // There is only a single word to process.
-       // output a proper line of code:
-       // export const csomething = wrd.csome + wrd.cthing; // something
-       console.log(wrd.cexport + bas.cSpace + gen.cconst + bas.cSpace + bas.cc + userDefinedConstant + bas.cSpace + bas.cEqual + bas.cSpace +
-       ruleBroker.processRules([userDefinedConstant, userDefinedConstant], constantsFulfillmentSystemRule) +
-       bas.cSemiColon + bas.cSpace + bas.cDoubleForwardSlash + bas.cSpace + userDefinedConstant);
+      returnData[1] = ruleBroker.processRules([userDefinedConstant, userDefinedConstant], constantsFulfillmentSystemRule)
+      // output a proper line of code:
+      // export const csomething = wrd.csome + wrd.cthing; // something
+      console.log(wrd.cexport + bas.cSpace + gen.cconst + bas.cSpace + bas.cc + userDefinedConstant + bas.cSpace + bas.cEqual + bas.cSpace +
+        returnData[1] + bas.cSemiColon + bas.cSpace + bas.cDoubleForwardSlash + bas.cSpace + userDefinedConstant);
      }
    } else {
      // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
-     console.log(msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4);
+     errorMessage = msg.cconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
+     console.log(errorMessage);
+     returnData[1] = errorMessage;
    }
-   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
 };
@@ -116,7 +122,8 @@ const constantsGenerator = function(inputData, inputMetaData) {
 * @NOTE Testing string: constGenL somethingXML,whatever that is,A basic NodeJS template App,that can easily
 * @param {string} inputData Parameterized coma delimited list of constants to be auto-generated
 * @param {string} inputMetaData Not used for this business rule.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/03/30
 */
@@ -125,7 +132,8 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-   let returnData = true;
+   let returnData = [true, {}];
+   let errorMessage = '';
    if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
      let validEntry = false;
      let userDefinedConstantList = '';
@@ -157,34 +165,40 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
        // userDefinedConstantsListArray is:
        loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantsListArrayIs + JSON.stringify(userDefinedConstantsListArray));
        if (userDefinedConstantsListArray.length > 1) {
-         for (let i = 0; i < userDefinedConstantsListArray.length; i++) {
-           queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + userDefinedConstantsListArray[i].trim());
+         for (const element of userDefinedConstantsListArray) {
+           queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + element.trim());
          }
-       } else if (userDefinedConstantsLIsArray.length === 1) {
+         returnData[1] = true;
+       } else if (userDefinedConstantsListArray.length === 1) {
          // Just enqueue the constants Generator command with the input directly.
          queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + userDefinedConstantsListArray[0].trim());
+         returnData[1] = true;
        }
      } else {
        // userDefinedConstantsList DOES NOT contain comas
        loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantsListDoesNotContainComas);
        queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + userDefinedConstantList.trim());
+       returnData[1] = true;
      }
    } else {
      // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
-     console.log(msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4);
+     errorMessage = msg.cconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
+     console.log(errorMessage);
+     returnData[1] = errorMessage;
    }
-   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
 };
 
 /**
  * @function constantsPatternRecognizer
- * @description Walks through a list of constants lookng for patterns internal to the strings.
+ * @description Walks through a list of constants looking for patterns internal to the strings.
  * @param {string} inputData Parameterized coma delimited list of constants to be
  * passed through pattern recognition to find common strings among them.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/03/31
  */
@@ -193,7 +207,8 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
+  let errorMessage = '';
   if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true) {
     let validEntry = false;
     let userDefinedConstantList = '';
@@ -218,7 +233,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
       // The array elements will then be used to enqueue the command constantsGenerator.
       userDefinedConstantList = ruleBroker.processRules([inputData, ''], [biz.crecombineStringArrayWithSpaces]);
     }
-    // userDefinedConstantLiset is:
+    // userDefinedConstantList is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cuserDefinedConstantListIs + userDefinedConstantList);
     if (userDefinedConstantList.includes(bas.cComa) === true) {
       wordsArray = userDefinedConstantList.split(bas.cComa);
@@ -239,12 +254,15 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
     let constantsPatternGenerationSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsPatternGeneration);
     if (constantsPatternGenerationSetting === true) {
       queue.enqueue(sys.cCommandQueue, cmd.cconstantsGeneratorList + bas.cSpace + newConstantsList);
+      returnData[1] = newConstantsList;
     }
   } else {
     // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
-    console.log(msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4);
+    errorMessage = msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -256,7 +274,8 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
  * inputData[0] = evaluateConstant
  * inputData[1] = constantToBeEvaluated - The constant that should be resolved and printed to the output if it exists.
  * @param {string} inputMetaData Not used for this command.
- * @return {boolean} True to indicate that the application should not exit.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/05/11
  */
@@ -265,21 +284,25 @@ const evaluateConstant = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, {}];
+  let errorMessage = '';
   if (inputData && inputData.length > 1) {
     if (ruleBroker.processRules([inputData[1], ''], [biz.cdoesConstantExist]) === true) {
-      console.log(inputData[1] + bas.cSpace + bas.cEqual + bas.cSpace + ruleBroker.processRules([inputData[1], ''], [biz.cgetConstantActualValue]));
+      returnData[1] = ruleBroker.processRules([inputData[1], ''], [biz.cgetConstantActualValue]);
+      console.log(inputData[1] + bas.cSpace + bas.cEqual + bas.cSpace + returnData[1]);
     } else {
       // The constant does not exist:
-      console.log(msg.cTheConstantDoesNotExist + inputData[1]);
+      errorMessage = msg.cTheConstantDoesNotExist + inputData[1];
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
   } else {
     // ERROR: No constant value entered, please enter a constant name to evaluate.
-    console.log(msg.cevaluateConstantMessage01)
+    errorMessage = msg.cevaluateConstantMessage01;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
   }
-  // doesConstantExist
-  // getConstantActualValue
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

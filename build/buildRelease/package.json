@@ -5,7 +5,7 @@
   "main": "build.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node ./src/buildRelease.js",
+    "start": "node ./src/buildRelease.js",
     "vers": "standard-version -m \"chore(release) version %s \"",
     "docs": "jsdoc -c jsdoc.json"
   },
@@ -23,8 +23,8 @@
   "author": "Seth Hollingsead",
   "license": "MIT",
   "dependencies": {
-    "haystacks": "0.0.16",
-    "@haystacks/constants": "0.0.13"
+    "haystacks": "0.0.17",
+    "@haystacks/constants": "0.0.14"
   },
   "bugs": {
     "url": "https://github.com/SethEden/haystacks/issues"
