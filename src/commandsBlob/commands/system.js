@@ -44,7 +44,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
-const echoCommand = function(inputData, inputMetaData) {
+function echoCommand(inputData, inputMetaData) {
   let functionName = echoCommand.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -64,7 +64,7 @@ const echoCommand = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function exit
@@ -77,7 +77,7 @@ const echoCommand = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
-const exit = function(inputData, inputMetaData) {
+function exit(inputData, inputMetaData) {
   let functionName = exit.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -86,7 +86,7 @@ const exit = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function version
@@ -100,7 +100,7 @@ const exit = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
-const version = function(inputData, inputMetaData) {
+function version(inputData, inputMetaData) {
   let functionName = version.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -125,7 +125,7 @@ const version = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function about
@@ -139,7 +139,7 @@ const version = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
-const about = function(inputData, inputMetaData) {
+function about(inputData, inputMetaData) {
   let functionName = about.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -164,7 +164,7 @@ const about = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function name
@@ -182,7 +182,7 @@ const about = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
-const name = function(inputData, inputMetaData) {
+function name(inputData, inputMetaData) {
   let functionName = name.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -220,7 +220,7 @@ const name = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function clearScreen
@@ -233,7 +233,7 @@ const name = function(inputData, inputMetaData) {
 * @date 2022/02/04
 */
 // eslint-disable-next-line no-unused-vars
-const clearScreen = function(inputData, inputMetaData) {
+function clearScreen(inputData, inputMetaData) {
   let functionName = clearScreen.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -247,7 +247,7 @@ const clearScreen = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function help
@@ -262,7 +262,7 @@ const clearScreen = function(inputData, inputMetaData) {
 * @date 2022/02/22
 */
 // eslint-disable-next-line no-unused-vars
-const help = function(inputData, inputMetaData) {
+function help(inputData, inputMetaData) {
   let functionName = help.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let returnData = [true, []];
@@ -296,7 +296,7 @@ const help = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function workflowHelp
@@ -310,7 +310,7 @@ const help = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/02/22
 */
-const workflowHelp = function(inputData, inputMetaData) {
+function workflowHelp(inputData, inputMetaData) {
   let functionName = workflowHelp.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -352,7 +352,7 @@ const workflowHelp = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   echoCommand,

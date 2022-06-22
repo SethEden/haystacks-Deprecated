@@ -47,7 +47,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
-const printDataHive = function(inputData, inputMetaData) {
+function printDataHive(inputData, inputMetaData) {
   let functionName = printDataHive.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -99,7 +99,7 @@ const printDataHive = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function printDataHiveAttributes
@@ -117,7 +117,7 @@ const printDataHive = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
-const printDataHiveAttributes = function(inputData, inputMetaData) {
+function printDataHiveAttributes(inputData, inputMetaData) {
   let functionName = printDataHiveAttributes.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -195,7 +195,7 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function clearDataStorage
@@ -212,7 +212,7 @@ const printDataHiveAttributes = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
-const clearDataStorage = function(inputData, inputMetaData) {
+function clearDataStorage(inputData, inputMetaData) {
   let functionName = clearDataStorage.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -228,7 +228,7 @@ const clearDataStorage = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function changeSetting
@@ -246,7 +246,7 @@ const clearDataStorage = function(inputData, inputMetaData) {
  * @date 2022/05/10
  * @NOTE Test String: changeSetting colors.ColorData.Red.ColorName removeRed
  */
-const changeSetting = function(inputData, inputMetaData) {
+function changeSetting(inputData, inputMetaData) {
   let functionName = changeSetting.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -285,7 +285,7 @@ const changeSetting = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   printDataHive,

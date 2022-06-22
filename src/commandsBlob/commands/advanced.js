@@ -53,7 +53,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/02/22
  */
-const commandSequencer = function(inputData, inputMetaData) {
+function commandSequencer(inputData, inputMetaData) {
   let functionName = commandSequencer.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -101,7 +101,7 @@ const commandSequencer = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function workflow
@@ -119,7 +119,7 @@ const commandSequencer = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/2/24
  */
-const workflow = function(inputData, inputMetaData) {
+function workflow(inputData, inputMetaData) {
   let functionName = workflow.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -141,7 +141,7 @@ const workflow = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function businessRule
@@ -169,7 +169,7 @@ const workflow = function(inputData, inputMetaData) {
  * Consider the following link that describes how the regEx & flags are parsed by the lexicalAnalyzer.
  * {@link https://stackoverflow.com/questions/874709/converting-user-input-string-to-regular-expression}
  */
-const businessRule = function(inputData, inputMetaData) {
+function businessRule(inputData, inputMetaData) {
   let functionName = businessRule.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -263,7 +263,7 @@ const businessRule = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function commandGenerator
@@ -281,7 +281,7 @@ const businessRule = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
-const commandGenerator = function(inputData, inputMetaData) {
+function commandGenerator(inputData, inputMetaData) {
   let functionName = commandGenerator.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -372,7 +372,7 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function commandAliasGenerator
@@ -393,7 +393,7 @@ const commandGenerator = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/25
  */
-const commandAliasGenerator = function(inputData, inputMetaData) {
+function commandAliasGenerator(inputData, inputMetaData) {
   let functionName = commandAliasGenerator.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -484,7 +484,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   commandSequencer,

@@ -43,7 +43,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/03/25
  */
-const validateConstants = function(inputData, inputMetaData) {
+ function validateConstants(inputData, inputMetaData) {
   let functionName = validateConstants.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -108,7 +108,7 @@ const validateConstants = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validateCommandAliases
@@ -120,7 +120,7 @@ const validateConstants = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/03/30
  */
-const validateCommandAliases = function(inputData, inputMetaData) {
+ function validateCommandAliases(inputData, inputMetaData) {
   let functionName = validateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -178,7 +178,7 @@ const validateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validateWorkflows
@@ -190,7 +190,7 @@ const validateCommandAliases = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/06/08
  */
-const validateWorkflows = function(inputData, inputMetaData) {
+ function validateWorkflows(inputData, inputMetaData) {
   let functionName = validateWorkflows.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -240,7 +240,7 @@ const validateWorkflows = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   validateConstants,

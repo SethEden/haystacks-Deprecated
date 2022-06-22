@@ -41,7 +41,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/03/11
  */
-const saveConfiguration = function(inputData, inputMetaData) {
+function saveConfiguration(inputData, inputMetaData) {
   let functionName = saveConfiguration.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -51,7 +51,7 @@ const saveConfiguration = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function changeConfigurationSetting
@@ -73,7 +73,7 @@ const saveConfiguration = function(inputData, inputMetaData) {
  * @NOTE Test String 1: changeConfigurationSetting configuration.debugSetting.commandsBlob.commands.system true
  * Test String 2: changeConfigurationSetting debugSetting.commandsBlob.commands.system true
  */
-const changeConfigurationSetting = function(inputData, inputMetaData) {
+function changeConfigurationSetting(inputData, inputMetaData) {
   let functionName = changeConfigurationSetting.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -110,7 +110,7 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function listConfigurationThemes
@@ -122,7 +122,7 @@ const changeConfigurationSetting = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/06/10
  */
-const listConfigurationThemes = function(inputData, inputMetaData) {
+function listConfigurationThemes(inputData, inputMetaData) {
   let functionName = listConfigurationThemes.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -135,7 +135,7 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function changeDebugConfigurationTheme
@@ -149,7 +149,7 @@ const listConfigurationThemes = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/06/13
  */
-const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
+function changeDebugConfigurationTheme(inputData, inputMetaData) {
   let functionName = changeDebugConfigurationTheme.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -196,7 +196,7 @@ const changeDebugConfigurationTheme = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   saveConfiguration,

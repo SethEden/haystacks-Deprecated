@@ -58,7 +58,7 @@ xml2js.Parser({
  * @author Seth Hollingsead
  * @date 2022/04/28
  */
-const getXmlData = function(inputData, inputMetaData) {
+function getXmlData(inputData, inputMetaData) {
   let functionName = getXmlData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -82,7 +82,7 @@ const getXmlData = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getCsvData
@@ -96,7 +96,7 @@ const getXmlData = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/04/28
  */
-const getCsvData = function(inputData, inputMetaData) {
+function getCsvData(inputData, inputMetaData) {
   let functionName = getCsvData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -116,7 +116,7 @@ const getCsvData = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getJsonData
@@ -130,7 +130,7 @@ const getCsvData = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers her, because of a circular dependency.
  */
 // eslint-disable-next-line no-unused-vars
-const getJsonData = function(inputData, inputMetaData) {
+function getJsonData(inputData, inputMetaData) {
   // let functionName = getJsonData.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -144,7 +144,7 @@ const getJsonData = function(inputData, inputMetaData) {
   // console.log(msg.creturnDataIs + JSON.stringify(returnData));
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function writeJsonData
@@ -155,7 +155,7 @@ const getJsonData = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/04/28
  */
-const writeJsonData = function(inputData, inputMetaData) {
+function writeJsonData(inputData, inputMetaData) {
   let functionName = writeJsonData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -173,7 +173,7 @@ const writeJsonData = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function readDirectoryContents
@@ -188,7 +188,7 @@ const writeJsonData = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 // eslint-disable-next-line no-unused-vars
-const readDirectoryContents = function(inputData, inputMetaData) {
+function readDirectoryContents(inputData, inputMetaData) {
   // let functionName = readDirectoryContents.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -205,7 +205,7 @@ const readDirectoryContents = function(inputData, inputMetaData) {
   // console.log(msg.creturnDataIs + JSON.stringify(returnData));
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function scanDirectoryContents
@@ -222,7 +222,7 @@ const readDirectoryContents = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/02
  */
-const scanDirectoryContents = function(inputData, inputMetaData) {
+function scanDirectoryContents(inputData, inputMetaData) {
   let functionName = scanDirectoryContents.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // Path that should be scanned is:
@@ -249,7 +249,7 @@ const scanDirectoryContents = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfilesFoundAre + JSON.stringify(filesFound));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return filesFound;
-};
+}
 
 /**
  * @function getDirectoryList
@@ -260,7 +260,7 @@ const scanDirectoryContents = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/06/10
  */
-const getDirectoryList = function(inputData, inputMetaData) {
+function getDirectoryList(inputData, inputMetaData) {
   let functionName = getDirectoryList.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -274,7 +274,7 @@ const getDirectoryList = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function readDirectorySynchronously
@@ -289,7 +289,7 @@ const getDirectoryList = function(inputData, inputMetaData) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 // eslint-disable-next-line no-unused-vars
-const readDirectorySynchronously = function(inputData, inputMetaData) {
+function readDirectorySynchronously(inputData, inputMetaData) {
   // let functionName = readDirectorySynchronously.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -340,7 +340,7 @@ const readDirectorySynchronously = function(inputData, inputMetaData) {
     }); // End-currentDirectory.forEach(file => {
     // console.log(`END ${namespacePrefix}${functionName} function`);
   } // End-if (hitFileLimit === false)
-};
+}
 
 /**
  * @function copyAllFilesAndFoldersFromFolderToFolder
@@ -362,7 +362,7 @@ const readDirectorySynchronously = function(inputData, inputMetaData) {
  * But it could also be used by a self-installing system to copy files from an execution path to an installation path.
  * @NOTE This is a wrapper fro the copyFolderRecursiveSync business rule, because that one is recursive.
  */
-const copyAllFilesAndFoldersFromFolderToFolder = function(inputData, inputMetaData) {
+function copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData) {
   let functionName = copyAllFilesAndFoldersFromFolderToFolder.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -372,7 +372,7 @@ const copyAllFilesAndFoldersFromFolderToFolder = function(inputData, inputMetaDa
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function buildReleasePackage
@@ -384,7 +384,7 @@ const copyAllFilesAndFoldersFromFolderToFolder = function(inputData, inputMetaDa
  * @author Seth Hollingsead
  * @date 2022/05/02
  */
-const buildReleasePackage = function(inputData, inputMetaData) {
+function buildReleasePackage(inputData, inputMetaData) {
   let functionName = buildReleasePackage.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -456,7 +456,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function createZipArchive
@@ -469,7 +469,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/02
  */
-const createZipArchive = function(inputData, inputMetaData) {
+function createZipArchive(inputData, inputMetaData) {
   let functionName = createZipArchive.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -492,7 +492,7 @@ const createZipArchive = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function cleanRootPath
@@ -503,7 +503,7 @@ const createZipArchive = function(inputData, inputMetaData) {
  * @return {string} The real rot path or top-level path for the application.
  * @NOTE
  */
-const cleanRootPath = function(inputData, inputMetaData) {
+function cleanRootPath(inputData, inputMetaData) {
   let functionName = cleanRootPath.name
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
@@ -517,7 +517,7 @@ const cleanRootPath = function(inputData, inputMetaData) {
   console.log(msg.creturnDataIs + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function copyFileSync
@@ -540,7 +540,7 @@ const cleanRootPath = function(inputData, inputMetaData) {
  * However, it should suffice for our needs. Meta-data in this case is not all that critical
  * since the original file is more important, and this is really just about the deployment of a build-release.
  */
-const copyFileSync = function(inputData, inputMetaData) {
+function copyFileSync(inputData, inputMetaData) {
   let functionName = copyFileSync.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -596,7 +596,7 @@ const copyFileSync = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function copyFolderRecursiveSync
@@ -618,7 +618,7 @@ const copyFileSync = function(inputData, inputMetaData) {
  * However, it should suffice for our needs. Meta-data in this case is not all that critical
  * since the original file is more important, and this is really just about the deployment of a build-release.
  */
-const copyFolderRecursiveSync = function(inputData, inputMetaData) {
+function copyFolderRecursiveSync(inputData, inputMetaData) {
   let functionName = copyFolderRecursiveSync.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -698,7 +698,7 @@ const copyFolderRecursiveSync = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function appendMessageToFile
@@ -710,7 +710,7 @@ const copyFolderRecursiveSync = function(inputData, inputMetaData) {
  * @date 2022/05/02
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const appendMessageToFile = function(inputData, inputMetaData) {
+function appendMessageToFile(inputData, inputMetaData) {
   // let functionName = appendMessageToFile.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(msg.cinputDataIs + inputData);
@@ -735,7 +735,7 @@ const appendMessageToFile = function(inputData, inputMetaData) {
   // console.log(msg.creturnDataIs + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 export default {
   getXmlData,

@@ -32,7 +32,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const getFileNameFromPath = function(inputData, inputMetaData) {
+function getFileNameFromPath(inputData, inputMetaData) {
   let functionName = getFileNameFromPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -53,7 +53,7 @@ const getFileNameFromPath = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getFileExtension
@@ -65,7 +65,7 @@ const getFileNameFromPath = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const getFileExtension = function(inputData, inputMetaData) {
+function getFileExtension(inputData, inputMetaData) {
   let functionName = getFileExtension.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -77,7 +77,7 @@ const getFileExtension = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeDotFromFileExtension
@@ -89,7 +89,7 @@ const getFileExtension = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const removeDotFromFileExtension = function(inputData, inputMetaData) {
+function removeDotFromFileExtension(inputData, inputMetaData) {
   let functionName = removeDotFromFileExtension.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -101,7 +101,7 @@ const removeDotFromFileExtension = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeFileExtensionFromFileName
@@ -113,7 +113,7 @@ const removeDotFromFileExtension = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const removeFileExtensionFromFileName = function(inputData, inputMetaData) {
+function removeFileExtensionFromFileName(inputData, inputMetaData) {
   let functionName = removeFileExtensionFromFileName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -125,7 +125,7 @@ const removeFileExtensionFromFileName = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function ascertainMatchingFilenames
@@ -136,7 +136,7 @@ const removeFileExtensionFromFileName = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const ascertainMatchingFilenames = function(inputData, inputMetaData) {
+function ascertainMatchingFilenames(inputData, inputMetaData) {
   let functionName = ascertainMatchingFilenames.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -155,7 +155,7 @@ const ascertainMatchingFilenames = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function supportedFileFormatsAre
@@ -166,7 +166,7 @@ const ascertainMatchingFilenames = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const supportedFileFormatsAre = function(inputData, inputMetaData) {
+function supportedFileFormatsAre(inputData, inputMetaData) {
   let functionName = supportedFileFormatsAre.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -175,7 +175,7 @@ const supportedFileFormatsAre = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeXnumberOfFoldersFromEndOfPath
@@ -186,7 +186,7 @@ const supportedFileFormatsAre = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
+function removeXnumberOfFoldersFromEndOfPath(inputData, inputMetaData) {
   let functionName = removeXnumberOfFoldersFromEndOfPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -237,7 +237,7 @@ const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getFirstTopLevelFolderFromPath
@@ -248,7 +248,7 @@ const removeXnumberOfFoldersFromEndOfPath = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
+function getFirstTopLevelFolderFromPath(inputData, inputMetaData) {
   let functionName = getFirstTopLevelFolderFromPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -272,7 +272,7 @@ const getFirstTopLevelFolderFromPath = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   getFileNameFromPath,

@@ -39,7 +39,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 * @author Seth Hollingsead
 * @date 2022/03/30
 */
-const constantsGenerator = function(inputData, inputMetaData) {
+function constantsGenerator(inputData, inputMetaData) {
    let functionName = constantsGenerator.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -112,7 +112,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
-};
+}
 
 /**
 * @function constantsGeneratorList
@@ -127,7 +127,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/03/30
 */
-const constantsGeneratorList = function(inputData, inputMetaData) {
+function constantsGeneratorList(inputData, inputMetaData) {
    let functionName = constantsGeneratorList.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -189,7 +189,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
-};
+}
 
 /**
  * @function constantsPatternRecognizer
@@ -202,7 +202,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/03/31
  */
-const constantsPatternRecognizer = function(inputData, inputMetaData) {
+function constantsPatternRecognizer(inputData, inputMetaData) {
   let functionName = constantsPatternRecognizer.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -265,7 +265,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function evaluateConstant
@@ -279,7 +279,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/11
  */
-const evaluateConstant = function(inputData, inputMetaData) {
+function evaluateConstant(inputData, inputMetaData) {
   let functionName = evaluateConstant.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -305,7 +305,7 @@ const evaluateConstant = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   constantsGenerator,

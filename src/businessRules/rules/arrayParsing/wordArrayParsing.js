@@ -35,7 +35,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * We might need to do some refactoring of this function if
  * mixed numbers and camel case strings ever becomes a requirement as input to this function.
  */
-const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
+function convertCamelCaseStringToArray(inputData, inputMetaData) {
   let functionName = convertCamelCaseStringToArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -60,7 +60,7 @@ const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getWordsArrayFromString
@@ -72,7 +72,7 @@ const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/18
  */
-const getWordsArrayFromString = function(inputData, inputMetaData) {
+function getWordsArrayFromString(inputData, inputMetaData) {
   let functionName = getWordsArrayFromString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -102,7 +102,7 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function recombineStringArrayWithSpaces
@@ -116,7 +116,7 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
+function recombineStringArrayWithSpaces(inputData, inputMetaData) {
   let functionName = recombineStringArrayWithSpaces.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -132,7 +132,7 @@ const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertArrayToCamelCaseString
@@ -143,7 +143,7 @@ const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
+function convertArrayToCamelCaseString(inputData, inputMetaData) {
   let functionName = convertArrayToCamelCaseString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -156,7 +156,7 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function doesArrayContainLowerCaseConsolidatedString
@@ -167,7 +167,7 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMetaData) {
+function doesArrayContainLowerCaseConsolidatedString(inputData, inputMetaData) {
   let functionName = doesArrayContainLowerCaseConsolidatedString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -185,7 +185,7 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function ascertainMatchingElements
@@ -196,7 +196,7 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const ascertainMatchingElements = function(inputData, inputMetaData) {
+function ascertainMatchingElements(inputData, inputMetaData) {
   let functionName = ascertainMatchingElements.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -216,7 +216,7 @@ const ascertainMatchingElements = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   convertCamelCaseStringToArray,
