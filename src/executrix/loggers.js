@@ -382,9 +382,9 @@ function printMessageToFile(file, message) {
 }
 
 export default {
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
-  [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames),
-  [fnc.cconstantsValidationSummaryLog]: (message, passFail) => constantsValidationSummaryLog(message, passFail),
-  [fnc.cgetLogFileNameAndPath]: () => getLogFileNameAndPath(),
-  [fnc.cprintMessageToFile]: (file, message) => printMessageToFile(file, message)
+  consoleLog,
+  consoleTableLog,
+  constantsValidationSummaryLog,
+  getLogFileNameAndPath,
+  printMessageToFile
 };

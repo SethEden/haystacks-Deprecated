@@ -2,7 +2,7 @@
  * @file chiefWorkflow.js
  * @module chiefWorkflow
  * @description Holds all of the functions that manage the workflows,
- * system defined workflows, cient defined workflows,
+ * system defined workflows, client defined workflows,
  * setting the workflow data and getting the workflow data.
  * @requires module:chiefData
  * @requires module:loggers
@@ -73,5 +73,5 @@ function loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName, 
 };
 
 export default {
-  [fnc.cloadCommandWorkflowsFromPath]: (commandWorkflowFilePathConfigurationName, contextName) => loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName, contextName)
+  loadCommandWorkflowsFromPath
 };

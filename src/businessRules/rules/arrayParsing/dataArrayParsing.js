@@ -45,8 +45,8 @@ const arraysAreEqual = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) { returnData = true; }
-    if (inputData === null || inputMetaData === null) { returnData === false; }
-    if (inputData.length != inputMetaData.length) { returnData === false; }
+    if (inputData === null || inputMetaData === null) { returnData = false; }
+    if (inputData.length != inputMetaData.length) { returnData = false; }
   } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -93,7 +93,7 @@ const getStoredData = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData) {
-    returnData = dataBroker.getDate(inputData);
+    returnData = dataBroker.getData(inputData);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

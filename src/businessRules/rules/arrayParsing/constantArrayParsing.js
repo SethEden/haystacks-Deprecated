@@ -46,7 +46,7 @@ const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = 0;
   if (inputData) {
-    returnData = Math.max(...(inputData.map(el => el.length)));
+    returnData = math.max(...(inputData.map(el => el.length)));
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -83,7 +83,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
       // currentMasterStringArrayElement is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentMasterStringArrayElementIs + currentMasterStringArrayElement);
       if (currentMasterStringArrayElement.includes(bas.cSpace) === false) {
-        // currentMasterStringArrayElement does not contain a sapce character
+        // currentMasterStringArrayElement does not contain a space character
         loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInStringArrayMessage1);
         // NOTE: All of the other loggers.consoleLog below this are not actually getting called for some reason.
         // That is why I have added the hard-coded console ogs, but really they only need to be enabled if this function needs to be debugged.
@@ -126,7 +126,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                   if (otherStringToCompare.includes(stringToCompare)) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
                     // console.log('FOUND A MATCH!!!! ' + stringToCompare);
-                    // Here we have found a match amoung brothers. We need to see if this stringToCompare has already been added to the returnData array.
+                    // Here we have found a match among brothers. We need to see if this stringToCompare has already been added to the returnData array.
                     if (ruleParsing.processRulesInternal([[returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === false) {
                       returnData.push(stringToCompare);
                     } // End-if (ruleParsing.processRulesInternal([[returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === false)
@@ -138,7 +138,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
         } // End-for (let b = minStringLength; b <= maxStringLength; b++)
       } else { // Else-clause if (currentMaserStringArrayElement.includes(bas.cSpace) === false)
         // WARNING: Teh current string being searched contains a space character, we are going to skip comparison.
-        loggers.consoleLog(namespace + functionName, msg.cSearchForPatternsInSringArrayMessage2 + msg.cSearchForPatternsInStringArrayMessage3);
+        loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInSringArrayMessage2 + msg.cSearchForPatternsInStringArrayMessage3);
       }
     } // End-for (let a = 0; a < inputData.length; a++)
   } else { // Else-clause if (inputData && inputData.length > 0)

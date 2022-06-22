@@ -423,7 +423,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
     // number is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
     if (number > 25 || number < 0) {
-      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+      returnData = ''; // Shouldn't actually need to do this, but it's a good place holder.
     } else {
       returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toUpperCase();
     }

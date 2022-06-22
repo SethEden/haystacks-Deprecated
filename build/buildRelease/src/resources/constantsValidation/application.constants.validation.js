@@ -2,7 +2,7 @@
  * @file application.constants.validation.js
  * @module application.constants.validation
  * @description Contains all validations for named application constants.
- * @requires odule:application-constants
+ * @requires module:application-constants
  * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
  */

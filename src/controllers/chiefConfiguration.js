@@ -162,8 +162,6 @@ function parseLoadedConfigurationData(allConfigurationData) {
 };
 
 export default {
-  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
-    appConfigPath, frameworkConfigPath
-  ),
+  setupConfiguration,
   parseLoadedConfigurationData
 };

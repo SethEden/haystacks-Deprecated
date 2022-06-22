@@ -2,7 +2,7 @@
  * @file application.business.constants.validation.js
  * @module application.business.constants.validation
  * @description Contains all validations for named application business rule constants.
- * @requires module:application.busienss.constants
+ * @requires module:application.business.constants
  * @author Seth Hollingsead
  * @date 2022/04/05
  * @copyright Copyright © 2022-… by Seth Hollingsead. All rights reserved
@@ -12,7 +12,7 @@
 import * as app_biz from '../../constants/application.business.constants.js';
 
 /**
- * @function appicationBusinessConstantsValidation
+ * @function applicationBusinessConstantsValidation
  * @description Initializes the application busienss rules constants validation data objects array.
  * @return {void}
  * @author Seth Hollingsead

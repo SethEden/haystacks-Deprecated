@@ -197,7 +197,7 @@ const isAlmostPalindrome = function(inputData, inputMetaData) {
   let returnData = false;
   let misCompareCount = 0;
   let startingPoint, endingPoint;
-  // TODO: We need to enable additional types of comparisons. The below algorthim works for if the mis-compare is in the center of the string.
+  // TODO: We need to enable additional types of comparisons. The below algorithm works for if the mis-compare is in the center of the string.
   // But if the mis-compare is at the beginning or the end of the string then it can throw off all the other comparisons resulting in a false positive result.
   // We actually need to check starting with the first character but also the first + 1 character and also,
   // we need to check ending with the last - 1 character.

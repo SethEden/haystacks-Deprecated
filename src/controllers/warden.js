@@ -432,7 +432,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/16
- * @NOTE We cannot instrument this code with calls to loggers.consoleLog as it would ntroduce yet another circular dependency.
+ * @NOTE We cannot instrument this code with calls to loggers.consoleLog as it would introduce yet another circular dependency.
  * We will have to stick with just hard coded console.logs in this case to debug at this level.
  */
 function consoleLog(classPath, message) {
@@ -445,17 +445,17 @@ function consoleLog(classPath, message) {
 }
 
 export default {
-  [fnc.cprocessRootPath]: (inputPath) => processRootPath(inputPath),
-  [fnc.cinitFrameworkSchema]: (configData) => initFrameworkSchema(configData),
-  [fnc.cmergeClientBusinessRules]: (cientBusinessRules) => mergeClientBusinessRules(cientBusinessRules),
-  [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
-  [fnc.cloadCommandAliases]: (commandAliasesPathConfigName) => loadCommandAliases(commandAliasesPathConfigName),
-  [fnc.cloadCommandWorkflows]: (workflowPathConfigName) => loadCommandWorkflows(workflowPathConfigName),
-  [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
-  [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
-  [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
-  [fnc.cprocessCommandQueue]: () => processCommandQueue(),
-  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) => setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
+  processRootPath,
+  initFrameworkSchema,
+  mergeClientBusinessRules,
+  mergeClientCommands,
+  loadCommandAliases,
+  loadCommandWorkflows,
+  executeBusinessRules,
+  enqueueCommand,
+  isCommandQueueEmpty,
+  processCommandQueue,
+  setConfigurationSetting,
+  getConfigurationSetting,
+  consoleLog
 };

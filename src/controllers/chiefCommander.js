@@ -161,10 +161,10 @@ function processCommandQueue() {
 }
 
 export default {
-  [fnc.cbootStrapCommands]: () => bootStrapCommands(),
-  [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
-  [fnc.cloadCommandAliasesFromPath]: (commandAliasesFilePathConfigurationName, contextName) => loadCommandAliasesFromPath(commandAliasesFilePathConfigurationName, contextName),
-  [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
-  [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
-  [fnc.cprocessCommandQueue]: () => processCommandQueue()
+  bootStrapCommands,
+  addClientCommands,
+  loadCommandAliasesFromPath,
+  enqueueCommand,
+  isCommandQueueEmpty,
+  processCommandQueue
 };

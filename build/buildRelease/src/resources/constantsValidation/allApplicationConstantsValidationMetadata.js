@@ -81,7 +81,7 @@ function initializeAllClientConstantsValidationData() {
   allClientConstantsValidationData[sys.cConstantsValidationData][app_sys.capplicationSystemConstantsValidation] = app_sys_cv.applicationSystemConstantsValidation;
 
   // Setup all the paths to the constants files.
-  let resolvedConstantsPath_ApplicationBusienss = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_business_constants_js);
+  let resolvedConstantsPath_ApplicationBusiness = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_business_constants_js);
   let resolvedConstantsPath_ApplicationCommand = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_command_constants_js);
   let resolvedConstantsPath_ApplicationConfiguration = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_configuration_constants_js);
   let resolvedConstantsPath_ApplicationConstant = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_constants_js);
@@ -89,8 +89,8 @@ function initializeAllClientConstantsValidationData() {
   let resolvedConstantsPath_ApplicationMessage = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_message_constants_js);
   let resolvedConstantsPath_ApplicationSystem = path.resolve(constantsPath + bas.cForwardSlash + app_sys.capplication_system_constants_js);
 
-  // resolvedConstantsPath_ApplicationBusienss is:
-  haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationBusinessIs + resolvedConstantsPath_ApplicationBusienss);
+  // resolvedConstantsPath_ApplicationBusiness is:
+  haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationBusinessIs + resolvedConstantsPath_ApplicationBusiness);
   // resolvedConstantsPath_ApplicationCommand is:
   haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationCommandIs + resolvedConstantsPath_ApplicationCommand);
   // resolvedConstantsPath_ApplicationConfiguration is:
@@ -104,7 +104,7 @@ function initializeAllClientConstantsValidationData() {
   // resolvedConstantsPath_ApplicationSystem is:
   haystacks.consoleLog(namespacePrefix, functionName, app_msg.cresolvedConstantsPath_ApplicationSystemIs + resolvedConstantsPath_ApplicationSystem);
 
-  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationBusinessConstantsValidation] = resolvedConstantsPath_ApplicationBusienss;
+  allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationBusinessConstantsValidation] = resolvedConstantsPath_ApplicationBusiness;
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationCommandConstantsValidation] = resolvedConstantsPath_ApplicationCommand;
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationConfigurationConstantsValidation] = resolvedConstantsPath_ApplicationConfiguration;
   allClientConstantsValidationData[sys.cConstantsValidationData][sys.cConstantsFilePaths][app_sys.capplicationConstantsValidation] = resolvedConstantsPath_ApplicationConstant;

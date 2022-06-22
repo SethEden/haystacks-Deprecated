@@ -159,7 +159,7 @@ function loadAllCsvData(filesToLoad, contextName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cfileExtensionIs + fileExtension);
     if (fileExtension === gen.ccsv || fileExtension === gen.cCsv || fileExtension === gen.cCSV) {
       // execute business rules:
-      // loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusienssRulesColon + JSON.stringify(rules));
+      // loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
       // This next line is commented out because it was resulting in colors_colors, which didn't make any sense.
       // contextName = contextName + bas.cUnderscore + ruleBroker.processRules([fileToLoad, ''], rules);
 
@@ -396,7 +396,8 @@ function processXmlData(inputData, contextName) {
   let parsedDataFile = {};
   if (dataCategory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
-    for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++) {
+    // eslint-disable-next-line no-unused-vars
+    for (const _element of Object.keys(inputData[sys.cCommandsAliases])) {
       inputData[sys.cCommandsAliases] = processXmlLeafNode(inputData[sys.cCommandsAliases], wrd.cCommand);
     } //End-for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++)
     parsedDataFile = inputData[sys.cCommandsAliases];
@@ -407,7 +408,8 @@ function processXmlData(inputData, contextName) {
     // } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCategory === sys.cCommandWorkflows) { // End-if (dataCategory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
-    for (let j = 0; j < Object.keys(inputData[sys.cCommandWorkflows]).length; j++) {
+    // eslint-disable-next-line no-unused-vars
+    for (const _element of Object.keys(inputData[sys.cCommandWorkflows])) {
       inputData[sys.cCommandWorkflows] = processXmlLeafNode(inputData[sys.cCommandWorkflows], wrd.cWorkflows);
     } // End-for (let j = 0; j < inputData[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
     parsedDataFile = inputData[sys.cCommandWorkflows];
@@ -1035,21 +1037,19 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
 }
 
 export default {
-  [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
-  [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
-    appConfigFilesToLoad, frameworkConfigFilesToLoad
-  ),
-  [fnc.cloadAllCsvData]: (filesToLoad, contextName) => loadAllCsvData(filesToLoad, contextName),
-  [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
-  [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
-  [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
-  [fnc.cpreprocessJsonFile]: (fileToLoad) => preprocessJsonFile(fileToLoad),
-  [fnc.cwriteJsonDataToFile]: (fileToSaveTo, dataToWriteOut) => writeJsonDataToFile(fileToSaveTo, dataToWriteOut),
-  [fnc.csetupDataStorage]: () => setupDataStorage(),
-  [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
-  [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),
-  [fnc.cclearData]: (dataStorageContextName) => clearData(dataStorageContextName),
-  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
-  [fnc.caddConstantsValidationData]: (constantLibraryData) => addConstantsValidationData(constantLibraryData),
-  [fnc.caddDeeplyNestedConstantsValidationData]: (contextName, deeplyNestedData) => addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData)
+  scanDataPath,
+  findUniversalDebugConfigSetting,
+  loadAllCsvData,
+  loadAllXmlData,
+  loadAllJsonData,
+  processCsvData,
+  preprocessJsonFile,
+  writeJsonDataToFile,
+  setupDataStorage,
+  storeData,
+  getData,
+  clearData,
+  initializeConstantsValidationData,
+  addConstantsValidationData,
+  addDeeplyNestedConstantsValidationData
 };

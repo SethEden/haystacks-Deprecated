@@ -3,8 +3,8 @@
  * @module clientStringParsing
  * @description Contains all client defined business rules for parsing strings, values, arrays,
  * values of all kinds, with various operations.
- * @requires module:application.busienss.constants
  * @requires module:application.constants
+ * @requires module:application.message.constants
  * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
  * @requires {@link https://www.npmjs.com/package/path|path}
@@ -14,8 +14,8 @@
  */
 
 // Internal imports
-import * as app_biz from '../../constants/application.business.constants.js';
 import * as apc from '../../constants/application.constants.js';
+import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
 import haystacks from 'haystacks';
 import hayConst from '@haystacks/constants';
@@ -23,7 +23,7 @@ import path from 'path';
 
 const {bas, biz, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// buildRelease.busienssRules.clientRules.clientStringParsing.
+// buildRelease.businessRules.clientRules.clientStringParsing.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.cbusiness + wrd.cRules + bas.cDot + wrd.cclient + wrd.cRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -55,7 +55,7 @@ const customEcho = function(inputData, inputMetaData) {
  * give a name to the file for the current date-time and release version, saving to the destination folder.
  * @param {string} inputData The folder that should be packaged up for the release zip file.
  * @param {string} inputMetaData The folder where the zip file release package should be saved.
- * @return {boolean} A true or False to indicate if the release package process is sucessful or not.
+ * @return {boolean} A true or False to indicate if the release package process is successful or not.
  * @author Seth Hollingsead
  * @date 2022/04/07
  */
@@ -81,7 +81,7 @@ const buildReleasePackage = function(inputData, inputMetaData) {
   // released archive files list is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.creleasedArchiveFilesListIs + JSON.stringify(releasedArchiveFiles));
   // Check if the current version number has already een released as a zip file in the Release folder.
-  // If it has ot been released, then we can build the zip file with the current reelase number and date-time stamp.
+  // If it has ot been released, then we can build the zip file with the current release number and date-time stamp.
   for (let i = 0; i <= releasedArchiveFiles.length - 1; i++) {
     // file is:
     haystacks.consoleLog(namespacePrefix, functionName, msg.cfileIs + releasedArchiveFiles[i]);

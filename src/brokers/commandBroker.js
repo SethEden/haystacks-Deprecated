@@ -35,9 +35,9 @@ const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
- * @description Captures all of the commands string-to-function cal map data inthe commandsLibrary and migrates that dat a to the D-data structure.
- * This is important now because we are going to allow the clinet to define their own commands seperate from the system defined commands.
- * So we need a way to merge al the cient defned and system defined commands into one location.
+ * @description Captures all of the commands string-to-function cal map data in the commandsLibrary and migrates that dat a to the D-data structure.
+ * This is important now because we are going to allow the client to define their own commands separate from the system defined commands.
+ * So we need a way to merge al the client defined and system defined commands into one location.
  * Then the command broker will execute commands rom the D-Data structure and not the commands library per-say.
  * This will allow the system to expand much more dynamically and even be user-defined & flexible to client needs.
  * @return {void}
@@ -214,7 +214,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
  * data structures and returns the one command data object that matches the input name.
  * @param {object} commandAliasData The command alias data that should be searched recursively for the specified command alias.
  * @param {string} commandAliasName The command alias name/string that should be found.
- * @return {object} The command object that corrosponds to the input command alias name.
+ * @return {object} The command object that corresponds to the input command alias name.
  * @author Seth Hollingsead
  * @date 2022/05/27
  */
@@ -284,8 +284,8 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
 
 /**
  * @function getAllCommandAliasData
- * @description Recursively gets all of the commands alias data from all levels and flattens them into a singel array for printing out to the help command.
- * @param {object} commandAliasDataStructure The command alias data structure that should be recursively flatened into a single array for output.
+ * @description Recursively gets all of the commands alias data from all levels and flattens them into a single array for printing out to the help command.
+ * @param {object} commandAliasDataStructure The command alias data structure that should be recursively flattened into a single array for output.
  * If the input is undefined then the main CommandsAliases data structure will be used at the root of the command aliases data hive.
  * @return {array<string>|boolean} An array of all the command aliases currently needing to be flattened or
  * a boolean True or False to indicate that a leaf-node has been found by the recursive caller.
@@ -391,7 +391,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
 /**
  * @function getCommandArgs
  * @description Gets the arguments of the current command.
- * @param {string} commandString The command string that should be parsed fro command argumnts.
+ * @param {string} commandString The command string that should be parsed fro command arguments.
  * @param {string} commandDelimiter The delimiter that should be used to parse the command line.
  * @return {array<boolean|string|integer>} Any array of arguments, some times these might actually be nested command calls.
  * @author Seth Hollingsead
@@ -622,13 +622,13 @@ function executeCommand(commandString) {
 }
 
 export default {
-  [fnc.cbootStrapCommands]: () => bootStrapCommands(),
-  [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
-  [fnc.cgetValidCommand]: (commandString, commandDelimiter) => getValidCommand(commandString, commandDelimiter),
+  bootStrapCommands,
+  addClientCommands,
+  getValidCommand,
   countMatchingCommandAlias,
   searchCommandAlias,
   getAllCommandAliasData,
   getCommandNamespaceDataObject,
-  [fnc.cgetCommandArgs]: (commandString, commandDelimiter) => getCommandArgs(commandString, commandDelimiter),
-  [fnc.cexecuteCommand]: (commandString) => executeCommand(commandString)
+  getCommandArgs,
+  executeCommand
 };

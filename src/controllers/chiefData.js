@@ -262,14 +262,13 @@ function addConstantsValidationData(arrayValidationData) {
 }
 
 export default {
-  [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName) => searchForUniversalDebugConfigSetting(
-    appConfigPathName, frameworkConfigPathName),
+  searchForUniversalDebugConfigSetting,
   determineThemeDebugConfigFilesToLoad,
-  [fnc.cgetAndProcessCsvData]: (pathAndFilename, contextName) => getAndProcessCsvData(pathAndFilename, contextName),
-  [fnc.cgetAndProcessXmlData]: (pathAndFilename) => getAndProcessXmlData(pathAndFilename),
-  [fnc.csetupAllCsvData]: (dataPathConfigurationName, contextName) => setupAllCsvData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllXmlData]: (dataPathConfigurationName, contextName) => setupAllXmlData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName),
-  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
-  [fnc.caddConstantsValidationData]: (arrayValidationData) => addConstantsValidationData(arrayValidationData)
+  getAndProcessCsvData,
+  getAndProcessXmlData,
+  setupAllCsvData,
+  setupAllXmlData,
+  setupAllJsonConfigData,
+  initializeConstantsValidationData,
+  addConstantsValidationData
 }

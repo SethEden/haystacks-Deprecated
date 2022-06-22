@@ -83,7 +83,7 @@ function initFramework(clientConfiguration) {
  clientConfiguration[cfg.cframeworkThemesPath] = frameworkCodeRootPath + sys.cframeworkThemesPath;
  clientConfiguration[cfg.cframeworkCommandAliasesPath] = frameworkCommandAliasesPath;
  clientConfiguration[cfg.cframeworkWorkflowsPath] = frameworkWorkflowsPath;
- clientConfiguration[cfg.cframeworkConstantsValidationData] = allSysCV.initiaizeAllSystemConstantsValidationData;
+ clientConfiguration[cfg.cframeworkConstantsValidationData] = allSysCV.initializeAllSystemConstantsValidationData;
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

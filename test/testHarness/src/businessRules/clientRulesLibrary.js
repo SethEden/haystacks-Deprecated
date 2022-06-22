@@ -44,5 +44,5 @@ const initClientRulesLibrary = function() {
 };
 
 export default {
-  [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
+  initClientRulesLibrary
 };

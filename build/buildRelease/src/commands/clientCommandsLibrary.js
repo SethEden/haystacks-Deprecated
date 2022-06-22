@@ -13,7 +13,6 @@
 // Internal imports
 import clientCommands from './clientCommands/clientCommands.js';
 import * as app_cmd from '../constants/application.command.constants.js';
-import * as app_fnc from '../constants/application.function.constants.js';
 
 /**
  * @function initClientCommandsLibrary
@@ -40,5 +39,5 @@ const initClientCommandsLibrary = function() {
 };
 
 export default {
-  [app_fnc.cinitClientCommandsLibrary]: () => initClientCommandsLibrary()
+  initClientCommandsLibrary
 };

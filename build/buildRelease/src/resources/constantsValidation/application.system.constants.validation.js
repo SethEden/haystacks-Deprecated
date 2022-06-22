@@ -13,9 +13,9 @@ import * as app_sys from '../../constants/application.system.constants.js';
 
 /**
  * @function applicationSystemConstantsValidation
- * @description Initializes the application ssytem constants validation data objects array.
+ * @description Initializes the application system constants validation data objects array.
  * @return {void}
- * @autor Seth Hollingsead
+ * @author Seth Hollingsead
  * @date 2022/04/05
  */
 export const applicationSystemConstantsValidation = [

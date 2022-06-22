@@ -248,7 +248,7 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
 }
 
 export default {
-  [fnc.cgetWorkflow]: (workflowName) => getWorkflow(workflowName),
+  getWorkflow,
   doesWorkflowExist,
   doesWorkflowExistInWorkflowData,
   searchWorkflow,

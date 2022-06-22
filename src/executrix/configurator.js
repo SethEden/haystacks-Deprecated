@@ -247,7 +247,7 @@ function getConfigurationNamespaceObject(configurationNamespace) {
   // NOTE: The getConfigurationNamespaceObject is called before the configuration bootstrap process is complete.
   // So therefore trying to call the above functionality from a business rule will not work EVER!
   // The above code will need to remain in place even though,
-  // it is duplicate code to the new functionality in the busienss rule: biz.cgetNamespacedDataObject
+  // it is duplicate code to the new functionality in the business rule: biz.cgetNamespacedDataObject
   // returnValue = ruleBroker.processRules([configurationNamespace.unshift(wrd.cconfiguration), ''], [biz.cgetNamespacedDataObject]);
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -255,10 +255,9 @@ function getConfigurationNamespaceObject(configurationNamespace) {
 }
 
 export default {
-  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>
-    setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cprocessConfigurationNameRules]: (fullyQualifiedName) => processConfigurationNameRules(fullyQualifiedName),
-  [fnc.cprocessConfigurationNamespaceRules]: (fullyQualifiedName) => processConfigurationNamespaceRules(fullyQualifiedName),
-  [fnc.cprocessConfigurationValueRules]: (name, value) => processConfigurationValueRules(name, value)
+  setConfigurationSetting,
+  getConfigurationSetting,
+  processConfigurationNameRules,
+  processConfigurationNamespaceRules,
+  processConfigurationValueRules
 };

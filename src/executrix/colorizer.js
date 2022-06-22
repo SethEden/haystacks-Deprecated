@@ -627,16 +627,15 @@ function removeFontStyles(message) {
 };
 
 export default {
-  [fnc.ccolorizeMessageSimple]: (message, colorArray, isForeground) => colorizeMessageSimple(message, colorArray, isForeground),
-  [fnc.ccolorizeMessage]: (message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
-    colorizeMessage(message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
-  [fnc.caggregateStyleSetting]: (settingValue1, settingValue2, defaultColorArray, processAsFontSetting) => aggregateStyleSetting(settingValue1, settingValue2, defaultColorArray, processAsFontSetting),
-  [fnc.cgetFontStyleSettingsFromSetting]: (settingValue) => getFontStyleSettingsFromSetting(settingValue),
-  [fnc.cgetColorStyleSettingFromSetting]: (settingValue, defaultColorArray) => getColorStyleSettingFromSetting(settingValue, defaultColorArray),
-  [fnc.cgetNamedColorData]: (colorName, defaultColorArray) => getNamedColorData(colorName, defaultColorArray),
-  [fnc.csetUnderlineFontStyleOnMessageComponentAccordingToSetting]: (messageComponent, underlineSettingValue) => setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageComponent, underlineSettingValue),
-  [fnc.csetBoldFontStyleOnMessageComponentAccordingToSetting]: (messageComponent, boldSettingValue) => setBoldFontStyleOnMessageComponentAccordingToSetting(messageComponent, boldSettingValue),
-  [fnc.csetFontForegroundColorOnMessageComponentAccordingToSetting]: (messageComponent, colorSettingValue) => setFontForegroundColorOnMessageComponentAccordingToSetting(messageComponent, colorSettingValue),
-  [fnc.csetFontBackgroundColorOnMessageComponentAccordingToSetting]: (messageComponent, colorSettingValue) => setFontBackgroundColorOnMessageComponentAccordingToSetting(messageComponent, colorSettingValue),
-  [fnc.cremoveFontStyles]: (message) => removeFontStyles(message)
+  colorizeMessageSimple,
+  colorizeMessage,
+  aggregateStyleSetting,
+  getFontStyleSettingsFromSetting,
+  getColorStyleSettingFromSetting,
+  getNamedColorData,
+  setUnderlineFontStyleOnMessageComponentAccordingToSetting,
+  setBoldFontStyleOnMessageComponentAccordingToSetting,
+  setFontForegroundColorOnMessageComponentAccordingToSetting,
+  setFontBackgroundColorOnMessageComponentAccordingToSetting,
+  removeFontStyles
 };
