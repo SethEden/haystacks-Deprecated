@@ -88,72 +88,7 @@ const isValidCommandNameString = function(inputData, inputMetaData) {
   return returnData;
 };
 
-/**
- * @function countDuplicateCommandAliases
- * @description Counts the number of command aliases that match the input command alias.
- * @param {string} inputData Teh command alias that should have duplicates counted for.
- * @param {object} inputMetaData The data that contains all of the commans and command aliases,
- * we should use this to search for duplicate command aliases.
- * @return {integer} The count of command aliases that match the input command alias.
- * @author Seth Hollingsead
- * @date 2022/01/24
- */
-const countDuplicateCommandAliases = function(inputData, inputMetaData) {
-  let functionName = countDuplicateCommandAliases.name;
-  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
-  let returnData = 0;
-  let blackColorArray = colorizer.getNamedColorData(clr.cBlack, [0,0,0]);
-  let redColorArray = colorizer.getNamedColorData(clr.cRed, [255,0,0]);
-  if (inputData && inputMetaData) {
-loop1:
-    for (let key1 in inputMetaData) {
-      // key1 is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.ckey1Is + key1);
-      let currentCommand = inputMetaData[key1];
-      // currentCommand is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentCommandIs + JSON.stringify(currentCommand));
-      let aliasList = currentCommand[wrd.cAliases];
-      // aliasList is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.caliasListIs + aliasList);
-      let arrayOfAliases = aliasList.split(bas.cComa);
-loop2:
-      for (let j = 0; j < arrayOfAliases.length; j++) {
-        // BEGIN j-th loop:
-        loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
-        let currentAlias = arrayOfAliases[j];
-        // currentAlias is:
-        loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentAliasIs + currentAlias);
-        if (currentAlias === inputData) {
-          returnData = returnData + 1;
-        }
-        // duplicateAliasCount is:
-        loggers.consoleLog(namespacePrefix + functionName, msg.cduplicateAliasCountIs + returnData);
-        // END j-th loop:
-        loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
-      } // End-for (let j = 0; j < arrayOfAliases.length; j++)
-    } // End-for (let i = 0; i < inputMetaData.length; i++)
-  } // End-if (inputData)
-  if (returnData > 1) {
-    // duplicateAliasCount is:
-    let duplicateAliasCountMessage = msg.cduplicateAliasCountIs + returnData;
-    duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, blackColorArray, true);
-    duplicateAliasCountMessage = colorizer.colorizeMessageSimple(duplicateAliasCountMessage, redColorArray, false);
-    console.log(duplicateAliasCountMessage);
-    // duplicate command alias is:
-    let duplicateAliasCommandMessage = msg.cduplicateCommandAliasIs + inputData;
-    duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, blackColorArray, true);
-    duplicateAliasCommandMessage = colorizer.colorizeMessageSimple(duplicateAliasCommandMessage, redColorArray, false);
-    console.log(duplicateAliasCommandMessage);
-  }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
-  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return returnData;
-};
-
 export default {
   cleanCommandInput,
-  isValidCommandNameString,
-  countDuplicateCommandAliases
+  isValidCommandNameString
 };

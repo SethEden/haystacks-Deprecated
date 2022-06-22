@@ -106,6 +106,7 @@ function initFrameworkSchema(configData) {
   configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkResourcesPath, configData[cfg.cframeworkResourcesPath]);
   configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkFullMetaDataPath, configData[cfg.cframeworkFullMetaDataPath]);
   configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkConfigPath, configData[cfg.cframeworkConfigPath]);
+  configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkThemesPath, configData[cfg.cframeworkThemesPath]);
   configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath, configData[cfg.cframeworkCommandAliasesPath]);
   configurator.setConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath, configData[cfg.cframeworkWorkflowsPath]);
 
@@ -120,11 +121,12 @@ function initFrameworkSchema(configData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkResourcesPathIs + configData[cfg.cframeworkResourcesPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkFullMetaDataPathIs + configData[cfg.cframeworkFullMetaDataPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkConfigPathIs + configData[cfg.cframeworkConfigPath]);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkThemesPathIs + configData[cfg.cframeworkThemesPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkCommandAliasesPathIs + configData[cfg.cframeworkCommandAliasesPath]);
   loggers.consoleLog(namespacePrefix + functionName, msg.cframeworkWorkflowsPathIs + configData[cfg.cframeworkWorkflowsPath]);
 
-  // Make sure the color data gets loaded as well! File: colors.csv (This is used by  the colorizer to colorize the fonts for the console output)
-  let allConfigurationData = chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wrd.ccolors);
+  // Make sure the color data gets loaded as well! File: colors.csv (This is used by the colorizer to colorize the fonts for the console output)
+  chiefData.setupAllCsvData(cfg.cframeworkConfigPath, wrd.ccolors);
 
   configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationName, applicationMetaData[wrd.cName]);
   configurator.setConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber, applicationMetaData[wrd.cVersion]);
@@ -179,7 +181,7 @@ function initFrameworkSchema(configData) {
 
 /**
  * @function mergeClientBusienssRules
- * @description Merges the map of client defined busienss rule names and client defined business rule function calls
+ * @description Merges the map of client defined business rule names and client defined business rule function calls
  * with the existing D-data structure that should already have all of the system defined business rule.
  * @param {object} clientBusinessRules A map of client defined business rule names and client defined business rule function calls.
  * @return {void}
@@ -233,7 +235,7 @@ function loadCommandAliases(commandAliasesPathConfigName) {
     resolvedCustomCommandsAliasesPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, commandAliasesPathConfigName));
     // resolvedCustomCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomCommandsAliasesPathIs + resolvedCustomCommandsAliasesPath);
-    chiefCommander.loadCommandAliasesFromPath(commandAliasesPathConfigName);
+    chiefCommander.loadCommandAliasesFromPath(commandAliasesPathConfigName, wrd.cPlugin);
   } else {
     resolvedSystemCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkCommandAliasesPath);
     resolvedClientCommandsAliasesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cclientCommandAliasesPath);
@@ -241,9 +243,10 @@ function loadCommandAliases(commandAliasesPathConfigName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedSystemCommandsAliasesPathIs + resolvedSystemCommandsAliasesPath);
     // resolvedClientCommandsAliasesPath is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedClientCommandsAliasesPathIs + resolvedClientCommandsAliasesPath);
-    chiefCommander.loadCommandAliasesFromPath(cfg.cframeworkCommandAliasesPath);
-    chiefCommander.loadCommandAliasesFromPath(cfg.cclientCommandAliasesPath);
+    chiefCommander.loadCommandAliasesFromPath(cfg.cframeworkCommandAliasesPath, sys.cFramework);
+    chiefCommander.loadCommandAliasesFromPath(cfg.cclientCommandAliasesPath, wrd.cApplication);
   }
+  // console.log('ALL Loaded command aliases is: ' + JSON.stringify(D[sys.cCommandsAliases]));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 };
 
@@ -268,7 +271,7 @@ function loadCommandWorkflows(workflowPathConfigName) {
   if (workflowPathConfigName) {
     resolvedCustomWorkflowsPath = path.resolve(configurator.getConfigurationSetting(wrd.csystem, workflowPathConfigName));
     // resolvedCustomWorkflowsPath is:
-    loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomWorkflowsPathIs + resolvedSystemWorkflowsPath);
+    loggers.consoleLog(namespacePrefix + functionName, msg.cresolvedCustomWorkflowsPathIs + resolvedCustomWorkflowsPath);
     chiefWorkflow.loadCommandWorkflowsFromPath(workflowPathConfigName, wrd.cPlugin);
   } else {
     resolvedSystemWorkflowsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkWorkflowsPath);
@@ -281,7 +284,7 @@ function loadCommandWorkflows(workflowPathConfigName) {
     chiefWorkflow.loadCommandWorkflowsFromPath(cfg.cclientWorkflowsPath, wrd.cApplication);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function executeBusinessRules
@@ -306,7 +309,7 @@ function executeBusinessRules(inputs, businessRules) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function enqueueCommand
@@ -327,7 +330,7 @@ function enqueueCommand(command) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccommandIs + command);
   chiefCommander.enqueueCommand(command);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function isCommandQueueEmpty
@@ -347,7 +350,7 @@ function isCommandQueueEmpty() {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function processCommandQueue
@@ -355,7 +358,8 @@ function isCommandQueueEmpty() {
  * which will ultimately call chiefCommander.processCommand to process an individual command.
  * This is because a command could actually invoke a command workflow that might enqueue a bunch of commands
  * to the command queue. All of them must be executed in sequence as part of the main application loop.
- * @return {boolean} A True or False value to indicate if the command loop should termiante when it's done.
+ * @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+ * indicate if the application should exit or not exit, followed by the command output.
  * @author Seth Hollingsead
  * @date 2022/02/16
  */
@@ -367,7 +371,7 @@ function processCommandQueue() {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function setConfigurationSetting
@@ -393,7 +397,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
   // D[sys.cConfiguration][configurationName] = configurationValue;
   configurator.setConfigurationSetting(configurationNamespace, configurationName, configurationValue);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function getConfigurationSetting
@@ -418,7 +422,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnConfiguraitonValueIs + returnConfigurationValue);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnConfigurationValue;
-};
+}
 
 /**
  * @function consoleLog
@@ -428,7 +432,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/16
- * @NOTE We cannot insturment this code with calls to loggers.consoleLog as it would ntroduce yet another circular dependency.
+ * @NOTE We cannot instrument this code with calls to loggers.consoleLog as it would ntroduce yet another circular dependency.
  * We will have to stick with just hard coded console.logs in this case to debug at this level.
  */
 function consoleLog(classPath, message) {
@@ -438,7 +442,7 @@ function consoleLog(classPath, message) {
   // console.log(`message is: ${message}`);
   loggers.consoleLog(classPath, message);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 export default {
   [fnc.cprocessRootPath]: (inputPath) => processRootPath(inputPath),

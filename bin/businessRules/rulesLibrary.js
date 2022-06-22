@@ -43,7 +43,7 @@ import constantArrayParsing from './rules/arrayParsing/constantArrayParsing.js';
 import dataArrayParsing from './rules/arrayParsing/dataArrayParsing.js';
 import pathArrayParsing from './rules/arrayParsing/pathArrayParsing.js';
 import wordArrayParsing from './rules/arrayParsing/wordArrayParsing.js';
-import auxiliaryStringParsing from './rules/stringParsing/auxiliaryStringParsing.js';
+// import auxiliaryStringParsing from './rules/stringParsing/auxiliaryStringParsing.js';
 import characterStringParsing from './rules/stringParsing/characterStringParsing.js';
 import commandStringParsing from './rules/stringParsing/commandStringParsing.js';
 import constantStringParsing from './rules/stringParsing/constantStringParsing.js';
@@ -67,6 +67,7 @@ import path from 'path';
 const {bas, biz, fnc, sys} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rulesLibrary.
+// eslint-disable-next-line no-unused-vars
 const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -81,15 +82,16 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
  function initRulesLibrary() {
-   let functionName = initRulesLibrary.name;
+  //  let functionName = initRulesLibrary.name;
    // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
    D[sys.cbusinessRules] = {};
    D[sys.cbusinessRules] = {
+     // eslint-disable-next-line no-unused-vars
      [biz.cecho]: (inputData, inputMetaData) => console.log(JSON.stringify(inputData)),
 
      // Business Rules
      // ***********************************************************************
-     // BEGIN ArrayParsing catagory
+     // BEGIN ArrayParsing category
      // ***********************************************************************
      // ***********************************************
      // auxiliaryArrayParsing rules in order
@@ -155,11 +157,11 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cascertainMatchingElements]: (inputData, inputMetaData) => wordArrayParsing.ascertainMatchingElements(inputData, inputMetaData),
 
      // ***********************************************************************
-     // END ArrayParsing catagory
+     // END ArrayParsing category
      // ***********************************************************************
 
      // ***********************************************************************
-     // BEGIN StringParsing catagory
+     // BEGIN StringParsing category
      // ***********************************************************************
      // ***********************************************
      // auxiliaryStringParsing rules in order
@@ -191,7 +193,6 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      // ***********************************************
      [biz.ccleanCommandInput]: (inputData, inputMetaData) => commandStringParsing.cleanCommandInput(inputData, inputMetaData),
      [biz.cisValidCommandNameString]: (inputData, inputMetaData) => commandStringParsing.isValidCommandNameString(inputData, inputMetaData),
-     [biz.ccountDuplicateCommandAliases]: (inputData, inputMetaData) => commandStringParsing.countDuplicateCommandAliases(inputData, inputMetaData),
 
      // ***********************************************
      // constantStringParsing rules in order
@@ -218,8 +219,8 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cgetAttributeName]: (inputData, inputMetaData) => dataStringParsing.getAttributeName(inputData, inputMetaData),
      [biz.cgetAttributeValue]: (inputData, inputMetaData) => dataStringParsing.getAttributeValue(inputData, inputMetaData),
      [biz.cgetValueFromAssignmentOperationString]: (inputData, inputMetaData) => dataStringParsing.getValueFromAssignmentOperationString(inputData, inputMetaData),
-     [biz.cgetDataCatagoryFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getDataCatagoryFromDataContextName(inputData, inputMetaData),
-     [biz.cgetDataCatagoryDetailNameFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getDataCatagoryDetailNameFromDataContextName(inputData, inputMetaData),
+     [biz.cgetDataCategoryFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getDataCategoryFromDataContextName(inputData, inputMetaData),
+     [biz.cgetDataCategoryDetailNameFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getDataCategoryDetailNameFromDataContextName(inputData, inputMetaData),
      [biz.cgetKeywordNameFromDataContextName]: (inputData, inputMetaData) => dataStringParsing.getKeywordNameFromDataContextName(inputData, inputMetaData),
      [biz.cloadDataFile]: (inputData, inputMetaData) => dataStringParsing.loadDataFile(inputData, inputMetaData),
      [biz.csaveDataFile]: (inputData, inputMetaData) => dataStringParsing.saveDataFile(inputData, inputMetaData),
@@ -252,7 +253,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cisStringList]: (inputData, inputMetaData) => wordStringParsing.isStringList(inputData, inputMetaData),
      [biz.caggregateNumericalDifferenceBetweenTwoStrings]: (inputData, inputMetaData) => wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings(inputData, inputMetaData),
      // ***********************************************************************
-     // END StringParsing catagory
+     // END StringParsing category
      // ***********************************************************************
 
      // ***********************************************
@@ -286,6 +287,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.cwriteJsonData]: (inputData, inputMetaData) => fileOperations.writeJsonData(inputData, inputMetaData),
      [biz.creadDirectoryContents]: (inputData, inputMetaData) => fileOperations.readDirectoryContents(inputData, inputMetaData),
      [biz.cscanDirectoryContents]: (inputData, inputMetaData) => fileOperations.scanDirectoryContents(inputData, inputMetaData),
+     [biz.cgetDirectoryList]: (inputData, inputMetaData) => fileOperations.getDirectoryList(inputData, inputMetaData),
      [biz.creadDirectorySynchronously]: (inputData, inputMetaData) => fileOperations.readDirectorySynchronously(inputData, inputMetaData),
      [biz.ccopyAllFilesAndFoldersFromFolderToFolder]: (inputData, inputMetaData) => fileOperations.copyAllFilesAndFoldersFromFolderToFolder(inputData, inputMetaData),
      [biz.cbuildReleasePackage]: (inputData, inputMetaData) => fileOperations.buildReleasePackage(inputData, inputMetaData),
@@ -371,7 +373,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
      [biz.csleep]: (inputData, inputMetaData) => timeComputation.sleep(inputData, inputMetaData),
    }
    // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 export default {
   [fnc.cinitRulesLibrary]: () => initRulesLibrary()

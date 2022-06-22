@@ -18,7 +18,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.fileStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -131,7 +131,7 @@ const removeFileExtensionFromFileName = function(inputData, inputMetaData) {
  * @function ascertainMatchingFilenames
  * @description Compares two file names after stripping off the path and determines if they are matching or not.
  * @param {string} inputData The first filename and path that should be used in making the file name comparison.
- * @param {string} inputMetaData The second filename and path that should be used in makign the file name comparison.
+ * @param {string} inputMetaData The second filename and path that should be used in making the file name comparison.
  * @return {boolean} A True or False value to indicate if the file names are equivalent.
  * @author Seth Hollingsead
  * @date 2022/01/23
@@ -150,7 +150,6 @@ const ascertainMatchingFilenames = function(inputData, inputMetaData) {
     } else {
       // Filenames do not match
       loggers.consoleLog(namespacePrefix + functionName, msg.cFilenamesDoNotMatch);
-      returnData = false;
     }
   } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -163,7 +162,7 @@ const ascertainMatchingFilenames = function(inputData, inputMetaData) {
  * @description Returns a list of supported file formats.
  * @param {string} inputData Not used for this business rule.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A coma seperated ist of supported file formats. IE a list of file extensions.
+ * @return {string} A coma separated ist of supported file formats. IE a list of file extensions.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
