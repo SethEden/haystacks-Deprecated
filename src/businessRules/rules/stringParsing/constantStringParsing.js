@@ -54,48 +54,53 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
     let colorizeLogsEnabled = configurator.getConfigurationSetting(wrd.csystem, cfg.cenableColorizedConsoleLogs);
 
     while (line === liner.next()) {
-      // constants line is:
-      loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsLineIs + line.toString(gen.cascii));
-      let lineInCode = line.toString(gen.cascii);
-      let foundConstant = false;
-      if (lineInCode.includes(sys.cexportconst) === true) {
-        let lineArray = lineInCode.split(bas.cSpace);
-        // lineArray[2] is
-        loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
-        foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
-        let qualifiedConstantsFilename = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetFileNameFromPath]);
-        if (foundConstant === true) {
-          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
-            let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;
-            if (colorizeLogsEnabled === true) {
-              passMessage = chalk.rgb(0,0,0)(passMessage);
-              passMessage = chalk.bgRgb(0,255,0)(passMessage);
-            }
-            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
-          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
-        } else { // Else-clause if (foundConstant === true)
-          if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
-            let failMessage = wrd.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL;
-            if (colorizeLogsEnabled === true) {
-              failMessage = chalk.rgb(0,0,0)(failMessage);
-              failMessage = chalk.bgRgb(255,0,0)(failMessage);
-            }
-            let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
-            console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
-            // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
-            let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
-            if (suggestedLineOfCode !== '') {
+      if (line) {
+        // constants line is:
+        loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsLineIs + line.toString(gen.cascii));
+        let lineInCode = line.toString(gen.cascii);
+        let foundConstant = false;
+        if (lineInCode.includes(sys.cexportconst) === true) {
+          let lineArray = lineInCode.split(bas.cSpace);
+          // lineArray[2] is
+          loggers.consoleLog(namespacePrefix + functionName, msg.clineArray2Is + lineArray[2]);
+          foundConstant = validateConstantsDataValidationLineItemName(lineArray[2], inputMetaData);
+          let qualifiedConstantsFilename = ruleParsing.processRulesInternal([inputData, ''], [biz.cgetFileNameFromPath]);
+          if (foundConstant === true) {
+            if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true) {
+              let passMessage = wrd.cPASS + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cPASS;
               if (colorizeLogsEnabled === true) {
-                suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
-                suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
+                passMessage = chalk.rgb(0,0,0)(passMessage);
+                passMessage = chalk.bgRgb(0,255,0)(passMessage);
               }
-              // Suggested line of code is:
-              console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
-            } // End-if (suggestedLineOfCode !== '')
-          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
-          foundAFailure = true;
-        }
-      } // End-if (lineInCode.includes(sys.cexportconst) === true)
+              console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
+            } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
+          } else { // Else-clause if (foundConstant === true)
+            if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true) {
+              let failMessage = wrd.cFAIL + bas.cColon + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL;
+              if (colorizeLogsEnabled === true) {
+                failMessage = chalk.rgb(0,0,0)(failMessage);
+                failMessage = chalk.bgRgb(255,0,0)(failMessage);
+              }
+              let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
+              console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
+              // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
+              let suggestedLineOfCode = determineSuggestedConstantsValidationLineOfCode(lineArray[2], qualifiedConstantsPrefix);
+              if (suggestedLineOfCode !== '') {
+                if (colorizeLogsEnabled === true) {
+                  suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
+                  suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
+                }
+                // Suggested line of code is:
+                console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
+              } // End-if (suggestedLineOfCode !== '')
+            } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualCosntantsValidationFailMessages) === true)
+            foundAFailure = true;
+          }
+        } // End-if (lineInCode.includes(sys.cexportconst) === true)
+      } else {
+        // TODO: Replace this hard coded string with a constant defined error message for the up-coming release!
+        // console.log('ERROR: line is null or undefined: ' + line + ' file is: ' + inputData);
+      }      
     } // End-while (line = liner.next())
   } // End-if (inputData && inputMetaData)
   if (foundAFailure === false) {
