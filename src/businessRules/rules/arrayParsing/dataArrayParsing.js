@@ -2,6 +2,8 @@
  * @file dataArrayParsing.js
  * @module dataArrayParsing
  * @description Contains all system defined business rules for parsing arrays specific to data.
+ * @requires module:dataBroker
+ * @requires module:ruleParsing
  * @requires module:loggers
  * @requires module:data
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
@@ -12,13 +14,15 @@
  */
 
 // Internal imports
+import dataBroker from '../../../brokers/dataBroker.js';
+import ruleParsing from '../ruleParsing.js';
 import loggers from '../../../executrix/loggers.js';
 import D from '../../../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.dataArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -29,7 +33,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @param {array<string|integer|boolean|float|object>} inputData The first array that should be checked for equality.
  * @param {array<string|integer|boolean|float|object>} inputMetaData The second array that should be checked for equality.
  * @return {boolean} True or False to indicate if the arrays are equal or not equal.
- * @autor Seth Hollingsead
+ * @author Seth Hollingsead
  * @date 2022/01/20
  * @NOTE: https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
  */
@@ -75,14 +79,14 @@ const storeData = function(inputData, inputMetaData) {
 
 /**
  * @function getStoredData
- * @description Gets the named data strod in the D data structure in the DataStorage data hive.
- * @param {string} inputData The name of the sub-data hive that should contain the stored data we are lookign for.
- * @param {string} inputMetData Not used for tis business rule.
+ * @description Gets the named data stored in the D data structure in the DataStorage data hive.
+ * @param {string} inputData The name of the sub-data hive that should contain the stored data we are looking for.
+ * @param {string} inputMetaData Not used for tis business rule.
  * @return {object} The data that was stored in the sub-data hie under the DataStorage data hive of the D data structure.
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-const getStoredData = function(inputData, inputMetData) {
+const getStoredData = function(inputData, inputMetaData) {
   let functionName = getStoredData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -99,7 +103,7 @@ const getStoredData = function(inputData, inputMetData) {
 /**
  * @function isObjectEmpty
  * @description Determines if a JSON object is empty or not.
- * @param {object} inputData The object that should be checked for emptyness.
+ * @param {object} inputData The object that should be checked for emptiness.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the object is empty or not empty.
  * @author Seth Hollingsead
@@ -113,7 +117,7 @@ const isObjectEmpty = function(inputData, inputMetaData) {
   let returnData = true;
   if (inputData) {
     for (let key in inputData) {
-      if (inputData.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(inputData, key)) {
         returnData = false;
         // It may have a value, but is that value === null, if it is, reset back to true.
         if (inputData[key] === null) {
@@ -130,7 +134,7 @@ const isObjectEmpty = function(inputData, inputMetaData) {
 /**
  * @function isArrayEmpty
  * @description Determines if a JSON array is empty or not.
- * @param {array<string|integer|boolean|float|object>} inputData The array that should be checked for emptyness.
+ * @param {array<string|integer|boolean|float|object>} inputData The array that should be checked for emptiness.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the array is empty or not empty.
  * @author Seth Hollingsead
@@ -153,7 +157,7 @@ const isArrayEmpty = function(inputData, inputMetaData) {
 /**
  * @function isObject
  * @description Determines if an object is a JSON object or not.
- * @param {object|array<string|integer|boolean|float|object>} inputData The object taht should be tested to see if it is a JSON object or not.
+ * @param {object|array<string|integer|boolean|float|object>} inputData The object that should be tested to see if it is a JSON object or not.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the input object is an array or not.
  * @author Seth Hollingsead
@@ -230,12 +234,12 @@ const isArrayOrObject = function(inputData, inputMetaData) {
  * @description Determines if an object is an array of length greater than or equal to one or not.
  * @param {object|array<string|integer|boolean|float|object>} inputData The object/array that
  * should be tested to see if it is an array of length greater than or equal to 1 or not.
- * @param {string} inputMetData Not used for this business rule.
- * @return {boolean} True or False to indiate if the input object is an array of length greater than equal to zero or not.
+ * @param {string} inputMetaData Not used for this business rule.
+ * @return {boolean} True or False to indicate if the input object is an array of length greater than equal to zero or not.
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isNonZeroLengthArray = function(inputData, inputMetData) {
+const isNonZeroLengthArray = function(inputData, inputMetaData) {
   let functionName = isNonZeroLengthArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -254,7 +258,7 @@ const isNonZeroLengthArray = function(inputData, inputMetData) {
 /**
  * @function arrayDeepClone
  * @description Clones an array by using JSON.stringify & JSON.parse.
- * Almost all other methods of cloning an array will actually clone by referance which essentially just clones the pointer to the array.
+ * Almost all other methods of cloning an array will actually clone by reference which essentially just clones the pointer to the array.
  * @NOTE: https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/
  * @param {array<string|integer|boolean|float|object>} inputData The array that should be deeply cloned.
  * @param {string} inputMetaData Not used for this business rule.
@@ -297,7 +301,7 @@ const objectDeepMerge = function(inputData, inputMetaData) {
     returnData = false;
   } else {
     for (let property in inputMetaData) {
-      if (!inputMetaData.hasOwnProperty(property)) {
+      if (!Object.prototype.hasOwnProperty.call(inputMetaData, property)) {
         continue; // Take into consideration only object's own properties.
       }
       // property is:
@@ -433,17 +437,17 @@ const getNamespacedDataObject = function(inputData, inputMetaData) {
   let processingValidData = false;
   let namespaceDataObject = D;
   if (inputData && inputData.length > 0) {
-    for (let i = 0; i < inputData.length; i++) {
+    for (const element of inputData) {
       processingValidData = true;
-      if (!namespaceDataObject[inputData[i]] && inputMetaData === true) {
+      if (!namespaceDataObject[element] && inputMetaData === true) {
         // It doesn't exist yet, so lets make it.
-        namespaceDataObject[inputData[i]] = {};
-      } else if (!namespaceDataObject[inputData[i]]) {
-        console.log(msg.cnamespaceDataObjectPathNotFound + JSON.stringify(inputData[i]));
+        namespaceDataObject[element] = {};
+      } else if (!namespaceDataObject[element]) {
+        console.log(msg.cnamespaceDataObjectPathNotFound + JSON.stringify(element));
         processingValidData = false;
         break;
       }
-      namespaceDataObject = namespaceDataObject[inputData[i]];
+      namespaceDataObject = namespaceDataObject[element];
     } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
     if (processingValidData === true) {
       returnData = namespaceDataObject;
@@ -470,11 +474,9 @@ const setNamespacedDataObject = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
-  let processingValidData = false;
   let namespaceDataObject = D;
   if (inputData && inputData.length > 0) {
     for (let i = 0; i < inputData.length - 1; i++) {
-      processingValidData = true;
       namespaceDataObject = namespaceDataObject[inputData[i]];
       if (i === inputData.length - 2) {
         // namespaceDataObject is:

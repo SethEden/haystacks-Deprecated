@@ -8,7 +8,6 @@
  * @requires module:application.message.constants
  * @requires {@link https://www.npmjs.com/package/haystacks|haystacks}
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
- * @requires {@link https://www.npmjs.com/package/chalk|chalk}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/03/13
@@ -23,10 +22,9 @@ import * as app_msg from '../../constants/application.message.constants.js';
 // External imports
 import haystacks from 'haystacks';
 import hayConst from '@haystacks/constants';
-import chalk from 'chalk';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // buildRelease.commands.cientCommands.clientCommands.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.ccommands + bas.cDot + wrd.cclient + wrd.cCommands + bas.cDot + baseFileName + bas.cDot;
@@ -46,18 +44,18 @@ const customEchoCommand = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData;
-  returnData = inputData + app_msg.cclientStringParsingDotCustomEcho;
-  console.log(returnData);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  let returnData = [false, false];
+  returnData[1] = inputData + app_msg.cclientStringParsingDotCustomEcho;
+  console.log(returnData[1]);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
 
 /**
  * @function deployMetaData
- * @description Copies application meta-data from the soure to the destination.
- * @param {object} inputData The data that should be transfered to the output file & path.
+ * @description Copies application meta-data from the source to the destination.
+ * @param {object} inputData The data that should be transferred to the output file & path.
  * @param {string} inputMetaData The path the data should be written out to.
  * @return {boolean} A True or False value to indicate if the data was copied successfully or not.
  * @author Seth Hollingsead
@@ -68,7 +66,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
 
   // inputData.shift(); // Remove the first element of the array, because that is what is used to call this command.
   // @Reference: {@Link https://stackoverflow.com/questions/9153571/is-there-a-way-to-get-version-from-package-json-in-nodejs-code}
@@ -107,8 +105,8 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataPathAndFilenameIs + metaDataPathAndFilename);
   // metaDataOutput is:
   haystacks.consoleLog(namespacePrefix, functionName, msg.cmetaDataOutputIs + JSON.stringify(metaDataOutput));
-  haystacks.executeBusinessRules([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  returnData[1] = haystacks.executeBusinessRules([metaDataPathAndFilename, metaDataOutput], [biz.csaveDataFile]);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
@@ -118,7 +116,7 @@ const deployMetaData = function(inputData, inputMetaData) {
  * @description Executes the deployment of the application, part of the build-deploy-release cycle.
  * This command copies the non-source code files from the src folder structure to the bin folder structure.
  * @param {string} inputData The path the non-code files should be copied from. (SOURCE)
- * @param {string} inputmetaData The path the non-code files should be copied to. (DESTINATION)
+ * @param {string} inputMetaData The path the non-code files should be copied to. (DESTINATION)
  * @return {boolean} a True or False value to indicate if the deployment was successful or not.
  * @author Seth Hollingsead
  * @date 2022/04/05
@@ -128,7 +126,7 @@ const deployApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
   let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
   let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks);
   let passAllWorkflowDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks);
@@ -147,6 +145,7 @@ const deployApplication = function(inputData, inputMetaData) {
     if (deploymentStatus === true) {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentWasCompleted + true);
       haystacks.setConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted, true);
+      returnData[1] = true;
     } else {
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cDeploymentFailed);
     }
@@ -160,7 +159,7 @@ const deployApplication = function(inputData, inputMetaData) {
       console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
     }
   }
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
@@ -172,7 +171,7 @@ const deployApplication = function(inputData, inputMetaData) {
  * If there is not, then the system will build a zip file from the bin folder excluding the release folder,
  * and save the resulting archie to the release folder.
  * @param {string} inputData The path or the bin folder where the latest source code will have been deployed. (SOURCE)
- * @param {string} inputMetaData The path for the release folder where the reelase zip arcive file should be saed. (RELEASE)
+ * @param {string} inputMetaData The path for the release folder where the release zip archive file should be saved. (RELEASE)
  * @return {boolean} A True or False value to indicate if the zip archive was created successfully or not.
  * @author Seth Hollingsead
  * @date 2022/04/07
@@ -182,7 +181,8 @@ const releaseApplication = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + JSON.stringify(inputData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, false];
+  let errorMessage = '';
   let passAllConstantsValidation = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation);
   let passAllCommandAliasesDuplicateChecks = haystacks.getConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks)
   if (passAllConstantsValidation === true && passAllCommandAliasesDuplicateChecks === true) {
@@ -196,20 +196,24 @@ const releaseApplication = function(inputData, inputMetaData) {
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.csourcePathIs + sourcePath);
     // destinationPath is:
     haystacks.consoleLog(namespacePrefix, functionName, app_msg.cdestinationPathIs + destinationPath);
-    let releaseResult = haystacks.executeBusinessRules([sourcePath, destinationPath], [app_biz.cbuildReleasePackage]);
+    returnData[1] = haystacks.executeBusinessRules([sourcePath, destinationPath], [app_biz.cbuildReleasePackage]);
   } else {
-    // Technically it should never even get here, because this same conditino is caught at the deployApplication command.
-    // The deployApplication command should be executing before this comand.
+    // Technically it should never even get here, because this same condition is caught at the deployApplication command.
+    // The deployApplication command should be executing before this command.
     if (passAllConstantsValidation === false) {
       // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another deployment.
-      console.log(msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a);
+      errorMessage = msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
     if (passAllCommandAliasesDuplicateChecks === false) {
       // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
-      console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
+      errorMessage = msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
     }
   }
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };

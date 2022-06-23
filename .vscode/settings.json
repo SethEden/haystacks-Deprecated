@@ -1,0 +1,19 @@
+{
+    "cSpell.words": [
+        "Lehmer",
+        "papaparse",
+        "permutate",
+        "readlines",
+        "resaving"
+    ],
+    "cSpell.diagnosticLevel": "Hint",
+    "workbench.colorCustomizations": {
+        // will change the color of three dots to red
+        "editorHint.foreground": "#ff0000",
+
+        // will underline the entire word with dots in your chosen color
+        "editorHint.border": "#ff0000",
+
+        "editorHint.foreground": "#f000"
+    }
+}

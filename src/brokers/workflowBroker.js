@@ -47,7 +47,7 @@ function getWorkflow(workflowName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowValueIs + JSON.stringify(workflowValue));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowValue;
-};
+}
 
 /**
  * @function doesWorkflowExist
@@ -71,7 +71,7 @@ function doesWorkflowExist(workflowName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowFoundIs + workflowFound);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowFound;
-};
+}
 
 /**
  * @function doesWorkflowExistInWorkflowData
@@ -94,7 +94,7 @@ function doesWorkflowExistInWorkflowData(workflowData, workflowName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowFoundIs + workflowFound);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowFound;
-};
+}
 
 /**
  * @function searchWorkflow
@@ -137,7 +137,7 @@ function searchWorkflow(workflowData, workflowName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowObjectIs + workflowObject);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowObject;
-};
+}
 
 /**
  * @function getAllWorkflows
@@ -198,7 +198,7 @@ function getAllWorkflows(workflowDataStructure) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowIs + JSON.stringify(allWorkflows));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allWorkflows;
-};
+}
 
 /**
  * @function getWorkflowNamespaceDataObject
@@ -245,7 +245,7 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowNamespaceObjectIs + JSON.stringify(workflowNamespaceObject));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return workflowNamespaceObject;
-};
+}
 
 export default {
   [fnc.cgetWorkflow]: (workflowName) => getWorkflow(workflowName),

@@ -46,7 +46,7 @@ function initStack(stackNameSpace) {
     console.log(num.c1 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cAlreadyExists);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function clearStack
@@ -68,7 +68,7 @@ function clearStack(stackNameSpace) {
     console.log(num.c2 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function push
@@ -92,7 +92,7 @@ function push(stackNameSpace, value) {
     console.log(num.c3 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function pop
@@ -114,7 +114,7 @@ function pop(stackNameSpace) {
       returnData = msg.cWarningStackColon + stackNameSpace + bas.cisEmpty;
       console.log(returnData);
     } else {
-      returnData = D[stackNamespace].pop();
+      returnData = D[stackNameSpace].pop();
     }
   } else {
     // WARNING: Stack:
@@ -124,23 +124,23 @@ function pop(stackNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isEmpty
  * @description Dtermines if the stack specified by the namespace parameter is empty or not empty.
- * @param {string} stackNamespace The namespace of the stack that should be checked if it is empty or not empty.
+ * @param {string} stackNameSpace The namespace of the stack that should be checked if it is empty or not empty.
  * @return {boolean} True or False to indicate if the specified stack is empty or not empty.
  * @author Seth Hollingsead
  * @date 2022/02/01
  */
-function isEmpty(stackNamespace) {
+function isEmpty(stackNameSpace) {
   let functionName = isEmpty.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cstackNameSpaceIs + stackNameSpace);
   let returnData = false;
-  if (D[stackNamespace] !== undefined) {
-    if (D[stackNamespace].length === 0) {
+  if (D[stackNameSpace] !== undefined) {
+    if (D[stackNameSpace].length === 0) {
       returnData = true;
     }
   } else {
@@ -151,7 +151,7 @@ function isEmpty(stackNamespace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function length
@@ -176,7 +176,7 @@ function length(stackNameSpace) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function contains
@@ -202,7 +202,7 @@ function contains(stackNameSpace, value) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function print
@@ -225,14 +225,14 @@ function print(stackNameSpace) {
     console.log(num.c8 + bas.cSpace + msg.cWarningStackColon + stackNameSpace + msg.cdoesNotExist);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 export default {
   [fnc.cinitStack]: (stackNameSpace) => initStack(stackNameSpace),
   [fnc.cclearStack]: (stackNameSpace) => clearStack(stackNameSpace),
   [fnc.cpush]: (stackNameSpace, value) => push(stackNameSpace, value),
   [fnc.cpop]: (stackNameSpace) => pop(stackNameSpace),
-  [fnc.cisEmpty]: (stackNamespace) => isEmpty(stackNameSpace),
+  [fnc.cisEmpty]: (stackNameSpace) => isEmpty(stackNameSpace),
   [fnc.clength]: (stackNameSpace) => length(stackNameSpace),
   [fnc.ccontains]: (stackNameSpace, value) => contains(stackNameSpace, value),
   [fnc.cprint]: (stackNameSpace) => print(stackNameSpace)

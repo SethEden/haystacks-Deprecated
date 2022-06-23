@@ -49,7 +49,7 @@ function getNamedThemes() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemesNamesIs + JSON.stringify(themesNames));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themesNames;
-};
+}
 
 /**
  * @function getNamedThemePath
@@ -81,7 +81,7 @@ function getNamedThemePath(themeName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemePathIs + themePath);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themePath;
-};
+}
 
 /**
  * @function loadTheme
@@ -103,7 +103,7 @@ function loadTheme(themePath) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemeDataIs + JSON.stringify(themeData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themeData;
-};
+}
 
 /**
  * @function applyTheme
@@ -124,7 +124,7 @@ function applyTheme(themeData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   getNamedThemes,

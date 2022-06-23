@@ -11,7 +11,7 @@
 
 // External imports
 import hayConst from '@haystacks/constants';
-const {bas, wrd} = hayConst;
+const {wrd} = hayConst;
 
 // ********************************
 // Client Commands in order

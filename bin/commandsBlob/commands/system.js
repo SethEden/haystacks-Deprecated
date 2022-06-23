@@ -2,6 +2,7 @@
 * @file system.js
 * @module system
 * @description Contains all of the system level commands.
+* @requires module:commandBroker
 * @requires module:ruleBroker
 * @requires module:workflowBroker
 * @requires module:configurator
@@ -16,6 +17,7 @@
 */
 
 // Internal imports
+import commandBroker from '../../brokers/commandBroker.js';
 import ruleBroker from '../../brokers/ruleBroker.js';
 import workflowBroker from '../../brokers/workflowBroker.js';
 import configurator from '../../executrix/configurator.js';
@@ -26,7 +28,7 @@ import hayConst from '@haystacks/constants';
 import figlet from 'figlet';
 import path from 'path';
 
-const {bas, biz, cmd, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // commandsBlob.commands.system.
 const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot + baseFileName + bas.cDot;
@@ -37,7 +39,8 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 * @param {array<boolean|string|integer>} inputData String that should be echoed.
 * inputData[0] === 'echoCommand'
 * @param {string} inputMetaData Not used for this business rule.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
@@ -46,13 +49,17 @@ const echoCommand = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, ''];
+  let errorMessage = '';
   if (inputData) {
     inputData.shift();
     console.log(inputData.join(bas.cSpace));
+    returnData[1] = inputData.join(bas.cSpace);
   } else {
     // Nothing to echo.
-    console.log(msg.cNothingToEcho);
+    errorMessage = msg.cNothingToEcho;
+    console.log(errorMessage);
+    returnData[1] = errorMessage;
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -65,7 +72,8 @@ const echoCommand = function(inputData, inputMetaData) {
 * @param {array<boolean|string|integer>} inputData Not used for this command.
 * inputData[0] === 'exit'
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} False to indicate that the application should exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean False value to
+* indicate if the application exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
@@ -74,20 +82,21 @@ const exit = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = false;
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  let returnData = [false, true];
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
 
 /**
 * @function version
-* @description Dispalys the current version number for the current application.
+* @description Displays the current version number for the current application.
 * @param {array<boolean|string|integer>} inputData Not used for this command.
 * inputData[0] = 'version'
 * inputData[1] === 'application|framework' (optional)
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
@@ -96,7 +105,7 @@ const version = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, ''];
   let configVersion = '';
   let appContext = '';
   if (inputData.length === 2) {
@@ -112,7 +121,8 @@ const version = function(inputData, inputMetaData) {
     configVersion = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationVersionNumber);
   }
   console.log(configVersion);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  returnData[1] = configVersion;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -124,7 +134,8 @@ const version = function(inputData, inputMetaData) {
 * inputData[0] === 'about'
 * inputData[1] === 'application|framework' (optional)
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
@@ -133,7 +144,7 @@ const about = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, ''];
   let configDescription = '';
   let appContext = '';
   if (inputData.length === 2) {
@@ -149,7 +160,8 @@ const about = function(inputData, inputMetaData) {
     configDescription = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationDescription);
   }
   console.log(configDescription);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  returnData[1] = configDescription;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -159,13 +171,14 @@ const about = function(inputData, inputMetaData) {
 * @description Displays the name of the current application in standard font format, nothing special.
 * Optional argument to output in figlet font.
 * @param {array<boolean|string|integer>} inputData An array that could really contain anything depending
-* on what the user entered, but the functino converts and filters out for a boolean
+* on what the user entered, but the function converts and filters out for a boolean
 * True or False value internally to the function.
 * inputData[0] === 'name'
 * inputData[1] === 'application|framework' (optional)
 * inputData[2] === 'true|false' (optional)
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
@@ -174,7 +187,7 @@ const name = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, ''];
   let reportedName = '';
   let figletFont = '';
   let appContext = '';
@@ -203,7 +216,8 @@ const name = function(inputData, inputMetaData) {
   } else {
     console.log(reportedName);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  returnData[1] = reportedName;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -213,20 +227,24 @@ const name = function(inputData, inputMetaData) {
 * @description Clears all data from the console cache by printing a bunch of blank lines to the screen.
 * @param {string} inputData Not used for this command.
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/04
 */
+// eslint-disable-next-line no-unused-vars
 const clearScreen = function(inputData, inputMetaData) {
   let functionName = clearScreen.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   // loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
-  let returnData = true;
+  let returnData = [true, {}];
   // console.clear(); // This will clear the screen, but not the cache, you can still scroll up and see the previous commands.
   // process.stdout.write('\u001B[2J\u-001B[0;0f'); // Same as above.
+  // eslint-disable-next-line no-undef
   process.stdout.write('\u001b[H\u001b[2J\u001b[3J');
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  returnData[1] = true;
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -238,16 +256,44 @@ const clearScreen = function(inputData, inputMetaData) {
 * @param {array<boolean|string|integer>} inputData Not used for this command.
 * inputData[0] = 'help'
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/22
 */
+// eslint-disable-next-line no-unused-vars
 const help = function(inputData, inputMetaData) {
   let functionName = help.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-  let returnData = true;
-  loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandsAliases][wrd.cCommands], [wrd.cName, wrd.cDescription]);
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  let returnData = [true, []];
+  let errorMessage = '';
+  if (inputData.length > 1) {
+    // calling getCommandNamespaceDataObject() function,
+    // because the user entered some namespace we should look for!
+    let namespaceCommandsData = commandBroker.getCommandNamespaceDataObject(undefined, inputData[1]);
+    // namespaceCommandsData is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceCommandsDataIs + JSON.stringify(namespaceCommandsData));
+    if (namespaceCommandsData === false) {
+      // ERROR: The command namespace was not found.
+      // Please make sure you have entered the correct name and try again.
+      errorMessage = msg.chelpCommandMessage01 + bas.cSpace + msg.chelpCommandMessage02;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
+    } else {
+      // NOW call getAllCommandAliasData with the above found data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.chelpCommandMessage03);
+      let flattenedNamespaceCommandAliasData = commandBroker.getAllCommandAliasData(namespaceCommandsData);
+      loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceCommandAliasData[0], [wrd.cName, wrd.cDescription]);
+      returnData[1] = ruleBroker.processRules([flattenedNamespaceCommandAliasData[0], ''], [biz.carrayDeepClone]);
+    }
+  } else {
+    let allCommandAliasFlatData = commandBroker.getAllCommandAliasData(D[sys.cCommandsAliases]);
+    returnData[1] = ruleBroker.processRules([allCommandAliasFlatData, ''], [biz.carrayDeepClone]);
+    // allCommandAliasFlatData is:
+    loggers.consoleLog(namespacePrefix + functionName, msg.callCommandAliasFlatDataIs + JSON.stringify(allCommandAliasFlatData[0]));
+    loggers.consoleTableLog(baseFileName + bas.cDot + functionName, allCommandAliasFlatData[0], [wrd.cName, wrd.cDescription]);
+  }
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };
@@ -259,7 +305,8 @@ const help = function(inputData, inputMetaData) {
 * @param {array<boolean|string|integer>} inputData Not used for this command.
 * inputData[0] = 'workflowHelp'
 * @param {string} inputMetaData Not used for this command.
-* @return {boolean} True to indicate that the application should not exit.
+* @return {array<boolean,string|integer|boolean|object|array>} An array with a boolean True or False value to
+* indicate if the application should exit or not exit, followed by the command output.
 * @author Seth Hollingsead
 * @date 2022/02/22
 */
@@ -268,7 +315,8 @@ const workflowHelp = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData = true;
+  let returnData = [true, []];
+  let errorMessage = '';
   // The old way of printing out all the workflows, when it was a flat data structure.
   // loggers.consoleTableLog(baseFileName + bas.cDot + functionName, D[sys.cCommandWorkflows][wrd.cWorkflows], [wrd.cName]);
   if (inputData.length > 1) {
@@ -278,10 +326,19 @@ const workflowHelp = function(inputData, inputMetaData) {
     let namespaceWorkflowData = workflowBroker.getWorkflowNamespaceDataObject(undefined, inputData[1]);
     // namespaceWorkflowData is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnamespaceWorkflowDataIs + JSON.stringify(namespaceWorkflowData));
-    // NOW call getAllWorkflows with the above found data!
-    loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage03);
-    let flattenedNamespaceWorkflowData = workflowBroker.getAllWorkflows(namespaceWorkflowData);
-    loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceWorkflowData);
+    if (namespaceWorkflowData === false) {
+      // ERROR: The workflow namespace was not found.
+      // Please make sure you have entered the correct name and try again.
+      errorMessage = msg.cworkflowHelpCommandMessage01 + bas.cSpace + msg.chelpCommandMessage02;
+      console.log(errorMessage);
+      returnData[1] = errorMessage;
+    } else {
+      // NOW call getAllWorkflows with the above found data!
+      loggers.consoleLog(namespacePrefix + functionName, msg.cworkfowHelpMessage03);
+      let flattenedNamespaceWorkflowData = workflowBroker.getAllWorkflows(namespaceWorkflowData);
+      loggers.consoleTableLog(baseFileName + bas.cDot + functionName, flattenedNamespaceWorkflowData);
+      returnData[1] = ruleBroker.processRules([flattenedNamespaceWorkflowData, ''], [biz.carrayDeepClone]);
+    }
   } else {
     // User did not enter any parameters,
     // just call getAllWorkflows functions with no input,
@@ -290,8 +347,9 @@ const workflowHelp = function(inputData, inputMetaData) {
     let allWorkflowData = workflowBroker.getAllWorkflows();
     loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowDataIs + JSON.stringify(allWorkflowData));
     loggers.consoleTableLog(baseFileName + bas.cDot + functionName, allWorkflowData);
+    returnData[1] = ruleBroker.processRules([allWorkflowData, ''], [biz.carrayDeepClone]);
   }
-  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
 };

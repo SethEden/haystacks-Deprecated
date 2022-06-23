@@ -1,7 +1,7 @@
 /**
  * @file commandsLibrary.js
  * @module commandsLibrary
- * @description Contains all of the ssytem defined commands as a map between function names and function calls.
+ * @description Contains all of the system defined commands as a map between function names and function calls.
  * @requires module:advanced
  * @requires module:auxiliary
  * @requires module:configuration
@@ -45,7 +45,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + baseFileName + bas.cDot;
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/04
- * @NOTE Pelase be aware taht the Commands and BusinessRules data fields in the
+ * @NOTE Please be aware that the Commands and BusinessRules data fields in the
  * D-data structure are going to display as empty when printing out the D data structure even when using JSON.stringify().
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling trying to debug commands or business rules that do not appear to exist.
@@ -120,7 +120,7 @@ function initCommandsLibrary() {
     [cmd.cworkflowHelp]: (inputData, inputMetaData) => systemCommands.workflowHelp(inputData, inputMetaData),
   };
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 export default {
   [fnc.cinitCommandsLibrary]: () => initCommandsLibrary()

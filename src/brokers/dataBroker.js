@@ -53,7 +53,7 @@ function scanDataPath(dataPath) {
   // console.log(`filesFound is: ${JSON.stringify(filesFound)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return filesFound;
-};
+}
 
 /**
  * @function findUniversalDebugConfigSetting
@@ -67,7 +67,7 @@ function scanDataPath(dataPath) {
  * @date 2022/01/18
  */
 function findUniversalDebugConfigSetting(appConfigFilesToLoad, frameworkConfigFilesToLoad) {
-  let functionName = findUniversalDebugConfigSetting.name;
+  // let functionName = findUniversalDebugConfigSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`appConfigFilesToLoad is: ${JSON.stringify(appConfigFilesToLoad)}`);
   // console.log(`frameworkConfigFilesToLoad is: ${JSON.stringify(frameworkConfigFilesToLoad)}`);
@@ -82,7 +82,7 @@ function findUniversalDebugConfigSetting(appConfigFilesToLoad, frameworkConfigFi
   // console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return universalDebugConfigSetting;
-};
+}
 
 /**
  * @function findIndividualDebugConfigSetting
@@ -95,7 +95,7 @@ function findUniversalDebugConfigSetting(appConfigFilesToLoad, frameworkConfigFi
  * @date 2022/01/18
  */
 function findIndividualDebugConfigSetting(filesToLoad) {
-  let functionName = findIndividualDebugConfigSetting.name;
+  // let functionName = findIndividualDebugConfigSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`filesToLoad is: ${JSON.stringify(filesToLoad)}`);
   let individualDebugConfigSetting = false;
@@ -105,8 +105,8 @@ function findIndividualDebugConfigSetting(filesToLoad) {
   let multiMergedData = {};
   let systemDotDebugSettings = wrd.csystem + bas.cDot + cfg.cdebugSettings;
 
-  for (let i = 0; i < filesToLoad.length; i++) {
-    let fileToLoad = filesToLoad[i];
+  for (const element of filesToLoad) {
+    let fileToLoad = element;
     // console.log('fileToLoad is: ' + fileToLoad);
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
       let dataFile = preprocessJsonFile(fileToLoad);
@@ -126,7 +126,7 @@ function findIndividualDebugConfigSetting(filesToLoad) {
   // console.log(`individualDebugConfigSetting is: ${individualDebugConfigSetting}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return individualDebugConfigSetting;
-};
+}
 
 /**
  * @function loadAllCsvData
@@ -147,12 +147,12 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   // let rules = [biz.cgetFileNameFromPath, biz.cremoveFileExtensionFromFileName];
   let parsedDataFile;
-  for (let i = 0; i < filesToLoad.length; i++) {
-    let fileToLoad = filesToLoad[i];
+  for (const element of filesToLoad) {
+    let fileToLoad = element;
     // File to load is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cFileToLoadIs + fileToLoad);
     // NOTE: We still need a filename to use as a context for the page data that we just loaded.
-    // A context name will be composed of the input context name wtih the file name we are processing
+    // A context name will be composed of the input context name with the file name we are processing
     // which tells us where we will put the data in the D[contextName] sub-structure.
     let fileExtension = ruleBroker.processRules([fileToLoad, ''], [biz.cgetFileExtension, biz.cremoveDotFromFileExtension]);
     // fileExtension is:
@@ -175,11 +175,11 @@ function loadAllCsvData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
-};
+}
 
 /**
  * @function loadedAllXmlData
- * @description Loads all the context of all files and folders and sub-folders at the specified apth and builds a list of files to load,
+ * @description Loads all the context of all files and folders and sub-folders at the specified path and builds a list of files to load,
  * then loads them accordingly in the D.contextName_fileName.
  * @param {array<string>} filesToLoad The data structure containing all of the files to load data from.
  * @param {string} contextName The context name that should be used when adding data to the D data structure.
@@ -204,7 +204,7 @@ function loadAllXmlData(filesToLoad, contextName) {
     fileToLoad = ruleBroker.processRules([fileToLoad, ''], [biz.cswapDoubleForwardSlashToSingleForwardSlash]);
     // File to load is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cFileToLoadIs + fileToLoad);
-    // NOTE: We still need a filename to use as a cotnext for the page data that we just loaded.
+    // NOTE: We still need a filename to use as a context for the page data that we just loaded.
     // A context name will be composed of the input context name with the file name we are processing
     // wich tells us where we wll ptu the data in the D[contextName] sub-structure.
     let fileExtension = ruleBroker.processRules([fileToLoad, ''], [biz.cgetFileExtension, biz.cremoveDotFromFileExtension]);
@@ -226,7 +226,7 @@ function loadAllXmlData(filesToLoad, contextName) {
         multiMergedData = dataFile;
       } else {
         j++;
-        // console.log('multiMergedData is: ' + JSON.stringi`fy(multiMergedData));
+        // console.log('multiMergedData is: ' + JSON.stringify(multiMergedData));
         // console.log('dataFile is: ' + JSON.stringify(dataFile));
         // let mergeTargetNamespace = determineMergeTarget(multiMergedData, dataFile);
         // mergeTargetNamespace = mergeTargetNamespace.join(bas.cDot);
@@ -245,13 +245,12 @@ function loadAllXmlData(filesToLoad, contextName) {
     } // End-if (fileExtension === gen.cxml || fileExtension === gen.cXml || fileExtension === gen.cXML)
     loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
   } // End-for (let i = 0; i < filesToLoad.length; i++)
-  parsedDataFile = {}; // Clear it, so we can re-assign it to the merged locator data or whatever kind of data it is from all files.
   parsedDataFile = processXmlData(multiMergedData, contextName);
   // parsedDataFile contents are:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileContentsAre + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
-};
+}
 
 /**
  * @function loadAllJsonData
@@ -280,9 +279,9 @@ function loadAllJsonData(filesToLoad, contextName) {
   let parsedDataFile = {};
 
   // Before we load all configuration data we need to FIRST load all the system configuration settings.
-  // There will be a system configuration setting that will tell us if we need to load the debug setngs or not.
-  for (let i = 0; i < filesToLoad.length; i++) {
-    let fileToLoad = filesToLoad[i];
+  // There will be a system configuration setting that will tell us if we need to load the debug settings or not.
+  for (const element of filesToLoad) {
+    let fileToLoad = element;
     // console.log('fileToLoad is: ' + fileToLoad);
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
       let dataFile = preprocessJsonFile(fileToLoad);
@@ -290,10 +289,10 @@ function loadAllJsonData(filesToLoad, contextName) {
       // NOTE: In this case we have just loaded either the framework configuration data or the application configuration data,
       // and nothing else. So we can just assign the data to the multiMergedData.
       // We will need to merge all the other files,
-      // but there will be a setting here we should examin to determine if the rest of the data should even be loadd or not.
+      // but there will be a setting here we should examine to determine if the rest of the data should even be load or not.
       // We will have a new setting that determines if all the extra debug settings should be loaded or not.
       // This way the application performance can be seriously optimized to greater levels of lean performance.
-      // Adding all that extra debugging cnfiguration settings can affect load times, and application performance to a much lesser degree.
+      // Adding all that extra debugging configuration settings can affect load times, and application performance to a much lesser degree.
       multiMergedData[wrd.csystem] = {};
       multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
@@ -305,8 +304,8 @@ function loadAllJsonData(filesToLoad, contextName) {
 
   // Now we need to determine if we should load the rest of the data.
   if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugSettings) === true) {
-    for (let j = 0; j < filesToLoad.length; j++) {
-      let fileToLoad = filesToLoad[j];
+    for (const element of filesToLoad) {
+      let fileToLoad = element;
       if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
       && fileToLoad.toUpperCase().includes(gen.cDotJSON) && !fileToLoad.toLowerCase().includes(wrd.cmetadata + gen.cDotjson)) {
         let dataFile = preprocessJsonFile(fileToLoad);
@@ -327,7 +326,7 @@ function loadAllJsonData(filesToLoad, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
-};
+}
 
 /**
  * @function processCsvData
@@ -346,10 +345,9 @@ function processCsvData(data, contextName) {
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   let parsedData = extractDataFromPapaParseObject(data, contextName);
-  let dataCatagory = getDataCatagoryFromContextName(contextName);
-  // dataCatagory is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
-  let dataCatagoryDetailName;
+  let dataCategory = getDataCategoryFromContextName(contextName);
+  // dataCategory is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryIs + dataCategory);
   if (contextName.includes(wrd.cWorkflow)) {
     // Processing a workflow
     Object.assign(D[wrd.cWorkflow], parsedData[contextName]);
@@ -358,13 +356,13 @@ function processCsvData(data, contextName) {
     Object.assign(D[wrd.ccolors], parsedData);
   } else {
     // Processing all other kinds of files.
-    if (typeof D[dataCatagory] !== 'undefined' && D[dataCatagory]) {
-      Object.assign(D[dataCatagory], parsedData);
-      mergeData(D, dataCatagory, '', 0, parsedData);
+    if (typeof D[dataCategory] !== 'undefined' && D[dataCategory]) {
+      Object.assign(D[dataCategory], parsedData);
+      mergeData(D, dataCategory, '', parsedData);
     } else {
-      D[dataCatagory] = {};
-      Object.assign(D[dataCatagory], parsedData);
-      mergeData(D, dataCatagory, '', 0, parsedData);
+      D[dataCategory] = {};
+      Object.assign(D[dataCategory], parsedData);
+      mergeData(D, dataCategory, '', parsedData);
     }
   }
   // fully parsed data is:
@@ -373,7 +371,7 @@ function processCsvData(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cD_finalMergeIs + JSON.stringify(D));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedData;
-};
+}
 
 /**
  * @function processXmlData
@@ -392,11 +390,11 @@ function processXmlData(inputData, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let dataCatagory = getDataCatagoryFromContextName(contextName);
-  // dataCatagory is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
+  let dataCategory = getDataCategoryFromContextName(contextName);
+  // dataCategory is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryIs + dataCategory);
   let parsedDataFile = {};
-  if (dataCatagory === sys.cCommandsAliases) {
+  if (dataCategory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
     for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++) {
       inputData[sys.cCommandsAliases] = processXmlLeafNode(inputData[sys.cCommandsAliases], wrd.cCommand);
@@ -407,18 +405,18 @@ function processXmlData(inputData, contextName) {
     //   let command = inputData[sys.cCommandsAliases][wrd.cCommand][i][bas.cDollar];
     //   parsedDataFile[sys.cCommandsAliases][wrd.cCommands][command.Name] = command;
     // } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
-  } else if (dataCatagory === sys.cCommandWorkflows) { // End-if (dataCatagory === sys.cCommandsAliases)
+  } else if (dataCategory === sys.cCommandWorkflows) { // End-if (dataCategory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
     for (let j = 0; j < Object.keys(inputData[sys.cCommandWorkflows]).length; j++) {
       inputData[sys.cCommandWorkflows] = processXmlLeafNode(inputData[sys.cCommandWorkflows], wrd.cWorkflows);
     } // End-for (let j = 0; j < inputData[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
     parsedDataFile = inputData[sys.cCommandWorkflows];
-  } // End-else-if (dataCatagory === sys.cCommandWorkflows)
+  } // End-else-if (dataCategory === sys.cCommandWorkflows)
   // parsedDataFile is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return parsedDataFile;
-};
+}
 
 /**
  * @function processXmlLeafNode
@@ -446,7 +444,7 @@ function processXmlLeafNode(inputData, leafNodeName) {
     returnData = inputData;
   } else {
     for (let property in inputData) {
-      if (!inputData.hasOwnProperty(property)) {
+      if (!Object.prototype.hasOwnProperty.call(inputData, property)) {
         continue; // Take into consideration only object's own properties.
       }
       // property is:
@@ -495,7 +493,7 @@ function processXmlLeafNode(inputData, leafNodeName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function preprocessJsonFile
@@ -520,14 +518,14 @@ function preprocessJsonFile(fileToLoad) {
   // console.log(`dataFile is: ${JSON.stringify(dataFile)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return dataFile;
-};
+}
 
 /**
  * @function writeJsonDataToFile
  * @description This is a wrapper function for businessRules.rules.fileOperations.writeJsonData.
  * @param {string} fileToSaveTo The full path to the file that should have the data written to it.
  * @param {object} dataToWriteOut The JSON data that should be written out to the specified JSON file.
- * @return {void}
+ * @return {boolean} True or False to indicate if the file was saved successfully or not.
  * @author Seth Hollingsead
  * @date 2022/03/11
  */
@@ -537,9 +535,11 @@ function writeJsonDataToFile(fileToSaveTo, dataToWriteOut) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cfileToSaveToIs + fileToSaveTo);
   loggers.consoleLog(namespacePrefix + functionName, msg.cdataToWriteOutIs + JSON.stringify(dataToWriteOut));
   let fileWriteRules = [biz.cwriteJsonData];
-  let writeSuccess = ruleBroker.processRules([path.resolve(fileToSaveTo), dataToWriteOut], fileWriteRules);
+  let returnData = ruleBroker.processRules([path.resolve(fileToSaveTo), dataToWriteOut], fileWriteRules);
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+  return returnData;
+}
 
 /**
  * @function setupDataStorage
@@ -553,7 +553,7 @@ function setupDataStorage() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   D[sys.cDataStorage] = {};
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function storeData
@@ -578,7 +578,7 @@ function storeData(dataStorageContextName, dataToStore) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getData
@@ -600,7 +600,7 @@ function getData(dataStorageContextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function clearData
@@ -622,7 +622,7 @@ function clearData(dataStorageContextName) {
     D[sys.cDataStorage] = {};
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function initializeConstantsValidationData
@@ -642,7 +642,7 @@ function initializeConstantsValidationData() {
   D[sys.cConstantsValidationData][sys.cConstantsPhase1ValidationMessages] = {};
   D[sys.cConstantsValidationData][sys.cConstantsPhase2ValidationMessages] = {};
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function addConstantsValidationData
@@ -658,7 +658,7 @@ function addConstantsValidationData(constantLibraryData) {
   // constantLibraryData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cconstantLibraryDataIs + JSON.stringify(constantLibraryData));
   for (let key1 in constantLibraryData[sys.cConstantsValidationData]) {
-    if (constantLibraryData[sys.cConstantsValidationData].hasOwnProperty(key1)) {
+    if (Object.prototype.hasOwnProperty.call(constantLibraryData[sys.cConstantsValidationData], key1)) {
       if (key1 === sys.cConstantsFilePaths ||
       key1 === sys.cConstantsPhase1ValidationMessages ||
       key1 === sys.cConstantsPhase2ValidationMessages ||
@@ -674,11 +674,11 @@ function addConstantsValidationData(constantLibraryData) {
     } // End-if (constantLibraryData[sys.cConstantsValidationData].hasOwnProperty(key1))
   } // End-for (let key1 in constantLibraryData[sys.cConstantsValidationData])
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function addDeeplyNestedConstantsValidationData
- * @description Adds all the constants validation auxilary data that is deeply nested inside sub-data structures to the main D-data structure.
+ * @description Adds all the constants validation auxiliary data that is deeply nested inside sub-data structures to the main D-data structure.
  * Such as file paths, and validation messages.
  * @param {string} contextName The name that should be used when accessing and also adding the data to the D-data structure.
  * @param {array<array<string,object>>} deeplyNestedData The actual data that should be added.
@@ -693,57 +693,57 @@ function addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
   // deeplyNestedData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cdeeplyNestedDataIs + JSON.stringify(deeplyNestedData));
-  let d_dataStructureConstantsFilePaths = D[sys.cConstantsValidationData][contextName];
   for (let key2 in deeplyNestedData) {
-    if (deeplyNestedData.hasOwnProperty(key2)) {
+    if (Object.prototype.hasOwnProperty.call(deeplyNestedData, key2)) {
       let data2 = deeplyNestedData[key2];
       D[sys.cConstantsValidationData][contextName][key2] = data2;
     }
   } // End-for (let key2 in deeplyNestedData)
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
- * @function getDataCatagoryFromContextName
- * @description Gets the data catagory, given the context name.
+ * @function getDataCategoryFromContextName
+ * @description Gets the data category, given the context name.
  * @param {string} contextName The context name which will be something like Application_xxxx or Script_nnnn or Command_yyyy
  * @return {string} The string before the first cUnderscore (Application, Script, Command, etc).
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-function getDataCatagoryFromContextName(contextName) {
-  let functionName = getDataCatagoryFromContextName.name;
+function getDataCategoryFromContextName(contextName) {
+  let functionName = getDataCategoryFromContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let dataCatagory = '';
-  dataCatagory = ruleBroker.processRules([contextName, ''], [biz.cgetDataCatagoryFromDataContextName]);
-  // dataCatagory is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
+  let dataCategory = '';
+  dataCategory = ruleBroker.processRules([contextName, ''], [biz.cgetDataCategoryFromDataContextName]);
+  // dataCategory is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryIs + dataCategory);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return dataCatagory;
-};
+  return dataCategory;
+}
 
 /**
- * @function getDataCatagoryDetailNameFromContextName
- * @description Gets the data catagory detail name, given the context name.
- * @param {string} contextName The name which will be somethinglike Command_ApiPost or Script_ApiMacroX.
- * @return {string} The string afer the first cUnderscore (ApiPost or ApiMacroX).
+ * @function getDataCategoryDetailNameFromContextName
+ * @description Gets the data category detail name, given the context name.
+ * @param {string} contextName The name which will be something like Command_ApiPost or Script_ApiMacroX.
+ * @return {string} The string after the first cUnderscore (ApiPost or ApiMacroX).
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-function getDataCatagoryDetailNameFromContextName(contextName) {
-  let functionName = getDataCatagoryFromContextName.name;
+// eslint-disable-next-line no-unused-vars
+function getDataCategoryDetailNameFromContextName(contextName) {
+  let functionName = getDataCategoryDetailNameFromContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // contextName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ccontextNameIs + contextName);
-  let dataCatagoryDetailName = '';
-  dataCatagoryDetailName = ruleBroker.processRules([contextName, ''], [biz.cgetDataCatagoryDetailNameFromDataContextName]);
-  // dataCatagoryDetailsName is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryDetailsNameIs + dataCatagoryDetailName);
+  let dataCategoryDetailName = '';
+  dataCategoryDetailName = ruleBroker.processRules([contextName, ''], [biz.cgetDataCategoryDetailNameFromDataContextName]);
+  // dataCategoryDetailsName is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryDetailsNameIs + dataCategoryDetailName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-  return dataCatagoryDetailName;
-};
+  return dataCategoryDetailName;
+}
 
 /**
  * @function extractDataFromPapaParseObject
@@ -812,7 +812,7 @@ function extractDataFromPapaParseObject(data, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.ctempDataIs + JSON.stringify(tempData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return tempData;
-};
+}
 
 /**
  * @function determineMergeTarget
@@ -823,6 +823,7 @@ function extractDataFromPapaParseObject(data, contextName) {
  * @author Seth Hollingsead
  * @date 2022/05/23
  */
+// eslint-disable-next-line no-unused-vars
 function determineMergeTarget(targetData, dataToMerge) {
   let functionName = determineMergeTarget.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
@@ -834,7 +835,7 @@ function determineMergeTarget(targetData, dataToMerge) {
   if (targetData && dataToMerge && targetData != dataToMerge && (targetData != 0 || targetData != '0')) {
     let targetDataKeys = Object.keys(targetData);
     let dataToMergeKeys = Object.keys(dataToMerge);
-  loop1:
+loop1:
     for (let i = 0; i < targetDataKeys.length; i++) {
       if (typeof dataToMergeKeys === wrd.cstring) {
         if (targetDataKeys[i] === dataToMergeKeys) {
@@ -848,7 +849,6 @@ function determineMergeTarget(targetData, dataToMerge) {
           break;
         } // End-if (targetDataKeys[i] === dataToMergeKeys)
       } else if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true) {
-  loop2:
         for (let j = 0; j < dataToMergeKeys.length; j++) {
           // BEGIN j-th loop:
           loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_jthLoop + j);
@@ -872,26 +872,26 @@ function determineMergeTarget(targetData, dataToMerge) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function mergeData
- * @description Merge data with the D data structure for the specified data catagory and optional name.
+ * @description Merge data with the D data structure for the specified data category and optional name.
  * @param {object} targetData The target data object where the dataToMerge should be merged with.
- * @param {string} dataCatagory Command or Script to indicate what catagory the test data should be used as.
+ * @param {string} dataCategory Command or Script to indicate what category the test data should be used as.
  * @param {string} pageName (Optional) The name of the page where the data should be merged under. Pass as empty string if nothing.
  * @param {object} dataToMerge The data to be merged.
  * @return {object} A merged set of data combining all of the original data plus all of the additional data from the dataToMerge data set.
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
+function mergeData(targetData, dataCategory, pageName, dataToMerge) {
   let functionName = mergeData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   // targetData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.ctargetDataIs + JSON.stringify(targetData));
-  // dataCatagory is:
-  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIs + dataCatagory);
+  // dataCategory is:
+  loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryIs + dataCategory);
   // pageName is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIs + pageName);
   // data to Merge is:
@@ -907,15 +907,15 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
     if (pageName !== '') {
       // pageName is not an empty string
       loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIsNotAnEmptyString);
-      // Check if the dataCatagory is an emptys string or not
-      loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfTheDataCatagoryIsAnEmptyStringOrNot);
-      if (dataCatagory !== '') {
-        // dataCatagory is not an empty string!
-        loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIsNotAnEmptyString);
-        Object.assign(targetData[dataCatagory][pageName], dataToMerge);
+      // Check if the dataCategory is an emptys string or not
+      loggers.consoleLog(namespacePrefix + functionName, msg.cCheckIfTheDataCategoryIsAnEmptyStringOrNot);
+      if (dataCategory !== '') {
+        // dataCategory is not an empty string!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryIsNotAnEmptyString);
+        Object.assign(targetData[dataCategory][pageName], dataToMerge);
       } else {
-        // dataCatagory IS an empty sring!
-        loggers.consoleLog(namespacePrefix + functionName, msg.cdataCatagoryIsAnEmptyString);
+        // dataCategory IS an empty sring!
+        loggers.consoleLog(namespacePrefix + functionName, msg.cdataCategoryIsAnEmptyString);
         // data to Merge is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cdataToMergeIs + JSON.stringify(dataToMerge));
         // targetData content is:
@@ -931,11 +931,11 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
     } else {
         // pageName is an empty string
         loggers.consoleLog(namespacePrefix + functionName, msg.cpageNameIsAnEmptyString);
-        if (targetData[dataCatagory] === undefined) {
-          targetData[dataCatagory] = {}; // Make sure to create a landing place for it, before we attempt to dump the data over there.
+        if (targetData[dataCategory] === undefined) {
+          targetData[dataCategory] = {}; // Make sure to create a landing place for it, before we attempt to dump the data over there.
         }
         // Otherwise it will just throw an error.
-        Object.assign(targetData[dataCatagory], dataToMerge);
+        Object.assign(targetData[dataCategory], dataToMerge);
     }
   } else {
     // Caught the special case that we are merging a flat list.
@@ -957,7 +957,7 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
     JSON.stringify(targetData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return targetData;
-};
+}
 
 /**
  * @function getDataElement
@@ -969,6 +969,7 @@ function mergeData(targetData, dataCatagory, pageName, dataToMerge) {
  * @author Seth Hollingsead
  * @date 2022/01/28
  */
+// eslint-disable-next-line no-unused-vars
 function getDataElement(dataObject, pageName, elementName) {
   let functionName = getDataElement.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
@@ -986,7 +987,7 @@ function getDataElement(dataObject, pageName, elementName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getDataElementCount
@@ -1021,7 +1022,7 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
     elementCount = Object.keys(elementCollection).length;
   } else {
     for (let key in elementCollection) {
-      if (elementCollection.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(elementCollection, key)) {
         if (key.includes(elementNamePattern)) {
           elementCount++;
         }
@@ -1032,7 +1033,7 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
   loggers.consoleLog(namespacePrefix + functionName, msg.celementCountIs + elementCount);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return elementCount;
-};
+}
 
 export default {
   [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),

@@ -20,7 +20,7 @@ import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, num, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // testHarness.commands.clientCommands.clientCommands.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.ccommands + bas.cDot + wrd.cclient + wrd.cCommands + bas.cDot + baseFileName + bas.cDot;
@@ -40,10 +40,10 @@ const customEchoCommand = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + inputData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData;
-  returnData = inputData + ' clientStringParsing.customEchoCommand';
-  console.log(returnData);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
+  let returnData = [false, false];
+  returnData[1] = inputData + ' clientStringParsing.customEchoCommand';
+  console.log(returnData[1]);
+  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
 };
@@ -54,7 +54,7 @@ const customEchoCommand = function(inputData, inputMetaData) {
  * in a custom length loop that makes the screen look like it is doing something busy.
  * So anybody who looks at the screen will think you are working on something super important like: "quantum" cryptography or artificial Intelligence.
  * (As if putting the word "Quantum" in front of everything some how makes it smarter!)
- * Could also be used to turn a computer into a movie or TV-episode set-piece to make the people standing in fromt of the computer seem smarter.
+ * Could also be used to turn a computer into a movie or TV-episode set-piece to make the people standing in front of the computer seem smarter.
  * If someone does some fake typing on the keyboard and the BossPanic command is configured to run slowly then it might look like someone is writing code super fast!
  * Like an expert Hacker!
  * @param {string} inputData The string used to load the BossPanic configuration setting.
@@ -62,13 +62,13 @@ const customEchoCommand = function(inputData, inputMetaData) {
  * They are all numbers so if you want the 3rd one you need to provide the first 2 parameters as well.
  * inputData[1] = PerformanceIndex - This is the number of milliseconds that should be delayed between running each loop iteration.
  * inputData[2] = Maximum line length - The maximum number of characters that should be generated for printing on the screen.
- * inputData[3] = Naximum number of no-colored sequential lines, a smaller number means more colored lines will be generated over all.
- * inputData[4] = Naximum number of colored sequential lines, a smaller number means less colored lines will be generated sequentially.
+ * inputData[3] = Maximum number of no-colored sequential lines, a smaller number means more colored lines will be generated over all.
+ * inputData[4] = Maximum number of colored sequential lines, a smaller number means less colored lines will be generated sequentially.
  * inputData[5] = Boolean True or False to indicate if typing individual characters should be enabled.
  * inputData[6] = Speed-Typing Performance Index, time-out in milliseconds between typing each character.
  * @param {string} inputMetaData Not used for this command.
  * @return {boolean} True to indicate that the command should not exit when it is completed, however,
- * this command puts the application into an infinite loop, so it will techically never return.
+ * this command puts the application into an infinite loop, so it will technically never return.
  * @author Seth Hollingsead
  * @date 2022/03/31
  * @NOTE This is an INFINITE LOOP function, so press control+C to exit rom the application when you want to exit.
@@ -78,7 +78,6 @@ const bossPanic = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.cBEGIN_Function);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputDataIs + inputData);
   haystacks.consoleLog(namespacePrefix, functionName, msg.cinputMetaDataIs + inputMetaData);
-  let returnData;
   let stringLength = 0;
   let colorBreakPoint = 0;
   let stringToPrint = '';
@@ -103,7 +102,7 @@ const bossPanic = function(inputData, inputMetaData) {
 
   // Rather than doing the above, I'll just call the business rule to generate a random number between 1 and 100.
   // Then I can call the string generator to generate a random string of characters to match that length.
-  // And we can buidl up each line of code that way.
+  // And we can build up each line of code that way.
   // In such a way we can have much finer control over how strings are generated and colorized without going into scanning the hard drive,
   // and printing out file paths and file names.
 
@@ -140,6 +139,7 @@ const bossPanic = function(inputData, inputMetaData) {
       }
     } // End-if (inputData.length > 6)
   } // End-if (inputData && inputData.length > 1)
+  // eslint-disable-next-line no-constant-condition
   while (true) { // Start the infinite loop
     if (noColoredLineCount <= 0 && enableColoredLine === false) {
       noColoredLineCount = haystacks.executeBusinessRules([num.c1, [noColoredLinesMaxLength, false, false]], [biz.crandomlyGenerateNumberInRange]);
@@ -150,7 +150,7 @@ const bossPanic = function(inputData, inputMetaData) {
       enableColoredLine = false;
     }
     stringLength = haystacks.executeBusinessRules([num.c1, [lineLength, false, false]], [biz.crandomlyGenerateNumberInRange]);
-    // Now we will generate a number between 0 and the string length, this will be the color limit so we can break the ine up randomly into a beginning segement and an ending segment.
+    // Now we will generate a number between 0 and the string length, this will be the color limit so we can break the ine up randomly into a beginning segment and an ending segment.
     // Each segment of the line will get a different random foreground font color and random background font color.
     colorBreakPoint = haystacks.executeBusinessRules([num.c1, [stringLength, false, false]], [biz.crandomlyGenerateNumberInRange]);
     stringToPrint = haystacks.executeBusinessRules([stringLength, gen.cMostSpecialCharacters], [biz.cgenerateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength]);
@@ -190,6 +190,7 @@ const bossPanic = function(inputData, inputMetaData) {
     }
     if (fastTypingOutput === true) {
       for (let i = 0; i < stringToPrint.length; i++) {
+        // eslint-disable-next-line no-undef
         process.stdout.write(stringToPrint.charAt(i));
         haystacks.executeBusinessRules([speedTypingPerformanceIndex, ''], [wrd.csleep]);
       } // End-for (let i = 0; i < stringToPrint.length; i++)
@@ -199,9 +200,6 @@ const bossPanic = function(inputData, inputMetaData) {
     }
     haystacks.executeBusinessRules([performanceIndex, ''], [wrd.csleep]);
   } // End-while (true) // End of the infinite loop
-  haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
-  haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
-  return returnData;
 };
 
 export default {
