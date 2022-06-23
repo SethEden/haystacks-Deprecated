@@ -53,7 +53,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/02/22
  */
-const commandSequencer = function(inputData, inputMetaData) {
+function commandSequencer(inputData, inputMetaData) {
   let functionName = commandSequencer.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -101,7 +101,7 @@ const commandSequencer = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function workflow
@@ -119,7 +119,7 @@ const commandSequencer = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/2/24
  */
-const workflow = function(inputData, inputMetaData) {
+function workflow(inputData, inputMetaData) {
   let functionName = workflow.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -141,7 +141,7 @@ const workflow = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function businessRule
@@ -169,7 +169,7 @@ const workflow = function(inputData, inputMetaData) {
  * Consider the following link that describes how the regEx & flags are parsed by the lexicalAnalyzer.
  * {@link https://stackoverflow.com/questions/874709/converting-user-input-string-to-regular-expression}
  */
-const businessRule = function(inputData, inputMetaData) {
+function businessRule(inputData, inputMetaData) {
   let functionName = businessRule.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -212,7 +212,7 @@ const businessRule = function(inputData, inputMetaData) {
         if (tempArg) {
           ruleInputMetaData.push(tempArg);
         }
-      } // End-for (let j = inputData.length - 1; j > 2; j--)
+      } // End-for (let j = 3; j <= inputData.length - 1; j++)
       break;
     } // End-Else-if (i === 3 && inputData.length > 4)
   } // End-for (let i = 1; i < inputData.length; i++)
@@ -263,7 +263,7 @@ const businessRule = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function commandGenerator
@@ -281,7 +281,7 @@ const businessRule = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/24
  */
-const commandGenerator = function(inputData, inputMetaData) {
+function commandGenerator(inputData, inputMetaData) {
   let functionName = commandGenerator.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -306,7 +306,7 @@ const commandGenerator = function(inputData, inputMetaData) {
       } else {
         commandString = commandString + bas.cBackTickQuote + inputData[i].trim() + bas.cBackTickQuote;
       }
-    } // End-for (let i = 1; i < inputData.length - 2; i++)
+    } // End-for (let i = 1; i < inputData.length - 1; i++)
   }
 
   // NOTE: the str.replace only replaces the first instance of a string value, not all values.
@@ -340,15 +340,15 @@ const commandGenerator = function(inputData, inputMetaData) {
         if (isNaN(inputData[j].trim()) === false) {
           legitNumberIndex = j;
           break;
-        }
-      } // End-for (let i = 2; i <= inputData.length - 1; i++)
+        } // End-if (isNaN(inputData[j].trim()) === false)
+      } // End-for (let j = 2; j <= inputData.length - 1; j++)
     } // End-if (inputData.length >= 3)
     if (isNaN(inputData[legitNumberIndex]) === false) { // Make sure the user passed in a number for the second argument.
       let numberOfCommands = parseInt(inputData[legitNumberIndex]);
       if (numberOfCommands > 0) {
         for (let i = 0; i < numberOfCommands; i++) {
           queue.enqueue(sys.cCommandQueue, commandString);
-        }
+        } // End-for (let i = 0; i < numberOfCommands; i++)
         returnData[1] = true;
       } else {
         // WARNING: advanced.commandGenerator: Must enter a number greater than 0, number entered:
@@ -372,7 +372,7 @@ const commandGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function commandAliasGenerator
@@ -393,7 +393,7 @@ const commandGenerator = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/02/25
  */
-const commandAliasGenerator = function(inputData, inputMetaData) {
+function commandAliasGenerator(inputData, inputMetaData) {
   let functionName = commandAliasGenerator.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -452,7 +452,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
         commandAliasDataStructure[commandWord] = commandWordAliasList;
         validCommandInput = true;
       } // End-if (commandWord !== '')
-    } // End-for (let i = 0; i < camelCaseCommandNameArray.length; i++)
+    } // End-for (const element of camelCaseCommandNameArray)
   } else if (inputData.length === 2) {
     try {
       commandAliasDataStructure = JSON.parse(inputData[1]);
@@ -484,7 +484,7 @@ const commandAliasGenerator = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   commandSequencer,

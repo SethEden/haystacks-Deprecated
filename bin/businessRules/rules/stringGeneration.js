@@ -26,17 +26,17 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 /**
  * @function generateRandomMixedCaseTextByLength
  * @description Parse the input string, and determine how many mixed case
- * english alphaetic characters should be generated,
+ * english alphabetic characters should be generated,
  * generate them and string them together.
  * @param {string} inputData The string that contains a number or how many
- * randomly generated mixed case alphabetic characters shoudl be generated.
+ * randomly generated mixed case alphabetic characters should be generated.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A string of randomly generated mixed case letters where the
  * length of the string is defined by the input parameter.
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomMixedCaseTextByLength = function(inputData, inputMetaData) {
+function generateRandomMixedCaseTextByLength(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -46,12 +46,12 @@ const generateRandomMixedCaseTextByLength = function(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.crandomlyGenerateMixedCaseAlphabeticCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomUpperCaseTextByLength
@@ -65,7 +65,7 @@ const generateRandomMixedCaseTextByLength = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomUpperCaseTextByLength = function(inputData, inputMetaData) {
+function generateRandomUpperCaseTextByLength(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -75,26 +75,26 @@ const generateRandomUpperCaseTextByLength = function(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.crandomlyGenerateUpperCaseLetter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomLowerCaseTextByLength
  * @description Parse the input string, and determine how many lower case
  * english alphabetic characters should be generated, generate them and string them together.
  * @param {string} inputData The string that contains a number for how many randomly
- * generated lower case english alphabetic characters taht should be generated.
+ * generated lower case english alphabetic characters that should be generated.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A string of randomly generated lower case letters where the
  * length of the string is defined by the input parameter.
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomLowerCaseTextByLength = function(inputData, inputMetaData) {
+function generateRandomLowerCaseTextByLength(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseTextByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -104,18 +104,18 @@ const generateRandomLowerCaseTextByLength = function(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.crandomlyGenerateLowerCaseLetter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomMixedCaseTextWithSpecialCharactersByLength
  * @description Generate teh specified number of random mixed case letters and/or
  * special characters and string them together.
- * @param {string} inputData The number of randomly generated ixed case letters and/or
+ * @param {string} inputData The number of randomly generated mixed case letters and/or
  * special characters to generate the output string.
  * @param {string} inputMetaData The ist of special characters that should be used during the generation process.
  * @return {string} A string of randomly generated mixed case letters and
@@ -123,7 +123,7 @@ const generateRandomLowerCaseTextByLength = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomMixedCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+function generateRandomMixedCaseTextWithSpecialCharactersByLength(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -133,12 +133,12 @@ const generateRandomMixedCaseTextWithSpecialCharactersByLength = function(inputD
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateMixedCaseLetterOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomUpperCaseTextWithSpecialCharactersByLength
@@ -150,7 +150,7 @@ const generateRandomMixedCaseTextWithSpecialCharactersByLength = function(inputD
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+function generateRandomUpperCaseTextWithSpecialCharactersByLength(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -160,12 +160,12 @@ const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputD
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateUpperCaseLetterOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomLowerCaseTextWithSpecialCharactersByLength
@@ -180,7 +180,7 @@ const generateRandomUpperCaseTextWithSpecialCharactersByLength = function(inputD
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomLowerCaseTextWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+function generateRandomLowerCaseTextWithSpecialCharactersByLength(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseTextWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -190,12 +190,12 @@ const generateRandomLowerCaseTextWithSpecialCharactersByLength = function(inputD
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateLowerCaseLetterOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomMixedCaseAlphaNumericCodeByLength
@@ -209,7 +209,7 @@ const generateRandomLowerCaseTextWithSpecialCharactersByLength = function(inputD
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
+function generateRandomMixedCaseAlphaNumericCodeByLength(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -219,12 +219,12 @@ const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputData, inpu
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateMixedCaseAlphaNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomUpperCaseAlphaNumericCodeByLength
@@ -238,7 +238,7 @@ const generateRandomMixedCaseAlphaNumericCodeByLength = function(inputData, inpu
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
+function generateRandomUpperCaseAlphaNumericCodeByLength(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -248,12 +248,12 @@ const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputData, inpu
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateUpperCaseAlphaNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomLowerCaseAlphaNumericCodeByLength
@@ -263,11 +263,11 @@ const generateRandomUpperCaseAlphaNumericCodeByLength = function(inputData, inpu
  * numbers that should be generated.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A string of randomly generated lower case english letters and
- * numbers wehre the length of the string is defined by the input parameter.
+ * numbers where the length of the string is defined by the input parameter.
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomLowerCaseAlphaNumericCodeByLength = function(inputData, inputMetaData) {
+function generateRandomLowerCaseAlphaNumericCodeByLength(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseAlphaNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -277,24 +277,24 @@ const generateRandomLowerCaseAlphaNumericCodeByLength = function(inputData, inpu
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateLowerCaseAlphaNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomNumericCodeByLength
  * @description Generate the specified number of random numeric characters and string them together.
  * @param {string} inputData The number of randomly generated numeric characters that should be generated.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A string of randomly generated numeric characters wehre the
- * length of the string is defned by the input parameter.
+ * @return {string} A string of randomly generated numeric characters where the
+ * length of the string is defined by the input parameter.
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomNumericCodeByLength = function(inputData, inputMetaData) {
+function generateRandomNumericCodeByLength(inputData, inputMetaData) {
   let functionName = generateRandomNumericCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -304,12 +304,12 @@ const generateRandomNumericCodeByLength = function(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength
@@ -324,7 +324,7 @@ const generateRandomNumericCodeByLength = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+function generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(inputData, inputMetaData) {
   let functionName = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -334,18 +334,18 @@ const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength
  * @description Generate a random selection of upper case english letters,
  * numeric characters and special characters from a list of allowable special characters,
- * should be generated; generate them and string them togetehr to the specified length.
+ * should be generated; generate them and string them together to the specified length.
  * @param {string} inputData The number of randomly generated upper case english letters,
  * numeric characters and special characters that should be generated.
  * @param {string} inputMetaData Teh list of special characters that should be used during the generation process.
@@ -354,7 +354,7 @@ const generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+function generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength(inputData, inputMetaData) {
   let functionName = generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -364,12 +364,12 @@ const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength
@@ -380,11 +380,11 @@ const generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
  * numeric characters adn special characters that should be generated.
  * @param {string} inputMetaData The list of special characters that should be used during the generation process.
  * @return {string} A string of randomly generated lower case alpha numeric characters,
- * and special characters wehre the length of the string is defned as one of the input parameters.
+ * and special characters where the length of the string is defined as one of the input parameters.
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = function(inputData, inputMetaData) {
+function generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength(inputData, inputMetaData) {
   let functionName = generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -394,12 +394,12 @@ const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomSpecialCharacterCodeByLength
@@ -412,7 +412,7 @@ const generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength = fun
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMetaData) {
+function generateRandomSpecialCharacterCodeByLength(inputData, inputMetaData) {
   let functionName = generateRandomSpecialCharacterCodeByLength.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -422,33 +422,33 @@ const generateRandomSpecialCharacterCodeByLength = function(inputData, inputMeta
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
- * @function generateVaidEmail
+ * @function generateValidEmail
  * @description Generate a valid random email address composed of a random selection of
  * mixed case english letters, numeric characters and optionally special characters
  * from an optional list of allowable special characters, should be generated;
  * generate them and string them together to the specified length.
  * @param {string} inputData The string that contains the number of characters to generate.
  * @param {array<boolean,string,string>} inputMetaData An array map with multiple input parameters.
- * inputMetaData[0] = generateSpecialCharacters - A boolean value to indiate if
- * special characters should be included when randomlygenerating characters for the output string.
+ * inputMetaData[0] = generateSpecialCharacters - A boolean value to indicate if
+ * special characters should be included when randomly generating characters for the output string.
  * inputMetaData[1] = allowableSpecialCharacters - The list of allowable special characters as a string,
- * only used if the {@code generateSpecialCharacters} boolena value is set to {@code TRUE}.
- * inputMetaData[2] = specifiedSuffiAndDomain - The specified suffix and domain to
+ * only used if the {@code generateSpecialCharacters} boolean value is set to {@code TRUE}.
+ * inputMetaData[2] = specifiedSuffixAndDomain - The specified suffix and domain to
  * use after the "@" symbol in the email being generated, example "Yahoo.com".
  * @return {string} A string of randomly generated mixed case alpha numeric characters and optionally special characters
  * where the length of the string is also defined as one of the input parameters, formatted as an email: a@b.com".
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateValidEmail = function(inputData, inputMetaData) {
+function generateValidEmail(inputData, inputMetaData) {
   let functionName = generateValidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -487,7 +487,7 @@ const generateValidEmail = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateInvalidEmail
@@ -497,7 +497,7 @@ const generateValidEmail = function(inputData, inputMetaData) {
  * @param {string} inputData The string that contains the number of characters to generate.
  * @param {array<boolean,string,string>} inputMetaData An array map with multiple input parameters:
  * inputMetaData[0] = generateSpecialCharacters - A boolean value to indicate if special characters should be
- * included when ranomly generating characters for the output string.
+ * included when randomly generating characters for the output string.
  * inputMetaData[1] = allowableSpecialCharacters - The list of allowable special characters as a string,
  * only used if the {@code generateSpecialCharacters} boolean value is set to {@code TRUE}.
  * inputMetaData[2] = specifiedSuffixAndDomain - The specified suffix and domain to use
@@ -508,7 +508,7 @@ const generateValidEmail = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateInvalidEmail = function(inputData, inputMetaData) {
+function generateInvalidEmail(inputData, inputMetaData) {
   let functionName = generateInvalidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -547,7 +547,7 @@ const generateInvalidEmail = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateValidEmailWithSpecificSuffixAndDomainName
@@ -564,11 +564,11 @@ const generateInvalidEmail = function(inputData, inputMetaData) {
  * @return {string} A string of randomly generated mixed case alpha numeric characters and optionally special characters
  * where the length of the string is also defined as one of the input parameters, formatted as an email: "a@b.com".
  * @NOTE The number of characters in the {@code specifiedSuffixAndDomain} input variable must not
- * exceed the {@code numberOfCharactersTogenerate + 2} or the function/rule will return an empty string.
+ * exceed the {@code numberOfCharactersToGenerate + 2} or the function/rule will return an empty string.
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateValidEmailWithSpecificSuffixAndDomainName = function(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters, specifiedSuffixAndDomain) {
+function generateValidEmailWithSpecificSuffixAndDomainName(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters, specifiedSuffixAndDomain) {
   let functionName = generateValidEmailWithSpecificSuffixAndDomainName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfCharactersToGenerateIs + numberOfCharactersToGenerate);
@@ -583,7 +583,7 @@ const generateValidEmailWithSpecificSuffixAndDomainName = function(numberOfChara
     // We know we have to use an "@" symbol, and a "." symbol, the rest of the characters ust be generated....and the "." should have already been passed in.
     // First need to figure out how many characters of each we must generate to et the desired final length.
     //
-    // So lets reove the characters that we know we are already ging to be reserved, the "@" symbol.
+    // So lets remove the characters that we know we are already going to be reserved, the "@" symbol.
     numberOfCharactersToGenerate = numberOfCharactersToGenerate - 1;
     numberOfCharactersToGenerate = numberOfCharactersToGenerate - specifiedSuffixAndDomain.length;
     if (generateSpecialCharacters === false) {
@@ -598,7 +598,7 @@ const generateValidEmailWithSpecificSuffixAndDomainName = function(numberOfChara
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomValidEmail
@@ -607,7 +607,7 @@ const generateValidEmailWithSpecificSuffixAndDomainName = function(numberOfChara
  * should be generated; generate them and string them together to the specified length.
  * @param {integer} numberOfCharactersToGenerate Teh number of characters to generate as an integer.
  * @param {boolean} generateSpecialCharacters A boolean value to indicate if special characters should
- * be included when randomly generatign characters for the output string.
+ * be included when randomly generating characters for the output string.
  * @param {string} allowableSpecialCharacters The list of allowable special characters as a string,
  only used if the {@code generateSpecialCharacters} boolean value is set to {@code TRUE}.
  * @return {string} A string of randomly generated  mixed case alpha numeric characters adn optionally special characters
@@ -615,7 +615,7 @@ const generateValidEmailWithSpecificSuffixAndDomainName = function(numberOfChara
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomValidEmail = function(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters) {
+function generateRandomValidEmail(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters) {
   let functionName = generateRandomValidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfCharactersToGenerateIs + numberOfCharactersToGenerate);
@@ -637,7 +637,7 @@ const generateRandomValidEmail = function(numberOfCharactersToGenerate, generate
 
     // Consider that the number of characters in the domain must be either 2 or 3. (according to IpV5, IpV6 is a whole other ball of wax!!)
     // So let us first figure that out, then the rest of the available characters that we must provide can be divided up between the prefix and suffix.
-    if (numberOfCharactersToGenerate === 4) { // Stick wtih a 2-character domain name.
+    if (numberOfCharactersToGenerate === 4) { // Stick with a 2-character domain name.
       if (generateSpecialCharacters === false) {
         domainName = generateRandomMixedCaseTextByLength(num.c2, '');
       } else {
@@ -681,8 +681,8 @@ const generateRandomValidEmail = function(numberOfCharactersToGenerate, generate
     } else if (numberOfCharactersToGenerate % 2 === 1) {
       numberOfPrefixcharacters = numberOfCharactersToGenerate / 2;
       numberOfSuffixCharacters = numberOfPrefixcharacters - 1;
-    } else { // Should also neer get here, as all numbers are either divisible by 2 or not with a remainder of 1.
-      // Just do somethign to see if we can survive, again as a matter of completeness of code logic.
+    } else { // Should also never get here, as all numbers are either divisible by 2 or not with a remainder of 1.
+      // Just do something to see if we can survive, again as a matter of completeness of code logic.
       numberOfPrefixcharacters = numberOfCharactersToGenerate / 2;
       numberOfSuffixCharacters = numberOfPrefixcharacters;
     }
@@ -701,12 +701,12 @@ const generateRandomValidEmail = function(numberOfCharactersToGenerate, generate
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateInvalidEmailWithSpecificSuffixAndDomainName
  * @description Generate an invalid email composed of a random selection of mixed case english letters,
- * numeric characters and optionall special characters from an optional list of allowable special characters,
+ * numeric characters and optional special characters from an optional list of allowable special characters,
  * should be generated; generate them and string them together to the specified length.
  * @param {integer} numberOfCharactersToGenerate The number of characters to generate as an integer.
  * @param {boolean} generateSpecialCharacters A boolean value to indicate if special characters should be
@@ -722,7 +722,7 @@ const generateRandomValidEmail = function(numberOfCharactersToGenerate, generate
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateInvalidEmailWithSpecificSuffixAndDomainName = function(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters, specifiedSuffixAndDomain) {
+function generateInvalidEmailWithSpecificSuffixAndDomainName(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters, specifiedSuffixAndDomain) {
   let functionName = generateInvalidEmailWithSpecificSuffixAndDomainName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfCharactersToGenerateIs + numberOfCharactersToGenerate);
@@ -750,7 +750,7 @@ const generateInvalidEmailWithSpecificSuffixAndDomainName = function(numberOfCha
   // I suggest you invent your own email generation function/rule.
   // Feel free to use this one as a reference as to how to do it, or just leverage the faker tool, which also has a way to generate fake emails.
   if (numberOfCharactersToGenerate >= 6) {
-    // We cannot have elss then 6, because an e-mail address cannot be shorter than a@b.cc which is 6 characters long.
+    // We cannot have less then 6, because an e-mail address cannot be shorter than a@b.cc which is 6 characters long.
     // We know we have to use an "@" symbol, and a "." symbol, the rest of the characters must be generated.
     // First we need to figure out how many characters of each we must generate to get the desired final length.
     switch (failureMode) {
@@ -807,7 +807,7 @@ const generateInvalidEmailWithSpecificSuffixAndDomainName = function(numberOfCha
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomInvalidEmail
@@ -820,11 +820,11 @@ const generateInvalidEmailWithSpecificSuffixAndDomainName = function(numberOfCha
  * @param {string} allowableSpecialCharacters The ist of allowable special characters as a string,
  * only used if the {@code generateSpecialCharacters} boolean value is set to {@code TRUE}.
  * @return {string} A string of randomly generated mixed case alpha numeric characters and optionally special characters
- * where the length of the string is also defned as one of the input parameters, formatted as an email "a@b.com".
+ * where the length of the string is also defined as one of the input parameters, formatted as an email "a@b.com".
  * @author Seth Hollingsead
  * @date 2022/01/26
  */
-const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters) {
+function generateRandomInvalidEmail(numberOfCharactersToGenerate, generateSpecialCharacters, allowableSpecialCharacters) {
   let functionName = generateRandomInvalidEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cnumberOfCharactersToGenerateIs + numberOfCharactersToGenerate);
@@ -882,9 +882,9 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
   // I suggest you invent your own email generation function/rule.
   // Feel free to use this  one as a reference as to how to do it, or just leverage teh faker tool, which also has a way to generate fake emails.
   if (numberOfCharactersToGenerate >= 6) {
-    // We cannot have elss than 6, because an email address cannot be shorter than a@b.cc which is 6 characters long.
-    // We know we have to use an "@" symbol, and a "." symbol, the rest fo the characters must be geenrated.
-    // first need to figure out how many characters of each we must geenrate to get the desired final length.
+    // We cannot have less than 6, because an email address cannot be shorter than a@b.cc which is 6 characters long.
+    // We know we have to use an "@" symbol, and a "." symbol, the rest fo the characters must be generated.
+    // first need to figure out how many characters of each we must generate to get the desired final length.
 
     // So lets remove the characters that we know are already going to be reserved, the "@" symbol and the "." symbol, according to the failure mode.
     if (failureMode === 1 || failureMode === 2 || failureMode === 5 || failureMode === 6 ||
@@ -898,7 +898,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
 
     // Only work generating the domain name if we are not going to be building our invalid email on a missing domain name.
     if (failureMode === 1 || failureMode === 2 || failureMode === 3 || (failureMode >= 8 && failureMode <= 16) || failureMode === 19 || failureMode > 27) {
-      // Consider that the number of cahracters in the domain must be either 2 or 3 (according to IpV5, I'm not going to even try touchign IpV6!!)
+      // Consider that the number of characters in the domain must be either 2 or 3 (according to IpV5, I'm not going to even try touching IpV6!!)
       // So lets first figure that out, then the rest of the available characters that we must provide can be divided up between the prefix and suffix.
       if (numberOfCharactersToGenerate === 4) {
         // Stick with a 2-character domain name.
@@ -975,7 +975,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
         prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixCharacters.toString(), '');
       } else {
         if (!!allowableSpecialCharacters && allowableSpecialCharacters !== undefined) {
-          prefix = geenrateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfPrefixCharacters.toString(), allowableSpecialCharacters);
+          prefix = generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(numberOfPrefixCharacters.toString(), allowableSpecialCharacters);
         } else {
           prefix = generateRandomMixedCaseAlphaNumericCodeByLength(numberOfPrefixCharacters.toString(), '');
         }
@@ -1116,11 +1116,11 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomBrightColor
- * @description Generates a randomset of RGB values in the bright color spectrum range.
+ * @description Generates a random set of RGB values in the bright color spectrum range.
  * Originally I thought to generate just a bright color, but dividing the spectrum straight in half resulted in mostly drab colors.
  * So I adjusted this function to use the inputs to provide a narrow range of bright values that can be generated.
  * This makes the function nearly identical to the same function that generates random dark colors.
@@ -1131,7 +1131,7 @@ const generateRandomInvalidEmail = function(numberOfCharactersToGenerate, genera
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-const generateRandomBrightColor = function(inputData, inputMetaData) {
+function generateRandomBrightColor(inputData, inputMetaData) {
   let functionName = generateRandomBrightColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1150,22 +1150,22 @@ const generateRandomBrightColor = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomDarkColor
  * @description Generates a random set of RGB values in the dark color spectrum range.
- * Originally I thought to generate just a dark coor, but dividing the spectrum straight in half resulted in mostly drab colors.
+ * Originally I thought to generate just a dark color, but dividing the spectrum straight in half resulted in mostly drab colors.
  * So I adjusted this function to use the inputs to provide a narrow range of dark values that can be generated.
  * This makes the function nearly identical to the same function that generates random bright colors.
- * Really the only difference is the default values. So this function is refactored to call a generic random coor generator business rule.
+ * Really the only difference is the default values. So this function is refactored to call a generic random color generator business rule.
  * @param {string|integer} inputData The number in either numeric or string format that represents the minimum range that should be used to generate the random color.
  * @param {string|integer} inputMetaData The number in either numeric or string format that represents the maximum range that should be used to generate the random color.
  * @return {array<integer,integer,integer>} An array of RGB values in the dark color spectrum range.
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-const generateRandomDarkColor = function(inputData, inputMetaData) {
+function generateRandomDarkColor(inputData, inputMetaData) {
   let functionName = generateRandomDarkColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1178,13 +1178,13 @@ const generateRandomDarkColor = function(inputData, inputMetaData) {
     // Try to parse them as numbers for the range.
     parsedColorRangeArray = ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.cparseColorRangeInputs]);
     minimumColorRange = parsedColorRangeArray[0];
-    maximumColorRnage = parsedColorRangeArray[1];
+    maximumColorRange = parsedColorRangeArray[1];
   } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
   returnData = generateRandomColor(minimumColorRange, maximumColorRange);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateRandomColor
@@ -1195,7 +1195,7 @@ const generateRandomDarkColor = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/27
  */
-const generateRandomColor = function(inputData, inputMetaData) {
+function generateRandomColor(inputData, inputMetaData) {
   let functionName = generateRandomColor.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -1220,7 +1220,7 @@ const generateRandomColor = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   generateRandomMixedCaseTextByLength,

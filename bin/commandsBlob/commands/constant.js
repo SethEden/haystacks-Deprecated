@@ -39,7 +39,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 * @author Seth Hollingsead
 * @date 2022/03/30
 */
-const constantsGenerator = function(inputData, inputMetaData) {
+function constantsGenerator(inputData, inputMetaData) {
    let functionName = constantsGenerator.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -62,7 +62,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
          if (validEntry === false) {
            // INVALID INPUT: Please enter a valid constant value that contains more than 4 characters.
            console.log(msg.cconstantsGeneratorMessage1);
-         }
+         } // End-if (validEntry === false)
        } // End-while (validEntry === false)
      } else if (inputData.length === 2) {
        userDefinedConstant = inputData[1];
@@ -81,7 +81,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
        let constantType = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetConstantType]);
        // WARNING: The constant has already been defined in the following library(ies):
        console.log(msg.cconstantsGeneratorMessage2 + constantType);
-     }
+     } // End-if (doesConstantExist === true)
      userDefinedConstant = userDefinedConstant.trim();
      let wordCount = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetWordCountInString]);
      // wordCount is:
@@ -95,7 +95,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
          console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + element + bas.cSpace + bas.cEqual + bas.cSpace +
           optimizedWordConstantDefinition);
           returnData[1].push(optimizedWordConstantDefinition);
-       } // End-for (let j = 0; j < wordsArray.length; j++)
+       } // End-for (const element of wordsArray)
      } else { // There is only a single word to process.
       returnData[1] = ruleBroker.processRules([userDefinedConstant, userDefinedConstant], constantsFulfillmentSystemRule)
       // output a proper line of code:
@@ -112,7 +112,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
-};
+}
 
 /**
 * @function constantsGeneratorList
@@ -127,7 +127,7 @@ const constantsGenerator = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/03/30
 */
-const constantsGeneratorList = function(inputData, inputMetaData) {
+function constantsGeneratorList(inputData, inputMetaData) {
    let functionName = constantsGeneratorList.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -167,7 +167,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
        if (userDefinedConstantsListArray.length > 1) {
          for (const element of userDefinedConstantsListArray) {
            queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + element.trim());
-         }
+         } // End-for (const element of userDefinedConstantsListArray)
          returnData[1] = true;
        } else if (userDefinedConstantsListArray.length === 1) {
          // Just enqueue the constants Generator command with the input directly.
@@ -189,7 +189,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
-};
+}
 
 /**
  * @function constantsPatternRecognizer
@@ -202,7 +202,7 @@ const constantsGeneratorList = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/03/31
  */
-const constantsPatternRecognizer = function(inputData, inputMetaData) {
+function constantsPatternRecognizer(inputData, inputMetaData) {
   let functionName = constantsPatternRecognizer.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -224,7 +224,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
         if (validEntry === false) {
           // INVALID INPUT: Please enter a valid constant list.
           console.log(msg.cconstantsGeneratorListMessage1);
-        }
+        } // End-if (validEntry === false)
       } // End-while (validEntry === false)
     } else if (inputData.length === 2) {
       userDefinedConstantList = inputData[1];
@@ -255,17 +255,17 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
     if (constantsPatternGenerationSetting === true) {
       queue.enqueue(sys.cCommandQueue, cmd.cconstantsGeneratorList + bas.cSpace + newConstantsList);
       returnData[1] = newConstantsList;
-    }
+    } // End-if (constantsPatternGenerationSetting === true)
   } else {
     // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
-    errorMessage = msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
+    errorMessage = msg.cconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
     console.log(errorMessage);
     returnData[1] = errorMessage;
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function evaluateConstant
@@ -279,7 +279,7 @@ const constantsPatternRecognizer = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/11
  */
-const evaluateConstant = function(inputData, inputMetaData) {
+function evaluateConstant(inputData, inputMetaData) {
   let functionName = evaluateConstant.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -305,7 +305,7 @@ const evaluateConstant = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   constantsGenerator,

@@ -35,7 +35,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const parseBusinessRuleArgument = function(inputData, inputMetaData) {
+function parseBusinessRuleArgument(inputData, inputMetaData) {
   let functionName = parseBusinessRuleArgument.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -78,7 +78,7 @@ const parseBusinessRuleArgument = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function analyzeArgument
@@ -93,16 +93,14 @@ const parseBusinessRuleArgument = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const analyzeArgument = function(inputData, inputMetaData) {
+function analyzeArgument(inputData, inputMetaData) {
   let functionName = analyzeArgument.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData;
   let argsArrayContainsCharacterRule = [];
-  let removeBracketsFromArgsArrayRule = [];
   argsArrayContainsCharacterRule[0] = biz.cdoesArrayContainCharacter;
-  removeBracketsFromArgsArrayRule[0] = biz.cremoveCharacterFromArray;
 
   let secondaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.csecondaryCommandDelimiter);
   let tertiaryCommandArgsDelimiter = configurator.getConfigurationSetting(wrd.csystem, cfg.ctertiaryCommandDelimiter);
@@ -159,7 +157,7 @@ const analyzeArgument = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function analyzeForRegularExpression
@@ -170,7 +168,7 @@ const analyzeArgument = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const analyzeForRegularExpression = function(inputData, inputMetaData) {
+function analyzeForRegularExpression(inputData, inputMetaData) {
   let functionName = analyzeForRegularExpression.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -190,7 +188,7 @@ const analyzeForRegularExpression = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function parseArgumentAsRegularExpression
@@ -201,7 +199,7 @@ const analyzeForRegularExpression = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const parseArgumentAsRegularExpression = function(inputData, inputMetaData) {
+function parseArgumentAsRegularExpression(inputData, inputMetaData) {
   let functionName = parseArgumentAsRegularExpression.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -238,7 +236,7 @@ const parseArgumentAsRegularExpression = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function parseArgumentAsArray
@@ -250,7 +248,7 @@ const parseArgumentAsRegularExpression = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const parseArgumentAsArray = function(inputData, inputMetaData) {
+function parseArgumentAsArray(inputData, inputMetaData) {
   let functionName = parseArgumentAsArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -312,7 +310,7 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
     if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
       // argumentValue contains the delimiter, lets split it!
       loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
-      returnData = argumentValue.split(secondaryCommandArgsDelimiter);
+      argumentValue = argumentValue.split(secondaryCommandArgsDelimiter);
     } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
     returnData = argumentValue;
   } else {
@@ -321,7 +319,7 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeStringLiteralTagsFromArray
@@ -333,7 +331,7 @@ const parseArgumentAsArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const removeStringLiteralTagsFromArray = function(inputData, inputMetaData) {
+function removeStringLiteralTagsFromArray(inputData, inputMetaData) {
   let functionName = removeStringLiteralTagsFromArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -343,7 +341,7 @@ const removeStringLiteralTagsFromArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   parseBusinessRuleArgument,

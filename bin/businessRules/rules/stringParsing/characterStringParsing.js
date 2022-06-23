@@ -22,7 +22,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.characterStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -30,7 +30,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 /**
 * @function singleQuoteSwapAfterEquals
 * @description Swaps single quote characters in the middle of the string wih double quote characters n the middle of the string.
-* input: 'inut[name='emailAddress'][class='username']'
+* input: 'input[name='emailAddress'][class='username']'
 * output: 'input[name="emailAddress"][class="username"]'
 * @param {string} inputData A string that contains text with single quotes that should be swapped for double quotes.
 * @param {string} inputMetaData Not used for this business rule.
@@ -38,7 +38,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
+function singleQuoteSwapAfterEquals(inputData, inputMetaData) {
   let functionName = singleQuoteSwapAfterEquals.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -69,7 +69,7 @@ const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
 * @function swapForwardSlashToBackSlash
@@ -81,7 +81,7 @@ const singleQuoteSwapAfterEquals = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
+function swapForwardSlashToBackSlash(inputData, inputMetaData) {
   let functionName = swapForwardSlashToBackSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -100,7 +100,7 @@ const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
 * @function swapBackSlashToForwardSlash
@@ -112,7 +112,7 @@ const swapForwardSlashToBackSlash = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
+function swapBackSlashToForwardSlash(inputData, inputMetaData) {
   let functionName = swapBackSlashToForwardSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -135,11 +135,11 @@ const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
 * @function swapDoubleForwardSlashToSingleForwardSlash
-* @description Swaps all double forward slash characters for sinle forward slash characters.
+* @description Swaps all double forward slash characters for single forward slash characters.
 * @param {string} inputData String that might contain some double forward slashes.
 * @param {string} inputMetaData Not used for this business rule.
 * @return {string} The same as the input string, just all double forward slash characters
@@ -147,7 +147,7 @@ const swapBackSlashToForwardSlash = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMetaData) {
+function swapDoubleForwardSlashToSingleForwardSlash(inputData, inputMetaData) {
   let functionName = swapDoubleForwardSlashToSingleForwardSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -170,19 +170,19 @@ const swapDoubleForwardSlashToSingleForwardSlash = function(inputData, inputMeta
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
 * @function swapDoubleBackSlashToSingleBackSlash
 * @description Swaps all double back slash characters for single back slash characters.
 * @param {string} inputData String that might contain some double back slashes.
 * @param {string} inputMetaData Not used for this business rule.
-* @return {string} The same as the input string, just all duble back slash characters
+* @return {string} The same as the input string, just all double back slash characters
 * swapped for single back slash characters.
 * @author Seth Hollingsead
 * @date 2021/10/28
 */
-const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) {
+function swapDoubleBackSlashToSingleBackSlash(inputData, inputMetaData) {
   let functionName = swapDoubleBackSlashToSingleBackSlash.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -201,7 +201,7 @@ const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) 
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function replaceSpacesWithPlus
@@ -212,7 +212,7 @@ const swapDoubleBackSlashToSingleBackSlash = function(inputData, inputMetaData) 
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const replaceSpacesWithPlus = function(inputData, inputMetaData) {
+function replaceSpacesWithPlus(inputData, inputMetaData) {
   let functionName = replaceSpacesWithPlus.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -225,7 +225,7 @@ const replaceSpacesWithPlus = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function replaceColonWithUnderscore
@@ -236,7 +236,7 @@ const replaceSpacesWithPlus = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const replaceColonWithUnderscore = function(inputData, inputMetaData) {
+function replaceColonWithUnderscore(inputData, inputMetaData) {
   let functionName = replaceColonWithUnderscore.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -249,18 +249,18 @@ const replaceColonWithUnderscore = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function cleanCarriageReturnFromString
- * @desription Cleans carriage return characters from the input data and trims off any leading or training spaces.
+ * @description Cleans carriage return characters from the input data and trims off any leading or training spaces.
  * @param {string} inputData The string that should be scrubbed for carriage returns.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The same as teh input string, but with all carriage return characters removed.
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
+function cleanCarriageReturnFromString(inputData, inputMetaData) {
   let functionName = cleanCarriageReturnFromString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -273,11 +273,11 @@ const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
     } else {
       returnData = characterArrayParsing.replaceCharacterWithCharacter(inputData, [/\s+/g, bas.cSpace]);
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertStringToLowerCase
@@ -288,7 +288,7 @@ const cleanCarriageReturnFromString = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const convertStringToLowerCase = function(inputData, inputMetaData) {
+function convertStringToLowerCase(inputData, inputMetaData) {
   let functionName = convertStringToLowerCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -300,7 +300,7 @@ const convertStringToLowerCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertStringToUpperCase
@@ -311,7 +311,7 @@ const convertStringToLowerCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const convertStringToUpperCase = function(inputData, inputMetaData) {
+function convertStringToUpperCase(inputData, inputMetaData) {
   let functionName = convertStringToUpperCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -323,7 +323,7 @@ const convertStringToUpperCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function doesStringContainUpperCaseCharacter
@@ -335,7 +335,7 @@ const convertStringToUpperCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const doesStringContainUpperCaseCharacter = function(inputData, inputMetaData) {
+function doesStringContainUpperCaseCharacter(inputData, inputMetaData) {
   let functionName = doesStringContainUpperCaseCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -352,7 +352,7 @@ const doesStringContainUpperCaseCharacter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function doesStringContainLowerCaseCharacter
@@ -364,7 +364,7 @@ const doesStringContainUpperCaseCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const doesStringContainLowerCaseCharacter = function(inputData, inputMetaData) {
+function doesStringContainLowerCaseCharacter(inputData, inputMetaData) {
   let functionName = doesStringContainLowerCaseCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -381,7 +381,7 @@ const doesStringContainLowerCaseCharacter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isFirstCharacterLowerCase
@@ -392,7 +392,7 @@ const doesStringContainLowerCaseCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const isFirstCharacterLowerCase = function(inputData, inputMetaData) {
+function isFirstCharacterLowerCase(inputData, inputMetaData) {
   let functionName = isFirstCharacterLowerCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -404,7 +404,7 @@ const isFirstCharacterLowerCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isFirstCharacterUpperCase
@@ -415,7 +415,7 @@ const isFirstCharacterLowerCase = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
+function isFirstCharacterUpperCase(inputData, inputMetaData) {
   let functionName = isFirstCharacterUpperCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -427,7 +427,7 @@ const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function replaceCharacterAtIndexOfString
@@ -444,8 +444,8 @@ const isFirstCharacterUpperCase = function(inputData, inputMetaData) {
  * @NOTE: https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const replaceCharacterAtIndexOfString = function(inputData, inputMetaData) {
-  let functionName = replaceCharacterAtIndexOfString.name;
+function replaceCharacterAtIndexOfString(inputData, inputMetaData) {
+  // let functionName = replaceCharacterAtIndexOfString.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`originalString is: ${originalString}`);
   // console.log(`index is: ${index}`);
@@ -461,7 +461,7 @@ const replaceCharacterAtIndexOfString = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 export default {
   singleQuoteSwapAfterEquals,

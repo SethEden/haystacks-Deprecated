@@ -2,7 +2,7 @@
  * @file chiefWorkflow.js
  * @module chiefWorkflow
  * @description Holds all of the functions that manage the workflows,
- * system defined workflows, cient defined workflows,
+ * system defined workflows, client defined workflows,
  * setting the workflow data and getting the workflow data.
  * @requires module:chiefData
  * @requires module:loggers
@@ -22,7 +22,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, fnc, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefWorkflow.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
@@ -70,8 +70,8 @@ function loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName, 
   }
   // console.log('All loaded workflow data is: ' + JSON.stringify(D[sys.cCommandWorkflows]));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 export default {
-  [fnc.cloadCommandWorkflowsFromPath]: (commandWorkflowFilePathConfigurationName, contextName) => loadCommandWorkflowsFromPath(commandWorkflowFilePathConfigurationName, contextName)
+  loadCommandWorkflowsFromPath
 };

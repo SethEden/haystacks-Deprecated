@@ -44,7 +44,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 * covidMedicalCase
 * aBc
 */
-const isStringCamelCase = function(inputData, inputMetaData) {
+function isStringCamelCase(inputData, inputMetaData) {
   let functionName = isStringCamelCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -87,7 +87,7 @@ const isStringCamelCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function mapWordToCamelCaseWord
@@ -98,7 +98,7 @@ const isStringCamelCase = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
+function mapWordToCamelCaseWord(inputData, inputMetaData) {
   let functionName = mapWordToCamelCaseWord.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -110,7 +110,7 @@ const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function simplifyAndConsolidateString
@@ -125,7 +125,7 @@ const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
 * Input was: 11UpberDriver321CodeClearance0x#0000FF-akaBlue
 * Output was: upberdrivercodeclearanceffakablue
 */
-const simplifyAndConsolidateString = function(inputData, inputMetaData) {
+function simplifyAndConsolidateString(inputData, inputMetaData) {
   let functionName = simplifyAndConsolidateString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -135,11 +135,11 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
     // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
     returnData = ruleParsing.processRulesInternal([inputData.toLowerCase().trim(), [/[^\w\s]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
     returnData = ruleParsing.processRulesInternal([returnData, [/[\0-9]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function compareSimplifiedAndConsolidatedStrings
@@ -150,7 +150,7 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaData) {
+function compareSimplifiedAndConsolidatedStrings(inputData, inputMetaData) {
   let functionName = compareSimplifiedAndConsolidatedStrings.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -162,7 +162,7 @@ const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaDat
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function countCamelCaseWords
@@ -177,7 +177,7 @@ const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaDat
 * mixed numbers and camel case strings ever becomes a requirement as input to this function.
 * @NOTE Based on the implementation for the business rule/function arrayParsing.convertCamelCaseStringToArray.
 */
-const countCamelCaseWords = function(inputData, inputMetaData) {
+function countCamelCaseWords(inputData, inputMetaData) {
   let functionName = countCamelCaseWords.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -187,13 +187,13 @@ const countCamelCaseWords = function(inputData, inputMetaData) {
     let caps = [];
     for (let i = 1; i < inputData.length; i++) {
       if (gen.cUpperCaseEnglishAlphabet.includes(inputData.charAt(i))) { caps.push(i); }
-    }
+    } // End-for (let i = 1; i < inputData.length; i++)
     returnData = caps.length;
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function doesStringContainAcronym
@@ -205,7 +205,7 @@ const countCamelCaseWords = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const doesStringContainAcronym = function(inputData, inputMetaData) {
+function doesStringContainAcronym(inputData, inputMetaData) {
   let functionName = doesStringContainAcronym.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -230,7 +230,7 @@ const doesStringContainAcronym = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function determineWordDelimiter
@@ -241,7 +241,7 @@ const doesStringContainAcronym = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const determineWordDelimiter = function(inputData, inputMetaData) {
+function determineWordDelimiter(inputData, inputMetaData) {
   let functionName = determineWordDelimiter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -281,7 +281,6 @@ const determineWordDelimiter = function(inputData, inputMetaData) {
       // We could have multiple acronyms in a word, or in multiple words that are camelCase.
       // Each of these could be really complex special cases.
       // If we get to that point we will handle those cases on a case by case basis to improve the algorithm.
-      // } else if (camelCaseWordCount > 1 && containsAcronym === false)
     } else if (spacesCount > 0 && periodCount === 0 && dashCount === 0 && comaCount === 0 && underscoreCount === 0 && plusCount === 0 && percentCount === 0) {
       returnData = bas.cSpace;
     } else if (spacesCount === 0 && periodCount > 0 && dashCount === 0 && comaCount === 0 && underscoreCount === 0 && plusCount === 0 && percentCount === 0) {
@@ -306,7 +305,7 @@ const determineWordDelimiter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function countDelimiterInString
@@ -318,7 +317,7 @@ const determineWordDelimiter = function(inputData, inputMetaData) {
 * @date 2022/01/23
 * @NOTE: https://stackoverflow.com/questions/35849174/count-spaces-in-a-string
 */
-const countDelimiterInString = function(inputData, inputMetaData) {
+function countDelimiterInString(inputData, inputMetaData) {
   let functionName = countDelimiterInString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -330,7 +329,7 @@ const countDelimiterInString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function getWordCountInString
@@ -342,7 +341,7 @@ const countDelimiterInString = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const getWordCountInString = function(inputData, inputMetaData) {
+function getWordCountInString(inputData, inputMetaData) {
   let functionName = getWordCountInString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -363,7 +362,7 @@ const getWordCountInString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function isStringList
@@ -375,7 +374,7 @@ const getWordCountInString = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const isStringList = function(inputData, inputMetaData) {
+function isStringList(inputData, inputMetaData) {
   let functionName = isStringList.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   console.log(msg.cinputDataIs + inputData);
@@ -397,7 +396,7 @@ const isStringList = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function aggregateNumericalDifferenceBetweenTwoStrings
@@ -408,7 +407,7 @@ const isStringList = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputMetaData) {
+function aggregateNumericalDifferenceBetweenTwoStrings(inputData, inputMetaData) {
   let functionName = aggregateNumericalDifferenceBetweenTwoStrings.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -456,7 +455,7 @@ const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputM
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   isStringCamelCase,

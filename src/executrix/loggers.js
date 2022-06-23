@@ -25,7 +25,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, clr, cfg, fnc, gen, msg, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.loggers.
 // eslint-disable-next-line no-unused-vars
@@ -144,14 +144,14 @@ function constantsValidationSummaryLog(message, passFail) {
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, blackColorArray, true);
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, greenColorArray, false);
       console.log(outputMessage);
-    }
+    } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplaySummaryConstantsValidationPassMessages) === true)
   } else { // passFail === false
     if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplaySummaryConstantsVaidationFailMessages) === true) {
       outputMessage = wrd.cFAILED + bas.cSpace + bas.cDoubleDash + bas.cSpace + message + bas.cSpace + bas.cDoubleDash + bas.cSpace + wrd.cFAILED; // `FAILED -- ${message} -- FAILED`;
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, blackColorArray, true);
       outputMessage = colorizer.colorizeMessageSimple(outputMessage, redColorArray, false);
       console.log(outputMessage);
-    }
+    } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplaySummaryConstantsVaidationFailMessages) === true)
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
 }
@@ -194,7 +194,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
     if (messageIsValid === true && loggingToFileAndConsole === true) {
       printMessageToFile(logFile, outputMessage);
       // console.log('DONE printing the message to the logFile');
-    }
+    } // End-if (messageIsValid === true && loggingToFileAndConsole === true)
   } else if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugTestExhaustive) === true) {
     // console.log('else-block the debugTestExhaustive setting is true!');
     // TODO: Add rule here to replace double percent with message/class-path.
@@ -205,7 +205,7 @@ function consoleLogProcess(debugSetting, logFile, classPath, message, loggingToF
     if (loggingToFileAndConsole === true) {
       printMessageToFile(logFile, outputMessage);
       // console.log('done printing the message to the log file.');
-    }
+    } // End-if (loggingToFileAndConsole === true)
   }
   // console.log('Past all of the if-else-if-else blocks of code.');
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -332,7 +332,7 @@ function getLogFileNameAndPath() {
     logFile = logFile + bas.cDoubleForwardSlash + configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileName);
     logFile = path.resolve(logFile);
     // console.log(`logFile after adding the log filename: ${logFile}`);
-  }
+  } // End-if (logFile !== undefined)
   returnData = logFile;
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -382,9 +382,9 @@ function printMessageToFile(file, message) {
 }
 
 export default {
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message),
-  [fnc.cconsoleTableLog]: (classPath, tableData, columnNames) => consoleTableLog(classPath, tableData, columnNames),
-  [fnc.cconstantsValidationSummaryLog]: (message, passFail) => constantsValidationSummaryLog(message, passFail),
-  [fnc.cgetLogFileNameAndPath]: () => getLogFileNameAndPath(),
-  [fnc.cprintMessageToFile]: (file, message) => printMessageToFile(file, message)
+  consoleLog,
+  consoleTableLog,
+  constantsValidationSummaryLog,
+  getLogFileNameAndPath,
+  printMessageToFile
 };

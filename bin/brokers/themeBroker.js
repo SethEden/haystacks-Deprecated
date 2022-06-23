@@ -49,7 +49,7 @@ function getNamedThemes() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemesNamesIs + JSON.stringify(themesNames));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themesNames;
-};
+}
 
 /**
  * @function getNamedThemePath
@@ -70,18 +70,18 @@ function getNamedThemePath(themeName) {
   let themePath = false;
   let frameworkThemesPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkThemesPath);
   frameworkThemesPath = path.resolve(frameworkThemesPath);
-  for (let i = 0; i < themesNames.length; i++) {
-    if (themesNames[i].toUpperCase() === themeName.toUpperCase()) {
-      themePath = frameworkThemesPath + bas.cDoubleForwardSlash + themesNames[i] + bas.cDoubleForwardSlash;
+  for (const element of themesNames) {
+    if (element.toUpperCase() === themeName.toUpperCase()) {
+      themePath = frameworkThemesPath + bas.cDoubleForwardSlash + element + bas.cDoubleForwardSlash;
       themePath = path.resolve(themePath);
       break;
     }
-  } // End-for (let i = 0; i < themesNames.length; i++)
+  } // End-for (const element of themesNames)
   // themePath is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemePathIs + themePath);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themePath;
-};
+}
 
 /**
  * @function loadTheme
@@ -97,13 +97,13 @@ function loadTheme(themePath) {
   // themePath is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemePathIs + themePath);
   let themeData = {};
-  let themeDataFilesToLoad = chiefData.determineThemeDebugConfigFilesToLoad(sys.cthemeConfigPath);
+  chiefData.determineThemeDebugConfigFilesToLoad(sys.cthemeConfigPath);
   themeData = chiefData.setupAllJsonConfigData(sys.cthemeConfigPath, wrd.cconfiguration);
   // themeData is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemeDataIs + JSON.stringify(themeData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themeData;
-};
+}
 
 /**
  * @function applyTheme
@@ -124,7 +124,7 @@ function applyTheme(themeData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   getNamedThemes,

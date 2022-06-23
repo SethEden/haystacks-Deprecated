@@ -34,7 +34,7 @@ const term = 13; // carriage return
  * @author Seth Hollingsead
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  */
-const prompt = function(inputData, inputMetaData) {
+function prompt(inputData, inputMetaData) {
   let functionName = prompt.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.caskIs + JSON.stringify(inputData));
@@ -66,7 +66,7 @@ const prompt = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   prompt

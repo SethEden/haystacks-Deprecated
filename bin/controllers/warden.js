@@ -27,12 +27,12 @@ import chiefData from './chiefData.js';
 import chiefWorkflow from './chiefWorkflow.js';
 import configurator from '../executrix/configurator.js';
 import loggers from '../executrix/loggers.js';
-import D from '../structures/data.js';
+// import D from '../structures/data.js';
 // External imports
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.warden.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
@@ -51,7 +51,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function processRootPath(inputPath) {
-  let functionName = processRootPath.name;
+  // let functionName = processRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputPath is: ${inputPath}`);
   ruleBroker.bootStrapBusinessRules();
@@ -62,7 +62,7 @@ function processRootPath(inputPath) {
   // console.log(`rootPath is: ${rootPath}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return rootPath;
-};
+}
 
 /**
  * @function initFrameworkSchema
@@ -157,7 +157,7 @@ function initFrameworkSchema(configData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.capplicationConstantsValidationDataIs + JSON.stringify(applicationConstantsValidationData));
     chiefData.addConstantsValidationData(frameworkConstantsValidationData);
     chiefData.addConstantsValidationData(applicationConstantsValidationData);
-  }
+  } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cenableConstantsValidation) === true)
 
   let enableLogFileOutputSetting = configurator.getConfigurationSetting(wrd.csystem, cfg.clogFileEnabled);
   if (enableLogFileOutputSetting === true) {
@@ -167,7 +167,7 @@ function initFrameworkSchema(configData) {
     let logFileName = sessionDateTimeStamp + bas.cUnderscore + applicationMetaData[wrd.cVersion] + bas.cUnderscore + applicationMetaData[wrd.cName] + gen.cDotLog;
     loggers.consoleLog(namespacePrefix + functionName, msg.clogFileNameIs + logFileName);
     configurator.setConfigurationSetting(wrd.csystem, cfg.clogFileName, logFileName);
-  }
+  } // End-if (enableLogFileOutputSetting === true)
 
   mergeClientBusinessRules(configData[sys.cclientBusinessRules]);
   mergeClientCommands(configData[sys.cclientCommands]);
@@ -177,10 +177,10 @@ function initFrameworkSchema(configData) {
 
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
- * @function mergeClientBusienssRules
+ * @function mergeClientBusinessRules
  * @description Merges the map of client defined business rule names and client defined business rule function calls
  * with the existing D-data structure that should already have all of the system defined business rule.
  * @param {object} clientBusinessRules A map of client defined business rule names and client defined business rule function calls.
@@ -194,10 +194,10 @@ function mergeClientBusinessRules(clientBusinessRules) {
   // console.log(`clientBusinessRules is: ${JSON.stringify(clientBusinessRules)}`);
   ruleBroker.addClientRules(clientBusinessRules);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
- * @function mergeCientCommands
+ * @function mergeClientCommands
  * @description Merges the map of client defined command names and client defined command function calls
  * with the existing D-data structure that should already have all of the system defined commands.
  * @param {object} clientCommands A map of client defined command names and client defined command function calls.
@@ -211,7 +211,7 @@ function mergeClientCommands(clientCommands) {
   // console.log(`clientCommands is: ${JSON.stringify(clientCommands)}`);
   chiefCommander.addClientCommands(clientCommands);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function loadCommandAliases
@@ -248,7 +248,7 @@ function loadCommandAliases(commandAliasesPathConfigName) {
   }
   // console.log('ALL Loaded command aliases is: ' + JSON.stringify(D[sys.cCommandsAliases]));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function loadCommandWorkflows
@@ -337,7 +337,7 @@ function enqueueCommand(command) {
  * @description This is a wrapper for the chiefCommander.isCommandQueueEmpty function.
  * Determines if the command queue is empty or not,
  * which also determines if the application should continue executing commands from the command queue
- * in sequential order or prompt for another commnd or exit.
+ * in sequential order or prompt for another command or exit.
  * @return {boolean} True or False to indicate if command execution should continue or not.
  * @author Seth Hollingsead
  * @date 2022/02/16
@@ -432,7 +432,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/16
- * @NOTE We cannot instrument this code with calls to loggers.consoleLog as it would ntroduce yet another circular dependency.
+ * @NOTE We cannot instrument this code with calls to loggers.consoleLog as it would introduce yet another circular dependency.
  * We will have to stick with just hard coded console.logs in this case to debug at this level.
  */
 function consoleLog(classPath, message) {
@@ -445,17 +445,17 @@ function consoleLog(classPath, message) {
 }
 
 export default {
-  [fnc.cprocessRootPath]: (inputPath) => processRootPath(inputPath),
-  [fnc.cinitFrameworkSchema]: (configData) => initFrameworkSchema(configData),
-  [fnc.cmergeClientBusinessRules]: (cientBusinessRules) => mergeClientBusinessRules(cientBusinessRules),
-  [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
-  [fnc.cloadCommandAliases]: (commandAliasesPathConfigName) => loadCommandAliases(commandAliasesPathConfigName),
-  [fnc.cloadCommandWorkflows]: (workflowPathConfigName) => loadCommandWorkflows(workflowPathConfigName),
-  [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
-  [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
-  [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
-  [fnc.cprocessCommandQueue]: () => processCommandQueue(),
-  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) => setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cconsoleLog]: (classPath, message) => consoleLog(classPath, message)
+  processRootPath,
+  initFrameworkSchema,
+  mergeClientBusinessRules,
+  mergeClientCommands,
+  loadCommandAliases,
+  loadCommandWorkflows,
+  executeBusinessRules,
+  enqueueCommand,
+  isCommandQueueEmpty,
+  processCommandQueue,
+  setConfigurationSetting,
+  getConfigurationSetting,
+  consoleLog
 };

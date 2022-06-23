@@ -21,7 +21,7 @@ import loggers from '../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefData.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
@@ -262,14 +262,13 @@ function addConstantsValidationData(arrayValidationData) {
 }
 
 export default {
-  [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName) => searchForUniversalDebugConfigSetting(
-    appConfigPathName, frameworkConfigPathName),
+  searchForUniversalDebugConfigSetting,
   determineThemeDebugConfigFilesToLoad,
-  [fnc.cgetAndProcessCsvData]: (pathAndFilename, contextName) => getAndProcessCsvData(pathAndFilename, contextName),
-  [fnc.cgetAndProcessXmlData]: (pathAndFilename) => getAndProcessXmlData(pathAndFilename),
-  [fnc.csetupAllCsvData]: (dataPathConfigurationName, contextName) => setupAllCsvData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllXmlData]: (dataPathConfigurationName, contextName) => setupAllXmlData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName),
-  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
-  [fnc.caddConstantsValidationData]: (arrayValidationData) => addConstantsValidationData(arrayValidationData)
+  getAndProcessCsvData,
+  getAndProcessXmlData,
+  setupAllCsvData,
+  setupAllXmlData,
+  setupAllJsonConfigData,
+  initializeConstantsValidationData,
+  addConstantsValidationData
 }

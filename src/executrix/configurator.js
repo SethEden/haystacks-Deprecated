@@ -20,7 +20,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, wrd} = hayConst;
+const {bas, biz, cfg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.configurator.
 // eslint-disable-next-line no-unused-vars
@@ -81,7 +81,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
     } else {
       returnConfigurationValue = getParentConfigurationNamespaceObject(configurationNamespace, '');
     }
-  }
+  } // End-if (namespaceConfigObject)
   // console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnConfigurationValue;
@@ -134,7 +134,7 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
     let parsedDebugSettingsNamespace = returnValue.split(bas.cPipe);
     // console.log('parsedDebugSettingsNamespace is: ' + parsedDebugSettingsNamespace);
     returnValue = parsedDebugSettingsNamespace[1];
-  }
+  } // End-if (returnValue.includes(cfg.cdebugFunctions) || returnValue.includes(cfg.cdebugFiles))
   // console.log(`returnValue is: ${returnValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
@@ -168,7 +168,7 @@ function processConfigurationValueRules(name, value) {
       // We don't want to corrupt the other data that may be passed into this function.
       returnValue = value;
       break;
-  }
+  } // End-switch (name)
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
@@ -233,21 +233,21 @@ function getConfigurationNamespaceObject(configurationNamespace) {
     D[wrd.cconfiguration] = {};
     configurationDataRoot = D[wrd.cconfiguration];
     configurationPathObject = configurationDataRoot;
-  }
+  } // End-if (!configurationPathObject)
   for (const element of configurationNamespace) {
     if (!configurationPathObject[element]) {
       // It doesn't exist yet, so lets make it.
       configurationPathObject[element] = {};
-    }
+    } // End-if (!configurationPathObject[element])
     configurationPathObject = configurationPathObject[element];
-  } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+  } // End for-loop (const element of configurationNamespace)
   if (returnValue) {
     returnValue = configurationPathObject;
   }
   // NOTE: The getConfigurationNamespaceObject is called before the configuration bootstrap process is complete.
   // So therefore trying to call the above functionality from a business rule will not work EVER!
   // The above code will need to remain in place even though,
-  // it is duplicate code to the new functionality in the busienss rule: biz.cgetNamespacedDataObject
+  // it is duplicate code to the new functionality in the business rule: biz.cgetNamespacedDataObject
   // returnValue = ruleBroker.processRules([configurationNamespace.unshift(wrd.cconfiguration), ''], [biz.cgetNamespacedDataObject]);
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -255,10 +255,9 @@ function getConfigurationNamespaceObject(configurationNamespace) {
 }
 
 export default {
-  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>
-    setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cprocessConfigurationNameRules]: (fullyQualifiedName) => processConfigurationNameRules(fullyQualifiedName),
-  [fnc.cprocessConfigurationNamespaceRules]: (fullyQualifiedName) => processConfigurationNamespaceRules(fullyQualifiedName),
-  [fnc.cprocessConfigurationValueRules]: (name, value) => processConfigurationValueRules(name, value)
+  setConfigurationSetting,
+  getConfigurationSetting,
+  processConfigurationNameRules,
+  processConfigurationNamespaceRules,
+  processConfigurationValueRules
 };

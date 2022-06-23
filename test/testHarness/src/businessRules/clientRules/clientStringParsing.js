@@ -197,7 +197,7 @@ const isAlmostPalindrome = function(inputData, inputMetaData) {
   let returnData = false;
   let misCompareCount = 0;
   let startingPoint, endingPoint;
-  // TODO: We need to enable additional types of comparisons. The below algorthim works for if the mis-compare is in the center of the string.
+  // TODO: We need to enable additional types of comparisons. The below algorithm works for if the mis-compare is in the center of the string.
   // But if the mis-compare is at the beginning or the end of the string then it can throw off all the other comparisons resulting in a false positive result.
   // We actually need to check starting with the first character but also the first + 1 character and also,
   // we need to check ending with the last - 1 character.
@@ -249,15 +249,11 @@ loop2:
       } // End-for (let j = startingPoint; j < inputData.length; j++)
       // misCompareCount after the for-loop is:
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cmisCompareCountAfterForLoopIs + misCompareCount);
-      if (i === 0) {
+      if (i === 0 || i > 0) {
         if (misCompareCount <= 1) {
           returnData = true;
         }
-      } else if (i > 0) {
-        if (misCompareCount <= 1) {
-          returnData = true;
-        }
-      }
+      } // End-if (i === 0 || i > 0)
       haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
       // If we got a positive result then we can break out of the function and return our positive result.
       if (returnData === true) {

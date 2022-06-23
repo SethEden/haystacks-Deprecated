@@ -20,21 +20,21 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.pathArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function doesArrayContainFilename
- * @desription Checks if an array contains a filename, after stripping off the path.
+ * @description Checks if an array contains a filename, after stripping off the path.
  * @param {array<string>} inputData The array of file names that should be checked for the input file name we are looking for.
  * @param {string} inputMetaData The file name we are looking for in the input array.
  * @return {boolean} A True or False value to indicate if the file name was found or not.
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const doesArrayContainFilename = function(inputData, inputMetaData) {
+function doesArrayContainFilename(inputData, inputMetaData) {
   let functionName = doesArrayContainFilename.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -42,7 +42,7 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   let returnData = false;
   // NOTE: This call doesn't actually work, it may have worked at one time, but it doesn't work now.
   // And I'm not going to spend the time trying to figure out why,
-  // when it will be much simpler to ust call that same funtion in a loop to figure out the result.
+  // when it will be much simpler to ust call that same function in a loop to figure out the result.
   // Can solve this when we build unit tests.
   returnData = ruleParsing.processRulesInternal([[inputData, inputMetaData], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]);
 
@@ -53,29 +53,30 @@ const doesArrayContainFilename = function(inputData, inputMetaData) {
   //     returnData = true;
   //     break;
   //   }
-  // }
+  // } // End-for (let i = 0; i < inputData.Length; i++)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getFileAndPathListForPath
  * @description Scans all files and folders recursively given an input path and
- * returns a list of all files and their full paths fournd under the specified input path.
+ * returns a list of all files and their full paths found under the specified input path.
  * @param {string} inputData The path that should be scanned for files and their full paths.
  * @param {integer} inputMetaData Optional file limit, ignored if the configuration flag is not set to true,
- * if nothign is passed the configuratino setting will be used.
+ * if nothing is passed the configuration setting will be used.
  * @return {array<string>} The array that contains the full path and file name for every file found under the specified path.
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const getFileAndPathListForPath = function(inputData, inputMetaData) {
+function getFileAndPathListForPath(inputData, inputMetaData) {
   let functionName = getFileAndPathListForPath.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
+  let enableFilesListLimit, filesListLimit;
   if (inputData) {
     if (inputMetaData) {
       enableFilesListLimit = configurator.getConfigurationSetting(wrd.csystem, cfg.cEnableFilesListLimit);
@@ -86,12 +87,12 @@ const getFileAndPathListForPath = function(inputData, inputMetaData) {
     }
     // filesListLimit is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cfilesListLimitIs + filesListLimit);
-    returnData = fileBroker.scanDirectoryContents(inputData, enableFilesListLimit, filesListLimit);
+    returnData = ruleParsing.processRulesInternal([inputData, [enableFilesListLimit, filesListLimit]], [biz.cscanDirectoryContents]);
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   doesArrayContainFilename,

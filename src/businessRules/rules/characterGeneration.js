@@ -34,7 +34,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateMixedCaseLetterOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateMixedCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -44,7 +44,7 @@ const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, in
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateUpperCaseLetterOrSpecialCharacter
@@ -57,7 +57,7 @@ const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, in
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateUpperCaseLetterOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -67,7 +67,7 @@ const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, in
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateLowerCaseLetterOrSpecialCharacter
@@ -80,7 +80,7 @@ const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, in
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateLowerCaseLetterOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -90,7 +90,7 @@ const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, in
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
@@ -103,7 +103,7 @@ const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, in
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -113,7 +113,7 @@ const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter
@@ -126,7 +126,7 @@ const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -136,7 +136,7 @@ const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter
@@ -149,7 +149,7 @@ const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -159,7 +159,7 @@ const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateMixedCaseAlphaNumericCharacter
@@ -170,7 +170,7 @@ const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateMixedCaseAlphaNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateMixedCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -180,7 +180,7 @@ const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, input
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateUpperCaseAlphaNumericCharacter
@@ -191,7 +191,7 @@ const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateUpperCaseAlphaNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -201,7 +201,7 @@ const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, input
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateLowerCaseAlphaNumericCharacter
@@ -212,7 +212,7 @@ const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateLowerCaseAlphaNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -222,7 +222,7 @@ const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, input
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateNumericCharacter
@@ -233,7 +233,7 @@ const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -243,7 +243,7 @@ const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateSpecialCharacter
@@ -254,7 +254,7 @@ const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -266,11 +266,11 @@ const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
     let number = randomlyGenerateNumberInRange(num.c1, [inputDataLength, gen.cTrue, gen.cTrue]);
     // NOTE: The String.length() above is a 1-base count, the String.substring is zero-based.
     returnData = inputData.substring(number - 1, number);
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateNumberInRange
@@ -285,7 +285,7 @@ const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
+function randomlyGenerateNumberInRange(inputData, inputMetaData) {
   let functionName = randomlyGenerateNumberInRange.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -313,7 +313,7 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData.toString();
-};
+}
 
 /**
  * @function randomlyGenerateBooleanValue
@@ -325,7 +325,7 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
+function randomlyGenerateBooleanValue(inputData, inputMetaData) {
   let functionName = randomlyGenerateBooleanValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -335,7 +335,7 @@ const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateMixedCaseAlphabeticCharacter
@@ -347,7 +347,7 @@ const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateMixedCaseAlphabeticCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateMixedCaseAlphabeticCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -357,7 +357,7 @@ const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMe
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateLowerCaseLetter
@@ -368,7 +368,7 @@ const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMe
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
+function randomlyGenerateLowerCaseLetter(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -378,7 +378,7 @@ const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateUpperCaseLetter
@@ -389,7 +389,7 @@ const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
+function randomlyGenerateUpperCaseLetter(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -399,7 +399,7 @@ const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertNumberToUpperCaseLetter
@@ -411,7 +411,7 @@ const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
+function convertNumberToUpperCaseLetter(inputData, inputMetaData) {
   let functionName = convertNumberToUpperCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -423,7 +423,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
     // number is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
     if (number > 25 || number < 0) {
-      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+      returnData = ''; // Shouldn't actually need to do this, but it's a good place holder.
     } else {
       returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toUpperCase();
     }
@@ -431,7 +431,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertNumberToLowerCaseLetter
@@ -443,7 +443,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
+function convertNumberToLowerCaseLetter(inputData, inputMetaData) {
   let functionName = convertNumberToLowerCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -463,7 +463,7 @@ const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   randomlyGenerateMixedCaseLetterOrSpecialCharacter,

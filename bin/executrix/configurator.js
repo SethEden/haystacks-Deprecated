@@ -20,9 +20,10 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, wrd} = hayConst;
+const {bas, biz, cfg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.configurator.
+// eslint-disable-next-line no-unused-vars
 const namespacePrefix = wrd.cexecutrix + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -49,7 +50,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
     namespaceConfigObject[`${configurationNamespace}.${configurationName}`] = configurationValue;
   }
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function getConfigurationSetting
@@ -63,7 +64,7 @@ function setConfigurationSetting(configurationNamespace, configurationName, conf
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function getConfigurationSetting(configurationNamespace, configurationName) {
-  let functionName = getConfigurationSetting.name;
+  // let functionName = getConfigurationSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`configurationNamespace is: ${configurationNamespace}`);
   // console.log(`configurationName is: ${configurationName}`);
@@ -80,11 +81,11 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
     } else {
       returnConfigurationValue = getParentConfigurationNamespaceObject(configurationNamespace, '');
     }
-  }
+  } // End-if (namespaceConfigObject)
   // console.log(`returnConfigurationValue is: ${returnConfigurationValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnConfigurationValue;
-};
+}
 
 /**
  * @function processConfigurationNameRules
@@ -96,7 +97,7 @@ function getConfigurationSetting(configurationNamespace, configurationName) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processConfigurationNameRules(fullyQualifiedName) {
-  let functionName = processConfigurationNameRules.name;
+  // let functionName = processConfigurationNameRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
@@ -105,7 +106,7 @@ function processConfigurationNameRules(fullyQualifiedName) {
   // console.log(`returnValue is: ${returnValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function processConfigurationNamespaceRules
@@ -117,7 +118,7 @@ function processConfigurationNameRules(fullyQualifiedName) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processConfigurationNamespaceRules(fullyQualifiedName) {
-  let functionName = processConfigurationNamespaceRules.name;
+  // let functionName = processConfigurationNamespaceRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`fullyQualifiedName is: ${fullyQualifiedName}`);
   let returnValue;
@@ -133,11 +134,11 @@ function processConfigurationNamespaceRules(fullyQualifiedName) {
     let parsedDebugSettingsNamespace = returnValue.split(bas.cPipe);
     // console.log('parsedDebugSettingsNamespace is: ' + parsedDebugSettingsNamespace);
     returnValue = parsedDebugSettingsNamespace[1];
-  }
+  } // End-if (returnValue.includes(cfg.cdebugFunctions) || returnValue.includes(cfg.cdebugFiles))
   // console.log(`returnValue is: ${returnValue}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function processConfigurationValueRules
@@ -167,11 +168,11 @@ function processConfigurationValueRules(name, value) {
       // We don't want to corrupt the other data that may be passed into this function.
       returnValue = value;
       break;
-  }
+  } // End-switch (name)
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function getParentConfigurationNamespaceObject
@@ -207,7 +208,7 @@ function getParentConfigurationNamespaceObject(configurationNamespace, optionalF
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 /**
  * @function getConfigurationNamespaceObject
@@ -232,32 +233,31 @@ function getConfigurationNamespaceObject(configurationNamespace) {
     D[wrd.cconfiguration] = {};
     configurationDataRoot = D[wrd.cconfiguration];
     configurationPathObject = configurationDataRoot;
-  }
-  for (let i = 0; i < configurationNamespace.length; i++) {
-    if (!configurationPathObject[configurationNamespace[i]]) {
+  } // End-if (!configurationPathObject)
+  for (const element of configurationNamespace) {
+    if (!configurationPathObject[element]) {
       // It doesn't exist yet, so lets make it.
-      configurationPathObject[configurationNamespace[i]] = {};
-    }
-    configurationPathObject = configurationPathObject[configurationNamespace[i]];
-  } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+      configurationPathObject[element] = {};
+    } // End-if (!configurationPathObject[element])
+    configurationPathObject = configurationPathObject[element];
+  } // End for-loop (const element of configurationNamespace)
   if (returnValue) {
     returnValue = configurationPathObject;
   }
   // NOTE: The getConfigurationNamespaceObject is called before the configuration bootstrap process is complete.
   // So therefore trying to call the above functionality from a business rule will not work EVER!
   // The above code will need to remain in place even though,
-  // it is duplicate code to the new functionality in the busienss rule: biz.cgetNamespacedDataObject
+  // it is duplicate code to the new functionality in the business rule: biz.cgetNamespacedDataObject
   // returnValue = ruleBroker.processRules([configurationNamespace.unshift(wrd.cconfiguration), ''], [biz.cgetNamespacedDataObject]);
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
-};
+}
 
 export default {
-  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) =>
-    setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cprocessConfigurationNameRules]: (fullyQualifiedName) => processConfigurationNameRules(fullyQualifiedName),
-  [fnc.cprocessConfigurationNamespaceRules]: (fullyQualifiedName) => processConfigurationNamespaceRules(fullyQualifiedName),
-  [fnc.cprocessConfigurationValueRules]: (name, value) => processConfigurationValueRules(name, value)
+  setConfigurationSetting,
+  getConfigurationSetting,
+  processConfigurationNameRules,
+  processConfigurationNamespaceRules,
+  processConfigurationValueRules
 };

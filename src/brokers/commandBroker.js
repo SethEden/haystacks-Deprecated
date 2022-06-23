@@ -28,16 +28,16 @@ import stack from '../structures/stack.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.commandBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
  * @function bootStrapCommands
- * @description Captures all of the commands string-to-function cal map data inthe commandsLibrary and migrates that dat a to the D-data structure.
- * This is important now because we are going to allow the clinet to define their own commands seperate from the system defined commands.
- * So we need a way to merge al the cient defned and system defined commands into one location.
+ * @description Captures all of the commands string-to-function cal map data in the commandsLibrary and migrates that dat a to the D-data structure.
+ * This is important now because we are going to allow the client to define their own commands separate from the system defined commands.
+ * So we need a way to merge al the client defined and system defined commands into one location.
  * Then the command broker will execute commands rom the D-Data structure and not the commands library per-say.
  * This will allow the system to expand much more dynamically and even be user-defined & flexible to client needs.
  * @return {void}
@@ -67,7 +67,7 @@ function addClientCommands(clientCommands) {
   for (const [key, value] of Object.entries(clientCommands)) {
     // console.log('%%%%%%%%%%%%%%%%%% ---- >>>>>>>>> key is: ' + key);
     D[wrd.cCommands] = {...D[wrd.cCommands], [`${key}`]: value};
-  }
+  } // End-for (const [key, value] of Object.entries(clientCommands))
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 }
 
@@ -180,7 +180,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
               commandAliasCount = commandAliasCount + 1;
               // Don't break, continue searching, so we get a full count of any duplicates found.
             }
-          } // End-for (let i = 0; i < arrayOfAliases.length; i++)
+          } // End-for (const element of arrayOfAliases)
         } else {
           let tempCommandAliasCount = countMatchingCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // tempCommandAliasCount is:
@@ -192,7 +192,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
             // After adding commandAliasCount and tempCommandAliasCount:
             loggers.consoleLog(namespacePrefix + functionName, msg.cAfterAddingCommandAliasCountAndTempCommandAliasCount + commandAliasCount);
             // Don't break, continue searching, so we get a full count of any duplicates found.
-          }
+          } // End-if (tempCommandAliasCount > 0)
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
         // Found a matching entry! 2
@@ -214,7 +214,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
  * data structures and returns the one command data object that matches the input name.
  * @param {object} commandAliasData The command alias data that should be searched recursively for the specified command alias.
  * @param {string} commandAliasName The command alias name/string that should be found.
- * @return {object} The command object that corrosponds to the input command alias name.
+ * @return {object} The command object that corresponds to the input command alias name.
  * @author Seth Hollingsead
  * @date 2022/05/27
  */
@@ -258,7 +258,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
               commandAliasObject = commandAliasData[commandAliasEntity];
               break;
             }
-          } // End-for (let i = 0; i < arrayOfAliases.length; i++)
+          } // End-for (const element of arrayOfAliases)
         } else {
           let commandAliasesObjectTemp = searchCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // commandAliasesObjectTemp is:
@@ -266,7 +266,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
           if (commandAliasesObjectTemp) {
             commandAliasObject = commandAliasesObjectTemp;
             break;
-          }
+          } // End-if (commandAliasesObjectTemp)
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
         // Found a matching entry!
@@ -284,8 +284,8 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
 
 /**
  * @function getAllCommandAliasData
- * @description Recursively gets all of the commands alias data from all levels and flattens them into a singel array for printing out to the help command.
- * @param {object} commandAliasDataStructure The command alias data structure that should be recursively flatened into a single array for output.
+ * @description Recursively gets all of the commands alias data from all levels and flattens them into a single array for printing out to the help command.
+ * @param {object} commandAliasDataStructure The command alias data structure that should be recursively flattened into a single array for output.
  * If the input is undefined then the main CommandsAliases data structure will be used at the root of the command aliases data hive.
  * @return {array<string>|boolean} An array of all the command aliases currently needing to be flattened or
  * a boolean True or False to indicate that a leaf-node has been found by the recursive caller.
@@ -391,7 +391,7 @@ function getCommandNamespaceDataObject(commandAliasDataStructure, namespaceToFin
 /**
  * @function getCommandArgs
  * @description Gets the arguments of the current command.
- * @param {string} commandString The command string that should be parsed fro command argumnts.
+ * @param {string} commandString The command string that should be parsed fro command arguments.
  * @param {string} commandDelimiter The delimiter that should be used to parse the command line.
  * @return {array<boolean|string|integer>} Any array of arguments, some times these might actually be nested command calls.
  * @author Seth Hollingsead
@@ -498,7 +498,7 @@ function getCommandArgs(commandString, commandDelimiter) {
                   returnData.push(element);
                   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
                 } // End-if (postSplitCommandString[k] !== '')
-              } // End-for (let k = 0; k < postSplitCommandString.length; k++)
+              } // End-for (const element of postSplitCommandString)
             } else {
               // NOTE: We cannot just push the quoted string array back onto the array. Well we might be able to,
               // but if the last character on the last element of the returnData array is a secondaryCommandArgsDelimiter
@@ -622,13 +622,13 @@ function executeCommand(commandString) {
 }
 
 export default {
-  [fnc.cbootStrapCommands]: () => bootStrapCommands(),
-  [fnc.caddClientCommands]: (clientCommands) => addClientCommands(clientCommands),
-  [fnc.cgetValidCommand]: (commandString, commandDelimiter) => getValidCommand(commandString, commandDelimiter),
+  bootStrapCommands,
+  addClientCommands,
+  getValidCommand,
   countMatchingCommandAlias,
   searchCommandAlias,
   getAllCommandAliasData,
   getCommandNamespaceDataObject,
-  [fnc.cgetCommandArgs]: (commandString, commandDelimiter) => getCommandArgs(commandString, commandDelimiter),
-  [fnc.cexecuteCommand]: (commandString) => executeCommand(commandString)
+  getCommandArgs,
+  executeCommand
 };

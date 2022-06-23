@@ -18,7 +18,7 @@ import loggers from '../../../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.wordArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -35,7 +35,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * We might need to do some refactoring of this function if
  * mixed numbers and camel case strings ever becomes a requirement as input to this function.
  */
-const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
+function convertCamelCaseStringToArray(inputData, inputMetaData) {
   let functionName = convertCamelCaseStringToArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -44,14 +44,14 @@ const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
   let caps = [];
   for (let i = 1; i < inputData.length; i++) {
     if (gen.cUpperCaseEnglishAlphabet.includes(inputData.charAt(i))) { caps.push(i); }
-  }
+  } // End-for (let i = 1; i < inputData.length; i++)
   if (caps.length > 0) {
     let last = 0;
     let decomposedString = [];
-    for (let j = 0; j < caps.length; j++) {
-      decomposedString.push(inputData.slice(last, caps[j]));
-      last = caps[j];
-    }
+    for (const element of caps) {
+      decomposedString.push(inputData.slice(last, element));
+      last = element;
+    } // End-for (const element of caps)
     decomposedString.push(inputData.slice(last));
     returnData = decomposedString;
   } else {
@@ -60,7 +60,7 @@ const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getWordsArrayFromString
@@ -72,7 +72,7 @@ const convertCamelCaseStringToArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/18
  */
-const getWordsArrayFromString = function(inputData, inputMetaData) {
+function getWordsArrayFromString(inputData, inputMetaData) {
   let functionName = getWordsArrayFromString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -102,21 +102,21 @@ const getWordsArrayFromString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function recombineStringArrayWithSpaces
  * @description Takes an array of strings and recombines them sequentially ith spaces between each array element.
  * This function is needed, because commands parse inputs by spaces ino an array,
- * and some commands need a single continuous strng that might be delimited by coma's.
- * So this function lets us recombine and teh re-parse the strng with another delimiter.
- * @param {array<string>} inputData The aray of strings that should be recombined.
+ * and some commands need a single continuous string that might be delimited by coma's.
+ * So this function lets us recombine and teh re-parse the string with another delimiter.
+ * @param {array<string>} inputData The array of strings that should be recombined.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} The string array with spaces between array elements.
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
+function recombineStringArrayWithSpaces(inputData, inputMetaData) {
   let functionName = recombineStringArrayWithSpaces.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -132,7 +132,7 @@ const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertArrayToCamelCaseString
@@ -143,7 +143,7 @@ const recombineStringArrayWithSpaces = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
+function convertArrayToCamelCaseString(inputData, inputMetaData) {
   let functionName = convertArrayToCamelCaseString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -156,25 +156,25 @@ const convertArrayToCamelCaseString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function doesArrayContainLowerCaseConsolidatedString
- * @description Checks if an array contains a string, comparison made by lowerCaseAndConsolidatedSring().
- * @param {array<string>} inputData The array of strigns that should be checked if it contains the specified string.
+ * @description Checks if an array contains a string, comparison made by lowerCaseAndConsolidatedString().
+ * @param {array<string>} inputData The array of strings that should be checked if it contains the specified string.
  * @param {string} inputMetaData The string we are looking for in the array.
  * @return {boolean} A Boolean to indicate if the string is found in the array or not.
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMetaData) {
+function doesArrayContainLowerCaseConsolidatedString(inputData, inputMetaData) {
   let functionName = doesArrayContainLowerCaseConsolidatedString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData;
   if (inputData && inputMetaData) {
-    // I'm not sure if value1 & value2 below should be referanced to inputData & inputMetaData?
+    // I'm not sure if value1 & value2 below should be referenced to inputData & inputMetaData?
     // I get the arrow function is pass in these values to the wordStringParsing.aggregateNumericalDifferenceBetweenTwoStrings function.
     // But I'm not sure how or what values are being passed for value1 & value2.
     let stringDelta = (value1, value2) => ruleParsing.processRulesInternal([value1, value2], [biz.caggregateNumericalDifferenceBetweenTwoStrings]) < 2;
@@ -185,7 +185,7 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function ascertainMatchingElements
@@ -196,7 +196,7 @@ const doesArrayContainLowerCaseConsolidatedString = function(inputData, inputMet
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const ascertainMatchingElements = function(inputData, inputMetaData) {
+function ascertainMatchingElements(inputData, inputMetaData) {
   let functionName = ascertainMatchingElements.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -216,7 +216,7 @@ const ascertainMatchingElements = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   convertCamelCaseStringToArray,

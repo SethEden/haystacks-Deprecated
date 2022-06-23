@@ -23,7 +23,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.dataBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -113,16 +113,16 @@ function findIndividualDebugConfigSetting(filesToLoad) {
       multiMergedData[wrd.csystem] = {};
       multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
-    }
+    } // End-if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName))
     if (foundSystemData === true) {
       break;
     }
-  }
+  } // End-for (const element of filesToLoad)
   if (multiMergedData[wrd.csystem]) {
     if (multiMergedData[wrd.csystem][systemDotDebugSettings]) {
       individualDebugConfigSetting = true;
     }
-  }
+  } // End-if (multiMergedData[wrd.csystem])
   // console.log(`individualDebugConfigSetting is: ${individualDebugConfigSetting}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return individualDebugConfigSetting;
@@ -159,7 +159,7 @@ function loadAllCsvData(filesToLoad, contextName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cfileExtensionIs + fileExtension);
     if (fileExtension === gen.ccsv || fileExtension === gen.cCsv || fileExtension === gen.cCSV) {
       // execute business rules:
-      // loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusienssRulesColon + JSON.stringify(rules));
+      // loggers.consoleLog(namespacePrefix + functionName, msg.cexecuteBusinessRulesColon + JSON.stringify(rules));
       // This next line is commented out because it was resulting in colors_colors, which didn't make any sense.
       // contextName = contextName + bas.cUnderscore + ruleBroker.processRules([fileToLoad, ''], rules);
 
@@ -170,7 +170,7 @@ function loadAllCsvData(filesToLoad, contextName) {
       loggers.consoleLog(namespacePrefix + functionName , msg.cloadedFileDataIs + JSON.stringify(dataFile));
       parsedDataFile = processCsvData(dataFile, contextName);
     } // End-if (fileExtension === gen.ccsv || fileExtension === gen.cCsv || fileExtension === gen.cCSV)
-  } // End-for (let i = 0; i < filesToLoad.length; i++)
+  } // End-for (const element of filesToLoad)
   // parsedDataFile is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cparsedDataFileIs + JSON.stringify(parsedDataFile));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -206,7 +206,7 @@ function loadAllXmlData(filesToLoad, contextName) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cFileToLoadIs + fileToLoad);
     // NOTE: We still need a filename to use as a context for the page data that we just loaded.
     // A context name will be composed of the input context name with the file name we are processing
-    // wich tells us where we wll ptu the data in the D[contextName] sub-structure.
+    // which tells us where we wll ptu the data in the D[contextName] sub-structure.
     let fileExtension = ruleBroker.processRules([fileToLoad, ''], [biz.cgetFileExtension, biz.cremoveDotFromFileExtension]);
     // fileExtension is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cfileExtensionIs + fileExtension);
@@ -280,8 +280,8 @@ function loadAllJsonData(filesToLoad, contextName) {
 
   // Before we load all configuration data we need to FIRST load all the system configuration settings.
   // There will be a system configuration setting that will tell us if we need to load the debug settings or not.
-  for (const element of filesToLoad) {
-    let fileToLoad = element;
+  for (const element1 of filesToLoad) {
+    let fileToLoad = element1;
     // console.log('fileToLoad is: ' + fileToLoad);
     if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName)) {
       let dataFile = preprocessJsonFile(fileToLoad);
@@ -296,16 +296,16 @@ function loadAllJsonData(filesToLoad, contextName) {
       multiMergedData[wrd.csystem] = {};
       multiMergedData[wrd.csystem] = dataFile;
       foundSystemData = true;
-    }
+    } // End-if (fileToLoad.includes(systemConfigFileName) || fileToLoad.includes(applicationConfigFileName))
     if (foundSystemData === true) {
       break;
     }
-  }
+  } // End-for (const element of filesToLoad)
 
   // Now we need to determine if we should load the rest of the data.
   if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugSettings) === true) {
-    for (const element of filesToLoad) {
-      let fileToLoad = element;
+    for (const element2 of filesToLoad) {
+      let fileToLoad = element2;
       if (!fileToLoad.includes(systemConfigFileName) && !fileToLoad.includes(applicationConfigFileName)
       && fileToLoad.toUpperCase().includes(gen.cDotJSON) && !fileToLoad.toLowerCase().includes(wrd.cmetadata + gen.cDotjson)) {
         let dataFile = preprocessJsonFile(fileToLoad);
@@ -318,8 +318,8 @@ function loadAllJsonData(filesToLoad, contextName) {
           Object.assign(multiMergedData[cfg.cdebugSettings], dataFile);
         }
       }
-    }
-  }
+    } // End-for (const element2 of filesToLoad)
+  } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdebugSettings) === true)
   parsedDataFile = multiMergedData;
   // console.log(`parsedDataFile is: ${JSON.stringify(parsedDataFile)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -396,9 +396,10 @@ function processXmlData(inputData, contextName) {
   let parsedDataFile = {};
   if (dataCategory === sys.cCommandsAliases) {
     parsedDataFile[sys.cCommandsAliases] = {};
-    for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++) {
+    // eslint-disable-next-line no-unused-vars
+    for (const _element1 of Object.keys(inputData[sys.cCommandsAliases])) {
       inputData[sys.cCommandsAliases] = processXmlLeafNode(inputData[sys.cCommandsAliases], wrd.cCommand);
-    } //End-for (let i = 0; i < Object.keys(inputData[sys.cCommandsAliases]).length; i++)
+    } //End-for (const _element1 of Object.keys(inputData[sys.cCommandsAliases]))
     parsedDataFile = inputData[sys.cCommandsAliases];
     // parsedDataFile[sys.cCommandsAliases][wrd.cCommands] = {};
     // for (let i = 0; i < inputData[sys.cCommandsAliases][wrd.cCommand].length; i++) {
@@ -407,9 +408,10 @@ function processXmlData(inputData, contextName) {
     // } // End-for (let i = 0; i < inputData[sys.cCommandAliases][wrd.cCommand].length; i++)
   } else if (dataCategory === sys.cCommandWorkflows) { // End-if (dataCategory === sys.cCommandsAliases)
     parsedDataFile[sys.cCommandWorkflows] = {};
-    for (let j = 0; j < Object.keys(inputData[sys.cCommandWorkflows]).length; j++) {
+    // eslint-disable-next-line no-unused-vars
+    for (const _element2 of Object.keys(inputData[sys.cCommandWorkflows])) {
       inputData[sys.cCommandWorkflows] = processXmlLeafNode(inputData[sys.cCommandWorkflows], wrd.cWorkflows);
-    } // End-for (let j = 0; j < inputData[sys.cCommandWorkflows][wrd.cWorkflow].length; j++)
+    } // End-for (const _element2 of Object.keys(inputData[sys.cCommandWorkflows]))
     parsedDataFile = inputData[sys.cCommandWorkflows];
   } // End-else-if (dataCategory === sys.cCommandWorkflows)
   // parsedDataFile is:
@@ -473,7 +475,7 @@ function processXmlLeafNode(inputData, leafNodeName) {
           }
           // END i-th Loop:
           loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithLoop + i);
-        }
+        } // End-for (let i = 0; i < workflowParent.length; i++)
         // Done with the for-loop, returnData is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cDoneWithForLoopReturnDataIs + JSON.stringify(returnData));
       } else {
@@ -776,14 +778,14 @@ function extractDataFromPapaParseObject(data, contextName) {
     let lowLevelTempData = {};
     if (contextName === sys.cColorData) {
       let colorName = '';
-      for (let key in data[wrd.cdata][i]) {
+      for (let key1 in data[wrd.cdata][i]) {
         validDataAdded = true;
-        let newKey = ruleBroker.processRules([key, ''], cleanKeysRules);
-        if (key === sys.cColorName) {
-          colorName = data[wrd.cdata][i][key];
+        let newKey = ruleBroker.processRules([key1, ''], cleanKeysRules);
+        if (key1 === sys.cColorName) {
+          colorName = data[wrd.cdata][i][key1];
         }
-        lowLevelTempData[newKey] = ruleBroker.processRules([data[wrd.cdata][i][key], ''], cleanKeysRules);
-      } // End-for (let key in data[wrd.cdata][i])
+        lowLevelTempData[newKey] = ruleBroker.processRules([data[wrd.cdata][i][key1], ''], cleanKeysRules);
+      } // End-for (let key1 in data[wrd.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][colorName] = {};
         if (i === 0) {
@@ -793,11 +795,11 @@ function extractDataFromPapaParseObject(data, contextName) {
         }
       } // End-if (validDataAdded === true)
     } else { // Else-clause (contextName === sys.cColorData)
-      for (let key in data[wrd.cdata][i]) {
+      for (let key2 in data[wrd.cdata][i]) {
         validDataAdded = true;
-        let newKey = ruleBroker.processRules([key, ''], cleanKeysRules);
-        lowLevelTempData[newKey] = ruleBroker.processRules([data[wrd.cdata][i][key], ''], cleanKeysRules);
-      } // End-for (let key in data[wrd.cdata][i])
+        let newKey = ruleBroker.processRules([key2, ''], cleanKeysRules);
+        lowLevelTempData[newKey] = ruleBroker.processRules([data[wrd.cdata][i][key2], ''], cleanKeysRules);
+      } // End-for (let key2 in data[wrd.cdata][i])
       if (validDataAdded === true) {
         tempData[contextName][i] = {};
         if (i === 0) {
@@ -841,7 +843,7 @@ loop1:
         if (targetDataKeys[i] === dataToMergeKeys) {
           if (dataToMergeKeys[i] != num.c0) {
             returnData.push(dataToMergeKeys);
-          }
+          } // End-if (dataToMergeKeys[i] != num.c0)
           let recursiveData1 = determineMergeTarget(targetData[targetDataKeys[i]], dataToMerge[dataToMergeKeys]);
           if (recursiveData1.length != 0) {
             returnData = returnData.concat(recursiveData1);
@@ -863,7 +865,7 @@ loop1:
               returnData = returnData.concat(recursiveData2);
             }
             break loop1;
-          }
+          } // End-if (targetDataKeys[i] === dataToMergeKeys[j])
           loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
         } // End-for (let j = 0; j < dataToMergeKeys.length; j++)
       } // End-else-if (typeof dataToMergeKeys === wrd.cobject && Array.isArray(dataToMergeKeys) === true)
@@ -1036,21 +1038,19 @@ function getDataElementCount(dataObject, pageName, elementNamePattern) {
 }
 
 export default {
-  [fnc.cscanDataPath]: (dataPath) => scanDataPath(dataPath),
-  [fnc.cfindUniversalDebugConfigSetting]: (appConfigFilesToLoad, frameworkConfigFilesToLoad) => findUniversalDebugConfigSetting(
-    appConfigFilesToLoad, frameworkConfigFilesToLoad
-  ),
-  [fnc.cloadAllCsvData]: (filesToLoad, contextName) => loadAllCsvData(filesToLoad, contextName),
-  [fnc.cloadAllXmlData]: (filesToLoad, contextName) => loadAllXmlData(filesToLoad, contextName),
-  [fnc.cloadAllJsonData]: (filesToLoad, contextName) => loadAllJsonData(filesToLoad, contextName),
-  [fnc.cprocessCsvData]: (data, contextName) => processCsvData(data, contextName),
-  [fnc.cpreprocessJsonFile]: (fileToLoad) => preprocessJsonFile(fileToLoad),
-  [fnc.cwriteJsonDataToFile]: (fileToSaveTo, dataToWriteOut) => writeJsonDataToFile(fileToSaveTo, dataToWriteOut),
-  [fnc.csetupDataStorage]: () => setupDataStorage(),
-  [fnc.cstoreData]: (dataStorageContextName, dataToStore) => storeData(dataStorageContextName, dataToStore),
-  [fnc.cgetData]: (dataStorageContextName) => getData(dataStorageContextName),
-  [fnc.cclearData]: (dataStorageContextName) => clearData(dataStorageContextName),
-  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
-  [fnc.caddConstantsValidationData]: (constantLibraryData) => addConstantsValidationData(constantLibraryData),
-  [fnc.caddDeeplyNestedConstantsValidationData]: (contextName, deeplyNestedData) => addDeeplyNestedConstantsValidationData(contextName, deeplyNestedData)
+  scanDataPath,
+  findUniversalDebugConfigSetting,
+  loadAllCsvData,
+  loadAllXmlData,
+  loadAllJsonData,
+  processCsvData,
+  preprocessJsonFile,
+  writeJsonDataToFile,
+  setupDataStorage,
+  storeData,
+  getData,
+  clearData,
+  initializeConstantsValidationData,
+  addConstantsValidationData,
+  addDeeplyNestedConstantsValidationData
 };

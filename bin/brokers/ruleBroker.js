@@ -20,9 +20,10 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, fnc, msg, sys, wrd} = hayConst;
+const {bas, biz, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.ruleBroker.
+// eslint-disable-next-line no-unused-vars
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -30,7 +31,7 @@ const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
  * @description Captures all of the business rule string-to-function call map data in
  * the rulesLibrary and migrates that data to the D-data structure.
  * This is important now because we are going to allow the client to define their own
- * business rules seperate from the system defined business rules.
+ * business rules separate from the system defined business rules.
  * So we need a way to merge all client defined and system defined business rules into one location.
  * Then the rule broker will execute business rules from the D-data structure and not the rules library per-say.
  * This will allow the system to expand much more dynamically and even be user-defined & flexible to client needs.
@@ -40,27 +41,27 @@ const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function bootStrapBusinessRules() {
-  let functionName = bootStrapBusinessRules.name;
+  // let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   rules.initRulesLibrary();
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function addClientRules
  * @description Merges client defined business rules with the system defined business rules.
- * @param {array<object>} clientRules The cient rules that should be merged with the system rules.
+ * @param {array<object>} clientRules The client rules that should be merged with the system rules.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2021/10/27
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function addClientRules(clientRules) {
-  let functionName = bootStrapBusinessRules.name;
+  // let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   Object.assign(D[sys.cbusinessRules], clientRules);
   // console.log(`END ${namespacePrefix}${functionName} function`);
-};
+}
 
 /**
  * @function processRules
@@ -78,7 +79,7 @@ function addClientRules(clientRules) {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function processRules(inputs, rulesToExecute) {
-  let functionName = processRules.name;
+  // let functionName = processRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputs is: ${JSON.stringify(inputs)}`);
   // console.log(`rulesToExecute is: ${JSON.stringify(rulesToExecute)}`);
@@ -91,7 +92,7 @@ function processRules(inputs, rulesToExecute) {
     }
     for (let rule in rulesToExecute) {
       // Make sure we don't call the internal rule processor, directly from the public interface.
-      if (rulesToExecute.hasOwnProperty(rule) && rule != biz.cprocessRulesInternal) {
+      if (Object.prototype.hasOwnProperty.call(rulesToExecute, rule) && rule != biz.cprocessRulesInternal) {
         let key = rule;
         // console.log(`key is: ${key}`);
         let value = rulesToExecute[key];
@@ -106,10 +107,10 @@ function processRules(inputs, rulesToExecute) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 export default {
-  [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
-  [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
-  [fnc.cprocessRules]: (inputs, rulesToExecute) => processRules(inputs, rulesToExecute)
+  bootStrapBusinessRules,
+  addClientRules,
+  processRules
 };

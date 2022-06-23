@@ -32,7 +32,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const getAttributeName = function(inputData, inputMetaData) {
+function getAttributeName(inputData, inputMetaData) {
   let functionName = getAttributeName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -50,7 +50,7 @@ const getAttributeName = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getAttributeValue
@@ -61,7 +61,7 @@ const getAttributeName = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/10
  */
-const getAttributeValue = function(inputData, inputMetaData) {
+function getAttributeValue(inputData, inputMetaData) {
   let functionName = getAttributeValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -79,7 +79,7 @@ const getAttributeValue = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getValueFromAssignmentOperationString
@@ -90,7 +90,7 @@ const getAttributeValue = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const getValueFromAssignmentOperationString = function(inputData, inputMetaData) {
+function getValueFromAssignmentOperationString(inputData, inputMetaData) {
   let functionName = getValueFromAssignmentOperationString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -101,11 +101,11 @@ const getValueFromAssignmentOperationString = function(inputData, inputMetaData)
     loggers.consoleLog(namespacePrefix + functionName, msg.cparsedStringSpaceTerm + bas.cSpace + num.c1 + msg.cSpaceIsColonSpace + parsedString[0]);
     loggers.consoleLog(namespacePrefix + functionName, msg.cparsedStringSpaceTerm + bas.cSpace + num.c2 + msg.cSpaceIsColonSpace + parsedString[1]);
     returnData = parsedString[1].replace(/['"]+/g, '');
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getDataCategoryFromDataContextName
@@ -116,7 +116,7 @@ const getValueFromAssignmentOperationString = function(inputData, inputMetaData)
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getDataCategoryFromDataContextName = function(inputData, inputMetaData) {
+function getDataCategoryFromDataContextName(inputData, inputMetaData) {
   let functionName = getDataCategoryFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -131,7 +131,7 @@ const getDataCategoryFromDataContextName = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getDataCategoryDetailNameFromDataContextName
@@ -143,7 +143,7 @@ const getDataCategoryFromDataContextName = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getDataCategoryDetailNameFromDataContextName = function(inputData, inputMetaData) {
+function getDataCategoryDetailNameFromDataContextName(inputData, inputMetaData) {
   let functionName = getDataCategoryDetailNameFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -158,7 +158,7 @@ const getDataCategoryDetailNameFromDataContextName = function(inputData, inputMe
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getKeywordNameFromDataContextName
@@ -170,7 +170,7 @@ const getDataCategoryDetailNameFromDataContextName = function(inputData, inputMe
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
+function getKeywordNameFromDataContextName(inputData, inputMetaData) {
   let functionName = getKeywordNameFromDataContextName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -185,7 +185,7 @@ const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function loadDataFile
@@ -196,7 +196,7 @@ const getKeywordNameFromDataContextName = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const loadDataFile = function(inputData, inputMetaData) {
+function loadDataFile(inputData, inputMetaData) {
   let functionName = loadDataFile.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -233,7 +233,7 @@ const loadDataFile = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function saveDataFile
@@ -244,7 +244,7 @@ const loadDataFile = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/03/17
  */
-const saveDataFile = function(inputData, inputMetaData) {
+function saveDataFile(inputData, inputMetaData) {
   let functionName = saveDataFile.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -271,7 +271,7 @@ const saveDataFile = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getUserNameFromEmail
@@ -282,7 +282,7 @@ const saveDataFile = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const getUserNameFromEmail = function(inputData, inputMetaData) {
+function getUserNameFromEmail(inputData, inputMetaData) {
   let functionName = getUserNameFromEmail.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -292,11 +292,11 @@ const getUserNameFromEmail = function(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cIndexOfTheSpace + bas.cAt +
       sys.cSpaceIsColonSpace + inputData.indexOf(bas.cAt));
     returnData = inputData.substr(0, inputData.indexOf(bas.cAt));
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   getAttributeName,

@@ -40,7 +40,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2021/10/28
  */
-const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
+function replaceCharacterWithCharacter(inputData, inputMetaData) {
   let functionName = replaceCharacterWithCharacter.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -63,7 +63,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function doesArrayContainCharacter
@@ -74,7 +74,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const doesArrayContainCharacter = function(inputData, inputMetaData) {
+function doesArrayContainCharacter(inputData, inputMetaData) {
   let functionName = doesArrayContainCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -87,12 +87,12 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
         returnData = true;
         break;
       }
-    } // end-for (let i = 0; i < inputMetaData.length; i++)
+    } // end-for (const element of inputMetaData)
   } // end-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeCharacterFromArray
@@ -104,7 +104,7 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const removeCharacterFromArray = function(inputData, inputMetaData) {
+function removeCharacterFromArray(inputData, inputMetaData) {
   let functionName = removeCharacterFromArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -122,7 +122,7 @@ const removeCharacterFromArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function replaceCharacterAtIndex
@@ -135,7 +135,7 @@ const removeCharacterFromArray = function(inputData, inputMetaData) {
  * @date 2022/01/21
  * @reference: {@link https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript}
  */
-const replaceCharacterAtIndex = function(inputData, inputMetaData) {
+function replaceCharacterAtIndex(inputData, inputMetaData) {
   let functionName = replaceCharacterAtIndex.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -155,7 +155,7 @@ const replaceCharacterAtIndex = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   replaceCharacterWithCharacter,
