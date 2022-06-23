@@ -64,7 +64,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
     for (let key1 in validationArray) {
       let constantsPath = validationArray[key1];
       phase1Results[key1] = ruleBroker.processRules([constantsPath, key1], [biz.cvalidateConstantsDataValidation]);
-    }
+    } // End-for (let key1 in validationArray)
     // END Phase 1 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase1ConstantsValidation);
 
@@ -74,7 +74,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
     // Now verify that the values of the constants are what they are expected to be by using the constants validation data to validate.
     for (let key2 in validationArray) {
       phase2Results[key2] = ruleBroker.processRules([key2, ''], [biz.cvalidateConstantsDataValues]);
-    }
+    } // End-for (let key2 in validationArray)
     // END Phase 2 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase2ConstantsValidation);
 
@@ -90,7 +90,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
       if (phase2Results[key4] === false) {
         phase2FinalResult = false;
       }
-    }
+    } // End-for (let key4 in phase2Results)
 
     if (phase1FinalResult === true && phase2FinalResult === true) {
       configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, true);
@@ -168,7 +168,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
       // END j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
     } // End-for (let j = 0; j < arrayOfAliases.length; j++)
-  } // End-for (let i = 0; i < allCommandAliases.length; i++)
+  } // End-for (let key1 in allCommandAliases[0])
   if (passedAllCommandAliasesDuplicateCheck === true) {
     // PASSED: All duplicate command aliases validation tests!
     console.log(msg.cvalidateCommandAliasesMessage1);
@@ -213,7 +213,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
       if (workflowName === secondTierWorkflowName) {
         numberOfDuplicatesFound = numberOfDuplicatesFound + 1;
       }
-    } // End-for (let i = 0; i < allWorkflowsData.length; i++)
+    } // End-for (const element of allWorkflowsData)
     if (numberOfDuplicatesFound > 1) {
       // Duplicate workflow count is:
       let duplicateWorkflowCountMessage = msg.cDuplicateWorkflowCountIs + numberOfDuplicatesFound;

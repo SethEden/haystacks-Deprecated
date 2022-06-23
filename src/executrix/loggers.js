@@ -25,7 +25,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, clr, cfg, fnc, gen, msg, wrd} = hayConst;
+const {bas, biz, clr, cfg, gen, msg, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.loggers.
 // eslint-disable-next-line no-unused-vars

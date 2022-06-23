@@ -211,7 +211,7 @@ function validateConstantsDataValidationLineItemName(inputData, inputMetaData) {
           break;
         }
       } // End-if (validationLineItem)
-    } // End-for (let i = 0; i < D[sys.cConstantsValidationData][inputMetaData].length; i++)
+    } // End-for (const element of D[sys.cConstantsValidationData][inputMetaData])
   } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -260,8 +260,8 @@ loop1:
           returnData = true;
           break loop1;
         }
-      } // End-for (let j = 0; j < constantsKeys.length; j++)
-    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+      } // End-for (const element2 of constantsKeys)
+    } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -321,8 +321,8 @@ loop1:
             returnData = returnData + bas.cComa + constantTypeKey;
           }
         } // End-if (inputData === constantActualValue.Actual)
-      } // End-for (let j = 0; j < constantsKeys.length; j++)
-    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+      } // End-for (const element2 of constantsKeys)
+    } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -362,7 +362,7 @@ function getConstantActualValue(inputData, inputMetaData) {
         if (inputData === constantActualValue1.Name) {
           returnData = constantActualValue1.Actual;
         }
-      } // End-for (let i = 0; i < constantsKeys1.length; i++)
+      } // End-for (const element1 of constantsKeys1)
     } else { // Else-clause if (isConstantTypeValid(inputMetaData, '') === true)
       let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
       // constantsTypesKeys is:
@@ -387,8 +387,8 @@ function getConstantActualValue(inputData, inputMetaData) {
           if (inputData === constantActualValue1.Name || inputData === constantActualValue1.Actual) {
             returnData = constantActualValue1.Actual;
           }
-        } // End-for (let k = 0; k < constantsKeys2.length; k++)
-      } // End-for (let j = 0; j < constantsTypesKeys.length; j++)
+        } // End-for (const element3 of constantsKeys2)
+      } // End-for (const element2 of constantsTypesKeys)
     } // else clause for the case that inputMetaData did not match a valid constant type in the system.
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
@@ -438,8 +438,8 @@ loop1:
           returnData = constantActualValue.Name;
           break loop1;
         }
-      } // End-for ((let j = 0; j < constantsKeys.length; j++)
-    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+      } // End-for (const element2 of constantsKeys)
+    } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -667,7 +667,7 @@ function validateConstantsDataValues(inputData, inputMetaData) {
         }
         console.log(passMessage);
       } // End else-clause if (validationLineItem)
-    } // End-for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++)
+    } // End-for (const element of D[sys.cConstantsValidationData][inputData])
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

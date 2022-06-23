@@ -51,7 +51,7 @@ function convertCamelCaseStringToArray(inputData, inputMetaData) {
     for (const element of caps) {
       decomposedString.push(inputData.slice(last, element));
       last = element;
-    }
+    } // End-for (const element of caps)
     decomposedString.push(inputData.slice(last));
     returnData = decomposedString;
   } else {

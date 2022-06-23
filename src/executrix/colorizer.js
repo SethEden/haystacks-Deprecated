@@ -20,7 +20,7 @@ import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
-const {bas, clr, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, clr, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.colorizer.
 // eslint-disable-next-line no-unused-vars
@@ -624,7 +624,7 @@ function removeFontStyles(message) {
   // console.log('returnMessage is: ' + returnMessage);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnMessage;
-};
+}
 
 export default {
   colorizeMessageSimple,

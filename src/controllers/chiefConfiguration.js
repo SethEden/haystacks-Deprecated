@@ -25,7 +25,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefConfiguration.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
@@ -69,7 +69,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function parseLoadedConfigurationData
@@ -159,7 +159,7 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log('returnData is: ' + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 export default {
   setupConfiguration,

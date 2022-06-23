@@ -95,7 +95,7 @@ function constantsGenerator(inputData, inputMetaData) {
          console.log(msg.cOptimizedConstantDefinitionForWord + bas.cc + element + bas.cSpace + bas.cEqual + bas.cSpace +
           optimizedWordConstantDefinition);
           returnData[1].push(optimizedWordConstantDefinition);
-       } // End-for (let j = 0; j < wordsArray.length; j++)
+       } // End-for (const element of wordsArray)
      } else { // There is only a single word to process.
       returnData[1] = ruleBroker.processRules([userDefinedConstant, userDefinedConstant], constantsFulfillmentSystemRule)
       // output a proper line of code:
@@ -167,7 +167,7 @@ function constantsGeneratorList(inputData, inputMetaData) {
        if (userDefinedConstantsListArray.length > 1) {
          for (const element of userDefinedConstantsListArray) {
            queue.enqueue(sys.cCommandQueue, cmd.cconstantsGenerator + bas.cSpace + element.trim());
-         }
+         } // End-for (const element of userDefinedConstantsListArray)
          returnData[1] = true;
        } else if (userDefinedConstantsListArray.length === 1) {
          // Just enqueue the constants Generator command with the input directly.

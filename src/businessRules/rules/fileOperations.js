@@ -568,7 +568,7 @@ function copyFileSync(inputData, inputMetaData) {
           foundInclusion = true;
           break;
         }
-      } // End-for (let i = 0; i < inclusionArray.length; i++)
+      } // End-for (const element of inclusionArray)
     } // End-if (inclusionArray)
     if (exclusionArray) {
       for (const element of exclusionArray) {
@@ -576,7 +576,7 @@ function copyFileSync(inputData, inputMetaData) {
           foundExclusion = true;
           break;
         }
-      } // End-for (let j = 0; j < exclusionArray.length; j++)
+      } // End-for (const element of exclusionArray)
     } // End-if (exclusionArray)
     // We need a logical converse operation:
     // https://en.wikipedia.org/wiki/Converse_(logic)

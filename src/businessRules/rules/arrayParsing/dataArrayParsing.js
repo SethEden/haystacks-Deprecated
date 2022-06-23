@@ -448,7 +448,7 @@ function getNamespacedDataObject(inputData, inputMetaData) {
         break;
       }
       namespaceDataObject = namespaceDataObject[element];
-    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+    } // End for-loop (const element of inputData)
     if (processingValidData === true) {
       returnData = namespaceDataObject;
     }

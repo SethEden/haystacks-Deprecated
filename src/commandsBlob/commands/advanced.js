@@ -212,7 +212,7 @@ function businessRule(inputData, inputMetaData) {
         if (tempArg) {
           ruleInputMetaData.push(tempArg);
         }
-      } // End-for (let j = inputData.length - 1; j > 2; j--)
+      } // End-for (let j = 3; j <= inputData.length - 1; j++)
       break;
     } // End-Else-if (i === 3 && inputData.length > 4)
   } // End-for (let i = 1; i < inputData.length; i++)
@@ -306,7 +306,7 @@ function commandGenerator(inputData, inputMetaData) {
       } else {
         commandString = commandString + bas.cBackTickQuote + inputData[i].trim() + bas.cBackTickQuote;
       }
-    } // End-for (let i = 1; i < inputData.length - 2; i++)
+    } // End-for (let i = 1; i < inputData.length - 1; i++)
   }
 
   // NOTE: the str.replace only replaces the first instance of a string value, not all values.
@@ -341,7 +341,7 @@ function commandGenerator(inputData, inputMetaData) {
           legitNumberIndex = j;
           break;
         }
-      } // End-for (let i = 2; i <= inputData.length - 1; i++)
+      } // End-for (let j = 2; j <= inputData.length - 1; j++)
     } // End-if (inputData.length >= 3)
     if (isNaN(inputData[legitNumberIndex]) === false) { // Make sure the user passed in a number for the second argument.
       let numberOfCommands = parseInt(inputData[legitNumberIndex]);
@@ -452,7 +452,7 @@ function commandAliasGenerator(inputData, inputMetaData) {
         commandAliasDataStructure[commandWord] = commandWordAliasList;
         validCommandInput = true;
       } // End-if (commandWord !== '')
-    } // End-for (let i = 0; i < camelCaseCommandNameArray.length; i++)
+    } // End-for (const element of camelCaseCommandNameArray)
   } else if (inputData.length === 2) {
     try {
       commandAliasDataStructure = JSON.parse(inputData[1]);

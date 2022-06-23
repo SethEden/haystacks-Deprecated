@@ -51,7 +51,7 @@ function getLengthOfLongestStringInArray(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function searchForPatternsInStringArray
@@ -148,7 +148,7 @@ function searchForPatternsInStringArray(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validatePatternsThatNeedImplementation
@@ -200,12 +200,12 @@ function validatePatternsThatNeedImplementation(inputData, inputMetaData) {
         // constant does exist:
         loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesExist + currentString);
       }
-    } // End-for (let i = 0; i < inputData.length; i++)
+    } // End-for (const element of inputData)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   getLengthOfLongestStringInArray,

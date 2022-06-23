@@ -48,7 +48,7 @@ function doAllRulesExist(inputData, inputMetaData) {
       if (doesRuleExist(element) === false) {
         tempValidationResult = false;
       }
-    } // End-for (let i = 0; i < inputData.length; i++)
+    } // End-for (const element of inputData)
     if (tempValidationResult === true) {
       returnData = true;
     }
@@ -140,7 +140,7 @@ function processRulesInternal(inputData, inputMetaData) {
         // console.log(`value is: ${value}`);
         returnData = D[sys.cbusinessRules][value](returnData, inputLocalMetaData);
       } // End-if (rulesToExecute.hasOwnProperty(rule))
-    } // End-for (let rule in rulesToExecute)
+    } // End-for (let rule in inputMetaData)
   } else {
     // WARNING: Some rules do not exist:
     console.log(msg.cProcessRulesWarnngSomeRulesDoNotExist + JSON.stringify(inputMetaData));

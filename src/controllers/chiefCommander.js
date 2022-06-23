@@ -25,7 +25,7 @@ import queue from '../structures/queue.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, fnc, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefCommander.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;

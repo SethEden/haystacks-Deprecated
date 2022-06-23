@@ -249,15 +249,11 @@ loop2:
       } // End-for (let j = startingPoint; j < inputData.length; j++)
       // misCompareCount after the for-loop is:
       haystacks.consoleLog(namespacePrefix, functionName, app_msg.cmisCompareCountAfterForLoopIs + misCompareCount);
-      if (i === 0) {
+      if (i === 0 || i > 0) {
         if (misCompareCount <= 1) {
           returnData = true;
         }
-      } else if (i > 0) {
-        if (misCompareCount <= 1) {
-          returnData = true;
-        }
-      }
+      } // End-if (i === 0 || i > 0)
       haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + returnData);
       // If we got a positive result then we can break out of the function and return our positive result.
       if (returnData === true) {

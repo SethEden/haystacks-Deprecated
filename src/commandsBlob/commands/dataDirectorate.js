@@ -73,7 +73,7 @@ function printDataHive(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.ccontentsOfLeafDataHiveElementIs + JSON.stringify(leafDataHiveElement));
       // END i-th iteration:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_ithIteration + i);
-    }
+    } // End-for (let i = 0; i < dataHivePathArray.length; i++)
     console.log(inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
     if (printDataHiveToLogFileConfigSetting === true) {
       loggers.printMessageToFile(logFilePathAndName, inputData[1] + bas.cSpace + msg.ccontentsAre + JSON.stringify(leafDataHiveElement));
@@ -159,7 +159,7 @@ function printDataHiveAttributes(inputData, inputMetaData) {
               } // End-if (dataEntry[attributeName])
             }
           } // End-if (dataEntry)
-        } // End-for (let j = 0; j < leafDataHiveElement.length; j++)
+        } // End-for (const element of leafDataHiveElement)
       } else {
         let leafDataHiveElementKeys2 = Object.keys(leafDataHiveElement);
         leafDataHiveElementKeys2.forEach((key2) => {

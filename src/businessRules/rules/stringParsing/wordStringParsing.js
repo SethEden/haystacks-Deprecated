@@ -281,7 +281,6 @@ function determineWordDelimiter(inputData, inputMetaData) {
       // We could have multiple acronyms in a word, or in multiple words that are camelCase.
       // Each of these could be really complex special cases.
       // If we get to that point we will handle those cases on a case by case basis to improve the algorithm.
-      // } else if (camelCaseWordCount > 1 && containsAcronym === false)
     } else if (spacesCount > 0 && periodCount === 0 && dashCount === 0 && comaCount === 0 && underscoreCount === 0 && plusCount === 0 && percentCount === 0) {
       returnData = bas.cSpace;
     } else if (spacesCount === 0 && periodCount > 0 && dashCount === 0 && comaCount === 0 && underscoreCount === 0 && plusCount === 0 && percentCount === 0) {

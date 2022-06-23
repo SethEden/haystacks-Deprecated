@@ -60,7 +60,7 @@ function convertColors(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cruleOutputIs + ruleOutput);
     console.log(currentColorName + bas.cComa + currentColorHexValue + bas.cComa + ruleOutput[0] + bas.cComa + ruleOutput[1] + bas.cComa + ruleOutput[2]);
     returnData[1].push(ruleOutput);
-  } // End-for (let i = 0; i < colorKeys.length; i++)
+  } // End-for (const element of colorKeys)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

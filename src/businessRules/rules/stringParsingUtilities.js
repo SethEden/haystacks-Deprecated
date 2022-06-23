@@ -151,7 +151,7 @@ function stringToBoolean(inputData, inputMetaData) {
           break;
       }
     }
- }
+ } // End-if (inputData)
  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
  // console.log(`END ${namespacePrefix}${functionName} function`);
  return returnData;
@@ -189,7 +189,7 @@ function determineObjectDataType(inputData, inputMetaData) {
       // At least not yet!
       returnData = wrd.cObject;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -225,7 +225,7 @@ function isBoolean(inputData, inputMetaData) {
         returnData = false;
       }
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -260,7 +260,7 @@ function isInteger(inputData, inputMetaData) {
       // Possibly also console log here for debugging.
       returnData = false;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -289,7 +289,7 @@ function isFloat(inputData, inputMetaData) {
       // Possibly also console log here for debugging.
       returnData = false;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
@@ -322,7 +322,7 @@ function isString(inputData, inputMetaData) {
       // Possibly also console log here for debugging.
       returnData = false;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;

@@ -147,7 +147,7 @@ async function application() {
   // Really this is about getting out the application name, version and about message.
   while (haystacks.isCommandQueueEmpty() === false) {
     commandResult = haystacks.processCommandQueue();
-  }
+  } // End-while (haystacks.isCommandQueueEmpty() === false)
 
   // NOW process the command args and add them to the command queue for execution.
   if (!process.argv && process.argv.length > 0) {
@@ -161,7 +161,7 @@ async function application() {
     }
     while (haystacks.isCommandQueueEmpty() === false) {
       commandResult = haystacks.processCommandQueue();
-    }
+    } // End-while (haystacks.isCommandQueueEmpty() === false)
   } // End-if (!process.argv && process.argv.length > 0)
 
   // NOW the application can continue with the interactive interface fi the flag was set to false.

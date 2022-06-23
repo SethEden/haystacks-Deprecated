@@ -180,7 +180,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
               commandAliasCount = commandAliasCount + 1;
               // Don't break, continue searching, so we get a full count of any duplicates found.
             }
-          } // End-for (let i = 0; i < arrayOfAliases.length; i++)
+          } // End-for (const element of arrayOfAliases)
         } else {
           let tempCommandAliasCount = countMatchingCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // tempCommandAliasCount is:
@@ -258,7 +258,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
               commandAliasObject = commandAliasData[commandAliasEntity];
               break;
             }
-          } // End-for (let i = 0; i < arrayOfAliases.length; i++)
+          } // End-for (const element of arrayOfAliases)
         } else {
           let commandAliasesObjectTemp = searchCommandAlias(commandAliasData[commandAliasEntity], commandAliasName);
           // commandAliasesObjectTemp is:
@@ -498,7 +498,7 @@ function getCommandArgs(commandString, commandDelimiter) {
                   returnData.push(element);
                   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
                 } // End-if (postSplitCommandString[k] !== '')
-              } // End-for (let k = 0; k < postSplitCommandString.length; k++)
+              } // End-for (const element of postSplitCommandString)
             } else {
               // NOTE: We cannot just push the quoted string array back onto the array. Well we might be able to,
               // but if the last character on the last element of the returnData array is a secondaryCommandArgsDelimiter

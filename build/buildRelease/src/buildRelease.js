@@ -142,23 +142,28 @@ function deployApplication() {
     haystacks.enqueueCommand(cmd.cStartupWorkflow);
     while (haystacks.isCommandQueueEmpty() === false) {
       haystacks.processCommandQueue();
-    }
+    } // End-while (haystacks.isCommandQueueEmpty() === false)
+
     // 2nd stage deploy-release process:
     console.log(app_msg.cReleasingFramework);
     haystacks.enqueueCommand(cmd.cFrameworkDetailsWorkflow);
     while (haystacks.isCommandQueueEmpty() === false) {
       haystacks.processCommandQueue();
-    }
+    } // End-while (haystacks.isCommandQueueEmpty() === false)
+
     // 3rd stage deploy-release process:
     haystacks.enqueueCommand(app_cmd.cdeployMetaData);
     while (haystacks.isCommandQueueEmpty() === false) {
       haystacks.processCommandQueue();
-    }
+    } // End-while (haystacks.isCommandQueueEmpty() === false)
 
+    // 4th stage deploy-release process:
     haystacks.enqueueCommand(app_cmd.cBuildWorkflow);
     while (haystacks.isCommandQueueEmpty() === false) {
       haystacks.processCommandQueue();
-    }
+    } // End-while (haystacks.isCommandQueueEmpty() === false)
+
+    // Deployment verification
     let deploymentResult = haystacks.getConfigurationSetting(wrd.csystem, app_cfg.cdeploymentCompleted);
     if (deploymentResult) {
       // Deployment was completed:

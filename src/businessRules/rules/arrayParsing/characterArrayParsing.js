@@ -63,7 +63,7 @@ function replaceCharacterWithCharacter(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function doesArrayContainCharacter
@@ -87,12 +87,12 @@ function doesArrayContainCharacter(inputData, inputMetaData) {
         returnData = true;
         break;
       }
-    } // end-for (let i = 0; i < inputMetaData.length; i++)
+    } // end-for (const element of inputMetaData)
   } // end-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeCharacterFromArray
@@ -122,7 +122,7 @@ function removeCharacterFromArray(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function replaceCharacterAtIndex
@@ -155,7 +155,7 @@ function replaceCharacterAtIndex(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   replaceCharacterWithCharacter,

@@ -170,7 +170,7 @@ function initializeAllClientConstantsValidationData() {
   haystacks.consoleLog(namespacePrefix, functionName, app_msg.callClientConstantsValidationDataIs + JSON.stringify(allClientConstantsValidationData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return allClientConstantsValidationData;
-};
+}
 
 export default {
   initializeAllClientConstantsValidationData

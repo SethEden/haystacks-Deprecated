@@ -53,7 +53,7 @@ function doesArrayContainFilename(inputData, inputMetaData) {
   //     returnData = true;
   //     break;
   //   }
-  // }
+  // } // End-for (let i = 0; i < inputData.Length; i++)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -92,7 +92,7 @@ function getFileAndPathListForPath(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   doesArrayContainFilename,
