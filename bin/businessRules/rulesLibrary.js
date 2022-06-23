@@ -376,5 +376,5 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + baseFileName + bas.cDot;
 }
 
 export default {
-  [fnc.cinitRulesLibrary]: () => initRulesLibrary()
+  initRulesLibrary
 };

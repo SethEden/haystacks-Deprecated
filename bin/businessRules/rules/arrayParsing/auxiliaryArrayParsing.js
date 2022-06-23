@@ -18,7 +18,7 @@ import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
 import path from 'path';
 
-const {bas, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.auxiliaryArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -28,7 +28,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
   * @description Parses minimum and maximum range integer values to ensure they are in the range of 0 - 255.
   * @param {string|integer} inputData The number in either numeric or string format that
   * represents the minimum range that should be used to generate the random color.
-  * @param {string|integer} inputMetaData The nubmer in either numeric or string format that
+  * @param {string|integer} inputMetaData The number in either numeric or string format that
   * represents the maximum range that should be used to generate the random color.
   * @return {array<integer>} The minimum and maximum values returned in an array.
   * returnData[0] = minimum value.
@@ -36,7 +36,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
   * @author Seth Hollingsead
   * @date 2022/01/21
   */
- const parseColorRangeInputs = function(inputData, inputMetaData) {
+ function parseColorRangeInputs(inputData, inputMetaData) {
    let functionName = parseColorRangeInputs.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -67,12 +67,12 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
      }
    } // End-if (inputData && inputMetaData && inputData !== '' && inputMetaData !== '')
    if (minimumColorRange < 0) {
-     minimumColorRange = Math.abs(minimumColorRange);
+     minimumColorRange = math.abs(minimumColorRange);
    } else if (minimumColorRange > 255) {
      minimumColorRange = 255;
    }
    if (maximumColorRange < 0) {
-     maximumColorRange = Math.abs(maximumColorRange);
+     maximumColorRange = math.abs(maximumColorRange);
    } else if (maximumColorRange > 255) {
      maximumColorRange = 255;
    }
@@ -80,7 +80,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
- };
+ }
 
  /**
   * @function doesArrayContainValue
@@ -97,34 +97,35 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
   * @author Seth Hollingsead
   * @date 2022/01/21
   */
- const doesArrayContainValue = function(inputData, inputMetaData) {
-   let functionName = doesArrayContainValue.name;
-   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
-   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
-   // Not sure how this will output, would be good to also put some type checing on this input variable.
-   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
-   let returnData = false;
-   if (inputData && inputMetaData) {
-     let array = inputData[0];
-     let value = inputData[1];
-     if (Array.isArray(array) === false) {
-       // array input object is not an array.
-       loggers.consoleLog(namespacePrefix + functionName, msg.carrayInputObjectIsNotAnArray);
-     } else {
-       if (!!array.find(i => inputMetaData(i, value))) {
-         // The value was found in the array.
-         loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
-         returnData = true;
-       } else {
-         // The value was NOT found in the array.
-         loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
-       }
-     }
-   } // End-if (inputData && inputMetaData)
-   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
-   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-   return returnData;
- };
+ function doesArrayContainValue(inputData, inputMetaData) {
+  let functionName = doesArrayContainValue.name;
+  loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
+  // Not sure how this will output, would be good to also put some type checing on this input variable.
+  loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
+  let returnData = false;
+  if (inputData && inputMetaData) {
+    let array = inputData[0];
+    let value = inputData[1];
+    if (Array.isArray(array) === false) {
+      // array input object is not an array.
+      loggers.consoleLog(namespacePrefix + functionName, msg.carrayInputObjectIsNotAnArray);
+    } else {
+      // eslint-disable-next-line no-extra-boolean-cast
+      if (!!array.find(i => inputMetaData(i, value))) {
+        // The value was found in the array.
+        loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasFoundInTheArray);
+        returnData = true;
+      } else {
+        // The value was NOT found in the array.
+        loggers.consoleLog(namespacePrefix + functionName, msg.cTheValueWasNotFoundInTheArray);
+      }
+    }
+  } // End-if (inputData && inputMetaData)
+  loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
+  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
+  return returnData;
+}
 
  export default {
    parseColorRangeInputs,

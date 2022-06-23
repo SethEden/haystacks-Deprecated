@@ -123,5 +123,5 @@ function initCommandsLibrary() {
 }
 
 export default {
-  [fnc.cinitCommandsLibrary]: () => initCommandsLibrary()
+  initCommandsLibrary
 };

@@ -25,14 +25,14 @@ const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url
 const namespacePrefix = wrd.cresources + bas.cDot + wrd.cconstants + wrd.cValidation + bas.cDot + baseFileName + bas.cDot;
 
 /**
- * @function initiaizeAllSystemConstantsValidationData
+ * @function initializeAllSystemConstantsValidationData
  * @description Initializes all of the system constants validation data so that it cn be used to validate all of the constants.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
  */
-function initiaizeAllSystemConstantsValidationData() {
-  let functionName = initiaizeAllSystemConstantsValidationData.name;
+function initializeAllSystemConstantsValidationData() {
+  let functionName = initializeAllSystemConstantsValidationData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   let constantsPath = configurator.getConfigurationSetting(wrd.csystem, cfg.cframeworkConstantsPath);
   // constantsPath is:
@@ -294,8 +294,8 @@ function initiaizeAllSystemConstantsValidationData() {
   loggers.consoleLog(namespacePrefix + functionName, msg.callSystemConstantsValidationDataIs + JSON.stringify(allSystemConstantsValidationData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allSystemConstantsValidationData;
-};
+}
 
 export default {
-  initiaizeAllSystemConstantsValidationData
+  initializeAllSystemConstantsValidationData
 };

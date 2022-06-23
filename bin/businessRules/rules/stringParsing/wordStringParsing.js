@@ -22,7 +22,7 @@ import hayConst from '@haystacks/constants';
 import * as math from 'mathjs';
 import path from 'path';
 
-const {bas, biz, clr, cfg, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.stringParsing.wordStringParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.cstring + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -44,7 +44,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 * covidMedicalCase
 * aBc
 */
-const isStringCamelCase = function(inputData, inputMetaData) {
+function isStringCamelCase(inputData, inputMetaData) {
   let functionName = isStringCamelCase.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -52,8 +52,8 @@ const isStringCamelCase = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData) {
     let foundFirstCapitalLetter = false;
-    // First make sure the string meets the basic qualifiecations of a camel case string.
-    // 1. Does not contain underscore or dash word seperators.
+    // First make sure the string meets the basic qualifications of a camel case string.
+    // 1. Does not contain underscore or dash word separators.
     // 2. Contains at least 1 lower case letter or more.
     // 3. Contains at least 1 upper case letter or more.
     // 4. Has a lower case or upper case first letter of the first word.
@@ -64,8 +64,8 @@ const isStringCamelCase = function(inputData, inputMetaData) {
     if (!inputData.match(/[\s_-]/g) && doesContainUpperCaseCharacter &&
     doesContainLowerCaseCharacter && (isFirstCharUpperCase || isFirstCharLowerCase)) {
       for (let i = 1; i < inputData.length; i++) {
-        // Now chck or the fnal qualification:
-        // 3. Ensure that upper case letters are seperated by lower case letters
+        // Now check or the final qualification:
+        // 3. Ensure that upper case letters are separated by lower case letters
         // (numbers also allowed, but there should be at least some lower case letters)
         // NOTE: This for-loop is how we iterate over the characters of the string.
 
@@ -78,7 +78,7 @@ const isStringCamelCase = function(inputData, inputMetaData) {
         } else if (foundFirstCapitalLetter === true) {
           if (gen.cLowerCaseEnglishAlphabet.includes(inputData.charAt(i))) {
             returnData = true;
-            break; // Sufficent evidence to prove this is a camel case string.
+            break; // Sufficient evidence to prove this is a camel case string.
           }
         }
       } // End-for (let i = 1; i < inputData.length; i++)
@@ -87,7 +87,7 @@ const isStringCamelCase = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function mapWordToCamelCaseWord
@@ -98,7 +98,7 @@ const isStringCamelCase = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
+function mapWordToCamelCaseWord(inputData, inputMetaData) {
   let functionName = mapWordToCamelCaseWord.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -110,7 +110,7 @@ const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function simplifyAndConsolidateString
@@ -118,14 +118,14 @@ const mapWordToCamelCaseWord = function(inputData, inputMetaData) {
 * with all digits and symbols and whitespace removed.
 * @param {string} inputData The string that should be simplified and consolidated.
 * @param {string} inputMetaData Not used for this business rule.
-* @return {string} A string that has been simplified and consolidated by converting to lower case, removign all digits, symbols and white space.
+* @return {string} A string that has been simplified and consolidated by converting to lower case, removing all digits, symbols and white space.
 * @author Seth Hollingsead
 * @date 2022/01/23
 * @NOTE I think this function is not completely working as expected, probably something to do with that regular expression.
 * Input was: 11UpberDriver321CodeClearance0x#0000FF-akaBlue
 * Output was: upberdrivercodeclearanceffakablue
 */
-const simplifyAndConsolidateString = function(inputData, inputMetaData) {
+function simplifyAndConsolidateString(inputData, inputMetaData) {
   let functionName = simplifyAndConsolidateString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -135,11 +135,11 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
     // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
     returnData = ruleParsing.processRulesInternal([inputData.toLowerCase().trim(), [/[^\w\s]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
     returnData = ruleParsing.processRulesInternal([returnData, [/[\0-9]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function compareSimplifiedAndConsolidatedStrings
@@ -150,7 +150,7 @@ const simplifyAndConsolidateString = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaData) {
+function compareSimplifiedAndConsolidatedStrings(inputData, inputMetaData) {
   let functionName = compareSimplifiedAndConsolidatedStrings.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -162,14 +162,14 @@ const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaDat
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function countCamelCaseWords
 * @description Takes a string in camelCase and returns the number of words that it contains based on camel case rules.
 * @param {string} inputData String to count words from.
 * @param {string} inputMetaData Not used for this business rule.
-* @return {integer} The number of camel case wrods found in the string.
+* @return {integer} The number of camel case words found in the string.
 * @author Seth Hollingsead
 * @date 2022/01/23
 * @NOTE Might not work so well with numbers as part of the string, they are not treated as capital letters.
@@ -177,7 +177,7 @@ const compareSimplifiedAndConsolidatedStrings = function(inputData, inputMetaDat
 * mixed numbers and camel case strings ever becomes a requirement as input to this function.
 * @NOTE Based on the implementation for the business rule/function arrayParsing.convertCamelCaseStringToArray.
 */
-const countCamelCaseWords = function(inputData, inputMetaData) {
+function countCamelCaseWords(inputData, inputMetaData) {
   let functionName = countCamelCaseWords.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -187,17 +187,17 @@ const countCamelCaseWords = function(inputData, inputMetaData) {
     let caps = [];
     for (let i = 1; i < inputData.length; i++) {
       if (gen.cUpperCaseEnglishAlphabet.includes(inputData.charAt(i))) { caps.push(i); }
-    }
+    } // End-for (let i = 1; i < inputData.length; i++)
     returnData = caps.length;
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function doesStringContainAcronym
-* @description Scans a string and determiens if there are 2 or more immediately adjacent upper-case characters in the string.
+* @description Scans a string and determines if there are 2 or more immediately adjacent upper-case characters in the string.
 * Example: nodeJS where JS is an acronym for JavaScript.
 * @param {string} inputData The string that should be scanned to determine if it contains an acronym or not.
 * @param {string} inputMetaData Not used for this business rule.
@@ -205,14 +205,13 @@ const countCamelCaseWords = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const doesStringContainAcronym = function(inputData, inputMetaData) {
+function doesStringContainAcronym(inputData, inputMetaData) {
   let functionName = doesStringContainAcronym.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   let lastCharacterWasUpperCase = false;
-  let caps = [];
   if (inputData) {
     for (let i = 1; i < inputData.length; i++) {
       // if the last character was upper case and the current character is upper case,
@@ -231,7 +230,7 @@ const doesStringContainAcronym = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function determineWordDelimiter
@@ -242,7 +241,7 @@ const doesStringContainAcronym = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const determineWordDelimiter = function(inputData, inputMetaData) {
+function determineWordDelimiter(inputData, inputMetaData) {
   let functionName = determineWordDelimiter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -278,11 +277,10 @@ const determineWordDelimiter = function(inputData, inputMetaData) {
     plusCount === 0 &&
     percentCount === 0) {
       returnData = sys.cCamelCase;
-      // We haven't hit the case eyt where we need to differenciate between all these extra caes, and there are several of them.
+      // We haven't hit the case eyt where we need to differentiate between all these extra cases, and there are several of them.
       // We could have multiple acronyms in a word, or in multiple words that are camelCase.
       // Each of these could be really complex special cases.
       // If we get to that point we will handle those cases on a case by case basis to improve the algorithm.
-      // } else if (camelCaseWordCount > 1 && containsAcronym === false)
     } else if (spacesCount > 0 && periodCount === 0 && dashCount === 0 && comaCount === 0 && underscoreCount === 0 && plusCount === 0 && percentCount === 0) {
       returnData = bas.cSpace;
     } else if (spacesCount === 0 && periodCount > 0 && dashCount === 0 && comaCount === 0 && underscoreCount === 0 && plusCount === 0 && percentCount === 0) {
@@ -307,7 +305,7 @@ const determineWordDelimiter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function countDelimiterInString
@@ -319,7 +317,7 @@ const determineWordDelimiter = function(inputData, inputMetaData) {
 * @date 2022/01/23
 * @NOTE: https://stackoverflow.com/questions/35849174/count-spaces-in-a-string
 */
-const countDelimiterInString = function(inputData, inputMetaData) {
+function countDelimiterInString(inputData, inputMetaData) {
   let functionName = countDelimiterInString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -331,7 +329,7 @@ const countDelimiterInString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function getWordCountInString
@@ -343,7 +341,7 @@ const countDelimiterInString = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const getWordCountInString = function(inputData, inputMetaData) {
+function getWordCountInString(inputData, inputMetaData) {
   let functionName = getWordCountInString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -364,7 +362,7 @@ const getWordCountInString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function isStringList
@@ -372,11 +370,11 @@ const getWordCountInString = function(inputData, inputMetaData) {
 * @param {string} inputData The string that should be checked if it is a list or not.
 * @param {string} inputMetaData Not used for this business rule.
 * @return {boolean} True or False to indicate if the input string is a list or not a list.
-* Using the list of system defned primary, secondary or tertiary command delimiters.
+* Using the list of system defined primary, secondary or tertiary command delimiters.
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const isStringList = function(inputData, inputMetaData) {
+function isStringList(inputData, inputMetaData) {
   let functionName = isStringList.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   console.log(msg.cinputDataIs + inputData);
@@ -398,7 +396,7 @@ const isStringList = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
 * @function aggregateNumericalDifferenceBetweenTwoStrings
@@ -409,7 +407,7 @@ const isStringList = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/01/23
 */
-const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputMetaData) {
+function aggregateNumericalDifferenceBetweenTwoStrings(inputData, inputMetaData) {
   let functionName = aggregateNumericalDifferenceBetweenTwoStrings.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -457,7 +455,7 @@ const aggregateNumericalDifferenceBetweenTwoStrings = function(inputData, inputM
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   isStringCamelCase,
