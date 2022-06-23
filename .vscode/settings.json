@@ -9,11 +9,18 @@
     "cSpell.diagnosticLevel": "Hint",
     "workbench.colorCustomizations": {
         // will change the color of three dots to red
-        "editorHint.foreground": "#ff0000",
+        // "editorHint.foreground": "#ff0000",
 
         // will underline the entire word with dots in your chosen color
         "editorHint.border": "#ff0000",
 
-        "editorHint.foreground": "#f000"
-    }
+        "editorHint.foreground": "#f000",
+        "semi": "off",
+        "no-extra-semi": "off",
+        "@typescript-eslint/no-extra-semi": "off",
+        "no-unexpected-multiline": "error"
+    },
+    "prettier.embeddedLanguageFormatting": "off",
+    "prettier.enable": false,
+    "prettier.semi": false,
 }

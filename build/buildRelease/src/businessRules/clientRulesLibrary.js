@@ -13,21 +13,20 @@
 // Internal imports
 import clientStringParsing from './clientRules/clientStringParsing.js';
 import * as app_biz from '../constants/application.business.constants.js';
-import * as app_fnc from '../constants/application.function.constants.js';
 
 /**
  * @function initClientRulesLibrary
- * @description Initializes an object map of cient busienss rules and client function calls and returns them.
+ * @description Initializes an object map of client business rules and client function calls and returns them.
  * @return {object} A JSON object that contains a list of business rule names and their associated function calls.
  * @author Seth Hollingsead
  * @date 2022/03/13
- * @NOTE Please be aware that the Commands and BusinessRules data fileds in the
+ * @NOTE Please be aware that the Commands and BusinessRules data files in the
  * D-data structure are going to display as empty when printing out the D-data structure even when using JSON.stringify().
  * This is because the functions cannot really be serialized in any way. It actually kind of makes sense,
  * but could be really confusing if you are struggling, trying to debug commands or business rules that do not appear to exist.
  */
 const initClientRulesLibrary = function() {
-  // console.log('BEGIN clientRulesLibrary.initCientRulesLibrary function');
+  // console.log('BEGIN clientRulesLibrary.initClientRulesLibrary function');
   return {
     [app_biz.cclientEcho]: (inputData, inputMetaData) => (inputData, inputMetaData),
 
@@ -41,5 +40,5 @@ const initClientRulesLibrary = function() {
 };
 
 export default {
-  [app_fnc.cinitClientRulesLibrary]: () => initClientRulesLibrary()
+  initClientRulesLibrary
 };

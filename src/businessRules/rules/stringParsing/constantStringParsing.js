@@ -41,7 +41,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2022/01/23
  */
-const validateConstantsDataValidation = function(inputData, inputMetaData) {
+function validateConstantsDataValidation(inputData, inputMetaData) {
   let functionName = validateConstantsDataValidation.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -71,7 +71,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
               if (colorizeLogsEnabled === true) {
                 passMessage = chalk.rgb(0,0,0)(passMessage);
                 passMessage = chalk.bgRgb(0,255,0)(passMessage);
-              }
+              } // End-if (colorizeLogsEnabled === true)
               console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
             } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
           } else { // Else-clause if (foundConstant === true)
@@ -80,7 +80,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
               if (colorizeLogsEnabled === true) {
                 failMessage = chalk.rgb(0,0,0)(failMessage);
                 failMessage = chalk.bgRgb(255,0,0)(failMessage);
-              }
+              } // End-if (colorizeLogsEnabled === true)
               let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
               console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
               // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
@@ -89,7 +89,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
                 if (colorizeLogsEnabled === true) {
                   suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
                   suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
-                }
+                } // End-if (colorizeLogsEnabled === true)
                 // Suggested line of code is:
                 console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
               } // End-if (suggestedLineOfCode !== '')
@@ -98,8 +98,9 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
           }
         } // End-if (lineInCode.includes(sys.cexportconst) === true)
       } else {
-        // TODO: Replace this hard coded string with a constant defined error message for the up-coming release!
-        // console.log('ERROR: line is null or undefined: ' + line + ' file is: ' + inputData);
+        // ERROR: line is null or undefined:
+        // file is:
+        console.log(msg.cErrorLineIsNullOrUndefined + line + msg.cSpaceFileIs + inputData);
       }      
     } // End-while (line = liner.next())
   } // End-if (inputData && inputMetaData)
@@ -109,7 +110,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function determineConstantsContextQualifiedPrefix
@@ -122,7 +123,7 @@ const validateConstantsDataValidation = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaData) {
+function determineConstantsContextQualifiedPrefix(inputData, inputMetaData) {
   let functionName = determineConstantsContextQualifiedPrefix.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -141,7 +142,7 @@ const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaDa
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function determineSuggestedConstantsValidationLineOfCode
@@ -153,7 +154,7 @@ const determineConstantsContextQualifiedPrefix = function(inputData, inputMetaDa
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const determineSuggestedConstantsValidationLineOfCode = function(inputData, inputMetaData) {
+function determineSuggestedConstantsValidationLineOfCode(inputData, inputMetaData) {
   let functionName = determineSuggestedConstantsValidationLineOfCode.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -185,7 +186,7 @@ const determineSuggestedConstantsValidationLineOfCode = function(inputData, inpu
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validateConstantsDataValidationLineItemName
@@ -196,7 +197,7 @@ const determineSuggestedConstantsValidationLineOfCode = function(inputData, inpu
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const validateConstantsDataValidationLineItemName = function(inputData, inputMetaData) {
+function validateConstantsDataValidationLineItemName(inputData, inputMetaData) {
   let functionName = validateConstantsDataValidationLineItemName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -209,14 +210,14 @@ const validateConstantsDataValidationLineItemName = function(inputData, inputMet
         if (inputData === validationLineItem.Name) {
           returnData = true;
           break;
-        }
+        } // End-if (inputData === validationLineItem.Name)
       } // End-if (validationLineItem)
-    } // End-for (let i = 0; i < D[sys.cConstantsValidationData][inputMetaData].length; i++)
+    } // End-for (const element of D[sys.cConstantsValidationData][inputMetaData])
   } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function doesConstantExist
@@ -228,7 +229,7 @@ const validateConstantsDataValidationLineItemName = function(inputData, inputMet
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const doesConstantExist = function(inputData, inputMetaData) {
+function doesConstantExist(inputData, inputMetaData) {
   let functionName = doesConstantExist.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -239,8 +240,8 @@ const doesConstantExist = function(inputData, inputMetaData) {
     // constantsTypesKeys is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsTypesKeysIs + JSON.stringify(constantsTypesKeys));
 loop1:
-    for (const element of constantsTypesKeys) {
-      let constantTypeKey = element;
+    for (const element1 of constantsTypesKeys) {
+      let constantTypeKey = element1;
       // constantTypeKey is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantTypeKeyIs + JSON.stringify(constantTypeKey));
       let constantTypeValues = D[sys.cConstantsValidationData][constantTypeKey];
@@ -249,8 +250,8 @@ loop1:
       let constantsKeys = Object.keys(constantTypeValues);
       // constantsKeys is:
       loggers.consoleLog(namespacePrefix + functionName, msg.cconstantsKeysIs + JSON.stringify(constantsKeys));
-      for (const element of constantsKeys) {
-        let constantKey = element;
+      for (const element2 of constantsKeys) {
+        let constantKey = element2;
         // constantKey is:
         loggers.consoleLog(namespacePrefix + functionName, msg.cconstantKeyIs + JSON.stringify(constantKey));
         let constantActualValue = constantTypeValues[constantKey];
@@ -259,14 +260,14 @@ loop1:
         if (inputData === constantActualValue.Actual || inputData === constantActualValue.Name) {
           returnData = true;
           break loop1;
-        }
-      } // End-for (let j = 0; j < constantsKeys.length; j++)
-    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+        } // End-if (inputData === constantActualValue.Actual || inputData === constantActualValue.Name)
+      } // End-for (const element2 of constantsKeys)
+    } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getConstantType
@@ -281,7 +282,7 @@ loop1:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getConstantType = function(inputData, inputMetaData) {
+function getConstantType(inputData, inputMetaData) {
   let functionName = getConstantType.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -321,13 +322,13 @@ loop1:
             returnData = returnData + bas.cComa + constantTypeKey;
           }
         } // End-if (inputData === constantActualValue.Actual)
-      } // End-for (let j = 0; j < constantsKeys.length; j++)
-    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+      } // End-for (const element2 of constantsKeys)
+    } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getConstantActualValue
@@ -338,7 +339,7 @@ loop1:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getConstantActualValue = function(inputData, inputMetaData) {
+function getConstantActualValue(inputData, inputMetaData) {
   let functionName = getConstantActualValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -362,7 +363,7 @@ const getConstantActualValue = function(inputData, inputMetaData) {
         if (inputData === constantActualValue1.Name) {
           returnData = constantActualValue1.Actual;
         }
-      } // End-for (let i = 0; i < constantsKeys1.length; i++)
+      } // End-for (const element1 of constantsKeys1)
     } else { // Else-clause if (isConstantTypeValid(inputMetaData, '') === true)
       let constantsTypesKeys = Object.keys(D[sys.cConstantsValidationData]);
       // constantsTypesKeys is:
@@ -387,14 +388,14 @@ const getConstantActualValue = function(inputData, inputMetaData) {
           if (inputData === constantActualValue1.Name || inputData === constantActualValue1.Actual) {
             returnData = constantActualValue1.Actual;
           }
-        } // End-for (let k = 0; k < constantsKeys2.length; k++)
-      } // End-for (let j = 0; j < constantsTypesKeys.length; j++)
+        } // End-for (const element3 of constantsKeys2)
+      } // End-for (const element2 of constantsTypesKeys)
     } // else clause for the case that inputMetaData did not match a valid constant type in the system.
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getConstantName
@@ -406,7 +407,7 @@ const getConstantActualValue = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const getConstantName = function(inputData, inputMetaData) {
+function getConstantName(inputData, inputMetaData) {
   let functionName = getConstantName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -438,13 +439,13 @@ loop1:
           returnData = constantActualValue.Name;
           break loop1;
         }
-      } // End-for ((let j = 0; j < constantsKeys.length; j++)
-    } // End-for (let i = 0; i < constantsTypesKeys.length; i++)
+      } // End-for (const element2 of constantsKeys)
+    } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function findConstantName
@@ -455,7 +456,7 @@ loop1:
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const findConstantName = function(inputData, inputMetaData) {
+function findConstantName(inputData, inputMetaData) {
   let functionName = findConstantName.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -469,7 +470,7 @@ const findConstantName = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isConstantTypeValid
@@ -481,7 +482,7 @@ const findConstantName = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const isConstantTypeValid = function(inputData, inputMetaData) {
+function isConstantTypeValid(inputData, inputMetaData) {
   let functionName = isConstantTypeValid.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -499,7 +500,7 @@ const isConstantTypeValid = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertConstantTypeToConstantPrefix
@@ -510,7 +511,7 @@ const isConstantTypeValid = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const convertConstantTypeToConstantPrefix = function(inputData, inputMetaData) {
+function convertConstantTypeToConstantPrefix(inputData, inputMetaData) {
   let functionName = convertConstantTypeToConstantPrefix.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -528,7 +529,7 @@ const convertConstantTypeToConstantPrefix = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function constantsOptimizedFulfillmentSystem
@@ -539,7 +540,7 @@ const convertConstantTypeToConstantPrefix = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
+function constantsOptimizedFulfillmentSystem(inputData, inputMetaData) {
   let functionName = constantsOptimizedFulfillmentSystem.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -560,7 +561,7 @@ const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function constantsFulfillmentSystem
@@ -572,7 +573,7 @@ const constantsOptimizedFulfillmentSystem = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const constantsFulfillmentSystem = function(inputData, inputMetaData) {
+function constantsFulfillmentSystem(inputData, inputMetaData) {
   let functionName = constantsFulfillmentSystem.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -604,7 +605,7 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validateConstantsDataValues
@@ -618,7 +619,7 @@ const constantsFulfillmentSystem = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const validateConstantsDataValues = function(inputData, inputMetaData) {
+function validateConstantsDataValues(inputData, inputMetaData) {
   let functionName = validateConstantsDataValues.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -640,9 +641,9 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(0,255,0)(passMessage);
-            }
+            } // End-if (colorizeLogsEnabled === true)
             console.log(passMessage);
-          }
+          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true)
         } else {
           // FAIL
           returnData = false;
@@ -654,9 +655,9 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(255,0,0)(passMessage);
-            }
+            } // End-if (colorizeLogsEnabled === true)
             console.log(passMessage);
-          }
+          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true)
         }
       } else { // Else-clause if (validationLineItem)
         // `FAIL -- ${inputData} -- FAIL`
@@ -664,15 +665,15 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(255,0,0)(passMessage);
-        }
+        } // End-if (colorizeLogsEnabled === true)
         console.log(passMessage);
       } // End else-clause if (validationLineItem)
-    } // End-for (let i = 0; i < D[sys.cConstantsValidationData][inputData].length; i++)
+    } // End-for (const element of D[sys.cConstantsValidationData][inputData])
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isConstantValid
@@ -683,7 +684,7 @@ const validateConstantsDataValues = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const isConstantValid = function(inputData, inputMetaData) {
+function isConstantValid(inputData, inputMetaData) {
   let functionName = isConstantValid.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -697,7 +698,7 @@ const isConstantValid = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   validateConstantsDataValidation,

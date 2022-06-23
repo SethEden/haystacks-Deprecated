@@ -37,7 +37,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @date 2022/05/03
  */
 // eslint-disable-next-line no-unused-vars
-const doAllRulesExist = function(inputData, inputMetaData) {
+function doAllRulesExist(inputData, inputMetaData) {
   // let functionName = doAllRulesExist.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -48,7 +48,7 @@ const doAllRulesExist = function(inputData, inputMetaData) {
       if (doesRuleExist(element) === false) {
         tempValidationResult = false;
       }
-    } // End-for (let i = 0; i < inputData.length; i++)
+    } // End-for (const element of inputData)
     if (tempValidationResult === true) {
       returnData = true;
     }
@@ -56,7 +56,7 @@ const doAllRulesExist = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function doesRuleExist
@@ -68,7 +68,7 @@ const doAllRulesExist = function(inputData, inputMetaData) {
  * @date 2022/05/03
  */
 // eslint-disable-next-line no-unused-vars
-const doesRuleExist = function(inputData, inputMetaData) {
+function doesRuleExist(inputData, inputMetaData) {
   // let functionName = doesRuleExist.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -82,7 +82,7 @@ const doesRuleExist = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function getRule
@@ -94,7 +94,7 @@ const doesRuleExist = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/09
  */
-const getRule = function(inputData, inputMetaData) {
+function getRule(inputData, inputMetaData) {
   let functionName = getRule.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -108,7 +108,7 @@ const getRule = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function processRulesInternal
@@ -124,7 +124,7 @@ const getRule = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/03
  */
-const processRulesInternal = function(inputData, inputMetaData) {
+function processRulesInternal(inputData, inputMetaData) {
   let functionName = processRulesInternal.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -140,7 +140,7 @@ const processRulesInternal = function(inputData, inputMetaData) {
         // console.log(`value is: ${value}`);
         returnData = D[sys.cbusinessRules][value](returnData, inputLocalMetaData);
       } // End-if (rulesToExecute.hasOwnProperty(rule))
-    } // End-for (let rule in rulesToExecute)
+    } // End-for (let rule in inputMetaData)
   } else {
     // WARNING: Some rules do not exist:
     console.log(msg.cProcessRulesWarnngSomeRulesDoNotExist + JSON.stringify(inputMetaData));
@@ -148,7 +148,7 @@ const processRulesInternal = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   doAllRulesExist,

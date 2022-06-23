@@ -19,7 +19,7 @@ import D from './data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, fnc, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // structures.queue.
 const namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;
@@ -177,11 +177,11 @@ function queuePrint(queueNameSpace) {
 }
 
 export default {
-  [fnc.cinitQueue]: (queueNameSpace) => initQueue(queueNameSpace),
-  [fnc.cdequeue]: (queueNameSpace) => dequeue(queueNameSpace),
-  [fnc.cenqueue]: (queueNameSpace, value) => enqueue(queueNameSpace, value),
-  [fnc.cisEmpty]: (queueNameSpace) => isEmpty(queueNameSpace),
-  [fnc.cqueueFront]: (queueNameSpace) => queueFront(queueNameSpace),
-  [fnc.cqueueSize]: (queueNameSpace) => queueSize(queueNameSpace),
+  initQueue,
+  dequeue,
+  enqueue,
+  isEmpty,
+  queueFront,
+  queueSize,
   queuePrint
 };

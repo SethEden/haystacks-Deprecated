@@ -40,7 +40,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2021/10/28
  */
-const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
+function replaceCharacterWithCharacter(inputData, inputMetaData) {
   let functionName = replaceCharacterWithCharacter.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -63,7 +63,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function doesArrayContainCharacter
@@ -74,7 +74,7 @@ const replaceCharacterWithCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const doesArrayContainCharacter = function(inputData, inputMetaData) {
+function doesArrayContainCharacter(inputData, inputMetaData) {
   let functionName = doesArrayContainCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -87,24 +87,24 @@ const doesArrayContainCharacter = function(inputData, inputMetaData) {
         returnData = true;
         break;
       }
-    } // end-for (let i = 0; i < inputMetaData.length; i++)
+    } // end-for (const element of inputMetaData)
   } // end-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function removeCharacterFromArray
  * @description Removes all instances of a character or value from all array elements.
  * @param {string|integer|boolean|float|object} inputData The character, integer, boolean, float or object
  * that should be removed from all instances of the input array.
- * @param {array<string|boolean|integer|object>} inputMetaData Teh array from which all instances of the input character, integer, etc...should be removed.
+ * @param {array<string|boolean|integer|object>} inputMetaData The array from which all instances of the input character, integer, etc...should be removed.
  * @return {array<string|boolean|integer|object>} The array after having the specified character removed from all elements of the input array.
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const removeCharacterFromArray = function(inputData, inputMetaData) {
+function removeCharacterFromArray(inputData, inputMetaData) {
   let functionName = removeCharacterFromArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -122,20 +122,20 @@ const removeCharacterFromArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function replaceCharacterAtIndex
  * @description Replaces a character at the specified index with another character.
  * @param {string} inputData The string which should have the specified character changed, then returned.
- * @param {array<integer,string>} inputMetaData An array ith an integer of what index the character should be replaced,
+ * @param {array<integer,string>} inputMetaData An array with an integer of what index the character should be replaced,
  * and a string with the character or characters that should be inserted at the specified index.
  * @return {string} The modified string.
  * @author Seth Hollingsead
  * @date 2022/01/21
  * @reference: {@link https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript}
  */
-const replaceCharacterAtIndex = function(inputData, inputMetaData) {
+function replaceCharacterAtIndex(inputData, inputMetaData) {
   let functionName = replaceCharacterAtIndex.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -155,7 +155,7 @@ const replaceCharacterAtIndex = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   replaceCharacterWithCharacter,

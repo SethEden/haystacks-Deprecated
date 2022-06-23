@@ -1102,7 +1102,7 @@ where the configuration setting should be found.</p></td>
     <p>This is a wrapper for the chiefCommander.isCommandQueueEmpty function.
 Determines if the command queue is empty or not,
 which also determines if the application should continue executing commands from the command queue
-in sequential order or prompt for another commnd or exit.</p>
+in sequential order or prompt for another command or exit.</p>
 </div>
 
 
@@ -1539,170 +1539,7 @@ the path to the workflows XML file is stored, that should be loaded (OPTIONAL).<
     
 
     
-    <h4 class="name" id="~mergeCientCommands"><span class="type-signature">(inner) </span>mergeCientCommands<span class="signature">(clientCommands)</span><span class="type-signature"> &rarr; {void}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Merges the map of client defined command names and client defined command function calls
-with the existing D-data structure that should already have all of the system defined commands.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>clientCommands</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A map of client defined command names and client defined command function calls.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Seth Hollingsead</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controllers_warden.js.html">controllers/warden.js</a>, <a href="controllers_warden.js.html#line199">line 199</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">void</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~mergeClientBusienssRules"><span class="type-signature">(inner) </span>mergeClientBusienssRules<span class="signature">(clientBusinessRules)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id="~mergeClientBusinessRules"><span class="type-signature">(inner) </span>mergeClientBusinessRules<span class="signature">(clientBusinessRules)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -1812,6 +1649,169 @@ with the existing D-data structure that should already have all of the system de
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="controllers_warden.js.html">controllers/warden.js</a>, <a href="controllers_warden.js.html#line182">line 182</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~mergeClientCommands"><span class="type-signature">(inner) </span>mergeClientCommands<span class="signature">(clientCommands)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Merges the map of client defined command names and client defined command function calls
+with the existing D-data structure that should already have all of the system defined commands.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>clientCommands</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A map of client defined command names and client defined command function calls.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Seth Hollingsead</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controllers_warden.js.html">controllers/warden.js</a>, <a href="controllers_warden.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -2387,7 +2387,7 @@ Ex: businessRules.rules.stringParsing.countCamelCaseWords</p></td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Jun 22 2022 10:42:08 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 23 2022 13:00:42 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

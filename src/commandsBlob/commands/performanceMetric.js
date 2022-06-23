@@ -42,7 +42,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 * @author Seth Hollingsead
 * @date 2022/03/03
 */
-const businessRulesMetrics = function(inputData, inputMetaData) {
+function businessRulesMetrics(inputData, inputMetaData) {
    let functionName = businessRulesMetrics.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -106,12 +106,12 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true) {
        stack.clearStack(cfg.cbusinessRulesPerformanceTrackingStack);
        stack.clearStack(cfg.cbusinessRulesNamesPerformanceTrackingStack);
-     }
+     } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true)
    } // End-if (businessRuleMetricsEnabled === true)
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
-};
+}
 
 /**
 * @function commandMetrics
@@ -123,7 +123,7 @@ const businessRulesMetrics = function(inputData, inputMetaData) {
 * @author Seth Hollingsead
 * @date 2022/03/11
 */
-const commandMetrics = function(inputData, inputMetaData) {
+function commandMetrics(inputData, inputMetaData) {
    let functionName = commandMetrics.name;
    loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
    loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -187,12 +187,12 @@ const commandMetrics = function(inputData, inputMetaData) {
      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true) {
        stack.clearStack(cfg.ccommandsPerformanceTrackingStack);
        stack.clearStack(cfg.ccommandNamesPerformanceTrackingStack);
-     }
+     } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true)
    } // End-if (commandMetricsEnabled === true)
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
    return returnData;
-};
+}
 
 export default {
   businessRulesMetrics,

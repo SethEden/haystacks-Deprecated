@@ -43,7 +43,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
  * @author Seth Hollingsead
  * @date 2022/03/25
  */
-const validateConstants = function(inputData, inputMetaData) {
+ function validateConstants(inputData, inputMetaData) {
   let functionName = validateConstants.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -64,7 +64,7 @@ const validateConstants = function(inputData, inputMetaData) {
     for (let key1 in validationArray) {
       let constantsPath = validationArray[key1];
       phase1Results[key1] = ruleBroker.processRules([constantsPath, key1], [biz.cvalidateConstantsDataValidation]);
-    }
+    } // End-for (let key1 in validationArray)
     // END Phase 1 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase1ConstantsValidation);
 
@@ -74,7 +74,7 @@ const validateConstants = function(inputData, inputMetaData) {
     // Now verify that the values of the constants are what they are expected to be by using the constants validation data to validate.
     for (let key2 in validationArray) {
       phase2Results[key2] = ruleBroker.processRules([key2, ''], [biz.cvalidateConstantsDataValues]);
-    }
+    } // End-for (let key2 in validationArray)
     // END Phase 2 Constants Validation
     loggers.consoleLog(namespacePrefix + functionName, msg.cEndPhase2ConstantsValidation);
 
@@ -90,7 +90,7 @@ const validateConstants = function(inputData, inputMetaData) {
       if (phase2Results[key4] === false) {
         phase2FinalResult = false;
       }
-    }
+    } // End-for (let key4 in phase2Results)
 
     if (phase1FinalResult === true && phase2FinalResult === true) {
       configurator.setConfigurationSetting(wrd.csystem, cfg.cpassAllConstantsValidation, true);
@@ -108,7 +108,7 @@ const validateConstants = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validateCommandAliases
@@ -120,7 +120,7 @@ const validateConstants = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/03/30
  */
-const validateCommandAliases = function(inputData, inputMetaData) {
+ function validateCommandAliases(inputData, inputMetaData) {
   let functionName = validateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -168,17 +168,17 @@ const validateCommandAliases = function(inputData, inputMetaData) {
       // END j-th loop:
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_jthLoop + j);
     } // End-for (let j = 0; j < arrayOfAliases.length; j++)
-  } // End-for (let i = 0; i < allCommandAliases.length; i++)
+  } // End-for (let key1 in allCommandAliases[0])
   if (passedAllCommandAliasesDuplicateCheck === true) {
     // PASSED: All duplicate command aliases validation tests!
     console.log(msg.cvalidateCommandAliasesMessage1);
     returnData[1] = true;
-  }
+  } // End-if (passedAllCommandAliasesDuplicateCheck === true)
   configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, passedAllCommandAliasesDuplicateCheck);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validateWorkflows
@@ -190,7 +190,7 @@ const validateCommandAliases = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/06/08
  */
-const validateWorkflows = function(inputData, inputMetaData) {
+ function validateWorkflows(inputData, inputMetaData) {
   let functionName = validateWorkflows.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -213,7 +213,7 @@ const validateWorkflows = function(inputData, inputMetaData) {
       if (workflowName === secondTierWorkflowName) {
         numberOfDuplicatesFound = numberOfDuplicatesFound + 1;
       }
-    } // End-for (let i = 0; i < allWorkflowsData.length; i++)
+    } // End-for (const element of allWorkflowsData)
     if (numberOfDuplicatesFound > 1) {
       // Duplicate workflow count is:
       let duplicateWorkflowCountMessage = msg.cDuplicateWorkflowCountIs + numberOfDuplicatesFound;
@@ -229,18 +229,18 @@ const validateWorkflows = function(inputData, inputMetaData) {
 
       passedAllWorkflowDuplicateCheck = false;
       returnData[1] = false;
-    }
+    } // End-if (numberOfDuplicatesFound > 1)
   } // End-for (let workflowName in allWorkflowsData)
   if (passedAllWorkflowDuplicateCheck === true) {
     // PASSED: All duplicate workflow validation tests!
     console.log(msg.cvalidateWorkflowsMessage01);
     returnData[1] = true;
-  }
+  } // End-if (passedAllWorkflowDuplicateCheck === true)
   configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks, passedAllWorkflowDuplicateCheck);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   validateConstants,

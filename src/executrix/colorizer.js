@@ -20,7 +20,7 @@ import hayConst from '@haystacks/constants';
 import chalk from 'chalk';
 import path from 'path';
 
-const {bas, clr, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, clr, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // executrix.colorizer.
 // eslint-disable-next-line no-unused-vars
@@ -54,7 +54,7 @@ function colorizeMessageSimple(message, colorArray, isForeground) {
     } else {
       colorizedMessage = chalk.bgRgb(red,green,blue)(colorizedMessage);
     }
-  }
+  } // End-if (colorizeLogsEnabled === true)
   // console.log('colorizedMessage is: ' + colorizedMessage);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return colorizedMessage;
@@ -238,7 +238,7 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
     if (messageContent.includes(bas.cDoublePercent) === true) {
       messageContentPrefix = messageContent.split(bas.cSpace)[0];
       messageContentSuffix = messageContent.split(bas.cSpace)[2];
-    }
+    } // End-if (messageContent.includes(bas.cDoublePercent) === true)
 
     className = setUnderlineFontStyleOnMessageComponentAccordingToSetting(className, aggregateModuleFontStyleUnderline);
     className = setBoldFontStyleOnMessageComponentAccordingToSetting(className, aggregateModuleFontStyleBold);
@@ -267,7 +267,7 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
       if (processingMessageData === true) {
         messageData = setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageData, aggregateDataFontStyleUnderline);
         messageData = setBoldFontStyleOnMessageComponentAccordingToSetting(messageData, aggregateDataFontStyleBold);
-      }
+      } // End-if (processingMessageData === true)
 
       messageContent = setFontForegroundColorOnMessageComponentAccordingToSetting(messageContent, aggregateMessageFontColorSetting);
       // console.log('Done processing foreground color settings: messageContent is: ' + messageContent);
@@ -288,7 +288,7 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
     if (processingMessageData === true) {
       messageData = setFontForegroundColorOnMessageComponentAccordingToSetting(messageData, aggregateDataFontColorSetting);
       messageData = setFontBackgroundColorOnMessageComponentAccordingToSetting(messageData, aggregateDataFontBackgroundColorSetting);
-    }
+    } // End-if (processingMessageData === true)
 
     if (messageContent.includes(bas.cDoublePercent) === true) {
       colorizedMessage = messageContentPrefix + bas.cSpace + className + bas.cDot + callerFunctionName + bas.cSpace + messageContentSuffix;
@@ -624,19 +624,18 @@ function removeFontStyles(message) {
   // console.log('returnMessage is: ' + returnMessage);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnMessage;
-};
+}
 
 export default {
-  [fnc.ccolorizeMessageSimple]: (message, colorArray, isForeground) => colorizeMessageSimple(message, colorArray, isForeground),
-  [fnc.ccolorizeMessage]: (message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog) =>
-    colorizeMessage(message, className, callerFunctionName, debugFilesSetting, debugFunctionsSetting, flatMessageLog),
-  [fnc.caggregateStyleSetting]: (settingValue1, settingValue2, defaultColorArray, processAsFontSetting) => aggregateStyleSetting(settingValue1, settingValue2, defaultColorArray, processAsFontSetting),
-  [fnc.cgetFontStyleSettingsFromSetting]: (settingValue) => getFontStyleSettingsFromSetting(settingValue),
-  [fnc.cgetColorStyleSettingFromSetting]: (settingValue, defaultColorArray) => getColorStyleSettingFromSetting(settingValue, defaultColorArray),
-  [fnc.cgetNamedColorData]: (colorName, defaultColorArray) => getNamedColorData(colorName, defaultColorArray),
-  [fnc.csetUnderlineFontStyleOnMessageComponentAccordingToSetting]: (messageComponent, underlineSettingValue) => setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageComponent, underlineSettingValue),
-  [fnc.csetBoldFontStyleOnMessageComponentAccordingToSetting]: (messageComponent, boldSettingValue) => setBoldFontStyleOnMessageComponentAccordingToSetting(messageComponent, boldSettingValue),
-  [fnc.csetFontForegroundColorOnMessageComponentAccordingToSetting]: (messageComponent, colorSettingValue) => setFontForegroundColorOnMessageComponentAccordingToSetting(messageComponent, colorSettingValue),
-  [fnc.csetFontBackgroundColorOnMessageComponentAccordingToSetting]: (messageComponent, colorSettingValue) => setFontBackgroundColorOnMessageComponentAccordingToSetting(messageComponent, colorSettingValue),
-  [fnc.cremoveFontStyles]: (message) => removeFontStyles(message)
+  colorizeMessageSimple,
+  colorizeMessage,
+  aggregateStyleSetting,
+  getFontStyleSettingsFromSetting,
+  getColorStyleSettingFromSetting,
+  getNamedColorData,
+  setUnderlineFontStyleOnMessageComponentAccordingToSetting,
+  setBoldFontStyleOnMessageComponentAccordingToSetting,
+  setFontForegroundColorOnMessageComponentAccordingToSetting,
+  setFontBackgroundColorOnMessageComponentAccordingToSetting,
+  removeFontStyles
 };

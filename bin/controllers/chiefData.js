@@ -21,7 +21,7 @@ import loggers from '../executrix/loggers.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefData.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
@@ -41,7 +41,7 @@ const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName + bas.cDot;
  * @date 2022/01/18
  */
 function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfigPathName) {
-  let functionName = searchForUniversalDebugConfigSetting.name;
+  // let functionName = searchForUniversalDebugConfigSetting.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`appConfigPathName is: ${appConfigPathName}`);
   // console.log(`frameworkConfigPathName is: ${frameworkConfigPathName}`);
@@ -61,7 +61,7 @@ function searchForUniversalDebugConfigSetting(appConfigPathName, frameworkConfig
   // console.log(`universalDebugConfigSetting is: ${universalDebugConfigSetting}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return universalDebugConfigSetting;
-};
+}
 
 /**
  * @function determineThemeDebugConfigFilesToLoad
@@ -89,14 +89,14 @@ function determineThemeDebugConfigFilesToLoad(themeConfigPathName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cthemeConfigFilesToLoadIs + JSON.stringify(themeConfigFilesToLoad));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return themeConfigFilesToLoad;
-};
+}
 
 /**
  * @function getAndProcessCsvData
- * @description Loads the specified file, parses it and converts all the data to the appropriate fromat.
+ * @description Loads the specified file, parses it and converts all the data to the appropriate format.
  * @param {string} pathAndFilename The path and file name of the CSV file that should be loaded and parsed into JSON objects.
  * @param {string} contextName The name that should be used when adding the objects to the D data structure for data-sharing.
- * @return {object} A parsed CSV JSON object where allthe values have been converted from their string representation into actual values of appropriate type.
+ * @return {object} A parsed CSV JSON object where all the values have been converted from their string representation into actual values of appropriate type.
  * @author Seth Hollingsead
  * @date 2022/02/17
  */
@@ -113,13 +113,13 @@ function getAndProcessCsvData(pathAndFilename, contextName) {
   let allLoadedData = dataBroker.getAndProcessCsvData(loadedData, contextName);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allLoadedData;
-};
+}
 
 /**
  * @function getAndProcessXmlData
  * @description Loads the specified file, parses it and converts all values into their appropriate data types.
  * @param {string} pathAndFilename The path and file name of the XML file that should be loaded and parsed into JSON objects.
- * @return {object} A parsed XML JSON object where all the values have been converted from their strign representation into actual values of appropriate type.
+ * @return {object} A parsed XML JSON object where all the values have been converted from their string representation into actual values of appropriate type.
  * @author Seth Hollingsead
  * @date 2022/02/17
  */
@@ -136,7 +136,7 @@ function getAndProcessXmlData(pathAndFilename) {
   loggers.consoleLog(namespacePrefix + functionName, msg.callXmlDataIs + JSON.stringify(allXmlData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return allXmlData;
-};
+}
 
 /**
  * @function setupAllCsvData
@@ -167,13 +167,13 @@ function setupAllCsvData(dataPathConfigurationName, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cloadedAndMergedDataAllFilesIs + JSON.stringify(loadedAndMergedDataAllFiles));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return loadedAndMergedDataAllFiles;
-};
+}
 
 /**
  * @function setupAllXmlData
  * @description Sets up all of the specified XML data.
  * @param {string} dataPathConfigurationName The name of the configuration setting that has the path we should search.
- * @param {string} contextName The context name that should be used when addng data to the D data structure.
+ * @param {string} contextName The context name that should be used when adding data to the D data structure.
  * @return {object} A JSON object that contains all of the data that was loaded from all the XML files and merged together.
  * @author Seth Hollingsead
  * @date 2022/02/17
@@ -198,7 +198,7 @@ function setupAllXmlData(dataPathConfigurationName, contextName) {
   loggers.consoleLog(namespacePrefix + functionName, msg.cloadedAndMergedDataAllFilesIs + JSON.stringify(loadedAndMergedDataAllFiles));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return loadedAndMergedDataAllFiles;
-};
+}
 
 /**
  * @function setupAllJsonConfigData
@@ -211,7 +211,7 @@ function setupAllXmlData(dataPathConfigurationName, contextName) {
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
-  let functionName = setupAllJsonConfigData.name;
+  // let functionName = setupAllJsonConfigData.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`dataPathConfigurationName is: ${dataPathConfigurationName}`);
   // console.log(`contextName is: ${contextName}`);
@@ -228,7 +228,7 @@ function setupAllJsonConfigData(dataPathConfigurationName, contextName) {
   // console.log(`loadedAndMergedDataAllFiles is: ${JSON.stringify(loadedAndMergedDataAllFiles)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return loadedAndMergedDataAllFiles;
-};
+}
 
 /**
  * @function initializeConstantsValidationData
@@ -242,7 +242,7 @@ function initializeConstantsValidationData() {
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   dataBroker.initializeConstantsValidationData();
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function addConstantsValidationData
@@ -259,17 +259,16 @@ function addConstantsValidationData(arrayValidationData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.carrayValidationDataIs + JSON.stringify(arrayValidationData));
   dataBroker.addConstantsValidationData(arrayValidationData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 export default {
-  [fnc.csearchForUniversalDebugConfigSetting]: (appConfigPathName, frameworkConfigPathName, contextName) => searchForUniversalDebugConfigSetting(
-    appConfigPathName, frameworkConfigPathName, contextName),
+  searchForUniversalDebugConfigSetting,
   determineThemeDebugConfigFilesToLoad,
-  [fnc.cgetAndProcessCsvData]: (pathAndFilename, contextName) => getAndProcessCsvData(pathAndFilename, contextName),
-  [fnc.cgetAndProcessXmlData]: (pathAndFilename) => getAndProcessXmlData(pathAndFilename),
-  [fnc.csetupAllCsvData]: (dataPathConfigurationName, contextName) => setupAllCsvData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllXmlData]: (dataPathConfigurationName, contextName) => setupAllXmlData(dataPathConfigurationName, contextName),
-  [fnc.csetupAllJsonConfigData]: (dataPathConfigurationName, contextName) => setupAllJsonConfigData(dataPathConfigurationName, contextName),
-  [fnc.cinitializeConstantsValidationData]: () => initializeConstantsValidationData(),
-  [fnc.caddConstantsValidationData]: (arrayValidationData) => addConstantsValidationData(arrayValidationData)
-};
+  getAndProcessCsvData,
+  getAndProcessXmlData,
+  setupAllCsvData,
+  setupAllXmlData,
+  setupAllJsonConfigData,
+  initializeConstantsValidationData,
+  addConstantsValidationData
+}

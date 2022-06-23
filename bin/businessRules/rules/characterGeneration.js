@@ -25,16 +25,16 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 
 /**
  * @function randomlyGenerateMixedCaseLetterOrSpecialCharacter
- * @description Randomly geenrates an english alphabetic letter from A-Z, a-z or
+ * @description Randomly generates an english alphabetic letter from A-Z, a-z or
  * a random special character from the input list of special characters.
  * @param {string} inputData the list of allowable special characters that should be used to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random mixed case letter of the english alphabet,
- * or a random special character from the list of alowable special characters.
+ * or a random special character from the list of allowable special characters.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateMixedCaseLetterOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateMixedCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -44,20 +44,20 @@ const randomlyGenerateMixedCaseLetterOrSpecialCharacter = function(inputData, in
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateUpperCaseLetterOrSpecialCharacter
  * @description Randomly generates an english alphabetic letter from A-Z or
  * a random special character from the input list of special characters.
  * @param {string} inputData The list of allowable special characters that should be used to randomly select from.
- * @param {string} inputMetaData Not used for this busienss rule.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random upper case letter of the english alphabet,
  * or a random special character from the ist of allowable special characters.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateUpperCaseLetterOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -67,20 +67,20 @@ const randomlyGenerateUpperCaseLetterOrSpecialCharacter = function(inputData, in
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateLowerCaseLetterOrSpecialCharacter
- * @descriptiong Randomly generates an english alphabetic letter from a-z or
- * a random special character from the intpu list of special characters.
- * @param {string} inputData The list of allowable special characters that should be used  to ranomly select from.
+ * @description Randomly generates an english alphabetic letter from a-z or
+ * a random special character from the input list of special characters.
+ * @param {string} inputData The list of allowable special characters that should be used  to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random lower case letter of the english alphabet,
  * or a random special character from the list of allowable special characters.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateLowerCaseLetterOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseLetterOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -90,12 +90,12 @@ const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, in
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter
  * @description Randomly generates an alphabetic letter from A-Z, a-z or a number 0-9 or
- * a random special character from the iput ist of special characters.
+ * a random special character from the input ist of special characters.
  * @param {string} inputData The list of allowable special characters that should be used to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} Randomly returns a random number, a random mixed case letter of the english alphabet,
@@ -103,7 +103,7 @@ const randomlyGenerateLowerCaseLetterOrSpecialCharacter = function(inputData, in
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -113,7 +113,7 @@ const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter
@@ -121,12 +121,12 @@ const randomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter = function
  * a random special character from the input ist of special characters.
  * @param {string} inputData The list orf allowable special characters that should be used to randomly select from.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} Randomly returns a random number, a random upper case letter of the engish alphabet,
+ * @return {string} Randomly returns a random number, a random upper case letter of the english alphabet,
  * or a random special character from the list of allowable special characters.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -136,7 +136,7 @@ const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter
@@ -149,7 +149,7 @@ const randomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter = function
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -159,7 +159,7 @@ const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateMixedCaseAlphaNumericCharacter
@@ -170,7 +170,7 @@ const randomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter = function
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateMixedCaseAlphaNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateMixedCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -180,7 +180,7 @@ const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, input
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateUpperCaseAlphaNumericCharacter
@@ -191,7 +191,7 @@ const randomlyGenerateMixedCaseAlphaNumericCharacter = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateUpperCaseAlphaNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -201,7 +201,7 @@ const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, input
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateLowerCaseAlphaNumericCharacter
@@ -212,7 +212,7 @@ const randomlyGenerateUpperCaseAlphaNumericCharacter = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateLowerCaseAlphaNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseAlphaNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -222,7 +222,7 @@ const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, input
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateNumericCharacter
@@ -233,7 +233,7 @@ const randomlyGenerateLowerCaseAlphaNumericCharacter = function(inputData, input
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateNumericCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateNumericCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -243,7 +243,7 @@ const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateSpecialCharacter
@@ -254,24 +254,23 @@ const randomlyGenerateNumericCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateSpecialCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateSpecialCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = '';
-  // NOTE Canot have a "." as part of a variable name in a {set}
-  let cTrue = gen.cTrue;
+  // NOTE Cannot have a "." as part of a variable name in a {set}
   if (inputData) {
     let inputDataLength = inputData.length.toString();
     let number = randomlyGenerateNumberInRange(num.c1, [inputDataLength, gen.cTrue, gen.cTrue]);
     // NOTE: The String.length() above is a 1-base count, the String.substring is zero-based.
     returnData = inputData.substring(number - 1, number);
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateNumberInRange
@@ -286,7 +285,7 @@ const randomlyGenerateSpecialCharacter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
+function randomlyGenerateNumberInRange(inputData, inputMetaData) {
   let functionName = randomlyGenerateNumberInRange.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -314,7 +313,7 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData.toString();
-};
+}
 
 /**
  * @function randomlyGenerateBooleanValue
@@ -326,7 +325,7 @@ const randomlyGenerateNumberInRange = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
+function randomlyGenerateBooleanValue(inputData, inputMetaData) {
   let functionName = randomlyGenerateBooleanValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -336,7 +335,7 @@ const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateMixedCaseAlphabeticCharacter
@@ -348,7 +347,7 @@ const randomlyGenerateBooleanValue = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMetaData) {
+function randomlyGenerateMixedCaseAlphabeticCharacter(inputData, inputMetaData) {
   let functionName = randomlyGenerateMixedCaseAlphabeticCharacter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -358,18 +357,18 @@ const randomlyGenerateMixedCaseAlphabeticCharacter = function(inputData, inputMe
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateLowerCaseLetter
  * @description Randomly generates a lower case english alphabetic letter from a-z.
  * @param {string} inputData Not used for this business rule.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A ranomly generated english alphabetic letter from a-z.
+ * @return {string} A randomly generated english alphabetic letter from a-z.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
+function randomlyGenerateLowerCaseLetter(inputData, inputMetaData) {
   let functionName = randomlyGenerateLowerCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -379,7 +378,7 @@ const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function randomlyGenerateUpperCaseLetter
@@ -390,7 +389,7 @@ const randomlyGenerateLowerCaseLetter = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
+function randomlyGenerateUpperCaseLetter(inputData, inputMetaData) {
   let functionName = randomlyGenerateUpperCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -400,19 +399,19 @@ const randomlyGenerateUpperCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertNumberToUpperCaseLetter
  * @description Converts a number from 1-26 into an upper case letter of the english alphabet A-Z.
- * @param {sring} inputData A string that contaisn a number in the range of 1-26 that
+ * @param {string} inputData A string that contains a number in the range of 1-26 that
  * should be converted to an upper case letter of the english alphabet.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A letter of the alphabet where 1-26 is converted in a letter A-Z.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
+function convertNumberToUpperCaseLetter(inputData, inputMetaData) {
   let functionName = convertNumberToUpperCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -424,7 +423,7 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
     // number is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
     if (number > 25 || number < 0) {
-      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+      returnData = ''; // Shouldn't actually need to do this, but it's a good place holder.
     } else {
       returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toUpperCase();
     }
@@ -432,19 +431,19 @@ const convertNumberToUpperCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function convertNumberToLowerCaseLetter
  * @description Converts a number from 1-26 into a lower case letter of the english alphabet a-z.
  * @param {string} inputData A string that contains a number in the range of 1-26 that
- * should be converted in a ower case letter of the english alphabet.
+ * should be converted in a lower case letter of the english alphabet.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {string} A letter of the alphabet where 1-26 is converted to a letter a-z.
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
+function convertNumberToLowerCaseLetter(inputData, inputMetaData) {
   let functionName = convertNumberToLowerCaseLetter.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -456,7 +455,7 @@ const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
     // number is:
     loggers.consoleLog(namespacePrefix + functionName, msg.cnumberIs + number);
     if (number > 25 || number < 0) {
-      returnData = ''; // Shouldn't actually ened to do this, but it's a good place holder.
+      returnData = ''; // Shouldn't actually need to do this, but it's a good place holder.
     } else {
       returnData = gen.cUpperCaseEnglishAlphabet.substring(number, number + 1).toLowerCase();
     }
@@ -464,7 +463,7 @@ const convertNumberToLowerCaseLetter = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   randomlyGenerateMixedCaseLetterOrSpecialCharacter,

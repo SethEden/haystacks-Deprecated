@@ -19,7 +19,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, fnc, msg, sys, wrd} = hayConst;
+const {bas, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.workflowBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -102,7 +102,7 @@ function doesWorkflowExistInWorkflowData(workflowData, workflowName) {
  * data structures and returns the one workflow data object that matches the input name.
  * @param {object} allWorkflows The workflow data that should be searched recursively for the specified workflow.
  * @param {string} workflowName The name of the workflow that should be found.
- * @return {object} The workflow object that corrosponds to the input workflow name.
+ * @return {object} The workflow object that corresponds to the input workflow name.
  * @author Seth Hollingsead
  * @date 2022/05/24
  */
@@ -125,7 +125,7 @@ function searchWorkflow(workflowData, workflowName) {
         if (workflowObjectTemp != false && typeof workflowObjectTemp != wrd.cobject) {
           workflowObject = workflowObjectTemp;
           break;
-        }
+        } // End-if (workflowObjectTemp != false && typeof workflowObjectTemp != wrd.cobject)
       } else if (typeof workflowData[workflowEntity] != wrd.cobject) {
         // Needed to make sure it's not a parent entity of the same name.
         workflowObject = workflowData[workflowEntity];
@@ -192,7 +192,7 @@ function getAllWorkflows(workflowDataStructure) {
         // allWorkflows after pushing to the array 2 is:
         loggers.consoleLog(namespacePrefix + functionName, msg.callWorkflowsAfterPushingToArray2Is + JSON.stringify(allWorkflows));
       }
-    } // End-for (workflowEntity in workflowData)
+    } // End-for (let workflowEntity in internalWorkflowDataStructure)
   } // End-if (typeof workflowDataStructure === wrd.cobject)
   // workflow is:
   loggers.consoleLog(namespacePrefix + functionName, msg.cworkflowIs + JSON.stringify(allWorkflows));
@@ -233,7 +233,7 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
     } else if (typeof workflowDataStructure[workflowEntity] === wrd.cobject) {
       // Search recursively
       let workflowTempObject = getWorkflowNamespaceDataObject(workflowDataStructure[workflowEntity], namespaceToFind);
-      if (workflowTempObject != false) {
+      if (workflowTempObject) {
         // Then we must have found the namespace object we were looking for in the recursion call.
         // Just return it, and skip out of the loop.
         workflowNamespaceObject = workflowTempObject;
@@ -248,7 +248,7 @@ function getWorkflowNamespaceDataObject(workflowDataStructure, namespaceToFind) 
 }
 
 export default {
-  [fnc.cgetWorkflow]: (workflowName) => getWorkflow(workflowName),
+  getWorkflow,
   doesWorkflowExist,
   doesWorkflowExistInWorkflowData,
   searchWorkflow,

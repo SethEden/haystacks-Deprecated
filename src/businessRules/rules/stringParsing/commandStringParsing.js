@@ -33,7 +33,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @author Seth Hollingsead
  * @date 2022/01/25
  */
-const cleanCommandInput = function(inputData, inputMetaData) {
+function cleanCommandInput(inputData, inputMetaData) {
   let functionName = cleanCommandInput.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -47,7 +47,7 @@ const cleanCommandInput = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isValidCommandNameString
@@ -61,7 +61,7 @@ const cleanCommandInput = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/24
  */
-const isValidCommandNameString = function(inputData, inputMetaData) {
+function isValidCommandNameString(inputData, inputMetaData) {
   let functionName = isValidCommandNameString.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -83,7 +83,7 @@ const isValidCommandNameString = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   cleanCommandInput,

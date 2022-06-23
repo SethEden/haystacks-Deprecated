@@ -30,7 +30,7 @@ import url from 'url';
 import dotenv from 'dotenv';
 import path from 'path';
 
-const {bas, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // main.
 const namespacePrefix = baseFileName + bas.cDot;
@@ -83,7 +83,7 @@ function initFramework(clientConfiguration) {
  clientConfiguration[cfg.cframeworkThemesPath] = frameworkCodeRootPath + sys.cframeworkThemesPath;
  clientConfiguration[cfg.cframeworkCommandAliasesPath] = frameworkCommandAliasesPath;
  clientConfiguration[cfg.cframeworkWorkflowsPath] = frameworkWorkflowsPath;
- clientConfiguration[cfg.cframeworkConstantsValidationData] = allSysCV.initiaizeAllSystemConstantsValidationData;
+ clientConfiguration[cfg.cframeworkConstantsValidationData] = allSysCV.initializeAllSystemConstantsValidationData;
  warden.initFrameworkSchema(clientConfiguration);
  loggers.consoleLog(namespacePrefix + functionName, msg.cAllLoadedDataIs + JSON.stringify(D));
  loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -324,16 +324,16 @@ function consoleLog(theNamespacePrefix, theFunctionName, message) {
 }
 
 export default {
-  [fnc.cinitFramework]: (clientConfiguration) => initFramework(clientConfiguration),
-  [fnc.cmergeClientBusinessRules]: (clientBusinessRules) => mergeClientBusinessRules(clientBusinessRules),
-  [fnc.cmergeClientCommands]: (clientCommands) => mergeClientCommands(clientCommands),
-  [fnc.cloadCommandAliases]: (commandAliasesPath, contextName) => loadCommandAliases(commandAliasesPath, contextName),
-  [fnc.cloadCommandWorkflows]: (workflowPath, contextName) => loadCommandWorkflows(workflowPath, contextName),
-  [fnc.cexecuteBusinessRules]: (inputs, businessRules) => executeBusinessRules(inputs, businessRules),
-  [fnc.cenqueueCommand]: (command) => enqueueCommand(command),
-  [fnc.cisCommandQueueEmpty]: () => isCommandQueueEmpty(),
-  [fnc.cprocessCommandQueue]: () => processCommandQueue(),
-  [fnc.csetConfigurationSetting]: (configurationNamespace, configurationName, configurationValue) => setConfigurationSetting(configurationNamespace, configurationName, configurationValue),
-  [fnc.cgetConfigurationSetting]: (configurationNamespace, configurationName) => getConfigurationSetting(configurationNamespace, configurationName),
-  [fnc.cconsoleLog]: (theNamespacePrefix, theFunctionName, message) => consoleLog(theNamespacePrefix, theFunctionName, message)
+  initFramework,
+  mergeClientBusinessRules,
+  mergeClientCommands,
+  loadCommandAliases,
+  loadCommandWorkflows,
+  executeBusinessRules,
+  enqueueCommand,
+  isCommandQueueEmpty,
+  processCommandQueue,
+  setConfigurationSetting,
+  getConfigurationSetting,
+  consoleLog
 };

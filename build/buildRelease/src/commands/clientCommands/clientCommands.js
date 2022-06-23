@@ -26,7 +26,7 @@ import path from 'path';
 
 const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
-// buildRelease.commands.cientCommands.clientCommands.
+// buildRelease.commands.clientCommands.clientCommands.
 const namespacePrefix = apc.cApplicationName + bas.cDot + wrd.ccommands + bas.cDot + wrd.cclient + wrd.cCommands + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -50,7 +50,7 @@ const customEchoCommand = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function deployMetaData
@@ -82,7 +82,7 @@ const deployMetaData = function(inputData, inputMetaData) {
     Name: frameworkName,
     Version: frameworkVersion,
     Description: frameworkDescription
-  };
+  }
 
   // We should check to see if the newly copied version is different than the version that was loaded initially.
   // Most likely if we are copying this file, then the version number should have been updated.
@@ -97,7 +97,7 @@ const deployMetaData = function(inputData, inputMetaData) {
     haystacks.setConfigurationSetting(wrd.csystem, sys.cFrameworkVersionNumber, frameworkVersion);
     haystacks.setConfigurationSetting(wrd.csystem, sys.cFrameworkName, frameworkName);
     haystacks.setConfigurationSetting(wrd.csystem, sys.cFrameworkDescription, frameworkDescription);
-  }
+  } // End-if (currentFrameworkVersion != frameworkVersion)
 
   let metaDataPathAndFilename = haystacks.getConfigurationSetting(wrd.csystem, cfg.cframeworkResourcesPath);
   metaDataPathAndFilename = path.resolve(metaDataPathAndFilename + sys.cmetaDatadotJson);
@@ -109,7 +109,7 @@ const deployMetaData = function(inputData, inputMetaData) {
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function deployApplication
@@ -153,16 +153,16 @@ const deployApplication = function(inputData, inputMetaData) {
     if (passAllConstantsValidation === false) {
       // ERROR: Release failed because of a failure in the constants validation system. Please fix ASAP before attempting another deployment.
       console.log(msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a);
-    }
+    } // End-if (passAllConstantsValidation === false)
     if (passAllCommandAliasesDuplicateChecks === false) {
       // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
       console.log(msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a);
-    }
+    } // End-if (passAllCommandAliasesDuplicateChecks === false)
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function releaseApplication
@@ -205,18 +205,18 @@ const releaseApplication = function(inputData, inputMetaData) {
       errorMessage = msg.cdeployApplicationMessage1a + app_msg.cdeployApplicationMessage2a;
       console.log(errorMessage);
       returnData[1] = errorMessage;
-    }
+    } // End-if (passAllConstantsValidation === false)
     if (passAllCommandAliasesDuplicateChecks === false) {
       // ERROR: Release failed because of a failure in the commands alias validation system. Please fix ASAP before attempting another deployment.
       errorMessage = msg.cdeployApplicationMessage1b + app_msg.cdeployApplicationMessage2a;
       console.log(errorMessage);
       returnData[1] = errorMessage;
-    }
+    } // End-if (passAllCommandAliasesDuplicateChecks === false)
   }
   haystacks.consoleLog(namespacePrefix, functionName, msg.creturnDataIs + JSON.stringify(returnData));
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   customEchoCommand,

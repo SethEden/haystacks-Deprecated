@@ -35,7 +35,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @date 2022/01/20
  * @NOTE: https://en.wikipedia.org/wiki/Lehmer_code
  */
-const solveLehmerCode = function(inputData, inputMetaData) {
+function solveLehmerCode(inputData, inputMetaData) {
   let functionName = solveLehmerCode.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -70,7 +70,7 @@ const solveLehmerCode = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function recursiveArrayExpansion
@@ -81,7 +81,7 @@ const solveLehmerCode = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-const recursiveArrayExpansion = function(inputData, inputMetaData) {
+function recursiveArrayExpansion(inputData, inputMetaData) {
   let functionName = recursiveArrayExpansion.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -177,7 +177,7 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getLehmerCodeValue
@@ -188,7 +188,7 @@ const recursiveArrayExpansion = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-const getLehmerCodeValue = function(inputData, inputMetaData) {
+function getLehmerCodeValue(inputData, inputMetaData) {
   let functionName = getLehmerCodeValue.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -215,7 +215,7 @@ const getLehmerCodeValue = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function generateCommandAliases
@@ -227,7 +227,7 @@ const getLehmerCodeValue = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const generateCommandAliases = function(inputData, inputMetaData) {
+function generateCommandAliases(inputData, inputMetaData) {
   let functionName = generateCommandAliases.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -274,7 +274,7 @@ const generateCommandAliases = function(inputData, inputMetaData) {
           let firstLetterOfCommandAliasWord = commandAliasWord.charAt(0).toUpperCase();
           commandAliasWord = ruleParsing.processRulesInternal([[commandAliasWord, 0], firstLetterOfCommandAliasWord], [biz.creplaceCharacterAtIndexOfString]);
           commandWordAliasesArray[j] = commandAliasWord; // Saved the changes back to array.
-        }
+        } // End-if (ruleParsing.processRulesInternal([commandAliasWord, ''], [biz.cisFirstCharacterLowerCase]) === true)
       } // End-for (let j = 0; j < commandWordAliasesArray.length; j++)
       // commandWordAliasesArray AFTER CHANGE is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandWordAliasesAfterChangeIs + JSON.stringify(commandWordAliasesArray));
@@ -309,7 +309,7 @@ const generateCommandAliases = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function aggregateCommandArguments
@@ -320,7 +320,7 @@ const generateCommandAliases = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const aggregateCommandArguments = function(inputData, inputMetaData) {
+function aggregateCommandArguments(inputData, inputMetaData) {
   let functionName = aggregateCommandArguments.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -348,7 +348,7 @@ const aggregateCommandArguments = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   solveLehmerCode,

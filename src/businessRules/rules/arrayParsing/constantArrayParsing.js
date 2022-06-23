@@ -24,7 +24,7 @@ import * as math from 'mathjs';
 import chalk from 'chalk';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.constantArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -39,19 +39,19 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @date 2022/01/19
  * @NOTE https://stackoverflow.com/questions/6521245/finding-longest-string-in-array
  */
-const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
+function getLengthOfLongestStringInArray(inputData, inputMetaData) {
   let functionName = getLengthOfLongestStringInArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = 0;
   if (inputData) {
-    returnData = Math.max(...(inputData.map(el => el.length)));
+    returnData = math.max(...(inputData.map(el => el.length)));
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function searchForPatternsInStringArray
@@ -64,7 +64,7 @@ const getLengthOfLongestStringInArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/19
  */
-const searchForPatternsInStringArray = function(inputData, inputMetaData) {
+function searchForPatternsInStringArray(inputData, inputMetaData) {
   let functionName = searchForPatternsInStringArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -83,7 +83,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
       // currentMasterStringArrayElement is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccurrentMasterStringArrayElementIs + currentMasterStringArrayElement);
       if (currentMasterStringArrayElement.includes(bas.cSpace) === false) {
-        // currentMasterStringArrayElement does not contain a sapce character
+        // currentMasterStringArrayElement does not contain a space character
         loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInStringArrayMessage1);
         // NOTE: All of the other loggers.consoleLog below this are not actually getting called for some reason.
         // That is why I have added the hard-coded console ogs, but really they only need to be enabled if this function needs to be debugged.
@@ -126,7 +126,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
                   if (otherStringToCompare.includes(stringToCompare)) {
                     // loggers.consoleLog(namespacePrefix + functionName, 'FOUND A MATCH!!!! ' + stringToCompare);
                     // console.log('FOUND A MATCH!!!! ' + stringToCompare);
-                    // Here we have found a match amoung brothers. We need to see if this stringToCompare has already been added to the returnData array.
+                    // Here we have found a match among brothers. We need to see if this stringToCompare has already been added to the returnData array.
                     if (ruleParsing.processRulesInternal([[returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === false) {
                       returnData.push(stringToCompare);
                     } // End-if (ruleParsing.processRulesInternal([[returnData, stringToCompare], ruleParsing.getRule(biz.cascertainMatchingElements)], [biz.cdoesArrayContainValue]) === false)
@@ -138,7 +138,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
         } // End-for (let b = minStringLength; b <= maxStringLength; b++)
       } else { // Else-clause if (currentMaserStringArrayElement.includes(bas.cSpace) === false)
         // WARNING: Teh current string being searched contains a space character, we are going to skip comparison.
-        loggers.consoleLog(namespace + functionName, msg.cSearchForPatternsInSringArrayMessage2 + msg.cSearchForPatternsInStringArrayMessage3);
+        loggers.consoleLog(namespacePrefix + functionName, msg.cSearchForPatternsInSringArrayMessage2 + msg.cSearchForPatternsInStringArrayMessage3);
       }
     } // End-for (let a = 0; a < inputData.length; a++)
   } else { // Else-clause if (inputData && inputData.length > 0)
@@ -148,7 +148,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function validatePatternsThatNeedImplementation
@@ -159,7 +159,7 @@ const searchForPatternsInStringArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-const validatePatternsThatNeedImplementation = function(inputData, inputMetaData) {
+function validatePatternsThatNeedImplementation(inputData, inputMetaData) {
   let functionName = validatePatternsThatNeedImplementation.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -177,7 +177,7 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(0,255,0)(passMessage);
-        }
+        } // End-if (colorizeLogsEnabled === true)
         console.log(passMessage);
         // constant does NOT exist:
         loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesNotExist + currentString);
@@ -195,17 +195,17 @@ const validatePatternsThatNeedImplementation = function(inputData, inputMetaData
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(255,0,0)(passMessage);
-        }
+        } // End-if colorizeLogsEnabled === true
         console.log(passMessage);
         // constant does exist:
         loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesExist + currentString);
       }
-    } // End-for (let i = 0; i < inputData.length; i++)
+    } // End-for (const element of inputData)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   getLengthOfLongestStringInArray,

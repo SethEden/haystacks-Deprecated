@@ -147,7 +147,7 @@ async function application() {
   // Really this is about getting out the application name, version and about message.
   while (haystacks.isCommandQueueEmpty() === false) {
     commandResult = haystacks.processCommandQueue();
-  }
+  } // End-while (haystacks.isCommandQueueEmpty() === false)
 
   // NOW process the command args and add them to the command queue for execution.
   if (!process.argv && process.argv.length > 0) {
@@ -161,7 +161,7 @@ async function application() {
     }
     while (haystacks.isCommandQueueEmpty() === false) {
       commandResult = haystacks.processCommandQueue();
-    }
+    } // End-while (haystacks.isCommandQueueEmpty() === false)
   } // End-if (!process.argv && process.argv.length > 0)
 
   // NOW the application can continue with the interactive interface fi the flag was set to false.
@@ -177,7 +177,7 @@ async function application() {
         // We will use wrd.cprompt here because it is working. No idea what the issue is with biz.prompt.
         commandInput = haystacks.executeBusinessRules([bas.cGreaterThan, ''], [wrd.cprompt]);
         haystacks.enqueueCommand(commandInput);
-      }
+      } // End-if (haystacks.isCommandQueueEmpty() === true)
       commandResult = haystacks.processCommandQueue();
       if (commandResult[exitConditionArrayIndex] === false) {
         // END command parser
@@ -188,7 +188,7 @@ async function application() {
         // Exiting TEST HARNESS APPLICATION
         haystacks.consoleLog(namespacePrefix, functionName, app_msg.capplicationMessage05);
         break;
-      }
+      } // End-if (commandResult[exitConditionArrayIndex] === false)
     } // End-while (programRunning === true)
   } // End-if (argumentDrivenInterface === false)
   haystacks.consoleLog(namespacePrefix, functionName, msg.cEND_Function);

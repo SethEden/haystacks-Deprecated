@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * @file promptOperations.js
  * @module promptOperations
@@ -18,7 +19,7 @@ import hayConst from '@haystacks/constants';
 import fs from 'fs';
 import path from 'path';
 
-const {bas, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.promptOperations.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
@@ -29,11 +30,11 @@ const term = 13; // carriage return
  * @description Prompts the user for some input and returns the input.
  * @param {string} inputData What the prompt should display when asking the user for input.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A strng of whatever input the user gave.
+ * @return {string} A string of whatever input the user gave.
  * @author Seth Hollingsead
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  */
-const prompt = function(inputData, inputMetaData) {
+function prompt(inputData, inputMetaData) {
   let functionName = prompt.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.caskIs + JSON.stringify(inputData));
@@ -44,6 +45,7 @@ const prompt = function(inputData, inputMetaData) {
   }
 
   let buffer = Buffer.alloc(1024),
+    // eslint-disable-next-line no-unused-vars
     fd = process.platform === gen.cwin32 ? process.stdin.fd : fs.openSync(sys.cdevtty, bas.cr),
     // readSize = fs.readSync(fd, buffer, 0, 1024);
     readSize = fs.readSync(0, buffer, 0, 1024);
@@ -64,7 +66,7 @@ const prompt = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   prompt

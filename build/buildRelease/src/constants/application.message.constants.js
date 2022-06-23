@@ -13,7 +13,7 @@
 
 // External imports
 import hayConst from '@haystacks/constants';
-const {bas, gen, msg, num, phn, sys, wrd} = hayConst;
+const {bas, gen, num, sys, wrd} = hayConst;
 
 // Client String Parsing
 export const cclientStringParsingDotCustomEcho = wrd.cclient + wrd.cString + wrd.cParsing + bas.cDot + wrd.ccustom + wrd.cEcho; // clientStringParsing.customEcho

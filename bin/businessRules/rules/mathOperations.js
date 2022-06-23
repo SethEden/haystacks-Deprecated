@@ -5,7 +5,6 @@
  * @requires module:ruleParsing
  * @requires module:loggers
  * @requires {@link https://www.npmjs.com/package/@haystacks/constants|@haystacks/constants}
- * @requires {@link https://mathjs.org/index.html|math}
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Seth Hollingsead
  * @date 2022/01/27
@@ -17,7 +16,6 @@ import ruleParsing from './ruleParsing.js';
 import loggers from '../../executrix/loggers.js';
 // External imports
 import hayConst from '@haystacks/constants';
-import * as math from 'mathjs';
 import path from 'path';
 
 const {bas, biz, msg, sys, wrd} = hayConst;
@@ -27,15 +25,15 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
 
 /**
  * @function hex2rgbConversion
- * @description Converts a hexidecimal color value to an RGB color value.
- * @param {string} inputData The hexidecmal value that should be converted to an RGB value.
- * @param {string} inputMetaData Not used for this busienss rule.
+ * @description Converts a hexadecimal color value to an RGB color value.
+ * @param {string} inputData The hexadecimal value that should be converted to an RGB value.
+ * @param {string} inputMetaData Not used for this business rule.
  * @return {array<integer,integer,integer>} The RGB value.
  * @author Seth Hollingsead
  * @date 2022/01/27
  * @reference {@link: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb}
  */
-export const hex2rgbConversion = function(inputData, inputMetaData) {
+function hex2rgbConversion(inputData, inputMetaData) {
   let functionName = hex2rgbConversion.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -47,7 +45,7 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
     // But that is just a personal/professional opinion,
     // I am sure others have their own reasons to choose the regular expression technique,
     // perhaps performance constraints, etc...
-    // I am including the alternate algorthim below as reference in case someone ever wants/needs it,
+    // I am including the alternate algorithm below as reference in case someone ever wants/needs it,
     // as an alternative to the below implementation.
 
     // function hexToRgb(hex) {
@@ -70,44 +68,43 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isOdd
  * @description Determines if the input value is an odd number or not an odd number.
  * Acts as a wrapper for calling the math operations function of the same name,
  * but this business rule processing the same from a string input.
- * @param {string} inputData The value that should be evaluated to determien if it is odd or not odd.
+ * @param {string} inputData The value that should be evaluated to determine if it is odd or not odd.
  * @param {string} inputMetaData Not used for this business rule.
  * @return {boolean} True or False to indicate if the value passed in is an odd value or not an odd value.
  * @author Seth Hollingsead
  * @date 2022/01/25
  * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
  */
-const isOdd = function(inputData, inputMetaData) {
+function isOdd(inputData, inputMetaData) {
   let functionName = isOdd.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    // if (math.isNumeric(inputData) === true) {
     if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisInteger]) === true) {
       let inputValue = parseInt(inputData);
       let result = inputValue % 2;
       if (result === 1) {
         returnData = true;
       }
-    } // End-if (math.isNumeric(inputData) === true)
+    } // End-if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisInteger]) === true)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isEven
- * @description Determiens if the input value is an even number or not an even number.
+ * @description Determines if the input value is an even number or not an even number.
  * Acts as a wrapper for calling the math operations function of the same name,
  * but this business rule processing the same from a string input.
  * @param {string} inputData The value that should be evaluated to determine if it is even or not even.
@@ -116,29 +113,28 @@ const isOdd = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/25
  * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
- * @NOTE This fucntion isn't actually needed, as we can just invert our logic for calling isOdd,
+ * @NOTE This function isn't actually needed, as we can just invert our logic for calling isOdd,
  * but I provided it here anyways for completeness.
  */
-const isEven = function(inputData, inputMetaData) {
+function isEven(inputData, inputMetaData) {
   let functionName = isEven.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + inputMetaData);
   let returnData = false;
   if (inputData) {
-    // if (math.isNumeric(inputData) === true)
     if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisInteger]) === true) {
       let inputValue = parseInt(inputData);
       let result = inputValue % 2;
       if (result === 0) {
         returnData = true;
       }
-    } // End-if (math.isNumeric(inputData) === true)
+    } // End-if (ruleParsing.processRulesInternal([inputData, ''], [biz.cisInteger]) === true)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   hex2rgbConversion,

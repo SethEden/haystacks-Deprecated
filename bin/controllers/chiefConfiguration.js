@@ -2,7 +2,7 @@
  * @file chiefConfiguration.js
  * @module chiefConfiguration
  * @description Contains all the functions to manage the configuration system,
- * such as oading, setup, parsing & processing.
+ * such as loading, setup, parsing & processing.
  * @requires module:ruleBroker
  * @requires module:chiefData
  * @requires module:configurator
@@ -25,7 +25,7 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // controllers.chiefConfiguration.
 const namespacePrefix = wrd.ccontrollers + bas.cDot + baseFileName +bas.cDot;
@@ -56,7 +56,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   configurator.setConfigurationSetting(wrd.csystem, sys.cframeworkConfigPath, frameworkConfigPath);
   let allAppConfigData = {};
   let allFrameworkConfigData = {};
-  let universalDebugConfigSetting = chiefData.searchForUniversalDebugConfigSetting(
+  chiefData.searchForUniversalDebugConfigSetting(
     sys.cappConfigPath, sys.cframeworkConfigPath
   );
   allFrameworkConfigData = chiefData.setupAllJsonConfigData(sys.cframeworkConfigPath, wrd.cconfiguration);
@@ -69,7 +69,7 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
   // console.log(`END ${namespacePrefix}${functionName} function`);
   loggers.consoleLog(namespacePrefix + functionName, msg.cALL_DATA_IS + JSON.stringify(D));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 /**
  * @function parseLoadedConfigurationData
@@ -82,21 +82,16 @@ function setupConfiguration(appConfigPath, frameworkConfigPath) {
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
 function parseLoadedConfigurationData(allConfigurationData) {
-  let functionName = parseLoadedConfigurationData.name;
+  // let functionName = parseLoadedConfigurationData.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`allConfigurationData is: ${JSON.stringify(allConfigurationData)}`);
   let highLevelSystemConfigurationContainer = {};
   let highLevelDebugConfigurationContainer = {};
   let rules = [biz.cstringToDataType];
-  let configurationElement;
-  let configurationSubElement;
   let fullyQualifiedName;
   let namespace;
   let name;
-  let type;
   let value;
-  let version;
-  let advancedDebugSettingPrefix;
   let returnData = false;
 
   highLevelSystemConfigurationContainer = allConfigurationData[wrd.csystem];
@@ -109,7 +104,6 @@ function parseLoadedConfigurationData(allConfigurationData) {
       fullyQualifiedName = '';
       namespace = '';
       name = '';
-      value = '';
       value = highLevelSystemConfigurationContainer[key];
       // console.log('value is: ' + value);
       if (!!value || value === false) {
@@ -142,7 +136,6 @@ function parseLoadedConfigurationData(allConfigurationData) {
       fullyQualifiedName = '';
       namespace = '';
       name = '';
-      value = '';
       value = highLevelDebugConfigurationContainer[key];
       // console.log('value is: ' + value);
       if (!!value || value === false) {
@@ -166,11 +159,9 @@ function parseLoadedConfigurationData(allConfigurationData) {
   // console.log('returnData is: ' + returnData);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 export default {
-  [fnc.csetupConfiguration]: (appConfigPath, frameworkConfigPath) => setupConfiguration(
-    appConfigPath, frameworkConfigPath
-  ),
+  setupConfiguration,
   parseLoadedConfigurationData
 };

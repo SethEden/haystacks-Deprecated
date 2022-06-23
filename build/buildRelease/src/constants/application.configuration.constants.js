@@ -10,7 +10,7 @@
 
 // External imports
 import hayConst from '@haystacks/constants';
-const {bas, wrd} = hayConst;
+const {wrd} = hayConst;
 
 export const cargumentDrivenInterface = wrd.cargument + wrd.cDriven + wrd.cInterface; // argumentDrivenInterface
 export const csourcePath = wrd.csource + wrd.cPath; // sourcePath

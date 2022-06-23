@@ -21,7 +21,7 @@ import D from './data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, fnc, msg, num, sys, wrd} = hayConst;
+const {bas, biz, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // structures.stack.
 const namespacePrefix = wrd.cstructures + bas.cDot + baseFileName + bas.cDot;
@@ -74,7 +74,7 @@ function clearStack(stackNameSpace) {
  * @function push
  * @description Pushes some data on the stack identified by the namespace input parameter.
  * @param {string} stackNameSpace The namespace of the stack that should be used to push the data onto.
- * @param {string|integer|booelan|object|array} value The data that should be pushed on the stack.
+ * @param {string|integer|boolean|object|array} value The data that should be pushed on the stack.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/02/01
@@ -128,7 +128,7 @@ function pop(stackNameSpace) {
 
 /**
  * @function isEmpty
- * @description Dtermines if the stack specified by the namespace parameter is empty or not empty.
+ * @description Determines if the stack specified by the namespace parameter is empty or not empty.
  * @param {string} stackNameSpace The namespace of the stack that should be checked if it is empty or not empty.
  * @return {boolean} True or False to indicate if the specified stack is empty or not empty.
  * @author Seth Hollingsead
@@ -180,7 +180,7 @@ function length(stackNameSpace) {
 
 /**
  * @function contains
- * @description Dtermines if the specified stack contains the specified value.
+ * @description Determines if the specified stack contains the specified value.
  * @param {string} stackNameSpace The namespace of the stack that should be searched for the specified value.
  * @param {string|integer|object|array} value The value/object that should be searched to see if it exists on the specified stack or does not exist.
  * @return {boolean} True or False to indicate if the value/object exists or does not exist.
@@ -228,12 +228,12 @@ function print(stackNameSpace) {
 }
 
 export default {
-  [fnc.cinitStack]: (stackNameSpace) => initStack(stackNameSpace),
-  [fnc.cclearStack]: (stackNameSpace) => clearStack(stackNameSpace),
-  [fnc.cpush]: (stackNameSpace, value) => push(stackNameSpace, value),
-  [fnc.cpop]: (stackNameSpace) => pop(stackNameSpace),
-  [fnc.cisEmpty]: (stackNameSpace) => isEmpty(stackNameSpace),
-  [fnc.clength]: (stackNameSpace) => length(stackNameSpace),
-  [fnc.ccontains]: (stackNameSpace, value) => contains(stackNameSpace, value),
-  [fnc.cprint]: (stackNameSpace) => print(stackNameSpace)
+  initStack,
+  clearStack,
+  push,
+  pop,
+  isEmpty,
+  length,
+  contains,
+  print
 };

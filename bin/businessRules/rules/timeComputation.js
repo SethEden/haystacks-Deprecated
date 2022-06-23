@@ -19,7 +19,7 @@ import hayConst from '@haystacks/constants';
 import moment from 'moment';
 import path from 'path';
 
-const {bas, fnc, gen, msg, sys, wrd} = hayConst;
+const {bas, gen, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.timeComputation.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + baseFileName + bas.cDot;
@@ -30,12 +30,13 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @param {string} inputData The formatting string, that tells moment in what format to
  * return the value for the day, month, year, hour, minute, second and millisecond.
  * @param {string} inputMetaData Not used for this business rule.
- * @return {string} A time stamp strng that has been formatted according to the input format.
+ * @return {string} A time stamp string that has been formatted according to the input format.
  * @author Seth Hollingsead
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const getNowMoment = function(inputData, inputMetaData) {
+// eslint-disable-next-line no-unused-vars
+function getNowMoment(inputData, inputMetaData) {
   // let functionName = getNowMoment.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${inputData}`);
@@ -45,7 +46,7 @@ const getNowMoment = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${returnData}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function computeDeltaTime
@@ -56,7 +57,7 @@ const getNowMoment = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  */
-const computeDeltaTime = function(inputData, inputMetaData) {
+function computeDeltaTime(inputData, inputMetaData) {
   let functionName = computeDeltaTime.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -68,7 +69,7 @@ const computeDeltaTime = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function reformatDeltaTime
@@ -79,7 +80,7 @@ const computeDeltaTime = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  */
-const reformatDeltaTime = function(inputData, inputMetaData) {
+function reformatDeltaTime(inputData, inputMetaData) {
   let functionName = reformatDeltaTime.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -89,7 +90,7 @@ const reformatDeltaTime = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function sleep
@@ -101,7 +102,7 @@ const reformatDeltaTime = function(inputData, inputMetaData) {
  * @date 2022/05/04 - May the Forth be with you!! ;-)
  * @reference {@link https://www.sitepoint.com/delay-sleep-pause-wait/}
  */
-const sleep = function(inputData, inputMetaData) {
+function sleep(inputData, inputMetaData) {
   let functionName = sleep.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -112,7 +113,7 @@ const sleep = function(inputData, inputMetaData) {
     currentDate = moment();
   } while (currentDate - date < inputData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
-};
+}
 
 export default {
   getNowMoment,

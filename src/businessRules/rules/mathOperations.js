@@ -33,7 +33,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @date 2022/01/27
  * @reference {@link: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb}
  */
-export const hex2rgbConversion = function(inputData, inputMetaData) {
+function hex2rgbConversion(inputData, inputMetaData) {
   let functionName = hex2rgbConversion.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -68,7 +68,7 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isOdd
@@ -82,7 +82,7 @@ export const hex2rgbConversion = function(inputData, inputMetaData) {
  * @date 2022/01/25
  * @reference {@link https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript}
  */
-const isOdd = function(inputData, inputMetaData) {
+function isOdd(inputData, inputMetaData) {
   let functionName = isOdd.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -100,7 +100,7 @@ const isOdd = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isEven
@@ -116,7 +116,7 @@ const isOdd = function(inputData, inputMetaData) {
  * @NOTE This function isn't actually needed, as we can just invert our logic for calling isOdd,
  * but I provided it here anyways for completeness.
  */
-const isEven = function(inputData, inputMetaData) {
+function isEven(inputData, inputMetaData) {
   let functionName = isEven.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + inputData);
@@ -134,7 +134,7 @@ const isEven = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   hex2rgbConversion,

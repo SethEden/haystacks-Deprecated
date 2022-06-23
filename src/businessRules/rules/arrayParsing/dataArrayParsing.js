@@ -37,7 +37,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @date 2022/01/20
  * @NOTE: https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
  */
-const arraysAreEqual = function(inputData, inputMetaData) {
+function arraysAreEqual(inputData, inputMetaData) {
   let functionName = arraysAreEqual.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -45,13 +45,13 @@ const arraysAreEqual = function(inputData, inputMetaData) {
   let returnData = false;
   if (inputData && inputMetaData) {
     if (inputData === inputMetaData) { returnData = true; }
-    if (inputData === null || inputMetaData === null) { returnData === false; }
-    if (inputData.length != inputMetaData.length) { returnData === false; }
+    if (inputData === null || inputMetaData === null) { returnData = false; }
+    if (inputData.length != inputMetaData.length) { returnData = false; }
   } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function storeData
@@ -62,7 +62,7 @@ const arraysAreEqual = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-const storeData = function(inputData, inputMetaData) {
+function storeData(inputData, inputMetaData) {
   let functionName = arraysAreEqual.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -71,11 +71,11 @@ const storeData = function(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     dataBroker.storeData(inputData, inputMetaData);
     returnData = true;
-  }
+  } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getStoredData
@@ -86,19 +86,19 @@ const storeData = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/20
  */
-const getStoredData = function(inputData, inputMetaData) {
+function getStoredData(inputData, inputMetaData) {
   let functionName = getStoredData.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputMetaDataIs + JSON.stringify(inputMetaData));
   let returnData = false;
   if (inputData) {
-    returnData = dataBroker.getDate(inputData);
+    returnData = dataBroker.getData(inputData);
   }
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isObjectEmpty
@@ -109,7 +109,7 @@ const getStoredData = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isObjectEmpty = function(inputData, inputMetaData) {
+function isObjectEmpty(inputData, inputMetaData) {
   let functionName = isObjectEmpty.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -129,7 +129,7 @@ const isObjectEmpty = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isArrayEmpty
@@ -140,7 +140,7 @@ const isObjectEmpty = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isArrayEmpty = function(inputData, inputMetaData) {
+function isArrayEmpty(inputData, inputMetaData) {
   let functionName = isArrayEmpty.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -152,7 +152,7 @@ const isArrayEmpty = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isObject
@@ -163,7 +163,7 @@ const isArrayEmpty = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isObject = function(inputData, inputMetaData) {
+function isObject(inputData, inputMetaData) {
   let functionName = isObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -173,11 +173,11 @@ const isObject = function(inputData, inputMetaData) {
     if (typeof inputData === wrd.cobject) {
       returnData = true;
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isArray
@@ -189,7 +189,7 @@ const isObject = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isArray = function(inputData, inputMetaData) {
+function isArray(inputData, inputMetaData) {
   let functionName = isArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -201,7 +201,7 @@ const isArray = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isArrayOrObject
@@ -213,7 +213,7 @@ const isArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isArrayOrObject = function(inputData, inputMetaData) {
+function isArrayOrObject(inputData, inputMetaData) {
   let functionName = isArrayOrObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -223,11 +223,11 @@ const isArrayOrObject = function(inputData, inputMetaData) {
     if (isObject(inputData, '') === true || isArray(inputData, '') === true) {
       returnData = true;
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function isNonZeroLengthArray
@@ -239,7 +239,7 @@ const isArrayOrObject = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const isNonZeroLengthArray = function(inputData, inputMetaData) {
+function isNonZeroLengthArray(inputData, inputMetaData) {
   let functionName = isNonZeroLengthArray.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -249,11 +249,11 @@ const isNonZeroLengthArray = function(inputData, inputMetaData) {
     if (isArray(inputData, '') === true && inputData.length >= 1) {
       returnData = true;
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function arrayDeepClone
@@ -266,7 +266,7 @@ const isNonZeroLengthArray = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/01/21
  */
-const arrayDeepClone = function(inputData, inputMetaData) {
+function arrayDeepClone(inputData, inputMetaData) {
   let functionName = arrayDeepClone.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -278,7 +278,7 @@ const arrayDeepClone = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function objectDeepMerge
@@ -290,7 +290,7 @@ const arrayDeepClone = function(inputData, inputMetaData) {
  * @date 2020/04/23
  * @reference: https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge
  */
-const objectDeepMerge = function(inputData, inputMetaData) {
+function objectDeepMerge(inputData, inputMetaData) {
   let functionName = objectDeepMerge.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -407,7 +407,7 @@ const objectDeepMerge = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function getNamespacedDataObject
@@ -428,7 +428,7 @@ const objectDeepMerge = function(inputData, inputMetaData) {
  * And by the time this gets called everything should be effectively bootstrapped.
  * Therefore we can use the loggers here.
  */
-const getNamespacedDataObject = function(inputData, inputMetaData) {
+function getNamespacedDataObject(inputData, inputMetaData) {
   let functionName = getNamespacedDataObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -448,7 +448,7 @@ const getNamespacedDataObject = function(inputData, inputMetaData) {
         break;
       }
       namespaceDataObject = namespaceDataObject[element];
-    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+    } // End-for (const element of inputData)
     if (processingValidData === true) {
       returnData = namespaceDataObject;
     }
@@ -456,7 +456,7 @@ const getNamespacedDataObject = function(inputData, inputMetaData) {
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 /**
  * @function setNamespacedDataObject
@@ -468,7 +468,7 @@ const getNamespacedDataObject = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2022/05/11
  */
-const setNamespacedDataObject = function(inputData, inputMetaData) {
+function setNamespacedDataObject(inputData, inputMetaData) {
   let functionName = setNamespacedDataObject.name;
   loggers.consoleLog(namespacePrefix + functionName, msg.cBEGIN_Function);
   loggers.consoleLog(namespacePrefix + functionName, msg.cinputDataIs + JSON.stringify(inputData));
@@ -488,13 +488,13 @@ const setNamespacedDataObject = function(inputData, inputMetaData) {
           namespaceDataObject[inputData[i + 1]] = inputMetaData;
         }
         returnData = true;
-      }
-    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+      } // End-if (i === inputData.length - 2)
+    } // End-for (let i = 0; i < inputData.length - 1; i++)
   } // End-if (inputData && inputData.length > 0)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
-};
+}
 
 export default {
   arraysAreEqual,

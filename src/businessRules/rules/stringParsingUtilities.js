@@ -38,7 +38,7 @@ const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + 
  * @date 2021/10/27
  * @NOTE Cannot use the loggers here, because dependency data will have never been loaded.
  */
-const parseSystemRootPath = function(inputData, inputMetaData) {
+function parseSystemRootPath(inputData, inputMetaData) {
   // let functionName = parseSystemRootPath.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -68,7 +68,7 @@ const parseSystemRootPath = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function stringToDataType
@@ -85,7 +85,7 @@ const parseSystemRootPath = function(inputData, inputMetaData) {
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const stringToDataType = function(inputData, inputMetaData) {
+function stringToDataType(inputData, inputMetaData) {
   // let functionName = stringToDataType.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -109,12 +109,12 @@ const stringToDataType = function(inputData, inputMetaData) {
       default: // We don't know what kind of object this is, better just return it the way it is.
         returnData = inputData;
         break;
-     }
+     } // End-switch (dataType)
   } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function stringToBoolean
@@ -129,7 +129,7 @@ const stringToDataType = function(inputData, inputMetaData) {
  * If we cause this function to evaluate a 0 or 1 to a Boolean, then the integer function would never get a chance to evaluate.
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const stringToBoolean = function(inputData, inputMetaData) {
+function stringToBoolean(inputData, inputMetaData) {
   // let functionName = stringToBoolean.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -149,13 +149,13 @@ const stringToBoolean = function(inputData, inputMetaData) {
         default:
           returnData = false;
           break;
-      }
+      } // End-switch (inputData.toLowerCase().trim())
     }
- }
+ } // End-if (inputData)
  // console.log(`returnData is: ${JSON.stringify(returnData)}`);
  // console.log(`END ${namespacePrefix}${functionName} function`);
  return returnData;
-};
+}
 
 /**
  * @function determineObjectDataType
@@ -168,7 +168,7 @@ const stringToBoolean = function(inputData, inputMetaData) {
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const determineObjectDataType = function(inputData, inputMetaData) {
+function determineObjectDataType(inputData, inputMetaData) {
   // let functionName = determineObjectDataType.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -189,11 +189,11 @@ const determineObjectDataType = function(inputData, inputMetaData) {
       // At least not yet!
       returnData = wrd.cObject;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function isBoolean
@@ -207,7 +207,7 @@ const determineObjectDataType = function(inputData, inputMetaData) {
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const isBoolean = function(inputData, inputMetaData) {
+function isBoolean(inputData, inputMetaData) {
   // let functionName = isBoolean.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -225,11 +225,11 @@ const isBoolean = function(inputData, inputMetaData) {
         returnData = false;
       }
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function isInteger
@@ -241,7 +241,7 @@ const isBoolean = function(inputData, inputMetaData) {
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const isInteger = function(inputData, inputMetaData) {
+function isInteger(inputData, inputMetaData) {
   // let functionName = isInteger.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -260,11 +260,11 @@ const isInteger = function(inputData, inputMetaData) {
       // Possibly also console log here for debugging.
       returnData = false;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function isFloat
@@ -276,7 +276,7 @@ const isInteger = function(inputData, inputMetaData) {
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const isFloat = function(inputData, inputMetaData) {
+function isFloat(inputData, inputMetaData) {
   // let functionName = isFloat.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -289,11 +289,11 @@ const isFloat = function(inputData, inputMetaData) {
       // Possibly also console log here for debugging.
       returnData = false;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function isString
@@ -307,7 +307,7 @@ const isFloat = function(inputData, inputMetaData) {
  * @date 2021/11/10
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const isString = function(inputData, inputMetaData) {
+function isString(inputData, inputMetaData) {
   // let functionName = isString.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -322,11 +322,11 @@ const isString = function(inputData, inputMetaData) {
       // Possibly also console log here for debugging.
       returnData = false;
     }
-  }
+  } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function replaceDoublePercentWithMessage
@@ -339,7 +339,7 @@ const isString = function(inputData, inputMetaData) {
  * @date 2021/12/24
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
-const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
+function replaceDoublePercentWithMessage(inputData, inputMetaData) {
   // let functionName = replaceDoublePercentWithMessage.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -351,7 +351,7 @@ const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 /**
  * @function utilitiesReplaceCharacterWithCharacter
@@ -366,7 +366,7 @@ const replaceDoublePercentWithMessage = function(inputData, inputMetaData) {
  * @author Seth Hollingsead
  * @date 2021/12/28
  */
-const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData) {
+function utilitiesReplaceCharacterWithCharacter(inputData, inputMetaData) {
   // let functionName = utilitiesReplaceCharacterWithCharacter.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   // console.log(`inputData is: ${JSON.stringify(inputData)}`);
@@ -390,7 +390,7 @@ const utilitiesReplaceCharacterWithCharacter = function(inputData, inputMetaData
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnData;
-};
+}
 
 export default {
   parseSystemRootPath,

@@ -20,9 +20,10 @@ import D from '../structures/data.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, fnc, msg, sys, wrd} = hayConst;
+const {bas, biz, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.ruleBroker.
+// eslint-disable-next-line no-unused-vars
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
 
 /**
@@ -56,7 +57,7 @@ function bootStrapBusinessRules() {
  * @NOTE Cannot use the loggers here, because of a circular dependency.
  */
 function addClientRules(clientRules) {
-  let functionName = bootStrapBusinessRules.name;
+  // let functionName = bootStrapBusinessRules.name;
   // console.log(`BEGIN ${namespacePrefix}${functionName} function`);
   Object.assign(D[sys.cbusinessRules], clientRules);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -109,7 +110,7 @@ function processRules(inputs, rulesToExecute) {
 }
 
 export default {
-  [fnc.cbootStrapBusinessRules]: () => bootStrapBusinessRules(),
-  [fnc.caddClientRules]: (clientRules) => addClientRules(clientRules),
-  [fnc.cprocessRules]: (inputs, rulesToExecute) => processRules(inputs, rulesToExecute)
+  bootStrapBusinessRules,
+  addClientRules,
+  processRules
 };
