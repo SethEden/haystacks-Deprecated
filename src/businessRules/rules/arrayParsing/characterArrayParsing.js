@@ -99,7 +99,7 @@ function doesArrayContainCharacter(inputData, inputMetaData) {
  * @description Removes all instances of a character or value from all array elements.
  * @param {string|integer|boolean|float|object} inputData The character, integer, boolean, float or object
  * that should be removed from all instances of the input array.
- * @param {array<string|boolean|integer|object>} inputMetaData Teh array from which all instances of the input character, integer, etc...should be removed.
+ * @param {array<string|boolean|integer|object>} inputMetaData The array from which all instances of the input character, integer, etc...should be removed.
  * @return {array<string|boolean|integer|object>} The array after having the specified character removed from all elements of the input array.
  * @author Seth Hollingsead
  * @date 2022/01/19
@@ -128,7 +128,7 @@ function removeCharacterFromArray(inputData, inputMetaData) {
  * @function replaceCharacterAtIndex
  * @description Replaces a character at the specified index with another character.
  * @param {string} inputData The string which should have the specified character changed, then returned.
- * @param {array<integer,string>} inputMetaData An array ith an integer of what index the character should be replaced,
+ * @param {array<integer,string>} inputMetaData An array with an integer of what index the character should be replaced,
  * and a string with the character or characters that should be inserted at the specified index.
  * @return {string} The modified string.
  * @author Seth Hollingsead

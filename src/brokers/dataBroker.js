@@ -649,7 +649,7 @@ function initializeConstantsValidationData() {
 /**
  * @function addConstantsValidationData
  * @description Adds a library of constants vaidation data to the existing constants vaidation data.
- * @param {array<array<string,object>>} constantLibraryData The array of data that should be added to the validation data et for the purpose of validation.
+ * @param {array<array<string,object>>} constantLibraryData The array of data that should be added to the validation data set for the purpose of validation.
  * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
@@ -682,8 +682,9 @@ function addConstantsValidationData(constantLibraryData) {
  * @function addDeeplyNestedConstantsValidationData
  * @description Adds all the constants validation auxiliary data that is deeply nested inside sub-data structures to the main D-data structure.
  * Such as file paths, and validation messages.
- * @param {string} contextName The name that should be used when accessing and alo adding the data to the D-data structure.
+ * @param {string} contextName The name that should be used when accessing and also adding the data to the D-data structure.
  * @param {array<array<string,object>>} deeplyNestedData The actual data that should be added.
+ * @return {void}
  * @author Seth Hollingsead
  * @date 2022/03/22
  */
@@ -749,7 +750,7 @@ function getDataCategoryDetailNameFromContextName(contextName) {
 /**
  * @function extractDataFromPapaParseObject
  * @description Extracts the parsed data from the papa parse data object.
- * @param {object} data Contains the full contents of the papaparse data object, for which we need to get data out of.
+ * @param {object} data Contains the full contents of the papa parse data object, for which we need to get data out of.
  * @param {string} contextName The name of the context either Command, Macro from which data should be retrieved.
  * @return {object} The fully parsed data that we intend to use for the application.
  * @author Seth Hollingsead

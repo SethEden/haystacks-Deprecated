@@ -102,7 +102,7 @@ function doesWorkflowExistInWorkflowData(workflowData, workflowName) {
  * data structures and returns the one workflow data object that matches the input name.
  * @param {object} allWorkflows The workflow data that should be searched recursively for the specified workflow.
  * @param {string} workflowName The name of the workflow that should be found.
- * @return {object} The workflow object that corrosponds to the input workflow name.
+ * @return {object} The workflow object that corresponds to the input workflow name.
  * @author Seth Hollingsead
  * @date 2022/05/24
  */
