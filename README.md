@@ -1,5 +1,6 @@
-# Haystacks
+# Haystacks-Deprecated
 A basic NodeJS template App that can be easily re-used and forked to make many different kinds of apps written with ES6 syntax.
+This repo has been put into a deprecated status. For the latest updates to the haystacks framework, please look for Haystacks-Sync (Support Only) or Haystacks-Async (Active Development)
 
 # Purpose
 The purpose of this repository is to provide a command-line utility to do whatever it is that you need to automate. It's a general purpose automation development platform.
