@@ -310,7 +310,7 @@ function parseArgumentAsArray(inputData, inputMetaData) {
     if (argumentValue.includes(secondaryCommandArgsDelimiter) === true) {
       // argumentValue contains the delimiter, lets split it!
       loggers.consoleLog(namespacePrefix + functionName, msg.cargumentValueContainsTheDelimiterLetsSplitIt);
-      argumentValue.split(secondaryCommandArgsDelimiter);
+      argumentValue = argumentValue.split(secondaryCommandArgsDelimiter);
     } // End-if (argumentValue.includes(secondaryCommandArgsDelimiter) === true)
     returnData = argumentValue;
   } else {
