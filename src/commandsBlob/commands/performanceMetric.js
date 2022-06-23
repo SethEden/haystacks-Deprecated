@@ -106,7 +106,7 @@ function businessRulesMetrics(inputData, inputMetaData) {
      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true) {
        stack.clearStack(cfg.cbusinessRulesPerformanceTrackingStack);
        stack.clearStack(cfg.cbusinessRulesNamesPerformanceTrackingStack);
-     }
+     } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearBusinessRulesPerformanceDataAfterAnalysis) === true)
    } // End-if (businessRuleMetricsEnabled === true)
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -187,7 +187,7 @@ function commandMetrics(inputData, inputMetaData) {
      if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true) {
        stack.clearStack(cfg.ccommandsPerformanceTrackingStack);
        stack.clearStack(cfg.ccommandNamesPerformanceTrackingStack);
-     }
+     } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cclearCommandPerformanceDataAfterAnalysis) === true)
    } // End-if (commandMetricsEnabled === true)
    loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
    loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

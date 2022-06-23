@@ -340,7 +340,7 @@ function commandGenerator(inputData, inputMetaData) {
         if (isNaN(inputData[j].trim()) === false) {
           legitNumberIndex = j;
           break;
-        }
+        } // End-if (isNaN(inputData[j].trim()) === false)
       } // End-for (let j = 2; j <= inputData.length - 1; j++)
     } // End-if (inputData.length >= 3)
     if (isNaN(inputData[legitNumberIndex]) === false) { // Make sure the user passed in a number for the second argument.
@@ -348,7 +348,7 @@ function commandGenerator(inputData, inputMetaData) {
       if (numberOfCommands > 0) {
         for (let i = 0; i < numberOfCommands; i++) {
           queue.enqueue(sys.cCommandQueue, commandString);
-        }
+        } // End-for (let i = 0; i < numberOfCommands; i++)
         returnData[1] = true;
       } else {
         // WARNING: advanced.commandGenerator: Must enter a number greater than 0, number entered:

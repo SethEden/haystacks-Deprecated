@@ -71,7 +71,7 @@ function storeData(inputData, inputMetaData) {
   if (inputData && inputMetaData) {
     dataBroker.storeData(inputData, inputMetaData);
     returnData = true;
-  }
+  } // End-if (inputData && inputMetaData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -173,7 +173,7 @@ function isObject(inputData, inputMetaData) {
     if (typeof inputData === wrd.cobject) {
       returnData = true;
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -223,7 +223,7 @@ function isArrayOrObject(inputData, inputMetaData) {
     if (isObject(inputData, '') === true || isArray(inputData, '') === true) {
       returnData = true;
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -249,7 +249,7 @@ function isNonZeroLengthArray(inputData, inputMetaData) {
     if (isArray(inputData, '') === true && inputData.length >= 1) {
       returnData = true;
     }
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -448,7 +448,7 @@ function getNamespacedDataObject(inputData, inputMetaData) {
         break;
       }
       namespaceDataObject = namespaceDataObject[element];
-    } // End for-loop (const element of inputData)
+    } // End-for (const element of inputData)
     if (processingValidData === true) {
       returnData = namespaceDataObject;
     }
@@ -488,8 +488,8 @@ function setNamespacedDataObject(inputData, inputMetaData) {
           namespaceDataObject[inputData[i + 1]] = inputMetaData;
         }
         returnData = true;
-      }
-    } // End for-loop (let i = 0; i < configurationNamespace.length; i++)
+      } // End-if (i === inputData.length - 2)
+    } // End-for (let i = 0; i < inputData.length - 1; i++)
   } // End-if (inputData && inputData.length > 0)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

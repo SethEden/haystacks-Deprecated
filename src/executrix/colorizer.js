@@ -54,7 +54,7 @@ function colorizeMessageSimple(message, colorArray, isForeground) {
     } else {
       colorizedMessage = chalk.bgRgb(red,green,blue)(colorizedMessage);
     }
-  }
+  } // End-if (colorizeLogsEnabled === true)
   // console.log('colorizedMessage is: ' + colorizedMessage);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return colorizedMessage;
@@ -238,7 +238,7 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
     if (messageContent.includes(bas.cDoublePercent) === true) {
       messageContentPrefix = messageContent.split(bas.cSpace)[0];
       messageContentSuffix = messageContent.split(bas.cSpace)[2];
-    }
+    } // End-if (messageContent.includes(bas.cDoublePercent) === true)
 
     className = setUnderlineFontStyleOnMessageComponentAccordingToSetting(className, aggregateModuleFontStyleUnderline);
     className = setBoldFontStyleOnMessageComponentAccordingToSetting(className, aggregateModuleFontStyleBold);
@@ -267,7 +267,7 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
       if (processingMessageData === true) {
         messageData = setUnderlineFontStyleOnMessageComponentAccordingToSetting(messageData, aggregateDataFontStyleUnderline);
         messageData = setBoldFontStyleOnMessageComponentAccordingToSetting(messageData, aggregateDataFontStyleBold);
-      }
+      } // End-if (processingMessageData === true)
 
       messageContent = setFontForegroundColorOnMessageComponentAccordingToSetting(messageContent, aggregateMessageFontColorSetting);
       // console.log('Done processing foreground color settings: messageContent is: ' + messageContent);
@@ -288,7 +288,7 @@ function colorizeMessage(message, className, callerFunctionName, debugFilesSetti
     if (processingMessageData === true) {
       messageData = setFontForegroundColorOnMessageComponentAccordingToSetting(messageData, aggregateDataFontColorSetting);
       messageData = setFontBackgroundColorOnMessageComponentAccordingToSetting(messageData, aggregateDataFontBackgroundColorSetting);
-    }
+    } // End-if (processingMessageData === true)
 
     if (messageContent.includes(bas.cDoublePercent) === true) {
       colorizedMessage = messageContentPrefix + bas.cSpace + className + bas.cDot + callerFunctionName + bas.cSpace + messageContentSuffix;

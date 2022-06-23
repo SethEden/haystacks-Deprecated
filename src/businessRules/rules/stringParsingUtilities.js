@@ -109,7 +109,7 @@ function stringToDataType(inputData, inputMetaData) {
       default: // We don't know what kind of object this is, better just return it the way it is.
         returnData = inputData;
         break;
-     }
+     } // End-switch (dataType)
   } // End-if (inputData)
   // console.log(`returnData is: ${JSON.stringify(returnData)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
@@ -149,7 +149,7 @@ function stringToBoolean(inputData, inputMetaData) {
         default:
           returnData = false;
           break;
-      }
+      } // End-switch (inputData.toLowerCase().trim())
     }
  } // End-if (inputData)
  // console.log(`returnData is: ${JSON.stringify(returnData)}`);

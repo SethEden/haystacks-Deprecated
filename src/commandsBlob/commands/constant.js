@@ -62,7 +62,7 @@ function constantsGenerator(inputData, inputMetaData) {
          if (validEntry === false) {
            // INVALID INPUT: Please enter a valid constant value that contains more than 4 characters.
            console.log(msg.cconstantsGeneratorMessage1);
-         }
+         } // End-if (validEntry === false)
        } // End-while (validEntry === false)
      } else if (inputData.length === 2) {
        userDefinedConstant = inputData[1];
@@ -81,7 +81,7 @@ function constantsGenerator(inputData, inputMetaData) {
        let constantType = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetConstantType]);
        // WARNING: The constant has already been defined in the following library(ies):
        console.log(msg.cconstantsGeneratorMessage2 + constantType);
-     }
+     } // End-if (doesConstantExist === true)
      userDefinedConstant = userDefinedConstant.trim();
      let wordCount = ruleBroker.processRules([userDefinedConstant, ''], [biz.cgetWordCountInString]);
      // wordCount is:
@@ -224,7 +224,7 @@ function constantsPatternRecognizer(inputData, inputMetaData) {
         if (validEntry === false) {
           // INVALID INPUT: Please enter a valid constant list.
           console.log(msg.cconstantsGeneratorListMessage1);
-        }
+        } // End-if (validEntry === false)
       } // End-while (validEntry === false)
     } else if (inputData.length === 2) {
       userDefinedConstantList = inputData[1];
@@ -255,10 +255,10 @@ function constantsPatternRecognizer(inputData, inputMetaData) {
     if (constantsPatternGenerationSetting === true) {
       queue.enqueue(sys.cCommandQueue, cmd.cconstantsGeneratorList + bas.cSpace + newConstantsList);
       returnData[1] = newConstantsList;
-    }
+    } // End-if (constantsPatternGenerationSetting === true)
   } else {
     // The enableConstantsValidation flag is disabled. Enable this flag in the configuration settings to activate this command.
-    errorMessage = msg.ccconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
+    errorMessage = msg.cconstantsGeneratorMessage3 + msg.cconstantsGeneratorMessage4;
     console.log(errorMessage);
     returnData[1] = errorMessage;
   }

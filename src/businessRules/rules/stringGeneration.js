@@ -46,7 +46,7 @@ function generateRandomMixedCaseTextByLength(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.crandomlyGenerateMixedCaseAlphabeticCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -75,7 +75,7 @@ function generateRandomUpperCaseTextByLength(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.crandomlyGenerateUpperCaseLetter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -104,7 +104,7 @@ function generateRandomLowerCaseTextByLength(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputData, inputMetaData], [biz.crandomlyGenerateLowerCaseLetter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -133,7 +133,7 @@ function generateRandomMixedCaseTextWithSpecialCharactersByLength(inputData, inp
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateMixedCaseLetterOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -160,7 +160,7 @@ function generateRandomUpperCaseTextWithSpecialCharactersByLength(inputData, inp
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateUpperCaseLetterOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -190,7 +190,7 @@ function generateRandomLowerCaseTextWithSpecialCharactersByLength(inputData, inp
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateLowerCaseLetterOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -219,7 +219,7 @@ function generateRandomMixedCaseAlphaNumericCodeByLength(inputData, inputMetaDat
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateMixedCaseAlphaNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -248,7 +248,7 @@ function generateRandomUpperCaseAlphaNumericCodeByLength(inputData, inputMetaDat
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateUpperCaseAlphaNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -277,7 +277,7 @@ function generateRandomLowerCaseAlphaNumericCodeByLength(inputData, inputMetaDat
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateLowerCaseAlphaNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -304,7 +304,7 @@ function generateRandomNumericCodeByLength(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal(['', ''], [biz.crandomlyGenerateNumericCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -334,7 +334,7 @@ function generateRandomMixedCaseAlphaNumericCodeWithSpecialCharactersByLength(in
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateEitherMixedCaseLetterOrNumberOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -364,7 +364,7 @@ function generateRandomUpperCaseAlphaNumericCodeWithSpecialCharactersByLength(in
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateEitherUpperCaseLetterOrNumberOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -394,7 +394,7 @@ function generateRandomLowerCaseAlphaNumericCodeWithSpecialCharactersByLength(in
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateEitherLowerCaseLetterOrNumberOrSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -422,7 +422,7 @@ function generateRandomSpecialCharacterCodeByLength(inputData, inputMetaData) {
     let numberOfCharactersToGenerate = parseInt(inputData);
     for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++) {
       returnData = returnData.concat(ruleParsing.processRulesInternal([inputMetaData, ''], [biz.crandomlyGenerateSpecialCharacter]));
-    }
+    } // End-for (let counter = 1; counter <= numberOfCharactersToGenerate; counter++)
   } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

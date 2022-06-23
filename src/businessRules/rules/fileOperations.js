@@ -75,7 +75,7 @@ function getXmlData(inputData, inputMetaData) {
       loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
       loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
       return returnData;
-    }
+    } // End-if (err)
     xml = result;
   });
   returnData = xml;
@@ -270,7 +270,7 @@ function getDirectoryList(inputData, inputMetaData) {
     returnData = fs.readdirSync(inputData, { withFileTypes: true })
       .filter((item) => item.isDirectory())
       .map((item) => item.name);
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

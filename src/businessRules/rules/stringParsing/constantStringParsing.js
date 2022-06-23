@@ -71,7 +71,7 @@ function validateConstantsDataValidation(inputData, inputMetaData) {
               if (colorizeLogsEnabled === true) {
                 passMessage = chalk.rgb(0,0,0)(passMessage);
                 passMessage = chalk.bgRgb(0,255,0)(passMessage);
-              }
+              } // End-if (colorizeLogsEnabled === true)
               console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + passMessage)
             } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cDisplayIndividualConstantsValidationPassMessages) === true)
           } else { // Else-clause if (foundConstant === true)
@@ -80,7 +80,7 @@ function validateConstantsDataValidation(inputData, inputMetaData) {
               if (colorizeLogsEnabled === true) {
                 failMessage = chalk.rgb(0,0,0)(failMessage);
                 failMessage = chalk.bgRgb(255,0,0)(failMessage);
-              }
+              } // End-if (colorizeLogsEnabled === true)
               let qualifiedConstantsPrefix = determineConstantsContextQualifiedPrefix(qualifiedConstantsFilename, '');
               console.log(qualifiedConstantsFilename + bas.cColon + bas.cSpace + failMessage);
               // loggers.consoleLog(namespacePrefix + functionName, wrd.cFAIL + bas.cSpace + lineArray[2] + bas.cSpace + wrd.cFAIL);
@@ -89,7 +89,7 @@ function validateConstantsDataValidation(inputData, inputMetaData) {
                 if (colorizeLogsEnabled === true) {
                   suggestedLineOfCode = chalk.rgb(0,0,0)(suggestedLineOfCode);
                   suggestedLineOfCode = chalk.bgRgb(255,0,0)(suggestedLineOfCode);
-                }
+                } // End-if (colorizeLogsEnabled === true)
                 // Suggested line of code is:
                 console.log(msg.cSuggestedLineOfCodeIs + suggestedLineOfCode);
               } // End-if (suggestedLineOfCode !== '')
@@ -98,8 +98,9 @@ function validateConstantsDataValidation(inputData, inputMetaData) {
           }
         } // End-if (lineInCode.includes(sys.cexportconst) === true)
       } else {
-        // TODO: Replace this hard coded string with a constant defined error message for the up-coming release!
-        // console.log('ERROR: line is null or undefined: ' + line + ' file is: ' + inputData);
+        // ERROR: line is null or undefined:
+        // file is:
+        console.log(msg.cErrorLineIsNullOrUndefined + line + msg.cSpaceFileIs + inputData);
       }      
     } // End-while (line = liner.next())
   } // End-if (inputData && inputMetaData)
@@ -209,7 +210,7 @@ function validateConstantsDataValidationLineItemName(inputData, inputMetaData) {
         if (inputData === validationLineItem.Name) {
           returnData = true;
           break;
-        }
+        } // End-if (inputData === validationLineItem.Name)
       } // End-if (validationLineItem)
     } // End-for (const element of D[sys.cConstantsValidationData][inputMetaData])
   } // End-if (inputData && inputMetaData)
@@ -259,7 +260,7 @@ loop1:
         if (inputData === constantActualValue.Actual || inputData === constantActualValue.Name) {
           returnData = true;
           break loop1;
-        }
+        } // End-if (inputData === constantActualValue.Actual || inputData === constantActualValue.Name)
       } // End-for (const element2 of constantsKeys)
     } // End-for (const element1 of constantsTypesKeys)
   } // End-if (inputData)
@@ -640,9 +641,9 @@ function validateConstantsDataValues(inputData, inputMetaData) {
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(0,255,0)(passMessage);
-            }
+            } // End-if (colorizeLogsEnabled === true)
             console.log(passMessage);
-          }
+          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualConstantsValidationPassMessages) === true)
         } else {
           // FAIL
           returnData = false;
@@ -654,9 +655,9 @@ function validateConstantsDataValues(inputData, inputMetaData) {
             if (colorizeLogsEnabled === true) {
               passMessage = chalk.rgb(0,0,0)(passMessage);
               passMessage = chalk.bgRgb(255,0,0)(passMessage);
-            }
+            } // End-if (colorizeLogsEnabled === true)
             console.log(passMessage);
-          }
+          } // End-if (configurator.getConfigurationSetting(wrd.csystem, cfg.cdisplayIndividualCosntantsValidationFailMessages) === true)
         }
       } else { // Else-clause if (validationLineItem)
         // `FAIL -- ${inputData} -- FAIL`
@@ -664,7 +665,7 @@ function validateConstantsDataValues(inputData, inputMetaData) {
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(255,0,0)(passMessage);
-        }
+        } // End-if (colorizeLogsEnabled === true)
         console.log(passMessage);
       } // End else-clause if (validationLineItem)
     } // End-for (const element of D[sys.cConstantsValidationData][inputData])

@@ -175,7 +175,7 @@ function changeDebugConfigurationTheme(inputData, inputMetaData) {
         errorMessage = msg.cchangeDebugConfigurationThemeMessage01;
         console.log(errorMessage);
         returnData[1] = errorMessage;
-      }
+      } // End-if (themeLoadedSuccessfully === false)
     } else {
       // ERROR: The specified theme name was not found in the current list of supported themes.
       errorMessage = msg.cchangeDebugConfigurationThemeMessage02;

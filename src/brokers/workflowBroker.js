@@ -125,7 +125,7 @@ function searchWorkflow(workflowData, workflowName) {
         if (workflowObjectTemp != false && typeof workflowObjectTemp != wrd.cobject) {
           workflowObject = workflowObjectTemp;
           break;
-        }
+        } // End-if (workflowObjectTemp != false && typeof workflowObjectTemp != wrd.cobject)
       } else if (typeof workflowData[workflowEntity] != wrd.cobject) {
         // Needed to make sure it's not a parent entity of the same name.
         workflowObject = workflowData[workflowEntity];

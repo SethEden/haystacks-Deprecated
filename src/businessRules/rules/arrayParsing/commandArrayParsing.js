@@ -274,7 +274,7 @@ function generateCommandAliases(inputData, inputMetaData) {
           let firstLetterOfCommandAliasWord = commandAliasWord.charAt(0).toUpperCase();
           commandAliasWord = ruleParsing.processRulesInternal([[commandAliasWord, 0], firstLetterOfCommandAliasWord], [biz.creplaceCharacterAtIndexOfString]);
           commandWordAliasesArray[j] = commandAliasWord; // Saved the changes back to array.
-        }
+        } // End-if (ruleParsing.processRulesInternal([commandAliasWord, ''], [biz.cisFirstCharacterLowerCase]) === true)
       } // End-for (let j = 0; j < commandWordAliasesArray.length; j++)
       // commandWordAliasesArray AFTER CHANGE is:
       loggers.consoleLog(namespacePrefix + functionName, msg.ccommandWordAliasesAfterChangeIs + JSON.stringify(commandWordAliasesArray));

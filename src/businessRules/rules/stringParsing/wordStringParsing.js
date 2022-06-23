@@ -135,7 +135,7 @@ function simplifyAndConsolidateString(inputData, inputMetaData) {
     // returnData = inputData.toLowerCase().replace(/[\W]/g, '');
     returnData = ruleParsing.processRulesInternal([inputData.toLowerCase().trim(), [/[^\w\s]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
     returnData = ruleParsing.processRulesInternal([returnData, [/[\0-9]/g, '']], [biz.cutilitiesReplaceCharacterWithCharacter]);
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -187,9 +187,9 @@ function countCamelCaseWords(inputData, inputMetaData) {
     let caps = [];
     for (let i = 1; i < inputData.length; i++) {
       if (gen.cUpperCaseEnglishAlphabet.includes(inputData.charAt(i))) { caps.push(i); }
-    }
+    } // End-for (let i = 1; i < inputData.length; i++)
     returnData = caps.length;
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

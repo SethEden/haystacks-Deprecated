@@ -101,7 +101,7 @@ function getValueFromAssignmentOperationString(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cparsedStringSpaceTerm + bas.cSpace + num.c1 + msg.cSpaceIsColonSpace + parsedString[0]);
     loggers.consoleLog(namespacePrefix + functionName, msg.cparsedStringSpaceTerm + bas.cSpace + num.c2 + msg.cSpaceIsColonSpace + parsedString[1]);
     returnData = parsedString[1].replace(/['"]+/g, '');
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;
@@ -292,7 +292,7 @@ function getUserNameFromEmail(inputData, inputMetaData) {
     loggers.consoleLog(namespacePrefix + functionName, msg.cIndexOfTheSpace + bas.cAt +
       sys.cSpaceIsColonSpace + inputData.indexOf(bas.cAt));
     returnData = inputData.substr(0, inputData.indexOf(bas.cAt));
-  }
+  } // End-if (inputData)
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + returnData);
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
   return returnData;

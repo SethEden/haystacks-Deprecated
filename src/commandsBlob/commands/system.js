@@ -194,11 +194,11 @@ function name(inputData, inputMetaData) {
   let useFancyFont = false;
   if (inputData.length === 2) {
     appContext = inputData[1];
-  }
+  } // End-if (inputData.length === 2)
   if (inputData.length === 3) {
     appContext = inputData[1];
     useFancyFont = ruleBroker.processRules([inputData[2], ''], [biz.cstringToDataType]);
-  }
+  } // End-if (inputData.length === 3)
   if (appContext !== '') {
     if (appContext.toUpperCase() === wrd.cAPPLICATION) {
       reportedName = configurator.getConfigurationSetting(wrd.csystem, sys.cApplicationName);

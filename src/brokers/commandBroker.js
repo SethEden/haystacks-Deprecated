@@ -28,7 +28,7 @@ import stack from '../structures/stack.js';
 import hayConst from '@haystacks/constants';
 import path from 'path';
 
-const {bas, biz, cfg, fnc, gen, msg, num, sys, wrd} = hayConst;
+const {bas, biz, cfg, gen, msg, num, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // brokers.commandBroker.
 const namespacePrefix = wrd.cbrokers + bas.cDot + baseFileName + bas.cDot;
@@ -67,7 +67,7 @@ function addClientCommands(clientCommands) {
   for (const [key, value] of Object.entries(clientCommands)) {
     // console.log('%%%%%%%%%%%%%%%%%% ---- >>>>>>>>> key is: ' + key);
     D[wrd.cCommands] = {...D[wrd.cCommands], [`${key}`]: value};
-  }
+  } // End-for (const [key, value] of Object.entries(clientCommands))
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
 }
 
@@ -192,7 +192,7 @@ function countMatchingCommandAlias(commandAliasData, commandAliasName) {
             // After adding commandAliasCount and tempCommandAliasCount:
             loggers.consoleLog(namespacePrefix + functionName, msg.cAfterAddingCommandAliasCountAndTempCommandAliasCount + commandAliasCount);
             // Don't break, continue searching, so we get a full count of any duplicates found.
-          }
+          } // End-if (tempCommandAliasCount > 0)
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
         // Found a matching entry! 2
@@ -266,7 +266,7 @@ function searchCommandAlias(commandAliasData, commandAliasName) {
           if (commandAliasesObjectTemp) {
             commandAliasObject = commandAliasesObjectTemp;
             break;
-          }
+          } // End-if (commandAliasesObjectTemp)
         }
       } else if (commandAliasEntity.toUpperCase() === commandAliasName.toUpperCase()) {
         // Found a matching entry!

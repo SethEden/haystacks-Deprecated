@@ -173,7 +173,7 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
     // PASSED: All duplicate command aliases validation tests!
     console.log(msg.cvalidateCommandAliasesMessage1);
     returnData[1] = true;
-  }
+  } // End-if (passedAllCommandAliasesDuplicateCheck === true)
   configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllCommandAliasesDuplicateChecks, passedAllCommandAliasesDuplicateCheck);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);
@@ -229,13 +229,13 @@ const namespacePrefix = sys.ccommandsBlob + bas.cDot + wrd.ccommands + bas.cDot 
 
       passedAllWorkflowDuplicateCheck = false;
       returnData[1] = false;
-    }
+    } // End-if (numberOfDuplicatesFound > 1)
   } // End-for (let workflowName in allWorkflowsData)
   if (passedAllWorkflowDuplicateCheck === true) {
     // PASSED: All duplicate workflow validation tests!
     console.log(msg.cvalidateWorkflowsMessage01);
     returnData[1] = true;
-  }
+  } // End-if (passedAllWorkflowDuplicateCheck === true)
   configurator.setConfigurationSetting(wrd.csystem, cfg.cpassedAllWorkflowDuplicateChecks, passedAllWorkflowDuplicateCheck);
   loggers.consoleLog(namespacePrefix + functionName, msg.creturnDataIs + JSON.stringify(returnData));
   loggers.consoleLog(namespacePrefix + functionName, msg.cEND_Function);

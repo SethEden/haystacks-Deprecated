@@ -24,7 +24,7 @@ import * as math from 'mathjs';
 import chalk from 'chalk';
 import path from 'path';
 
-const {bas, biz, cfg, gen, msg, sys, wrd} = hayConst;
+const {bas, biz, cfg, msg, sys, wrd} = hayConst;
 const baseFileName = path.basename(import.meta.url, path.extname(import.meta.url));
 // businessRules.rules.arrayParsing.constantArrayParsing.
 const namespacePrefix = sys.cbusinessRules + bas.cDot + wrd.crules + bas.cDot + wrd.carray + wrd.cParsing + bas.cDot + baseFileName + bas.cDot;
@@ -177,7 +177,7 @@ function validatePatternsThatNeedImplementation(inputData, inputMetaData) {
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(0,255,0)(passMessage);
-        }
+        } // End-if (colorizeLogsEnabled === true)
         console.log(passMessage);
         // constant does NOT exist:
         loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesNotExist + currentString);
@@ -195,7 +195,7 @@ function validatePatternsThatNeedImplementation(inputData, inputMetaData) {
         if (colorizeLogsEnabled === true) {
           passMessage = chalk.rgb(0,0,0)(passMessage);
           passMessage = chalk.bgRgb(255,0,0)(passMessage);
-        }
+        } // End-if colorizeLogsEnabled === true
         console.log(passMessage);
         // constant does exist:
         loggers.consoleLog(namespacePrefix + functionName, msg.cConstantDoesExist + currentString);

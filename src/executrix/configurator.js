@@ -168,7 +168,7 @@ function processConfigurationValueRules(name, value) {
       // We don't want to corrupt the other data that may be passed into this function.
       returnValue = value;
       break;
-  }
+  } // End-switch (name)
   // console.log(`returnValue is: ${JSON.stringify(returnValue)}`);
   // console.log(`END ${namespacePrefix}${functionName} function`);
   return returnValue;
@@ -233,12 +233,12 @@ function getConfigurationNamespaceObject(configurationNamespace) {
     D[wrd.cconfiguration] = {};
     configurationDataRoot = D[wrd.cconfiguration];
     configurationPathObject = configurationDataRoot;
-  }
+  } // End-if (!configurationPathObject)
   for (const element of configurationNamespace) {
     if (!configurationPathObject[element]) {
       // It doesn't exist yet, so lets make it.
       configurationPathObject[element] = {};
-    }
+    } // End-if (!configurationPathObject[element])
     configurationPathObject = configurationPathObject[element];
   } // End for-loop (const element of configurationNamespace)
   if (returnValue) {
